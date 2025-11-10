@@ -1,0 +1,317 @@
+\maketitulo
+
+\section{Objetivos y pautas de elaboración}
+
+El principal objetivo de esta actividad es aplicar integralmente la teoría de matrices de densidad al análisis de un problema real: la \textbf{decoherencia cuántica}, que es el principal obstáculo en la construcción de computadores cuánticos prácticos.
+
+A través de un caso de estudio completo, los estudiantes deberán:
+\begin{itemize}
+  \item Modelar matemáticamente la degradación de un estado cuántico.
+  \item Cuantificar la pérdida de información cuántica usando múltiples métricas.
+  \item Interpretar físicamente los resultados en el contexto de la computación cuántica.
+  \item Analizar la viabilidad temporal de operaciones cuánticas.
+\end{itemize}
+
+Este ejercicio integrador requiere el uso de todos los conceptos del tema de estados probabilísticos.
+
+\section{Problema: Decoherencia de fase en un cúbit}
+
+\subsection{Contexto}
+
+Un laboratorio de computación cuántica ha preparado un cúbit en el estado de superposición:
+$$\ket{\psi_0} = \frac{1}{\sqrt{2}}(\ket{0} + \ket{1})$$
+
+Este cúbit forma parte de un procesador cuántico y será utilizado en un algoritmo que requiere mantener la coherencia cuántica durante al menos 100 microsegundos ($\mu s$).
+
+Sin embargo, el cúbit no está perfectamente aislado del entorno. La interacción incontrolada con campos electromagnéticos externos, vibraciones térmicas y otros factores ambientales provocan un proceso de \textbf{decoherencia de fase} (dephasing).
+
+Este proceso se modela matemáticamente mediante la evolución:
+$$\rho(t) = (1-p(t))\rho_{\text{puro}} + p(t)\rho_{\text{mixto}}$$
+
+donde:
+\begin{itemize}
+  \item $\rho_{\text{puro}} = \ketbra{\psi_0}{\psi_0}$ es la matriz de densidad del estado inicial puro.
+  \item $\rho_{\text{mixto}} = \frac{1}{2}\ketbra{0}{0} + \frac{1}{2}\ketbra{1}{1}$ es el estado completamente mixto.
+  \item $p(t) = 1 - e^{-t/T_2}$ es la probabilidad de decoherencia.
+  \item $T_2 = 150\ \mu s$ es el \textbf{tiempo de coherencia} característico del cúbit.
+\end{itemize}
+
+\subsection{Apartados}
+
+\begin{questions}
+  \question \textbf{Modelado inicial}
+
+  Escribir explícitamente en forma matricial $4 \times 4$ la matriz de densidad del estado inicial puro $\rho_{\text{puro}} = \ketbra{\psi_0}{\psi_0}$ en la base computacional $\{\ket{0}, \ket{1}\}$.
+
+  \begin{solution}
+    El estado inicial es:
+    $$\ket{\psi_0} = \frac{1}{\sqrt{2}}(\ket{0} + \ket{1}) = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 1 \end{pmatrix}$$
+
+    El bra correspondiente:
+    $$\bra{\psi_0} = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \end{pmatrix}$$
+
+    La matriz de densidad:
+    $$\rho_{\text{puro}} = \ketbra{\psi_0}{\psi_0} = \frac{1}{2}\begin{pmatrix} 1 \\ 1 \end{pmatrix}\begin{pmatrix} 1 & 1 \end{pmatrix} = \frac{1}{2}\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}$$
+
+    \textbf{Verificación:}
+    \begin{itemize}
+      \item Hermitiana: $\rho^\dagger = \rho$ ✓
+      \item Traza unitaria: $\text{Tr}(\rho) = \frac{1}{2}(1 + 1) = 1$ ✓
+      \item Pureza: $\text{Tr}(\rho^2) = \text{Tr}\left(\frac{1}{4}\begin{pmatrix} 2 & 2 \\ 2 & 2 \end{pmatrix}\right) = 1$ ✓ (estado puro)
+    \end{itemize}
+  \end{solution}
+
+  \question \textbf{Evolución temporal}
+
+  Escribir la expresión matricial explícita de $\rho(t)$ sustituyendo $\rho_{\text{puro}}$, $\rho_{\text{mixto}}$ y $p(t)$.
+
+  \begin{solution}
+    El estado completamente mixto es:
+    $$\rho_{\text{mixto}} = \frac{1}{2}\ketbra{0}{0} + \frac{1}{2}\ketbra{1}{1} = \frac{1}{2}\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = \frac{I}{2}$$
+
+    Sustituyendo en la fórmula de evolución con $p(t) = 1 - e^{-t/T_2}$:
+    \begin{align*}
+      \rho(t) & = (1-p(t))\rho_{\text{puro}} + p(t)\rho_{\text{mixto}}                                                                                                                        \\
+              & = e^{-t/T_2} \cdot \frac{1}{2}\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix} + (1-e^{-t/T_2}) \cdot \frac{1}{2}\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}                     \\
+              & = \frac{1}{2}\begin{pmatrix} e^{-t/T_2} & e^{-t/T_2} \\ e^{-t/T_2} & e^{-t/T_2} \end{pmatrix} + \frac{1}{2}\begin{pmatrix} 1-e^{-t/T_2} & 0 \\ 0 & 1-e^{-t/T_2} \end{pmatrix} \\
+              & = \frac{1}{2}\begin{pmatrix} 1 & e^{-t/T_2} \\ e^{-t/T_2} & 1 \end{pmatrix}
+    \end{align*}
+
+    \textbf{Observación:} Los elementos diagonales permanecen constantes en $1/2$ (las poblaciones no cambian), pero los elementos fuera de la diagonal decaen exponencialmente (pérdida de coherencia).
+  \end{solution}
+
+  \question \textbf{Criterio de pureza}
+
+  Calcular $\text{Tr}(\rho^2(t))$ como función del tiempo y analizar:
+  \begin{parts}
+    \part ¿En qué instante el estado deja de ser puro?
+    \part ¿Cuándo alcanza el 50\% de pureza?
+    \part ¿Hacia qué valor tiende cuando $t \to \infty$?
+  \end{parts}
+
+  \begin{solution}
+    Calculamos $\rho^2(t)$:
+    $$\rho^2(t) = \frac{1}{4}\begin{pmatrix} 1 & e^{-t/T_2} \\ e^{-t/T_2} & 1 \end{pmatrix}\begin{pmatrix} 1 & e^{-t/T_2} \\ e^{-t/T_2} & 1 \end{pmatrix}$$
+    $$= \frac{1}{4}\begin{pmatrix} 1 + e^{-2t/T_2} & 2e^{-t/T_2} \\ 2e^{-t/T_2} & 1 + e^{-2t/T_2} \end{pmatrix}$$
+
+    La traza:
+    $$\text{Tr}(\rho^2(t)) = \frac{1}{4}\left(2(1 + e^{-2t/T_2})\right) = \frac{1 + e^{-2t/T_2}}{2}$$
+
+    \textbf{Apartado (a):} El estado es puro cuando $\text{Tr}(\rho^2) = 1$:
+    $$\frac{1 + e^{-2t/T_2}}{2} = 1 \Rightarrow e^{-2t/T_2} = 1 \Rightarrow t = 0$$
+
+    Para cualquier $t > 0$, el estado es mixto. La decoherencia comienza instantáneamente.
+
+    \textbf{Apartado (b):} Pureza del 50\%:
+    $$\frac{1 + e^{-2t/T_2}}{2} = 0.5 \Rightarrow 1 + e^{-2t/T_2} = 1 \Rightarrow e^{-2t/T_2} = 0 \Rightarrow t \to \infty$$
+
+    Mejor reformular: ¿cuándo es $\text{Tr}(\rho^2) = 0.75$ (punto medio entre 1 y 0.5)?
+    $$\frac{1 + e^{-2t/T_2}}{2} = 0.75 \Rightarrow e^{-2t/T_2} = 0.5 \Rightarrow t = \frac{T_2 \ln 2}{2} \approx 0.347 T_2 = 52\ \mu s$$
+
+    \textbf{Apartado (c):} Límite asintótico:
+    $$\lim_{t \to \infty} \text{Tr}(\rho^2(t)) = \frac{1 + 0}{2} = \frac{1}{2}$$
+
+    Esto corresponde al estado completamente mixto (máxima mezcla estadística).
+  \end{solution}
+
+  \question \textbf{Entropía de von Neumann}
+
+  Calcular la entropía $S(\rho(t)) = -\text{Tr}(\rho \log_2 \rho)$ como función del tiempo.
+
+  \textit{Pista: Primero encuentre los valores propios de $\rho(t)$.}
+
+  \begin{solution}
+    El polinomio característico de $\rho(t)$:
+    $$\det(\rho(t) - \lambda I) = \det\begin{pmatrix} \frac{1}{2}-\lambda & \frac{e^{-t/T_2}}{2} \\ \frac{e^{-t/T_2}}{2} & \frac{1}{2}-\lambda \end{pmatrix}$$
+    $$= \left(\frac{1}{2}-\lambda\right)^2 - \frac{e^{-2t/T_2}}{4} = \lambda^2 - \lambda + \frac{1 - e^{-2t/T_2}}{4}$$
+
+    Resolviendo:
+    $$\lambda = \frac{1 \pm \sqrt{1 - 4 \cdot \frac{1-e^{-2t/T_2}}{4}}}{2} = \frac{1 \pm \sqrt{e^{-2t/T_2}}}{2} = \frac{1 \pm e^{-t/T_2}}{2}$$
+
+    Valores propios:
+    $$\lambda_1(t) = \frac{1 + e^{-t/T_2}}{2}, \quad \lambda_2(t) = \frac{1 - e^{-t/T_2}}{2}$$
+
+    Entropía de von Neumann:
+    $$S(\rho(t)) = -\lambda_1 \log_2 \lambda_1 - \lambda_2 \log_2 \lambda_2$$
+    $$= -\frac{1 + e^{-t/T_2}}{2}\log_2\frac{1 + e^{-t/T_2}}{2} - \frac{1 - e^{-t/T_2}}{2}\log_2\frac{1 - e^{-t/T_2}}{2}$$
+
+    \textbf{Casos límite:}
+    \begin{itemize}
+      \item $t = 0$: $\lambda_1 = 1, \lambda_2 = 0 \Rightarrow S = 0$ (estado puro, información máxima).
+      \item $t \to \infty$: $\lambda_1 = \lambda_2 = 1/2 \Rightarrow S = 1$ bit (máxima incertidumbre).
+    \end{itemize}
+  \end{solution}
+
+  \question \textbf{Fidelidad cuántica}
+
+  Calcular la fidelidad $F(t) = \text{Tr}(\sqrt{\sqrt{\rho(0)}\rho(t)\sqrt{\rho(0)}})$ entre el estado inicial y el estado en tiempo $t$.
+
+  Para estados de cúbit, se puede usar la fórmula simplificada:
+  $$F(\rho, \sigma) = \text{Tr}(\sqrt{\rho}\sqrt{\sigma})^2$$
+
+  \begin{solution}
+    Para el caso particular de nuestro estado, donde $\rho(0) = \rho_{\text{puro}}$ es un proyector ($\rho^2 = \rho$), la fórmula se simplifica:
+
+    $$F(t) = \text{Tr}(\rho(0)\rho(t))$$
+
+    Calculamos:
+    $$F(t) = \text{Tr}\left(\frac{1}{2}\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix} \cdot \frac{1}{2}\begin{pmatrix} 1 & e^{-t/T_2} \\ e^{-t/T_2} & 1 \end{pmatrix}\right)$$
+    $$= \frac{1}{4}\text{Tr}\begin{pmatrix} 1+e^{-t/T_2} & 1+e^{-t/T_2} \\ 1+e^{-t/T_2} & 1+e^{-t/T_2} \end{pmatrix} = \frac{1}{4} \cdot 2(1+e^{-t/T_2}) = \frac{1+e^{-t/T_2}}{2}$$
+
+    \textbf{Interpretación:}
+    \begin{itemize}
+      \item $F(0) = 1$: fidelidad perfecta (estados idénticos).
+      \item $F(\infty) = 1/2$: fidelidad mínima para un cúbit.
+      \item $F(T_2) = \frac{1+e^{-1}}{2} \approx 0.684$: la fidelidad cae al 68.4\% en un tiempo característico.
+    \end{itemize}
+  \end{solution}
+
+  \question \textbf{Distancia de traza}
+
+  Calcular la distancia de traza $D(t) = \frac{1}{2}\text{Tr}|\rho(0) - \rho(t)|$ entre el estado inicial y el estado en tiempo $t$.
+
+  \begin{solution}
+    Calculamos la diferencia:
+    $$\rho(0) - \rho(t) = \frac{1}{2}\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix} - \frac{1}{2}\begin{pmatrix} 1 & e^{-t/T_2} \\ e^{-t/T_2} & 1 \end{pmatrix}$$
+    $$= \frac{1}{2}\begin{pmatrix} 0 & 1-e^{-t/T_2} \\ 1-e^{-t/T_2} & 0 \end{pmatrix}$$
+
+    Esta matriz es hermitiana, así que sus valores propios son reales. Calculamos:
+    $$\det\begin{pmatrix} -\lambda & \frac{1-e^{-t/T_2}}{2} \\ \frac{1-e^{-t/T_2}}{2} & -\lambda \end{pmatrix} = \lambda^2 - \frac{(1-e^{-t/T_2})^2}{4} = 0$$
+    $$\lambda = \pm \frac{1-e^{-t/T_2}}{2}$$
+
+    La traza del valor absoluto (suma de valores propios absolutos):
+    $$\text{Tr}|\rho(0) - \rho(t)| = \frac{1-e^{-t/T_2}}{2} + \frac{1-e^{-t/T_2}}{2} = 1-e^{-t/T_2}$$
+
+    Distancia de traza:
+    $$D(t) = \frac{1}{2}(1-e^{-t/T_2}) = \frac{p(t)}{2}$$
+
+    \textbf{Casos límite:}
+    \begin{itemize}
+      \item $D(0) = 0$: sin distancia (estados idénticos).
+      \item $D(\infty) = 1/2$: máxima distancia distinguible para cúbits.
+      \item $D(T_2) = \frac{1-e^{-1}}{2} \approx 0.316$.
+    \end{itemize}
+  \end{solution}
+
+  \question \textbf{Vector de Bloch}
+
+  El estado de un cúbit puede representarse mediante el vector de Bloch $\vec{r} = (r_x, r_y, r_z)$ donde:
+  $$r_i = \text{Tr}(\rho \sigma_i), \quad i = x, y, z$$
+
+  Calcular $\vec{r}(t)$ y describir geométricamente la trayectoria del estado en la esfera de Bloch.
+
+  \begin{solution}
+    Calculamos cada componente:
+
+    \textbf{Componente $r_x$:}
+    $$r_x(t) = \text{Tr}(\rho(t)\sigma_x) = \text{Tr}\left(\frac{1}{2}\begin{pmatrix} 1 & e^{-t/T_2} \\ e^{-t/T_2} & 1 \end{pmatrix}\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}\right)$$
+    $$= \text{Tr}\left(\frac{1}{2}\begin{pmatrix} e^{-t/T_2} & 1 \\ 1 & e^{-t/T_2} \end{pmatrix}\right) = e^{-t/T_2}$$
+
+    \textbf{Componente $r_y$:}
+    $$r_y(t) = \text{Tr}(\rho(t)\sigma_y) = \text{Tr}\left(\frac{1}{2}\begin{pmatrix} 1 & e^{-t/T_2} \\ e^{-t/T_2} & 1 \end{pmatrix}\begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}\right)$$
+    $$= \text{Tr}\left(\frac{1}{2}\begin{pmatrix} ie^{-t/T_2} & -i \\ i & -ie^{-t/T_2} \end{pmatrix}\right) = 0$$
+
+    \textbf{Componente $r_z$:}
+    $$r_z(t) = \text{Tr}(\rho(t)\sigma_z) = \text{Tr}\left(\frac{1}{2}\begin{pmatrix} 1 & e^{-t/T_2} \\ e^{-t/T_2} & 1 \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}\right)$$
+    $$= \text{Tr}\left(\frac{1}{2}\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}\right) = 0$$
+
+    Vector de Bloch:
+    $$\vec{r}(t) = (e^{-t/T_2}, 0, 0)$$
+
+    \textbf{Interpretación geométrica:}
+    \begin{itemize}
+      \item En $t=0$: $\vec{r} = (1, 0, 0)$, el estado está en la superficie de la esfera (estado puro $\ket{+}$).
+      \item Para $t > 0$: el vector se mueve hacia el origen a lo largo del eje $x$.
+      \item Cuando $t \to \infty$: $\vec{r} \to (0, 0, 0)$, el estado alcanza el centro (completamente mixto).
+      \item La longitud $|\vec{r}(t)| = e^{-t/T_2}$ decae exponencialmente.
+    \end{itemize}
+
+    Este movimiento hacia el centro representa la pérdida de pureza del estado cuántico.
+  \end{solution}
+
+  \question \textbf{Análisis de viabilidad}
+
+  Dado que el algoritmo cuántico requiere mantener coherencia durante 100 $\mu s$ y el tiempo característico es $T_2 = 150\ \mu s$:
+
+  \begin{parts}
+    \part Calcular la fidelidad $F(100\ \mu s)$.
+    \part Calcular la pureza $\text{Tr}(\rho^2(100\ \mu s))$.
+    \part Si el algoritmo requiere fidelidad mínima del 80\%, ¿es viable ejecutarlo?
+    \part ¿Cuál es el tiempo máximo disponible para mantener $F \geq 0.8$?
+  \end{parts}
+
+  \begin{solution}
+    \textbf{Apartado (a):} Fidelidad en $t = 100\ \mu s$:
+    $$F(100) = \frac{1 + e^{-100/150}}{2} = \frac{1 + e^{-2/3}}{2} \approx \frac{1 + 0.5134}{2} \approx 0.757 = 75.7\%$$
+
+    \textbf{Apartado (b):} Pureza en $t = 100\ \mu s$:
+    $$\text{Tr}(\rho^2(100)) = \frac{1 + e^{-200/150}}{2} = \frac{1 + e^{-4/3}}{2} \approx \frac{1 + 0.2636}{2} \approx 0.632 = 63.2\%$$
+
+    \textbf{Apartado (c):} Como $F(100\ \mu s) = 75.7\% < 80\%$, el algoritmo \textbf{NO es viable} con los parámetros actuales.
+
+    \textbf{Apartado (d):} Tiempo máximo para $F \geq 0.8$:
+    $$\frac{1 + e^{-t/T_2}}{2} \geq 0.8 \Rightarrow e^{-t/150} \geq 0.6$$
+    $$-\frac{t}{150} \geq \ln(0.6) \Rightarrow t \leq -150\ln(0.6) \approx 76.7\ \mu s$$
+
+    \textbf{Conclusión:} El algoritmo solo es viable si su ejecución completa dura menos de 77 microsegundos, o si se mejora el tiempo de coherencia $T_2$ del cúbit (por ejemplo, mediante mejor aislamiento, temperaturas más bajas, o corrección de errores cuánticos).
+
+    \textbf{Implicaciones prácticas:}
+    \begin{itemize}
+      \item Se necesita optimizar el algoritmo para reducir su duración.
+      \item Considerar técnicas de corrección de errores cuánticos (quantum error correction).
+      \item Mejorar el hardware para aumentar $T_2$ (refrigeración, blindaje electromagnético, etc.).
+      \item Implementar pulsos de refocalización (spin echo) para extender el tiempo de coherencia efectivo.
+    \end{itemize}
+  \end{solution}
+\end{questions}
+
+\section{Requisitos de la actividad}
+
+\subsection*{Modalidad de trabajo}
+Esta actividad se realizará de manera \textbf{grupal}.  Cada grupo debe indicar claramente los nombres de todos los miembros en la portada. Aunque se trabaje en grupo, cada miembro debe entregar su propia versión de la actividad.
+
+\subsection*{Formato y presentación}
+El trabajo deberá cumplir los siguientes requisitos formales:
+
+\begin{itemize}
+  \item \textbf{Estructura}: El documento seguirá la estructura de un artículo académico, incluyendo introducción, desarrollo, conclusiones y referencias bibliográficas.
+  \item \textbf{Herramientas}: La redacción se realizará íntegramente en \LaTeX.
+  \item \textbf{Entrega}: Se entregará un único archivo en formato PDF compilado.
+  \item \textbf{Citación}: Todas las referencias bibliográficas seguirán estrictamente la normativa APA 7.ª edición.
+\end{itemize}
+
+\subsection*{Criterios de evaluación}
+Se valorarán especialmente los siguientes aspectos:
+
+\begin{itemize}
+  \item Claridad y rigor en la exposición de los cálculos intermedios.
+  \item Justificación matemática y razonamiento lógico de los pasos realizados.
+  \item Interpretación crítica de los resultados obtenidos y su contextualización.
+  \item Corrección en el uso del lenguaje técnico y la notación matemática.
+\end{itemize}
+
+\subsection*{Extensión recomendada}
+Se recomienda un trabajo entre 8 y 12 páginas incluyendo cálculos, gráficas (opcionales pero recomendadas) e interpretaciones.
+
+\begin{center}
+  \fcolorbox{red}{yellow!20}{%
+    \begin{minipage}{0.9\textwidth}
+      \textbf{Nota importante:} La rúbrica de evaluación únicamente se aplicará a aquellos trabajos que cumplan todos los requisitos de formato especificados. Los trabajos que no satisfagan estos requisitos podrán ser devueltos sin evaluación.
+    \end{minipage}
+  }
+\end{center}
+
+\section{Rúbrica}
+
+\begin{rubrica}
+  \setrubrica{Normativa}{Entregar la actividad en plazo y cumpliendo las indicaciones.}{0,5}{5}
+  \setrubrica{Biliografía y citas APA}{Cumplir con las normas de citación y bibliografía según la normativa APA 7.}{0,5}{5}
+  \setrubrica{Apartado 1}{Matriz de densidad inicial correcta con verificaciones}{1}{10}
+  \setrubrica{Apartado 2}{Evolución temporal explícita y correcta}{1}{10}
+  \setrubrica{Apartado 3}{Pureza: cálculo correcto y análisis temporal completo}{1.5}{15}
+  \setrubrica{Apartado 4}{Entropía: valores propios y límites correctos}{1.5}{15}
+  \setrubrica{Apartado 5}{Fidelidad: cálculo e interpretación}{1}{10}
+  \setrubrica{Apartado 6}{Distancia de traza correcta}{1}{10}
+  \setrubrica{Apartado 7}{Vector de Bloch y descripción geométrica}{1}{10}
+  \setrubrica{Apartado 8}{Análisis de viabilidad completo y propuestas justificadas}{1}{10}
+\end{rubrica}

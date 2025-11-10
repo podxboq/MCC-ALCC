@@ -1,0 +1,263 @@
+\codigonombre{}{MCC-ALCC-25Q106}
+\begin{questions}
+	\question[4] Responda a las siguientes cuestiones:
+	\begin{parts}
+		\part Explique el concepto de producto interno en un espacio vectorial complejo y su importancia en mecánica cuántica.
+
+		\begin{solution}
+			El producto interno en un espacio vectorial complejo es una operación que asigna a cada par de vectores un número complejo, cumpliendo ciertas propiedades que permiten definir conceptos como norma, ortogonalidad y proyecciones.
+
+			Definición formal:
+			Un producto interno en un espacio vectorial complejo $V$ es una función $\langle\cdot,\cdot\rangle: V \times V \rightarrow \mathbb{C}$ que cumple:
+
+			1) Linealidad en el segundo argumento:
+			$\langle u, \alpha v + \beta w \rangle = \alpha \langle u, v \rangle + \beta \langle u, w \rangle$ para todo $u, v, w \in V$ y $\alpha, \beta \in \mathbb{C}$
+
+			2) Conjugado-simétrica:
+			$\langle u, v \rangle = \overline{\langle v, u \rangle}$ para todo $u, v \in V$
+
+			3) Positividad:
+			$\langle v, v \rangle \geq 0$ para todo $v \in V$, y $\langle v, v \rangle = 0$ si y solo si $v = 0$
+
+			De estas propiedades se deriva:
+			- $\langle \alpha u, v \rangle = \overline{\alpha} \langle u, v \rangle$ (conjugado-linealidad en el primer argumento)
+			- La norma (o longitud) de un vector: $\|v\| = \sqrt{\langle v, v \rangle}$
+			- La distancia entre vectores: $d(u,v) = \|u-v\|$
+			- Ortogonalidad: $u$ y $v$ son ortogonales si $\langle u, v \rangle = 0$
+
+			Ejemplos de productos internos:
+			1) En $\mathbb{C}^n$: $\langle u, v \rangle = \sum_{i=1}^n \overline{u_i} v_i = u^\dagger v$
+			2) En espacios de funciones $L^2$: $\langle f, g \rangle = \int_a^b \overline{f(x)} g(x) dx$
+
+			Importancia en mecánica cuántica:
+
+			1) Interpretación probabilística:
+			- Si $|\psi\rangle$ es un estado normalizado ($\langle\psi|\psi\rangle = 1$), entonces $|\langle\phi|\psi\rangle|^2$ representa la probabilidad de encontrar el sistema en el estado $|\phi\rangle$ cuando está en el estado $|\psi\rangle$
+			- El producto interno permite calcular amplitudes de transición entre estados
+
+			2) Observables y valores esperados:
+			- Para un observable representado por un operador hermitiano $A$, el valor esperado en el estado $|\psi\rangle$ es $\langle A \rangle = \langle\psi|A|\psi\rangle$
+			- La dispersión (incertidumbre) del observable se calcula como $\Delta A = \sqrt{\langle\psi|A^2|\psi\rangle - \langle\psi|A|\psi\rangle^2}$
+
+			3) Formalismo de Dirac:
+			- La notación bra-ket $\langle\phi|\psi\rangle$ para el producto interno es central en mecánica cuántica
+			- Los "bras" $\langle\phi|$ y "kets" $|\psi\rangle$ representan estados duales y vectores de estado
+
+			4) Ortogonalidad y mediciones:
+			- Estados ortogonales $\langle\phi|\psi\rangle = 0$ son distinguibles mediante mediciones adecuadas
+			- Las mediciones proyectivas proyectan el estado en subespacios ortogonales
+			- Los vectores propios de operadores hermitianos forman bases ortonormales
+
+			5) Unitariedad:
+			- Las transformaciones unitarias preservan el producto interno: $\langle U\phi|U\psi\rangle = \langle\phi|\psi\rangle$
+			- Esto garantiza la conservación de la probabilidad total en la evolución cuántica
+
+			6) Estados entrelazados:
+			- El producto interno ayuda a clasificar y cuantificar el entrelazamiento
+			- La descomposición de Schmidt utiliza productos internos para analizar estados bipartitos
+
+			7) Completitud y resolución de la identidad:
+			- Para una base ortonormal $\{|e_i\rangle\}$, la relación $\sum_i |e_i\rangle\langle e_i| = I$ es fundamental
+			- Permite expresar un vector como $|\psi\rangle = \sum_i |e_i\rangle\langle e_i|\psi\rangle$
+
+			El producto interno proporciona la estructura matemática necesaria para implementar los postulados de la mecánica cuántica, conectando el formalismo matemático con la interpretación física de los fenómenos cuánticos.
+		\end{solution}
+
+		\part Describa la descomposición en valores singulares (SVD) y explique su relación con la diagonalización de matrices hermitianas.
+
+		\begin{solution}
+			La descomposición en valores singulares (SVD, por sus siglas en inglés) es una poderosa técnica de factorización matricial que generaliza la diagonalización a matrices rectangulares y no necesariamente hermitianas, proporcionando información fundamental sobre la estructura y propiedades de transformaciones lineales.
+
+			Definición formal:
+			Sea $A$ una matriz compleja $m \times n$. La descomposición en valores singulares de $A$ es:
+			$A = U\Sigma V^\dagger$
+			donde:
+			- $U$ es una matriz unitaria $m \times m$ cuyas columnas $\{|u_i\rangle\}$ son los vectores singulares izquierdos
+			- $\Sigma$ es una matriz $m \times n$ diagonal (o pseudodiagonal si $m \neq n$) con entradas diagonales no negativas $\sigma_1 \geq \sigma_2 \geq ... \geq \sigma_r > 0$ (los valores singulares)
+			- $V$ es una matriz unitaria $n \times n$ cuyas columnas $\{|v_i\rangle\}$ son los vectores singulares derechos
+			- $r$ es el rango de la matriz $A$
+
+			Propiedades principales:
+			1) Los valores singulares $\sigma_i$ son las raíces cuadradas de los valores propios no nulos de $A^\dagger A$ o $AA^\dagger$
+			2) Los vectores singulares derechos $\{|v_i\rangle\}$ son vectores propios de $A^\dagger A$
+			3) Los vectores singulares izquierdos $\{|u_i\rangle\}$ son vectores propios de $AA^\dagger$
+			4) Para cada valor singular $\sigma_i > 0$: $A|v_i\rangle = \sigma_i|u_i\rangle$ y $A^\dagger|u_i\rangle = \sigma_i|v_i\rangle$
+			5) El número de valores singulares positivos es igual al rango de $A$
+
+			Forma equivalente:
+			La SVD también puede escribirse como una suma de operadores de rango 1:
+			$A = \sum_{i=1}^r \sigma_i |u_i\rangle\langle v_i|$
+
+			Relación con la diagonalización de matrices hermitianas:
+
+			1) Caso hermitiano:
+			- Si $A$ es hermitiana ($A = A^\dagger$), la SVD coincide con la diagonalización
+			- Los valores singulares son los valores absolutos de los valores propios
+			- Si $A$ es además positiva definida, los valores singulares son exactamente los valores propios
+			- Para una hermitiana, $U = V$ y los vectores singulares son los vectores propios
+			- La descomposición espectral $A = \sum_i \lambda_i |v_i\rangle\langle v_i|$ se convierte en la SVD $A = \sum_i |\lambda_i| |v_i\rangle\langle v_i|$ si $A$ no es positiva definida
+
+			2) Caso normal:
+			- Para matrices normales ($AA^\dagger = A^\dagger A$), la SVD está relacionada con la diagonalización por $\sigma_i = |\lambda_i|$
+			- Las bases de vectores singulares coinciden con las bases de vectores propios
+			- La diferencia clave es que los valores propios pueden ser complejos, mientras que los valores singulares son siempre reales no negativos
+
+			3) Caso general:
+			- La SVD generaliza la diagonalización a matrices que no son diagonalizables unitariamente
+			- Proporciona una "diagonalización aproximada" para matrices arbitrarias
+			- Para matrices no hermitianas, $A^\dagger A$ y $AA^\dagger$ son siempre hermitianas y positivas semidefinidas
+			- Los valores singulares representan factores de escalamiento en distintas direcciones
+			- La SVD separa el efecto de la transformación lineal en rotaciones (por $U$ y $V$) y estiramientos (por $\Sigma$)
+
+			4) Aspectos conceptuales:
+			- La diagonalización trata con direcciones invariantes bajo la transformación (vectores propios)
+			- La SVD trata con direcciones de máxima y mínima deformación (vectores singulares)
+			- La diagonalización requiere condiciones especiales (como hermiticidad)
+			- La SVD existe siempre para cualquier matriz compleja
+
+			Aplicaciones relevantes:
+			1) Solución de sistemas de ecuaciones lineales (pseudoinversa)
+			2) Aproximación de matrices de rango bajo
+			3) Análisis de componentes principales (PCA)
+			4) Compresión de imágenes y datos
+			5) Cálculo del rango numérico en presencia de errores de redondeo
+			6) Análisis de sensibilidad numérica (número de condición)
+			7) Descomposición de Schmidt en mecánica cuántica (caso particular de SVD para matrices de densidad)
+
+			En resumen, la SVD es una generalización natural y poderosa de la diagonalización para matrices arbitrarias, proporcionando información detallada sobre la acción geométrica de una transformación lineal.
+		\end{solution}
+
+	\end{parts}
+
+	\question[3]	Dados los operadores
+	$X = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$, $Y = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}$ y $Z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$.
+	\begin{parts}
+
+		\part  Verifique que $X^2 = Y^2 = Z^2 = I$.
+		\part  Calcule el operador $U = e^{i\theta Z/2}$ para $\theta \in \mathbb{R}$.
+		\part  Si el estado inicial de un qubit es $|\psi\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$, calcule el estado después de aplicar el operador $U$ con $\theta = \pi/2$.
+	\end{parts}
+
+	\begin{solution}
+		a) Para demostrar que estas matrices forman un álgebra, calculamos sus relaciones de conmutación.
+
+		El conmutador de dos operadores se define como $[A,B] = AB - BA$.
+
+		Calculemos $[X,Y]$:
+		$[X,Y] = XY - YX$
+		$= \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix} - \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix} \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$
+		$= \begin{pmatrix} i & 0 \\ 0 & i \end{pmatrix} - \begin{pmatrix} -i & 0 \\ 0 & -i \end{pmatrix}$
+		$= \begin{pmatrix} 2i & 0 \\ 0 & 2i \end{pmatrix} = 2iZ$
+
+		Similarmente, calculamos $[Y,Z]$:
+		$[Y,Z] = YZ - ZY$
+		$= \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix} \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} - \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}$
+		$= \begin{pmatrix} 0 & i \\ i & 0 \end{pmatrix} - \begin{pmatrix} 0 & -i \\ -i & 0 \end{pmatrix}$
+		$= \begin{pmatrix} 0 & 2i \\ 2i & 0 \end{pmatrix} = 2iX$
+
+		Y finalmente $[Z,X]$:
+		$[Z,X] = ZX - XZ$
+		$= \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} - \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$
+		$= \begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix} - \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}$
+		$= \begin{pmatrix} 0 & 2 \\ -2 & 0 \end{pmatrix} = 2iY$
+
+		Obtenemos así las relaciones de conmutación características del álgebra de Pauli:
+		$[X,Y] = 2iZ$
+		$[Y,Z] = 2iX$
+		$[Z,X] = 2iY$
+
+		Estas relaciones muestran que el producto de dos matrices de Pauli diferentes produce la tercera, multiplicada por el factor $i$, formando una estructura algebraica cerrada.
+
+		b) Verificamos que $X^2 = Y^2 = Z^2 = I$:
+
+		$X^2 = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = I$
+
+		$Y^2 = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix} \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix} = \begin{pmatrix} (-i)(i) & 0 \\ 0 & (i)(-i) \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = I$
+
+		$Z^2 = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = I$
+
+		Esta propiedad implica que cada matriz de Pauli es su propia inversa ($X^{-1} = X$, etc.).
+
+		c) Para calcular $U = e^{i\theta Z/2}$, utilizamos la expansión en serie de la exponencial:
+
+		$e^{i\theta Z/2} = \sum_{n=0}^{\infty} \frac{1}{n!}(i\theta Z/2)^n$
+
+		Aprovechando que $Z^2 = I$, podemos agrupar los términos pares e impares:
+
+		$e^{i\theta Z/2} = \sum_{k=0}^{\infty} \frac{1}{(2k)!}(i\theta Z/2)^{2k} + \sum_{k=0}^{\infty} \frac{1}{(2k+1)!}(i\theta Z/2)^{2k+1}$
+		$= \sum_{k=0}^{\infty} \frac{1}{(2k)!}(i\theta/2)^{2k}Z^{2k} + \sum_{k=0}^{\infty} \frac{1}{(2k+1)!}(i\theta/2)^{2k+1}Z^{2k+1}$
+		$= \sum_{k=0}^{\infty} \frac{(-1)^k(\theta/2)^{2k}}{(2k)!}I + i\sum_{k=0}^{\infty} \frac{(-1)^k(\theta/2)^{2k+1}}{(2k+1)!}Z$
+		$= \cos(\theta/2)I + i\sin(\theta/2)Z$
+		$= \begin{pmatrix} \cos(\theta/2) + i\sin(\theta/2) & 0 \\ 0 & \cos(\theta/2) - i\sin(\theta/2) \end{pmatrix}$
+		$= \begin{pmatrix} e^{i\theta/2} & 0 \\ 0 & e^{-i\theta/2} \end{pmatrix}$
+
+		Por tanto, $U = e^{i\theta Z/2} = \begin{pmatrix} e^{i\theta/2} & 0 \\ 0 & e^{-i\theta/2} \end{pmatrix}$
+
+		d) Estado después de aplicar $U$ con $\theta = \pi/2$ al estado inicial $|\psi\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$:
+
+		$U|\psi\rangle = e^{i\pi Z/4} \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$
+		$= \begin{pmatrix} e^{i\pi/4} & 0 \\ 0 & e^{-i\pi/4} \end{pmatrix} \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 1 \end{pmatrix}$
+	\end{solution}
+	\question[3] Considere un sistema de dos qubits en el estado
+	\[|\psi\rangle = \frac{1}{\sqrt{2}}(|00\rangle - |11\rangle)\]
+	\begin{parts}
+		\part Demuestre que este estado está entrelazado.
+		\part Calcule la matriz de densidad $\rho = |\psi\rangle\langle\psi|$ para este estado.
+		\part Obtenga la matriz de densidad reducida para el segundo qubit y explique lo que indica sobre el estado de este qubit.
+		\part Si medimos el primer qubit y obtenemos $|1\rangle$, ¿cuál será el estado del sistema después de la medición?
+	\end{parts}
+
+	\begin{solution}
+		a) Para demostrar que el estado está entrelazado, debemos verificar que no puede ser escrito como un producto tensorial de dos estados de un qubit: $|\psi\rangle \neq |\phi_1\rangle \otimes |\phi_2\rangle$.
+
+		Supongamos que $|\psi\rangle = |\phi_1\rangle \otimes |\phi_2\rangle$ con:
+		$|\phi_1\rangle = \alpha|0\rangle + \beta|1\rangle$
+		$|\phi_2\rangle = \gamma|0\rangle + \delta|1\rangle$
+
+		Entonces:
+		$|\phi_1\rangle \otimes |\phi_2\rangle = \alpha\gamma|00\rangle + \alpha\delta|01\rangle + \beta\gamma|10\rangle + \beta\delta|11\rangle$
+
+		Para que esto sea igual a $\frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$, necesitamos:
+		$\alpha\gamma = \frac{1}{\sqrt{2}}$
+		$\alpha\delta = 0$
+		$\beta\gamma = 0$
+		$\beta\delta = \frac{1}{\sqrt{2}}$
+
+		Como $\alpha\gamma \neq 0$ y $\beta\delta \neq 0$, tenemos que $\alpha \neq 0$, $\beta \neq 0$, $\gamma \neq 0$, $\delta \neq 0$.
+		Pero entonces $\alpha\delta \neq 0$ y $\beta\gamma \neq 0$, lo que contradice las ecuaciones.
+
+		Por tanto, $|\psi\rangle$ no es separable, es decir, está entrelazado.
+
+		b) La matriz de densidad $\rho = |\psi\rangle\langle\psi|$ es:
+
+		$\rho = |\psi\rangle\langle\psi| = \frac{1}{2}(|00\rangle + |11\rangle)(\langle00| + \langle11|)$
+		$= \frac{1}{2}(|00\rangle\langle00| + |00\rangle\langle11| + |11\rangle\langle00| + |11\rangle\langle11|)$
+
+		En forma matricial (en la base $\{|00\rangle, |01\rangle, |10\rangle, |11\rangle\}$):
+		$\rho = \frac{1}{2}\begin{pmatrix}
+				1 & 0 & 0 & 1 \\
+				0 & 0 & 0 & 0 \\
+				0 & 0 & 0 & 0 \\
+				1 & 0 & 0 & 1
+			\end{pmatrix}$
+
+		c) La matriz de densidad reducida para el primer qubit se obtiene tomando la traza parcial sobre el segundo qubit:
+
+		$\rho_A = Tr_B(\rho) = \sum_{i=0}^1 (I \otimes \langle i|)\rho(I \otimes |i\rangle)$
+
+		$\rho_A = (I \otimes \langle 0|)\rho(I \otimes |0\rangle) + (I \otimes \langle 1|)\rho(I \otimes |1\rangle)$
+
+		$= \frac{1}{2}|0\rangle\langle0| + \frac{1}{2}|1\rangle\langle1| = \frac{1}{2}\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = \frac{1}{2}I$
+
+		Esto indica que el primer qubit está en un estado completamente mixto, con probabilidad 50\% de ser $|0\rangle$ y 50\% de ser $|1\rangle$. Este es un estado máximamente mixto (entropía máxima), característico de un qubit que está completamente entrelazado con otro sistema.
+
+		d) Si medimos el primer qubit y obtenemos $|0\rangle$, el estado colapsará según el postulado de medición. Aplicando el proyector $P_0 = |0\rangle\langle0| \otimes I$ al estado:
+
+		$P_0|\psi\rangle = (|0\rangle\langle0| \otimes I)\frac{1}{\sqrt{2}}(|00\rangle + |11\rangle) = \frac{1}{\sqrt{2}}|00\rangle$
+
+		Normalizando:
+		$|\psi'\rangle = \frac{P_0|\psi\rangle}{||P_0|\psi\rangle||} = \frac{\frac{1}{\sqrt{2}}|00\rangle}{\frac{1}{\sqrt{2}}} = |00\rangle = |0\rangle \otimes |0\rangle$
+
+		Por tanto, después de medir el primer qubit y obtener $|0\rangle$, el sistema completo colapsará al estado $|00\rangle$, lo que significa que el segundo qubit también estará en el estado $|0\rangle$. Esto demuestra la correlación perfecta entre los qubits que es característica de este estado entrelazado.
+	\end{solution}
+\end{questions}

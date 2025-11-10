@@ -1,0 +1,81 @@
+\newcommand{\tq}{\mid}
+\newcommand{\K}{\mathrm{K}}
+\newcommand{\V}{\mathrm{V}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\renewcommand{\H}{\mathcal{H}}
+\newcommand{\Cinf}{\mathcal{C}^\infty}
+\newcommand{\Cu}{\mathcal{C}^1}
+\newcommand{\Rp}{\mathfrak{Re}}
+\newcommand{\Ip}{\mathfrak{Im}}
+\renewcommand{\d}{\mathrm{d}}
+\newcommand{\dm}{\mathrm{d}\mu}
+\newcommand{\conj}[1]{\overline{#1}}
+\newcommand{\Tras}[1]{{#1}^{\text{T}}}
+
+\DeclareMathOperator{\Log}{Log}
+\DeclareMathOperator{\Arg}{Arg}
+\DeclareMathOperator{\Dom}{Dom}
+\DeclareMathOperator{\Ima}{Im}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\mcd}{MCD}
+\DeclareMathOperator{\mcm}{mcm}
+\DeclareMathOperator{\Resi}{Res}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Mat}{Mat}
+
+\newcommand{\parder}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\dparder}[2]{\dfrac{\partial #1}{\partial #2}}
+\newcommand{\tparder}[2]{\partial #1/\partial #2}
+\newcommand{\parderr}[3]{\frac{\partial^2 #1}{\partial #2\partial #3}}
+\newcommand{\dparderr}[3]{\dfrac{\partial^2 #1}{\partial #2\partial #3}}
+\newcommand{\tparderr}[3]{\partial^2 #1/\partial #2\partial #3}
+\newcommand{\intx}[1]{\int #1\,dx}
+\newcommand{\intt}[1]{\int #1\,dt}
+\newcommand{\intdx}[3]{\int_{#1}^{#2} #3\,dx}
+\newcommand{\intdt}[3]{\int_{#1}^{#2} #3\,dt}
+\newcommand{\intdz}[2]{\int_{#1} #2\,dz}
+\newcommand{\set}[1]{\left\{#1\right\}}
+\newcommand{\so}{\Rightarrow}
+\newcommand{\sii}{\Leftrightarrow}
+\newcommand{\by}[1]{\overset{\fbox{\tiny #1}}{=}}
+\newcommand{\byref}[1]{\overset{\fbox{\tiny\ref{#1}}}{=}}
+\newcommand{\cardinal}[1]{\left|#1\right|}
+\newcommand{\maps}[3]{#1 \colon #2\longrightarrow #3}
+\newcommand{\equationmaps}[5]{\begin{aligned}[t]#1 \colon #2 &\longrightarrow #3 \\	#4 &\longmapsto #5\end{aligned}}
+\newcommand{\coma}{,\thinspace}
+\newcommand{\pari}[2]{(#1,\thinspace #2)}
+\newcommand{\where}{\mathrel{}\middle|\mathrel{}}
+\newcommand{\no}[1]{{\neg}{#1}}
+\newcommand{\dcomilla}[1]{{\guillemotleft}#1{\guillemotright}}
+\newcommand{\separa}{\vspace*{.75\baselineskip}}
+\newcommand{\semisepara}{\vspace*{.25\baselineskip}}
+\newcommand{\restrict}[1]{\raisebox{-.5ex}{$|$}_{#1}}
+
+% ========================================
+% COMANDOS PERSONALIZADOS PARA COMPUTACIÓN CUÁNTICA
+% ========================================
+
+% Estados comunes
+\newcommand{\zero}{\ket{0}}
+\newcommand{\one}{\ket{1}}
+\newcommand{\plus}{\ket{+}}
+\newcommand{\minus}{\ket{-}}
+
+% Operadores especiales
+\newcommand{\tensor}{\otimes}         % Producto tensorial
+\newcommand{\comp}{\circ}             % Composición
+
+% Estados de Bell
+\newcommand{\bellphi}{\ket{\Phi^+}}
+\newcommand{\bellpsi}{\ket{\Psi^+}}
+\newcommand{\bellphiminus}{\ket{\Phi^-}}
+\newcommand{\bellpsiminus}{\ket{\Psi^-}}
+
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}

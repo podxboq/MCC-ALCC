@@ -1,0 +1,402 @@
+\codigonombre{}{MCC-ALCC-25Q107}
+
+\begin{questions}
+
+	\question[4] Responda a las siguientes cuestiones:
+	\begin{parts}
+		\part Defina qué es una matriz unitaria y explique su importancia en la computación cuántica. Demuestre sus principales propiedades.
+
+		\begin{solution}
+			Una matriz unitaria es una matriz compleja cuadrada $U$ que cumple la condición $U^\dagger U = UU^\dagger = I$, donde $U^\dagger$ es la matriz adjunta (conjugada transpuesta) de $U$ e $I$ es la matriz identidad.
+
+			Definición formal:
+			Una matriz $U \in \mathbb{C}^{n \times n}$ es unitaria si y solo si $U^\dagger U = UU^\dagger = I_n$.
+
+			Propiedades principales (con demostraciones):
+
+			1) Conservación del producto interno:
+			Para cualesquiera vectores $|\psi\rangle$ y $|\phi\rangle$, se cumple:
+			$\langle U\psi|U\phi\rangle = \langle\psi|\phi\rangle$
+
+			Demostración:
+			$\langle U\psi|U\phi\rangle = (U|\psi\rangle)^\dagger (U|\phi\rangle) = \langle\psi|U^\dagger U|\phi\rangle = \langle\psi|I|\phi\rangle = \langle\psi|\phi\rangle$
+
+			2) Preservación de la norma:
+			Para cualquier vector $|\psi\rangle$, se cumple:
+			$\|U|\psi\rangle\| = \||\psi\rangle\|$
+
+			Demostración:
+			$\|U|\psi\rangle\|^2 = \langle U\psi|U\psi\rangle = \langle\psi|U^\dagger U|\psi\rangle = \langle\psi|\psi\rangle = \||\psi\rangle\|^2$
+
+			3) Los valores propios tienen módulo 1:
+			Si $\lambda$ es un valor propio de $U$, entonces $|\lambda| = 1$
+
+			Demostración:
+			Si $U|\psi\rangle = \lambda|\psi\rangle$ con $|\psi\rangle \neq 0$, entonces:
+			$\|U|\psi\rangle\|^2 = \|\lambda|\psi\rangle\|^2 = |\lambda|^2\||\psi\rangle\|^2$
+			Por la propiedad 2, $\|U|\psi\rangle\|^2 = \||\psi\rangle\|^2$, por lo que:
+			$|\lambda|^2\||\psi\rangle\|^2 = \||\psi\rangle\|^2$
+			Como $\||\psi\rangle\|^2 \neq 0$, se concluye que $|\lambda|^2 = 1$, por tanto $|\lambda| = 1$
+
+			4) El determinante tiene módulo 1:
+			$|det(U)| = 1$
+
+			Demostración:
+			$det(U^\dagger U) = det(U^\dagger)det(U) = \overline{det(U)}det(U) = |det(U)|^2$
+			Como $U^\dagger U = I$, tenemos $det(U^\dagger U) = det(I) = 1$
+			Por tanto, $|det(U)|^2 = 1$, lo que implica $|det(U)| = 1$
+
+			5) La inversa de una matriz unitaria es unitaria:
+			Si $U$ es unitaria, entonces $U^{-1}$ es unitaria
+
+			Demostración:
+			$U^{-1} = U^\dagger$ (por definición de matriz unitaria)
+			$(U^{-1})^\dagger(U^{-1}) = (U^\dagger)^\dagger U^\dagger = UU^\dagger = I$
+			$(U^{-1})(U^{-1})^\dagger = U^\dagger U = I$
+			Por tanto, $U^{-1}$ cumple la condición de unitariedad
+
+			6) El producto de matrices unitarias es unitario:
+			Si $U$ y $V$ son unitarias, entonces $UV$ es unitaria
+
+			Demostración:
+			$(UV)^\dagger(UV) = V^\dagger U^\dagger UV = V^\dagger V = I$
+			$(UV)(UV)^\dagger = UVV^\dagger U^\dagger = UU^\dagger = I$
+			Por tanto, $UV$ es unitaria
+
+			Importancia en computación cuántica:
+
+			1) Evolución de estados cuánticos:
+			- Las operaciones válidas en sistemas cuánticos cerrados están representadas por matrices unitarias
+			- La unitariedad garantiza que la suma de probabilidades se mantenga igual a 1
+			- La ecuación de Schrödinger para evolución temporal produce operadores unitarios $U(t) = e^{-iHt/\hbar}$
+
+			2) Compuertas cuánticas:
+			- Todas las compuertas cuánticas son operadores unitarios
+			- Ejemplos: Hadamard ($H$), NOT ($X$), Phase ($S$), CNOT, etc.
+			- La unitariedad garantiza la reversibilidad computacional (fundamental para evitar disipación de energía)
+
+			3) Algoritmos cuánticos:
+			- Los algoritmos cuánticos consisten en secuencias de operaciones unitarias
+			- Las transformaciones como la transformada cuántica de Fourier son unitarias
+			- La inversión de fase en el algoritmo de Grover es una operación unitaria
+
+			4) Interpretación geométrica:
+			- Las operaciones unitarias representan rotaciones y reflexiones en el espacio de Hilbert
+			- En la esfera de Bloch, corresponden a rotaciones rígidas (preservan estructura)
+			- Esto permite visualizar las compuertas cuánticas como transformaciones geométricas
+
+			5) Corrección de errores:
+			- Los códigos correctores de errores cuánticos utilizan operaciones unitarias para detectar y corregir errores
+			- La medición de los síndromes de error debe realizarse sin perturbar la información codificada
+
+			6) Implementación física:
+			- Las operaciones unitarias deben implementarse con alta fidelidad
+			- La decoherencia y el ruido producen desviaciones de la unitariedad ideal
+			- La evaluación de la calidad de las compuertas se realiza mediante benchmarks como la fidelidad unitaria
+
+			7) Teoría de la información cuántica:
+			- Las transformaciones unitarias preservan la entropía de von Neumann
+			- No es posible aumentar el entrelazamiento mediante operaciones locales unitarias
+
+			La unitariedad es, por tanto, un requisito fundamental que distingue la computación cuántica de la clásica, garantizando la coherencia cuántica y la conservación de la probabilidad total en el sistema.
+		\end{solution}
+
+		\part Explique el concepto de entrelazamiento cuántico, cómo detectarlo matemáticamente y su importancia para la computación cuántica.
+
+		\begin{solution}
+			El entrelazamiento cuántico es un fenómeno físico que ocurre cuando dos o más sistemas cuánticos interactúan de tal manera que el estado cuántico de cada partícula no puede describirse independientemente de los demás, incluso cuando están separados espacialmente.
+
+			Definición formal:
+			Un estado puro $|\psi\rangle$ de un sistema bipartito $A \otimes B$ está entrelazado si no puede expresarse como un producto tensorial de estados individuales:
+			$|\psi\rangle \neq |\phi_A\rangle \otimes |\phi_B\rangle$ para ningún par de estados $|\phi_A\rangle$ y $|\phi_B\rangle$.
+
+			Para estados mixtos, un operador densidad $\rho_{AB}$ está entrelazado si no puede expresarse como:
+			$\rho_{AB} \neq \sum_i p_i \rho_A^i \otimes \rho_B^i$ con $p_i \geq 0$, $\sum_i p_i = 1$.
+
+			Ejemplos canónicos:
+			- Estados de Bell: $|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$
+			- Estado GHZ: $|GHZ\rangle = \frac{1}{\sqrt{2}}(|000\rangle + |111\rangle)$
+			- Estado W: $|W\rangle = \frac{1}{\sqrt{3}}(|001\rangle + |010\rangle + |100\rangle)$
+
+			Detección matemática del entrelazamiento:
+
+			1) Para estados puros bipartitos:
+			a) Criterio del rango de Schmidt:
+			- Un estado puro está entrelazado si y solo si el rango de su descomposición de Schmidt es mayor que 1
+			- Toda estado bipartito puro puede escribirse como $|\psi\rangle = \sum_i \sqrt{\lambda_i} |i_A\rangle \otimes |i_B\rangle$
+			- Si hay más de un coeficiente $\lambda_i$ no nulo, el estado está entrelazado
+
+			b) Matriz densidad reducida:
+			- Calcular $\rho_A = \text{Tr}_B(|\psi\rangle\langle\psi|)$
+			- Un estado puro está entrelazado si y solo si $\rho_A$ es un estado mixto
+			- Equivalentemente, $\text{Tr}(\rho_A^2) < 1$ indica entrelazamiento
+
+			c) Entropía de entrelazamiento:
+			- $E(|\psi\rangle) = S(\rho_A) = -\text{Tr}(\rho_A \log_2 \rho_A)$
+			- $E = 0$ para estados separables, $E > 0$ para estados entrelazados
+			- Para un sistema de dos qubits, $E = 1$ indica entrelazamiento máximo
+
+			2) Para estados mixtos (criterios más complejos):
+			a) Criterio PPT (Positive Partial Transpose) de Peres-Horodecki:
+			- Calcular la transpuesta parcial $\rho^{T_B}$ (transponer respecto al segundo subsistema)
+			- Si $\rho^{T_B}$ tiene algún valor propio negativo, entonces $\rho$ está entrelazado
+			- Criterio necesario y suficiente para sistemas $2\times2$ y $2\times3$, solo necesario para sistemas mayores
+
+			b) Testigos de entrelazamiento:
+			- Operadores hermíticos $W$ tales que $\text{Tr}(W\rho) < 0$ para algún estado entrelazado $\rho$
+			- Mientras que $\text{Tr}(W\sigma) \geq 0$ para todo estado separable $\sigma$
+
+			c) Concurrencia (para dos qubits):
+			- $C(\rho) = \max(0, \lambda_1-\lambda_2-\lambda_3-\lambda_4)$
+			- Donde $\lambda_i$ son las raíces cuadradas de los valores propios de $\rho(\sigma_y \otimes \sigma_y)\rho^*(\sigma_y \otimes \sigma_y)$ en orden decreciente
+			- $C = 0$ indica estado separable, $C > 0$ indica entrelazamiento
+
+			d) Negatividad:
+			- La suma de los valores propios negativos de $\rho^{T_B}$
+			- Es un cuantificador del entrelazamiento que satisface importantes propiedades
+
+			Importancia para la computación cuántica:
+
+			1) Recurso computacional:
+			- El entrelazamiento permite ventajas computacionales fundamentales sobre sistemas clásicos
+			- Posibilita el procesamiento cuántico paralelo: al manipular un qubit se afecta instantáneamente a otro entrelazado con él
+			- Fundamental para la aceleración exponencial en ciertos algoritmos
+
+			2) Algoritmos cuánticos:
+			- Algoritmo de Shor: utiliza entrelazamiento para factorizar números grandes exponencialmente más rápido
+			- Algoritmo de Grover: genera entrelazamiento durante la amplificación de amplitud
+			- Algoritmos de optimización cuántica: explotan el entrelazamiento para explorar espacios de soluciones
+
+			3) Comunicación cuántica:
+			- Teleportación cuántica: transfiere estados cuánticos usando entrelazamiento y comunicación clásica
+			- Codificación superdensa: transmite 2 bits clásicos usando 1 qubit y entrelazamiento
+			- Distribución cuántica de claves: seguridad basada en la imposibilidad de clonar estados entrelazados
+
+			4) Corrección de errores cuánticos:
+			- Los códigos correctores de errores cuánticos funcionan entrelazando qubits de datos con qubits de síndrome
+			- El entrelazamiento permite detectar y corregir errores preservando la información
+			- Esencial para la computación cuántica tolerante a fallos
+
+			5) Ventaja cuántica verificable:
+			- Protocolos como CHSH y juegos no locales demuestran ventajas cuánticas
+			- La generación de números aleatorios certificados cuánticamente se basa en entrelazamiento
+			- Permite verificar que un dispositivo es genuinamente cuántico
+
+			6) Computación cuántica basada en mediciones:
+			- Paradigmas como "one-way quantum computing" utilizan estados altamente entrelazados (cluster states)
+			- Las mediciones en estos estados, junto con correcciones clásicas, implementan algoritmos
+
+			7) Metrología cuántica:
+			- Estados entrelazados como los GHZ permiten mediciones de precisión superior al límite clásico
+			- Mejora la precisión de sensores y relojes atómicos
+
+			8) Desafíos prácticos:
+			- El entrelazamiento es frágil y susceptible a la decoherencia
+			- Preservar el entrelazamiento es uno de los mayores desafíos para construir computadoras cuánticas escalables
+
+			El entrelazamiento cuántico representa la propiedad más distintiva y fundamental que separa la computación cuántica de la clásica, permitiendo capacidades computacionales que serían imposibles en el mundo clásico. Es tanto un recurso como un indicador del verdadero carácter cuántico de un sistema.
+		\end{solution}
+
+
+	\end{parts}
+
+	\question[3]
+	Considere el espacio vectorial complejo $\mathbb{C}^4$ con la base computacional $\{|00\rangle, |01\rangle, |10\rangle, |11\rangle\}$, y sea el estado
+	$|\psi\rangle = \alpha|00\rangle + \beta|11\rangle$
+	donde $\alpha, \beta \in \mathbb{C}$ y $|\alpha|^2 + |\beta|^2 = 1$.
+	\begin{parts}
+
+		\part  Determine las condiciones para que este estado sea separable o entrelazado.
+		\part  Calcule la matriz de densidad $\rho = |\psi\rangle\langle\psi|$.
+		\part  Obtenga la matriz de densidad reducida $\rho_1$ del primer qubit.
+	\end{parts}
+
+	\begin{solution}
+		a) Para determinar si el estado $|\psi\rangle = \alpha|00\rangle + \beta|11\rangle$ es separable o entrelazado, debemos verificar si puede expresarse como un producto tensorial de dos estados de un qubit:
+		$|\psi\rangle = |\phi_1\rangle \otimes |\phi_2\rangle$
+
+		Supongamos que $|\psi\rangle$ es separable. Entonces existen estados $|\phi_1\rangle = a|0\rangle + b|1\rangle$ y $|\phi_2\rangle = c|0\rangle + d|1\rangle$ tales que:
+		$|\psi\rangle = |\phi_1\rangle \otimes |\phi_2\rangle = (a|0\rangle + b|1\rangle) \otimes (c|0\rangle + d|1\rangle)$
+		$= ac|00\rangle + ad|01\rangle + bc|10\rangle + bd|11\rangle$
+
+		Comparando con $|\psi\rangle = \alpha|00\rangle + \beta|11\rangle$, obtenemos:
+		$ac = \alpha$
+		$ad = 0$
+		$bc = 0$
+		$bd = \beta$
+
+		Para que estas ecuaciones tengan solución, debe ocurrir una de las siguientes condiciones:
+		1) $a = 0$ y $b \neq 0$: En este caso, $bc = 0$ implica $c = 0$, lo que a su vez implica $ac = 0 = \alpha$. Pero también $bd = \beta$, lo que requiere $d \neq 0$. Esto da $|\phi_1\rangle = b|1\rangle$ y $|\phi_2\rangle = d|1\rangle$.
+		2) $b = 0$ y $a \neq 0$: Similarmente, esto implica $d = 0$, $c \neq 0$, $ac = \alpha$ y $bd = 0 = \beta$. Esto da $|\phi_1\rangle = a|0\rangle$ y $|\phi_2\rangle = c|0\rangle$.
+		3) $c = 0$ y $d \neq 0$: Esto implica $ac = 0 = \alpha$ y $bc = 0$, pero $bd = \beta$ requiere $b \neq 0$. Esto da $|\phi_1\rangle = b|1\rangle$ y $|\phi_2\rangle = d|1\rangle$.
+		4) $d = 0$ y $c \neq 0$: Esto implica $ad = 0$ y $bd = 0 = \beta$, pero $ac = \alpha$ requiere $a \neq 0$. Esto da $|\phi_1\rangle = a|0\rangle$ y $|\phi_2\rangle = c|0\rangle$.
+
+		Sin embargo, ninguna de estas soluciones permite $\alpha \neq 0$ y $\beta \neq 0$ simultáneamente. Por tanto:
+		- Si $\alpha = 0$ o $\beta = 0$, el estado es separable.
+		- Si $\alpha \neq 0$ y $\beta \neq 0$, el estado está entrelazado.
+
+		b) La matriz de densidad $\rho = |\psi\rangle\langle\psi|$ es:
+
+		$\rho = |\psi\rangle\langle\psi| = (\alpha|00\rangle + \beta|11\rangle)(\alpha^*\langle00| + \beta^*\langle11|)$
+		$= |\alpha|^2|00\rangle\langle00| + \alpha\beta^*|00\rangle\langle11| + \alpha^*\beta|11\rangle\langle00| + |\beta|^2|11\rangle\langle11|$
+
+		En forma matricial, utilizando la base computacional $\{|00\rangle, |01\rangle, |10\rangle, |11\rangle\}$:
+
+		$\rho = \begin{pmatrix}
+				|\alpha|^2    & 0 & 0 & \alpha\beta^* \\
+				0             & 0 & 0 & 0             \\
+				0             & 0 & 0 & 0             \\
+				\alpha^*\beta & 0 & 0 & |\beta|^2
+			\end{pmatrix}$
+
+		c) Para obtener la matriz de densidad reducida $\rho_1$ del primer qubit, tomamos la traza parcial sobre el segundo qubit:
+
+		$\rho_1 = \text{Tr}_2(\rho) = \sum_{i=0}^1 \langle i|_2 \rho |i\rangle_2$
+
+		Calculemos cada término:
+
+		$\langle 0|_2 \rho |0\rangle_2 = \langle 0|_2 (|\alpha|^2|00\rangle\langle00| + \alpha\beta^*|00\rangle\langle11| + \alpha^*\beta|11\rangle\langle00| + |\beta|^2|11\rangle\langle11|) |0\rangle_2$
+		$= |\alpha|^2|0\rangle\langle0| + 0 + 0 + 0 = |\alpha|^2|0\rangle\langle0|$
+
+		$\langle 1|_2 \rho |1\rangle_2 = \langle 1|_2 (|\alpha|^2|00\rangle\langle00| + \alpha\beta^*|00\rangle\langle11| + \alpha^*\beta|11\rangle\langle00| + |\beta|^2|11\rangle\langle11|) |1\rangle_2$
+		$= 0 + 0 + 0 + |\beta|^2|1\rangle\langle1| = |\beta|^2|1\rangle\langle1|$
+
+		Por tanto:
+		$\rho_1 = |\alpha|^2|0\rangle\langle0| + |\beta|^2|1\rangle\langle1| = \begin{pmatrix} |\alpha|^2 & 0 \\ 0 & |\beta|^2 \end{pmatrix}$
+
+		d) La entropía de von Neumann $S(\rho_1)$ se define como:
+		$S(\rho_1) = -\text{Tr}(\rho_1 \log_2 \rho_1) = -\sum_i \lambda_i \log_2 \lambda_i$
+
+		donde $\lambda_i$ son los valores propios de $\rho_1$.
+
+		En este caso, $\rho_1$ ya está en forma diagonal, con valores propios $\lambda_1 = |\alpha|^2$ y $\lambda_2 = |\beta|^2$.
+
+		Por tanto:
+		$S(\rho_1) = -|\alpha|^2 \log_2 |\alpha|^2 - |\beta|^2 \log_2 |\beta|^2$
+
+		Para un caso particular donde $|\alpha|^2 = |\beta|^2 = 1/2$ (un estado de Bell), tenemos:
+		$S(\rho_1) = -\frac{1}{2} \log_2 \frac{1}{2} - \frac{1}{2} \log_2 \frac{1}{2} = -\frac{1}{2} \cdot (-1) - \frac{1}{2} \cdot (-1) = 1$
+
+		Significado físico:
+		La entropía de von Neumann de la matriz de densidad reducida $\rho_1$ cuantifica el grado de entrelazamiento entre el primer qubit y el segundo. Sus propiedades e interpretación son:
+
+		1) $S(\rho_1) = 0$ si y solo si el estado global es separable (no entrelazado). Esto ocurre cuando $|\alpha|^2 = 1$ o $|\beta|^2 = 1$.
+
+		2) $S(\rho_1)$ alcanza su valor máximo de 1 para estados máximamente entrelazados, lo que ocurre cuando $|\alpha|^2 = |\beta|^2 = 1/2$ (estados de Bell).
+
+		3) La entropía mide la "mezcla" o "impureza" del estado reducido, que surge debido al entrelazamiento con el otro qubit.
+
+		4) Físicamente, indica el grado de información compartida entre los dos qubits. Un valor alto significa que no se puede obtener información completa sobre un qubit sin considerar el otro.
+
+		5) Para un sistema bipartito en estado puro, $S(\rho_1) = S(\rho_2)$, lo que refleja la simetría del entrelazamiento.
+
+		6) La entropía también cuantifica los recursos cuánticos necesarios para realizar ciertos protocolos de información cuántica, como teleportación o codificación superdensa.
+
+		En el contexto de sistemas físicos, la entropía de entrelazamiento está relacionada con las correlaciones no locales entre partículas entrelazadas, que no tienen análogo clásico y son fundamentales para muchas aplicaciones de computación e información cuántica.
+	\end{solution}
+
+	\question[3]
+	Dados los estados de Bell
+	$|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle), \quad |\Phi^-\rangle = \frac{1}{\sqrt{2}}(|00\rangle - |11\rangle),$
+	$|\Psi^+\rangle = \frac{1}{\sqrt{2}}(|01\rangle + |10\rangle), \quad |\Psi^-\rangle = \frac{1}{\sqrt{2}}(|01\rangle - |10\rangle),$
+	\begin{parts}
+
+		\part  Demuestre que forman una base ortonormal en el espacio vectorial $\mathbb{C}^4$.
+		\part  Expresemos $|00\rangle$ en términos de los estados de Bell.
+		\part  Si aplicamos la compuerta CNOT al estado $|\Phi^+\rangle$, ¿cuál será el resultado?
+	\end{parts}
+
+	\begin{solution}
+		a) Para demostrar que los estados de Bell forman una base ortonormal en $\mathbb{C}^4$, debemos verificar dos condiciones:
+		1) Los cuatro estados son ortonormales (ortogonales entre sí y normalizados)
+		2) Generan todo el espacio $\mathbb{C}^4$
+
+		Verificación de ortonormalidad:
+		Primero, comprobemos que cada estado está normalizado calculando $\langle\psi|\psi\rangle$:
+
+		$\langle\Phi^+|\Phi^+\rangle = \frac{1}{2}(\langle00| + \langle11|)(|00\rangle + |11\rangle) = \frac{1}{2}(1 + 0 + 0 + 1) = 1$
+
+		Similarmente, $\langle\Phi^-|\Phi^-\rangle = \langle\Psi^+|\Psi^+\rangle = \langle\Psi^-|\Psi^-\rangle = 1$, por lo que todos los estados están normalizados.
+
+		Ahora verifiquemos la ortogonalidad calculando los productos internos entre pares distintos:
+
+		$\langle\Phi^+|\Phi^-\rangle = \frac{1}{2}(\langle00| + \langle11|)(|00\rangle - |11\rangle) = \frac{1}{2}(1 - 1) = 0$
+
+		$\langle\Phi^+|\Psi^+\rangle = \frac{1}{2}(\langle00| + \langle11|)(|01\rangle + |10\rangle) = \frac{1}{2}(0 + 0 + 0 + 0) = 0$
+
+		$\langle\Phi^+|\Psi^-\rangle = \frac{1}{2}(\langle00| + \langle11|)(|01\rangle - |10\rangle) = \frac{1}{2}(0 - 0 + 0 - 0) = 0$
+
+		Similarmente, se puede verificar que $\langle\Phi^-|\Psi^+\rangle = \langle\Phi^-|\Psi^-\rangle = \langle\Psi^+|\Psi^-\rangle = 0$.
+
+		Por tanto, los estados de Bell son mutuamente ortogonales y están normalizados, es decir, forman un conjunto ortonormal.
+
+		Generación del espacio:
+		Como $\mathbb{C}^4$ tiene dimensión 4 y tenemos 4 vectores linealmente independientes (por ser ortonormales), estos vectores generan todo el espacio.
+
+		En conclusión, los estados de Bell forman una base ortonormal en $\mathbb{C}^4$.
+
+		b) Para expresar $|00\rangle$ en términos de los estados de Bell, despejamos de las definiciones:
+
+		$|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle) \implies |00\rangle = \sqrt{2}|\Phi^+\rangle - |11\rangle$
+
+		$|\Phi^-\rangle = \frac{1}{\sqrt{2}}(|00\rangle - |11\rangle) \implies |00\rangle = \sqrt{2}|\Phi^-\rangle + |11\rangle$
+
+		Sumando estas dos ecuaciones y dividiendo por 2:
+		$|00\rangle = \frac{\sqrt{2}}{2}|\Phi^+\rangle + \frac{\sqrt{2}}{2}|\Phi^-\rangle = \frac{1}{\sqrt{2}}(|\Phi^+\rangle + |\Phi^-\rangle)$
+
+		Alternativamente, podemos verificar directamente:
+		$\frac{1}{\sqrt{2}}(|\Phi^+\rangle + |\Phi^-\rangle) = \frac{1}{\sqrt{2}}[\frac{1}{\sqrt{2}}(|00\rangle + |11\rangle) + \frac{1}{\sqrt{2}}(|00\rangle - |11\rangle)]$
+		$= \frac{1}{\sqrt{2}} \cdot \frac{1}{\sqrt{2}}[2|00\rangle] = |00\rangle$
+
+		c) Para determinar el resultado de aplicar la compuerta CNOT al estado $|\Phi^+\rangle$, recordemos cómo actúa CNOT en la base computacional:
+		$\text{CNOT}|00\rangle = |00\rangle$
+		$\text{CNOT}|01\rangle = |01\rangle$
+		$\text{CNOT}|10\rangle = |11\rangle$
+		$\text{CNOT}|11\rangle = |10\rangle$
+
+		Aplicando CNOT al estado $|\Phi^+\rangle$:
+		$\text{CNOT}|\Phi^+\rangle = \text{CNOT}[\frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)]$
+		$= \frac{1}{\sqrt{2}}[\text{CNOT}|00\rangle + \text{CNOT}|11\rangle]$
+		$= \frac{1}{\sqrt{2}}[|00\rangle + |10\rangle]$
+		$= \frac{1}{\sqrt{2}}(|0\rangle \otimes |0\rangle + |1\rangle \otimes |0\rangle)$
+		$= \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) \otimes |0\rangle$
+
+		Esto demuestra que al aplicar CNOT a $|\Phi^+\rangle$ obtenemos un estado separable (no entrelazado), donde el primer qubit está en el estado $\frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) = |+\rangle$ y el segundo qubit está en el estado $|0\rangle$.
+
+		d) Los estados de Bell son fundamentales en el protocolo de teleportación cuántica, que permite transferir el estado desconocido de un qubit a otro qubit distante sin transportar físicamente el qubit original. El proceso funciona de la siguiente manera:
+
+		1) Recursos iniciales:
+		- Alice posee un qubit en un estado desconocido $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$ que desea teleportar a Bob
+		- Alice y Bob comparten previamente un par de qubits en un estado de Bell, típicamente $|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$
+		- Alice tiene acceso al primer qubit del par entrelazado, Bob al segundo
+
+		2) Medición de Bell:
+		- Alice realiza una medición de Bell en los dos qubits que posee: su qubit original y su parte del par entrelazado
+		- Esta medición proyecta los dos qubits en uno de los cuatro estados de Bell: $|\Phi^+\rangle$, $|\Phi^-\rangle$, $|\Psi^+\rangle$ o $|\Psi^-\rangle$
+		- Técnicamente, Alice aplica una puerta CNOT seguida de una Hadamard y luego mide en la base computacional
+
+		3) Comunicación clásica:
+		- Alice comunica a Bob el resultado de su medición (2 bits clásicos de información)
+		- Esta comunicación es esencial y no puede ocurrir más rápido que la velocidad de la luz
+
+		4) Operación de corrección:
+		- Dependiendo del resultado recibido, Bob aplica una de cuatro operaciones diferentes a su qubit:
+		* Si Alice midió $|\Phi^+\rangle$: Bob aplica $I$ (no hace nada)
+		* Si Alice midió $|\Phi^-\rangle$: Bob aplica $Z$
+		* Si Alice midió $|\Psi^+\rangle$: Bob aplica $X$
+		* Si Alice midió $|\Psi^-\rangle$: Bob aplica $ZX$
+
+		5) Resultado:
+		- Tras aplicar la operación correcta, el qubit de Bob se encuentra exactamente en el estado original $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$
+		- La teleportación se ha completado con éxito
+
+		Propiedades importantes:
+		- El estado original $|\psi\rangle$ es destruido en el proceso (no hay clonación)
+		- No se transmite información más rápido que la luz (se requiere comunicación clásica)
+		- La teleportación funciona aunque Alice no conozca el estado que está teleportando
+		- El recurso clave que permite este protocolo es el entrelazamiento previo entre Alice y Bob
+		- Los estados de Bell son esenciales tanto para el recurso compartido como para la medición que realiza Alice
+
+		La teleportación cuántica es una aplicación fundamental de la información cuántica que demuestra el poder del entrelazamiento y ha sido implementada experimentalmente en diversas plataformas físicas, desde fotones hasta iones atrapados y circuitos superconductores.
+	\end{solution}
+\end{questions}

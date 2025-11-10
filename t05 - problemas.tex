@@ -1,0 +1,86 @@
+\unirsection{Problemas}
+
+\begin{questions}
+
+  \question Sea $V = \mathbb{C}^2$ con la base $\mathcal{B} = \left\{\begin{pmatrix} 1 \\ i \end{pmatrix}, \begin{pmatrix} 1 \\ -i \end{pmatrix}\right\}$.
+  \begin{parts}
+    \part Verificar que $\mathcal{B}$ es efectivamente una base de $V$.
+    \part Encontrar la base dual $\mathcal{B}^* = \{e_1^*, e_2^*\}$ correspondiente.
+    \part Expresar el funcional $f(x,y) = x + 2y$ como combinación lineal de elementos de $\mathcal{B}^*$.
+    \part Calcular $e_1^*\begin{pmatrix} 2+i \\ 1-i \end{pmatrix}$ y $e_2^*\begin{pmatrix} 2+i \\ 1-i \end{pmatrix}$.
+  \end{parts}
+
+  \question En un espacio de Hilbert $\mathcal{H} = \mathbb{C}^2$ con el producto interno estándar:
+  \begin{parts}
+    \part Usar el teorema de Riesz-Fréchet para encontrar el vector $y_f \in \mathcal{H}$ que representa el funcional $f(x) = \begin{pmatrix} 1-i & 2+i \end{pmatrix} x$
+    \part Verificar que $f(x) = \langle x, y_f \rangle$ para cualquier $x \in \mathcal{H}$.
+  \end{parts}
+
+  \question Considerar el operador $T: \mathbb{C}^2 \to \mathbb{C}^2$ definido por la matriz $T = \begin{pmatrix} 1 & i \\ 0 & 2 \end{pmatrix}$.
+  \begin{parts}
+    \part Encontrar la representación matricial del operador adjunto $T^*$.
+    \part Verificar que $\langle Tx, y \rangle = \langle x, T^*y \rangle$ para $x = \begin{pmatrix} 1 \\ i \end{pmatrix}$ y $y = \begin{pmatrix} 1+i \\ 1-i \end{pmatrix}$.
+    \part Determinar si $T$ es hermitiano, unitario o normal.
+  \end{parts}
+
+  \question Considere el estado cuántico normalizado en el espacio de Hilbert $\mathcal{H} \cong \mathbb{C}^2$:
+  $$ |\psi\rangle = \frac{1}{\sqrt{5}} \begin{pmatrix} 1+i \\ 2 \end{pmatrix} $$
+
+  \question Sea el operador lineal $A$ actuando sobre $\mathbb{C}^2$, representado por la matriz:
+  $$A = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}$$
+
+  \begin{parts}
+    \part Calcule el operador adjunto $A^\dagger$ (transpuesta conjugada de $A$).
+    \part Determine si $A$ es un operador \textbf{hermítico} (autoadjunto). ¿Qué implicación física tiene esta propiedad en la Mecánica Cuántica?
+    \part Calcule los valores propios de $A$ y demuestre que son reales.
+  \end{parts}
+
+  \question Considere el operador hermítico (observable) $H$ dado por:
+  $$H = \begin{pmatrix} 3 & 1 \\ 1 & 3 \end{pmatrix}$$
+
+  \begin{parts}
+    \part Encuentre los valores propios $\lambda_1$ y $\lambda_2$.
+    \part Determine los vectores propios normalizados $v_1$ y $v_2$ asociados a estos valores propios.
+    \part Escriba la matriz diagonal $D$ y la matriz unitaria de cambio de base $U$ (la matriz de los estados propios). Confirme la descomposición espectral: $H = U D U^\dagger$.
+  \end{parts}
+
+  \question Considere el sistema compuesto de dos qubits. El espacio de Hilbert es $\mathcal{H}_{AB} = \mathcal{H}_A \otimes \mathcal{H}_B$, donde $\mathcal{H}_A \cong \mathbb{C}^2$ y $\mathcal{H}_B \cong \mathbb{C}^2$.
+
+  \begin{parts}
+    \part ¿Cuál es la dimensión de $\mathcal{H}_{AB}$? Enumere todos los elementos de la base canónica tensorial.
+    \part Considere el tensor $t = \frac{1}{\sqrt{2}}(e_0\otimes e_1 - e_1\otimes e_0)$. Intente encontrar dos vectores $a \in \mathcal{H}_A$ y $b \in \mathcal{H}_B$ tal que $t = a \otimes b$. ¿Es $t$ un tensor simple (estado separable)?
+  \end{parts}
+
+  \question Sea el operador $X$ (la matriz NOT cuántica o Pauli $X$) y el operador $Z$ (Pauli $Z$):
+  $$ X = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}, \quad Z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} $$
+
+  \begin{parts}
+    \part Calcule el operador compuesto $C = X \otimes Z$ utilizando el producto de Kronecker. Escriba la matriz resultante en $\mathbb{C}^4$.
+    \part El estado $|01\rangle$ se representa como el vector:
+    $$ |01\rangle = |0\rangle \otimes |1\rangle = \begin{pmatrix} 1 \\ 0 \end{pmatrix} \otimes \begin{pmatrix} 0 \\ 1 \end{pmatrix} = \begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \end{pmatrix} $$
+    Calcule el resultado de aplicar el operador $C$ a este estado, es decir, $C|01\rangle$.
+    \part Verifique el resultado anterior aplicando la propiedad del producto tensorial de operadores directamente sobre el tensor simple:
+    $$ C|01\rangle = (X \otimes Z) (|0\rangle \otimes |1\rangle) = (X|0\rangle) \otimes (Z|1\rangle)\,. $$
+  \end{parts}
+
+  \question Para el sistema de dos cúbits en el estado $\ket{\psi} = \frac{1}{\sqrt{3}}(\ket{00} + \ket{01} + \ket{11})$:
+  \begin{parts}
+    \part Verificar que el estado está normalizado
+    \part Calcular las probabilidades de medir cada estado de la base computacional
+    \part Determinar si el estado es separable o entrelazado
+    \part Calcular la probabilidad de medir el primer cúbit en $\ket{0}$
+  \end{parts}
+
+  \question Para los cuatro estados de Bell:
+  \begin{parts}
+    \part Verificar que forman una base ortonormal
+    \part Expresar cada estado de Bell como combinación lineal de la base computacional
+    \part Demostrar que todos son entrelazados usando la descomposición de Schmidt
+    \part Calcular las probabilidades de medir cada cúbit individualmente
+  \end{parts}
+
+  \question Determine si el estado $\ket{\psi} = \frac{1}{\sqrt{3}}(\ket{00} + \ket{01} + \ket{10})$ es entrelazado.
+
+  \question Para $A = \sigma_x$ y $B = \sigma_y$, calcule explícitamente $(A \otimes B)\ket{01}$.
+
+\end{questions}

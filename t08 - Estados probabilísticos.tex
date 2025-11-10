@@ -1,0 +1,398 @@
+\portada
+
+\begin{esquemaExplorador}
+  \temaEsquema{Estados cuánticos mixtos}{
+    \conceptoEsquema{Estados puros vs estados mixtos}
+    \conceptoEsquema{Límites del formalismo de vectores estado}
+    \conceptoEsquema{Necesidad de la matriz de densidad}
+  }
+  \temaEsquema{Matriz de densidad}{
+    \conceptoEsquema{Definición y propiedades}
+    \conceptoEsquema{Operador densidad para estados puros}
+    \conceptoEsquema{Estados mixtos y mezclas estadísticas}
+    \conceptoEsquema{Criterio de pureza}
+  }
+  \temaEsquema{Sistemas compuestos y traza parcial}{
+    \conceptoEsquema{Producto tensorial de matrices de densidad}
+    \conceptoEsquema{Traza parcial y sistemas abiertos}
+    \conceptoEsquema{Decoherencia cuántica}
+  }
+  \temaEsquema{Canales cuánticos}{
+    \conceptoEsquema{Representación de Kraus}
+    \conceptoEsquema{Teorema de no-clonación}
+    \conceptoEsquema{Operaciones completamente positivas}
+  }
+  \temaEsquema{Información cuántica}{
+    \conceptoEsquema{Entropía de von Neumann}
+    \conceptoEsquema{Información mutua cuántica}
+    \conceptoEsquema{Fidelidad cuántica}
+    \conceptoEsquema{Distancia de traza}
+  }
+\end{esquemaExplorador}
+
+\unirsection{Ideas clave}
+
+\subsection{Introducción y objetivos}
+
+En los temas anteriores hemos trabajado con el formalismo de vectores estado para describir sistemas cuánticos, donde cada estado se representa mediante un vector unitario $|\psi\rangle$ en un espacio de Hilbert. Sin embargo, este enfoque tiene limitaciones importantes cuando consideramos sistemas cuánticos realistas que pueden encontrarse en estados de los cuales no tenemos información completa, o cuando estudiamos subsistemas de sistemas cuánticos compuestos.
+
+El formalismo de matriz de densidad, desarrollado por von Neumann, proporciona una descripción más general y completa de los estados cuánticos que abarca tanto estados puros como estados mixtos. Esta generalización es fundamental en computación cuántica por varias razones:
+
+\begin{itemize}
+  \item Permite describir \textbf{estados mixtos} que surgen por decoherencia o incertidumbre clásica.
+  \item Facilita el análisis de \textbf{subsistemas cuánticos} mediante la traza parcial.
+  \item Proporciona herramientas para cuantificar la \textbf{calidad de estados cuánticos} mediante medidas como la fidelidad.
+  \item Es esencial para entender el \textbf{entrelazamiento cuántico} y la separabilidad de estados.
+  \item Conecta directamente con la \textbf{teoría de información cuántica} y protocolos de comunicación cuántica.
+\end{itemize}
+
+Este tema establece las bases matemáticas necesarias para comprender sistemas cuánticos realistas, incluyendo efectos de ruido, decoherencia y la estructura de correlaciones cuánticas en sistemas compuestos.
+
+\subsection{Estados puros y estados mixtos}
+
+\begin{defi}[Estado puro]
+  Un estado cuántico puro se describe completamente mediante un vector estado normalizado en un espacio de Hilbert.
+
+  Toda la información sobre el sistema está contenida en este vector estado, y el estado evoluciona de manera determinista bajo operadores unitarios.
+\end{defi}
+
+\begin{defi}[Estado mixto]
+  Un estado cuántico mixto representa una situación donde el sistema puede estar en uno de varios estados puros $|\psi_i\rangle$ con probabilidades clásicas $p_i$:
+  $$\text{Estado mixto} = \{(p_1, |\psi_1\rangle), (p_2, |\psi_2\rangle), \ldots, (p_k, |\psi_k\rangle)\}$$
+
+  donde $p_i \geq 0$ y $\sum_{i=1}^k p_i = 1$.
+
+  Esta descripción surge cuando hay incertidumbre clásica sobre cuál es el estado real del sistema.
+\end{defi}
+
+\begin{eje}
+  Considere las siguientes situaciones que requieren estados mixtos:
+
+  \begin{enumerate}
+    \item \textbf{Preparación incierta:} Alice prepara un cúbit en el estado $|0\rangle$ con probabilidad $1/2$ y en el estado $|1\rangle$ con probabilidad $1/2$. Bob recibe el cúbit pero no sabe cuál estado fue preparado.
+
+    \item \textbf{Decoherencia:} Un cúbit inicialmente en superposición $\frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$ interactúa con el ambiente y pierde coherencia, resultando en una mezcla estadística.
+
+    \item \textbf{Subsistema:} Dado un sistema bipartito en estado entrelazado $|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$, cada subsistema individual está en un estado mixto.
+  \end{enumerate}
+\end{eje}
+
+\subsection{Matriz de densidad}
+
+\begin{defi}[Operador densidad]
+  El operador densidad de un sistema cuántico $\{(p_i, |\psi_i\rangle)\}$, es el operador $\rho$ definido por:
+  $$\rho = \sum_{i=1} p_i |\psi_i\rangle\langle\psi_i|$$
+\end{defi}
+
+Para un estado puro $|\psi\rangle$ el operador densidad es el proyector:
+$$\rho = |\psi\rangle\langle\psi|$$
+
+La matriz asociada, que también se denota como $\rho$ en una base ortonormal $\{|e_j\rangle\}$ es:
+$$\rho_{mn} = \langle e_m|\rho|e_n\rangle$$
+
+\begin{eje}
+  \begin{enumerate}
+    \item \textbf{Estado puro} $|0\rangle$:
+          $$\rho_0 = |0\rangle\langle 0| = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}$$
+
+    \item \textbf{Estado de superposición} $|\psi\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$:
+          $$\rho_\psi = |\psi\rangle\langle\psi| = \frac{1}{2}\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}$$
+
+    \item \textbf{Estado mixto equiprobable}:
+          $$\rho_{\text{mix}} = \frac{1}{2}|0\rangle\langle 0| + \frac{1}{2}|1\rangle\langle 1| = \frac{1}{2}\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = \frac{I}{2}$$
+  \end{enumerate}
+\end{eje}
+
+\begin{prop}
+  Sea $\rho$ un operador densidad. Entonces:
+  \begin{enumerate}
+    \item $\rho$ es hermitiana: $\rho = \rho^\dagger$.
+    \item $\rho$ es positiva semidefinida: $\langle\phi|\rho|\phi\rangle \geq 0$ para todo $|\phi\rangle$.
+    \item $\text{Tr}(\rho) = 1$ (normalización).
+    \item $0 \leq \text{Tr}(\rho^2) \leq 1$.
+    \item Los valores propios de $\rho$ son no negativos y suman 1.
+  \end{enumerate}
+\end{prop}
+
+\begin{theo}[Criterio de pureza]
+  Un estado descrito por el operador densidad $\rho$ es puro si y solo si $\text{Tr}(\rho^2) = 1$.
+
+  Equivalentemente, el estado es mixto si y solo si $\text{Tr}(\rho^2) < 1$.
+\end{theo}
+
+\subsection{Evolución de la matriz de densidad}
+
+\begin{theo}[Evolución unitaria]
+  Si un sistema con matriz de densidad $\rho$ evoluciona bajo un operador unitario $U$, la nueva matriz de densidad es:
+  $$\rho' = U\rho U^\dagger$$
+
+  Esta transformación preserva todas las propiedades de un operador densidad válido.
+\end{theo}
+
+\begin{eje}[Aplicación de puertas cuánticas]
+  Considere un cúbit en el estado mixto $\rho = \frac{1}{2}I$ y apliquemos la puerta Hadamard $H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$:
+
+  $$\rho' = H\rho H^\dagger = H \cdot \frac{1}{2}I \cdot H^\dagger = \frac{1}{2}HH^\dagger = \frac{1}{2}I = \rho$$
+
+  El estado mixto completamente aleatorio es invariante bajo cualquier operación unitaria.
+\end{eje}
+
+\subsection{Representación en la esfera de Bloch}
+
+Para un cúbit, la matriz de densidad se puede escribir como:
+$$\rho = \frac{1}{2}(I + \vec{r} \cdot \vec{\sigma})$$
+donde $\vec{r} = (r_x, r_y, r_z)$ es el vector de Bloch y $\vec{\sigma} = (\sigma_x, \sigma_y, \sigma_z)$ son las matrices de Pauli.
+
+\begin{itemize}
+  \item \textbf{Estados puros:} $|\vec{r}| = 1$ (superficie de la esfera).
+  \item \textbf{Estados mixtos:} $|\vec{r}| < 1$ (interior de la esfera).
+  \item \textbf{Estado completamente mixto:} $\vec{r} = 0$ (centro de la esfera).
+\end{itemize}
+
+\begin{eje}[Cálculo del vector de Bloch]
+  Para el estado $\rho = \frac{3}{4}|0\rangle\langle 0| + \frac{1}{4}|1\rangle\langle 1| = \begin{pmatrix} 3/4 & 0 \\ 0 & 1/4 \end{pmatrix}$:
+
+  $$\vec{r} = \left(\text{Tr}(\rho\sigma_x), \text{Tr}(\rho\sigma_y), \text{Tr}(\rho\sigma_z)\right) = (0, 0, 1/2)$$
+
+  Por tanto $|\vec{r}| = 1/2 < 1$, confirmando que es un estado mixto.
+\end{eje}
+
+\subsection{Sistemas compuestos y traza parcial}
+
+\begin{defi}[Producto tensorial de operadores densidad]
+  Para sistemas independientes descritos por matrices de densidad $\rho_A$ y $\rho_B$, el sistema compuesto se describe por:
+  $$\rho_{AB} = \rho_A \otimes \rho_B$$
+
+  Sin embargo, no todos los estados de sistemas compuestos pueden escribirse en esta forma separable.
+\end{defi}
+
+\begin{defi}[Traza parcial]
+  Dado un sistema bipartito $AB$ con matriz de densidad $\rho_{AB}$, la traza parcial sobre el subsistema $B$ se define como:
+  $$\rho_A = \text{Tr}_B(\rho_{AB}) = \sum_i (I_A \otimes \bra{i}_B) \rho_{AB} (I_A \otimes \ket{i}_B)$$
+  donde $\{\ket{i}_B\}$ es cualquier base ortonormal del subsistema $B$.
+\end{defi}
+
+\begin{eje}
+  Consideremos el estado producto:
+  $$\ket{\psi} = \ket{0} \otimes \ket{+} = \frac{\ket{00} + \ket{01}}{\sqrt{2}}$$
+
+  La matriz de densidad del sistema compuesto es:
+  $$\rho_{AB} = \ket{\psi}\bra{\psi} = (\ket{0}\bra{0})_A \otimes (\ket{+}\bra{+})_B$$
+
+  En forma matricial (usando base $\{\ket{00}, \ket{01}, \ket{10}, \ket{11}\}$):
+  $$\rho_{AB} = \frac{1}{2}\begin{pmatrix}
+      1 & 1 & 0 & 0 \\
+      1 & 1 & 0 & 0 \\
+      0 & 0 & 0 & 0 \\
+      0 & 0 & 0 & 0
+    \end{pmatrix}$$
+
+  Usando la base $\{\ket{0}_B, \ket{1}_B\}$:
+  \begin{align*}
+    \rho_A & = \text{Tr}_B(\rho_{AB})                                                                                              \\
+           & = \bra{0}_B \rho_{AB} \ket{0}_B + \bra{1}_B \rho_{AB} \ket{1}_B                                                       \\
+           & = \frac{1}{2}\left[\begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix} + \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}\right] \\
+           & = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix} = \ket{0}\bra{0}
+  \end{align*}
+\end{eje}
+
+\begin{info}
+  \textbf{Conclusión:} Para estados separables (no entrelazados), la traza parcial recupera exactamente el estado del subsistema.
+\end{info}
+
+
+\begin{eje}
+  Considere el estado entrelazado $|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$ con matriz de densidad:
+  $$\rho_{AB} = |\Phi^+\rangle\langle\Phi^+| = \frac{1}{2}\begin{pmatrix} 1 & 0 & 0 & 1 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 1 & 0 & 0 & 1 \end{pmatrix}$$
+
+  La traza parcial sobre el subsistema $B$ en la base $\{|0\rangle_B, |1\rangle_B\}$:
+  \begin{align*}
+    \rho_A & = \langle 0|_B \rho_{AB} |0\rangle_B + \langle 1|_B \rho_{AB} |1\rangle_B \\
+           & = \frac{1}{2}|0\rangle_A\langle 0|_A + \frac{1}{2}|1\rangle_A\langle 1|_A \\
+           & = \frac{1}{2}\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = \frac{I_A}{2}
+  \end{align*}
+
+  El subsistema $A$ está en un estado mixto completamente aleatorio, a pesar de que el sistema total está en un estado puro.
+\end{eje}
+
+\begin{prop}
+  La operación de traza parcial satisface:
+  \begin{enumerate}
+    \item Linealidad: $\text{Tr}_B(\alpha\rho + \beta\sigma) = \alpha\text{Tr}_B(\rho) + \beta\text{Tr}_B(\sigma)$.
+    \item Preservación de la traza: $\text{Tr}(\text{Tr}_B(\rho_{AB})) = \text{Tr}(\rho_{AB})$.
+    \item $\text{Tr}_B(\rho_{AB}) = \rho_A \text{Tr}(\rho_B)$.
+  \end{enumerate}
+\end{prop}
+
+\subsection{Decoherencia cuántica}
+
+La \textbf{decoherencia cuántica} es el proceso por el cual un sistema cuántico pierde su coherencia debido a interacciones incontroladas con el entorno, transformando estados puros en estados mixtos.
+
+\begin{eje}[Decoherencia de un cúbit]
+  Considere un cúbit inicialmente en el estado de superposición $|\psi\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$ que sufre decoherencia de desfase. Después de un tiempo $t$, el estado se convierte en:
+  $$\rho(t) = \frac{1}{2}\begin{pmatrix} 1 & e^{-\gamma t} \\ e^{-\gamma t} & 1 \end{pmatrix}$$
+
+  donde $\gamma > 0$ es la tasa de decoherencia.
+
+  \begin{itemize}
+    \item En $t = 0$: $\rho(0) = |\psi\rangle\langle\psi|$ (estado puro), $S(\rho(0)) = 0$.
+    \item Cuando $t \to \infty$: $\rho(\infty) = \frac{I}{2}$ (estado mixto), $S(\rho(\infty)) = 1$.
+    \item La pureza decae como: $\text{Tr}(\rho(t)^2) = \frac{1}{2}(1 + e^{-2\gamma t})$.
+  \end{itemize}
+\end{eje}
+
+\subsection{Canales cuánticos}
+
+\begin{defi}[Canal cuántico]
+  Un canal cuántico es una aplicación completamente positiva que preserva la traza:
+  $$\mathcal{E}: \mathcal{L}(\mathcal{H}_A) \to \mathcal{L}(\mathcal{H}_B)$$
+
+  Esta aplicación describe la evolución más general posible de un sistema cuántico abierto.
+\end{defi}
+
+\begin{theo}[Representación de Kraus]
+  Todo canal cuántico $\mathcal{E}$ puede representarse mediante operadores de Kraus $\{K_i\}$:
+  $$\mathcal{E}(\rho) = \sum_i K_i \rho K_i^\dagger$$
+
+  donde los operadores satisfacen la condición de completitud:
+  $$\sum_i K_i^\dagger K_i = I$$
+\end{theo}
+
+\begin{eje}[Canal de despolarización]
+  El canal de despolarización para un cúbit con probabilidad $p$ tiene la forma:
+  $$\mathcal{E}(\rho) = (1-p)\rho + \frac{p}{3}(\sigma_x \rho \sigma_x + \sigma_y \rho \sigma_y + \sigma_z \rho \sigma_z)$$
+
+  Los operadores de Kraus son:
+  $$K_0 = \sqrt{1-p}I, \quad K_1 = \sqrt{\frac{p}{3}}\sigma_x, \quad K_2 = \sqrt{\frac{p}{3}}\sigma_y, \quad K_3 = \sqrt{\frac{p}{3}}\sigma_z$$
+\end{eje}
+
+\begin{theo}[Teorema de no-clonación]
+  No existe un canal cuántico que pueda clonar un estado cuántico arbitrario desconocido.
+
+  Matemáticamente, no existe ninguna aplicación lineal $\mathcal{C}$ tal que:
+  $$\mathcal{C}(|\psi\rangle \otimes |0\rangle) = |\psi\rangle \otimes |\psi\rangle$$
+  para todo estado $|\psi\rangle$.
+\end{theo}
+
+\begin{proof}
+  Supongamos que existe tal operación. Para estados ortogonales $|0\rangle$ y $|1\rangle$:
+  \begin{align}
+    \mathcal{C}(|0\rangle \otimes |0\rangle) & = |0\rangle \otimes |0\rangle \\
+    \mathcal{C}(|1\rangle \otimes |0\rangle) & = |1\rangle \otimes |1\rangle
+  \end{align}
+
+  Para el estado $|\psi\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$:
+  $$\mathcal{C}(|\psi\rangle \otimes |0\rangle) = \frac{1}{\sqrt{2}}(|0\rangle \otimes |0\rangle + |1\rangle \otimes |1\rangle)$$
+
+  Pero también:
+  $$|\psi\rangle \otimes |\psi\rangle = \frac{1}{2}(|0\rangle \otimes |0\rangle + |0\rangle \otimes |1\rangle + |1\rangle \otimes |0\rangle + |1\rangle \otimes |1\rangle)$$
+
+  Como ambos resultados deben ser iguales, llegamos a una contradicción.
+\end{proof}
+
+\subsection{Medidas de información cuántica}
+
+\begin{defi}[Entropía de von Neumann]
+  La entropía de von Neumann de un estado cuántico descrito por la matriz de densidad $\rho$ se define como:
+  $$S(\rho) = -\text{Tr}(\rho \log_2 \rho)$$
+
+  Si $\rho$ tiene descomposición espectral $\rho = \sum_i \lambda_i |e_i\rangle\langle e_i|$, entonces:
+  $$S(\rho) = -\sum_i \lambda_i \log_2 \lambda_i$$
+
+  La entropía cuantifica el grado de "mezcla" o "desorden" del estado cuántico.
+\end{defi}
+
+\begin{prop}[Propiedades de la entropía de von Neumann]
+  \begin{enumerate}
+    \item $S(\rho) \geq 0$ para toda matriz de densidad $\rho$.
+    \item $S(\rho) = 0$ si y solo si $\rho$ representa un estado puro.
+    \item Para un sistema de dimensión $d$: $S(\rho) \leq \log_2 d$, con igualdad si y solo si $\rho = \frac{I}{d}$.
+    \item La entropía es invariante bajo transformaciones unitarias: $S(U\rho U^\dagger) = S(\rho)$.
+    \item Subaditividad: $S(\rho_{AB}) \leq S(\rho_A) + S(\rho_B)$.
+  \end{enumerate}
+\end{prop}
+
+\begin{eje}[Cálculo de entropía]
+  \begin{enumerate}
+    \item \textbf{Estado puro:} Para cualquier $|\psi\rangle$, $S(|\psi\rangle\langle\psi|) = 0$.
+
+    \item \textbf{Estado mixto equiprobable:} Para $\rho = \frac{I}{2}$ en un cúbit:
+          $$S(\rho) = -\frac{1}{2}\log_2\frac{1}{2} - \frac{1}{2}\log_2\frac{1}{2} = 1 \text{ bit}$$
+
+    \item \textbf{Estado mixto general:} Para $\rho = p|0\rangle\langle 0| + (1-p)|1\rangle\langle 1|$:
+          $$S(\rho) = -p\log_2 p - (1-p)\log_2(1-p) = H(p)$$
+          donde $H(p)$ es la entropía de Shannon clásica.
+  \end{enumerate}
+\end{eje}
+
+\begin{defi}[Información mutua cuántica]
+  Para un estado bipartito $\rho_{AB}$, la información mutua cuántica se define como:
+  $$I(A:B) = S(\rho_A) + S(\rho_B) - S(\rho_{AB})$$
+
+  Esta cantidad mide las correlaciones totales (clásicas y cuánticas) entre los subsistemas $A$ y $B$.
+\end{defi}
+
+\begin{defi}[Fidelidad cuántica]
+  La fidelidad entre dos estados cuánticos descritos por matrices de densidad $\rho$ y $\sigma$ se define como:
+  $$F(\rho, \sigma) = \text{Tr}\left(\sqrt{\sqrt{\rho}\sigma\sqrt{\rho}}\right)$$
+
+  Para estados puros $|\psi\rangle$ y $|\phi\rangle$:
+  $$F(|\psi\rangle, |\phi\rangle) = |\langle\psi|\phi\rangle|$$
+
+  La fidelidad mide qué tan "cercanos" están dos estados cuánticos.
+\end{defi}
+
+\begin{prop}[Propiedades de la fidelidad]
+  \begin{enumerate}
+    \item $0 \leq F(\rho, \sigma) \leq 1$.
+    \item $F(\rho, \sigma) = F(\sigma, \rho)$ (simetría).
+    \item $F(\rho, \rho) = 1$ (normalización).
+    \item $F(\rho, \sigma) = 1$ si y solo si $\rho = \sigma$.
+    \item Para operadores unitarios: $F(U\rho U^\dagger, U\sigma U^\dagger) = F(\rho, \sigma)$.
+  \end{enumerate}
+\end{prop}
+
+\begin{defi}[Distancia de traza]
+  La distancia de traza entre dos matrices de densidad $\rho$ y $\sigma$ se define como:
+  $$D(\rho, \sigma) = \frac{1}{2}\text{Tr}(|\rho - \sigma|)$$
+
+  donde $|A| = \sqrt{A^\dagger A}$ es el valor absoluto del operador $A$.
+\end{defi}
+
+\begin{prop}[Propiedades de la distancia de traza]
+  \begin{enumerate}
+    \item $0 \leq D(\rho, \sigma) \leq 1$.
+    \item $D(\rho, \sigma) = 0$ si y solo si $\rho = \sigma$.
+    \item $D(\rho, \sigma) = D(\sigma, \rho)$ (simetría).
+    \item $D(\rho, \tau) \leq D(\rho, \sigma) + D(\sigma, \tau)$ (desigualdad triangular).
+    \item Para operadores unitarios: $D(U\rho U^\dagger, U\sigma U^\dagger) = D(\rho, \sigma)$.
+  \end{enumerate}
+\end{prop}
+
+\begin{theo}[Relación entre fidelidad y distancia de traza]
+  Para cualesquiera dos matrices de densidad $\rho$ y $\sigma$:
+  $$1 - F(\rho, \sigma) \leq D(\rho, \sigma) \leq \sqrt{2(1 - F(\rho, \sigma))}$$
+
+  Ambas medidas proporcionan información complementaria sobre la proximidad entre estados cuánticos.
+\end{theo}
+
+\subsection{Aplicaciones en computación cuántica}
+
+\begin{eje}[Fidelidad en protocolos cuánticos]
+  En el protocolo de teleportación cuántica, la fidelidad entre el estado original $|\psi\rangle$ y el estado reconstruido $\rho_{\text{out}}$ mide la calidad del protocolo:
+  $$F = \langle\psi|\rho_{\text{out}}|\psi\rangle$$
+
+  Para teleportación perfecta, $F = 1$. En presencia de ruido o errores de medición, $F < 1$, y el protocolo es útil solo si $F > 2/3$ (límite clásico).
+\end{eje}
+
+\begin{eje}[Caracterización del entrelazamiento]
+  Para un estado bipartito $\rho_{AB}$, el grado de entrelazamiento puede cuantificarse mediante:
+
+  \begin{itemize}
+    \item \textbf{Entropía de entrelazamiento:} $E(\rho_{AB}) = S(\rho_A) = S(\rho_B)$ para estados puros.
+    \item \textbf{Negatividad:} Basada en la traza de la transposición parcial.
+    \item \textbf{Concurrencia:} Medida específica para sistemas de dos cúbits.
+  \end{itemize}
+
+  Estas medidas son fundamentales para protocolos de información cuántica como criptografía cuántica y computación distribuida.
+\end{eje}

@@ -1,0 +1,123 @@
+\begin{questions}
+
+  \question La transformación $T: \C^2 \to \C^2$ definida por $T\begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} x + iy \\ 2x \end{pmatrix}$ es:
+
+  \begin{choices}
+    \CorrectChoice Lineal
+    \choice No lineal
+    \choice Solo preserva la suma
+    \choice Solo preserva el producto por escalar
+  \end{choices}
+  \begin{solution}
+    Es lineal porque $T(\alpha\mathbf{u} + \beta\mathbf{v}) = \alpha T(\mathbf{u}) + \beta T(\mathbf{v})$ para todos $\mathbf{u}, \mathbf{v} \in \C^2$ y $\alpha, \beta \in \C$.
+  \end{solution}
+
+  \question El núcleo de la transformación $T\begin{pmatrix} x \\ y \\ z \end{pmatrix} = \begin{pmatrix} x + y \\ 2x + 2y \end{pmatrix}$ es:
+
+  \begin{choices}
+    \choice $\{\mathbf{0}\}$
+    \choice $\text{gen}\left\{\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}\right\}$
+    \CorrectChoice $\text{gen}\left\{\begin{pmatrix} -1 \\ 1 \\ 0 \end{pmatrix}, \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}\right\}$
+    \choice Todo $\C^3$
+  \end{choices}
+  \begin{solution}
+    Resolviendo $T(\mathbf{v}) = \mathbf{0}$: $x + y = 0$ y $2x + 2y = 0$ implica $y = -x$ y $z$ libre. Base del núcleo: $\left\{\begin{pmatrix} -1 \\ 1 \\ 0 \end{pmatrix}, \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}\right\}$.
+  \end{solution}
+
+  \question La matriz adjunta de $A = \begin{pmatrix} 1 & 2i \\ 3 & 4 \end{pmatrix}$ es:
+
+  \begin{choices}
+    \choice $\begin{pmatrix} 1 & 3 \\ 2i & 4 \end{pmatrix}$
+    \CorrectChoice $\begin{pmatrix} 1 & 3 \\ -2i & 4 \end{pmatrix}$
+    \choice $\begin{pmatrix} 1 & 2i \\ 3 & 4 \end{pmatrix}$
+    \choice $\begin{pmatrix} 1 & -2i \\ 3 & 4 \end{pmatrix}$
+  \end{choices}
+  \begin{solution}
+    $A^\dagger = \conj{A}^T = \begin{pmatrix} \conj{1} & \conj{3} \\ \conj{2i} & \conj{4} \end{pmatrix} = \begin{pmatrix} 1 & 3 \\ -2i & 4 \end{pmatrix}$.
+  \end{solution}
+
+  \question Los valores propios de la matriz $A = \begin{pmatrix} 2 & i \\ -i & 2 \end{pmatrix}$ son:
+
+  \begin{choices}
+    \choice $2$ y $2$
+    \CorrectChoice $1$ y $3$
+    \choice $2 + i$ y $2 - i$
+    \choice $i$ y $-i$
+  \end{choices}
+  \begin{solution}
+    El polinomio característico es $\det(A - \lambda I) = (2-\lambda)^2 - (i)(-i) = (2-\lambda)^2 + 1 = \lambda^2 - 4\lambda + 3 = 0$, con raíces $\lambda = 1, 3$.
+  \end{solution}
+
+  \question Una matriz $A$ es diagonalizable si y solo si:
+
+  \begin{choices}
+    \choice Es invertible
+    \choice Es hermitiana
+    \CorrectChoice Tiene $n$ vectores propios linealmente independientes
+    \choice Tiene todos los valores propios distintos
+  \end{choices}
+  \begin{solution}
+    Una matriz $n \times n$ es diagonalizable si y solo si tiene $n$ vectores propios linealmente independientes, que forman una base del espacio.
+  \end{solution}
+
+  \question La matriz de Hadamard $H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$ satisface:
+
+  \begin{choices}
+    \choice $H^2 = H$
+    \CorrectChoice $H^2 = I$
+    \choice $H^2 = 0$
+    \choice $H^2 = -I$
+  \end{choices}
+  \begin{solution}
+    $H^2 = \frac{1}{2}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix} = \frac{1}{2}\begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix} = I$.
+  \end{solution}
+
+  \question Las matrices de Pauli junto con la identidad:
+
+  \begin{choices}
+    \choice Son linealmente dependientes
+    \CorrectChoice Forman una base de $\C^{2 \times 2}$
+    \choice Solo generan matrices hermitianas
+    \choice Solo generan matrices unitarias
+  \end{choices}
+  \begin{solution}
+    $\{I, \sigma_x, \sigma_y, \sigma_z\}$ son 4 matrices linealmente independientes en $\C^{2 \times 2}$, que tiene dimensión 4, por tanto forman una base.
+  \end{solution}
+
+  \question La relación $HXH = Z$ entre matrices de Pauli y Hadamard significa que:
+
+  \begin{choices}
+    \choice $H$, $X$ y $Z$ conmutan
+    \CorrectChoice $H$ conjuga $X$ en $Z$
+    \choice $X = HZ$
+    \choice $H = XZ$
+  \end{choices}
+  \begin{solution}
+    Esta relación muestra que $H$ conjuga la matriz $X$ en $Z$, es decir, transforma una en la otra mediante cambio de base.
+  \end{solution}
+
+  \question Si $A$ tiene descomposición espectral $A = \sum_i \lambda_i P_i$, entonces $e^{-iAt}$ es:
+
+  \begin{choices}
+    \choice $\sum_i e^{-i\lambda_i} P_i$
+    \choice $e^{-it}\sum_i \lambda_i P_i$
+    \CorrectChoice $\sum_i e^{-i\lambda_i t} P_i$
+    \choice $\sum_i \lambda_i e^{-iP_i t}$
+  \end{choices}
+  \begin{solution}
+    Para una matriz con descomposición espectral, la exponencial se calcula aplicando la función exponencial a cada valor propio: $e^{-iAt} = \sum_i e^{-i\lambda_i t} P_i$.
+  \end{solution}
+
+  \question Una transformación lineal $T: V \to V$ es invertible si y solo si:
+
+  \begin{choices}
+    \choice $\dim(\Ker(T)) > 0$
+    \CorrectChoice $\Ker(T) = \{\mathbf{0}\}$
+    \choice $\Ima(T) \neq V$
+    \choice $T$ es hermitiana
+  \end{choices}
+  \begin{solution}
+    Una transformación es invertible si y solo si es inyectiva, lo que ocurre cuando $\Ker(T) = \{\mathbf{0}\}$.
+  \end{solution}
+
+\end{questions}

@@ -1,0 +1,241 @@
+\maketitulo
+
+\section{Objetivos y pautas de elaboración}
+
+El principal objetivo de esta actividad es consolidar el dominio de los fundamentos matemáticos de la computación cuántica: números complejos, espacios vectoriales y operadores lineales.
+
+En particular, se practicará:
+\begin{itemize}
+  \item Conversión entre formas de representación de números complejos
+  \item Verificación de propiedades algebraicas en espacios vectoriales complejos
+  \item Cálculo de valores y vectores propios
+  \item Representación matricial de transformaciones lineales
+\end{itemize}
+
+\section{Problemas}
+
+\begin{questions}
+  \question \textbf{Números complejos y geometría}
+
+  \begin{parts}
+    \part Calcular las raíces cúbicas del número complejo $z = -8i$ y representarlas geométricamente en el plano complejo.
+
+    \begin{solution}
+      Primero escribimos $z = -8i$ en forma exponencial. Como $|z| = 8$ y $\arg(z) = -\frac{\pi}{2}$ (o $\frac{3\pi}{2}$), tenemos:
+      $$z = 8e^{-i\pi/2}$$
+
+      Las raíces cúbicas son:
+      $$z_k = \sqrt[3]{8}e^{i\frac{-\pi/2 + 2\pi k}{3}} = 2e^{i\frac{-\pi + 4\pi k}{6}}, \quad k = 0, 1, 2$$
+
+      Calculando cada raíz:
+      \begin{align*}
+        z_0 & = 2e^{-i\pi/6} = 2\left(\cos\frac{\pi}{6} - i\sin\frac{\pi}{6}\right) = \sqrt{3} - i    \\
+        z_1 & = 2e^{i\pi/2} = 2i                                                                      \\
+        z_2 & = 2e^{i7\pi/6} = 2\left(\cos\frac{7\pi}{6} + i\sin\frac{7\pi}{6}\right) = -\sqrt{3} - i
+      \end{align*}
+
+      Geométricamente, forman un triángulo equilátero inscrito en una circunferencia de radio 2 centrada en el origen.
+    \end{solution}
+
+    \part Dadas las amplitudes cuánticas $\alpha_1 = \frac{1+i}{2}$ y $\alpha_2 = \frac{1-i}{2}$, verificar que $|\alpha_1|^2 + |\alpha_2|^2 = 1$ y calcular la interferencia $|\alpha_1 + \alpha_2|^2$.
+
+    \begin{solution}
+      Calculamos las magnitudes:
+      $$|\alpha_1|^2 = \left|\frac{1+i}{2}\right|^2 = \frac{|1+i|^2}{4} = \frac{1+1}{4} = \frac{1}{2}$$
+      $$|\alpha_2|^2 = \left|\frac{1-i}{2}\right|^2 = \frac{|1-i|^2}{4} = \frac{1+1}{4} = \frac{1}{2}$$
+
+      Por tanto: $|\alpha_1|^2 + |\alpha_2|^2 = \frac{1}{2} + \frac{1}{2} = 1$ ✓
+
+      Para la interferencia:
+      $$\alpha_1 + \alpha_2 = \frac{1+i}{2} + \frac{1-i}{2} = \frac{2}{2} = 1$$
+      $$|\alpha_1 + \alpha_2|^2 = |1|^2 = 1$$
+
+      Esto muestra interferencia constructiva completa (las fases se suman coherentemente).
+    \end{solution}
+
+    \part Expresar el número complejo $z = 1 + \sqrt{3}i$ en forma exponencial y calcular $z^{10}$ usando la fórmula de De Moivre.
+
+    \begin{solution}
+      Calculamos módulo y argumento:
+      $$|z| = \sqrt{1^2 + (\sqrt{3})^2} = \sqrt{4} = 2$$
+      $$\arg(z) = \arctan\left(\frac{\sqrt{3}}{1}\right) = \frac{\pi}{3}$$
+
+      Forma exponencial: $z = 2e^{i\pi/3}$
+
+      Por De Moivre:
+      $$z^{10} = 2^{10}e^{i10\pi/3} = 1024e^{i10\pi/3}$$
+
+      Simplificando el ángulo: $\frac{10\pi}{3} = 3\pi + \frac{\pi}{3} = \pi + \frac{\pi}{3} = \frac{4\pi}{3}$ (módulo $2\pi$)
+
+      $$z^{10} = 1024\left(\cos\frac{4\pi}{3} + i\sin\frac{4\pi}{3}\right) = 1024\left(-\frac{1}{2} - i\frac{\sqrt{3}}{2}\right) = -512 - 512\sqrt{3}i$$
+    \end{solution}
+
+    \part Demostrar que si $\alpha = \frac{3}{5}$ y $\beta = \frac{4i}{5}$, entonces el estado $\ket{\psi} = \alpha\ket{0} + \beta\ket{1}$ está correctamente normalizado y calcular las probabilidades de medir $\ket{0}$ y $\ket{1}$.
+
+    \begin{solution}
+      Verificamos normalización:
+      $$|\alpha|^2 + |\beta|^2 = \left|\frac{3}{5}\right|^2 + \left|\frac{4i}{5}\right|^2 = \frac{9}{25} + \frac{16}{25} = \frac{25}{25} = 1$$ ✓
+
+      Las probabilidades son:
+      $$P(\ket{0}) = |\alpha|^2 = \frac{9}{25} = 0.36 = 36\%$$
+      $$P(\ket{1}) = |\beta|^2 = \frac{16}{25} = 0.64 = 64\%$$
+    \end{solution}
+
+    \part Calcular $e^{i\pi\sigma_y}$ donde $\sigma_y = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}$.
+
+    \begin{solution}
+      Usamos que $\sigma_y^2 = I$ (propiedad de las matrices de Pauli).
+
+      Por la serie exponencial:
+      $$e^{i\pi\sigma_y} = \sum_{n=0}^{\infty} \frac{(i\pi\sigma_y)^n}{n!} = I + i\pi\sigma_y + \frac{(i\pi)^2\sigma_y^2}{2!} + \frac{(i\pi)^3\sigma_y^3}{3!} + \cdots$$
+
+      Como $\sigma_y^2 = I$, $\sigma_y^3 = \sigma_y$, $\sigma_y^4 = I$, etc., podemos separar:
+      $$e^{i\pi\sigma_y} = \left(1 - \frac{\pi^2}{2!} + \frac{\pi^4}{4!} - \cdots\right)I + i\left(\pi - \frac{\pi^3}{3!} + \frac{\pi^5}{5!} - \cdots\right)\sigma_y$$
+      $$= \cos(\pi)I + i\sin(\pi)\sigma_y = -I + 0 = -I$$
+      $$= \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}$$
+
+      Este es el operador de fase global $-1$, que es físicamente equivalente a la identidad.
+    \end{solution}
+  \end{parts}
+
+  \question \textbf{Operadores lineales y valores propios}
+
+  \begin{parts}
+    \part Verificar que el conjunto $\left\{\begin{pmatrix} 1 \\ i \\ 0 \end{pmatrix}, \begin{pmatrix} i \\ 1 \\ 1 \end{pmatrix}, \begin{pmatrix} 0 \\ 1 \\ i \end{pmatrix}\right\}$ es linealmente independiente en $\C^3$.
+
+    \begin{solution}
+      Planteamos la ecuación:
+      $$\alpha_1\begin{pmatrix} 1 \\ i \\ 0 \end{pmatrix} + \alpha_2\begin{pmatrix} i \\ 1 \\ 1 \end{pmatrix} + \alpha_3\begin{pmatrix} 0 \\ 1 \\ i \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}$$
+
+      Esto da el sistema:
+      \begin{align*}
+        \alpha_1 + i\alpha_2            & = 0 \\
+        i\alpha_1 + \alpha_2 + \alpha_3 & = 0 \\
+        \alpha_2 + i\alpha_3            & = 0
+      \end{align*}
+
+      De la primera ecuación: $\alpha_1 = -i\alpha_2$
+
+      De la tercera ecuación: $\alpha_2 = -i\alpha_3$
+
+      Sustituyendo en la segunda: $i(-i\alpha_2) + \alpha_2 + \alpha_3 = 0 \Rightarrow \alpha_2 + \alpha_2 + \alpha_3 = 0 \Rightarrow 2\alpha_2 + \alpha_3 = 0$
+
+      Usando $\alpha_2 = -i\alpha_3$: $2(-i\alpha_3) + \alpha_3 = 0 \Rightarrow (-2i + 1)\alpha_3 = 0$
+
+      Como $-2i + 1 \neq 0$, entonces $\alpha_3 = 0$, lo que implica $\alpha_2 = 0$ y $\alpha_1 = 0$.
+
+      Por tanto, el conjunto es linealmente independiente.
+    \end{solution}
+
+    \part Encontrar los valores propios y vectores propios de la matriz de Hadamard $H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$.
+
+    \begin{solution}
+      El polinomio característico es:
+      $$\det(H - \lambda I) = \det\begin{pmatrix} \frac{1}{\sqrt{2}}-\lambda & \frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}-\lambda \end{pmatrix}$$
+      $$= \left(\frac{1}{\sqrt{2}}-\lambda\right)\left(-\frac{1}{\sqrt{2}}-\lambda\right) - \frac{1}{2} = -\frac{1}{2} + \lambda^2 - \frac{1}{2} = \lambda^2 - 1$$
+
+      Valores propios: $\lambda_1 = 1$, $\lambda_2 = -1$
+
+      \textbf{Para $\lambda_1 = 1$:}
+      $$(H - I)\vec{v} = 0 \Rightarrow \begin{pmatrix} \frac{1}{\sqrt{2}}-1 & \frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}-1 \end{pmatrix}\begin{pmatrix} v_1 \\ v_2 \end{pmatrix} = 0$$
+
+      Primera fila: $\left(\frac{1-\sqrt{2}}{\sqrt{2}}\right)v_1 + \frac{v_2}{\sqrt{2}} = 0 \Rightarrow v_2 = (\sqrt{2}-1)v_1$
+
+      Vector propio (normalizado): $\vec{v}_1 = \frac{1}{\sqrt{2+\sqrt{2}}}\begin{pmatrix} 1 \\ \sqrt{2}-1 \end{pmatrix}$ o más simple: $\vec{v}_1 = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 1 \end{pmatrix}$
+
+      \textbf{Para $\lambda_2 = -1$:}
+      De manera similar: $\vec{v}_2 = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ -1 \end{pmatrix}$
+    \end{solution}
+
+    \part Dada la transformación lineal $T: \C^2 \to \C^2$ definida por $T\begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} (1+i)x + y \\ ix - 2y \end{pmatrix}$, encontrar su matriz respecto a la base canónica y calcular su determinante.
+
+    \begin{solution}
+      Para la base canónica $\{\vec{e}_1, \vec{e}_2\}$:
+      $$T(\vec{e}_1) = T\begin{pmatrix} 1 \\ 0 \end{pmatrix} = \begin{pmatrix} 1+i \\ i \end{pmatrix}$$
+      $$T(\vec{e}_2) = T\begin{pmatrix} 0 \\ 1 \end{pmatrix} = \begin{pmatrix} 1 \\ -2 \end{pmatrix}$$
+
+      La matriz es:
+      $$[T] = \begin{pmatrix} 1+i & 1 \\ i & -2 \end{pmatrix}$$
+
+      El determinante:
+      $$\det([T]) = (1+i)(-2) - (1)(i) = -2 - 2i - i = -2 - 3i$$
+
+      Como $\det([T]) \neq 0$, la transformación es invertible.
+    \end{solution}
+
+    \part Verificar que la matriz $U = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & i \\ i & 1 \end{pmatrix}$ es unitaria calculando $U^\dagger U$.
+
+    \begin{solution}
+      Primero calculamos la adjunta:
+      $$U^\dagger = \left(\frac{1}{\sqrt{2}}\begin{pmatrix} 1 & i \\ i & 1 \end{pmatrix}\right)^\dagger = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & -i \\ -i & 1 \end{pmatrix}$$
+
+      Ahora calculamos el producto:
+      $$U^\dagger U = \frac{1}{2}\begin{pmatrix} 1 & -i \\ -i & 1 \end{pmatrix}\begin{pmatrix} 1 & i \\ i & 1 \end{pmatrix}$$
+      $$= \frac{1}{2}\begin{pmatrix} 1 + (-i)(i) & i + (-i)(1) \\ (-i)(1) + 1(i) & (-i)(i) + 1 \end{pmatrix}$$
+      $$= \frac{1}{2}\begin{pmatrix} 1 + 1 & i - i \\ -i + i & 1 + 1 \end{pmatrix} = \frac{1}{2}\begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = I$$
+
+      Por tanto, $U$ es unitaria. ✓
+    \end{solution}
+
+    \part Demostrar que si $A$ y $B$ son matrices hermitianas, entonces $AB$ es hermitiana si y solo si $AB = BA$.
+
+    \begin{solution}
+      $(\Rightarrow)$ Supongamos que $AB$ es hermitiana, entonces $(AB)^\dagger = AB$.
+
+      Pero $(AB)^\dagger = B^\dagger A^\dagger = BA$ (usando que $A$ y $B$ son hermitianas).
+
+      Por tanto: $AB = BA$. ✓
+
+      $(\Leftarrow)$ Supongamos que $AB = BA$.
+
+      Entonces: $(AB)^\dagger = B^\dagger A^\dagger = BA = AB$
+
+      Por tanto, $AB$ es hermitiana. ✓
+
+      \textbf{Interpretación física:} En mecánica cuántica, esto significa que dos observables conmutan si y solo si su producto es también un observable (operador hermitiano). Observables que conmutan pueden medirse simultáneamente sin incertidumbre.
+    \end{solution}
+  \end{parts}
+\end{questions}
+
+\section{Requisitos de la actividad}
+
+\subsection*{Modalidad de trabajo}
+Esta actividad se realizará de manera \textbf{individual}.
+
+\subsection*{Formato y presentación}
+El trabajo deberá cumplir los siguientes requisitos formales:
+
+\begin{itemize}
+  \item \textbf{Estructura}: El documento seguirá la estructura de un artículo académico, incluyendo introducción, desarrollo, conclusiones y referencias bibliográficas.
+  \item \textbf{Herramientas}: La redacción se realizará íntegramente en \LaTeX.
+  \item \textbf{Entrega}: Se entregará un único archivo en formato PDF compilado.
+  \item \textbf{Citación}: Todas las referencias bibliográficas seguirán estrictamente la normativa APA 7.ª edición.
+\end{itemize}
+
+\subsection*{Criterios de evaluación}
+Se valorarán especialmente los siguientes aspectos:
+
+\begin{itemize}
+  \item Claridad y rigor en la exposición de los cálculos intermedios.
+  \item Justificación matemática y razonamiento lógico de los pasos realizados.
+  \item Interpretación crítica de los resultados obtenidos y su contextualización.
+  \item Corrección en el uso del lenguaje técnico y la notación matemática.
+\end{itemize}
+
+\begin{center}
+  \fcolorbox{red}{yellow!20}{%
+    \begin{minipage}{0.9\textwidth}
+      \textbf{Nota importante:} La rúbrica de evaluación únicamente se aplicará a aquellos trabajos que cumplan todos los requisitos de formato especificados. Los trabajos que no satisfagan estos requisitos podrán ser devueltos sin evaluación.
+    \end{minipage}
+  }
+\end{center}
+
+\section{Rúbrica}
+
+\begin{rubrica}
+  \setrubrica{Normativa}{Entregar la actividad en plazo y cumpliendo las indicaciones.}{0,5}{5}
+  \setrubrica{Biliografía y citas APA}{Cumplir con las normas de citación y bibliografía según la normativa APA 7.}{0,5}{5}
+  \setrubrica{Presentación}{Cálculos ordenados y claramente justificados.}{1}{10}
+  \setrubrica{Problema 1}{Números complejos y geometría (0.8 puntos por apartado).}{4}{40}
+  \setrubrica{Problema 2}{Operadores y valores propios (0.8 puntos por apartado).}{4}{40}
+\end{rubrica}

@@ -1,0 +1,177 @@
+\codigonombre{}{MCC-ALCC-25Q102}
+
+Conteste a las siguientes preguntas en el espacio anteriormente indicado.
+
+\begin{questions}
+	\question[4] Responda a las siguientes cuestiones:
+	\begin{parts}
+		\part Explique el concepto de producto tensorial entre espacios vectoriales complejos y cómo se aplica a los sistemas cuánticos de múltiples qubits.
+
+		\begin{solution}
+			El producto tensorial entre espacios vectoriales complejos $V$ y $W$ de dimensiones $m$ y $n$ respectivamente, denotado como $V \otimes W$, es un espacio vectorial de dimensión $mn$. Sus elementos son combinaciones lineales de productos tensoriales $|v\rangle \otimes |w\rangle$ donde $|v\rangle \in V$ y $|w\rangle \in W$.
+
+			Propiedades principales:
+			1) Bilinealidad: $(a|v_1\rangle + b|v_2\rangle) \otimes |w\rangle = a(|v_1\rangle \otimes |w\rangle) + b(|v_2\rangle \otimes |w\rangle)$
+			2) Distributividad: $|v\rangle \otimes (a|w_1\rangle + b|w_2\rangle) = a(|v\rangle \otimes |w_1\rangle) + b(|v\rangle \otimes |w_2\rangle)$
+			3) Compatibilidad con producto escalar: $(a|v\rangle) \otimes (b|w\rangle) = ab(|v\rangle \otimes |w\rangle)$
+
+			En sistemas cuánticos, el producto tensorial permite describir sistemas compuestos:
+			- El espacio de estados de un sistema de $n$ qubits es $(C^2)^{\otimes n} \cong C^{2^n}$
+			- Si $\{|0\rangle, |1\rangle\}$ es la base computacional para un qubit, entonces
+			$\{|00\rangle, |01\rangle, |10\rangle, |11\rangle\} = \{|0\rangle \otimes |0\rangle, |0\rangle \otimes |1\rangle, |1\rangle \otimes |0\rangle, |1\rangle \otimes |1\rangle\}$
+			es la base computacional para dos qubits.
+			- Los estados separables se pueden escribir como $|\psi\rangle = |\phi_1\rangle \otimes |\phi_2\rangle \otimes \cdots \otimes |\phi_n\rangle$
+			- Los estados entrelazados no se pueden factorizar (son la esencia del comportamiento cuántico)
+		\end{solution}
+
+		\part Explique el teorema de no clonación cuántica y sus implicaciones para la informática cuántica.
+
+		\begin{solution}
+			El teorema de no clonación establece que es imposible crear una copia exacta de un estado cuántico arbitrario desconocido.
+
+			Formulación matemática:
+			- No puede existir un operador unitario (una transformación cuántica) $U$ tal que para todos los estados $|\psi\rangle$:
+			$U(|\psi\rangle \otimes |0\rangle) = |\psi\rangle \otimes |\psi\rangle$
+
+			Demostración (esbozo):
+			1) Supongamos que existe un operador unitario $U$ que clona dos estados diferentes $|\psi\rangle$ y $|\phi\rangle$.
+			2) $U(|\psi\rangle \otimes |0\rangle) = |\psi\rangle \otimes |\psi\rangle$
+			3) $U(|\phi\rangle \otimes |0\rangle) = |\phi\rangle \otimes |\phi\rangle$
+			4) Calcular el producto interno de ambos lados y usar la propiedad de conservación del producto interno por operadores unitarios.
+			5) Se llega a la contradicción de que $|\langle\psi|\phi\rangle| = |\langle\psi|\phi\rangle|^2$, que solo se cumple si $|\langle\psi|\phi\rangle| = 0$ o $|\langle\psi|\phi\rangle| = 1$.
+
+			Implicaciones:
+			- No se puede copiar información cuántica arbitraria (fundamental para comunicación cuántica)
+			- Garantiza la seguridad de la criptografía cuántica (imposibilidad de copiar estados para interceptar información)
+			- Explica por qué la medición destruye el estado original
+			- Implica que la computación cuántica necesita un enfoque diferente para manipular información
+			- La corrección de errores cuánticos debe hacerse mediante métodos especiales
+		\end{solution}
+
+	\end{parts}
+
+	\question[3] Considere las matrices de Pauli $X$, $Y$ y $Z$.
+	\begin{parts}
+		\part Demuestre que $XYZ = iI$.
+		\part Demuestre que estas matrices, junto con la identidad $I$, forman una base para el espacio de matrices complejas $2 \times 2$.
+		\part Exprese la matriz $A = \begin{pmatrix} 2 & 1+i \\ 1-i & 3 \end{pmatrix}$ como combinación lineal de las matrices de Pauli.
+		\part Determine si $A$ es hermitiana, unitaria o ambas.
+	\end{parts}
+
+	\begin{solution}
+		a) Calculamos el producto $XYZ$:
+
+		$X = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$
+		$Y = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}$
+		$Z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$
+
+		$XY = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix} = \begin{pmatrix} i & 0 \\ 0 & -i \end{pmatrix} = iZ$
+
+		$XYZ = iZ \cdot Z = i \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} = i \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = iI$
+
+		b) Para demostrar que $\{I, X, Y, Z\}$ forman una base para las matrices complejas $2 \times 2$, debemos verificar que:
+		1) Son linealmente independientes
+		2) Generan todo el espacio (dimensión 4)
+
+		Verificando independencia lineal: supongamos $aI + bX + cY + dZ = 0$ donde $a, b, c, d \in \mathbb{C}$
+
+		$\begin{pmatrix} a+d & b-ic \\ b+ic & a-d \end{pmatrix} = \begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix}$
+
+		Esto implica: $a+d=0$, $b-ic=0$, $b+ic=0$, $a-d=0$
+		De $a+d=0$ y $a-d=0$, obtenemos $a=d=0$
+		De $b-ic=0$ y $b+ic=0$, obtenemos $b=c=0$
+
+		Por tanto, son linealmente independientes.
+
+		Como el espacio de matrices complejas $2 \times 2$ tiene dimensión 4 y tenemos 4 matrices linealmente independientes, estas forman una base.
+
+		c) Para expresar $A = \begin{pmatrix} 2 & 1+i \\ 1-i & 3 \end{pmatrix}$ como $A = aI + bX + cY + dZ$, igualamos:
+
+		$\begin{pmatrix} 2 & 1+i \\ 1-i & 3 \end{pmatrix} = \begin{pmatrix} a+d & b-ic \\ b+ic & a-d \end{pmatrix}$
+
+		Esto nos da:
+		$a+d = 2$
+		$b-ic = 1+i$
+		$b+ic = 1-i$
+		$a-d = 3$
+
+		Resolviendo:
+		De $a+d=2$ y $a-d=3$, obtenemos $2a=5 \Rightarrow a=\frac{5}{2}$ y $d=-\frac{1}{2}$
+		De $b-ic=1+i$ y $b+ic=1-i$, obtenemos $2b=2 \Rightarrow b=1$ y $-2ic=2i \Rightarrow c=-1$
+
+		Por tanto, $A = \frac{5}{2}I + X - Y - \frac{1}{2}Z$
+
+		d) Verificación:
+		- Hermitiana: $A^\dagger = A$ si $A$ es hermitiana.
+		$A^\dagger = \begin{pmatrix} 2 & 1-i \\ 1+i & 3 \end{pmatrix} = A$. Por tanto, $A$ es hermitiana.
+
+		- Unitaria: $AA^\dagger = A^\dagger A = I$ si $A$ es unitaria.
+		$AA^\dagger = \begin{pmatrix} 2 & 1+i \\ 1-i & 3 \end{pmatrix} \begin{pmatrix} 2 & 1-i \\ 1+i & 3 \end{pmatrix} = \begin{pmatrix} 5+|1+i|^2 & ... \\ ... & ... \end{pmatrix} \neq I$
+		Como $AA^\dagger \neq I$, $A$ no es unitaria.
+
+		Conclusión: $A$ es hermitiana pero no unitaria.
+	\end{solution}
+
+	\question[3] Considere un sistema de dos qubits en el estado
+	\[|\psi\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)\]
+	\begin{parts}
+		\part Demuestre que este estado está entrelazado.
+		\part Calcule la matriz de densidad $\rho = |\psi\rangle\langle\psi|$ para este estado.
+		\part Obtenga la matriz de densidad reducida para el primer qubit y explique lo que indica sobre el estado de este qubit.
+		\part Si medimos el primer qubit y obtenemos $|0\rangle$, ¿cuál será el estado del sistema después de la medición?
+	\end{parts}
+
+	\begin{solution}
+		a) Para demostrar que el estado está entrelazado, debemos verificar que no puede ser escrito como un producto tensorial de dos estados de un qubit: $|\psi\rangle \neq |\phi_1\rangle \otimes |\phi_2\rangle$.
+
+		Supongamos que $|\psi\rangle = |\phi_1\rangle \otimes |\phi_2\rangle$ con:
+		$|\phi_1\rangle = \alpha|0\rangle + \beta|1\rangle$
+		$|\phi_2\rangle = \gamma|0\rangle + \delta|1\rangle$
+
+		Entonces:
+		$|\phi_1\rangle \otimes |\phi_2\rangle = \alpha\gamma|00\rangle + \alpha\delta|01\rangle + \beta\gamma|10\rangle + \beta\delta|11\rangle$
+
+		Para que esto sea igual a $\frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$, necesitamos:
+		$\alpha\gamma = \frac{1}{\sqrt{2}}$
+		$\alpha\delta = 0$
+		$\beta\gamma = 0$
+		$\beta\delta = \frac{1}{\sqrt{2}}$
+
+		Como $\alpha\gamma \neq 0$ y $\beta\delta \neq 0$, tenemos que $\alpha \neq 0$, $\beta \neq 0$, $\gamma \neq 0$, $\delta \neq 0$.
+		Pero entonces $\alpha\delta \neq 0$ y $\beta\gamma \neq 0$, lo que contradice las ecuaciones.
+
+		Por tanto, $|\psi\rangle$ no es separable, es decir, está entrelazado.
+
+		b) La matriz de densidad $\rho = |\psi\rangle\langle\psi|$ es:
+
+		$\rho = |\psi\rangle\langle\psi| = \frac{1}{2}(|00\rangle + |11\rangle)(\langle00| + \langle11|)$
+		$= \frac{1}{2}(|00\rangle\langle00| + |00\rangle\langle11| + |11\rangle\langle00| + |11\rangle\langle11|)$
+
+		En forma matricial (en la base $\{|00\rangle, |01\rangle, |10\rangle, |11\rangle\}$):
+		$\rho = \frac{1}{2}\begin{pmatrix}
+				1 & 0 & 0 & 1 \\
+				0 & 0 & 0 & 0 \\
+				0 & 0 & 0 & 0 \\
+				1 & 0 & 0 & 1
+			\end{pmatrix}$
+
+		c) La matriz de densidad reducida para el primer qubit se obtiene tomando la traza parcial sobre el segundo qubit:
+
+		$\rho_A = Tr_B(\rho) = \sum_{i=0}^1 (I \otimes \langle i|)\rho(I \otimes |i\rangle)$
+
+		$\rho_A = (I \otimes \langle 0|)\rho(I \otimes |0\rangle) + (I \otimes \langle 1|)\rho(I \otimes |1\rangle)$
+
+		$= \frac{1}{2}|0\rangle\langle0| + \frac{1}{2}|1\rangle\langle1| = \frac{1}{2}\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = \frac{1}{2}I$
+
+		Esto indica que el primer qubit está en un estado completamente mixto, con probabilidad 50\% de ser $|0\rangle$ y 50\% de ser $|1\rangle$. Este es un estado máximamente mixto (entropía máxima), característico de un qubit que está completamente entrelazado con otro sistema.
+
+		d) Si medimos el primer qubit y obtenemos $|0\rangle$, el estado colapsará según el postulado de medición. Aplicando el proyector $P_0 = |0\rangle\langle0| \otimes I$ al estado:
+
+		$P_0|\psi\rangle = (|0\rangle\langle0| \otimes I)\frac{1}{\sqrt{2}}(|00\rangle + |11\rangle) = \frac{1}{\sqrt{2}}|00\rangle$
+
+		Normalizando:
+		$|\psi'\rangle = \frac{P_0|\psi\rangle}{||P_0|\psi\rangle||} = \frac{\frac{1}{\sqrt{2}}|00\rangle}{\frac{1}{\sqrt{2}}} = |00\rangle = |0\rangle \otimes |0\rangle$
+
+		Por tanto, después de medir el primer qubit y obtener $|0\rangle$, el sistema completo colapsará al estado $|00\rangle$, lo que significa que el segundo qubit también estará en el estado $|0\rangle$. Esto demuestra la correlación perfecta entre los qubits que es característica de este estado entrelazado.
+	\end{solution}
+\end{questions}

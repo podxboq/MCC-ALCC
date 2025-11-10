@@ -1,0 +1,124 @@
+\begin{questions}
+
+  \question El bra correspondiente al ket $\ket{\psi} = \begin{pmatrix} 1+i \\ 2 \end{pmatrix}$ es:
+
+  \begin{choices}
+    \choice $\bra{\psi} = \begin{pmatrix} 1+i \\ 2 \end{pmatrix}$
+    \CorrectChoice $\bra{\psi} = \begin{pmatrix} 1-i & 2 \end{pmatrix}$
+    \choice $\bra{\psi} = \begin{pmatrix} 1+i & 2 \end{pmatrix}$
+    \choice $\bra{\psi} = \begin{pmatrix} 1-i \\ 2 \end{pmatrix}$
+  \end{choices}
+  \begin{solution}
+    El bra es la transpuesta conjugada del ket: $\bra{\psi} = \ket{\psi}^\dagger = \begin{pmatrix} \conj{1+i} & \conj{2} \end{pmatrix} = \begin{pmatrix} 1-i & 2 \end{pmatrix}$.
+  \end{solution}
+
+  \question El bracket $\braket{0}{+}$ donde $\ket{+} = \frac{1}{\sqrt{2}}(\ket{0} + \ket{1})$ es igual a:
+
+  \begin{choices}
+    \choice $0$
+    \choice $1$
+    \CorrectChoice $\frac{1}{\sqrt{2}}$
+    \choice $\frac{1}{2}$
+  \end{choices}
+  \begin{solution}
+    $\braket{0}{+} = \bra{0}\frac{1}{\sqrt{2}}(\ket{0} + \ket{1}) = \frac{1}{\sqrt{2}}(\braket{0}{0} + \braket{0}{1}) = \frac{1}{\sqrt{2}}(1 + 0) = \frac{1}{\sqrt{2}}$.
+  \end{solution}
+
+  \question El operador $\ketbra{0}{1}$ actúa sobre $\ket{1}$ dando:
+
+  \begin{choices}
+    \CorrectChoice $\ket{0}$
+    \choice $\ket{1}$
+    \choice $0$
+    \choice $\ket{0} + \ket{1}$
+  \end{choices}
+  \begin{solution}
+    $\ketbra{0}{1}\ket{1} = \ket{0}\braket{1}{1} = \ket{0} \cdot 1 = \ket{0}$.
+  \end{solution}
+
+  \question La relación de completitud para la base $\{\ket{0}, \ket{1}\}$ es:
+
+  \begin{choices}
+    \choice $\ket{0}\ket{1} + \ket{1}\ket{0} = I$
+    \CorrectChoice $\ketbra{0}{0} + \ketbra{1}{1} = I$
+    \choice $\bra{0}\bra{1} + \bra{1}\bra{0} = I$
+    \choice $\braket{0}{1} + \braket{1}{0} = I$
+  \end{choices}
+  \begin{solution}
+    La relación de completitud establece que $\sum_i \ketbra{i}{i} = I$. Para la base computacional: $\ketbra{0}{0} + \ketbra{1}{1} = I$.
+  \end{solution}
+
+  \question El estado de dos qubits $\ket{01}$ en notación matricial es:
+
+  \begin{choices}
+    \choice $\begin{pmatrix} 0 \\ 1 \\ 0 \\ 1 \end{pmatrix}$
+    \CorrectChoice $\begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \end{pmatrix}$
+    \choice $\begin{pmatrix} 1 \\ 0 \\ 0 \\ 0 \end{pmatrix}$
+    \choice $\begin{pmatrix} 0 \\ 0 \\ 1 \\ 0 \end{pmatrix}$
+  \end{choices}
+  \begin{solution}
+    $\ket{01} = \ket{0} \otimes \ket{1} = \begin{pmatrix} 1 \\ 0 \end{pmatrix} \otimes \begin{pmatrix} 0 \\ 1 \end{pmatrix} = \begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \end{pmatrix}$.
+  \end{solution}
+
+  \question La probabilidad de medir $\ket{+}$ en el estado $\ket{\psi} = \frac{3}{5}\ket{0} + \frac{4i}{5}\ket{1}$ es:
+
+  \begin{choices}
+    \choice $\frac{9}{25}$
+    \choice $\frac{16}{25}$
+    \CorrectChoice $\frac{1}{2}$
+    \choice $\frac{7}{10}$
+  \end{choices}
+  \begin{solution}
+    $\braket{+}{\psi} = \frac{1}{\sqrt{2}}(\bra{0} + \bra{1})\left(\frac{3}{5}\ket{0} + \frac{4i}{5}\ket{1}\right) = \frac{1}{\sqrt{2}}\left(\frac{3}{5} + \frac{4i}{5}\right)$.
+    Por tanto, $P(+) = \left|\frac{3 + 4i}{5\sqrt{2}}\right|^2 = \frac{9 + 16}{50} = \frac{1}{2}$.
+  \end{solution}
+
+  \question La matriz de Pauli $\sigma_x$ en notación de Dirac se escribe como:
+
+  \begin{choices}
+    \choice $\ketbra{0}{0} - \ketbra{1}{1}$
+    \CorrectChoice $\ketbra{0}{1} + \ketbra{1}{0}$
+    \choice $\ketbra{0}{0} + \ketbra{1}{1}$
+    \choice $-i\ketbra{0}{1} + i\ketbra{1}{0}$
+  \end{choices}
+  \begin{solution}
+    $\sigma_x = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$ intercambia $\ket{0}$ y $\ket{1}$, lo que corresponde a $\ketbra{0}{1} + \ketbra{1}{0}$.
+  \end{solution}
+
+  \question El valor esperado $\langle \sigma_z \rangle$ en el estado $\ket{\psi} = \alpha\ket{0} + \beta\ket{1}$ es:
+
+  \begin{choices}
+    \choice $\alpha + \beta$
+    \choice $|\alpha|^2 + |\beta|^2$
+    \CorrectChoice $|\alpha|^2 - |\beta|^2$
+    \choice $\alpha\beta$
+  \end{choices}
+  \begin{solution}
+    $\langle \sigma_z \rangle = \bra{\psi}\sigma_z\ket{\psi} = \bra{\psi}(\ketbra{0}{0} - \ketbra{1}{1})\ket{\psi} = |\braket{0}{\psi}|^2 - |\braket{1}{\psi}|^2 = |\alpha|^2 - |\beta|^2$.
+  \end{solution}
+
+  \question El estado de Bell $\ket{\Phi^+} = \frac{1}{\sqrt{2}}(\ket{00} + \ket{11})$ tiene la propiedad de que:
+
+  \begin{choices}
+    \choice Es separable
+    \choice Es un estado de un solo qubit
+    \CorrectChoice Es entrelazado
+    \choice Es un estado clásico
+  \end{choices}
+  \begin{solution}
+    $\ket{\Phi^+}$ no puede escribirse como $\ket{\psi}_A \otimes \ket{\phi}_B$, por tanto es un estado entrelazado.
+  \end{solution}
+
+  \question Para el Hamiltoniano $H = \omega\sigma_z/2$, el operador de evolución $U(t) = e^{-iHt}$ es:
+
+  \begin{choices}
+    \choice $\cos(\omega t)I - i\sin(\omega t)\sigma_z$
+    \CorrectChoice $\begin{pmatrix} e^{-i\omega t/2} & 0 \\ 0 & e^{i\omega t/2} \end{pmatrix}$
+    \choice $\begin{pmatrix} e^{i\omega t/2} & 0 \\ 0 & e^{-i\omega t/2} \end{pmatrix}$
+    \choice $e^{-i\omega t}\sigma_z$
+  \end{choices}
+  \begin{solution}
+    $e^{-i\omega t\sigma_z/2} = e^{-i\omega t/2}\ketbra{0}{0} + e^{i\omega t/2}\ketbra{1}{1} = \begin{pmatrix} e^{-i\omega t/2} & 0 \\ 0 & e^{i\omega t/2} \end{pmatrix}$.
+  \end{solution}
+
+\end{questions}

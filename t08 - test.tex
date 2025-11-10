@@ -1,0 +1,123 @@
+\begin{questions}
+
+  \question La matriz de densidad de un estado puro $\ket{\psi}$ es:
+
+  \begin{choices}
+    \choice $\bra{\psi}$
+    \CorrectChoice $\ket{\psi}\bra{\psi}$
+    \choice $\braket{\psi}{\psi}$
+    \choice $I$
+  \end{choices}
+  \begin{solution}
+    Para estados puros, la matriz de densidad es el proyector sobre el estado: $\rho = \ket{\psi}\bra{\psi}$.
+  \end{solution}
+
+  \question Un estado es puro si y solo si:
+
+  \begin{choices}
+    \choice $\text{Tr}(\rho) = 0$
+    \CorrectChoice $\text{Tr}(\rho^2) = 1$
+    \choice $\text{Tr}(\rho^2) = 0$
+    \choice $\rho = I$
+  \end{choices}
+  \begin{solution}
+    El criterio de pureza establece que $\text{Tr}(\rho^2) = 1$ para estados puros y $\text{Tr}(\rho^2) < 1$ para estados mixtos.
+  \end{solution}
+
+  \question La matriz de densidad del estado completamente mixto de un qubit es:
+
+  \begin{choices}
+    \choice $\ketbra{0}{0}$
+    \choice $\ketbra{1}{1}$
+    \CorrectChoice $\frac{1}{2}I$
+    \choice $\ketbra{+}{+}$
+  \end{choices}
+  \begin{solution}
+    El estado completamente mixto es equiprobable en todos los estados: $\rho = \frac{1}{2}\ketbra{0}{0} + \frac{1}{2}\ketbra{1}{1} = \frac{1}{2}I$.
+  \end{solution}
+
+  \question Para el estado de Bell $\ket{\Phi^+} = \frac{1}{\sqrt{2}}(\ket{00} + \ket{11})$, la traza parcial sobre el subsistema B da:
+
+  \begin{choices}
+    \choice $\ketbra{0}{0}$
+    \choice $\ketbra{1}{1}$
+    \CorrectChoice $\frac{1}{2}I$
+    \choice $\ketbra{+}{+}$
+  \end{choices}
+  \begin{solution}
+    $\rho_A = \text{Tr}_B(\ketbra{\Phi^+}{\Phi^+}) = \frac{1}{2}\ketbra{0}{0} + \frac{1}{2}\ketbra{1}{1} = \frac{1}{2}I$. A pesar de que el sistema total está en estado puro, cada subsistema está en estado mixto.
+  \end{solution}
+
+  \question La entropía de von Neumann de un estado puro es:
+
+  \begin{choices}
+    \CorrectChoice $0$
+    \choice $1$
+    \choice $\log_2 d$ donde $d$ es la dimensión
+    \choice Depende del estado
+  \end{choices}
+  \begin{solution}
+    Para estados puros, $S(\rho) = -\text{Tr}(\rho \log_2 \rho) = 0$ ya que $\rho$ tiene un único valor propio igual a 1.
+  \end{solution}
+
+  \question La entropía de von Neumann del estado completamente mixto $\rho = \frac{I}{2}$ de un qubit es:
+
+  \begin{choices}
+    \choice $0$
+    \CorrectChoice $1$ bit
+    \choice $2$ bits
+    \choice $\frac{1}{2}$ bit
+  \end{choices}
+  \begin{solution}
+    $\rho = \frac{I}{2}$ tiene valores propios $\lambda_1 = \lambda_2 = \frac{1}{2}$. Por tanto, $S(\rho) = -2 \cdot \frac{1}{2}\log_2\frac{1}{2} = 1$ bit.
+  \end{solution}
+
+  \question La fidelidad entre dos estados puros ortogonales $\ket{\psi}$ y $\ket{\phi}$ con $\braket{\psi}{\phi} = 0$ es:
+
+  \begin{choices}
+    \CorrectChoice $0$
+    \choice $\frac{1}{2}$
+    \choice $1$
+    \choice $-1$
+  \end{choices}
+  \begin{solution}
+    Para estados puros, $F(\ket{\psi}, \ket{\phi}) = |\braket{\psi}{\phi}| = |0| = 0$.
+  \end{solution}
+
+  \question El teorema de no-clonación establece que:
+
+  \begin{choices}
+    \choice Todo estado cuántico puede ser copiado
+    \CorrectChoice No existe operación que pueda clonar un estado cuántico arbitrario desconocido
+    \choice Solo los estados de la base computacional pueden ser clonados
+    \choice Solo los estados entrelazados no pueden ser clonados
+  \end{choices}
+  \begin{solution}
+    El teorema de no-clonación es fundamental en teoría cuántica de información: no existe canal cuántico que pueda copiar un estado desconocido arbitrario.
+  \end{solution}
+
+  \question Los operadores de Kraus $\{K_i\}$ de un canal cuántico satisfacen:
+
+  \begin{choices}
+    \choice $\sum_i K_i = I$
+    \CorrectChoice $\sum_i K_i^\dagger K_i = I$
+    \choice $\sum_i K_i K_i = I$
+    \choice $K_i K_i^\dagger = I$ para todo $i$
+  \end{choices}
+  \begin{solution}
+    La condición de completitud para operadores de Kraus es $\sum_i K_i^\dagger K_i = I$, lo que asegura que la traza se preserve.
+  \end{solution}
+
+  \question Un canal de despolarización con probabilidad $p = 1$ transforma cualquier estado en:
+
+  \begin{choices}
+    \choice $\ketbra{0}{0}$
+    \choice $\ketbra{1}{1}$
+    \CorrectChoice $\frac{I}{2}$
+    \choice No cambia el estado
+  \end{choices}
+  \begin{solution}
+    Para $p = 1$, el canal de despolarización $\mathcal{E}(\rho) = (1-p)\rho + \frac{p}{3}(\sigma_x\rho\sigma_x + \sigma_y\rho\sigma_y + \sigma_z\rho\sigma_z)$ se reduce a aplicar todas las matrices de Pauli con igual probabilidad, resultando en $\frac{I}{2}$.
+  \end{solution}
+
+\end{questions}

@@ -1,0 +1,63 @@
+\unirsection{Problemas}
+
+\begin{questions}
+
+  \question Verificar que las siguientes funciones son transformaciones lineales y calcular su núcleo e imagen:
+  \begin{parts}
+    \part $T: \C^3 \to \C^2$ definida por $T\begin{pmatrix} x \\ y \\ z \end{pmatrix} = \begin{pmatrix} x + iy - z \\ 2x + y \end{pmatrix}$
+    \part $S: \C^2 \to \C^3$ definida por $S\begin{pmatrix} u \\ v \end{pmatrix} = \begin{pmatrix} u + iv \\ 2u \\ u - v \end{pmatrix}$
+  \end{parts}
+
+  \question Encontrar la matriz de la transformación lineal $T: \C^2 \to \C^2$ definida por $T\begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} (1+i)x + y \\ ix - 2y \end{pmatrix}$ respecto a:
+  \begin{parts}
+    \part La base canónica
+    \part La base $\mathcal{B} = \left\{\begin{pmatrix} 1 \\ i \end{pmatrix}, \begin{pmatrix} i \\ 1 \end{pmatrix}\right\}$
+  \end{parts}
+
+  \question Sean $A = \begin{pmatrix} 1 & i \\ 0 & 1 \end{pmatrix}$ y $B = \begin{pmatrix} 1 & 0 \\ i & 1 \end{pmatrix}$. Calcular:
+  \begin{parts}
+    \part $AB$ y $BA$
+    \part $A^*$ y $B^*$
+    \part $\det(A)$, $\det(B)$ y $\det(AB)$
+    \part $\text{tr}(A)$, $\text{tr}(B)$ y $\text{tr}(AB)$
+  \end{parts}
+
+  \question Encontrar los valores propios y vectores propios de las siguientes matrices:
+  \begin{parts}
+    \part $A = \begin{pmatrix} 2 & i \\ -i & 2 \end{pmatrix}$
+    \part $B = \begin{pmatrix} 1 & 1+i \\ 1-i & 2 \end{pmatrix}$
+    \part La matriz de Hadamard $H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$
+  \end{parts}
+
+  \question Verificar que las siguientes matrices son unitarias y calcular sus inversas:
+  \begin{parts}
+    \part $U_1 = \begin{pmatrix} \frac{1}{\sqrt{2}} & \frac{i}{\sqrt{2}} \\ \frac{i}{\sqrt{2}} & \frac{1}{\sqrt{2}} \end{pmatrix}$
+    \part $U_2 = \frac{1}{\sqrt{3}}\begin{pmatrix} 1 & 1+i \\ 1-i & -1 \end{pmatrix}$
+  \end{parts}
+
+  \question Demostrar que si $A$ y $B$ son matrices hermitianas, entonces:
+  \begin{parts}
+    \part $A + B$ es hermitiana
+    \part $AB$ es hermitiana si y solo si $AB = BA$
+    \part $iA$ es antihermitiana (i.e., $(iA)^* = -iA$)
+  \end{parts}
+
+  \question
+  Considerar la puerta cuántica de fase controlada:
+  $\text{CZ} = \begin{pmatrix} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & -1 \end{pmatrix}$
+  \begin{parts}
+    \part Verificar que CZ es unitaria
+    \part Determinar cómo actúa sobre los estados de la base computacional
+    \part Calcular los valores propios de CZ
+  \end{parts}
+
+  \question Expresar la matriz $M = \begin{pmatrix} 3 & 1+2i \\ 1-2i & -1 \end{pmatrix}$ como combinación lineal de las matrices de Pauli y la identidad.
+
+  \question Sea $T: V \to V$ un operador lineal en un espacio vectorial de dimensión finita.
+  \begin{parts}
+    \part Demostrar que $T$ es invertible si y solo si $\det([T]) \neq 0$
+    \part Si $T$ es invertible, demostrar que $[T^{-1}] = ([T])^{-1}$
+    \part Demostrar que $\text{tr}(T)$ es independiente de la base elegida
+  \end{parts}
+
+\end{questions}

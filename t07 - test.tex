@@ -1,0 +1,123 @@
+\begin{questions}
+
+  \question La puerta $X$ (Pauli-X) actúa sobre $\ket{0}$ como:
+
+  \begin{choices}
+    \choice $\ket{0}$
+    \CorrectChoice $\ket{1}$
+    \choice $-\ket{0}$
+    \choice $\frac{\ket{0} + \ket{1}}{\sqrt{2}}$
+  \end{choices}
+  \begin{solution}
+    La puerta $X = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$ intercambia los estados base: $X\ket{0} = \ket{1}$ y $X\ket{1} = \ket{0}$.
+  \end{solution}
+
+  \question La puerta de Hadamard $H$ aplicada dos veces da:
+
+  \begin{choices}
+    \choice $H$
+    \CorrectChoice $I$
+    \choice $0$
+    \choice $-I$
+  \end{choices}
+  \begin{solution}
+    $H^2 = I$, es decir, la puerta de Hadamard es su propia inversa.
+  \end{solution}
+
+  \question La puerta $S$ (puerta de fase) satisface:
+
+  \begin{choices}
+    \choice $S = Z$
+    \CorrectChoice $S^2 = Z$
+    \choice $S^2 = T$
+    \choice $S^2 = I$
+  \end{choices}
+  \begin{solution}
+    $S = \begin{pmatrix} 1 & 0 \\ 0 & i \end{pmatrix}$, por tanto $S^2 = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} = Z$.
+  \end{solution}
+
+  \question En la esfera de Bloch, el estado $\ket{0}$ se representa en:
+
+  \begin{choices}
+    \choice El ecuador
+    \choice El polo sur
+    \CorrectChoice El polo norte
+    \choice El centro
+  \end{choices}
+  \begin{solution}
+    Por convenio, $\ket{0}$ se sitúa en el polo norte (eje Z positivo) y $\ket{1}$ en el polo sur (eje Z negativo).
+  \end{solution}
+
+  \question La rotación $R_x(\pi)$ alrededor del eje X por ángulo $\pi$ es equivalente a:
+
+  \begin{choices}
+    \choice $I$
+    \choice $Z$
+    \CorrectChoice $-iX$
+    \choice $Y$
+  \end{choices}
+  \begin{solution}
+    $R_x(\pi) = e^{-i\pi\sigma_x/2} = \cos\frac{\pi}{2}I - i\sin\frac{\pi}{2}\sigma_x = -i\sigma_x = -iX$.
+  \end{solution}
+
+  \question La puerta CNOT actúa sobre $\ket{10}$ dando:
+
+  \begin{choices}
+    \choice $\ket{00}$
+    \choice $\ket{01}$
+    \choice $\ket{10}$
+    \CorrectChoice $\ket{11}$
+  \end{choices}
+  \begin{solution}
+    CNOT invierte el segundo qubit cuando el primero está en $\ket{1}$: $\text{CNOT}\ket{10} = \ket{11}$.
+  \end{solution}
+
+  \question El conjunto de puertas $\{H, T, \text{CNOT}\}$ es:
+
+  \begin{choices}
+    \choice Insuficiente para computación cuántica
+    \CorrectChoice Universal para computación cuántica
+    \choice Solo genera rotaciones en X
+    \choice Solo funciona para un qubit
+  \end{choices}
+  \begin{solution}
+    El conjunto $\{H, T, \text{CNOT}\}$ es universal: cualquier operador unitario puede aproximarse arbitrariamente bien usando solo estas puertas.
+  \end{solution}
+
+  \question La descomposición $HXH = Z$ muestra que:
+
+  \begin{choices}
+    \choice $H$ y $X$ conmutan
+    \CorrectChoice $H$ transforma la base de $X$ en la base de $Z$
+    \choice $X = Z$
+    \choice $H = XZ$
+  \end{choices}
+  \begin{solution}
+    Esta identidad muestra que $H$ conjuga $X$ en $Z$, es decir, transforma los vectores propios de $X$ en vectores propios de $Z$.
+  \end{solution}
+
+  \question Para el Hamiltoniano $H = \omega\sigma_z$, el operador de evolución temporal es:
+
+  \begin{choices}
+    \choice Constante
+    \CorrectChoice Una rotación alrededor del eje Z
+    \choice Una rotación alrededor del eje X
+    \choice La identidad
+  \end{choices}
+  \begin{solution}
+    $U(t) = e^{-i\omega t\sigma_z}$ representa una rotación alrededor del eje Z en la esfera de Bloch con ángulo proporcional a $\omega t$.
+  \end{solution}
+
+  \question La puerta Toffoli (CCNOT) requiere:
+
+  \begin{choices}
+    \choice Un qubit
+    \choice Dos qubits
+    \CorrectChoice Tres qubits
+    \choice Cuatro qubits
+  \end{choices}
+  \begin{solution}
+    La puerta Toffoli es un CNOT con dos controles, por tanto requiere tres qubits: dos de control y uno objetivo.
+  \end{solution}
+
+\end{questions}

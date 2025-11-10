@@ -1,0 +1,123 @@
+\begin{questions}
+
+  \question El producto interno de $\mathbf{u} = \begin{pmatrix} 1 \\ i \end{pmatrix}$ y $\mathbf{v} = \begin{pmatrix} 2 \\ 1 \end{pmatrix}$ en $\C^2$ es:
+
+  \begin{choices}
+    \choice $2 + i$
+    \CorrectChoice $2 - i$
+    \choice $2 + 2i$
+    \choice $3$
+  \end{choices}
+  \begin{solution}
+    $\langle \mathbf{u}, \mathbf{v} \rangle = \conj{1} \cdot 2 + \conj{i} \cdot 1 = 2 + (-i) \cdot 1 = 2 - i$.
+  \end{solution}
+
+  \question La matriz $A = \begin{pmatrix} 1 & i \\ -i & 2 \end{pmatrix}$ es:
+
+  \begin{choices}
+    \choice Unitaria
+    \CorrectChoice Hermitiana
+    \choice Normal pero no hermitiana
+    \choice Ninguna de las anteriores
+  \end{choices}
+  \begin{solution}
+    $A^\dagger = \begin{pmatrix} 1 & i \\ -i & 2 \end{pmatrix}^* = \begin{pmatrix} 1 & -i \\ i & 2 \end{pmatrix}^T = \begin{pmatrix} 1 & i \\ -i & 2 \end{pmatrix} = A$, por tanto es hermitiana.
+  \end{solution}
+
+  \question Los valores propios de una matriz hermitiana son siempre:
+
+  \begin{choices}
+    \choice Complejos
+    \CorrectChoice Reales
+    \choice Imaginarios puros
+    \choice De módulo 1
+  \end{choices}
+  \begin{solution}
+    Es una propiedad fundamental de las matrices hermitianas: todos sus valores propios son reales, lo que las hace apropiadas para representar observables físicos.
+  \end{solution}
+
+  \question Si $U$ es un operador unitario y $\ket{\psi}$ un vector unitario, entonces $\|U\ket{\psi}\|$ es:
+
+  \begin{choices}
+    \choice $0$
+    \choice Depende de $\ket{\psi}$
+    \CorrectChoice $1$
+    \choice $\|U\|$
+  \end{choices}
+  \begin{solution}
+    Los operadores unitarios preservan la norma: $\|U\ket{\psi}\|^2 = \langle U\psi, U\psi \rangle = \langle \psi, U^\dagger U\psi \rangle = \langle \psi, \psi \rangle = 1$.
+  \end{solution}
+
+  \question Al medir el observable $\sigma_z$ en el estado $\ket{\psi} = \frac{1}{\sqrt{2}}(\ket{0} + \ket{1})$, la probabilidad de obtener $+1$ es:
+
+  \begin{choices}
+    \choice $0$
+    \choice $1$
+    \CorrectChoice $\frac{1}{2}$
+    \choice $\frac{1}{\sqrt{2}}$
+  \end{choices}
+  \begin{solution}
+    $\sigma_z$ tiene valor propio $+1$ para $\ket{0}$. La probabilidad es $P(+1) = |\braket{0}{\psi}|^2 = \left|\frac{1}{\sqrt{2}}\right|^2 = \frac{1}{2}$.
+  \end{solution}
+
+  \question Después de medir $\sigma_z$ en $\ket{\psi} = \frac{3}{5}\ket{0} + \frac{4i}{5}\ket{1}$ y obtener $-1$, el estado colapsa a:
+
+  \begin{choices}
+    \choice $\ket{0}$
+    \CorrectChoice $\ket{1}$
+    \choice $\frac{3}{5}\ket{0} + \frac{4i}{5}\ket{1}$
+    \choice $\frac{3}{5}\ket{0}$
+  \end{choices}
+  \begin{solution}
+    El valor propio $-1$ de $\sigma_z$ corresponde al vector propio $\ket{1}$, por tanto el estado colapsa a $\ket{1}$.
+  \end{solution}
+
+  \question El valor esperado $\langle \sigma_x \rangle$ en el estado $\ket{0}$ es:
+
+  \begin{choices}
+    \choice $1$
+    \choice $-1$
+    \CorrectChoice $0$
+    \choice $\frac{1}{2}$
+  \end{choices}
+  \begin{solution}
+    $\langle \sigma_x \rangle = \bra{0}\sigma_x\ket{0} = \bra{0}\ket{1} = 0$.
+  \end{solution}
+
+  \question La descomposición espectral de $\sigma_z$ es:
+
+  \begin{choices}
+    \choice $(+1)\ketbra{+}{+} + (-1)\ketbra{-}{-}$
+    \CorrectChoice $(+1)\ketbra{0}{0} + (-1)\ketbra{1}{1}$
+    \choice $(+1)\ketbra{1}{1} + (-1)\ketbra{0}{0}$
+    \choice $\ketbra{0}{0} + \ketbra{1}{1}$
+  \end{choices}
+  \begin{solution}
+    Los valores propios de $\sigma_z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$ son $+1$ (con $\ket{0}$) y $-1$ (con $\ket{1}$).
+  \end{solution}
+
+  \question Dos vectores propios de un operador hermitiano correspondientes a valores propios distintos son:
+
+  \begin{choices}
+    \choice Linealmente dependientes
+    \choice Paralelos
+    \CorrectChoice Ortogonales
+    \choice Idénticos salvo fase global
+  \end{choices}
+  \begin{solution}
+    Es una propiedad fundamental: vectores propios de un operador hermitiano con valores propios diferentes son automáticamente ortogonales.
+  \end{solution}
+
+  \question La identidad de Parseval para una base ortonormal $\{\ket{e_k}\}$ establece que:
+
+  \begin{choices}
+    \choice $\|\mathbf{v}\| = \sum_k \langle \mathbf{v}, \ket{e_k} \rangle$
+    \CorrectChoice $\|\mathbf{v}\|^2 = \sum_k |\langle \mathbf{v}, \ket{e_k} \rangle|^2$
+    \choice $\mathbf{v} = \sum_k \ket{e_k}$
+    \choice $\sum_k \ket{e_k} = 1$
+  \end{choices}
+  \begin{solution}
+    La identidad de Parseval expresa que la norma al cuadrado de un vector es la suma de los cuadrados de sus coeficientes de Fourier respecto a una base ortonormal.
+  \end{solution}
+
+\end{questions}

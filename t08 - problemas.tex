@@ -1,0 +1,60 @@
+\unirsection{Problemas}
+
+\begin{questions}
+
+  \question Calcule la matriz de densidad para un ensemble que contiene:
+  \begin{parts}
+    \part 40\% de cúbits en estado $\ket{0}$
+    \part 35\% de cúbits en estado $\ket{1}$
+    \part 25\% de cúbits en estado $\ket{+}$
+  \end{parts}
+
+  \question Para la matriz de densidad del ejercicio anterior:
+  \begin{parts}
+    \part Calcule $\text{Tr}(\rho^2)$
+    \part Determine si es un estado puro o mixto
+    \part Calcule la entropía de von Neumann $S(\rho)$
+    \part Encuentre el vector de Bloch $\vec{r}$ y verifique que $|\vec{r}| < 1$
+  \end{parts}
+
+  \question Un cúbit en estado $\ket{\psi} = \cos(\theta/2)\ket{0} + e^{i\phi}\sin(\theta/2)\ket{1}$ experimenta un canal de desfase puro que transforma:
+  $$\rho = \ket{\psi}\bra{\psi} \to \rho' = \begin{pmatrix} \cos^2(\theta/2) & e^{-\gamma t}\cos(\theta/2)\sin(\theta/2)e^{i\phi} \\ e^{-\gamma t}\cos(\theta/2)\sin(\theta/2)e^{-i\phi} & \sin^2(\theta/2) \end{pmatrix}$$
+  \begin{parts}
+    \part Verifique que $\rho'$ es una matriz de densidad válida
+    \part Calcule $\text{Tr}(\rho'^2)$ en función de $\gamma$ y $t$
+    \part Determine en qué instante el estado se convierte en completamente mixto
+  \end{parts}
+
+  \question Considere el estado de Bell $\ket{\Phi^+} = \frac{1}{\sqrt{2}}(\ket{00} + \ket{11})$:
+  \begin{parts}
+    \part Escriba la matriz de densidad $\rho_{AB} = \ket{\Phi^+}\bra{\Phi^+}$ en forma matricial
+    \part Calcule la traza parcial $\rho_A = \text{Tr}_B(\rho_{AB})$
+    \part Calcule la entropía de von Neumann $S(\rho_A)$
+    \part Compare $S(\rho_{AB})$ con $S(\rho_A)$. ¿Qué indica esto sobre el entrelazamiento?
+  \end{parts}
+
+  \question Para el canal de despolarización con operadores de Kraus:
+  $$K_0 = \sqrt{1-p}I, \quad K_1 = \sqrt{\frac{p}{3}}\sigma_x, \quad K_2 = \sqrt{\frac{p}{3}}\sigma_y, \quad K_3 = \sqrt{\frac{p}{3}}\sigma_z$$
+  \begin{parts}
+    \part Verificar que satisfacen la condición de completitud $\sum_i K_i^\dagger K_i = I$
+    \part Aplicar el canal al estado puro $\ket{0}$ y obtener $\rho'$
+    \part Calcular $\text{Tr}(\rho'^2)$ en función de $p$
+    \part Determine el valor de $p$ para el cual el estado de salida es completamente mixto
+  \end{parts}
+
+  \question Calcule la fidelidad y la distancia de traza entre los siguientes pares de estados:
+  \begin{parts}
+    \part $\rho_1 = \ket{0}\bra{0}$ y $\rho_2 = \ket{1}\bra{1}$
+    \part $\rho_1 = \ket{+}\bra{+}$ y $\rho_2 = \frac{I}{2}$
+    \part $\rho_1 = \frac{3}{4}\ket{0}\bra{0} + \frac{1}{4}\ket{1}\bra{1}$ y $\rho_2 = \frac{1}{4}\ket{0}\bra{0} + \frac{3}{4}\ket{1}\bra{1}$
+  \end{parts}
+
+  \question Para el estado bipartito $\rho_{AB} = \frac{1}{2}\ket{\Phi^+}\bra{\Phi^+} + \frac{1}{2}\ket{00}\bra{00}$ donde $\ket{\Phi^+} = \frac{1}{\sqrt{2}}(\ket{00} + \ket{11})$:
+  \begin{parts}
+    \part Calcule las matrices de densidad reducidas $\rho_A$ y $\rho_B$
+    \part Calcule las entropías $S(\rho_A)$, $S(\rho_B)$ y $S(\rho_{AB})$
+    \part Calcule la información mutua cuántica $I(A:B) = S(\rho_A) + S(\rho_B) - S(\rho_{AB})$
+    \part Interprete el resultado: ¿qué nos dice sobre las correlaciones entre los subsistemas?
+  \end{parts}
+
+\end{questions}

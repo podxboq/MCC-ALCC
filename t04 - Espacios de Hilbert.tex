@@ -1,0 +1,429 @@
+\portada
+
+\begin{esquemaExplorador}
+  \temaEsquema{Producto interno complejo}{
+    \conceptoEsquema{Definición y axiomas}
+    \conceptoEsquema{Propiedades fundamentales}
+    \conceptoEsquema{Norma inducida}
+  }
+  \temaEsquema{Espacios prehilbert}{
+    \conceptoEsquema{Desigualdad de Cauchy-Schwarz}{$|\langle \mathbf{u}, \mathbf{v} \rangle|^2 \leq \langle \mathbf{u}, \mathbf{u} \rangle \langle \mathbf{v}, \mathbf{v} \rangle$}
+    \conceptoEsquema{Ortogonalidad}
+    \conceptoEsquema{Proyecciones ortogonales}
+  }
+  \temaEsquema{Espacios de Hilbert}{
+    \conceptoEsquema{Completitud}
+    \conceptoEsquema{Bases ortonormales}
+    \conceptoEsquema{Teorema de Parseval}{$\|\mathbf{v}\|^2 = \sum_{k=1}^n |\langle \mathbf{v}, \mathbf{e}_k \rangle|^2$}
+  }
+  \temaEsquema{Operadores en espacios de Hilbert}{
+    \conceptoEsquema{Operadores hermitianos}{$A^\dagger = A$}
+    \conceptoEsquema{Operadores unitarios}{$U^\dagger U = UU^\dagger = I$}
+    \conceptoEsquema{Teorema espectral}{$A = \sum_{i} \lambda_i \mathbf{e}_i \mathbf{e}_i^\dagger$}
+  }
+  \temaEsquema{Postulados de la mecánica cuántica}{
+    \conceptoEsquema{Postulado II: Observables}
+    \conceptoEsquema{Postulado III: Medición cuántica}
+  }
+\end{esquemaExplorador}
+
+\unirsection{Ideas clave}
+
+\subsection{Introducción y objetivos}
+
+Los espacios de Hilbert proporcionan el marco matemático fundamental para la mecánica cuántica y, por tanto, para la computación cuántica. Estos espacios combinan la estructura algebraica de los espacios vectoriales con una geometría rica derivada del producto interno, permitiendo definir conceptos como longitudes, ángulos y ortogonalidad que son esenciales para la interpretación física de los fenómenos cuánticos.
+
+La importancia de los espacios de Hilbert en computación cuántica se manifiesta en múltiples aspectos fundamentales:
+
+\begin{itemize}
+  \item Los \textbf{estados cuánticos} se representan como vectores unitarios en espacios de Hilbert complejos.
+  \item Las \textbf{probabilidades cuánticas} se calculan mediante productos internos: $P = |\langle\psi|\phi\rangle|^2$.
+  \item Los \textbf{observables físicos} corresponden a operadores hermitianos en estos espacios.
+  \item La \textbf{evolución unitaria} preserva el producto interno y, por tanto, las probabilidades.
+  \item Los \textbf{algoritmos cuánticos} manipulan información mediante transformaciones que respetan la estructura de espacio de Hilbert.
+\end{itemize}
+
+En este tema desarrollaremos la teoría de espacios con producto interno, culminando en los espacios de Hilbert y su aplicación a sistemas cuánticos. Esta base teórica es esencial para comprender tanto los fundamentos conceptuales como las implementaciones prácticas de la computación cuántica.
+
+Mientras no se diga lo contrario, durante todo el tema estaremos trabajando con espacios vectoriales complejos de dimensión finita.
+
+\subsection{Producto interno complejo}
+
+\begin{defi}[Producto interno complejo]
+  Sea $V$ un espacio vectorial. Un \textbf{producto interno} en $V$ es una función $\langle \cdot, \cdot \rangle: V \times V \to \C$ que satisface para todos $\mathbf{u}, \mathbf{v}, \mathbf{w} \in V$ y $\alpha, \beta \in \C$:
+
+  \begin{enumerate}
+    \item \textbf{Linealidad en el segundo argumento:}
+          $\langle \mathbf{u} , \alpha\mathbf{v}+\beta \mathbf{w} \rangle = \alpha\langle\mathbf{u}, \mathbf{w}\rangle + \beta\langle\mathbf{v}, \mathbf{w}\rangle$.
+
+    \item \textbf{Antisimetría hermítica:}
+          $\langle \mathbf{u}, \mathbf{v} \rangle = \conj{\langle \mathbf{v}, \mathbf{u} \rangle}$.
+
+    \item \textbf{Positividad:}
+          $\langle \mathbf{v}, \mathbf{v} \rangle \geq 0$, con igualdad si y solo si $\mathbf{v} = \mathbf{0}$.
+  \end{enumerate}
+\end{defi}
+\semisepara
+\begin{nota}
+  De las propiedades (1) y (2) se deduce que el producto interno es antilineal en el primer argumento:
+  $$\langle \alpha\mathbf{u} + \beta\mathbf{v}, \mathbf{w} \rangle = \conj{\alpha}\langle\mathbf{u}, \mathbf{w}\rangle + \conj{\beta}\langle\mathbf{v}, \mathbf{w}\rangle$$
+\end{nota}
+
+\begin{eje}[Productos internos estándar]
+  \begin{enumerate}
+    \item \textbf{En $\C^n$:} $\langle \mathbf{u}, \mathbf{v} \rangle = \sum_{k=1}^n  \conj{u_k} v_k$.
+
+    \item \textbf{En $\C^{m \times n}$:} $\langle A, B \rangle = \text{tr}(A^\dagger B) = \sum_{i,j} \conj{A_{ji}}B_{ji}$.
+
+    \item \textbf{En $L^2([a,b])$:} $\langle f, g \rangle = \int_a^b \conj{f(x)} g(x)\, dx$.
+  \end{enumerate}
+\end{eje}
+
+\begin{defi}[Norma inducida]
+  El producto interno induce una norma en $V$ definida por:
+  $$\|\mathbf{v}\| = \sqrt{\langle \mathbf{v}, \mathbf{v} \rangle}$$
+\end{defi}
+
+\begin{prop}
+  La norma inducida por un producto interno satisface:
+  \begin{enumerate}
+    \item $\|\mathbf{v}\| \geq 0$, con igualdad si y solo si $\mathbf{v} = \mathbf{0}$
+    \item $\|\alpha \mathbf{v}\| = |\alpha| \|\mathbf{v}\|$ para todo $\alpha \in \C$
+    \item $\|\mathbf{u} + \mathbf{v}\| \leq \|\mathbf{u}\| + \|\mathbf{v}\|$ (desigualdad triangular)
+  \end{enumerate}
+\end{prop}
+
+\begin{theo}[Desigualdad de Cauchy-Schwarz]
+  Para cualquier espacio con producto interno:
+  $$|\langle \mathbf{u}, \mathbf{v} \rangle|^2 \leq \langle \mathbf{u}, \mathbf{u} \rangle \langle \mathbf{v}, \mathbf{v} \rangle$$
+
+  Equivalentemente: $|\langle \mathbf{u}, \mathbf{v} \rangle| \leq \|\mathbf{u}\| \|\mathbf{v}\|$
+
+  La igualdad se da si y solo si $\mathbf{u}$ y $\mathbf{v}$ son linealmente dependientes.
+\end{theo}
+
+Por último, la norma nos permite definir el concepto de distancia, que juega un papel fundamental en los desarrollos asociados a la información cuántica.
+
+\begin{defi}[Distancia]
+  Sea $V$ un espacio vectorial, definimos \textbf{distancia} sobre $V$ a una aplicación $d: V \times V \to \R$ que satisface para todos $\mathbf{u}, \mathbf{v}, \mathbf{w} \in V$:
+  \begin{enumerate}
+    \item $d(\mathbf{u}, \mathbf{v}) \geq 0$, siendo cero si y solo si $\mathbf{u}=\mathbf{v}$.
+    \item $d(\mathbf{u}, \mathbf{v}) = d(\mathbf{v}, \mathbf{u})$.
+    \item $d(\mathbf{u}, \mathbf{v}) \leq d(\mathbf{u}, \mathbf{w}) + d(\mathbf{w}, \mathbf{v})$.
+  \end{enumerate}
+
+\end{defi}
+
+Todos los espacios vectoriales que dispongan de un producto interno, pueden definir una función distancia.
+
+\begin{prop}
+  Sea $V$ un espacio vectorial con un producto interno, llamaremos \textbf{distancia asociada a la norma} a la función distancia definida por:
+  \[
+    d(\mathbf{u}, \mathbf{v}) = \| \mathbf{u} - \mathbf{v} \|\,.
+  \]
+  Llamamos a esta distancia, \textbf{distancia asociada a la norma}.
+\end{prop}
+
+\subsection{Ortogonalidad y proyecciones}
+
+\begin{defi}[Ortogonalidad]
+  Dos vectores $\mathbf{u}, \mathbf{v}$ en un espacio con producto interno son ortogonales si $\langle \mathbf{u}, \mathbf{v} \rangle = 0$. Se denota $\mathbf{u} \perp \mathbf{v}$.
+\end{defi}
+
+\begin{defi}[Conjunto ortonormal]
+  Un conjunto $\{\mathbf{e}_1, \mathbf{e}_2, \ldots\}$ de vectores es:
+  \begin{itemize}
+    \item \textbf{Ortogonal} si $\langle \mathbf{e}_i, \mathbf{e}_j \rangle = 0$ para $i \neq j$.
+    \item \textbf{Ortonormal} si además $\|\mathbf{e}_i\| = 1$ para todo $i$.
+  \end{itemize}
+
+  O expresado de forma más compacta, un conjunto es ortonormal si $\langle \mathbf{e}_i, \mathbf{e}_j \rangle = \delta_{ij}$.
+\end{defi}
+
+\begin{theo}[Proceso de Gram-Schmidt]
+  \label{th:gram_schmidt}
+  Todo conjunto linealmente independiente finito $\{\mathbf{v}_1, \ldots, \mathbf{v}_n\}$ puede transformarse en un conjunto ortonormal $\{\mathbf{w}_1, \ldots, \mathbf{w}_n\}$ que genera el mismo subespacio.
+
+  El proceso es:
+  \begin{align}
+    \mathbf{u}_1 & = \mathbf{v}_1                                                                                                                               \\
+    \mathbf{u}_k & = \mathbf{v}_k - \sum_{j=1}^{k-1} \frac{\langle \mathbf{v}_k, \mathbf{u}_j \rangle}{\langle \mathbf{u}_j, \mathbf{u}_j \rangle} \mathbf{u}_j \\
+    \mathbf{w}_k & = \frac{\mathbf{u}_k}{\|\mathbf{u}_k\|}
+  \end{align}
+\end{theo}
+
+El proceso de Gram-Schmidt nos permite construir para cualquier espacio vectorial una base ortonormal, que por su importancia en computación cuántica, es completamente imprescindible conocer.
+
+\begin{eje}[Ortogonalización en $\C^3$]
+  Ortogonalizar el conjunto $\left\{\mathbf{v}_1 = \begin{pmatrix} 1 \\ i \\ 0 \end{pmatrix}, \mathbf{v}_2 = \begin{pmatrix} i \\ 1 \\ 1 \end{pmatrix}, \mathbf{v}_3 = \begin{pmatrix} 0 \\ i \\ 1 \end{pmatrix}\right\}$.
+
+  \textbf{Paso 1:} $\mathbf{u}_1 = \mathbf{v}_1$.
+
+  \textbf{Paso 2:} $\mathbf{u}_2 = \mathbf{v}_2 - \frac{\langle \mathbf{v}_2, \mathbf{u}_1 \rangle}{\langle \mathbf{u}_1, \mathbf{u}_1 \rangle} \mathbf{u}_1$.
+
+  Calculamos: $\langle \mathbf{v}_2, \mathbf{u}_1 \rangle = ((-i) \cdot 1 + 1 \cdot i + 1 \cdot 0) = 0$. Por tanto: $\mathbf{u}_2 = \mathbf{v}_2$.
+
+  \textbf{Paso 3:} $\mathbf{u}_3 = \mathbf{v}_3 - \frac{\langle \mathbf{v}_3, \mathbf{u}_1 \rangle}{\langle \mathbf{u}_1, \mathbf{u}_1 \rangle} \mathbf{u}_1 - \frac{\langle \mathbf{v}_3, \mathbf{u}_2 \rangle}{\langle \mathbf{u}_2, \mathbf{u}_2 \rangle} \mathbf{u}_2$.
+
+  Calculamos: $\langle \mathbf{v}_3, \mathbf{u}_1 \rangle = (0 \cdot 1 + (-i) \cdot i + 1 \cdot 0) = 1$.
+  $\langle \mathbf{v}_3, \mathbf{u}_2 \rangle = (0 \cdot i + (-i) \cdot 1 + 1 \cdot 1) = 1-i$.
+
+  $\langle \mathbf{u}_1, \mathbf{u}_1 \rangle = (1 \cdot 1 + (-i) \cdot i + 0 \cdot 0) = 2$.
+  $\langle \mathbf{u}_2, \mathbf{u}_2 \rangle = ((-i) \cdot i + 1 \cdot 1 + 1 \cdot 1) = 3$.
+
+  Por tanto $\mathbf{u}_3 = \mathbf{v}_3 - \frac{1}{2} \mathbf{u}_1 - \frac{1-i}{3} \mathbf{u}_2 = \begin{pmatrix} 0 \\ i \\ 1 \end{pmatrix} - \frac{1}{2} \begin{pmatrix} 1 \\ i \\ 0 \end{pmatrix} - \frac{1-i}{3} \begin{pmatrix} i \\ 1 \\ 1 \end{pmatrix} = \begin{pmatrix} \frac{-5-2i}{6}\\ \frac{-2+5i}{6}\\ \frac{2+i}{3}\end{pmatrix}$.
+
+  \textbf{Paso 4:} $\mathbf{w}_1 = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ i \\ 0 \end{pmatrix}, \mathbf{w}_2 = \frac{1}{\sqrt{3}}\begin{pmatrix} i \\ 1 \\ 1 \end{pmatrix}, \mathbf{w}_3 =\frac{1}{\sqrt{78}} \begin{pmatrix} -5-2i\\ -2+5i\\ 4+2i\end{pmatrix}$
+\end{eje}
+
+\begin{defi}[Proyección ortogonal]
+  Sea $W$ un subespacio de dimensión finita de un espacio con producto interno $V$, y sea $\{\mathbf{e}_1, \ldots, \mathbf{e}_k\}$ una base ortonormal de $W$. La proyección ortogonal de $\mathbf{v} \in V$ sobre $W$ es:
+  $$\text{proj}_W(\mathbf{v}) = \sum_{i=1}^k \langle \mathbf{v}, \mathbf{e}_i \rangle \mathbf{e}_i$$
+\end{defi}
+
+\begin{theo}[Teorema de proyección]
+  Sea $W$ un subespacio de dimensión finita de un espacio con producto interno $V$. Para cualquier $\mathbf{v} \in V$:
+  \begin{enumerate}
+    \item Existe un único $\mathbf{w} \in W$ tal que $\mathbf{v} - \mathbf{w} \perp W$
+    \item Este vector es $\mathbf{w} = \text{proj}_W(\mathbf{v})$
+    \item $\|\mathbf{v} - \text{proj}_W(\mathbf{v})\| \leq \|\mathbf{v} - \mathbf{w}\|$ para todo $\mathbf{w} \in W$
+  \end{enumerate}
+\end{theo}
+
+\subsection{Espacios prehilbert y espacios de Hilbert}
+
+\begin{defi}[Espacio prehilbert]
+  Un espacio prehilbert es un espacio vectorial complejo equipado con un producto interno.
+\end{defi}
+
+\begin{defi}[Sucesión de Cauchy]
+  En un espacio prehilbert, una sucesión $\{\mathbf{v}_n\}$ es de Cauchy si para todo $\epsilon > 0$ existe $N$ tal que:
+  $$\|\mathbf{v}_m - \mathbf{v}_n\| < \epsilon \quad \text{para todos } m, n > N$$
+\end{defi}
+
+\begin{defi}[Espacio de Hilbert]
+  Un espacio de Hilbert es un espacio prehilbert completo, es decir, donde toda sucesión de Cauchy converge.
+\end{defi}
+
+\begin{eje}[Espacios de Hilbert importantes]
+  \begin{enumerate}
+    \item $\C^n$ con el producto interno estándar.
+    \item $\ell^2(\C) = \left\{(a_n) : \sum_{n=1}^\infty |a_n|^2 < \infty\right\}$ con $\langle (a_n), (b_n) \rangle = \sum_{n=1}^\infty a_n \conj{b_n}$.
+    \item $L^2([a,b])$ de funciones de cuadrado integrable con $\langle f, g \rangle = \int_a^b f(x) \conj{g(x)} \, dx$.
+  \end{enumerate}
+\end{eje}
+
+\begin{prop}
+  Todo espacio prehilbert de dimensión finita es completo y, por tanto, es un espacio de Hilbert.
+\end{prop}
+
+\begin{defi}[Base ortonormal]
+  Un conjunto ortonormal $\mathcal{B}$ en un espacio de Hilbert $\H$ es una base ortonormal si todo vector $\mathbf{v} \in \H$ puede escribirse como:
+  $$\mathbf{v} = \sum_{\mathbf{e} \in \mathcal{B}} \langle \mathbf{v}, \mathbf{e} \rangle \mathbf{e}$$
+\end{defi}
+
+\begin{theo}[Expansión de Fourier]
+  Si $\{\mathbf{e}_1, \ldots, \mathbf{e}_n\}$ es una base ortonormal de un espacio de Hilbert de dimensión finita, entonces todo vector $\mathbf{v}$ se puede escribir como:
+  $$\mathbf{v} = \sum_{k=1}^n \langle \mathbf{v}, \mathbf{e}_k \rangle \mathbf{e}_k$$
+
+  Los coeficientes $\langle \mathbf{v}, \mathbf{e}_k \rangle$ se llaman coeficientes de Fourier.
+\end{theo}
+
+\begin{theo}[Identidad de Parseval]
+  Si $\{\mathbf{e}_1, \ldots, \mathbf{e}_n\}$ es una base ortonormal, entonces:
+  $$\|\mathbf{v}\|^2 = \sum_{k=1}^n |\langle \mathbf{v}, \mathbf{e}_k \rangle|^2$$
+\end{theo}
+
+\subsection{Operadores en espacios de Hilbert}
+
+\begin{defi}[Operador adjunto]
+  Sea $T: \H_1 \to \H_2$ un operador lineal entre espacios de Hilbert. El operador \textbf{adjunto} $T^\dagger: \H_2 \to \H_1$ es el único operador que satisface:
+  $$\langle T\mathbf{u}, \mathbf{v} \rangle = \langle \mathbf{u}, T^\dagger\mathbf{v} \rangle$$
+  para todos $\mathbf{u} \in \H_1$ y $\mathbf{v} \in \H_2$.
+\end{defi}
+
+\begin{prop}
+  El operador adjunto satisface:
+  \begin{enumerate}
+    \item $(T^\dagger)^\dagger = T$.
+    \item $(S + T)^\dagger = S^\dagger + T^\dagger$.
+    \item $(\alpha T)^\dagger = \conj{\alpha} T^\dagger$.
+    \item $(ST)^\dagger = T^\dagger S^\dagger$.
+  \end{enumerate}
+\end{prop}
+
+\begin{defi}[Operadores especiales]
+  Sea $T: \H \to \H$ un operador lineal en un espacio de Hilbert, diremos que $T$ es:
+  \begin{itemize}
+    \item \textbf{Hermitiano (autoadjunto):} $T^\dagger = T$.
+    \item \textbf{Unitario:} $T^\dagger T = TT^\dagger = I$.
+    \item \textbf{Normal:} $T^\dagger T = TT^\dagger$.
+  \end{itemize}
+\end{defi}
+
+\begin{prop}
+  Si $T$ es un operador lineal hermitiano en un espacio de Hilbert complejo:
+  \begin{enumerate}
+    \item Todos los valores propios de $T$ son reales.
+    \item Vectores propios correspondientes a valores propios distintos son ortogonales.
+    \item $\langle T\mathbf{v}, \mathbf{v} \rangle \in \R$ para todo $\mathbf{v}$.
+  \end{enumerate}
+\end{prop}
+
+\begin{prop}
+  Si $U$ es un operador lineal unitario en un espacio de Hilbert complejo, entonces:
+  \begin{enumerate}
+    \item $U$ preserva el producto interno: $\langle U\mathbf{u}, U\mathbf{v} \rangle = \langle \mathbf{u}, \mathbf{v} \rangle$.
+    \item $U$ preserva la norma: $\|U\mathbf{v}\| = \|\mathbf{v}\|$.
+    \item Todos los valores propios tienen módulo 1.
+  \end{enumerate}
+\end{prop}
+
+\begin{theo}[Teorema espectral para dimensiones finitas]
+  Sea $T$ un operador normal en un espacio de Hilbert. Entonces existe una base ortonormal de vectores propios de $T$.
+\end{theo}
+
+\begin{eje}[Diagonalización espectral]
+  Considerar el operador hermitiano $A = \begin{pmatrix} 2 & 1-i \\ 1+i & 3 \end{pmatrix}$.
+
+  Para calcular los valores propios, primero obtenemos el polinomio característico
+  \[
+    \det(A - \lambda I) = (2-\lambda)(3-\lambda) - (1-i)(1+i) = \lambda^2 - 5\lambda + 4
+  \]
+
+  Y resolvemos $\lambda^2 - 5\lambda + 4 = 0$, obteniendo los valores propios $\lambda_1 = 4$ y $\lambda_2 = 1$.
+
+  Como $A$ es hermítica, sus valores propios son reales, tal como se esperaba.
+
+  El espacio propio asociado a $\lambda_1$ es $\text{gen}\left\{\begin{pmatrix} 1-i \\ 2 \end{pmatrix}\right\}$ mientras que el espacio propio asociado a $\lambda_2$ es $\text{gen}\left\{\begin{pmatrix} 1-i \\ -1 \end{pmatrix}\right\}$.
+
+  Observamos que los espacios propios son ortogonales:
+  \[
+    \left\langle \begin{pmatrix} 1-i \\ 2 \end{pmatrix}, \begin{pmatrix} 1-i \\ -1 \end{pmatrix} \right\rangle = (1+i)(1-i) + 2(-1) = 0
+  \]
+
+  Aplicando Gram-Schmidt obtenemos la base ortonormal:
+  \[
+    \left\{\frac{1}{\sqrt{6}}\begin{pmatrix} 1-i \\ 2 \end{pmatrix}, \frac{1}{\sqrt{3}}\begin{pmatrix} 1-i \\ -1 \end{pmatrix}\right\}
+  \]
+  La matriz unitaria de cambio de base $U$ se forma con los vectores propios normalizados como columnas:
+  \[
+    U = \begin{pmatrix} \frac{1-i}{\sqrt{6}} & \frac{-1+i}{\sqrt{3}} \\
+                \frac{2}{\sqrt{6}}   & \frac{1}{\sqrt{3}}\end{pmatrix}
+  \]
+
+  La matriz diagonal D se forma con los valores propios en la diagonal, en el mismo orden que sus vectores propios asociados en U:
+  \[
+    D = \begin{pmatrix} 4 & 0 \\ 0 & 1 \end{pmatrix}
+  \]
+
+  Finalmente, verificamos la diagonalización espectral:
+  \[
+    A = U D U^\dagger = \begin{pmatrix} 2 & 1-i \\ 1+i & 3 \end{pmatrix}
+  \]
+\end{eje}
+
+\subsection{Observables cuánticos}
+
+Con la teoría de espacios de Hilbert establecida, podemos formular el segundo postulado de la mecánica cuántica, que conecta las magnitudes físicas medibles con operadores hermitianos.
+
+\begin{resaltado}
+  \textbf{Postulado II: Observables}
+
+  Toda magnitud física observable de un sistema cuántico se representa mediante un operador hermitiano que actúa en el espacio de Hilbert del sistema.
+\end{resaltado}
+
+\begin{eje}[Observables fundamentales de un cúbit]
+  Para un cúbit, los observables más importantes son las componentes del espín, representadas por las matrices de Pauli:
+
+  \begin{align}
+    \sigma_x & = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} \quad \text{(espín en dirección x)}  \\
+    \sigma_y & = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix} \quad \text{(espín en dirección y)} \\
+    \sigma_z & = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \quad \text{(espín en dirección z)}
+  \end{align}
+
+  Verificación de hermiticidad para $\sigma_x$:
+  $$\sigma_x^\dagger = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}^* = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} = \sigma_x$$
+\end{eje}
+
+Veamos ahora cómo diagonalizar uno de estos observables, lo que nos permitirá conocer sus valores propios y vectores propios, fundamentales para entender las posibles mediciones en un sistema cuántico.
+
+\begin{eje}[Diagonalización de $\sigma_y$]
+  Para el observable $\sigma_y$:
+
+  \textbf{Valores propios:} Resolvemos $\det(\sigma_y - \lambda I) = 0$:
+  $$\det\begin{pmatrix} -\lambda & -i \\ i & -\lambda \end{pmatrix} = \lambda^2 - 1 = 0$$
+
+  Valores propios: $\lambda_1 = +1$, $\lambda_2 = -1$.
+
+  \textbf{Vectores propios:}
+  \begin{itemize}
+    \item Para $\lambda_1 = +1$: Resolvemos $(\sigma_y - I)\ket{e_1} = 0$:
+          $$\begin{pmatrix} -1 & -i \\ i & -1 \end{pmatrix}\begin{pmatrix} e_{11} \\ e_{12} \end{pmatrix} = 0$$
+          De la primera fila: $-e_{11} - i e_{12} = 0 \implies e_{11} = -i e_{12}$.
+          Tomando $e_{12} = 1$, obtenemos $\ket{e_1} = \begin{pmatrix} -i \\ 1 \end{pmatrix}$.
+    \item Para $\lambda_2 = -1$: Resolvemos $(\sigma_y + I)\ket{e_2} = 0$:
+          $$\begin{pmatrix} 1 & -i \\ i & 1 \end{pmatrix}\begin{pmatrix} e_{21} \\ e_{22} \end{pmatrix} = 0$$
+          De la primera fila: $e_{21} - i e_{22} = 0 \implies e_{21} = i e_{22}$.
+          Tomando $e_{22} = 1$, obtenemos $\ket{e_2} = \begin{pmatrix} i \\ 1 \end{pmatrix}$.
+  \end{itemize}
+
+  \textbf{Descomposición espectral:}
+  $$\sigma_y = \frac{1}{2}\begin{pmatrix}
+      -i & i \\
+      1  & 1
+    \end{pmatrix}\begin{pmatrix}
+      1 & 0  \\
+      0 & -1
+    \end{pmatrix}\begin{pmatrix}
+      i  & 1 \\
+      -i & 1
+    \end{pmatrix}$$
+\end{eje}
+
+\subsection{Medición cuántica}
+
+\begin{resaltado}
+  \textbf{Postulado III: Medición cuántica}
+
+  Al medir un observable $\hat{A}$ en un sistema en estado $\ket{\psi}$:
+  \begin{enumerate}
+    \item Los únicos resultados posibles son los valores propios $\{a_i\}$ de $\hat{A}$.
+    \item La probabilidad de obtener el resultado $a_i$ es:
+          $$P(a_i) = |\langle e_i , \psi \rangle|^2$$
+          donde $\ket{e_i}$ es el vector propio normalizado correspondiente a $a_i$.
+    \item Después de la medición, el sistema colapsa al estado:
+          $$\ket{\psi'} = \frac{P_i\ket{\psi}}{\|P_i\ket{\psi}\|} = \ket{e_i}$$
+          donde $P_i$ es el proyector sobre el subespacio propio.
+  \end{enumerate}
+\end{resaltado}
+
+\begin{eje}[Medición de $\sigma_z$ en estado general]
+  Considere el estado $\ket{\psi} = \frac{3}{5}\ket{0} + \frac{4i}{5}\ket{1}$ y queremos medir el observable $\sigma_z$. Como ya sabemos, los valores propios de $\sigma_z$ son $+1$ y $-1$, con vectores propios $\ket{0}$ y $\ket{1}$ respectivamente.
+
+  \textbf{Probabilidades:}
+  \begin{align*}
+    P(+1) & = |\langle 0 , \psi \rangle|^2 = \left|\frac{3}{5}\right|^2 = \frac{9}{25}   \\
+    P(-1) & = |\langle 1 , \psi \rangle|^2 = \left|\frac{4i}{5}\right|^2 = \frac{16}{25}
+  \end{align*}
+
+  Verificación: $P(+1) + P(-1) = \frac{9}{25} + \frac{16}{25} = 1$.
+
+  \textbf{Estados post-medición:} Después de cada posible resultado de la medición, el estado del sistema colapsa a:
+  \begin{itemize}
+    \item Si se obtiene $+1$: el sistema colapsa a $\ket{0}$.
+    \item Si se obtiene $-1$: el sistema colapsa a $\ket{1}$.
+  \end{itemize}
+\end{eje}
+
+\begin{defi}[Valor esperado]
+  El valor esperado de un observable $\hat{A}$ en el estado $\ket{\psi}$ es:
+  $$\langle \hat{A} \rangle = \sum_i a_i P(a_i)$$
+\end{defi}
+
+\begin{eje}[Cálculo de valor esperado]
+  Para el estado $\ket{\psi} = \frac{3}{5}\ket{0} + \frac{4i}{5}\ket{1}$ y el observable $\sigma_z$:
+
+  $$\langle \sigma_z \rangle = (+1) \cdot \frac{9}{25} + (-1) \cdot \frac{16}{25} = -\frac{7}{25}$$
+\end{eje}
+

@@ -1,0 +1,132 @@
+\codigonombre{}{MCC-ALCC-25Q101}
+
+Conteste a las siguientes preguntas en el espacio anteriormente indicado.
+
+\begin{questions}
+	\question[4] Responda a las siguientes cuestiones:
+	\begin{parts}
+		\part Defina el concepto de base ortonormal en un espacio vectorial complejo y explique cómo se puede obtener una base ortonormal a partir de un conjunto linealmente independiente utilizando el proceso de ortonormalización de Gram-Schmidt.
+
+		\begin{solution}
+			Una base ortonormal de un espacio vectorial complejo $V$ es un conjunto $\beta = \{v_1, v_2, \ldots, v_n\}$ que cumple dos condiciones:
+			1) $\beta$ es una base para $V$ (es linealmente independiente y genera $V$)
+			2) Los vectores son ortonormales entre sí, es decir: $\langle v_i, v_j \rangle = \delta_{ij}$ donde $\delta_{ij}$ es la delta de Kronecker.
+
+			El proceso de Gram-Schmidt permite obtener una base ortonormal a partir de un conjunto linealmente independiente $\{x_1, \ldots, x_n\}$:
+			1) Normalizar el primer vector: $y_1 = \frac{x_1}{||x_1||}$
+			2) Para $k = 2, \ldots, n$:
+			- Restar las proyecciones de $x_k$ sobre todos los vectores ortonormales anteriores:
+			$v_k = x_k - \sum_{i=1}^{k-1} \langle x_k, y_i \rangle y_i$
+			- Normalizar: $y_k = \frac{v_k}{||v_k||}$
+
+			El conjunto resultante $\{y_1, y_2, \ldots, y_n\}$ es una base ortonormal que genera el mismo subespacio que $\{x_1, x_2, \ldots, x_n\}$.
+		\end{solution}
+
+		\part Enuncie y explique el Teorema Espectral para matrices hermitianas.
+
+		\begin{solution}
+			El Teorema Espectral para matrices hermitianas establece que:
+
+			Sea $A \in \mathbb{C}^{n \times n}$ una matriz hermitiana. Entonces:
+			1) $A$ tiene $n$ valores propios reales $\lambda_1, \lambda_2, \ldots, \lambda_n$.
+			2) Existe una base ortonormal $\{v_1, v_2, \ldots, v_n\}$ de $\mathbb{C}^n$ formada por vectores propios de $A$.
+			3) $A$ es unitariamente diagonalizable: existe una matriz unitaria $U$ tal que $A = UDU^{\dagger}$, donde $D$ es una matriz diagonal con los valores propios de $A$ en la diagonal.
+
+			Este teorema garantiza que una matriz hermitiana puede ser descompuesta como $A = \sum_{i=1}^{n} \lambda_i |v_i\rangle\langle v_i|$, donde $\lambda_i$ son los valores propios reales y $|v_i\rangle$ son los vectores propios ortonormales correspondientes.
+		\end{solution}
+
+	\end{parts}
+
+	\question[3] Considere un espacio de Hilbert con la base ortonormal $\{|0\rangle, |1\rangle\}$. Dado el operador
+	$A = |0\rangle\langle1| + |1\rangle\langle0|$:
+	\begin{parts}
+		\part Determine la representación matricial del operador $A$ en la base dada.
+		\part Verifique si $A$ es hermitiano y unitario.
+		\part Encuentre los valores propios y vectores propios de $A$.
+		\part Exprese $A$ como una combinación lineal de matrices de Pauli.
+	\end{parts}
+
+	\begin{solution}
+		a) Representación matricial de $A$:
+		$$A = |0\rangle\langle1| + |1\rangle\langle0| =
+			\begin{pmatrix}
+				0 & 1 \\
+				1 & 0
+			\end{pmatrix}$$
+
+		b) Verificación:
+		- Hermitiano: $A^\dagger = (|0\rangle\langle1| + |1\rangle\langle0|)^\dagger = |1\rangle\langle0| + |0\rangle\langle1| = A$. Por tanto, $A$ es hermitiano.
+		- Unitario: $AA^\dagger = A^2 = (|0\rangle\langle1| + |1\rangle\langle0|)^2 = |0\rangle\langle0| + |1\rangle\langle1| = I$. Por tanto, $A$ es unitario.
+
+		c) Valores y vectores propios:
+		Para encontrar los valores propios, resolvemos $\det(A-\lambda I) = 0$:
+		\[\det\begin{pmatrix}-\lambda & 1 \\ 1 & -\lambda\end{pmatrix} = \lambda^2 - 1 = 0\]
+		Los valores propios son $\lambda_1 = 1$ y $\lambda_2 = -1$.
+
+		Para $\lambda_1 = 1$, resolvemos $(A-I)|v\rangle = 0$:
+		\[\begin{pmatrix}-1 & 1 \\ 1 & -1\end{pmatrix}\begin{pmatrix}v_1 \\ v_2\end{pmatrix} = \begin{pmatrix}0 \\ 0\end{pmatrix}\]
+		Esto da $v_1 = v_2$, así que el vector propio normalizado es $|v_1\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$.
+
+		Para $\lambda_2 = -1$, resolvemos $(A+I)|v\rangle = 0$:
+		\[\begin{pmatrix}1 & 1 \\ 1 & 1\end{pmatrix}\begin{pmatrix}v_1 \\ v_2\end{pmatrix} = \begin{pmatrix}0 \\ 0\end{pmatrix}\]
+		Esto da $v_1 = -v_2$, así que el vector propio normalizado es $|v_2\rangle = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle)$.
+
+		d) Expresión como combinación de matrices de Pauli:
+		Las matrices de Pauli son:
+		\[I = \begin{pmatrix}1 & 0 \\ 0 & 1\end{pmatrix}, \quad X = \begin{pmatrix}0 & 1 \\ 1 & 0\end{pmatrix}, \quad Y = \begin{pmatrix}0 & -i \\ i & 0\end{pmatrix}, \quad Z = \begin{pmatrix}1 & 0 \\ 0 & -1\end{pmatrix}\]
+
+		Observamos que $A = X$, así que la combinación es simplemente $A = X$.
+	\end{solution}
+
+	\question[3] Considere un sistema de dos qubits. Dado el estado
+	\[|\psi\rangle = \frac{1}{2}|00\rangle + \frac{1}{2}|01\rangle + \frac{1}{2}|10\rangle + \frac{1}{2}|11\rangle\]
+	\begin{parts}
+
+		\part Determine si este estado es separable o entrelazado. Justifique su respuesta.
+		\part Si aplicamos la compuerta CNOT al estado $|\psi\rangle$, ¿cuál será el estado resultante?
+		\part Calcule la matriz de densidad $\rho = |\psi\rangle\langle\psi|$ y determine la matriz de densidad reducida $\rho_A$ para el primer qubit.
+		\part ¿Qué información nos proporciona $\rho_A$ sobre el estado del primer qubit?
+	\end{parts}
+
+	\begin{solution}
+		a) Para determinar si el estado es separable, verificamos si puede escribirse como $|\psi\rangle = |\phi_A\rangle \otimes |\phi_B\rangle$:
+
+		$|\psi\rangle = \frac{1}{2}(|00\rangle + |01\rangle + |10\rangle + |11\rangle) = \frac{1}{2}(|0\rangle + |1\rangle) \otimes (|0\rangle + |1\rangle)$
+
+		Podemos reescribirlo como:
+		$|\psi\rangle = \frac{1}{\sqrt{2}}|0\rangle \otimes \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) + \frac{1}{\sqrt{2}}|1\rangle \otimes \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) \otimes \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$
+
+		Por tanto, $|\psi\rangle$ es separable, con $|\phi_A\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$ y $|\phi_B\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$.
+
+		b) La compuerta CNOT se define como:
+		$CNOT|00\rangle = |00\rangle$
+		$CNOT|01\rangle = |01\rangle$
+		$CNOT|10\rangle = |11\rangle$
+		$CNOT|11\rangle = |10\rangle$
+
+		Aplicándola a $|\psi\rangle$:
+		$CNOT|\psi\rangle = \frac{1}{2}CNOT|00\rangle + \frac{1}{2}CNOT|01\rangle + \frac{1}{2}CNOT|10\rangle + \frac{1}{2}CNOT|11\rangle$
+		$= \frac{1}{2}|00\rangle + \frac{1}{2}|01\rangle + \frac{1}{2}|11\rangle + \frac{1}{2}|10\rangle$
+		$= \frac{1}{2}(|00\rangle + |01\rangle + |10\rangle + |11\rangle)$
+
+		El estado resultante es igual al inicial $|\psi\rangle$.
+
+		c) La matriz de densidad $\rho = |\psi\rangle\langle\psi|$ es:
+		$\rho = \frac{1}{4}\begin{pmatrix}
+				1 & 1 & 1 & 1 \\
+				1 & 1 & 1 & 1 \\
+				1 & 1 & 1 & 1 \\
+				1 & 1 & 1 & 1
+			\end{pmatrix}$
+
+		La matriz de densidad reducida del primer qubit se obtiene tomando la traza parcial sobre el segundo qubit:
+		$\rho_A = Tr_B(\rho) = \frac{1}{2}\begin{pmatrix}
+				1 & 1 \\
+				1 & 1
+			\end{pmatrix}$
+
+		d) La matriz de densidad reducida $\rho_A$ nos muestra que el primer qubit está en un estado mixto con igual probabilidad (50\%) de estar en $|0\rangle$ o $|1\rangle$. También podemos ver que $\rho_A = |\phi_A\rangle\langle\phi_A|$ donde $|\phi_A\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$, lo que confirma que el estado global es separable.
+
+		Además, $Tr(\rho_A^2) = 1$, lo que indica que el primer qubit está en un estado puro, como es de esperar para un estado global separable.
+	\end{solution}
+\end{questions}

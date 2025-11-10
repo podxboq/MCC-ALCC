@@ -1,0 +1,90 @@
+\unirsection{Problemas}
+
+\begin{questions}
+
+  \question Expresar los siguientes estados en notación de Dirac y verificar su normalización:
+  \begin{parts}
+    \part $\begin{pmatrix} \frac{1}{\sqrt{3}} \\ \frac{\sqrt{2}}{\sqrt{3}} \end{pmatrix}$
+    \part $\begin{pmatrix} \frac{1+i}{2} \\ \frac{1-i}{2} \end{pmatrix}$
+    \part $\frac{1}{2}\begin{pmatrix} 1 \\ 1 \\ 1 \\ 1 \end{pmatrix}$ (estado de dos qubits)
+  \end{parts}
+
+  \question Para el estado $\ket{\psi} = \frac{1}{\sqrt{5}}(2\ket{0} + i\ket{1})$:
+  \begin{parts}
+    \part Calcular las probabilidades de medir $\ket{0}$ y $\ket{1}$
+    \part Calcular las probabilidades de medir $\ket{+}$ y $\ket{-}$
+    \part Determinar el estado después de medir $\ket{+}$ y obtener resultado positivo
+  \end{parts}
+
+  \question Verificar las siguientes identidades usando notación de Dirac:
+  \begin{parts}
+    \part $\sigma_x = \ketbra{0}{1} + \ketbra{1}{0}$
+    \part $\sigma_y = -i\ketbra{0}{1} + i\ketbra{1}{0}$
+    \part $\sigma_z = \ketbra{0}{0} - \ketbra{1}{1}$
+    \part $I = \ketbra{0}{0} + \ketbra{1}{1}$
+  \end{parts}
+
+  \question Calcular los valores esperados $\langle\sigma_x\rangle$, $\langle\sigma_y\rangle$ y $\langle\sigma_z\rangle$ para:
+  \begin{parts}
+    \part $\ket{\psi_1} = \ket{0}$
+    \part $\ket{\psi_2} = \ket{+} = \frac{\ket{0} + \ket{1}}{\sqrt{2}}$
+    \part $\ket{\psi_3} = \frac{\ket{0} + i\ket{1}}{\sqrt{2}}$
+  \end{parts}
+
+  \question Para el sistema de dos qubits en el estado $\ket{\psi} = \frac{1}{\sqrt{3}}(\ket{00} + \ket{01} + \ket{11})$:
+  \begin{parts}
+    \part Verificar que el estado está normalizado
+    \part Calcular las probabilidades de medir cada estado de la base computacional
+    \part Determinar si el estado es separable o entrelazado
+    \part Calcular la probabilidad de medir el primer qubit en $\ket{0}$
+  \end{parts}
+
+  \question Para los cuatro estados de Bell:
+  \begin{parts}
+    \part Verificar que forman una base ortonormal
+    \part Expresar cada estado de Bell como combinación lineal de la base computacional
+    \part Demostrar que todos son maximalmente entrelazados
+    \part Calcular las probabilidades de medir cada qubit individualmente
+  \end{parts}
+
+
+
+
+  \question Determine si el estado $\ket{\psi} = \frac{1}{\sqrt{3}}(\ket{00} + \ket{01} + \ket{10})$ es entrelazado.
+
+
+  \question Para $A = \sigma_x$ y $B = \sigma_y$, donde $\sigma_x$ y $\sigma_y$ son las matrices de Pauli, calcule explícitamente $(A \otimes B)\ket{01}$.
+
+  \question Demuestre que la puerta CNOT puede crear entrelazamiento aplicándola a estados separables apropiados. Proporcione al menos dos ejemplos específicos.
+
+  \question Consideraciones sobre los recursos para la computación cuántica. Responda a las siguientes preguntas:
+  \begin{parts}
+    \part Calcule cuántos parámetros reales se necesitan para especificar completamente el estado de un sistema de 5 cúbits.
+    \part Si cada parámetro requiere 64 bits de almacenamiento, ¿cuánta memoria se necesitaría para almacenar el estado de 30 cúbits?
+    \part Compare con la memoria total de todas las computadoras del mundo (estimada en $\sim 10^{21}$ bits).
+  \end{parts}
+
+  \question Para el estado $\ket{\psi} = \cos\frac{\pi}{8}\ket{0} + e^{i\pi/4}\sin\frac{\pi}{8}\ket{1}$:
+  \begin{parts}
+    \part Calcular las probabilidades de medir $\sigma_z$ en los valores $\pm 1$
+    \part Calcular las probabilidades de medir $\sigma_x$ en los valores $\pm 1$
+    \part Si se mide primero $\sigma_z$ y se obtiene $+1$, ¿cuáles son las probabilidades para una medición posterior de $\sigma_x$?
+  \end{parts}
+
+  \question Un cúbit evoluciona bajo el hamiltoniano $\hat{H} = \frac{\pi}{4}\sigma_y$:
+  \begin{parts}
+    \part Calcular el operador de evolución $U(t) = e^{-i\hat{H}t}$
+    \part Si el estado inicial es $\ket{0}$, determinar $\ket{\psi(t)}$
+    \part ¿En qué instante $t$ el estado se convierte en $\ket{1}$?
+  \end{parts}
+
+  \question Para la rotación $R_z(\theta) = e^{-i\theta\sigma_z/2}$:
+  \begin{parts}
+    \part Escribir la forma matricial explícita de $R_z(\theta)$
+    \part Demostrar que $R_z(\theta) = \cos\frac{\theta}{2}I - i\sin\frac{\theta}{2}\sigma_z$
+    \part Aplicar $R_z(\pi/2)$ al estado $\ket{+}$ y expresar el resultado
+  \end{parts}
+
+  \question Demostrar que la composición de rotaciones alrededor del mismo eje se suma: $$R_z(\alpha)R_z(\beta) = R_z(\alpha + \beta)\,.$$
+
+\end{questions}
