@@ -1,0 +1,74 @@
+\documentclass[]{unirTema}
+
+\input{personalizacion}
+
+\printanswers
+
+\begin{document}
+\author{Francisco Costa Cano}
+\titulacion{Máster en computación cuántica}
+\asignatura{Álgebra lineal en computación cuántica}
+\bloque{1}{Fundamentos matemáticos}
+\tema{3}{Operadores lineales y representación matricial}
+Sea $P_2(\C)$ el espacio vectorial de polinomios de grado menor o igual a 2 con coeficientes en $\C$.
+Sea $T: P_2(\C) \to \C^2$ definida por
+\[
+  T(p(x)) = \left(p(1), p(i)\right)
+\]
+\begin{parts}
+  \part Comprobar que $T$ es un homomorfismo.
+
+  Para ello usaremos la caracterización que dice que $T$ es un homomorfismo si y solo si $\forall p,q\in P_2(\C)$ y $\forall \alpha,\beta \in\C$ se cumple
+  \[
+    T(\alpha p(x) + \beta q(x)) = \alpha T(p(x)) + \beta T(q(x))\,.
+  \]
+  Para ello llamemos $r(x) = \alpha p(x) + \beta q(x)$ y calculemos:
+  \begin{align*}
+    T(\alpha p(x) + \beta q(x)) & = T(r(x)) = \left(r(1), r(i)\right)                                           \\
+                                & = \left(\alpha p(1) + \beta q(1), \alpha p(i) + \beta q(i)\right)             \\
+                                & = \left(\alpha p(1), \alpha p(i)\right) + \left(\beta q(1), \beta q(i)\right) \\
+                                & = \alpha \left(p(1), p(i)\right) + \beta \left(q(1), q(i)\right)              \\
+                                & = \alpha T(p(x)) + \beta T(q(x))\,.
+  \end{align*}
+  Por lo tanto $T$ es un homomorfismo.
+  \part Calcular el núcleo de $T$.
+
+  Por definición $\ker(T) = \{p(x) \in P_2(\C) \mid T(p(x)) = (0,0)\}$.
+
+  Pero esta condición se cumple si y solo si $p(1) = 0$ y $p(i) = 0$. Si escribimos $p(x) = ax^2 + bx + c$, debemos resolver el sistema
+  \[
+    \begin{cases}
+      p(1) = a + b + c = 0 \\
+      p(i) = -a + bi + c = 0
+    \end{cases}
+  \]
+  Sumando ambas ecuaciones obtenemos $b+bi+2c=0\Rightarrow b(1+i)+2c=0$. Podemos obtener $c$ como $c=-\frac{b(1+i)}{2}$.
+
+  Sustituyendo en la primera ecuación obtenemos $a+b-\frac{b(1+i)}{2}=0\Rightarrow a=-\frac{b(i-1)}{2}$.
+
+  Por lo tanto el núcleo de $T$ es
+  \[
+    \ker(T) = \left\{p(x) = -\frac{b(i-1)}{2}x^2 + bx - \frac{b(1+i)}{2} \mid b \in \C\right\}\,.
+  \]
+  De este resultado podemos además concluir que $\dim(\ker(T)) = 1$ y que tiene como base $B_k=\left\{-\frac{i-1}{2}x^2 + x - \frac{1+i}{2}\right\}$.
+
+  \part Calcular la antiimagen de $T$.
+
+  Por definición $\operatorname{Im}(T) = \{T(p(x)) \mid p(x) \in P_2(\C)\}$.
+
+  Sea $(w,z) \in \C^2$ y $p(x) = ax^2 + bx + c$ tal que $T(p(x)) = (w,z)$. Entonces
+
+  \begin{align*}
+    a+b+c   & = w \\
+    -a+bi+c & = z \\
+  \end{align*}
+
+  Sumando ambas ecuaciones obtenemos $2c+b(1+i) = w+z\Rightarrow b=\frac{w+z-2c}{1+i}$.
+
+  Multiplicando por $i$ la primera ecuación y sumando $a(i-1)+c(i+1) = wi+z\Rightarrow a=\frac{wi+z-c(i-1)}{i-1}$.
+
+  Tomando $c=0$, por ejemplo, obtenemos $a=\frac{wi+z}{i-1}$ y $b=\frac{w+z}{1+i}$ y así el polinomio $p(x) = \frac{wi+z}{i-1}x^2 + \frac{w+z}{1+i}x$ cumple $T(p(x)) = (w,z)$.
+
+  Como esperábamos, la dimensión de la imagen de $T$ es 2 y tiene como base $B_I=\left\{\frac{i-1}{2}x^2 + x - \frac{1+i}{2}, x\right\}$.
+\end{parts}
+\end{document}
