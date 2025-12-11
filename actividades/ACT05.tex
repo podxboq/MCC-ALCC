@@ -1,0 +1,52 @@
+\actividad{2}{Producto tensorial y esfera de Bloch}
+\maketitulo
+
+\section{Objetivos}
+Con esta actividad comprenderás la importancia del producto tensorial en la construcción de operadores cuánticos y la representación visual de estados cuánticos en la esfera de Bloch. Verás la facilidad de generar un circuito de una función booleana utilizando la función clásica de \texttt{qiskit.circuit}.
+
+\section{Ejercicios}
+
+\begin{questions}
+  \question \textbf{Cálculo del producto tensorial}. Determina el producto tensorial de las siguientes combinaciones de matrices unitarias, vistas en el tema 5:
+  \begin{parts}
+    \part $X\otimes I\otimes Z\otimes I$.
+    \part $I\otimes Y\otimes Z\otimes X$.
+    \part $Z\otimes X\otimes I$.
+  \end{parts}
+
+  \question \textbf{Aplicaciones del producto tensorial}. Calcula:
+  \begin{parts}
+    \part $\frac{2}{3}X\otimes Z\otimes  I + \frac{1}{4}I\otimes  Z\otimes  X - \frac{5}{6}Y\otimes Y\otimes Z$.
+    \part $\bra{101}\frac{2}{3}X\otimes Z\otimes  I + \frac{1}{4}I\otimes  Z\otimes  X - \frac{5}{6}Y\otimes Y\otimes Z\ket{010}$.
+  \end{parts}
+  \question \textbf{Visualización en la esfera de Bloch}. Representa en una única esfera de Bloch los siguientes estados cuánticos:
+  \begin{parts}
+    \part $\ket{0}$, $\ket{1}$.
+    \part $\ket{+}$, $\ket{-}$.
+    \part $\ket{i+}$, $\ket{i-}$.
+  \end{parts}
+  \question \textbf{4.	Efecto de las puertas cuánticas en la esfera de Bloch}. Para cada caso, visualiza en la esfera de Bloch el efecto de las siguientes puertas aplicadas a los estados $\ket{0}$ y $\ket{1}$:
+  \begin{parts}
+    \part Puerta $X$.
+    \part Puerta $Y$.
+    \part Puerta $Z$.
+    \part Puerta $H$.
+  \end{parts}
+\end{questions}
+
+\subsection*{Extensión y formato}
+
+\begin{itemize}
+  \item La actividad debe tener el código y, en la sentencia necesaria, explicar su uso mediante el comando \# junto con la solución por cada ítem.
+  \item El informe debe ser entregado en formato PDF con explicaciones detalladas y justificaciones matemáticas.
+  \item Se deben incluir cálculos explícitos y, de ser posible, implementaciones en Python utilizando NumPy y Qiskit.
+\end{itemize}
+
+\subsection*{Criterios de evaluación}
+
+\begin{rubrica}
+  \setrubrica{Exactitud del cálculo}{Los resultados de los cálculos son correctos y se han realizado los pasos adecuados para llegar al resultado}{3}{30}
+  \setrubrica{Razonamiento y explicación formal}{Se han razonado los pasos realizados y las explicaciones son coherentes y certeras}{3}{30}
+  \setrubrica{Claridad de la exposición}{La exposición se ha realizado de forma clara y secuencial y es cómodamente legible, tanto en la parte matemática como en la de las explicaciones}{2}{20}
+  \setrubrica{Bibliografía y citas APA}{Descripción de las librerías y referencias utilizadas para la resolución de la actividad}{2}{20}
+\end{rubrica}

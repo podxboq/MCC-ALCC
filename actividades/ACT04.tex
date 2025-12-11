@@ -1,0 +1,108 @@
+\actividad{1}{Operaciones}
+\maketitulo
+
+\section{Objetivos}
+Con esta actividad reforzarás los conceptos aprendidos hasta el momento en el curso y comenzarás a explorar herramientas fundamentales para la computación cuántica.
+
+\section{Pautas de elaboración}
+
+La actividad consiste en familiarizarse con el entorno de Python y con librerías como NumPy. Además, usaremos Qiskit, una de las herramientas clave para la computación cuántica. La actividad se dividirá en dos partes:
+
+\begin{itemize}
+  \item Uso de NumPy y Cmath para operaciones en álgebra lineal.
+
+  \item Uso de Qiskit para representar y manipular estados cuánticos.
+\end{itemize}
+
+Para ello, realizaremos las siguientes operaciones aprendidas en la primera parte del curso:
+
+\begin{itemize}
+  \item Identificar matrices normales, hermitianas y unitarias.
+  \item Calcular el producto tensorial entre matrices y vectores.
+\end{itemize}
+
+Para el desarrollo de esta actividad necesitar acceso a un entorno de Python con las librerías NumPy y Qiskit instaladas. Algunas opciones son:
+
+\begin{itemize}
+  \item \textbf{Google Colab}: Desde el navegador web en la url \url{https://colab.research.google.com/} o como extensión de VSCODE.
+  \item \textbf{Jupyter Notebook}: Puedes instalarlo siguiendo las instrucciones de la url \url{https://jupyter.org/install} o ejecutarlo en la nube siguiendo las instrucciones de \url{https://jupyter.org/try}.
+\end{itemize}
+
+En ambos casos, has de instalar la librería Qiskit con el comando \texttt{!pip install qiskit} si lo ejecutas desde la nube y \texttt{pip install qiskit} si lo ejecutas en local.
+
+\section{Ejercicios}
+Considera las siguientes matrices:
+
+\begin{equation*}
+  A=\begin{pmatrix}
+    3+2i  & 1-i   & 4-3i \\
+    2+i   & -5+4i & 6    \\
+    -3+2i & 7-i   & 8+3i
+  \end{pmatrix},
+  B=\begin{pmatrix}
+    2+3i & 4   & 1+2i \\
+    3-2i & 5+i & 7-3i \\
+    6+4i & -2  & 9+5i
+  \end{pmatrix},
+\end{equation*}
+\begin{equation*}
+  C=\begin{pmatrix}
+    1+4i  & 2-2i  & 3+i   & -5  \\
+    -2+3i & 6     & 4+7i  & 2+i \\
+    -1+2i & -3-4i & -6+5i & 3-i \\
+    -8i   & 7+4i  & -5-3i & 5i
+  \end{pmatrix},
+  D=\begin{pmatrix}
+    i    & 2    \\
+    2-3i & 4+5i
+  \end{pmatrix}
+\end{equation*}
+
+\begin{questions}
+  \question Utiliza la librería de Numpy, junto con los módulos Cmath y math, y obtén:
+  \begin{parts}
+    \part La forma polar de cada uno de los determinantes y de la traza de cada matriz.
+    \part $2i(|D|+\tr(C))AB-(1+i) |C|\tr(D)BA$.
+    \part La inversa de cada matriz, si existe.
+    \part Además, usando la definición y, al mismo tiempo, las propiedades de los valores propios, clasifica cada una de las matrices en normales, hermitianas o unitarias.
+  \end{parts}
+
+
+  \begin{solution}
+    Primero escribimos $z = -8i$ en forma exponencial. Como $|z| = 8$ y $\arg(z) = -\frac{\pi}{2}$ (o $\frac{3\pi}{2}$), tenemos:
+    $$z = 8e^{-i\pi/2}$$
+
+    Las raíces cúbicas son:
+    $$z_k = \sqrt[3]{8}e^{i\frac{-\pi/2 + 2\pi k}{3}} = 2e^{i\frac{-\pi + 4\pi k}{6}}, \quad k = 0, 1, 2$$
+
+    Calculando cada raíz:
+    \begin{align*}
+      z_0 & = 2e^{-i\pi/6} = 2\left(\cos\frac{\pi}{6} - i\sin\frac{\pi}{6}\right) = \sqrt{3} - i    \\
+      z_1 & = 2e^{i\pi/2} = 2i                                                                      \\
+      z_2 & = 2e^{i7\pi/6} = 2\left(\cos\frac{7\pi}{6} + i\sin\frac{7\pi}{6}\right) = -\sqrt{3} - i
+    \end{align*}
+
+    Geométricamente, forman un triángulo equilátero inscrito en una circunferencia de radio 2 centrada en el origen.
+  \end{solution}
+
+  \question Estos resultados deben quedar en formato \LaTeX. Utiliza NumPy y Qiskit y obtén:
+  \begin{parts}
+    \part Crear los vectores estados $\C^2$:  $\ket{0}, \ket{1}$.
+    \part A partir de los vectores estado creados, halla los estados $\ket{+}, \ket{-}, \ket{i+}, \ket{i-}$ y los estados de Bell.
+    \part A partir de los vectores estado creados, encuentra la base computacional de $\C^4$, es decir, por ejemplo, $\ket{10}$.
+    \part A partir de los vectores estados, halla los vectores $\frac{1}{\sqrt{2}}\ket{000}+\frac{1}{\sqrt{2}}\ket{111}$, $\frac{i}{\sqrt{2}}\ket{000}-\frac{1}{\sqrt{2}}\ket{111}$, $\frac{1}{\sqrt{2}}\ket{000}+\frac{i}{\sqrt{2}}\ket{111}$.
+  \end{parts}
+\end{questions}
+
+\subsection*{Extensión y formato}
+
+Calibri 12, interlineado 1,5.
+
+\subsection*{Criterios de evaluación}
+
+\begin{rubrica}
+  \setrubrica{Exactitud del cálculo}{Los resultados de los cálculos son correctos y se han realizado los pasos adecuados para llegar al resultado}{3}{30}
+  \setrubrica{Razonamiento y explicación formal}{Se han razonado los pasos realizados y las explicaciones son coherentes y certeras}{3}{30}
+  \setrubrica{Claridad de la exposición}{La exposición se ha realizado de forma clara y secuencial y es cómodamente legible, tanto en la parte matemática como en la de las explicaciones}{2}{20}
+  \setrubrica{Bibliografía y citas APA}{Descripción de las librerías y referencias utilizadas para la resolución de la actividad}{2}{20}
+\end{rubrica}

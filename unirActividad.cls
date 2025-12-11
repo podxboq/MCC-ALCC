@@ -16,8 +16,9 @@
 \usepackage{matlab-prettifier}
 \usepackage{hyperref}
 \usepackage{siunitx}
-\usepackage[left=0.6in,right=0.6in,top=2in,bottom=1.3in]{geometry}
+\usepackage[left=3.25cm,right=3.25cm,top=2.5cm,bottom=2.5cm]{geometry}
 \usepackage{physics}
+\usepackage{tcolorbox}
 
 \usetikzlibrary{cd,babel,shadows,decorations.markings}
 
@@ -27,13 +28,7 @@
 
 \newcommand\titulacion[1]{\def\@titulacion{#1}}
 \newcommand\asignatura[1]{\def\@asignatura{#1}}
-\newcommand\temaN[1]{\def\@temaN{#1}}
-\newcommand\temaNombre[1]{\def\@temaNombre{#1}}
-\newcommand\tema[2]{\def\@temaN{#1}\def\@temaNombre{#2}}
-\newcommand\fecha[1]{\def\@fecha{#1}}
-\newcommand\bloqueN[1]{\def\@bloqueN{#1}}
-\newcommand\bloqueNombre[1]{\def\@bloqueNombre{#1}}
-\newcommand\bloque[2]{\def\@bloqueN{#1}\def\@bloqueNombre{#2}}
+\newcommand\actividad[2]{\def\@actividadN{#1}\def\@actividadNombre{#2}}
 
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{1\bigskipamount plus \smallskipamount minus \smallskipamount}
@@ -49,21 +44,22 @@
 \newenvironment{rubrica}{%
   \renewcommand{\arraystretch}{1.5}
   \begin{center}
-    \begin{tabular}{p{3cm}p{11cm}p{1cm}r}
+    \begin{tabular}{|p{2.4cm}|p{8.3cm}|p{0.7cm}|p{0.8cm}|}
       \rowcolor{negrounir}
-      \textcolor{white}{Criterio} & \textcolor{white}{Descripción} & \textcolor{white}{Valor} & \textcolor{white}{Peso} \\%
-      }{Total                     &                                & 10                       & 100\%\end{tabular}\end{center}}
-\newcommand{\setrubrica}[4]{#1 & #2 & #3 & #4\% \\}
+      \textcolor{white}{Criterio} & \textcolor{white}{Descripción} & \textcolor{white}{Valor} & \textcolor{white}{Peso}    \\%
+      }{Total                     &                                & 10                       & 100                     \% \\\hline\end{tabular}\end{center}}
+\newcommand{\setrubrica}[4]{#1 & #2 & #3 & #4\% \\\hline}
 
 \lstnewenvironment{matlab}{\lstset{frame=single,style=Matlab-Pyglike,texcl=true,language=Matlab}}{}
 
 \newcommand{\maketitulo}{
-  {\Huge Datos del estudiante}
+  \begin{tcolorbox}[colback=grisclarounir, colframe=grisclarounir]
+    {\LARGE Datos del estudiante}\newline%
 
-  \textbf{Nombre y apellidos}\\
-  \textbf{Fecha de entrega}
-
-  \textcolor{negrounir}{\LARGE{Actividad \@temaN: \@temaNombre}}\par%
+    \textbf{Nombre y apellidos}\\
+    \textbf{Fecha de entrega}%
+  \end{tcolorbox}
+  \textcolor{negrounir}{\newline\LARGE{Actividad \@actividadN: \@actividadNombre}}%
 }
 \newcommand{\maketituloexamen}{\center\textcolor{negrounir}{\LARGE{Examen \@asignatura}}\par}
 \renewcommand{\labelitemi}{\small\color{negrounir}{$\blacktriangleright$}}
