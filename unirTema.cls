@@ -138,6 +138,7 @@
   \definecolor{azulunir}{RGB}{0, 102, 153}  % Más oscuro para mejor contraste
   \definecolor{azulclaro}{RGB}{240, 248, 252}  % Fondo muy sutil
   \definecolor{grisunir}{RGB}{89, 89, 89}  % Más oscuro
+  \definecolor{negrounir}{RGB}{51,51,51}
 \fi
 \if@temaunirpro
   \definecolor{azulunir}{RGB}{0, 27, 71}
@@ -634,29 +635,27 @@ typeset node}}}}
   \addcontentsline{toc}{section}{Esquema}
   \piepagina{\@asignatura}{Tema \@temaN. Esquema}
 
-  \begin{center}
-    \begin{minipage}{0.9\textwidth}
-      \vspace{0.3cm}
-      \begin{itemize}[leftmargin=0.5cm, itemsep=0.2cm, parsep=0pt]
-        }{%
-      \end{itemize}
-      \vspace{0.2cm}
-    \end{minipage}
-
-  \end{center}
+  \[
+    \begin{dcases}}{%
+    \end{dcases}
+  \]
   \newpage
 }
 
 \newcommand{\temaEsquema}[2]{%
-  \item \textcolor{azulunir!80}{\textbf{#1}}
-  \ifstrempty{#2}{}{%
-    \begin{itemize}[leftmargin=0.8cm, itemsep=0.1cm]
+  \text{\textcolor{azulunir!80}{\textbf{#1}}}&
+  \ifstrempty{#2}{}{
+    \begin{dcases}
       #2
-    \end{itemize}}
+    \end{dcases}
+    \\
+  }
 }
 
-\newcommand{\conceptoEsquema}[1]{%
-  \item \textcolor{azulunir!60}{#1}
+\newcommand{\conceptoEsquema}[2]{%
+  \text{\textcolor{negrounir!60}{#1}}&
+  \ifstrempty{#2}{}{\text{#2}}
+  \\
 }
 
 \newcommand{\unirsection}[1]{%

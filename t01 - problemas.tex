@@ -59,10 +59,30 @@
 
   \question Tres amplitudes cuánticas tienen la misma magnitud $\frac{1}{\sqrt{3}}$ pero fases diferentes: $0$, $\frac{3\pi}{4}$ y $\frac{3\pi}{2}$:
   \begin{parts}
-    \part Escribir las tres amplitudes en forma exponencial
-    \part Calcular la suma total de las tres amplitudes
+    \part Escribir las tres amplitudes en forma binomial.
+    \part Calcular la suma total de las tres amplitudes expresada en forma binomial.
     \part Explicar por qué el resultado tiene sentido físicamente
   \end{parts}
+
+  \begin{solution}
+    \begin{parts}
+      \part
+
+      \begin{itemize}
+        \item $\frac{1}{\sqrt{3}} \cdot e^{i \cdot 0} = \frac{1}{\sqrt{3}}$.
+        \item $\frac{1}{\sqrt{3}} \cdot e^{i \cdot \frac{3\pi}{4}} = \frac{1}{\sqrt{3}} \left(\cos\left(\frac{3\pi}{4}\right) + i\sin\left(\frac{3\pi}{4}\right)\right) = \frac{1}{\sqrt{3}} \left(-\frac{\sqrt{2}}{2} + i\frac{\sqrt{2}}{2}\right)$.
+        \item $\frac{1}{\sqrt{3}} \cdot e^{i \cdot \frac{3\pi}{2}} = \frac{1}{\sqrt{3}} \left(\cos\left(\frac{3\pi}{2}\right) + i\sin\left(\frac{3\pi}{2}\right)\right) = \frac{-i}{\sqrt{3}}$.
+      \end{itemize}
+
+      \part
+      \begin{align*}
+        \frac{1}{\sqrt{3}} \left(1 + \left(-\frac{\sqrt{2}}{2} - i\frac{\sqrt{2}}{2}\right) - i\right) = \frac{1}{\sqrt{3}} \left(\left(1 - \frac{\sqrt{2}}{2}\right) - \left(1 + \frac{\sqrt{2}}{2}\right) i\right)
+      \end{align*}
+
+      \part La suma de las tres amplitudes resulta en una amplitud con magnitud menor que la de cada una de las individuales, lo que indica interferencia destructiva parcial. Esto tiene sentido físicamente porque las fases diferentes causan que las ondas asociadas a las amplitudes se cancelen parcialmente entre sí.
+    \end{parts}
+
+  \end{solution}
 
   \question Para las amplitudes $\alpha = ae^{i\phi}$ y $\beta = be^{i\psi}$ con $a, b \in \mathbb{R}^+$:
   \begin{parts}

@@ -2,15 +2,15 @@
 
 \begin{esquemaExplorador}
   \temaEsquema{Fundamentos algebraicos}{
-    \conceptoEsquema{Definición y operaciones}
-    \conceptoEsquema{Forma cartesiana y polar}
+    \conceptoEsquema{Definición y operaciones}{}
+    \conceptoEsquema{Forma cartesiana y polar}{}
     \conceptoEsquema{Fórmula de Euler}{$e^{i\theta} = \cos\theta + i\sin\theta$}
     \conceptoEsquema{Fórmula de De Moivre}{$z^n = r^n(\cos(n\theta) + i\sin(n\theta))$}
   }
   \temaEsquema{Representación geométrica}{
-    \conceptoEsquema{Plano complejo}
-    \conceptoEsquema{Módulo y argumento}
-    \conceptoEsquema{Distancias y ángulos}
+    \conceptoEsquema{Plano complejo}{}
+    \conceptoEsquema{Módulo y argumento}{}
+    \conceptoEsquema{Distancias y ángulos}{}
   }
   \temaEsquema{Funciones complejas}{
     \conceptoEsquema{Función exponencial}{$e^z = \sum_{n=0}^{\infty} \frac{z^n}{n!}$}
@@ -39,10 +39,16 @@ La estrecha relación entre los números complejos y la mecánica cuántica se r
   \item La \textbf{interferencia cuántica}, base de muchos algoritmos cuánticos, requiere la aritmética compleja para su comprensión.
 \end{itemize}
 
+En este primer capítulo estudiaremos el plano complejo desde el punto de vista algebraico, geométrico y topológico. Empezaremos motivando la existencia de estos números y definiendo el cuerpo $\C$ de los números complejos. También veremos que podemos considerar $\R$ como un subcuerpo de $\C$.
+
+Repasaremos las distintas formas de escribir los números complejos: binomial, polar y exponencial. Veremos las ventajas de trabajar con los números complejos en forma exponencial, en particular en el cálculo de las raíces $n$-ésimas de un número complejo. Finalmente repasaremos algunas propiedades de las raíces de polinomios y presentaremos el teorema fundamental del álgebra.
+
 \subsection{El cuerpo de los números complejos}
 
-En esta primera sección recordaremos brevemente algunas de las propiedades algebraicas de los números complejos. Empezaremos con el origen de los números complejos. El propósito de los números complejos es proporcionar soluciones a ecuaciones polinómicas que no tienen solución real. Por ejemplo, las ecuaciones
-\[x^2 + 1 = 0\ ,\qquad x^2 + 2x + 5 = 0\]
+En esta primera sección recordaremos brevemente algunas de las propiedades algebraicas y geométricas de los números complejos. Empezaremos con el origen de los números complejos. El propósito de los números complejos es proporcionar soluciones a ecuaciones polinómicas que no tienen solución real. Por ejemplo, las ecuaciones
+\[
+  x^2 + 1 = 0\,,\qquad x^2 + 2x + 5 = 0\,,
+\]
 no tienen solución en el cuerpo $\R$ de los números reales. Para resolver estas ecuaciones, introducimos el concepto de \textbf{unidad imaginaria}, que denotaremos por $i$, que cumple la relación
 \[ i^2 = -1\,. \]
 Extendiendo los números reales con esta unidad imaginaria $i$, veremos que podemos resolver todas las ecuaciones polinómicas con coeficientes reales (y, de hecho, complejos).
@@ -58,14 +64,14 @@ Extendiendo los números reales con esta unidad imaginaria $i$, veremos que pode
 \begin{prop}
   El plano complejo $\C$ con las operaciones de suma y producto es un cuerpo conmutativo. Es decir, satisface las siguientes propiedades:
   \begin{enumerate}
-    \item \textbf{Clausura:} dados $a,b\in\C$, $a+b,ab\in\C$.
-    \item \textbf{Asociatividad:} dados $a,b,c\in\C$, $a+(b+c) = (a+b)+c$, y $a(bc) = (ab)c$.
-    \item \textbf{Conmutatividad:} dados $a,b\in\C$, $a+b = b+a$, y $ab = ba$.
-    \item \textbf{Distributividad:} dados $a,b,c\in\C$, $a(b+c) = ab + ac$.
-    \item \textbf{Existencia de neutro para la suma:} existe un complejo $0\in\C$ tal que para todo $z\in\C$, $z+0 = z$.
-    \item \textbf{Existencia de neutro para el producto:} existe un complejo $1\in\C$ tal que para todo $z\in\C$, $1z = z$.
-    \item \textbf{Existencia de opuesto para la suma:} para todo $z\in\C$, existe $-z\in\C$ tal que $z+(-z) = 0$.
-    \item \textbf{Existencia de inverso para el producto:} para todo $z\in\C\setminus\{0\}$, existe $z^{-1}\in\C$ tal que $zz^{-1} = 1$.
+    \item \textbf{Clausura:} dados $z,w\in\C$, $z+w,zw\in\C$.
+    \item \textbf{Asociativa:} dados $z,w,x\in\C$, $z+(w+x) = (z+w)+x$, y $z(wx) = (zw)x$.
+    \item \textbf{Conmutativa:} dados $z,w\in\C$, $z+w = w+z$, y $zw = wz$.
+    \item \textbf{Distributiva:} dados $z,w,z\in\C$, $z(w+x) = zw + zx$.
+    \item \textbf{Neutro para la suma:} $\exists!\ 0\in\C$ tal que $\forall z\in\C$, $z+0 = z$.
+    \item \textbf{Neutro para el producto:} $\exists!\ 1\in\C$ tal que $\forall z\in\C$, $1z = z$.
+    \item \textbf{Opuesto para la suma:} $\forall z\in\C$, existe $-z\in\C$ tal que $z+(-z) = 0$.
+    \item \textbf{Inverso para el producto:} $\forall z\in\C\setminus\{0\}$, existe $z^{-1}\in\C$ tal que $zz^{-1} = 1$.
   \end{enumerate}
 \end{prop}
 
@@ -93,12 +99,12 @@ A diferencia del cuerpo de los números reales, el cuerpo de los números comple
   En algunos libros de texto al número conjugado de $z$ se le denota por $z^*$.
 \end{nota}
 
-Notamos que un número complejo $z$ es real si y solo si $z = \bar z$. Por otro lado, $z$ es imaginario puro si y solo si $\bar z = -z$.
+Notamos que un número complejo $z$ es real si y solo si $z = \bar z$. Por otro lado, $z$ es imaginario si y solo si $\bar z = -z$.
 
 La conjugación satisface las siguientes propiedades:
 
 \begin{prop}
-  Si $z$ y $w$ son números complejos
+  Si $z$ y $w$ son números complejos, se cumplen las siguientes igualdades:
   \begin{itemize}
     \item Parte real: $\Rp(z) = \frac{z + \conj{z}}{2}$.
     \item Parte imaginaria: $\Ip(z) = \frac{z - \conj{z}}{2i}$.
@@ -110,69 +116,106 @@ La conjugación satisface las siguientes propiedades:
 \end{prop}
 
 \begin{defi}[Módulo]
-  El \textbf{módulo} o \textbf{magnitud} de un complejo $z$ es el real positivo
+  El \textbf{módulo} de un número complejo $z$ es el real no negativo definido por:
   \[ \abs{z} = \sqrt{z\bar z}\,, \]
-  o, expresado en forma binomial,
+  o, expresado en forma binomial
   \[ \abs{a + bi} = \sqrt{a^2 + b^2}\,. \]
 \end{defi}
 
-El valor absoluto satisface las siguientes propiedades:
-\begin{itemize}
-  \item $\abs{z}\geq 0$.
-  \item $\abs{z} = 0$ si y solo si $z = 0$.
-  \item Desigualdad triangular. $\abs{z_1+z_2}\leq\abs{z_1}+\abs{z_2}$.
-  \item $\abs{z_1z_2} = \abs{z_1}\abs{z_2}$.
-\end{itemize}
+\begin{prop}
+  Si $z$ y $w$ son números complejos, se cumplen las siguientes propiedades:
+  \begin{itemize}
+    \item $\abs{z}\geq 0$.
+    \item $\abs{z} = 0$ si y solo si $z = 0$.
+    \item \textbf{Desigualdad triangular}. $\abs{z+w}\leq\abs{z}+\abs{w}$.
+    \item $\abs{zw} = \abs{z}\abs{w}$.
+  \end{itemize}
+\end{prop}
 
 La conjugación y el módulo permiten calcular fácilmente el inverso multiplicativo de cualquier complejo $z\in\C^\ast = \C\setminus\{0\}$:
 \[ z^{-1} = \frac{\bar z}{\abs{z}^2}\,. \]
 
+\subsection{Forma polar}
+
 Recordamos que un punto $(x,y)\in\R^2$, diferente del origen de coordenadas, puede expresarse en \textbf{coordenadas polares} $(r,\theta)$, de forma que
 \[ x = r\cos\theta\ ,\quad y = r\sin\theta\,. \]
 
-El cambio inverso viene dado por
-\[ r = \sqrt{x^2+y^2}\ ,\quad \tan\theta = \frac{y}{x}\,. \]
-
-\begin{defi}[Forma trigonométrica]
-  A partir de la forma polar, podemos escribir un complejo $z$ como
-  \[ z = r\cos\theta + ir\sin\theta\,. \]
-  Esta representación recibe el nombre de \textbf{forma trigonométrica}.
-
-  Llamamos \textbf{argumento} o \textbf{fase} de $z$ al ángulo $\theta$.
+\begin{defi}
+  \label{def:argumento}
+  Sea $z=a+bi$ un número complejo no nulo. Diremos que el ángulo $\theta$ es un \textbf{argumento} de $z$ si:
+  \begin{align*}
+    \cos(\theta) & = \frac{a}{|z|} \\
+    \sin(\theta) & = \frac{b}{|z|}
+  \end{align*}
+  Si $z=0$ diremos que su argumento es nulo.
 \end{defi}
 
-Las coordenadas polares no son únicas, pues si $\theta$ es un argumento de $z$, entonces cualquier ángulo de la forma $\theta + 2\pi k$, con $k\in\Z$, también es un argumento de $z$. Para asegurar la unicidad del argumento, es habitual imponer que $\theta$ pertenezca a un cierto intervalo prefijado, como $[0,2\pi)$ o $(-\pi,\pi]$, según convenga. En estos casos decimos que $\theta$ es el \textbf{argumento principal} de $z$.
+Observaremos que el argumento de un número complejo no está completamente definido, pues si $\theta$ cumple las propiedades del argumento~\eqref{def:argumento}, entonces $\theta + 2\pi$ también las cumple.
 
-\subsection{Fórmulas de Euler y De Moivre}
+Si restringimos el valor del argumento al intervalo $[0, 2\pi)$, tendremos unicidad en la definición y por este motivo le damos el nombre de \textbf{argumento principal} y lo denotamos por $\Arg z$.
 
-El interés de la forma trigonométrica radica en las siguientes fórmulas, que relacionan los números complejos con las funciones trigonométricas. Estas fórmulas son fundamentales en muchas aplicaciones de los números complejos, incluyendo la computación cuántica.
+Observamos por último que de las coordenadas polares, podemos deducir $r = \sqrt{x^2+y^2}$, y que este valor es exactamente el módulo del número complejo asociado.
+
+\begin{defi}[Forma polar]
+  Sea $z$ un número  complejo. Llamaremos \textbf{forma polar} a la expresión:
+  \[ z = |z|(\cos(\Arg z) + i\sin(\Arg z))\,. \]
+\end{defi}
+
+
+\subsection{Forma exponencial}
+
+El interés de la forma polar radica en las siguientes fórmulas, que relacionan los números complejos con las funciones trigonométricas. Estas fórmulas son fundamentales en muchas aplicaciones de los números complejos, incluyendo la computación cuántica.
 
 \begin{theo}[Fórmula de Euler]
-  \[ e^{i\theta} = \cos\theta + i\sin\theta\,. \]
+  Sea $\theta\in\R$, se cumple:
+  \begin{equation}
+    \label{eq:formula-euler}
+    e^{i\theta} = \cos\theta + i\sin\theta\,.
+  \end{equation}
 \end{theo}
 
 \begin{theo}[Fórmula de De Moivre]
-  Para $z = re^{i\theta}$ y $n \in \Z$:
-  $$z^n = r^n e^{in\theta} = r^n(\cos(n\theta) + i\sin(n\theta))$$
+  Para $z$ un número complejo y $n \in \Z$:
+  \begin{equation}
+    \label{theo:formula-moivre}
+    z^n = |z|^n(\cos(n\Arg z) + i\sin(n\Arg z))
+  \end{equation}
 \end{theo}
 
 La fórmula de Euler es muy importante porque motiva la siguiente notación, que será de extrema utilidad a partir de ahora.
 
 \begin{defi}[Forma exponencial]
-  Un complejo $z = r\cos\theta + ir\sin\theta$ puede escribirse en su \textbf{forma exponencial} como
-  \[ z = re^{i\theta}\,. \]
+  \label{def:forma-exponencial}
+  Un número complejo $z$ puede escribirse en su \textbf{forma exponencial} como
+  \[ z = |z|e^{i\Arg z}\,. \]
 \end{defi}
+
+\begin{eje}
+  Consideremos el número complejo $z=-1-\sqrt{3}i$, vamos a calcular el conjugado, así como las distintas formas de representación.
+
+  Por definición, el conjugado es el número $\bar{z} = -1 + \sqrt{3}i$ y si lo multiplicamos por $z$ tendremos $z\bar{z}=(-1)^2+(\sqrt{3})^2= 4$.
+
+  El módulo de $z$ es $|z|=\sqrt{z\bar{z}}=\sqrt{4}=2$.
+
+  Para calcular el argumento, como $\Rp(z)\neq 0$ tenemos que $\theta = \arctan(\frac{-\sqrt{3}}{-1}) = \arctan(\sqrt{3}) = \frac{\pi}{3}$. Pero este cálculo no tiene en cuenta el verdadero cuadrante del ángulo. En este ejemplo, el argumento principal de $z$ está en tercer cuadrante, por lo tanto $\Arg z = \frac{\pi}{3}+\pi = \frac{4\pi}{3}$.
+
+  Expresado $z$ de forma polar sería $z=2(\cos(\frac{4\pi}{3})+\sin(\frac{4\pi}{3})i)$, mientras que expresado de forma exponencial sería $z=2e^{\frac{4\pi i}{3}}$.
+\end{eje}
 
 \subsection{Geometría compleja}
 
 Notamos que un complejo de módulo 1 es de la forma $e^{i\theta}$. Geometricamente, la multiplicación $z\mapsto e^{i\theta}z$ es una rotación en el plano complejo de ángulo $\theta$ alrededor del origen.
 
-La forma exponencial permite hacer algunos cálculos más fácilmente, especialmente los que involucran productos y cocientes:
-\begin{itemize}
-  \item $\conj{re^{i\theta}} = re^{-i\theta}$.
-  \item $r_1e^{i\theta_1}\cdot r_2e^{i\theta_2} = (r_1r_2)e^{i(\theta_1+\theta_2)}$.
-  \item Para $r$ no nulo, $\left(re^{i\theta}\right)^{-1} = r^{-1}e^{-i\theta}$.
-\end{itemize}
+La forma exponencial permite hacer algunos cálculos más fácilmente, especialmente los que involucran productos y cocientes.
+
+\begin{prop}
+  Dados $re^{i\theta}$ y $se^{i\varphi}$ dos números complejos expresados en forma exponencial, se tiene:
+  \begin{itemize}
+    \item $\conj{re^{i\theta}} = re^{-i\theta}$.
+    \item $re^{i\theta}\cdot se^{i\varphi} = (rs)e^{i(\theta+\varphi)}$.
+    \item Para $r$ no nulo, $\left(re^{i\theta}\right)^{-1} = r^{-1}e^{-i\theta}$.
+  \end{itemize}
+\end{prop}
 
 Otra ventaja de la notación exponencial es que facilita enormemente el cálculo de las raíces $n$-ésimas.
 
@@ -217,29 +260,37 @@ Geometricamente, las raíces $n$-ésimas de la unidad de un complejo son los vé
   \label{fig:raices_cubicas}
 \end{figure}
 
-Como elementos geométricos heredados de la geometría en $\R^2$ tenemos:
+\subsubsection{Geometría euclídea}
+
+Como elementos geométricos heredados de la geometría euclídea de $\R^2$ tenemos:
 \begin{itemize}
-  \item \textit{Rectas}. En particular, las rectas paralelas a los ejes $\Rp(z) = a$, o $\Ip(z) = b$.
-  \item \textit{Semiplanos} (abiertos o cerrados). En particular, $\Rp(z) > a$, $\Ip(z) > b$, etc.
-  \item \textit{Bandas}: regiones comprendidas entre dos rectas paralelas.
-  \item \textit{Discos} (abiertos o cerrados), también llamados bolas:
+  \item \textbf{Rectas}: En particular, las rectas paralelas a los ejes $\Rp(z) = a$, o $\Ip(z) = b$.
+  \item \textbf{Semiplanos} (abiertos o cerrados). En particular, $\Rp(z) > a$, $\Ip(z) > b$, etc.
+  \item \textbf{Bandas}: regiones comprendidas entre dos rectas paralelas.
+  \item \textbf{Discos}: (abiertos o cerrados):
         \[ D(z_0,r) = \{ z\in\C\ \vert\ d(z_0,z)<r \}\ ,\qquad \bar D(z_0,r) = \{ z\in\C\ \vert\ d(z_0,z)\leq r \}\,. \]
-  \item \textit{Circunferencias}:
+  \item \textbf{Circunferencias}:
         \[ S(z_0,r) = \{ z\in\C\ \vert\ d(z_0,z) = r \} = \partial D(z_0,r)\,. \]
-        En particular, la circunferencia unidad $S_1 = \{z\in\C\ \vert\ \abs{z}=1\}$.
-  \item Coronas circulares (abiertas o cerradas):
+        En particular, la circunferencia unidad $S_1 = \partial D(0, 1)= \{z\in\C\ \vert\ \abs{z}=1\}$.
+  \item \textbf{Coronas circulares}:
         \[ C(z_0,r_1,r_2) = \{ z\in\C\ \vert\ r_1 < d(z_0,z) < r_2 \}\,. \]
-  \item El módulo $|z|$ es la distancia del origen al punto $z$
-  \item El conjugado $\conj{z}$ es la reflexión de $z$ respecto al eje real
-  \item La suma $z_1 + z_2$ corresponde a la suma vectorial en el plano
+  \item El \textbf{módulo} es la distancia del origen al punto, $|z|=d(0, z)$.
+  \item El \textbf{conjugado} es la reflexión de respecto al eje real.
+  \item La \textbf{suma} corresponde a la suma vectorial en el plano.
 \end{itemize}
 
-Es conveniente observar que la multiplicación por un número complejo $z = re^{i\theta}$ tiene dos efectos geométricos:
+Es conveniente observar, como se aprecia en la figura~\ref{fig:producto_complejo} que la multiplicación de números complejos tiene dos efectos geométricos:
 \begin{itemize}
-  \item Una rotación de ángulo $\theta$ alrededor del origen.
-  \item Si $r < 1$, es una contracción (acercamiento al origen).
-  \item Si $r > 1$, es una dilatación (alejamiento del origen).
+  \item Una rotación de ángulo la suma de los argumentos.
+  \item Una multiplicación de los módulos.
 \end{itemize}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.5\textwidth]{imgs/producto_complejo.png}
+  \caption{Producto de dos números complejos $2e^{i\frac{\pi}{6}}$ y $3e^{i\frac{\pi}{4}}$. Fuente: Elaboración propia con Geogebra.}
+  \label{fig:producto_complejo}
+\end{figure}
 
 \subsection{Funciones complejas elementales}
 
@@ -247,60 +298,60 @@ Es conveniente observar que la multiplicación por un número complejo $z = re^{
   Sea $A$ un subconjunto de $\C$. Una \textbf{función compleja} es una función $f\colon A\to\C$ que toma valores complejos. Como $\C = \R\oplus i\R$, toda función compleja puede escribirse de forma única como $f = u+iv$, donde $u,v\colon A\to\R$ son funciones reales, llamadas respectivamente \textbf{parte real}, $u = \Rp(f)$, y \textbf{parte imaginaria}, $v = \Ip(f)$, de $f$.
 \end{defi}
 
+Ya hemos usado la función exponencial para expresar su valor con exponente un número complejo, pero podemos obtener la formulación analítica de la función exponencial, extendiendo la correspondiente función analítica de la exponencial real.
+
 \begin{defi}[Función exponencial compleja]
   Para $z \in \C$, la función exponencial se define como:
   $$e^z = \sum_{n=0}^{\infty} \frac{z^n}{n!}$$
 \end{defi}
 
+La función exponencial compleja, cumple las mismas propiedades que la exponencial real en cuanto a las manipulaciones algebraicas:
+
+\begin{prop}
+  Sean $z$ y $w$ dos números complejos, se cumple:
+  \begin{itemize}
+    \item $e^{z+w} = e^z e^w$.
+    \item $(e^z)^n = e^{nz}\ \forall n\in\N$.
+  \end{itemize}
+\end{prop}
+
+A partir de la definición de la función exponencial y usando la fórmula de Euler~\eqref{eq:formula-euler}, podemos definir analíticamente también las funciones seno y coseno para números complejos.
+
 \begin{defi}[Funciones trigonométricas complejas]
   Para $z \in \C$, las funciones seno y coseno se definen como:
   \begin{align*}
-    \cos z & = \frac{e^{iz} + e^{-iz}}{2}  \\
-    \sin z & = \frac{e^{iz} - e^{-iz}}{2i}
+    \cos (z) & = \frac{e^{iz} + e^{-iz}}{2}\,.  \\
+    \sin (z) & = \frac{e^{iz} - e^{-iz}}{2i}\,.
   \end{align*}
 \end{defi}
 
-\subsection{Amplitud cuántica}
+\subsection{Matemáticas cuánticas}
+
+En el contexto de la mecánica cuántica, un número complejo se describe como una amplitud cuántica que está formado por un par de números llamados amplitud y fase, que no son más que el módulo y un argumento.
 
 \begin{defi}
-  En el contexto de la mecánica cuántica, se denota por \textbf{amplitud} a un número complejo $\alpha \in \C$ que describe la probabilidad de que un sistema cuántico se encuentre en un estado particular tras una medición. La amplitud viene determinada por dos componentes:
+  Se denota por \textbf{amplitud cuántica} a un número complejo $\alpha \in \C$ que está caracterizado por dos valores:
   \begin{itemize}
-    \item \textbf{Magnitud}: $r = |\alpha|$ que determina la probabilidad del valor medido, $P = r^2 = |\alpha|^2$.
-    \item \textbf{Fase}: $\theta = \arg(\alpha)$ que interviene en los procesos de interferencia cuántica.
+    \item \textbf{Magnitud}: Igual al módulo $|\alpha|$.
+    \item \textbf{Fase}: Pertenece al argumento $\arg(\alpha)$.
   \end{itemize}
 \end{defi}
 
-\begin{eje}[Amplitudes con igual probabilidad, diferente fase]
-  Considere estas tres amplitudes:
-  \begin{align}
-    \alpha_1 & = \frac{1}{\sqrt{2}} = \frac{1}{\sqrt{2}}e^{i \cdot 0} \\
-    \alpha_2 & = \frac{i}{\sqrt{2}} = \frac{1}{\sqrt{2}}e^{i\pi/2}    \\
-    \alpha_3 & = \frac{-1}{\sqrt{2}} = \frac{1}{\sqrt{2}}e^{i\pi}
-  \end{align}
+Por lo tanto, dos amplitudes cuánticas son iguales si tienen la misma magnitud y su diferencia de fases es un múltiplo de $2\pi$.
 
-  Todas tienen:
-  \begin{itemize}
-    \item \textbf{Misma magnitud}: $|\alpha_1| = |\alpha_2| = |\alpha_3| = \frac{1}{\sqrt{2}}$.
-    \item \textbf{Fases diferentes}: $0, \frac{\pi}{2}, \pi$ respectivamente.
-  \end{itemize}
+\begin{eje}
+  Una amplitud cuántica de magnitud 2 con fase $\pi$ es igual a otra amplitud cuántica de magnitud 2 con fase $-\pi$.
 \end{eje}
 
-\begin{eje}[Interferencia cuántica: suma de amplitudes]
-  Cuando dos amplitudes se suman, sus fases determinan si interfieren constructiva o destructivamente:
+\begin{eje}[Interferencia cuántica]
+  Cuando dos amplitudes cuánticas interfieren, la amplitud cuántica resultante puede tener una fase menor, diremos entonces que las amplitudes interfieren de forma destructiva, si la fase resultante es mayor diremos que interfieren de forma constructiva:
 
-  \textbf{Interferencia constructiva} (fases iguales):
-  $$\alpha_1 + \alpha_2 = \frac{1}{\sqrt{2}} + \frac{1}{\sqrt{2}} = \frac{2}{\sqrt{2}} = \sqrt{2}$$
-  $$|\alpha_1 + \alpha_2|^2 = 2$$
+  \textbf{Interferencia destructiva}: Una amplitud cuántica de magnitud 2 con fase $\pi$ y otra amplitud cuántica de magnitud 2 con fase $\pi$ interfieren dando una amplitud cuántica de fase $0$.
 
-  \textbf{Interferencia destructiva} (fases opuestas):
-  $$\alpha_1 + \alpha_3 = \frac{1}{\sqrt{2}} + \frac{(-1)}{\sqrt{2}} = 0$$
-  $$|\alpha_1 + \alpha_3|^2 = 0$$
-
-  \textbf{Interferencia parcial} (fases en 90°):
-  $$\alpha_1 + \alpha_2 = \frac{1}{\sqrt{2}} + \frac{i}{\sqrt{2}} = \frac{1+i}{\sqrt{2}}$$
-  $$|\alpha_1 + \alpha_2|^2 = \left|\frac{1+i}{\sqrt{2}}\right|^2 = \frac{|1+i|^2}{2} = \frac{\sqrt{2}^2}{2} = 1$$
 \end{eje}
 
 \begin{info}
   La interferencia cuántica es el principio fundamental detrás de muchos algoritmos cuánticos: amplificamos las amplitudes de respuestas correctas e interferimos destructivamente con las incorrectas.
 \end{info}
+
+Al final una amplitud cuántica es la representación exponencial de un número complejo, y podemos trabajar con ellas usando las reglas vistas en este tema.
