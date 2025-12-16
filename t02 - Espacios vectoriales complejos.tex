@@ -2,27 +2,27 @@
 
 \begin{esquemaExplorador}
   \temaEsquema{Vectores complejos}{
-    \conceptoEsquema{Definición y representación}
-    \conceptoEsquema{Operaciones vectoriales}
-    \conceptoEsquema{Producto escalar complejo}
+    \conceptoEsquema{Definición y representación}{}
+    \conceptoEsquema{Operaciones vectoriales}{}
+    \conceptoEsquema{Producto escalar complejo}{}
   }
   \temaEsquema{Estructura algebraica}{
-    \conceptoEsquema{Axiomas de espacio vectorial}
-    \conceptoEsquema{Subespacios vectoriales}
-    \conceptoEsquema{Propiedades fundamentales}
+    \conceptoEsquema{Axiomas de espacio vectorial}{}
+    \conceptoEsquema{Subespacios vectoriales}{}
+    \conceptoEsquema{Propiedades fundamentales}{}
   }
   \temaEsquema{Dependencia e independencia}{
-    \conceptoEsquema{Combinaciones lineales}
-    \conceptoEsquema{Independencia lineal}
-    \conceptoEsquema{Sistemas generadores}
+    \conceptoEsquema{Combinaciones lineales}{}
+    \conceptoEsquema{Independencia lineal}{}
+    \conceptoEsquema{Sistemas generadores}{}
   }
   \temaEsquema{Bases y dimensión}{
-    \conceptoEsquema{Concepto de base}
-    \conceptoEsquema{Base canónica}
-    \conceptoEsquema{Dimensión finita}
+    \conceptoEsquema{Concepto de base}{}
+    \conceptoEsquema{Base canónica}{}
+    \conceptoEsquema{Dimensión finita}{}
   }
   \temaEsquema{Postulados de la mecánica cuántica}{
-    \conceptoEsquema{Postulado I: Estados cuánticos}
+    \conceptoEsquema{Postulado I: Estados cuánticos}{}
   }
 \end{esquemaExplorador}
 
@@ -30,286 +30,444 @@
 
 \subsection{Introducción y objetivos}
 
-En este tema desarrollaremos la teoría general de espacios vectoriales complejos, comenzando con vectores individuales y construyendo progresivamente hasta llegar a conceptos como bases, dimensión y subespacios.
+Un \textbf{espacio vectorial} es una estructura algebraica creada a partir de un conjunto no vacío, una operación interna llamada suma (definida para los elementos del conjunto) y una operación externa llamada producto por un escalar (definida entre dicho conjunto y otro conjunto con estructura de cuerpo) que satisface ocho propiedades fundamentales.
 
-En este tema sirve para repasar los conceptos fundamentales de espacios vectoriales en álgebra lineal, sin usar ninguna propiedad específica de los números complejos, aunque ya trabajamos siempre sobre el cuerpo $\C$.
+Los espacios vectoriales se concibieron como una herramienta de geometría afín gracias a la introducción de coordenadas en el plano o espacio tridimensional.
+Desde entonces, se ha visto que hay infinidad de espacios vectoriales además de \(\mathbb{R}^{n}\), como por ejemplo el espacio vectorial de las matrices o de los polinomios.
 
-Esta base teórica será fundamental para comprender en los próximos temas la manipulación de estados cuánticos como vectores.
+En este tema dejaremos los números reales de lado y usaremos los números complejos como cuerpo del espacio vectorial, presentaremos las principales definiciones y resultados relacionados con los espacios vectoriales, usando multitud de ejemplos para ofrecer una mejor comprensión de los conceptos abordados.
 
-\subsection{Vectores complejos}
+Más concretamente, los objetivos que trataremos de alcanzar en este tema
+serán los siguientes:
 
-\begin{defi}[Vector complejo]
-  Un vector complejo de dimensión $n$ es una $n$-tupla ordenada de números complejos:
-  $$\mathbf{v} = \begin{pmatrix} v_1 \\ v_2 \\ \vdots \\ v_n \end{pmatrix}$$
-  donde $v_1, v_2, \ldots, v_n \in \C$.
+\begin{itemize}
+  \item Comprobar si cierto conjunto dotado de dos operaciones es o no espacio vectorial, así como verificar que cierto subconjunto es subespacio.
+  \item Razonar si una colección de vectores es linealmente independiente y si conforma o no un sistema generador o una base de cierto espacio vectorial.
+  \item Hallar el mínimo número de vectores que se necesitan para formar base de un subespacio vectorial y usarlo para obtener la dimensión del espacio.
+  \item Saber cómo expresar vectores con bases diferentes y el procedimiento para relacionar dichas representaciones.
+  \item Calcular la intersección y suma de subespacios.
+\end{itemize}
 
-  El conjunto de todos los vectores complejos de dimensión $n$ se denota por $\C^n$.
+Esta base teórica será fundamental para comprender en los próximos temas la manipulación cde estados cuánticos como vectores.
+
+\subsection{Espacios y subespacios vectoriales}
+
+\begin{defi}
+  Sea $\K$ un conjunto no vacio junto con una operación interna ($\circ$).
+  Diremos que $(\K, \circ)$ es un \textbf{grupo} si verifica:
+  \begin{enumerate}
+    \item[\likeitem{G1}] La propiedad \textbf{asociativa}.
+          \[
+            \forall a,b,c\in\K\Rightarrow a\circ(b\circ c) = (a\circ b)\circ c
+          \]
+    \item[\likeitem{G2}] La propiedad \textbf{conmutativa}.
+          \[
+            \forall a,b\in\K\Rightarrow a\circ b = b\circ a
+          \]
+    \item[\likeitem{G3}] La existencia de \textbf{neutro}.
+          \[
+            \exists! N\in\K \mid\forall a\in\K \Rightarrow a\circ N = a
+          \]
+    \item[\likeitem{G4}] La existencia de \textbf{opuesto}.
+          \[
+            \forall a\in\K\Rightarrow \exists! O\in\K \mid a\circ O = N
+          \]
+  \end{enumerate}
 \end{defi}
 
-\begin{defi}[Operaciones vectoriales]
-  Sean $\mathbf{u}, \mathbf{v} \in \C^n$ y $\alpha \in \C$. Definimos:
+Como ejemplos de grupos tenemos:
+\begin{itemize}
+  \item $(\Z, +)$, $(\R, +)$, $(\C, +)$.
+  \item $(\R^*, \cdot)$, $(\C^*, \cdot)$.
+  \item El conjunto de matrices invertibles con la operación de multiplicación.
+  \item El conjunto de permutaciones de $n$ elementos con la operación de composición.
+  \item Las funciones biyectivas de un conjunto en sí mismo con la operación de composición.
+\end{itemize}
 
-  \textbf{Suma de vectores:}
-  $$\mathbf{u} + \mathbf{v} = \begin{pmatrix} u_1 + v_1 \\ u_2 + v_2 \\ \vdots \\ u_n + v_n \end{pmatrix}$$
-
-  \textbf{Producto por escalar:}
-  $$\alpha \mathbf{v} = \begin{pmatrix} \alpha v_1 \\ \alpha v_2 \\ \vdots \\ \alpha v_n \end{pmatrix}$$
+\begin{defi}
+  Sea $\K$ un conjunto no vacio junto con las operaciones internas de suma (+) y multiplicación ($\cdot$).
+  Diremos que $(\K, +, \cdot)$ es un \textbf{cuerpo} si verifica:
+  \begin{enumerate}
+    \item[\likeitem{C1}] $\K$ con la suma es un grupo.
+    \item[\likeitem{C2}] $\K\setminus\{0\}$ con la multiplicación es un grupo.
+    \item[\likeitem{C3}] La propiedad \textbf{distributiva} de la multiplicación respecto de la suma.
+          \[
+            \forall a,b,c\in\K\Rightarrow a\cdot(b+c) = a\cdot b + a\cdot c
+          \]
+  \end{enumerate}
 \end{defi}
 
-\begin{eje}[Operaciones básicas en $\C^3$]
-  Sean $\mathbf{u} = \begin{pmatrix} 1+i \\ 2 \\ 3-i \end{pmatrix}$ y $\mathbf{v} = \begin{pmatrix} 2-i \\ 1+2i \\ -1 \end{pmatrix}$. Entonces:
-
-  $$\mathbf{u} + \mathbf{v} = \begin{pmatrix} (1+i)+(2-i) \\ 2+(1+2i) \\ (3-i)+(-1) \end{pmatrix} = \begin{pmatrix} 3 \\ 3+2i \\ 2-i \end{pmatrix}$$
-
-  $$i \mathbf{u} = \begin{pmatrix} i(1+i) \\ i \cdot 2 \\ i(3-i) \end{pmatrix} = \begin{pmatrix} i-1 \\ 2i \\ 3i+1 \end{pmatrix}$$
-\end{eje}
-
-\subsection{Estructura de espacio vectorial complejo}
-
-\begin{defi}[Espacio vectorial complejo]
-  Un espacio vectorial complejo es un conjunto $V$ equipado con dos operaciones:
-  \begin{itemize}
-    \item Una operación de suma: $V \times V \to V$, denotada $(\mathbf{u}, \mathbf{v}) \mapsto \mathbf{u} + \mathbf{v}$
-    \item Una operación de producto por escalar: $\C \times V \to V$, denotada $(\alpha, \mathbf{v}) \mapsto \alpha \mathbf{v}$
-  \end{itemize}
-  que satisfacen los siguientes axiomas para todos $\mathbf{u}, \mathbf{v}, \mathbf{w} \in V$ y $\alpha, \beta \in \C$:
-\end{defi}
-
+Por regla general, siempre usamos la siguiente notación, con independencia de cuales son los componentes del cuerpo o de la operación que le da su estructura de cuerpo.
 \begin{enumerate}
-  \item \textbf{Axiomas de la suma:}
-        \begin{itemize}
-          \item (A1) $\mathbf{u} + \mathbf{v} = \mathbf{v} + \mathbf{u}$ (conmutatividad)
-          \item (A2) $(\mathbf{u} + \mathbf{v}) + \mathbf{w} = \mathbf{u} + (\mathbf{v} + \mathbf{w})$ (asociatividad)
-          \item (A3) Existe $\mathbf{0} \in V$ tal que $\mathbf{v} + \mathbf{0} = \mathbf{v}$ (elemento neutro)
-          \item (A4) Para cada $\mathbf{v} \in V$ existe $-\mathbf{v} \in V$ tal que $\mathbf{v} + (-\mathbf{v}) = \mathbf{0}$ (elemento opuesto)
-        \end{itemize}
-
-  \item \textbf{Axiomas del producto por escalar:}
-        \begin{itemize}
-          \item (M1) $\alpha(\beta \mathbf{v}) = (\alpha\beta)\mathbf{v}$ (asociatividad mixta)
-          \item (M2) $1 \cdot \mathbf{v} = \mathbf{v}$ (elemento neutro multiplicativo)
-        \end{itemize}
-
-  \item \textbf{Axiomas de distributividad:}
-        \begin{itemize}
-          \item (D1) $\alpha(\mathbf{u} + \mathbf{v}) = \alpha\mathbf{u} + \alpha\mathbf{v}$ (distributividad del escalar respecto a la suma vectorial)
-          \item (D2) $(\alpha + \beta)\mathbf{v} = \alpha\mathbf{v} + \beta\mathbf{v}$ (distributividad de la suma escalar)
-        \end{itemize}
+  \item Al neutro de la suma y la multiplicación lo denotamos por $0$ y $1$ respectivamente.
+  \item Al elemento opuesto de $a$ para la suma lo denotamos $-a$.
+  \item Al elemento opuesto (inverso) de $a$ para la multiplicación lo denotamos $a^{-1}$.
 \end{enumerate}
 
-\begin{eje}[Espacios vectoriales complejos]
+Ejemplos de cuerpos infinitos tenemos $\Q, \R, \C$ y de cuerpos finitos $\Z_p$ para $p\in\N$ primo.
+Pero no todos los cuerpos son numéricos, si consideramos un polinomio de grado 1 $p(x)=x-\alpha$ con $\alpha\in\R^*$, entonces bajo la relación de equivalencia de la aritmética residual, el conjunto conciente $\R[X]/ p(x)$ es un cuerpo.
+
+\begin{defi}
+  Sea $\K$ un cuerpo.
+  Un \textbf{espacio vectorial} sobre $\K$, o un $\K$-espacio vectorial, es un conjunto $\V$ no vacío junto con
+  la operaciónes de suma interna sobre $\V$ y la operación multiplicación externa sobre $\V$ por elementos de $\K$, que
+  verifica:
   \begin{enumerate}
-    \item $\C^n$ con las operaciones estándar es un espacio vectorial complejo.
-    \item El conjunto de polinomios complejos de grado menor o igual que $n$:
-          $$\mathcal{P}_n(\C) = \{a_0 + a_1 z + a_2 z^2 + \cdots + a_n z^n : a_0, a_1, \ldots, a_n \in \C\}$$
-    \item El conjunto de matrices complejas $m \times n$: $\C^{m \times n}$
-    \item El conjunto de funciones complejas continuas en un intervalo: $\mathcal{C}([a,b], \C)$
+    \item[\likeitem{E1}] $\V$ con la suma es un grupo.
+    \item[\likeitem{E2}] Distributiva de la multiplicación en $\K$ con respecto a la suma en $\V$.
+          \[
+            \forall k \in\K\ \forall u,v \in\V\Rightarrow k(u + v) = ku + kv
+          \]
+    \item[\likeitem{E3}] Linealidad.
+          \[
+            \forall k_{1},k_{2} \in\K\ \forall u \in\V\Rightarrow (k_{1} + k_{2})u = k_{1}u + k_{2}u
+          \]
+    \item[\likeitem{E4}] Asociativa.
+          \[
+            \forall k_{1},k_{2} \in\K\ \forall u \in\V\Rightarrow (k_{1}k_{2})u = k_{1}(k_{2}u)
+          \]
+    \item[\likeitem{E5}] Neutro.
+          \[
+            \forall u \in\V\Rightarrow 1u = u
+          \]
   \end{enumerate}
+
+  A los elementos del espacio vectorial $\V$ se les llama  \textbf{vectores} y a los elementos del cuerpo $\K$ se les llama \textbf{escalares}.
+\end{defi}
+
+\begin{eje}
+  $\C^n$ es un espacio vectorial sobre $\C$, con las operaciones usuales:
+  \begin{align*}
+    (x_1,\dots, x_n)
+    + ( y_1,\dots, y_n) & = ( x_1 + y_1,\dots, x_n + y_n) \\
+    k(x_{1},\dots,x_n)  & = (kx_1,\dots, kx_n)
+  \end{align*}
+  para $k \in\C$ y $(x_1, \dots, x_n), (y_1,\dots, y_n)\in\C^n$.
 \end{eje}
 
-\begin{prop}
-  En todo espacio vectorial complejo $V$:
-  \begin{enumerate}
-    \item El elemento neutro $\mathbf{0}$ es único
-    \item Para cada $\mathbf{v} \in V$, el opuesto $-\mathbf{v}$ es único
-    \item $0 \cdot \mathbf{v} = \mathbf{0}$ para todo $\mathbf{v} \in V$
-    \item $\alpha \cdot \mathbf{0} = \mathbf{0}$ para todo $\alpha \in \C$
-    \item Si $\alpha \mathbf{v} = \mathbf{0}$, entonces $\alpha = 0$ o $\mathbf{v} = \mathbf{0}$
-  \end{enumerate}
-\end{prop}
+\begin{eje}
+  Las soluciones de un sistema homogéneo de ecuaciones lineales sobre un cuerpo $\K$.
+\end{eje}
 
-\subsection{Subespacios vectoriales}
+\begin{eje}
+  Los polinomios en una variable con coeficientes en un cuerpo $\K$
+  \[
+    K\lbrack x\rbrack = \set{ a_{0} + a_{1}x + a_{2}x^{2} + \cdots + a_{n}x^{n} + \cdots\ \ |\ \ a_{i} \in\K,\ \forall i}
+  \]
+\end{eje}
 
-\begin{defi}[Subespacio vectorial]
-  Sea $V$ un espacio vectorial complejo. Un subconjunto $W \subseteq V$ es un subespacio vectorial de $V$ si:
+\begin{eje}
+  El conjunto de matrices $M_{m \times n}(\K)$.
+\end{eje}
+
+\begin{eje}
+  Si $\K$ es un cuerpo, también podemos verlo como un espacio vectorial sobre sí mismo.
+\end{eje}
+
+\subsection{Subespacio vectorial}
+
+A partir de este momento, nos centraremos en espacios vectoriales sobre el cuerpo de los números complejos, es decir, en \(\C\)-espacios vectoriales. No obstante, la mayoría de los resultados que se presentarán son válidos para espacios vectoriales sobre cualquier cuerpo.
+
+Además no vamos a volver a repetir que el espacio vectorial es sobre \(\C\), por lo que cuando hablemos de espacio vectorial, nos estaremos refiriendo a un \(\C\)-espacio vectorial.
+
+\begin{defi}
+  Sea $\V$ un espacio vectorial.
+  Diremos que $U \subseteq\V$ es un \textbf{subespacio vectorial} de $\V$ si:
   \begin{enumerate}
-    \item $\mathbf{0} \in W$ (contiene el vector cero)
-    \item Si $\mathbf{u}, \mathbf{v} \in W$, entonces $\mathbf{u} + \mathbf{v} \in W$ (cerrado bajo la suma)
-    \item Si $\mathbf{v} \in W$ y $\alpha \in \C$, entonces $\alpha \mathbf{v} \in W$ (cerrado bajo el producto por escalar)
+    \item $\forall u,v \in U$ entonces \(u + v \in U\).
+    \item \(\forall u \in U\) y \(k \in \C\) entonces \(ku \in U\).
   \end{enumerate}
 \end{defi}
 
-\begin{eje}[Subespacios de $\C^3$]
-  \begin{enumerate}
-    \item $W_1 = \left\{\begin{pmatrix} x \\ y \\ 0 \end{pmatrix} : x, y \in \C\right\}$ (el "plano xy")
+Un subespacio vectorial es un subconjunto cerrado para las operaciones de suma y producto por un escalar.
 
-    \item $W_2 = \left\{\begin{pmatrix} x \\ y \\ z \end{pmatrix} \in \C^3 : x + y - z = 0\right\}$ (un plano que pasa por el origen)
-  \end{enumerate}
+\begin{prop}
+  Sea $\V$ un espacio vectorial.
+  Todo subespacio vectorial de $\V$ es también un espacio vectorial.
+\end{prop}
+
+\begin{eje}
+  \begin{itemize}
+    \item La recta con ecuación \(\Ip(z) = 0\) es un subespacio vectorial de \(\mathbb{C}\).
+    \item Las matrices triangulares inferiores forman un subespacio de \({M}_{n}(\C)\).
+    \item Los polinomios de grado $n$ forman un subespacio de \(\C[X]\).
+  \end{itemize}
 \end{eje}
 
 \begin{theo}[Caracterización de subespacios]
   Un subconjunto no vacío $W$ de un espacio vectorial $V$ es un subespacio si y solo si es cerrado bajo combinaciones lineales, es decir:
-  $$\alpha \mathbf{u} + \beta \mathbf{v} \in W \quad \text{para todos } \mathbf{u}, \mathbf{v} \in W \text{ y } \alpha, \beta \in \C$$
+  $$\alpha u + \beta v \in W \quad \text{para todos } u, v \in W \text{ y } \alpha, \beta \in \C$$
 \end{theo}
 
-\subsection{Combinaciones lineales e independencia lineal}
+\subsection{Combinaciones lineales y sistemas generadores}
 
 \begin{defi}[Combinación lineal]
-  Sea $V$ un espacio vectorial complejo y sean $\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_k \in V$. Una combinación lineal de estos vectores es un vector de la forma:
-  $$\alpha_1 \mathbf{v}_1 + \alpha_2 \mathbf{v}_2 + \cdots + \alpha_k \mathbf{v}_k$$
+  Sea $V$ un espacio vectorial. Una \textbf{combinación lineal} de los vectores $v_1, v_2, \ldots, v_k \in V$, es un vector de la forma
+  $$\alpha_1 v_1 + \alpha_2 v_2 + \cdots + \alpha_k v_k,$$
   donde $\alpha_1, \alpha_2, \ldots, \alpha_k \in \C$.
 \end{defi}
 
 \begin{defi}[Subespacio generado]
-  El subespacio generado por los vectores $\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_k$ es:
-  $$\text{gen}\{\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_k\} = \left\{\sum_{i=1}^k \alpha_i \mathbf{v}_i : \alpha_1, \ldots, \alpha_k \in \C\right\}$$
-\end{defi}
-
-\begin{eje}[Subespacio generado en $\C^3$]
-  Sea $S = \left\{\begin{pmatrix} 1 \\ 0 \\ i \end{pmatrix}, \begin{pmatrix} i \\ 1 \\ 0 \end{pmatrix}\right\}$. Entonces:
-
-  $$\text{gen}(S) = \left\{\alpha \begin{pmatrix} 1 \\ 0 \\ i \end{pmatrix} + \beta \begin{pmatrix} i \\ 1 \\ 0 \end{pmatrix} : \alpha, \beta \in \C\right\} = \left\{\begin{pmatrix} \alpha + \beta i \\ \beta \\ \alpha i \end{pmatrix} : \alpha, \beta \in \C\right\}$$
-\end{eje}
-
-\begin{defi}[Independencia lineal]
-  Los vectores $\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_k$ en un espacio vectorial $V$ son linealmente independientes si la única solución de la ecuación:
-  $$\alpha_1 \mathbf{v}_1 + \alpha_2 \mathbf{v}_2 + \cdots + \alpha_k \mathbf{v}_k = \mathbf{0}$$
-  es $\alpha_1 = \alpha_2 = \cdots = \alpha_k = 0$.
-
-  En caso contrario, se dice que son linealmente dependientes.
+  Sea $V$ un espacio vectorial. El subespacio generado por los vectores $v_1, v_2, \ldots, v_k\in V$ es
+  $$\text{gen}\{v_1, v_2, \ldots, v_k\} = \left\{\sum_{i=1}^k \alpha_i v_i \mid \alpha_1, \ldots, \alpha_k \in \C\right\}\,.$$
 \end{defi}
 
 \begin{eje}
-  Determinar si los vectores $\mathbf{v}_1 = \begin{pmatrix} 1 \\ i \\ 0 \end{pmatrix}$, $\mathbf{v}_2 = \begin{pmatrix} i \\ 0 \\ 1 \end{pmatrix}$, $\mathbf{v}_3 = \begin{pmatrix} 1+i \\ i \\ 1 \end{pmatrix}$ son linealmente independientes.
+  Consideremos el espacio vectorial $\C^3$ y los vectores $v_1 = (1, 0, i)$ y $v_2 = (i, 1, 0)$, el subespacio vectorial generado por $S = \{v_1, v_2\}$ es
+  $$\text{gen}(S) = \left\{\alpha (1, 0, i) + \beta (i, 1, 0) \mid \alpha, \beta \in \C\right\} = \left\{( \alpha + \beta i, \beta, \alpha i) \mid \alpha, \beta \in \C\right\}\,.$$
+\end{eje}
 
-  \textbf{Solución:} Planteamos la ecuación:
-  $$\alpha_1 \begin{pmatrix} 1 \\ i \\ 0 \end{pmatrix} + \alpha_2 \begin{pmatrix} i \\ 0 \\ 1 \end{pmatrix} + \alpha_3 \begin{pmatrix} 1+i \\ i \\ 1 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}$$
+\begin{defi}[Independencia lineal]
+  Los vectores $v_1, v_2, \ldots, v_k$ en un espacio vectorial $V$ son \textbf{linealmente independientes} si la única solución de la ecuación:
+  $$\alpha_1 v_1 + \alpha_2 v_2 + \cdots + \alpha_k v_k = 0\,,$$
+  es $\alpha_1 = \alpha_2 = \cdots = \alpha_k = 0$.
 
-  Esto nos da el sistema:
+  En caso contrario, se dice que son \textbf{linealmente dependientes}.
+\end{defi}
+
+\begin{eje}
+  Determinar si los vectores $v_1 = (1, i, 0)$, $v_2 = (i, 0, 1)$, $v_3 = (1+i, i, 1)$ de $\C^3$ son linealmente independientes.
+
+  \textbf{Solución:} Planteamos la ecuación
+  $$\alpha_1 (1, i, 0) + \alpha_2 (i, 0, 1) + \alpha_3 (1+i, i, 1) = (0, 0, 0)\,,$$
+  que nos lleva al sistema de ecuaciones
   \begin{align}
-    \alpha_1 + i\alpha_2 + (1+i)\alpha_3 & = 0 \\
-    i\alpha_1 + i\alpha_3                & = 0 \\
-    \alpha_2 + \alpha_3                  & = 0
+    \alpha_1 + i\alpha_2 + (1+i)\alpha_3 & = 0    \\
+    i\alpha_1 + i\alpha_3                & = 0    \\
+    \alpha_2 + \alpha_3                  & = 0\,.
   \end{align}
 
   De la segunda ecuación: $\alpha_3 = -\alpha_1$. De la tercera: $\alpha_2 = -\alpha_3 = \alpha_1$. Sustituyendo en la primera:
-  $$\alpha_1 + i\alpha_1 + (1+i)(-\alpha_1) = \alpha_1 + i\alpha_1 - \alpha_1 - i\alpha_1 = 0$$
+  $$\alpha_1 + i\alpha_1 + (1+i)(-\alpha_1) = \alpha_1 + i\alpha_1 - \alpha_1 - i\alpha_1 = 0\,.$$
 
   Esta ecuación se satisface para cualquier $\alpha_1$, por lo que los vectores son linealmente dependientes.
 \end{eje}
 
 \begin{prop}
   \begin{enumerate}
-    \item Un conjunto que contiene el vector cero es linealmente dependiente
-    \item Si un subconjunto de vectores es linealmente dependiente, entonces el conjunto completo es linealmente dependiente
-    \item Si un conjunto de vectores es linealmente independiente, entonces cualquier subconjunto también lo es
-    \item En $\C^n$, cualquier conjunto de más de $n$ vectores es linealmente dependiente
+    \item Un conjunto que contiene el vector cero es linealmente dependiente.
+    \item Si un conjunto, tiene un subconjunto de vectores linealmente dependiente, entonces el conjunto es linealmente dependiente.
+    \item Si un conjunto es linealmente independiente, entonces cualquier subconjunto también lo es.
+    \item En $\C^n$, cualquier conjunto de más de $n$ vectores es linealmente dependiente.
+    \item En $\C^n$, cualquier conjunto linealmente independiente tiene a lo sumo $n$ vectores.
   \end{enumerate}
 \end{prop}
 
 \subsection{Bases y dimensión}
 
 \begin{defi}[Base]
-  Un conjunto $\mathcal{B} = \{\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_n\}$ de vectores en un espacio vectorial $V$ es una base de $V$ si:
+  Un conjunto $\mathcal{B} = \{v_1, v_2, \ldots, v_n\}$ de vectores en un espacio vectorial $V$ es una \textbf{base} de $V$ si:
   \begin{enumerate}
-    \item $\mathcal{B}$ es linealmente independiente
-    \item $\text{gen}(\mathcal{B}) = V$ (genera todo el espacio)
+    \item $\mathcal{B}$ es linealmente independiente.
+    \item $\text{gen}(\mathcal{B}) = V$.
   \end{enumerate}
 \end{defi}
 
 \begin{eje}[Base canónica de $\C^n$]
-  La base canónica (o estándar) de $\C^n$ es:
-  $$\mathbf{e}_1 = \begin{pmatrix} 1 \\ 0 \\ \vdots \\ 0 \end{pmatrix}, \mathbf{e}_2 = \begin{pmatrix} 0 \\ 1 \\ \vdots \\ 0 \end{pmatrix}, \ldots, \mathbf{e}_n = \begin{pmatrix} 0 \\ 0 \\ \vdots \\ 1 \end{pmatrix}$$
+  La base canónica (o estándar) de $\C^n$ es
+  $$e_1 = (1, 0, \ldots, 0), e_2 = (0, 1, \ldots, 0), \ldots, e_n = (0, 0, \ldots, 1)\,.$$
 
-  Cualquier vector $\mathbf{v} = \begin{pmatrix} v_1 \\ v_2 \\ \vdots \\ v_n \end{pmatrix} \in \C^n$ se puede escribir como:
-  $$\mathbf{v} = v_1 \mathbf{e}_1 + v_2 \mathbf{e}_2 + \cdots + v_n \mathbf{e}_n$$
+  Cualquier vector $v = (v_1, v_2, \ldots, v_n) \in \C^n$ se puede escribir como:
+  $$v = v_1 e_1 + v_2 e_2 + \cdots + v_n e_n\,.$$
 \end{eje}
+\begin{prop}
+  Sea $V$ un espacio vectorial y $\mathcal{B}_1$ y $\mathcal{B}_2$ dos bases de $V$. Entonces, $\mathcal{B}_1$ y $\mathcal{B}_2$ tienen el mismo número de elementos.
+\end{prop}
 
 \begin{theo}[Existencia y unicidad de representación]
-  Si $\mathcal{B} = \{\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_n\}$ es una base de un espacio vectorial $V$, entonces todo vector $\mathbf{v} \in V$ se puede escribir de manera única como:
-  $$\mathbf{v} = \alpha_1 \mathbf{v}_1 + \alpha_2 \mathbf{v}_2 + \cdots + \alpha_n \mathbf{v}_n$$
-  Los escalares $\alpha_1, \alpha_2, \ldots, \alpha_n$ se llaman las coordenadas de $\mathbf{v}$ respecto a la base $\mathcal{B}$.
+  Si $\mathcal{B} = \{v_1, v_2, \ldots, v_n\}$ es una base de un espacio vectorial $V$, entonces todo vector $v \in V$ se puede escribir de manera única como
+  $$v = \alpha_1 v_1 + \alpha_2 v_2 + \cdots + \alpha_n v_n\,.$$
+  Los escalares $\alpha_1, \alpha_2, \ldots, \alpha_n$ se llaman las coordenadas de $v$ respecto a la base $\mathcal{B}$.
 \end{theo}
 
 \begin{defi}[Dimensión]
-  La dimensión de un espacio vectorial $V$ es el número de vectores en cualquiera de sus bases. Se denota $\dim(V)$.
-
-  Si $V$ tiene una base finita, se dice que $V$ es finito-dimensional. En caso contrario, es infinito-dimensional.
+  La dimensión de un espacio vectorial $V$ es el número de vectores en cualquiera de sus bases y se denota por $\dim(V)$.
 \end{defi}
 
+El concepto de dimensión es fundamental en álgebra lineal, ya que proporciona una medida del tamaño o grado de libertad del espacio vectorial. Un espacio vectorial puede ser de dimensión finita o infinita, dependiendo de si tiene una base con un número finito o infinito de vectores. En este curso solo consideraremos espacios vectoriales de dimensión finita y así daremos por entendido cada vez que se mencione una base o dimensión.
+
+\begin{nota}
+  Sólo vamos a considerar espacios vectoriales de dimensión finita, es decir, aquellos que tienen una base con un número finito de vectores. El tratamiento de espacios vectoriales de dimensión infinita requiere herramientas adicionales que no son necesarias para los objetivos de este curso.
+\end{nota}
+
 \begin{theo}[Propiedades fundamentales de la dimensión]
-  Sea $V$ un espacio vectorial complejo de dimensión finita. Entonces:
+  Sea $V$ un espacio vectorial de dimensión $n$. Entonces:
   \begin{enumerate}
-    \item Todas las bases de $V$ tienen el mismo número de elementos
-    \item Si $\dim(V) = n$, entonces cualquier conjunto linealmente independiente de $n$ vectores es una base
-    \item Si $\dim(V) = n$, entonces cualquier conjunto generador de $n$ vectores es una base
-    \item Si $W$ es un subespacio de $V$, entonces $\dim(W) \leq \dim(V)$
+    \item Cualquier conjunto linealmente independiente de $n$ vectores es una base.
+    \item Cualquier conjunto generador de $n$ vectores es una base.
+    \item Si $W$ es un subespacio de $V$, entonces $\dim(W) \leq \dim(V)$.
   \end{enumerate}
 \end{theo}
 
-\begin{eje}[Encontrando una base]
-  Encontrar una base para el subespacio $W$ de $\C^4$ definido por:
-  $$W = \left\{\begin{pmatrix} x \\ y \\ z \\ w \end{pmatrix} \in \C^4 : x + y - z = 0, \quad 2x - y + w = 0\right\}$$
-
-  \textbf{Solución:} De las ecuaciones del sistema:
-  \begin{align}
+\begin{eje}
+  Queremos encontrar una base para el subespacio $W$ de $\C^4$ definido por
+  $$W = \left\{(x, y, z, w) \in \C^4 \mid x + y - z = 0, \, 2x - y + w = 0\right\}$$
+  De las ecuaciones que definen $W$, podemos expresar $z$ y $w$ en función de $x$ e $y$.
+  \begin{align*}
     x + y - z  & = 0 \Rightarrow z = x + y  \\
     2x - y + w & = 0 \Rightarrow w = y - 2x
-  \end{align}
+  \end{align*}
+  Por tanto, los vectores en $W$ tienen la forma $(x, y, x+y, y-2x)$ que podemos expresar como combinación lineal de dos vectores
+  $$(x, y, x+y, y-2x) = x(1, 0, 1, -2) + y(0, 1, 1, 1)$$
+  Esta expresión muestra que cualquier vector en $W$ puede generarse a partir de los vectores $(1, 0, 1, -2)$ y $(0, 1, 1, 1)$. Es decir, $W = \text{gen}\{(1, 0, 1, -2), (0, 1, 1, 1)\}$.
 
-  Por tanto:
-  $$W = \left\{\begin{pmatrix} x \\ y \\ x+y \\ y-2x \end{pmatrix} : x, y \in \C\right\} = \left\{x\begin{pmatrix} 1 \\ 0 \\ 1 \\ -2 \end{pmatrix} + y\begin{pmatrix} 0 \\ 1 \\ 1 \\ 1 \end{pmatrix} : x, y \in \C\right\}$$
+  Por último tenemos que verificar que los vectores encontrados son linealmente independientes, para ello tomemos una combinación lineal que dé el vector cero
+  \[
+    \alpha(1, 0, 1, -2) + \beta(0, 1, 1, 1) = (0, 0, 0, 0)\,.
+  \]
+  De la primera coordenada, obtenemos directamente que $\alpha = 0$, y de la segunda coordenada que $\beta = 0$, lo cual demuestra que los vectores son linealmente independientes.
 
-  Una base para $W$ es $\left\{\begin{pmatrix} 1 \\ 0 \\ 1 \\ -2 \end{pmatrix}, \begin{pmatrix} 0 \\ 1 \\ 1 \\ 1 \end{pmatrix}\right\}$ y $\dim(W) = 2$.
+  Así hemos encontrado un conjunto de vectores linealmente independientes y generador de $W$, es decir, una base.
+
+  Por último podemos afirmar que $\dim(W) = 2$.
 \end{eje}
 
-\subsection{Primer postulado de la mecánica cuántica}
+Una de las razones por las cuales es importante el concepto de base de un espacio vectorial, es porque de esta manera podemos caracterizar cualquier elemento del espacio vectorial en función de los coeficientes usados al ser expresado como combinación lineal de los elementos de la base.
 
-Ahora que hemos establecido la teoría de espacios vectoriales complejos, podemos formular matemáticamente el primer postulado fundamental de la mecánica cuántica.
+A las coordenadas \(v_{1},\dots, v_{n}\) de \(v \in\V\) en la base $\mathcal{B}$  las representamos como un vector de $\C^n$ donde usaremos la notación \({v = (v_{1},\dots,v_{n})}_{\mathcal{B}} \in \C^n\).
+Cuando no se exprese la base, estamos queriendo decir que usamos la base canónica de $\V$.
 
-\begin{resaltado}
-  \textbf{Postulado I: Estados cuánticos.}
+Elegir una base para un espacio vectorial de dimensión $n$ es equivalente a elegir un sistema de coordenadas para \(\C^n\).
 
-  El estado de un sistema cuántico se describe completamente mediante un vector unitario en un espacio vectorial complejo.
-\end{resaltado}
-
-\begin{eje}[Estado de un cúbit]
-  Un cúbit (sistema cuántico de dos niveles) tiene espacio de estados $\mathcal{H} = \mathbb{C}^2$ y se representa como:
-  $$\ket{\psi} = \alpha\ket{0} + \beta\ket{1}$$
-  donde $\{\ket{0}, \ket{1}\}$ es la base computacional de $\mathbb{C}^2$ y $\alpha, \beta \in \mathbb{C}$ satisfacen:
-  $$|\alpha|^2 + |\beta|^2 = 1 \quad \text{(condición de normalización)}$$
-
-  En términos de la base canónica:
-  $$\ket{0} = \begin{pmatrix} 1 \\ 0 \end{pmatrix}, \quad \ket{1} = \begin{pmatrix} 0 \\ 1 \end{pmatrix}$$
-
-  Por tanto:
-  $$\ket{\psi} = \begin{pmatrix} \alpha \\ \beta \end{pmatrix} \in \mathbb{C}^2$$
+\begin{eje}
+  En \(\mathbb{P}_2[X]\) el vector \(p(x) = x^2+ix-8\) tiene coordenadas \((1, i, -8)\) en la base canónica, pero si consideramos la base \(\mathcal{B} = \{ x^2+ix-8, x + i, 1 \}\), entonces tenemos que \(x^2+ix-8 = (1,0, 0)_{\mathcal{B}}\).
 \end{eje}
 
-\begin{defi}[Equivalencia por fase global]
-  Dos vectores estado que difieren por una fase global son físicamente equivalentes:
-  $$\ket{\psi} \sim e^{i\phi}\ket{\psi} \quad \forall \phi \in \mathbb{R}$$
+\begin{nota}
+  Aunque se ha definido el concepto de base como un conjunto, en la práctica es habitual considerar las bases como listas ordenadas de vectores, pues el orden de los vectores en la base determina el orden de las coordenadas de un vector y este orden es importante en muchos contextos.
+\end{nota}
 
-  Esto significa que solo las fases \textbf{relativas} entre componentes tienen significado físico.
+Gráficamente podemos visualizar un sistema de coordenadas como una malla o cuadrícula en la que las unidades de medida vienen determinadas por los elementos de la base.
+Siguiendo con el ejemplo anterior, en la base usual \( B=\left\{ e_{1},\ e_{2} \right\}\) la malla consiste en los ejes coordenados usuales (Figura~\ref{fig:bases-rejilla}, izquierda), mientras que en la base \(B^{\prime} = \left\{ b_{1},\ b_{2} \right\}\) la dirección vertical de la malla tiene un ángulo menor de 90 grados (Figura~\ref{fig:bases-rejilla}, derecha).
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=4.38189in,height=1.50394in]{imgs/bases-rejilla}
+  \caption{Sistemas de coordenadas asociados a la base estándar  \( B=\left\{ e_{1},\ e_{2} \right\}\) (izquierda) y a la base  \(B^{\prime} = \left\{ b_{1},\ b_{2} \right\}\) (derecha). Fuente: Lay (2007, p. 248).}
+  \label{fig:bases-rejilla}
+\end{figure}
+
+Observemos que el vector no cambia su posición (solamente la manera en la que es obtenido a partir de las dos bases).
+También podemos observar que los tres vectores $x$, $b_1$ y $b_2$ pertenecen a la misma recta vertical en ambas
+mallas.
+Esto indica que el cambio de un sistema a otros o equivalentemente el cambio de una base a otra no afecta la estructura del espacio vectorial.
+Formalizaremos este fenómeno más adelante al hablar de cambios de base o cambios de coordenadas.
+
+\begin{eje}
+  Consideremos el espacio vectorial de matrices de orden \(2 \times 3\) sobre $\C$.
+  Las coordenadas de la matriz \(\begin{pmatrix}
+    2    & - i & 4 \\
+    2+3i & - 1 & 1
+  \end{pmatrix}\) en la base usual es \((2, - i,4,2+3i, - 1,1)\).
+\end{eje}
+
+\begin{defi}
+  Sea $\V$ un espacio vectorial de dimensión $n$ y sean $\mathcal{B}$ y $\mathcal{B}^\prime$ dos bases de $\V$. Consideremos las coordenadas de los vectores $v_k$ de $\mathcal{B}$ en la base $\mathcal{B}^\prime$
+  \[
+    v_k = (a_{k1},\ldots,a_{kn} )_{\mathcal{B}^\prime}\ \forall k=1,\dots,n\,.
+  \]
+  Llamamos \textbf{matriz de cambio de base} o \textbf{matriz de cambio de coordenadas} de la base $\mathcal{B}$ a la base $\mathcal{B}^\prime$ a la matriz $M_{\mathcal{B}}^{\mathcal{B}^\prime}=(a_{ij})$.
 \end{defi}
 
-\begin{info}
-  En realidad, los estados cuánticos se describen mediante \textbf{vectores de rayos}, que son clases de equivalencia de vectores unitarios bajo la relación de fase global. Esto refleja que las mediciones físicas dependen solo de las diferencias de fase entre componentes del estado. En consecuencia, el espacio de estados de un cúbit es isomorfo al conjunto cociente $\H\cong \mathbb{C}^2 / \sim$, aunque en la práctica se obvia esta distinción y se trabaja directamente con vectores unitarios.
-\end{info}
+El motivo de llamar a $M_{\mathcal{B}}^{\mathcal{B}^\prime}$ la matriz cambio de base, se debe a que dado $v$ un vector de $\V$ con coordenadas $(x_1,\dots,x_n)_{\mathcal{B}}$ y coordenadas $(y_1,\dots,y_n)_{\mathcal{B}^\prime}$, tenemos
+\begin{align*}
+  v                                    & =\sum_{i=1}^n x_i v_i=\sum_{i=1}^n x_i \left( \sum_{j=1}^n a_{ij}v_j^\prime\right) =\sum_{j=1}^n \left( \sum_{i=1}^n x_i a_{ij}\right) v_j^\prime\Rightarrow \\
+  y_j                                  & = \sum_{i=1}^n x_i a_{ij} = (x_1,\dots,x_n)_{\mathcal{B}}(M_{\mathcal{B}}^{\mathcal{B}^\prime})^j\Rightarrow                                                 \\
+  (y_1,\dots,y_n)_{\mathcal{B}^\prime} & = (x_1,\dots,x_n)_{\mathcal{B}}M_{\mathcal{B}}^{\mathcal{B}^\prime}
+\end{align*}
+La ecuación matricial del cambio de base de $\mathcal{B}$ a $\mathcal{B}^\prime$ permite calcular las coordenadas de un vector en la base $\mathcal{B}^\prime$ conociendo las coordenadas con respecto a la base $\mathcal{B}$.
 
-\begin{eje}[Parametrización general de un cúbit]
-  Eliminando la fase global, todo cúbit puede escribirse como:
-  $$\ket{\psi} = \cos\frac{\theta}{2}\ket{0} + e^{i\varphi}\sin\frac{\theta}{2}\ket{1}$$
-  donde $\theta \in [0,\pi]$ y $\varphi \in [0,2\pi]$ son parámetros reales.
+El cambio de base en el sentido contrario, es decir, calcular las coordenadas de un vector en la base $\mathcal{B}$ conociendo sus coordenadas en la base $\mathcal{B}^\prime$ viene dado por la matriz inversa.
 
-  Esta parametrización:
-  \begin{itemize}
-    \item Elimina la fase global irrelevante.
-    \item Usa solo 2 parámetros reales para describir el estado completo.
-    \item Corresponde a puntos en la superficie de la esfera de Bloch.
-  \end{itemize}
+\begin{eje}
+  Consideremos en \(\mathbb{C}^{2}\) las siguientes bases, $\mathcal{B}=\set{(1,0), (i,2)}$ y $\mathcal{B}^{\prime}=\set{(2,3), (-1,2)}$.
+
+  Para calcular la matriz de cambio de base de $\mathcal{B}^\prime$ a $\mathcal{B}$ debemos primero conocer cuál es la expresión de los vectores de $\mathcal{B}^\prime$ en función de los vectores de $\mathcal{B}$.
+  Para ello tenemos que resolver el sistema de ecuaciones
+  \begin{align*}
+    (2,3)
+           & = a(1,0)+b(i,2)  \\
+    (-1,2) & = c(1,0)+d(i,2).
+  \end{align*}
+  La solución es \(a = 2-\frac{3}{2}i,\, b = \frac{3}{2}\) por lo que \((2,3) = {(2-\frac{3}{2}i,\frac{3}{2})}_{\mathcal{B}}\) y \(c = -1-i,\ d = 1\), por lo que \((-1,2) = {(-1-i,1)}_{\mathcal{B}}\).
+
+  La matriz de cambio de base de $\mathcal{B}^\prime$ a $\mathcal{B}$ es
+  \[
+    M_{\mathcal{B}^\prime}^{\mathcal{B}} = \begin{pmatrix}
+      2-\frac{3}{2}i & \frac{3}{2} \\
+      -1-i           & 1
+    \end{pmatrix}.
+  \]
+  Hagamos la comprobación, en la base $\mathcal{B}^\prime$ tenemos que \((-1,2) = 0 \cdot (2,3) + 1 \cdot ( - 1,2)\) por lo que
+  \((-1,2) = (0,1)_{\mathcal{B}^\prime}\).
+  Aplicando a este vector la matriz $M_{\mathcal{B}^\prime}^{\mathcal{B}} $ tenemos que
+  \[
+    (0,1) =
+    \begin{pmatrix}
+      2-\frac{3}{2}i & \frac{3}{2} \\
+      -1-i           & 1
+    \end{pmatrix} = (-1-i, 1).
+  \]
+  En otras palabras, \((-1,2) = (0,1)_{\mathcal{B}^\prime} = (-1-i, 1)_{\mathcal{B}}\).
 \end{eje}
 
-\begin{eje}[Estados cuánticos importantes]
-  \begin{enumerate}
-    \item \textbf{Estados de la base computacional:}
-          $$\ket{0} = \begin{pmatrix} 1 \\ 0 \end{pmatrix}, \quad \ket{1} = \begin{pmatrix} 0 \\ 1 \end{pmatrix}$$
+\subsection{Intersección y suma de subespacios}
 
-    \item \textbf{Estados de superposición:}
-          $$\ket{+} = \frac{1}{\sqrt{2}}(\ket{0} + \ket{1}) = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 1 \end{pmatrix}$$
-          $$\ket{-} = \frac{1}{\sqrt{2}}(\ket{0} - \ket{1}) = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ -1 \end{pmatrix}$$
+\begin{prop}
+  Sea $\V$ un espacio vectorial y $U,W$ dos subespacios vectoriales $\V$. La intersección $U \cap W$ es un subespacio vectorial de $\V$.
+\end{prop}
 
-    \item \textbf{Estados con fase compleja:}
-          $$\ket{i+} = \frac{1}{\sqrt{2}}(\ket{0} + i\ket{1}) = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ i \end{pmatrix}$$
-  \end{enumerate}
+En general, la unión de dos subespacios vectoriales no es un subespacio vectorial, ya que no está cerrada bajo la suma. Por este motivo definimos la suma de dos subespacios vectoriales como el subespacio generado por su unión.
+
+\begin{defi}[Suma de subespacios]
+  Sea $\V$ un espacio vectorial y $U,W$ dos subespacios vectoriales de $\V$. Definimos la \textbf{suma} de $U$ y $W$ como
+  \[
+    U + W = \left\langle U \cup W \right\rangle\,.
+  \]
+\end{defi}
+
+\begin{prop}
+  Sean $\V$ y $W$ dos espacios vectoriales, se tiene
+  \[
+    \dim(\V + W) = \dim(\V) + \dim(W) - \dim(\V\cap W)
+  \]
+\end{prop}
+
+\begin{defi}
+  Sea $\V$ un espacio vectorial y $U,W$ dos subespacios vectoriales $\V$.
+  Decimos que $U+W$ es \textbf{suma directa} si \(U \cap W = \{0\}\). Denotamos la suma directa como \(U \oplus W\).
+\end{defi}
+
+\begin{prop}
+  Sea $V$ un espacio vectorial y $U,W$ dos subespacios vectoriales $\V$. Si \(V = U\oplus W\) entonces todo vector \(v \in V\) se puede escribir como \(v = u + w\) para \(u \in U,\ w \in W\) de manera única.
+\end{prop}
+\begin{defi}
+  Sea $V$ un espacio vectorial y $U,W$ dos subespacios vectoriales $\V$ tal que \(V = U\oplus W\). Sea \(v \in V\) como suma de \(v = u + w\) para \(u \in U,\ w \in W\).  Al vector \(u\) se le llama la \textbf{proyección} de $v$ en \(U\) y al vector \(w\) la \textbf{proyección} de $v$ en \(W\).
+\end{defi}
+
+\begin{eje}
+  Consideremos en \(\mathbb{C}^{3}\) los subespacios
+  \[
+    U = \set{(x,y,z) \in \mathbb{C}^{3} \mid x + y + z = 0}
+  \]
+  y
+  \[
+    W = \set{(x,y,z) \in \mathbb{C}^{3} \mid x = y = z}.
+  \]
+  Podemos ver que \(U \cap W = \{0\}\) por lo que la suma es directa.
+  Además, como \(\dim(U) = 2\) y \(\dim(W) = 1\), tenemos que \(\dim(U) + \dim(W) = 3 = \dim(\mathbb{C}^{3})\), por lo que \(\mathbb{C}^{3} = U \oplus W\).
+
+  Por último, consideremos el vector \(v = (2,3,4)\). Podemos escribirlo como suma de un vector de \(U\) y otro de \(W\):
+  \[
+    v = (2,3,4) = (1,2,-3) + (1,1,1)
+  \]
+  donde \((1,2,-3) \in U\) y \((1,1,1) \in W\).
+  Así, la proyección de \(v\) en \(U\) es \((1,2,-3)\) y la proyección de \(v\) en \(W\) es \((1,1,1)\).
 \end{eje}
+
+\begin{prop}
+  Sea $V$ un espacio vectorial y $S=\{v_1, v_2, \ldots, v_k\}$ un conjunto de vectores en $V$ linealmente independientes. Entonces, el subespacio generado por $S$ es suma directa de los subespacios generados por cada vector individualmente, es decir
+  \[
+    \text{gen}(S) = \text{gen}(v_1) \oplus \text{gen}(v_2) \oplus \cdots \oplus \text{gen}(v_k)\,.
+  \]
+\end{prop}

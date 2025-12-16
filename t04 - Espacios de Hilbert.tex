@@ -427,3 +427,63 @@ Veamos ahora cómo diagonalizar uno de estos observables, lo que nos permitirá 
   $$\langle \sigma_z \rangle = (+1) \cdot \frac{9}{25} + (-1) \cdot \frac{16}{25} = -\frac{7}{25}$$
 \end{eje}
 
+\subsection{Matemáticas cuánticas}
+
+Ahora que hemos establecido la teoría de espacios vectoriales complejos, podemos formular matemáticamente el primer postulado fundamental de la mecánica cuántica.
+
+\begin{resaltado}
+  \textbf{Postulado I: Estados cuánticos.}
+
+  El estado de un sistema cuántico se describe completamente mediante un vector unitario en un espacio vectorial.
+\end{resaltado}
+
+\begin{eje}[Estado de un cúbit]
+  Un cúbit (sistema cuántico de dos niveles) tiene espacio de estados $\mathcal{H} = \mathbb{C}^2$ y se representa como:
+  $$\ket{\psi} = \alpha\ket{0} + \beta\ket{1}$$
+  donde $\{\ket{0}, \ket{1}\}$ es la base computacional de $\mathbb{C}^2$ y $\alpha, \beta \in \mathbb{C}$ satisfacen:
+  $$|\alpha|^2 + |\beta|^2 = 1 \quad \text{(condición de normalización)}$$
+
+  En términos de la base canónica:
+  $$\ket{0} = \begin{pmatrix} 1 \\ 0 \end{pmatrix}, \quad \ket{1} = \begin{pmatrix} 0 \\ 1 \end{pmatrix}$$
+
+  Por tanto:
+  $$\ket{\psi} = \begin{pmatrix} \alpha \\ \beta \end{pmatrix} \in \mathbb{C}^2$$
+\end{eje}
+
+\begin{defi}[Equivalencia por fase global]
+  Dos vectores estado que difieren por una fase global son físicamente equivalentes:
+  $$\ket{\psi} \sim e^{i\phi}\ket{\psi} \quad \forall \phi \in \mathbb{R}$$
+
+  Esto significa que solo las fases \textbf{relativas} entre componentes tienen significado físico.
+\end{defi}
+
+\begin{info}
+  En realidad, los estados cuánticos se describen mediante \textbf{vectores de rayos}, que son clases de equivalencia de vectores unitarios bajo la relación de fase global. Esto refleja que las mediciones físicas dependen solo de las diferencias de fase entre componentes del estado. En consecuencia, el espacio de estados de un cúbit es isomorfo al conjunto cociente $\H\cong \mathbb{C}^2 / \sim$, aunque en la práctica se obvia esta distinción y se trabaja directamente con vectores unitarios.
+\end{info}
+
+\begin{eje}[Parametrización general de un cúbit]
+  Eliminando la fase global, todo cúbit puede escribirse como:
+  $$\ket{\psi} = \cos\frac{\theta}{2}\ket{0} + e^{i\varphi}\sin\frac{\theta}{2}\ket{1}$$
+  donde $\theta \in [0,\pi]$ y $\varphi \in [0,2\pi]$ son parámetros reales.
+
+  Esta parametrización:
+  \begin{itemize}
+    \item Elimina la fase global irrelevante.
+    \item Usa solo 2 parámetros reales para describir el estado completo.
+    \item Corresponde a puntos en la superficie de la esfera de Bloch.
+  \end{itemize}
+\end{eje}
+
+\begin{eje}[Estados cuánticos importantes]
+  \begin{enumerate}
+    \item \textbf{Estados de la base computacional:}
+          $$\ket{0} = \begin{pmatrix} 1 \\ 0 \end{pmatrix}, \quad \ket{1} = \begin{pmatrix} 0 \\ 1 \end{pmatrix}$$
+
+    \item \textbf{Estados de superposición:}
+          $$\ket{+} = \frac{1}{\sqrt{2}}(\ket{0} + \ket{1}) = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 1 \end{pmatrix}$$
+          $$\ket{-} = \frac{1}{\sqrt{2}}(\ket{0} - \ket{1}) = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ -1 \end{pmatrix}$$
+
+    \item \textbf{Estados con fase compleja:}
+          $$\ket{i+} = \frac{1}{\sqrt{2}}(\ket{0} + i\ket{1}) = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ i \end{pmatrix}$$
+  \end{enumerate}
+\end{eje}
