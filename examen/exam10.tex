@@ -1,33 +1,26 @@
-\codigonombre{}{MCC-ALCC-25Q110}
-
 \begin{questions}
 
   \question[4] Responda a las siguientes cuestiones sobre espacios vectoriales:
   \begin{parts}
-    \part Sea $H$ un espacio de Hilbert y $E$ un sistema ortonormal en $H$. Enuncie y demuestre la desigualdad de Bessel: para todo $x \in H$, $\sum_{z \in E} |\langle x, z\rangle|^2 \leq \|x\|^2$.
+    \part Sea $H$ un espacio de Hilbert y $E$ un conjunto ortonormal en $H$. Demuestre la desigualdad de Bessel: para todo $x \in H$
+    \[
+      \sum_{z \in E} |\langle x, z\rangle|^2 \leq \|x\|^2\,.
+    \]
 
     \part Demuestre que si $A$ es una matriz hermitiana entonces todos sus valores propios son números reales.
-
-
   \end{parts}
 
-  \question[3] Responda a las siguientes cuestiones sobre espacios de Hilbert:
+  \question[3] Responda a las siguientes cuestiones:
   \begin{parts}
     \part Demuestre que el producto tensorial de dos operadores hermitianos es hermitiano.
 
-    \part Considere los operadores $X = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$, $Y = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}$ y $Z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$. Verifique que forman una base para el espacio vectorial $\mathbb{C}^{2 \times 2}$ junto con la identidad $I$.
-
-    \part Calcule el producto tensorial $X \otimes H$ donde $H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$ es la matriz de Hadamard. Justifique que el resultado es una matriz unitaria.
+    \part Calcule el producto tensorial $X \otimes H$ donde $X$ es la matriz de Pauli y $H$ es la matriz de Hadamard. Justifique que el resultado es una matriz unitaria.
   \end{parts}
 
-  \question[3] Sea $V$ un espacio vectorial complejo con producto interno, y sean $|v_1\rangle, |v_2\rangle, \ldots, |v_n\rangle$ vectores en $V$.
-  \begin{parts}
-    \part Sea $\{|v_1\rangle, |v_2\rangle, \ldots, |v_n\rangle\}$ un conjunto de vectores ortonormales en $V$. Demuestre la identidad de Parseval: para todo $|x\rangle, |y\rangle \in V$ se tiene que
-    $\langle x|y \rangle = \sum_{k=1}^{n} \langle x|v_k\rangle \langle v_k|y\rangle$
-
-    \part Aplique el proceso de ortonormalización de Gram-Schmidt al conjunto $\{(1,i), (1+i,2)\} \subseteq \mathbb{C}^2$ para obtener una base ortonormal.
-
-    \part Sea $U$ un operador unitario que actúa sobre un qubit. Demuestre que los valores propios de $U$ tienen módulo 1. ¿Qué forma tienen los valores propios de un operador hermitiano?
-  \end{parts}
+  \question[3] Aplique el proceso de ortonormalización de Gram-Schmidt al conjunto
+  \[
+    \{(1,i), (1+i,2)\} \subseteq \mathbb{C}^2
+  \]
+  para obtener una base ortonormal ¿Cómo se expresa la matriz asociada del operador de Pauli X sobre esta nueva base?
 
 \end{questions}

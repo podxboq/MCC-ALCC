@@ -1,427 +1,423 @@
-\codigonombre{}{MCC-ALCC-25Q114}
-
 \begin{questions}
 
-	\question[4] Responda a las siguientes cuestiones:
-	\begin{parts}
-		\part Explique el concepto de compuertas cuánticas, cómo se representan matemáticamente y describa las compuertas de un qubit más importantes.
-
-		\begin{solution}
-			Las compuertas cuánticas son operaciones unitarias que manipulan estados cuánticos, constituyendo los elementos básicos de los circuitos cuánticos, análogas a las compuertas lógicas en computación clásica.
-
-			Representación matemática:
-			- Formalmente, una compuerta cuántica que actúa sobre $n$ qubits se representa mediante una matriz unitaria $U$ de dimensión $2^n \times 2^n$
-			- La unitariedad ($U^\dagger U = UU^\dagger = I$) garantiza la reversibilidad del cómputo y la conservación de la probabilidad
-			- Si el estado inicial es $|\psi\rangle$, después de aplicar la compuerta $U$, el estado final será $U|\psi\rangle$
-			- Las compuertas pueden representarse en notación de Dirac, como matrices, o mediante su acción sobre la base computacional
-
-			Diferencias con compuertas clásicas:
-			1) Son inherentemente reversibles (debido a la unitariedad)
-			2) Pueden actuar sobre superposiciones de estados simultáneamente
-			3) Pueden crear y manipular entrelazamiento
-			4) Operan en el espacio de estados complejamente ampliado
-
-			Compuertas cuánticas de un qubit:
-
-			1) Compuerta de Identidad (I):
-			- Matriz: $I = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$
-			- Efecto: No cambia el estado, $I|\psi\rangle = |\psi\rangle$
-			- Utilidad: Representa la ausencia de operación, útil en circuitos con varias líneas
-
-			2) Compuerta de Pauli-X (NOT):
-			- Matriz: $X = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$
-			- Efecto: $X|0\rangle = |1\rangle$, $X|1\rangle = |0\rangle$
-			- Interpretación: Rotación de 180° alrededor del eje X en la esfera de Bloch
-			- Análogo al NOT clásico, invierte el estado computacional
-
-			3) Compuerta de Pauli-Y:
-			- Matriz: $Y = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}$
-			- Efecto: $Y|0\rangle = i|1\rangle$, $Y|1\rangle = -i|0\rangle$
-			- Interpretación: Rotación de 180° alrededor del eje Y en la esfera de Bloch
-
-			4) Compuerta de Pauli-Z:
-			- Matriz: $Z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$
-			- Efecto: $Z|0\rangle = |0\rangle$, $Z|1\rangle = -|1\rangle$
-			- Interpretación: Rotación de 180° alrededor del eje Z, cambia la fase relativa
-			- Utilidad: Base para operaciones de cambio de fase
-
-			5) Compuerta Hadamard (H):
-			- Matriz: $H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$
-			- Efecto: $H|0\rangle = \frac{|0\rangle + |1\rangle}{\sqrt{2}}$, $H|1\rangle = \frac{|0\rangle - |1\rangle}{\sqrt{2}}$
-			- Interpretación: Rotación de 90° alrededor del eje Y, seguida de 180° alrededor del eje X
-			- Utilidad: Crea superposiciones, fundamental en casi todos los algoritmos
+  \question[4] Responda a las siguientes cuestiones:
+  \begin{parts}
+    \part Explique el concepto de compuertas cuánticas, cómo se representan matemáticamente y describa las compuertas de un qubit más importantes.
+
+    \begin{solution}
+      Las compuertas cuánticas son operaciones unitarias que manipulan estados cuánticos, constituyendo los elementos básicos de los circuitos cuánticos, análogas a las compuertas lógicas en computación clásica.
+
+      Representación matemática:
+      - Formalmente, una compuerta cuántica que actúa sobre $n$ qubits se representa mediante una matriz unitaria $U$ de dimensión $2^n \times 2^n$
+      - La unitariedad ($U^\dagger U = UU^\dagger = I$) garantiza la reversibilidad del cómputo y la conservación de la probabilidad
+      - Si el estado inicial es $|\psi\rangle$, después de aplicar la compuerta $U$, el estado final será $U|\psi\rangle$
+      - Las compuertas pueden representarse en notación de Dirac, como matrices, o mediante su acción sobre la base computacional
+
+      Diferencias con compuertas clásicas:
+      1) Son inherentemente reversibles (debido a la unitariedad)
+      2) Pueden actuar sobre superposiciones de estados simultáneamente
+      3) Pueden crear y manipular entrelazamiento
+      4) Operan en el espacio de estados complejamente ampliado
+
+      Compuertas cuánticas de un qubit:
+
+      1) Compuerta de Identidad (I):
+      - Matriz: $I = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$
+      - Efecto: No cambia el estado, $I|\psi\rangle = |\psi\rangle$
+      - Utilidad: Representa la ausencia de operación, útil en circuitos con varias líneas
+
+      2) Compuerta de Pauli-X (NOT):
+      - Matriz: $X = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$
+      - Efecto: $X|0\rangle = |1\rangle$, $X|1\rangle = |0\rangle$
+      - Interpretación: Rotación de 180° alrededor del eje X en la esfera de Bloch
+      - Análogo al NOT clásico, invierte el estado computacional
+
+      3) Compuerta de Pauli-Y:
+      - Matriz: $Y = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}$
+      - Efecto: $Y|0\rangle = i|1\rangle$, $Y|1\rangle = -i|0\rangle$
+      - Interpretación: Rotación de 180° alrededor del eje Y en la esfera de Bloch
+
+      4) Compuerta de Pauli-Z:
+      - Matriz: $Z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$
+      - Efecto: $Z|0\rangle = |0\rangle$, $Z|1\rangle = -|1\rangle$
+      - Interpretación: Rotación de 180° alrededor del eje Z, cambia la fase relativa
+      - Utilidad: Base para operaciones de cambio de fase
+
+      5) Compuerta Hadamard (H):
+      - Matriz: $H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$
+      - Efecto: $H|0\rangle = \frac{|0\rangle + |1\rangle}{\sqrt{2}}$, $H|1\rangle = \frac{|0\rangle - |1\rangle}{\sqrt{2}}$
+      - Interpretación: Rotación de 90° alrededor del eje Y, seguida de 180° alrededor del eje X
+      - Utilidad: Crea superposiciones, fundamental en casi todos los algoritmos
 
-			6) Compuerta de Fase (S):
-			- Matriz: $S = \begin{pmatrix} 1 & 0 \\ 0 & i \end{pmatrix}$
-			- Efecto: $S|0\rangle = |0\rangle$, $S|1\rangle = i|1\rangle$
-			- Interpretación: Rotación de 90° alrededor del eje Z
-			- Utilidad: Cambio de fase, $S^2 = Z$
-			- También conocida como compuerta $\pi/2$ o $Z^{1/2}$
+      6) Compuerta de Fase (S):
+      - Matriz: $S = \begin{pmatrix} 1 & 0 \\ 0 & i \end{pmatrix}$
+      - Efecto: $S|0\rangle = |0\rangle$, $S|1\rangle = i|1\rangle$
+      - Interpretación: Rotación de 90° alrededor del eje Z
+      - Utilidad: Cambio de fase, $S^2 = Z$
+      - También conocida como compuerta $\pi/2$ o $Z^{1/2}$
 
-			7) Compuerta T:
-			- Matriz: $T = \begin{pmatrix} 1 & 0 \\ 0 & e^{i\pi/4} \end{pmatrix}$
-			- Efecto: $T|0\rangle = |0\rangle$, $T|1\rangle = e^{i\pi/4}|1\rangle$
-			- Interpretación: Rotación de 45° alrededor del eje Z
-			- Utilidad: Crucial para computación universal, $T^2 = S$
-			- También conocida como compuerta $\pi/4$ o $Z^{1/4}$
+      7) Compuerta T:
+      - Matriz: $T = \begin{pmatrix} 1 & 0 \\ 0 & e^{i\pi/4} \end{pmatrix}$
+      - Efecto: $T|0\rangle = |0\rangle$, $T|1\rangle = e^{i\pi/4}|1\rangle$
+      - Interpretación: Rotación de 45° alrededor del eje Z
+      - Utilidad: Crucial para computación universal, $T^2 = S$
+      - También conocida como compuerta $\pi/4$ o $Z^{1/4}$
 
-			8) Compuertas de Rotación:
-			- $R_x(\theta) = e^{-i\theta X/2} = \cos(\theta/2)I - i\sin(\theta/2)X$
-			- $R_y(\theta) = e^{-i\theta Y/2} = \cos(\theta/2)I - i\sin(\theta/2)Y$
-			- $R_z(\theta) = e^{-i\theta Z/2} = \cos(\theta/2)I - i\sin(\theta/2)Z$
-			- Efecto: Rotan el estado en la esfera de Bloch en un ángulo $\theta$ alrededor del eje correspondiente
-			- Utilidad: Permiten rotaciones arbitrarias con precisión controlada
+      8) Compuertas de Rotación:
+      - $R_x(\theta) = e^{-i\theta X/2} = \cos(\theta/2)I - i\sin(\theta/2)X$
+      - $R_y(\theta) = e^{-i\theta Y/2} = \cos(\theta/2)I - i\sin(\theta/2)Y$
+      - $R_z(\theta) = e^{-i\theta Z/2} = \cos(\theta/2)I - i\sin(\theta/2)Z$
+      - Efecto: Rotan el estado en la esfera de Bloch en un ángulo $\theta$ alrededor del eje correspondiente
+      - Utilidad: Permiten rotaciones arbitrarias con precisión controlada
 
-			9) Compuerta $\sqrt{NOT}$ o $\sqrt{X}$:
-			- Matriz: $\sqrt{X} = \frac{1}{2}\begin{pmatrix} 1+i & 1-i \\ 1-i & 1+i \end{pmatrix}$
-			- Efecto: Al aplicarse dos veces produce la operación NOT ($\sqrt{X}\sqrt{X} = X$)
-			- Utilidad: Útil para ciertos algoritmos y para evitar ciertos errores
+      9) Compuerta $\sqrt{NOT}$ o $\sqrt{X}$:
+      - Matriz: $\sqrt{X} = \frac{1}{2}\begin{pmatrix} 1+i & 1-i \\ 1-i & 1+i \end{pmatrix}$
+      - Efecto: Al aplicarse dos veces produce la operación NOT ($\sqrt{X}\sqrt{X} = X$)
+      - Utilidad: Útil para ciertos algoritmos y para evitar ciertos errores
 
-			Propiedades importantes:
+      Propiedades importantes:
 
-			1) Universalidad:
-			- Cualquier operación unitaria puede aproximarse con precisión arbitraria usando solo un conjunto finito de compuertas
-			- Un conjunto universal común incluye {H, T, CNOT}
-			- Las compuertas de un qubit más CNOT forman un conjunto universal
+      1) Universalidad:
+      - Cualquier operación unitaria puede aproximarse con precisión arbitraria usando solo un conjunto finito de compuertas
+      - Un conjunto universal común incluye {H, T, CNOT}
+      - Las compuertas de un qubit más CNOT forman un conjunto universal
 
-			2) Visualización en la esfera de Bloch:
-			- Las compuertas de un qubit corresponden a rotaciones en la esfera de Bloch
-			- Los ejes X, Y, Z corresponden a las matrices de Pauli
-			- La composición de compuertas corresponde a la composición de rotaciones
+      2) Visualización en la esfera de Bloch:
+      - Las compuertas de un qubit corresponden a rotaciones en la esfera de Bloch
+      - Los ejes X, Y, Z corresponden a las matrices de Pauli
+      - La composición de compuertas corresponde a la composición de rotaciones
 
-			3) Implementación física:
-			- Depende de la plataforma: pulsos electromagnéticos en iones atrapados, microondas en circuitos superconductores, etc.
-			- Las compuertas de un qubit generalmente son más fáciles de implementar y tienen mayor fidelidad que las de múltiples qubits
-			- El tiempo de operación debe ser mucho menor que el tiempo de coherencia del sistema
+      3) Implementación física:
+      - Depende de la plataforma: pulsos electromagnéticos en iones atrapados, microondas en circuitos superconductores, etc.
+      - Las compuertas de un qubit generalmente son más fáciles de implementar y tienen mayor fidelidad que las de múltiples qubits
+      - El tiempo de operación debe ser mucho menor que el tiempo de coherencia del sistema
 
-			4) Métricas de error:
-			- Fidelidad de compuerta: cuánto se aproxima la implementación real a la ideal
-			- Error de compuerta: desviación respecto a la operación perfecta
-			- Robustez: resistencia a imperfecciones en los parámetros de control
+      4) Métricas de error:
+      - Fidelidad de compuerta: cuánto se aproxima la implementación real a la ideal
+      - Error de compuerta: desviación respecto a la operación perfecta
+      - Robustez: resistencia a imperfecciones en los parámetros de control
 
-			Las compuertas cuánticas de un qubit, junto con al menos una compuerta de dos qubits (como CNOT), proporcionan todos los elementos necesarios para implementar cualquier algoritmo cuántico, constituyendo el alfabeto fundamental de la programación cuántica.
-		\end{solution}
+      Las compuertas cuánticas de un qubit, junto con al menos una compuerta de dos qubits (como CNOT), proporcionan todos los elementos necesarios para implementar cualquier algoritmo cuántico, constituyendo el alfabeto fundamental de la programación cuántica.
+    \end{solution}
 
-		\part Explique el concepto de operador hermitiano y su importancia en la mecánica cuántica. Demuestre sus propiedades fundamentales.
+    \part Explique el concepto de operador hermitiano y su importancia en la mecánica cuántica. Demuestre sus propiedades fundamentales.
 
-		\begin{solution}
-			Un operador hermitiano es un operador lineal en un espacio de Hilbert que es igual a su propio adjunto (o conjugado transpuesto), constituyendo una pieza fundamental en el formalismo matemático de la mecánica cuántica.
+    \begin{solution}
+      Un operador hermitiano es un operador lineal en un espacio de Hilbert que es igual a su propio adjunto (o conjugado transpuesto), constituyendo una pieza fundamental en el formalismo matemático de la mecánica cuántica.
 
-			Definición formal:
-			Un operador $A$ en un espacio de Hilbert $\mathcal{H}$ es hermitiano (o autoadjunto) si $A = A^\dagger$, donde $A^\dagger$ es el operador adjunto de $A$.
+      Definición formal:
+      Un operador $A$ en un espacio de Hilbert $\mathcal{H}$ es hermitiano (o autoadjunto) si $A = A^\dagger$, donde $A^\dagger$ es el operador adjunto de $A$.
 
-			En términos matriciales, para un operador representado por una matriz $A$, se cumple que $A = A^\dagger = (A^*)^T$, donde $A^*$ es la matriz con los elementos conjugados y $A^T$ es la matriz transpuesta.
+      En términos matriciales, para un operador representado por una matriz $A$, se cumple que $A = A^\dagger = (A^*)^T$, donde $A^*$ es la matriz con los elementos conjugados y $A^T$ es la matriz transpuesta.
 
-			Propiedades fundamentales (con demostraciones):
+      Propiedades fundamentales (con demostraciones):
 
-			1) Los valores propios de un operador hermitiano son reales.
+      1) Los valores propios de un operador hermitiano son reales.
 
-			Demostración:
-			Sea $\lambda$ un valor propio de $A$ con vector propio $|\psi\rangle$, entonces $A|\psi\rangle = \lambda|\psi\rangle$.
-			Tomando el producto interno con $|\psi\rangle$:
-			$\langle\psi|A|\psi\rangle = \lambda\langle\psi|\psi\rangle$
+      Demostración:
+      Sea $\lambda$ un valor propio de $A$ con vector propio $|\psi\rangle$, entonces $A|\psi\rangle = \lambda|\psi\rangle$.
+      Tomando el producto interno con $|\psi\rangle$:
+      $\langle\psi|A|\psi\rangle = \lambda\langle\psi|\psi\rangle$
 
-			Por otro lado, como $A = A^\dagger$:
-			$\langle\psi|A|\psi\rangle = \langle\psi|A^\dagger|\psi\rangle = \langle A\psi|\psi\rangle = \langle\lambda\psi|\psi\rangle = \lambda^*\langle\psi|\psi\rangle$
+      Por otro lado, como $A = A^\dagger$:
+      $\langle\psi|A|\psi\rangle = \langle\psi|A^\dagger|\psi\rangle = \langle A\psi|\psi\rangle = \langle\lambda\psi|\psi\rangle = \lambda^*\langle\psi|\psi\rangle$
 
-			Igualando ambas expresiones:
-			$\lambda\langle\psi|\psi\rangle = \lambda^*\langle\psi|\psi\rangle$
-			Como $\langle\psi|\psi\rangle > 0$ (normalización), entonces $\lambda = \lambda^*$, lo que implica que $\lambda$ es real.
+      Igualando ambas expresiones:
+      $\lambda\langle\psi|\psi\rangle = \lambda^*\langle\psi|\psi\rangle$
+      Como $\langle\psi|\psi\rangle > 0$ (normalización), entonces $\lambda = \lambda^*$, lo que implica que $\lambda$ es real.
 
-			2) Los vectores propios correspondientes a valores propios distintos son ortogonales.
+      2) Los vectores propios correspondientes a valores propios distintos son ortogonales.
 
-			Demostración:
-			Sean $|\psi_1\rangle$ y $|\psi_2\rangle$ vectores propios de $A$ con valores propios $\lambda_1$ y $\lambda_2$ respectivamente, donde $\lambda_1 \neq \lambda_2$.
+      Demostración:
+      Sean $|\psi_1\rangle$ y $|\psi_2\rangle$ vectores propios de $A$ con valores propios $\lambda_1$ y $\lambda_2$ respectivamente, donde $\lambda_1 \neq \lambda_2$.
 
-			$A|\psi_1\rangle = \lambda_1|\psi_1\rangle$ y $A|\psi_2\rangle = \lambda_2|\psi_2\rangle$
+      $A|\psi_1\rangle = \lambda_1|\psi_1\rangle$ y $A|\psi_2\rangle = \lambda_2|\psi_2\rangle$
 
-			Calculemos $\langle\psi_1|A|\psi_2\rangle$ de dos maneras:
-			$\langle\psi_1|A|\psi_2\rangle = \langle\psi_1|\lambda_2|\psi_2\rangle = \lambda_2\langle\psi_1|\psi_2\rangle$
+      Calculemos $\langle\psi_1|A|\psi_2\rangle$ de dos maneras:
+      $\langle\psi_1|A|\psi_2\rangle = \langle\psi_1|\lambda_2|\psi_2\rangle = \lambda_2\langle\psi_1|\psi_2\rangle$
 
-			También:
-			$\langle\psi_1|A|\psi_2\rangle = \langle\psi_1|A^\dagger|\psi_2\rangle = \langle A\psi_1|\psi_2\rangle = \langle\lambda_1\psi_1|\psi_2\rangle = \lambda_1\langle\psi_1|\psi_2\rangle$
+      También:
+      $\langle\psi_1|A|\psi_2\rangle = \langle\psi_1|A^\dagger|\psi_2\rangle = \langle A\psi_1|\psi_2\rangle = \langle\lambda_1\psi_1|\psi_2\rangle = \lambda_1\langle\psi_1|\psi_2\rangle$
 
-			Igualando:
-			$\lambda_2\langle\psi_1|\psi_2\rangle = \lambda_1\langle\psi_1|\psi_2\rangle$
-			$(\lambda_2 - \lambda_1)\langle\psi_1|\psi_2\rangle = 0$
+      Igualando:
+      $\lambda_2\langle\psi_1|\psi_2\rangle = \lambda_1\langle\psi_1|\psi_2\rangle$
+      $(\lambda_2 - \lambda_1)\langle\psi_1|\psi_2\rangle = 0$
 
-			Como $\lambda_2 \neq \lambda_1$, se concluye que $\langle\psi_1|\psi_2\rangle = 0$, es decir, los vectores propios son ortogonales.
+      Como $\lambda_2 \neq \lambda_1$, se concluye que $\langle\psi_1|\psi_2\rangle = 0$, es decir, los vectores propios son ortogonales.
 
-			3) Un operador hermitiano tiene una base ortonormal de vectores propios (teorema espectral).
+      3) Un operador hermitiano tiene una base ortonormal de vectores propios (teorema espectral).
 
-			Este teorema establece que cualquier operador hermitiano en un espacio de dimensión finita puede diagonalizarse mediante una transformación unitaria. Es decir, existe una base ortonormal $\{|\psi_i\rangle\}$ formada por vectores propios de $A$.
+      Este teorema establece que cualquier operador hermitiano en un espacio de dimensión finita puede diagonalizarse mediante una transformación unitaria. Es decir, existe una base ortonormal $\{|\psi_i\rangle\}$ formada por vectores propios de $A$.
 
-			Como consecuencia, $A$ puede representarse como:
-			$A = \sum_i \lambda_i |\psi_i\rangle\langle\psi_i|$
+      Como consecuencia, $A$ puede representarse como:
+      $A = \sum_i \lambda_i |\psi_i\rangle\langle\psi_i|$
 
-			donde $\lambda_i$ son los valores propios reales.
+      donde $\lambda_i$ son los valores propios reales.
 
-			4) Los valores esperados de un operador hermitiano son reales.
+      4) Los valores esperados de un operador hermitiano son reales.
 
-			Demostración:
-			Para cualquier estado $|\psi\rangle$, el valor esperado de $A$ es:
-			$\langle A \rangle_\psi = \langle\psi|A|\psi\rangle$
+      Demostración:
+      Para cualquier estado $|\psi\rangle$, el valor esperado de $A$ es:
+      $\langle A \rangle_\psi = \langle\psi|A|\psi\rangle$
 
-			Como $A = A^\dagger$:
-			$\langle\psi|A|\psi\rangle = \langle\psi|A^\dagger|\psi\rangle = \langle A\psi|\psi\rangle = \langle\psi|A|\psi\rangle^*$
+      Como $A = A^\dagger$:
+      $\langle\psi|A|\psi\rangle = \langle\psi|A^\dagger|\psi\rangle = \langle A\psi|\psi\rangle = \langle\psi|A|\psi\rangle^*$
 
-			Por tanto, $\langle\psi|A|\psi\rangle = \langle\psi|A|\psi\rangle^*$, lo que implica que $\langle\psi|A|\psi\rangle$ es real.
+      Por tanto, $\langle\psi|A|\psi\rangle = \langle\psi|A|\psi\rangle^*$, lo que implica que $\langle\psi|A|\psi\rangle$ es real.
 
-			5) La suma y el producto por escalar real de operadores hermitianos es hermitiano.
+      5) La suma y el producto por escalar real de operadores hermitianos es hermitiano.
 
-			Demostración:
-			Sean $A$ y $B$ operadores hermitianos y $r \in \mathbb{R}$.
-			$(A + B)^\dagger = A^\dagger + B^\dagger = A + B$, por lo que $A + B$ es hermitiano.
-			$(rA)^\dagger = rA^\dagger = rA$, por lo que $rA$ es hermitiano.
+      Demostración:
+      Sean $A$ y $B$ operadores hermitianos y $r \in \mathbb{R}$.
+      $(A + B)^\dagger = A^\dagger + B^\dagger = A + B$, por lo que $A + B$ es hermitiano.
+      $(rA)^\dagger = rA^\dagger = rA$, por lo que $rA$ es hermitiano.
 
-			6) El producto de operadores hermitianos es hermitiano si y solo si conmutan.
+      6) El producto de operadores hermitianos es hermitiano si y solo si conmutan.
 
-			Demostración:
-			$(AB)^\dagger = B^\dagger A^\dagger = BA$
-			Para que $AB$ sea hermitiano, necesitamos $(AB)^\dagger = AB$, es decir, $BA = AB$, lo que significa que $A$ y $B$ conmutan.
+      Demostración:
+      $(AB)^\dagger = B^\dagger A^\dagger = BA$
+      Para que $AB$ sea hermitiano, necesitamos $(AB)^\dagger = AB$, es decir, $BA = AB$, lo que significa que $A$ y $B$ conmutan.
 
-			7) El operador $i[A,B]$ es hermitiano si $A$ y $B$ son hermitianos.
+      7) El operador $i[A,B]$ es hermitiano si $A$ y $B$ son hermitianos.
 
-			Demostración:
-			$[A,B] = AB - BA$
-			$[A,B]^\dagger = (AB - BA)^\dagger = (AB)^\dagger - (BA)^\dagger = BA - AB = -[A,B]$
-			Por tanto, $[A,B]^\dagger = -[A,B]$, lo que implica que $i[A,B]^\dagger = i(-[A,B]) = -i[A,B]$.
-			Y $-i[A,B]^\dagger = -i(-[A,B]) = i[A,B]$, demostrando que $i[A,B]$ es hermitiano.
+      Demostración:
+      $[A,B] = AB - BA$
+      $[A,B]^\dagger = (AB - BA)^\dagger = (AB)^\dagger - (BA)^\dagger = BA - AB = -[A,B]$
+      Por tanto, $[A,B]^\dagger = -[A,B]$, lo que implica que $i[A,B]^\dagger = i(-[A,B]) = -i[A,B]$.
+      Y $-i[A,B]^\dagger = -i(-[A,B]) = i[A,B]$, demostrando que $i[A,B]$ es hermitiano.
 
-			Importancia en mecánica cuántica:
+      Importancia en mecánica cuántica:
 
-			1) Observables físicos:
-			- Los observables en mecánica cuántica están representados por operadores hermitianos
-			- La propiedad de valores propios reales garantiza que los resultados de medición sean cantidades físicas reales
-			- Ejemplos: energía (hamiltoniano), posición, momento, espín, etc.
+      1) Observables físicos:
+      - Los observables en mecánica cuántica están representados por operadores hermitianos
+      - La propiedad de valores propios reales garantiza que los resultados de medición sean cantidades físicas reales
+      - Ejemplos: energía (hamiltoniano), posición, momento, espín, etc.
 
-			2) Postulados de la mecánica cuántica:
-			- Uno de los postulados establece que a toda magnitud física medible le corresponde un operador hermitiano
-			- Los posibles resultados de una medición son los valores propios de dicho operador
-			- La probabilidad de obtener el valor propio $\lambda_i$ al medir un observable $A$ en un estado $|\psi\rangle$ es $|\langle\psi_i|\psi\rangle|^2$
+      2) Postulados de la mecánica cuántica:
+      - Uno de los postulados establece que a toda magnitud física medible le corresponde un operador hermitiano
+      - Los posibles resultados de una medición son los valores propios de dicho operador
+      - La probabilidad de obtener el valor propio $\lambda_i$ al medir un observable $A$ en un estado $|\psi\rangle$ es $|\langle\psi_i|\psi\rangle|^2$
 
-			3) Estados estacionarios:
-			- Los vectores propios del hamiltoniano (operador de energía) representan estados con energía definida
-			- La ecuación de Schrödinger independiente del tiempo es un problema de valores propios para el hamiltoniano
-			- La evolución temporal de estos estados es particularmente simple: solo adquieren una fase global
+      3) Estados estacionarios:
+      - Los vectores propios del hamiltoniano (operador de energía) representan estados con energía definida
+      - La ecuación de Schrödinger independiente del tiempo es un problema de valores propios para el hamiltoniano
+      - La evolución temporal de estos estados es particularmente simple: solo adquieren una fase global
 
-			4) Principio de incertidumbre:
-			- El conmutador de dos observables, $i[A,B]$, está relacionado con la incertidumbre en mediciones simultáneas
-			- La relación de incertidumbre de Heisenberg se expresa como $\Delta A \Delta B \geq \frac{1}{2}|\langle[A,B]\rangle|$
-			- Observables que no conmutan no pueden medirse simultáneamente con precisión arbitraria
+      4) Principio de incertidumbre:
+      - El conmutador de dos observables, $i[A,B]$, está relacionado con la incertidumbre en mediciones simultáneas
+      - La relación de incertidumbre de Heisenberg se expresa como $\Delta A \Delta B \geq \frac{1}{2}|\langle[A,B]\rangle|$
+      - Observables que no conmutan no pueden medirse simultáneamente con precisión arbitraria
 
-			5) Evolución temporal:
-			- El hamiltoniano (operador hermitiano) genera la evolución temporal mediante: $U(t) = e^{-iHt/\hbar}$
-			- La hermiticidad del hamiltoniano garantiza que el operador evolución sea unitario
-			- Esto preserva la norma de los estados y la probabilidad total
+      5) Evolución temporal:
+      - El hamiltoniano (operador hermitiano) genera la evolución temporal mediante: $U(t) = e^{-iHt/\hbar}$
+      - La hermiticidad del hamiltoniano garantiza que el operador evolución sea unitario
+      - Esto preserva la norma de los estados y la probabilidad total
 
-			6) Base física para compuertas cuánticas:
-			- Las compuertas cuánticas se implementan a menudo como $U = e^{-iHt/\hbar}$ con hamiltonianos hermitianos controlables
-			- La hermiticidad garantiza que estas operaciones sean unitarias
+      6) Base física para compuertas cuánticas:
+      - Las compuertas cuánticas se implementan a menudo como $U = e^{-iHt/\hbar}$ con hamiltonianos hermitianos controlables
+      - La hermiticidad garantiza que estas operaciones sean unitarias
 
-			7) Teorema de la no-clonación:
-			- La unitariedad de la evolución (derivada de la hermiticidad del hamiltoniano) es esencial para el teorema de no-clonación
+      7) Teorema de la no-clonación:
+      - La unitariedad de la evolución (derivada de la hermiticidad del hamiltoniano) es esencial para el teorema de no-clonación
 
-			Los operadores hermitianos proporcionan así el marco matemático para representar las cantidades físicas observables en mecánica cuántica, conectando el formalismo abstracto con las mediciones experimentales concretas.
-		\end{solution}
-	\end{parts}
+      Los operadores hermitianos proporcionan así el marco matemático para representar las cantidades físicas observables en mecánica cuántica, conectando el formalismo abstracto con las mediciones experimentales concretas.
+    \end{solution}
+  \end{parts}
 
-	\question[3] Considere el espacio vectorial complejo $\mathbb{C}^4$ con la base computacional $\{|00\rangle, |01\rangle, |10\rangle, |11\rangle\}$, y sea el estado
-	$|\psi\rangle = \alpha|00\rangle + \beta|11\rangle$
-	donde $\alpha, \beta \in \mathbb{C}$ y $|\alpha|^2 + |\beta|^2 = 1$.
-	\begin{parts}
+  \question[3] Considere el espacio vectorial complejo $\mathbb{C}^4$ con la base computacional, y sea el estado
+  $|\psi\rangle = \alpha|00\rangle + \beta|11\rangle$
+  donde $\alpha, \beta \in \mathbb{C}$ y $|\alpha|^2 + |\beta|^2 = 1$.
+  \begin{parts}
 
-		\part  Determine las condiciones para que este estado sea separable o entrelazado.
-		\part  Calcule la matriz de densidad $\rho = |\psi\rangle\langle\psi|$.
-		\part  Calcule la entropía de von Neumann $S(\rho_1)$ y explique su significado físico.
-	\end{parts}
+    \part  Determine las condiciones para que este estado sea separable o entrelazado.
+    \part  Calcule la matriz de densidad $\rho = |\psi\rangle\langle\psi|$.
+  \end{parts}
 
-	\begin{solution}
-		a) Para determinar si el estado $|\psi\rangle = \alpha|00\rangle + \beta|11\rangle$ es separable o entrelazado, debemos verificar si puede expresarse como un producto tensorial de dos estados de un qubit:
-		$|\psi\rangle = |\phi_1\rangle \otimes |\phi_2\rangle$
+  \begin{solution}
+    a) Para determinar si el estado $|\psi\rangle = \alpha|00\rangle + \beta|11\rangle$ es separable o entrelazado, debemos verificar si puede expresarse como un producto tensorial de dos estados de un qubit:
+    $|\psi\rangle = |\phi_1\rangle \otimes |\phi_2\rangle$
 
-		Supongamos que $|\psi\rangle$ es separable. Entonces existen estados $|\phi_1\rangle = a|0\rangle + b|1\rangle$ y $|\phi_2\rangle = c|0\rangle + d|1\rangle$ tales que:
-		$|\psi\rangle = |\phi_1\rangle \otimes |\phi_2\rangle = (a|0\rangle + b|1\rangle) \otimes (c|0\rangle + d|1\rangle)$
-		$= ac|00\rangle + ad|01\rangle + bc|10\rangle + bd|11\rangle$
+    Supongamos que $|\psi\rangle$ es separable. Entonces existen estados $|\phi_1\rangle = a|0\rangle + b|1\rangle$ y $|\phi_2\rangle = c|0\rangle + d|1\rangle$ tales que:
+    $|\psi\rangle = |\phi_1\rangle \otimes |\phi_2\rangle = (a|0\rangle + b|1\rangle) \otimes (c|0\rangle + d|1\rangle)$
+    $= ac|00\rangle + ad|01\rangle + bc|10\rangle + bd|11\rangle$
 
-		Comparando con $|\psi\rangle = \alpha|00\rangle + \beta|11\rangle$, obtenemos:
-		$ac = \alpha$
-		$ad = 0$
-		$bc = 0$
-		$bd = \beta$
+    Comparando con $|\psi\rangle = \alpha|00\rangle + \beta|11\rangle$, obtenemos:
+    $ac = \alpha$
+    $ad = 0$
+    $bc = 0$
+    $bd = \beta$
 
-		Para que estas ecuaciones tengan solución, debe ocurrir una de las siguientes condiciones:
-		1) $a = 0$ y $b \neq 0$: En este caso, $bc = 0$ implica $c = 0$, lo que a su vez implica $ac = 0 = \alpha$. Pero también $bd = \beta$, lo que requiere $d \neq 0$. Esto da $|\phi_1\rangle = b|1\rangle$ y $|\phi_2\rangle = d|1\rangle$.
-		2) $b = 0$ y $a \neq 0$: Similarmente, esto implica $d = 0$, $c \neq 0$, $ac = \alpha$ y $bd = 0 = \beta$. Esto da $|\phi_1\rangle = a|0\rangle$ y $|\phi_2\rangle = c|0\rangle$.
-		3) $c = 0$ y $d \neq 0$: Esto implica $ac = 0 = \alpha$ y $bc = 0$, pero $bd = \beta$ requiere $b \neq 0$. Esto da $|\phi_1\rangle = b|1\rangle$ y $|\phi_2\rangle = d|1\rangle$.
-		4) $d = 0$ y $c \neq 0$: Esto implica $ad = 0$ y $bd = 0 = \beta$, pero $ac = \alpha$ requiere $a \neq 0$. Esto da $|\phi_1\rangle = a|0\rangle$ y $|\phi_2\rangle = c|0\rangle$.
+    Para que estas ecuaciones tengan solución, debe ocurrir una de las siguientes condiciones:
+    1) $a = 0$ y $b \neq 0$: En este caso, $bc = 0$ implica $c = 0$, lo que a su vez implica $ac = 0 = \alpha$. Pero también $bd = \beta$, lo que requiere $d \neq 0$. Esto da $|\phi_1\rangle = b|1\rangle$ y $|\phi_2\rangle = d|1\rangle$.
+    2) $b = 0$ y $a \neq 0$: Similarmente, esto implica $d = 0$, $c \neq 0$, $ac = \alpha$ y $bd = 0 = \beta$. Esto da $|\phi_1\rangle = a|0\rangle$ y $|\phi_2\rangle = c|0\rangle$.
+    3) $c = 0$ y $d \neq 0$: Esto implica $ac = 0 = \alpha$ y $bc = 0$, pero $bd = \beta$ requiere $b \neq 0$. Esto da $|\phi_1\rangle = b|1\rangle$ y $|\phi_2\rangle = d|1\rangle$.
+    4) $d = 0$ y $c \neq 0$: Esto implica $ad = 0$ y $bd = 0 = \beta$, pero $ac = \alpha$ requiere $a \neq 0$. Esto da $|\phi_1\rangle = a|0\rangle$ y $|\phi_2\rangle = c|0\rangle$.
 
-		Sin embargo, ninguna de estas soluciones permite $\alpha \neq 0$ y $\beta \neq 0$ simultáneamente. Por tanto:
-		- Si $\alpha = 0$ o $\beta = 0$, el estado es separable.
-		- Si $\alpha \neq 0$ y $\beta \neq 0$, el estado está entrelazado.
+    Sin embargo, ninguna de estas soluciones permite $\alpha \neq 0$ y $\beta \neq 0$ simultáneamente. Por tanto:
+    - Si $\alpha = 0$ o $\beta = 0$, el estado es separable.
+    - Si $\alpha \neq 0$ y $\beta \neq 0$, el estado está entrelazado.
 
-		b) La matriz de densidad $\rho = |\psi\rangle\langle\psi|$ es:
+    b) La matriz de densidad $\rho = |\psi\rangle\langle\psi|$ es:
 
-		$\rho = |\psi\rangle\langle\psi| = (\alpha|00\rangle + \beta|11\rangle)(\alpha^*\langle00| + \beta^*\langle11|)$
-		$= |\alpha|^2|00\rangle\langle00| + \alpha\beta^*|00\rangle\langle11| + \alpha^*\beta|11\rangle\langle00| + |\beta|^2|11\rangle\langle11|$
+    $\rho = |\psi\rangle\langle\psi| = (\alpha|00\rangle + \beta|11\rangle)(\alpha^*\langle00| + \beta^*\langle11|)$
+    $= |\alpha|^2|00\rangle\langle00| + \alpha\beta^*|00\rangle\langle11| + \alpha^*\beta|11\rangle\langle00| + |\beta|^2|11\rangle\langle11|$
 
-		En forma matricial, utilizando la base computacional $\{|00\rangle, |01\rangle, |10\rangle, |11\rangle\}$:
+    En forma matricial, utilizando la base computacional $\{|00\rangle, |01\rangle, |10\rangle, |11\rangle\}$:
 
-		$\rho = \begin{pmatrix}
-				|\alpha|^2    & 0 & 0 & \alpha\beta^* \\
-				0             & 0 & 0 & 0             \\
-				0             & 0 & 0 & 0             \\
-				\alpha^*\beta & 0 & 0 & |\beta|^2
-			\end{pmatrix}$
+    $\rho = \begin{pmatrix}
+        |\alpha|^2    & 0 & 0 & \alpha\beta^* \\
+        0             & 0 & 0 & 0             \\
+        0             & 0 & 0 & 0             \\
+        \alpha^*\beta & 0 & 0 & |\beta|^2
+      \end{pmatrix}$
 
-		c) Para obtener la matriz de densidad reducida $\rho_1$ del primer qubit, tomamos la traza parcial sobre el segundo qubit:
+    c) Para obtener la matriz de densidad reducida $\rho_1$ del primer qubit, tomamos la traza parcial sobre el segundo qubit:
 
-		$\rho_1 = \text{Tr}_2(\rho) = \sum_{i=0}^1 \langle i|_2 \rho |i\rangle_2$
+    $\rho_1 = \text{Tr}_2(\rho) = \sum_{i=0}^1 \langle i|_2 \rho |i\rangle_2$
 
-		Calculemos cada término:
+    Calculemos cada término:
 
-		$\langle 0|_2 \rho |0\rangle_2 = \langle 0|_2 (|\alpha|^2|00\rangle\langle00| + \alpha\beta^*|00\rangle\langle11| + \alpha^*\beta|11\rangle\langle00| + |\beta|^2|11\rangle\langle11|) |0\rangle_2$
-		$= |\alpha|^2|0\rangle\langle0| + 0 + 0 + 0 = |\alpha|^2|0\rangle\langle0|$
+    $\langle 0|_2 \rho |0\rangle_2 = \langle 0|_2 (|\alpha|^2|00\rangle\langle00| + \alpha\beta^*|00\rangle\langle11| + \alpha^*\beta|11\rangle\langle00| + |\beta|^2|11\rangle\langle11|) |0\rangle_2$
+    $= |\alpha|^2|0\rangle\langle0| + 0 + 0 + 0 = |\alpha|^2|0\rangle\langle0|$
 
-		$\langle 1|_2 \rho |1\rangle_2 = \langle 1|_2 (|\alpha|^2|00\rangle\langle00| + \alpha\beta^*|00\rangle\langle11| + \alpha^*\beta|11\rangle\langle00| + |\beta|^2|11\rangle\langle11|) |1\rangle_2$
-		$= 0 + 0 + 0 + |\beta|^2|1\rangle\langle1| = |\beta|^2|1\rangle\langle1|$
+    $\langle 1|_2 \rho |1\rangle_2 = \langle 1|_2 (|\alpha|^2|00\rangle\langle00| + \alpha\beta^*|00\rangle\langle11| + \alpha^*\beta|11\rangle\langle00| + |\beta|^2|11\rangle\langle11|) |1\rangle_2$
+    $= 0 + 0 + 0 + |\beta|^2|1\rangle\langle1| = |\beta|^2|1\rangle\langle1|$
 
-		Por tanto:
-		$\rho_1 = |\alpha|^2|0\rangle\langle0| + |\beta|^2|1\rangle\langle1| = \begin{pmatrix} |\alpha|^2 & 0 \\ 0 & |\beta|^2 \end{pmatrix}$
+    Por tanto:
+    $\rho_1 = |\alpha|^2|0\rangle\langle0| + |\beta|^2|1\rangle\langle1| = \begin{pmatrix} |\alpha|^2 & 0 \\ 0 & |\beta|^2 \end{pmatrix}$
 
-		d) La entropía de von Neumann $S(\rho_1)$ se define como:
-		$S(\rho_1) = -\text{Tr}(\rho_1 \log_2 \rho_1) = -\sum_i \lambda_i \log_2 \lambda_i$
+    d) La entropía de von Neumann $S(\rho_1)$ se define como:
+    $S(\rho_1) = -\text{Tr}(\rho_1 \log_2 \rho_1) = -\sum_i \lambda_i \log_2 \lambda_i$
 
-		donde $\lambda_i$ son los valores propios de $\rho_1$.
+    donde $\lambda_i$ son los valores propios de $\rho_1$.
 
-		En este caso, $\rho_1$ ya está en forma diagonal, con valores propios $\lambda_1 = |\alpha|^2$ y $\lambda_2 = |\beta|^2$.
+    En este caso, $\rho_1$ ya está en forma diagonal, con valores propios $\lambda_1 = |\alpha|^2$ y $\lambda_2 = |\beta|^2$.
 
-		Por tanto:
-		$S(\rho_1) = -|\alpha|^2 \log_2 |\alpha|^2 - |\beta|^2 \log_2 |\beta|^2$
+    Por tanto:
+    $S(\rho_1) = -|\alpha|^2 \log_2 |\alpha|^2 - |\beta|^2 \log_2 |\beta|^2$
 
-		Para un caso particular donde $|\alpha|^2 = |\beta|^2 = 1/2$ (un estado de Bell), tenemos:
-		$S(\rho_1) = -\frac{1}{2} \log_2 \frac{1}{2} - \frac{1}{2} \log_2 \frac{1}{2} = -\frac{1}{2} \cdot (-1) - \frac{1}{2} \cdot (-1) = 1$
+    Para un caso particular donde $|\alpha|^2 = |\beta|^2 = 1/2$ (un estado de Bell), tenemos:
+    $S(\rho_1) = -\frac{1}{2} \log_2 \frac{1}{2} - \frac{1}{2} \log_2 \frac{1}{2} = -\frac{1}{2} \cdot (-1) - \frac{1}{2} \cdot (-1) = 1$
 
-		Significado físico:
-		La entropía de von Neumann de la matriz de densidad reducida $\rho_1$ cuantifica el grado de entrelazamiento entre el primer qubit y el segundo. Sus propiedades e interpretación son:
+    Significado físico:
+    La entropía de von Neumann de la matriz de densidad reducida $\rho_1$ cuantifica el grado de entrelazamiento entre el primer qubit y el segundo. Sus propiedades e interpretación son:
 
-		1) $S(\rho_1) = 0$ si y solo si el estado global es separable (no entrelazado). Esto ocurre cuando $|\alpha|^2 = 1$ o $|\beta|^2 = 1$.
+    1) $S(\rho_1) = 0$ si y solo si el estado global es separable (no entrelazado). Esto ocurre cuando $|\alpha|^2 = 1$ o $|\beta|^2 = 1$.
 
-		2) $S(\rho_1)$ alcanza su valor máximo de 1 para estados máximamente entrelazados, lo que ocurre cuando $|\alpha|^2 = |\beta|^2 = 1/2$ (estados de Bell).
+    2) $S(\rho_1)$ alcanza su valor máximo de 1 para estados máximamente entrelazados, lo que ocurre cuando $|\alpha|^2 = |\beta|^2 = 1/2$ (estados de Bell).
 
-		3) La entropía mide la "mezcla" o "impureza" del estado reducido, que surge debido al entrelazamiento con el otro qubit.
+    3) La entropía mide la "mezcla" o "impureza" del estado reducido, que surge debido al entrelazamiento con el otro qubit.
 
-		4) Físicamente, indica el grado de información compartida entre los dos qubits. Un valor alto significa que no se puede obtener información completa sobre un qubit sin considerar el otro.
+    4) Físicamente, indica el grado de información compartida entre los dos qubits. Un valor alto significa que no se puede obtener información completa sobre un qubit sin considerar el otro.
 
-		5) Para un sistema bipartito en estado puro, $S(\rho_1) = S(\rho_2)$, lo que refleja la simetría del entrelazamiento.
+    5) Para un sistema bipartito en estado puro, $S(\rho_1) = S(\rho_2)$, lo que refleja la simetría del entrelazamiento.
 
-		6) La entropía también cuantifica los recursos cuánticos necesarios para realizar ciertos protocolos de información cuántica, como teleportación o codificación superdensa.
+    6) La entropía también cuantifica los recursos cuánticos necesarios para realizar ciertos protocolos de información cuántica, como teleportación o codificación superdensa.
 
-		En el contexto de sistemas físicos, la entropía de entrelazamiento está relacionada con las correlaciones no locales entre partículas entrelazadas, que no tienen análogo clásico y son fundamentales para muchas aplicaciones de computación e información cuántica.
-	\end{solution}
+    En el contexto de sistemas físicos, la entropía de entrelazamiento está relacionada con las correlaciones no locales entre partículas entrelazadas, que no tienen análogo clásico y son fundamentales para muchas aplicaciones de computación e información cuántica.
+  \end{solution}
 
-	\question[3]
-	Dados los estados de Bell
-	$|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle), \quad |\Phi^-\rangle = \frac{1}{\sqrt{2}}(|00\rangle - |11\rangle),$
-	$|\Psi^+\rangle = \frac{1}{\sqrt{2}}(|01\rangle + |10\rangle), \quad |\Psi^-\rangle = \frac{1}{\sqrt{2}}(|01\rangle - |10\rangle),$
-	\begin{parts}
+  \question[3]
+  Dados los estados de Bell
+  $|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$, $|\Phi^-\rangle = \frac{1}{\sqrt{2}}(|00\rangle - |11\rangle)$,
+  $|\Psi^+\rangle = \frac{1}{\sqrt{2}}(|01\rangle + |10\rangle)$ y $|\Psi^-\rangle = \frac{1}{\sqrt{2}}(|01\rangle - |10\rangle),$
+  \begin{parts}
 
-		\part  Demuestre que forman una base ortonormal en el espacio vectorial $\mathbb{C}^4$.
-		\part  Expresemos $|00\rangle$ en términos de los estados de Bell.
-		\part  Explique brevemente cómo se utilizan los estados de Bell en protocolos de teleportación cuántica.
-	\end{parts}
+    \part  Demuestre que forman una base ortonormal en el espacio vectorial $\mathbb{C}^4$.
+    \part  Expresemos $|00\rangle$ en términos de los estados de Bell.
+  \end{parts}
 
-	\begin{solution}
-		a) Para demostrar que los estados de Bell forman una base ortonormal en $\mathbb{C}^4$, debemos verificar dos condiciones:
-		1) Los cuatro estados son ortonormales (ortogonales entre sí y normalizados)
-		2) Generan todo el espacio $\mathbb{C}^4$
+  \begin{solution}
+    a) Para demostrar que los estados de Bell forman una base ortonormal en $\mathbb{C}^4$, debemos verificar dos condiciones:
+    1) Los cuatro estados son ortonormales (ortogonales entre sí y normalizados)
+    2) Generan todo el espacio $\mathbb{C}^4$
 
-		Verificación de ortonormalidad:
-		Primero, comprobemos que cada estado está normalizado calculando $\langle\psi|\psi\rangle$:
+    Verificación de ortonormalidad:
+    Primero, comprobemos que cada estado está normalizado calculando $\langle\psi|\psi\rangle$:
 
-		$\langle\Phi^+|\Phi^+\rangle = \frac{1}{2}(\langle00| + \langle11|)(|00\rangle + |11\rangle) = \frac{1}{2}(1 + 0 + 0 + 1) = 1$
+    $\langle\Phi^+|\Phi^+\rangle = \frac{1}{2}(\langle00| + \langle11|)(|00\rangle + |11\rangle) = \frac{1}{2}(1 + 0 + 0 + 1) = 1$
 
-		Similarmente, $\langle\Phi^-|\Phi^-\rangle = \langle\Psi^+|\Psi^+\rangle = \langle\Psi^-|\Psi^-\rangle = 1$, por lo que todos los estados están normalizados.
+    Similarmente, $\langle\Phi^-|\Phi^-\rangle = \langle\Psi^+|\Psi^+\rangle = \langle\Psi^-|\Psi^-\rangle = 1$, por lo que todos los estados están normalizados.
 
-		Ahora verifiquemos la ortogonalidad calculando los productos internos entre pares distintos:
+    Ahora verifiquemos la ortogonalidad calculando los productos internos entre pares distintos:
 
-		$\langle\Phi^+|\Phi^-\rangle = \frac{1}{2}(\langle00| + \langle11|)(|00\rangle - |11\rangle) = \frac{1}{2}(1 - 1) = 0$
+    $\langle\Phi^+|\Phi^-\rangle = \frac{1}{2}(\langle00| + \langle11|)(|00\rangle - |11\rangle) = \frac{1}{2}(1 - 1) = 0$
 
-		$\langle\Phi^+|\Psi^+\rangle = \frac{1}{2}(\langle00| + \langle11|)(|01\rangle + |10\rangle) = \frac{1}{2}(0 + 0 + 0 + 0) = 0$
+    $\langle\Phi^+|\Psi^+\rangle = \frac{1}{2}(\langle00| + \langle11|)(|01\rangle + |10\rangle) = \frac{1}{2}(0 + 0 + 0 + 0) = 0$
 
-		$\langle\Phi^+|\Psi^-\rangle = \frac{1}{2}(\langle00| + \langle11|)(|01\rangle - |10\rangle) = \frac{1}{2}(0 - 0 + 0 - 0) = 0$
+    $\langle\Phi^+|\Psi^-\rangle = \frac{1}{2}(\langle00| + \langle11|)(|01\rangle - |10\rangle) = \frac{1}{2}(0 - 0 + 0 - 0) = 0$
 
-		Similarmente, se puede verificar que $\langle\Phi^-|\Psi^+\rangle = \langle\Phi^-|\Psi^-\rangle = \langle\Psi^+|\Psi^-\rangle = 0$.
+    Similarmente, se puede verificar que $\langle\Phi^-|\Psi^+\rangle = \langle\Phi^-|\Psi^-\rangle = \langle\Psi^+|\Psi^-\rangle = 0$.
 
-		Por tanto, los estados de Bell son mutuamente ortogonales y están normalizados, es decir, forman un conjunto ortonormal.
+    Por tanto, los estados de Bell son mutuamente ortogonales y están normalizados, es decir, forman un conjunto ortonormal.
 
-		Generación del espacio:
-		Como $\mathbb{C}^4$ tiene dimensión 4 y tenemos 4 vectores linealmente independientes (por ser ortonormales), estos vectores generan todo el espacio.
+    Generación del espacio:
+    Como $\mathbb{C}^4$ tiene dimensión 4 y tenemos 4 vectores linealmente independientes (por ser ortonormales), estos vectores generan todo el espacio.
 
-		En conclusión, los estados de Bell forman una base ortonormal en $\mathbb{C}^4$.
+    En conclusión, los estados de Bell forman una base ortonormal en $\mathbb{C}^4$.
 
-		b) Para expresar $|00\rangle$ en términos de los estados de Bell, despejamos de las definiciones:
+    b) Para expresar $|00\rangle$ en términos de los estados de Bell, despejamos de las definiciones:
 
-		$|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle) \implies |00\rangle = \sqrt{2}|\Phi^+\rangle - |11\rangle$
+    $|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle) \implies |00\rangle = \sqrt{2}|\Phi^+\rangle - |11\rangle$
 
-		$|\Phi^-\rangle = \frac{1}{\sqrt{2}}(|00\rangle - |11\rangle) \implies |00\rangle = \sqrt{2}|\Phi^-\rangle + |11\rangle$
+    $|\Phi^-\rangle = \frac{1}{\sqrt{2}}(|00\rangle - |11\rangle) \implies |00\rangle = \sqrt{2}|\Phi^-\rangle + |11\rangle$
 
-		Sumando estas dos ecuaciones y dividiendo por 2:
-		$|00\rangle = \frac{\sqrt{2}}{2}|\Phi^+\rangle + \frac{\sqrt{2}}{2}|\Phi^-\rangle = \frac{1}{\sqrt{2}}(|\Phi^+\rangle + |\Phi^-\rangle)$
+    Sumando estas dos ecuaciones y dividiendo por 2:
+    $|00\rangle = \frac{\sqrt{2}}{2}|\Phi^+\rangle + \frac{\sqrt{2}}{2}|\Phi^-\rangle = \frac{1}{\sqrt{2}}(|\Phi^+\rangle + |\Phi^-\rangle)$
 
-		Alternativamente, podemos verificar directamente:
-		$\frac{1}{\sqrt{2}}(|\Phi^+\rangle + |\Phi^-\rangle) = \frac{1}{\sqrt{2}}[\frac{1}{\sqrt{2}}(|00\rangle + |11\rangle) + \frac{1}{\sqrt{2}}(|00\rangle - |11\rangle)]$
-		$= \frac{1}{\sqrt{2}} \cdot \frac{1}{\sqrt{2}}[2|00\rangle] = |00\rangle$
+    Alternativamente, podemos verificar directamente:
+    $\frac{1}{\sqrt{2}}(|\Phi^+\rangle + |\Phi^-\rangle) = \frac{1}{\sqrt{2}}[\frac{1}{\sqrt{2}}(|00\rangle + |11\rangle) + \frac{1}{\sqrt{2}}(|00\rangle - |11\rangle)]$
+    $= \frac{1}{\sqrt{2}} \cdot \frac{1}{\sqrt{2}}[2|00\rangle] = |00\rangle$
 
-		c) Para determinar el resultado de aplicar la compuerta CNOT al estado $|\Phi^+\rangle$, recordemos cómo actúa CNOT en la base computacional:
-		$\text{CNOT}|00\rangle = |00\rangle$
-		$\text{CNOT}|01\rangle = |01\rangle$
-		$\text{CNOT}|10\rangle = |11\rangle$
-		$\text{CNOT}|11\rangle = |10\rangle$
+    c) Para determinar el resultado de aplicar la compuerta CNOT al estado $|\Phi^+\rangle$, recordemos cómo actúa CNOT en la base computacional:
+    $\text{CNOT}|00\rangle = |00\rangle$
+    $\text{CNOT}|01\rangle = |01\rangle$
+    $\text{CNOT}|10\rangle = |11\rangle$
+    $\text{CNOT}|11\rangle = |10\rangle$
 
-		Aplicando CNOT al estado $|\Phi^+\rangle$:
-		$\text{CNOT}|\Phi^+\rangle = \text{CNOT}[\frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)]$
-		$= \frac{1}{\sqrt{2}}[\text{CNOT}|00\rangle + \text{CNOT}|11\rangle]$
-		$= \frac{1}{\sqrt{2}}[|00\rangle + |10\rangle]$
-		$= \frac{1}{\sqrt{2}}(|0\rangle \otimes |0\rangle + |1\rangle \otimes |0\rangle)$
-		$= \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) \otimes |0\rangle$
+    Aplicando CNOT al estado $|\Phi^+\rangle$:
+    $\text{CNOT}|\Phi^+\rangle = \text{CNOT}[\frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)]$
+    $= \frac{1}{\sqrt{2}}[\text{CNOT}|00\rangle + \text{CNOT}|11\rangle]$
+    $= \frac{1}{\sqrt{2}}[|00\rangle + |10\rangle]$
+    $= \frac{1}{\sqrt{2}}(|0\rangle \otimes |0\rangle + |1\rangle \otimes |0\rangle)$
+    $= \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) \otimes |0\rangle$
 
-		Esto demuestra que al aplicar CNOT a $|\Phi^+\rangle$ obtenemos un estado separable (no entrelazado), donde el primer qubit está en el estado $\frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) = |+\rangle$ y el segundo qubit está en el estado $|0\rangle$.
+    Esto demuestra que al aplicar CNOT a $|\Phi^+\rangle$ obtenemos un estado separable (no entrelazado), donde el primer qubit está en el estado $\frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) = |+\rangle$ y el segundo qubit está en el estado $|0\rangle$.
 
-		d) Los estados de Bell son fundamentales en el protocolo de teleportación cuántica, que permite transferir el estado desconocido de un qubit a otro qubit distante sin transportar físicamente el qubit original. El proceso funciona de la siguiente manera:
+    d) Los estados de Bell son fundamentales en el protocolo de teleportación cuántica, que permite transferir el estado desconocido de un qubit a otro qubit distante sin transportar físicamente el qubit original. El proceso funciona de la siguiente manera:
 
-		1) Recursos iniciales:
-		- Alice posee un qubit en un estado desconocido $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$ que desea teleportar a Bob
-		- Alice y Bob comparten previamente un par de qubits en un estado de Bell, típicamente $|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$
-		- Alice tiene acceso al primer qubit del par entrelazado, Bob al segundo
+    1) Recursos iniciales:
+    - Alice posee un qubit en un estado desconocido $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$ que desea teleportar a Bob
+    - Alice y Bob comparten previamente un par de qubits en un estado de Bell, típicamente $|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$
+    - Alice tiene acceso al primer qubit del par entrelazado, Bob al segundo
 
-		2) Medición de Bell:
-		- Alice realiza una medición de Bell en los dos qubits que posee: su qubit original y su parte del par entrelazado
-		- Esta medición proyecta los dos qubits en uno de los cuatro estados de Bell: $|\Phi^+\rangle$, $|\Phi^-\rangle$, $|\Psi^+\rangle$ o $|\Psi^-\rangle$
-		- Técnicamente, Alice aplica una puerta CNOT seguida de una Hadamard y luego mide en la base computacional
+    2) Medición de Bell:
+    - Alice realiza una medición de Bell en los dos qubits que posee: su qubit original y su parte del par entrelazado
+    - Esta medición proyecta los dos qubits en uno de los cuatro estados de Bell: $|\Phi^+\rangle$, $|\Phi^-\rangle$, $|\Psi^+\rangle$ o $|\Psi^-\rangle$
+    - Técnicamente, Alice aplica una puerta CNOT seguida de una Hadamard y luego mide en la base computacional
 
-		3) Comunicación clásica:
-		- Alice comunica a Bob el resultado de su medición (2 bits clásicos de información)
-		- Esta comunicación es esencial y no puede ocurrir más rápido que la velocidad de la luz
+    3) Comunicación clásica:
+    - Alice comunica a Bob el resultado de su medición (2 bits clásicos de información)
+    - Esta comunicación es esencial y no puede ocurrir más rápido que la velocidad de la luz
 
-		4) Operación de corrección:
-		- Dependiendo del resultado recibido, Bob aplica una de cuatro operaciones diferentes a su qubit:
-		* Si Alice midió $|\Phi^+\rangle$: Bob aplica $I$ (no hace nada)
-		* Si Alice midió $|\Phi^-\rangle$: Bob aplica $Z$
-		* Si Alice midió $|\Psi^+\rangle$: Bob aplica $X$
-		* Si Alice midió $|\Psi^-\rangle$: Bob aplica $ZX$
+    4) Operación de corrección:
+    - Dependiendo del resultado recibido, Bob aplica una de cuatro operaciones diferentes a su qubit:
+    * Si Alice midió $|\Phi^+\rangle$: Bob aplica $I$ (no hace nada)
+    * Si Alice midió $|\Phi^-\rangle$: Bob aplica $Z$
+    * Si Alice midió $|\Psi^+\rangle$: Bob aplica $X$
+    * Si Alice midió $|\Psi^-\rangle$: Bob aplica $ZX$
 
-		5) Resultado:
-		- Tras aplicar la operación correcta, el qubit de Bob se encuentra exactamente en el estado original $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$
-		- La teleportación se ha completado con éxito
+    5) Resultado:
+    - Tras aplicar la operación correcta, el qubit de Bob se encuentra exactamente en el estado original $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$
+    - La teleportación se ha completado con éxito
 
-		Propiedades importantes:
-		- El estado original $|\psi\rangle$ es destruido en el proceso (no hay clonación)
-		- No se transmite información más rápido que la luz (se requiere comunicación clásica)
-		- La teleportación funciona aunque Alice no conozca el estado que está teleportando
-		- El recurso clave que permite este protocolo es el entrelazamiento previo entre Alice y Bob
-		- Los estados de Bell son esenciales tanto para el recurso compartido como para la medición que realiza Alice
+    Propiedades importantes:
+    - El estado original $|\psi\rangle$ es destruido en el proceso (no hay clonación)
+    - No se transmite información más rápido que la luz (se requiere comunicación clásica)
+    - La teleportación funciona aunque Alice no conozca el estado que está teleportando
+    - El recurso clave que permite este protocolo es el entrelazamiento previo entre Alice y Bob
+    - Los estados de Bell son esenciales tanto para el recurso compartido como para la medición que realiza Alice
 
-		La teleportación cuántica es una aplicación fundamental de la información cuántica que demuestra el poder del entrelazamiento y ha sido implementada experimentalmente en diversas plataformas físicas, desde fotones hasta iones atrapados y circuitos superconductores.
-	\end{solution}
+    La teleportación cuántica es una aplicación fundamental de la información cuántica que demuestra el poder del entrelazamiento y ha sido implementada experimentalmente en diversas plataformas físicas, desde fotones hasta iones atrapados y circuitos superconductores.
+  \end{solution}
 \end{questions}

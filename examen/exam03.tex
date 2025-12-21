@@ -1,165 +1,160 @@
-\codigonombre{}{MCC-ALCC-25Q103}
-
-Conteste a las siguientes preguntas en el espacio anteriormente indicado.
-
 \begin{questions}
-	\question[4] Responda a las siguientes cuestiones:
-	\begin{parts}
+  \question[4] Responda a las siguientes cuestiones:
+  \begin{parts}
 
-		\part Explique la notación de Dirac (bra-ket) y cómo se utiliza para representar estados cuánticos y operaciones sobre ellos.
+    \part Explique la notación de Dirac (bra-ket) y cómo se utiliza para representar estados cuánticos y operaciones sobre ellos.
 
-		\begin{solution}
-			La notación de Dirac o notación bra-ket es un formalismo matemático introducido por Paul Dirac para representar estados y operaciones en mecánica cuántica de manera compacta y elegante.
+    \begin{solution}
+      La notación de Dirac o notación bra-ket es un formalismo matemático introducido por Paul Dirac para representar estados y operaciones en mecánica cuántica de manera compacta y elegante.
 
-			Elementos básicos:
-			1) Ket $|v\rangle$: Representa un vector columna en un espacio de Hilbert (estado cuántico)
-			2) Bra $\langle v|$: Representa el dual de un ket, es decir, un vector fila que es el conjugado transpuesto del ket: $\langle v| = (|v\rangle)^\dagger$
-			3) Braket $\langle u|v\rangle$: Producto interno entre dos vectores (amplitud de transición)
-			4) Producto exterior $|u\rangle\langle v|$: Operador que proyecta en la dirección de $|u\rangle$ y desde la dirección de $|v\rangle$
+      Elementos básicos:
+      1) Ket $|v\rangle$: Representa un vector columna en un espacio de Hilbert (estado cuántico)
+      2) Bra $\langle v|$: Representa el dual de un ket, es decir, un vector fila que es el conjugado transpuesto del ket: $\langle v| = (|v\rangle)^\dagger$
+      3) Braket $\langle u|v\rangle$: Producto interno entre dos vectores (amplitud de transición)
+      4) Producto exterior $|u\rangle\langle v|$: Operador que proyecta en la dirección de $|u\rangle$ y desde la dirección de $|v\rangle$
 
-			Usos principales:
-			- Representación de estados: $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$ representa un qubit en superposición
-			- Producto interno: $\langle\phi|\psi\rangle$ calcula la amplitud de probabilidad de transición del estado $|\psi\rangle$ al estado $|\phi\rangle$
-			- Proyección: $P = |\psi\rangle\langle\psi|$ para $\langle\psi|\psi\rangle = 1$ representa un operador de proyección
-			- Operadores: $A = \sum_{i,j} a_{ij}|i\rangle\langle j|$ representa un operador lineal en la base $\{|i\rangle\}$
-			- Cálculo de valores esperados: $\langle\psi|A|\psi\rangle$ representa el valor esperado del observable $A$ en el estado $|\psi\rangle$
-			- Expansión en base ortonormal: $|\psi\rangle = \sum_i |i\rangle\langle i|\psi\rangle$ donde $\{|i\rangle\}$ es una base ortonormal
+      Usos principales:
+      - Representación de estados: $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$ representa un qubit en superposición
+      - Producto interno: $\langle\phi|\psi\rangle$ calcula la amplitud de probabilidad de transición del estado $|\psi\rangle$ al estado $|\phi\rangle$
+      - Proyección: $P = |\psi\rangle\langle\psi|$ para $\langle\psi|\psi\rangle = 1$ representa un operador de proyección
+      - Operadores: $A = \sum_{i,j} a_{ij}|i\rangle\langle j|$ representa un operador lineal en la base $\{|i\rangle\}$
+      - Cálculo de valores esperados: $\langle\psi|A|\psi\rangle$ representa el valor esperado del observable $A$ en el estado $|\psi\rangle$
+      - Expansión en base ortonormal: $|\psi\rangle = \sum_i |i\rangle\langle i|\psi\rangle$ donde $\{|i\rangle\}$ es una base ortonormal
 
-			Ventajas:
-			- Simplifica notablemente las expresiones matemáticas
-			- Enfatiza la dualidad entre estados y mediciones
-			- Facilita los cálculos en espacios de Hilbert de dimensión infinita
-			- Permite manipular operadores de forma intuitiva
-			- Hace evidentes las relaciones entre estados y operadores
-		\end{solution}
+      Ventajas:
+      - Simplifica notablemente las expresiones matemáticas
+      - Enfatiza la dualidad entre estados y mediciones
+      - Facilita los cálculos en espacios de Hilbert de dimensión infinita
+      - Permite manipular operadores de forma intuitiva
+      - Hace evidentes las relaciones entre estados y operadores
+    \end{solution}
 
-		\part Explique el concepto de matriz de densidad y su utilidad para describir estados cuánticos mixtos.
+    \part Explique el concepto de matriz de densidad y su utilidad en describir estados cuánticos mixtos.
 
-		\begin{solution}
-			La matriz de densidad (u operador de densidad) es una generalización de la descripción de estados cuánticos que permite representar tanto estados puros como mixtos.
+    \begin{solution}
+      La matriz de densidad (u operador de densidad) es una generalización de la descripción de estados cuánticos que permite representar tanto estados puros como mixtos.
 
-			Definición formal:
-			- Para un estado puro $|\psi\rangle$, la matriz de densidad es $\rho = |\psi\rangle\langle\psi|$
-			- Para un estado mixto (ensamble estadístico de estados puros), la matriz de densidad es $\rho = \sum_i p_i |\psi_i\rangle\langle\psi_i|$, donde $p_i$ son probabilidades ($p_i \geq 0$, $\sum_i p_i = 1$) y $|\psi_i\rangle$ son estados puros
+      Definición formal:
+      - Para un estado puro $|\psi\rangle$, la matriz de densidad es $\rho = |\psi\rangle\langle\psi|$
+      - Para un estado mixto (ensamble estadístico de estados puros), la matriz de densidad es $\rho = \sum_i p_i |\psi_i\rangle\langle\psi_i|$, donde $p_i$ son probabilidades ($p_i \geq 0$, $\sum_i p_i = 1$) y $|\psi_i\rangle$ son estados puros
 
-			Propiedades fundamentales:
-			1) $\rho$ es hermitiana: $\rho = \rho^\dagger$
-			2) $\rho$ es positiva semidefinida: $\langle\phi|\rho|\phi\rangle \geq 0$ para todo $|\phi\rangle$
-			3) $\rho$ tiene traza 1: $Tr(\rho) = 1$
-			4) $Tr(\rho^2) \leq 1$, con igualdad si y solo si $\rho$ representa un estado puro
+      Propiedades fundamentales:
+      1) $\rho$ es hermitiana: $\rho = \rho^\dagger$
+      2) $\rho$ es positiva semidefinida: $\langle\phi|\rho|\phi\rangle \geq 0$ para todo $|\phi\rangle$
+      3) $\rho$ tiene traza 1: $Tr(\rho) = 1$
+      4) $Tr(\rho^2) \leq 1$, con igualdad si y solo si $\rho$ representa un estado puro
 
-			Utilidad y ventajas:
-			- Permite representar estados con incertidumbre clásica (mixtos) además de superposiciones cuánticas
-			- Es necesaria para describir subsistemas de sistemas entrelazados (matrices de densidad reducidas)
-			- Simplifica el cálculo de valores esperados: $\langle A \rangle = Tr(\rho A)$
-			- Es invariante bajo cambios de fase global en los estados constituyentes
-			- Permite caracterizar completamente la información físicamente accesible de un sistema cuántico
-			- Facilita la descripción de procesos con decoherencia y disipación
-			- Es esencial en teoría de información cuántica para cuantificar entrelazamiento y entropía
+      Utilidad y ventajas:
+      - Permite representar estados con incertidumbre clásica (mixtos) además de superposiciones cuánticas
+      - Es necesaria para describir subsistemas de sistemas entrelazados (matrices de densidad reducidas)
+      - Simplifica el cálculo de valores esperados: $\langle A \rangle = Tr(\rho A)$
+      - Es invariante bajo cambios de fase global en los estados constituyentes
+      - Permite caracterizar completamente la información físicamente accesible de un sistema cuántico
+      - Facilita la descripción de procesos con decoherencia y disipación
+      - Es esencial en teoría de información cuántica para cuantificar entrelazamiento y entropía
 
-			Matrices de densidad reducidas:
-			- Para sistemas compuestos, si tenemos $\rho_{AB}$ para un sistema bipartito, podemos obtener la matriz reducida del subsistema A mediante la traza parcial: $\rho_A = Tr_B(\rho_{AB})$
-			- Permite estudiar las propiedades de un subsistema cuando no se puede acceder al sistema completo
-			- Para estados entrelazados, las matrices reducidas siempre representan estados mixtos, aunque el estado global sea puro
+      Matrices de densidad reducidas:
+      - Para sistemas compuestos, si tenemos $\rho_{AB}$ para un sistema bipartito, podemos obtener la matriz reducida del subsistema A mediante la traza parcial: $\rho_A = Tr_B(\rho_{AB})$
+      - Permite estudiar las propiedades de un subsistema cuando no se puede acceder al sistema completo
+      - Para estados entrelazados, las matrices reducidas siempre representan estados mixtos, aunque el estado global sea puro
 
-			El formalismo de la matriz de densidad es indispensable en campos como la computación cuántica, información cuántica, óptica cuántica y decoherencia, donde frecuentemente se trabaja con estados no ideales o subsistemas de sistemas más grandes.
-		\end{solution}
-	\end{parts}
+      El formalismo de la matriz de densidad es indispensable en campos como la computación cuántica, información cuántica, óptica cuántica y decoherencia, donde frecuentemente se trabaja con estados no ideales o subsistemas de sistemas más grandes.
+    \end{solution}
+  \end{parts}
 
-	\question[3] Considere un operador hermitiano $A$ con valores propios $\lambda_1 = 2$ y $\lambda_2 = -1$, cuyos vectores propios normalizados son $|v_1\rangle = \frac{1}{\sqrt{5}}(2|0\rangle + i|1\rangle)$ y $|v_2\rangle = \frac{1}{\sqrt{5}}(i|0\rangle + 2|1\rangle)$ respectivamente.
-	\begin{parts}
-		\part Verifique que los vectores propios son ortogonales.
-		\part Escriba el operador $A$ en notación de Dirac utilizando su descomposición espectral.
-		\part Determine la representación matricial de $A$ en la base computacional $\{|0\rangle, |1\rangle\}$.
-	\end{parts}
+  \question[3] Considere un operador hermitiano $A$ con valores propios $\lambda_1 = 2$ y $\lambda_2 = -1$, cuyos vectores propios normalizados son $|v_1\rangle = \frac{1}{\sqrt{5}}(2|0\rangle + i|1\rangle)$ y $|v_2\rangle = \frac{1}{\sqrt{5}}(i|0\rangle + 2|1\rangle)$ respectivamente.
+  \begin{parts}
+    \part Verifique que los vectores propios son ortogonales.
+    \part Escriba el operador $A$ en notación de Dirac utilizando su descomposición espectral.
+    \part Determine la representación matricial de $A$ en la base computacional $\{|0\rangle, |1\rangle\}$.
+  \end{parts}
 
-	\begin{solution}
-		a) Para verificar que los vectores propios son ortogonales, calculamos su producto interno:
+  \begin{solution}
+    a) Para verificar que los vectores propios son ortogonales, calculamos su producto interno:
 
-		$\langle v_1|v_2\rangle = \frac{1}{\sqrt{5}}\frac{1}{\sqrt{5}}(2\langle 0| - i\langle 1|)(i|0\rangle + 2|1\rangle)$
-		$= \frac{1}{5}(2i + (-i)2)$
-		$= \frac{1}{5}(2i - 2i)$
-		$= 0$
+    $\langle v_1|v_2\rangle = \frac{1}{\sqrt{5}}\frac{1}{\sqrt{5}}(2\langle 0| - i\langle 1|)(i|0\rangle + 2|1\rangle)$
+    $= \frac{1}{5}(2i + (-i)2)$
+    $= \frac{1}{5}(2i - 2i)$
+    $= 0$
 
-		Por tanto, los vectores propios son ortogonales, como era de esperar para vectores propios de un operador hermitiano correspondientes a valores propios distintos.
+    Por tanto, los vectores propios son ortogonales, como era de esperar para vectores propios de un operador hermitiano correspondientes a valores propios distintos.
 
-		b) La descomposición espectral de $A$ en notación de Dirac es:
+    b) La descomposición espectral de $A$ en notación de Dirac es:
 
-		$A = \sum_i \lambda_i |v_i\rangle\langle v_i| = \lambda_1 |v_1\rangle\langle v_1| + \lambda_2 |v_2\rangle\langle v_2|$
-		$= 2|v_1\rangle\langle v_1| + (-1)|v_2\rangle\langle v_2|$
-		$= 2|v_1\rangle\langle v_1| - |v_2\rangle\langle v_2|$
+    $A = \sum_i \lambda_i |v_i\rangle\langle v_i| = \lambda_1 |v_1\rangle\langle v_1| + \lambda_2 |v_2\rangle\langle v_2|$
+    $= 2|v_1\rangle\langle v_1| + (-1)|v_2\rangle\langle v_2|$
+    $= 2|v_1\rangle\langle v_1| - |v_2\rangle\langle v_2|$
 
-		c) Para determinar la representación matricial de $A$ en la base computacional, sustituimos las expresiones de los vectores propios:
+    c) Para determinar la representación matricial de $A$ en la base computacional, sustituimos las expresiones de los vectores propios:
 
-		$A = 2\frac{1}{5}(2|0\rangle + i|1\rangle)(2\langle 0| - i\langle 1|) - \frac{1}{5}(i|0\rangle + 2|1\rangle)(i^*\langle 0| + 2\langle 1|)$
-		$= \frac{2}{5}(4|0\rangle\langle 0| + 2i|0\rangle\langle 1| - 2i|1\rangle\langle 0| + |1\rangle\langle 1|) - \frac{1}{5}(-|0\rangle\langle 0| - 2i|0\rangle\langle 1| + 2i|1\rangle\langle 0| + 4|1\rangle\langle 1|)$
-		$= \frac{1}{5}(8|0\rangle\langle 0| + 4i|0\rangle\langle 1| - 4i|1\rangle\langle 0| + 2|1\rangle\langle 1| + |0\rangle\langle 0| + 2i|0\rangle\langle 1| - 2i|1\rangle\langle 0| - 4|1\rangle\langle 1|)$
-		$= \frac{1}{5}(9|0\rangle\langle 0| + 6i|0\rangle\langle 1| - 6i|1\rangle\langle 0| - 2|1\rangle\langle 1|)$
+    $A = 2\frac{1}{5}(2|0\rangle + i|1\rangle)(2\langle 0| - i\langle 1|) - \frac{1}{5}(i|0\rangle + 2|1\rangle)(i^*\langle 0| + 2\langle 1|)$
+    $= \frac{2}{5}(4|0\rangle\langle 0| + 2i|0\rangle\langle 1| - 2i|1\rangle\langle 0| + |1\rangle\langle 1|) - \frac{1}{5}(-|0\rangle\langle 0| - 2i|0\rangle\langle 1| + 2i|1\rangle\langle 0| + 4|1\rangle\langle 1|)$
+    $= \frac{1}{5}(8|0\rangle\langle 0| + 4i|0\rangle\langle 1| - 4i|1\rangle\langle 0| + 2|1\rangle\langle 1| + |0\rangle\langle 0| + 2i|0\rangle\langle 1| - 2i|1\rangle\langle 0| - 4|1\rangle\langle 1|)$
+    $= \frac{1}{5}(9|0\rangle\langle 0| + 6i|0\rangle\langle 1| - 6i|1\rangle\langle 0| - 2|1\rangle\langle 1|)$
 
-		En forma matricial:
-		$A = \frac{1}{5}\begin{pmatrix} 9 & 6i \\ -6i & -2 \end{pmatrix}$
+    En forma matricial:
+    $A = \frac{1}{5}\begin{pmatrix} 9 & 6i \\ -6i & -2 \end{pmatrix}$
 
-	\end{solution}
+  \end{solution}
 
-	\question[3] Considere las siguientes compuertas cuánticas: la compuerta Hadamard ($H$), la compuerta de fase ($S$), y la compuerta $T$.
-	\begin{parts}
+  \question[3] Considere las siguientes compuertas cuánticas: la compuerta Hadamard ($H$), la compuerta de fase ($S$), y la compuerta $T$.
+  \begin{parts}
 
-		\part Escriba las representaciones matriciales de estas compuertas en la base computacional.
-		\part Verifique que estas compuertas son unitarias.
-		\part Calcule el resultado de aplicar la secuencia $HSH$ al estado $|0\rangle$.
-		\part Represente en la esfera de Bloch el efecto de la compuerta $H$ sobre los estados $|0\rangle$ y $|1\rangle$.
-	\end{parts}
+    \part Escriba las representaciones matriciales de estas compuertas en la base computacional.
+    \part Verifique que estas compuertas son unitarias.
+    \part Calcule el resultado de aplicar la secuencia $HSH$ al estado $|0\rangle$.
+  \end{parts}
 
-	\begin{solution}
-		a) Las representaciones matriciales de las compuertas son:
+  \begin{solution}
+    a) Las representaciones matriciales de las compuertas son:
 
-		Compuerta Hadamard:
-		$H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$
+    Compuerta Hadamard:
+    $H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$
 
-		Compuerta de fase $S$ (también conocida como $Z^{1/2}$):
-		$S = \begin{pmatrix} 1 & 0 \\ 0 & i \end{pmatrix}$
+    Compuerta de fase $S$ (también conocida como $Z^{1/2}$):
+    $S = \begin{pmatrix} 1 & 0 \\ 0 & i \end{pmatrix}$
 
-		Compuerta $T$ (también conocida como $Z^{1/4}$):
-		$T = \begin{pmatrix} 1 & 0 \\ 0 & e^{i\pi/4} \end{pmatrix}$
+    Compuerta $T$ (también conocida como $Z^{1/4}$):
+    $T = \begin{pmatrix} 1 & 0 \\ 0 & e^{i\pi/4} \end{pmatrix}$
 
-		b) Para verificar que son unitarias, calculamos $UU^\dagger$ para cada compuerta:
+    b) Para verificar que son unitarias, calculamos $UU^\dagger$ para cada compuerta:
 
-		Para $H$:
-		$HH^\dagger = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix} \cdot \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}^\dagger = \frac{1}{2}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix} = \frac{1}{2}\begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = I$
+    Para $H$:
+    $HH^\dagger = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix} \cdot \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}^\dagger = \frac{1}{2}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix} = \frac{1}{2}\begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = I$
 
-		Para $S$:
-		$SS^\dagger = \begin{pmatrix} 1 & 0 \\ 0 & i \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 0 & -i \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = I$
+    Para $S$:
+    $SS^\dagger = \begin{pmatrix} 1 & 0 \\ 0 & i \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 0 & -i \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = I$
 
-		Para $T$:
-		$TT^\dagger = \begin{pmatrix} 1 & 0 \\ 0 & e^{i\pi/4} \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 0 & e^{-i\pi/4} \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = I$
+    Para $T$:
+    $TT^\dagger = \begin{pmatrix} 1 & 0 \\ 0 & e^{i\pi/4} \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 0 & e^{-i\pi/4} \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = I$
 
-		Todas las compuertas son unitarias, como era de esperar para compuertas cuánticas válidas.
+    Todas las compuertas son unitarias, como era de esperar para compuertas cuánticas válidas.
 
-		c) Calculamos el resultado de aplicar $HSH$ al estado $|0\rangle$:
+    c) Calculamos el resultado de aplicar $HSH$ al estado $|0\rangle$:
 
-		Paso 1: $H|0\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$
+    Paso 1: $H|0\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$
 
-		Paso 2: $S(H|0\rangle) = S\frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) = \frac{1}{\sqrt{2}}(|0\rangle + i|1\rangle)$
+    Paso 2: $S(H|0\rangle) = S\frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) = \frac{1}{\sqrt{2}}(|0\rangle + i|1\rangle)$
 
-		Paso 3: $H(S(H|0\rangle)) = H\frac{1}{\sqrt{2}}(|0\rangle + i|1\rangle) = \frac{1}{\sqrt{2}}[H|0\rangle + iH|1\rangle]$
-		$= \frac{1}{\sqrt{2}}[\frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) + i\frac{1}{\sqrt{2}}(|0\rangle - |1\rangle)]$
-		$= \frac{1}{2}[(1+i)|0\rangle + (1-i)|1\rangle]$
-		$= \frac{1+i}{2}|0\rangle + \frac{1-i}{2}|1\rangle$
+    Paso 3: $H(S(H|0\rangle)) = H\frac{1}{\sqrt{2}}(|0\rangle + i|1\rangle) = \frac{1}{\sqrt{2}}[H|0\rangle + iH|1\rangle]$
+    $= \frac{1}{\sqrt{2}}[\frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) + i\frac{1}{\sqrt{2}}(|0\rangle - |1\rangle)]$
+    $= \frac{1}{2}[(1+i)|0\rangle + (1-i)|1\rangle]$
+    $= \frac{1+i}{2}|0\rangle + \frac{1-i}{2}|1\rangle$
 
-		Por tanto, $HSH|0\rangle = \frac{1+i}{2}|0\rangle + \frac{1-i}{2}|1\rangle$
+    Por tanto, $HSH|0\rangle = \frac{1+i}{2}|0\rangle + \frac{1-i}{2}|1\rangle$
 
-		d) Representación en la esfera de Bloch del efecto de $H$ sobre $|0\rangle$ y $|1\rangle$:
+    d) Representación en la esfera de Bloch del efecto de $H$ sobre $|0\rangle$ y $|1\rangle$:
 
-		$H|0\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) = |+\rangle$
-		- El estado $|0\rangle$ está en el polo norte de la esfera de Bloch (coordenadas $(0,0,1)$)
-		- El estado $|+\rangle$ está en el eje x positivo de la esfera de Bloch (coordenadas $(1,0,0)$)
-		- Por tanto, $H$ rota $|0\rangle$ desde el polo norte hacia el eje x positivo
+    $H|0\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) = |+\rangle$
+    - El estado $|0\rangle$ está en el polo norte de la esfera de Bloch (coordenadas $(0,0,1)$)
+    - El estado $|+\rangle$ está en el eje x positivo de la esfera de Bloch (coordenadas $(1,0,0)$)
+    - Por tanto, $H$ rota $|0\rangle$ desde el polo norte hacia el eje x positivo
 
-		$H|1\rangle = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle) = |-\rangle$
-		- El estado $|1\rangle$ está en el polo sur de la esfera de Bloch (coordenadas $(0,0,-1)$)
-		- El estado $|-\rangle$ está en el eje x negativo de la esfera de Bloch (coordenadas $(-1,0,0)$)
-		- Por tanto, $H$ rota $|1\rangle$ desde el polo sur hacia el eje x negativo
+    $H|1\rangle = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle) = |-\rangle$
+    - El estado $|1\rangle$ está en el polo sur de la esfera de Bloch (coordenadas $(0,0,-1)$)
+    - El estado $|-\rangle$ está en el eje x negativo de la esfera de Bloch (coordenadas $(-1,0,0)$)
+    - Por tanto, $H$ rota $|1\rangle$ desde el polo sur hacia el eje x negativo
 
-		En general, la compuerta Hadamard realiza una rotación de 90° alrededor del eje y, seguida de una reflexión en el plano xz. Geométricamente, $H$ mapea el eje z al eje x y viceversa en la esfera de Bloch.
-	\end{solution}
+    En general, la compuerta Hadamard realiza una rotación de 90° alrededor del eje y, seguida de una reflexión en el plano xz. Geométricamente, $H$ mapea el eje z al eje x y viceversa en la esfera de Bloch.
+  \end{solution}
 \end{questions}

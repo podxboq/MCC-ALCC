@@ -1,441 +1,442 @@
-\codigonombre{}{MCC-ALCC-25Q112}
 \begin{questions}
-	\question[4] Responda a las siguientes cuestiones:
-	\begin{parts}
-		\part Explique el concepto de vector propio y valor propio de un operador lineal, y su importancia en la mecánica cuántica.
-
-		\begin{solution}
-			Los vectores propios y valores propios son conceptos fundamentales del álgebra lineal que adquieren una interpretación física profunda en mecánica cuántica, constituyendo la base matemática para entender observables, mediciones y evolución de sistemas cuánticos.
-
-			Definición formal:
-			Sea $A$ un operador lineal que actúa sobre un espacio vectorial $V$. Un vector no nulo $|\psi\rangle \in V$ es un vector propio de $A$ si existe un escalar $\lambda$ tal que:
-			$A|\psi\rangle = \lambda|\psi\rangle$
-
-			El escalar $\lambda$ se denomina valor propio asociado al vector propio $|\psi\rangle$. En otras palabras, un vector propio es aquel que, al ser transformado por el operador, resulta en un múltiplo escalar de sí mismo.
-
-			Propiedades matemáticas fundamentales:
-
-			1) Para un operador lineal $A$ en un espacio de dimensión $n$:
-			- Puede tener hasta $n$ valores propios distintos
-			- Si $A$ es diagonalizable, existe una base formada por sus vectores propios
-			- Los valores propios son las raíces del polinomio característico $\det(A - \lambda I) = 0$
-			- Vectores propios correspondientes a valores propios distintos son linealmente independientes
+  \question[4] Responda a las siguientes cuestiones:
+  \begin{parts}
+    \part Explique el concepto de vector propio y valor propio de un operador lineal, y su importancia en la mecánica cuántica.
+
+    \begin{solution}
+      Los vectores propios y valores propios son conceptos fundamentales del álgebra lineal que adquieren una interpretación física profunda en mecánica cuántica, constituyendo la base matemática para entender observables, mediciones y evolución de sistemas cuánticos.
+
+      Definición formal:
+      Sea $A$ un operador lineal que actúa sobre un espacio vectorial $V$. Un vector no nulo $|\psi\rangle \in V$ es un vector propio de $A$ si existe un escalar $\lambda$ tal que:
+      $A|\psi\rangle = \lambda|\psi\rangle$
+
+      El escalar $\lambda$ se denomina valor propio asociado al vector propio $|\psi\rangle$. En otras palabras, un vector propio es aquel que, al ser transformado por el operador, resulta en un múltiplo escalar de sí mismo.
+
+      Propiedades matemáticas fundamentales:
+
+      1) Para un operador lineal $A$ en un espacio de dimensión $n$:
+      - Puede tener hasta $n$ valores propios distintos
+      - Si $A$ es diagonalizable, existe una base formada por sus vectores propios
+      - Los valores propios son las raíces del polinomio característico $\det(A - \lambda I) = 0$
+      - Vectores propios correspondientes a valores propios distintos son linealmente independientes
 
-			2) Para operadores hermitianos (caso crucial en mecánica cuántica):
-			- Todos los valores propios son reales
-			- Existe una base ortonormal completa de vectores propios
-			- Vectores propios correspondientes a valores propios distintos son ortogonales
-			- Descomposición espectral: $A = \sum_i \lambda_i |i\rangle\langle i|$, donde $|i\rangle$ son vectores propios ortonormales
+      2) Para operadores hermitianos (caso crucial en mecánica cuántica):
+      - Todos los valores propios son reales
+      - Existe una base ortonormal completa de vectores propios
+      - Vectores propios correspondientes a valores propios distintos son ortogonales
+      - Descomposición espectral: $A = \sum_i \lambda_i |i\rangle\langle i|$, donde $|i\rangle$ son vectores propios ortonormales
 
-			3) Para operadores unitarios:
-			- Todos los valores propios tienen módulo 1 (forma $e^{i\theta}$)
-			- Existe una base ortonormal completa de vectores propios
-			- Descomposición: $U = \sum_i e^{i\theta_i} |i\rangle\langle i|$
+      3) Para operadores unitarios:
+      - Todos los valores propios tienen módulo 1 (forma $e^{i\theta}$)
+      - Existe una base ortonormal completa de vectores propios
+      - Descomposición: $U = \sum_i e^{i\theta_i} |i\rangle\langle i|$
 
-			Importancia en mecánica cuántica:
+      Importancia en mecánica cuántica:
 
-			1) Interpretación de observables:
-			- Los observables físicos están representados por operadores hermitianos
-			- Los valores propios corresponden a los posibles resultados de medición
-			- Los vectores propios corresponden a los estados donde el resultado de la medición es determinista
-			- Ejemplo: El operador energía (hamiltoniano) tiene como valores propios las energías posibles del sistema y como vectores propios los estados estacionarios
+      1) Interpretación de observables:
+      - Los observables físicos están representados por operadores hermitianos
+      - Los valores propios corresponden a los posibles resultados de medición
+      - Los vectores propios corresponden a los estados donde el resultado de la medición es determinista
+      - Ejemplo: El operador energía (hamiltoniano) tiene como valores propios las energías posibles del sistema y como vectores propios los estados estacionarios
 
-			2) Postulado de medición:
-			- Al medir un observable $A$ en un estado $|\psi\rangle$, el resultado será alguno de los valores propios $\lambda_i$ de $A$
-			- La probabilidad de obtener el valor $\lambda_i$ es $P(\lambda_i) = |\langle \psi_i|\psi\rangle|^2$, donde $|\psi_i\rangle$ es el vector propio asociado
-			- Tras la medición, el estado colapsa al vector propio correspondiente al valor medido
-			- Ejemplo: La medición de espín de un electrón en la dirección z da como resultado $+\hbar/2$ o $-\hbar/2$ (valores propios de $S_z$)
+      2) Postulado de medición:
+      - Al medir un observable $A$ en un estado $|\psi\rangle$, el resultado será alguno de los valores propios $\lambda_i$ de $A$
+      - La probabilidad de obtener el valor $\lambda_i$ es $P(\lambda_i) = |\langle \psi_i|\psi\rangle|^2$, donde $|\psi_i\rangle$ es el vector propio asociado
+      - Tras la medición, el estado colapsa al vector propio correspondiente al valor medido
+      - Ejemplo: La medición de espín de un electrón en la dirección z da como resultado $+\hbar/2$ o $-\hbar/2$ (valores propios de $S_z$)
 
-			3) Resolución de la identidad:
-			- Si $\{|\psi_i\rangle\}$ es una base ortonormal de vectores propios de un operador, entonces $\sum_i |\psi_i\rangle\langle\psi_i| = I$
-			- Esta propiedad permite descomponer cualquier estado en términos de los vectores propios
-			- Facilita cálculos como valores esperados: $\langle A \rangle = \sum_i \lambda_i |\langle \psi_i|\psi\rangle|^2$
+      3) Resolución de la identidad:
+      - Si $\{|\psi_i\rangle\}$ es una base ortonormal de vectores propios de un operador, entonces $\sum_i |\psi_i\rangle\langle\psi_i| = I$
+      - Esta propiedad permite descomponer cualquier estado en términos de los vectores propios
+      - Facilita cálculos como valores esperados: $\langle A \rangle = \sum_i \lambda_i |\langle \psi_i|\psi\rangle|^2$
 
-			4) Estados estacionarios:
-			- Los vectores propios del hamiltoniano son estados de energía definida
-			- Su evolución temporal es particularmente simple: $|\psi(t)\rangle = e^{-iEt/\hbar}|\psi(0)\rangle$
-			- Son fundamentales para entender sistemas cuánticos estables
-			- Ejemplo: Estados electrónicos en átomos, niveles de energía en osciladores armónicos
+      4) Estados estacionarios:
+      - Los vectores propios del hamiltoniano son estados de energía definida
+      - Su evolución temporal es particularmente simple: $|\psi(t)\rangle = e^{-iEt/\hbar}|\psi(0)\rangle$
+      - Son fundamentales para entender sistemas cuánticos estables
+      - Ejemplo: Estados electrónicos en átomos, niveles de energía en osciladores armónicos
 
-			5) Principio de incertidumbre:
-			- Dos observables son simultáneamente medibles si y solo si conmutan
-			- Operadores que conmutan tienen una base común de vectores propios
-			- Operadores que no conmutan no pueden tener una base común completa de vectores propios
-			- Ejemplo: Posición y momento no conmutan, por lo que no pueden medirse simultáneamente con precisión arbitraria
+      5) Principio de incertidumbre:
+      - Dos observables son simultáneamente medibles si y solo si conmutan
+      - Operadores que conmutan tienen una base común de vectores propios
+      - Operadores que no conmutan no pueden tener una base común completa de vectores propios
+      - Ejemplo: Posición y momento no conmutan, por lo que no pueden medirse simultáneamente con precisión arbitraria
 
-			6) En computación cuántica:
-			- Las compuertas cuánticas se diseñan considerando sus valores y vectores propios
-			- Los algoritmos cuánticos a menudo explotan la estructura espectral de operadores específicos
-			- La transformada cuántica de Fourier diagonaliza ciertos operadores
-			- El algoritmo de estimación de fase encuentra valores propios de operadores unitarios
+      6) En computación cuántica:
+      - Las compuertas cuánticas se diseñan considerando sus valores y vectores propios
+      - Los algoritmos cuánticos a menudo explotan la estructura espectral de operadores específicos
+      - La transformada cuántica de Fourier diagonaliza ciertos operadores
+      - El algoritmo de estimación de fase encuentra valores propios de operadores unitarios
 
-			7) Estados entrelazados:
-			- Los valores propios de la matriz de densidad reducida cuantifican el entrelazamiento
-			- La multiplicidad de valores propios no nulos indica el grado de entrelazamiento
-			- La entropía de entrelazamiento se calcula a partir de estos valores propios
+      7) Estados entrelazados:
+      - Los valores propios de la matriz de densidad reducida cuantifican el entrelazamiento
+      - La multiplicidad de valores propios no nulos indica el grado de entrelazamiento
+      - La entropía de entrelazamiento se calcula a partir de estos valores propios
 
-			8) Decoherencia:
-			- Los "punteros" o estados preferidos que sobreviven a la decoherencia son aproximadamente vectores propios del hamiltoniano de interacción con el entorno
-			- La base preferida de la decoherencia define la transición cuántico-clásica
+      8) Decoherencia:
+      - Los "punteros" o estados preferidos que sobreviven a la decoherencia son aproximadamente vectores propios del hamiltoniano de interacción con el entorno
+      - La base preferida de la decoherencia define la transición cuántico-clásica
 
-			Ejemplos concretos:
+      Ejemplos concretos:
 
-			1) Matrices de Pauli:
-			- $\sigma_z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$ tiene valores propios $\lambda_1 = 1, \lambda_2 = -1$
-			- Vectores propios: $|0\rangle = \begin{pmatrix} 1 \\ 0 \end{pmatrix}$ y $|1\rangle = \begin{pmatrix} 0 \\ 1 \end{pmatrix}$
-			- Representan estados de espín "arriba" y "abajo" en la dirección z
+      1) Matrices de Pauli:
+      - $\sigma_z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$ tiene valores propios $\lambda_1 = 1, \lambda_2 = -1$
+      - Vectores propios: $|0\rangle = \begin{pmatrix} 1 \\ 0 \end{pmatrix}$ y $|1\rangle = \begin{pmatrix} 0 \\ 1 \end{pmatrix}$
+      - Representan estados de espín "arriba" y "abajo" en la dirección z
 
-			2) Compuerta Hadamard:
-			- $H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$ tiene valores propios $\lambda_1 = 1, \lambda_2 = -1$
-			- Vectores propios: $|+\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 1 \end{pmatrix}$ y $|-\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ -1 \end{pmatrix}$
-			- Son estados de superposición igual de $|0\rangle$ y $|1\rangle$ con diferentes fases relativas
+      2) Compuerta Hadamard:
+      - $H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$ tiene valores propios $\lambda_1 = 1, \lambda_2 = -1$
+      - Vectores propios: $|+\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 1 \end{pmatrix}$ y $|-\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ -1 \end{pmatrix}$
+      - Son estados de superposición igual de $|0\rangle$ y $|1\rangle$ con diferentes fases relativas
 
-			Los valores y vectores propios proporcionan así una caracterización completa de las propiedades físicas de los sistemas cuánticos, conectando el formalismo matemático con observaciones experimentales y constituyendo el lenguaje fundamental para describir y manipular estados cuánticos.
-		\end{solution}
+      Los valores y vectores propios proporcionan así una caracterización completa de las propiedades físicas de los sistemas cuánticos, conectando el formalismo matemático con observaciones experimentales y constituyendo el lenguaje fundamental para describir y manipular estados cuánticos.
+    \end{solution}
 
-		\part Explique el teorema de no clonación cuántica, su demostración y sus implicaciones para la información cuántica.
+    \part Describe como se calculan las raices unitarias de la unidad y explica su representación geométrica.
 
-		\begin{solution}
-			El teorema de no clonación cuántica establece una limitación fundamental en la manipulación de información cuántica: es imposible crear una copia exacta de un estado cuántico arbitrario desconocido sin perturbar el original. Este resultado, descubierto independientemente por Wootters, Zurek y Dieks en 1982, marca una diferencia esencial entre la información clásica y cuántica.
+    \begin{solution}
+      El teorema de no clonación cuántica establece una limitación fundamental en la manipulación de información cuántica: es imposible crear una copia exacta de un estado cuántico arbitrario desconocido sin perturbar el original. Este resultado, descubierto independientemente por Wootters, Zurek y Dieks en 1982, marca una diferencia esencial entre la información clásica y cuántica.
 
-			Enunciado formal:
-			No existe ningún mecanismo físico (operador unitario) $U$ que pueda realizar la siguiente transformación para estados cuánticos arbitrarios:
-			$U(|\psi\rangle \otimes |s\rangle) = |\psi\rangle \otimes |\psi\rangle$
-			donde $|\psi\rangle$ es un estado cuántico arbitrario desconocido y $|s\rangle$ es un estado "en blanco" fijo.
+      Enunciado formal:
+      No existe ningún mecanismo físico (operador unitario) $U$ que pueda realizar la siguiente transformación para estados cuánticos arbitrarios:
+      $U(|\psi\rangle \otimes |s\rangle) = |\psi\rangle \otimes |\psi\rangle$
+      donde $|\psi\rangle$ es un estado cuántico arbitrario desconocido y $|s\rangle$ es un estado "en blanco" fijo.
 
-			Demostración:
-			La demostración es sorprendentemente simple y elegante, basándose únicamente en la linealidad de la mecánica cuántica.
+      Demostración:
+      La demostración es sorprendentemente simple y elegante, basándose únicamente en la linealidad de la mecánica cuántica.
 
-			1) Supongamos que existiera un operador unitario $U$ capaz de clonar estados cuánticos arbitrarios. Entonces para dos estados diferentes $|\phi\rangle$ y $|\psi\rangle$:
+      1) Supongamos que existiera un operador unitario $U$ capaz de clonar estados cuánticos arbitrarios. Entonces para dos estados diferentes $|\phi\rangle$ y $|\psi\rangle$:
 
-			$U(|\phi\rangle \otimes |s\rangle) = |\phi\rangle \otimes |\phi\rangle$
-			$U(|\psi\rangle \otimes |s\rangle) = |\psi\rangle \otimes |\psi\rangle$
+      $U(|\phi\rangle \otimes |s\rangle) = |\phi\rangle \otimes |\phi\rangle$
+      $U(|\psi\rangle \otimes |s\rangle) = |\psi\rangle \otimes |\psi\rangle$
 
-			2) Por la unitariedad, se preserva el producto interno entre estados:
+      2) Por la unitariedad, se preserva el producto interno entre estados:
 
-			$\langle\phi| \otimes \langle s|U^\dagger U|\psi\rangle \otimes |s\rangle = \langle\phi|\psi\rangle \langle s|s\rangle = \langle\phi|\psi\rangle$
+      $\langle\phi| \otimes \langle s|U^\dagger U|\psi\rangle \otimes |s\rangle = \langle\phi|\psi\rangle \langle s|s\rangle = \langle\phi|\psi\rangle$
 
-			Por otro lado:
+      Por otro lado:
 
-			$\langle\phi| \otimes \langle\phi||\psi\rangle \otimes |\psi\rangle = \langle\phi|\psi\rangle \langle\phi|\psi\rangle = \langle\phi|\psi\rangle^2$
+      $\langle\phi| \otimes \langle\phi||\psi\rangle \otimes |\psi\rangle = \langle\phi|\psi\rangle \langle\phi|\psi\rangle = \langle\phi|\psi\rangle^2$
 
-			3) Igualando ambas expresiones:
+      3) Igualando ambas expresiones:
 
-			$\langle\phi|\psi\rangle = \langle\phi|\psi\rangle^2$
+      $\langle\phi|\psi\rangle = \langle\phi|\psi\rangle^2$
 
-			4) Esta igualdad solo tiene dos soluciones:
-			- $\langle\phi|\psi\rangle = 0$ (estados ortogonales)
-			- $\langle\phi|\psi\rangle = 1$ (estados idénticos)
+      4) Esta igualdad solo tiene dos soluciones:
+      - $\langle\phi|\psi\rangle = 0$ (estados ortogonales)
+      - $\langle\phi|\psi\rangle = 1$ (estados idénticos)
 
-			5) Concluimos que solo se pueden clonar estados que son ortogonales o idénticos, no estados arbitrarios con solapamiento parcial $(0 < |\langle\phi|\psi\rangle| < 1)$.
+      5) Concluimos que solo se pueden clonar estados que son ortogonales o idénticos, no estados arbitrarios con solapamiento parcial $(0 < |\langle\phi|\psi\rangle| < 1)$.
 
-			Casos especiales y excepciones:
+      Casos especiales y excepciones:
 
-			1) Clonación de conjuntos ortogonales:
-			- Es posible clonar un conjunto de estados mutuamente ortogonales, como $\{|0\rangle, |1\rangle\}$
-			- Ejemplo: La puerta CNOT realiza $|0\rangle|0\rangle \to |0\rangle|0\rangle$ y $|1\rangle|0\rangle \to |1\rangle|1\rangle$
+      1) Clonación de conjuntos ortogonales:
+      - Es posible clonar un conjunto de estados mutuamente ortogonales, como $\{|0\rangle, |1\rangle\}$
+      - Ejemplo: La puerta CNOT realiza $|0\rangle|0\rangle \to |0\rangle|0\rangle$ y $|1\rangle|0\rangle \to |1\rangle|1\rangle$
 
-			2) Clonación aproximada:
-			- El límite de Bužek-Hillery establece la máxima fidelidad posible para clonación universal aproximada
-			- Fidelidad máxima: $F = \frac{2}{3}$ para clonación universal simétrica
+      2) Clonación aproximada:
+      - El límite de Bužek-Hillery establece la máxima fidelidad posible para clonación universal aproximada
+      - Fidelidad máxima: $F = \frac{2}{3}$ para clonación universal simétrica
 
-			3) Clonación probabilística:
-			- Se puede clonar perfectamente con cierta probabilidad de éxito < 1
-			- La probabilidad depende del conjunto de estados a clonar
+      3) Clonación probabilística:
+      - Se puede clonar perfectamente con cierta probabilidad de éxito < 1
+      - La probabilidad depende del conjunto de estados a clonar
 
-			4) Clonación de información clásica:
-			- Los bits clásicos pueden copiarse perfectamente
-			- La medición colapsa los qubits a estados clásicos que luego pueden copiarse
+      4) Clonación de información clásica:
+      - Los bits clásicos pueden copiarse perfectamente
+      - La medición colapsa los qubits a estados clásicos que luego pueden copiarse
 
-			Implicaciones para la información cuántica:
+      Implicaciones para la información cuántica:
 
-			1) Seguridad criptográfica:
-			- Fundamento de la distribución cuántica de claves (QKD)
-			- Un espía no puede copiar qubits en tránsito sin perturbarlos, revelando su presencia
-			- Protocolos como BB84 basan su seguridad en este principio
-			- La seguridad tiene garantía teórica, no solo computacional como en criptografía clásica
+      1) Seguridad criptográfica:
+      - Fundamento de la distribución cuántica de claves (QKD)
+      - Un espía no puede copiar qubits en tránsito sin perturbarlos, revelando su presencia
+      - Protocolos como BB84 basan su seguridad en este principio
+      - La seguridad tiene garantía teórica, no solo computacional como en criptografía clásica
 
-			2) Privacidad cuántica:
-			- La información cuántica no puede copiarse sin autorización
-			- Proporciona un principio físico fundamental para la privacidad
-			- Permite protocolos como el compromiso de bit cuántico y firma digital cuántica
+      2) Privacidad cuántica:
+      - La información cuántica no puede copiarse sin autorización
+      - Proporciona un principio físico fundamental para la privacidad
+      - Permite protocolos como el compromiso de bit cuántico y firma digital cuántica
 
-			3) Corrección de errores:
-			- Complica la corrección de errores cuánticos, ya que no se pueden crear copias redundantes directamente
-			- Requiere técnicas sofisticadas como códigos estabilizadores
-			- Necesita entrelazamiento para distribuir información en múltiples qubits sin clonarla
+      3) Corrección de errores:
+      - Complica la corrección de errores cuánticos, ya que no se pueden crear copias redundantes directamente
+      - Requiere técnicas sofisticadas como códigos estabilizadores
+      - Necesita entrelazamiento para distribuir información en múltiples qubits sin clonarla
 
-			4) Borrado cuántico:
-			- Complementa el teorema de no clonación: es imposible borrar un estado cuántico desconocido
-			- Juntos forman el principio de conservación de información cuántica
-			- Importante para la reversibilidad de operaciones cuánticas
+      4) Borrado cuántico:
+      - Complementa el teorema de no clonación: es imposible borrar un estado cuántico desconocido
+      - Juntos forman el principio de conservación de información cuántica
+      - Importante para la reversibilidad de operaciones cuánticas
 
-			5) Irreversibilidad de mediciones:
-			- Explica por qué las mediciones cuánticas son destructivas
-			- Impide determinar completamente un estado desconocido con una sola copia
-			- Justifica la tomografía de estado cuántico que requiere múltiples copias idénticas
+      5) Irreversibilidad de mediciones:
+      - Explica por qué las mediciones cuánticas son destructivas
+      - Impide determinar completamente un estado desconocido con una sola copia
+      - Justifica la tomografía de estado cuántico que requiere múltiples copias idénticas
 
-			6) Amplificación cuántica:
-			- Imposibilita la amplificación perfecta de señales cuánticas
-			- Limita el diseño de repetidores cuánticos para comunicaciones de larga distancia
-			- Necesidad de repetidores basados en entrelazamiento y teleportación
+      6) Amplificación cuántica:
+      - Imposibilita la amplificación perfecta de señales cuánticas
+      - Limita el diseño de repetidores cuánticos para comunicaciones de larga distancia
+      - Necesidad de repetidores basados en entrelazamiento y teleportación
 
-			7) Computación cuántica:
-			- Restringe ciertos algoritmos que en el mundo clásico dependen de crear copias
-			- Impide el "fanout" (distribución de datos) clásico en circuitos
-			- Limita el diseño de arquitecturas de computadores cuánticos
+      7) Computación cuántica:
+      - Restringe ciertos algoritmos que en el mundo clásico dependen de crear copias
+      - Impide el "fanout" (distribución de datos) clásico en circuitos
+      - Limita el diseño de arquitecturas de computadores cuánticos
 
-			8) Propiedades fundamentales:
-			- Marca una diferencia esencial entre información clásica y cuántica
-			- Refleja la naturaleza probabilística de la mecánica cuántica
-			- Conecta con otros principios como la complementariedad y el teorema de no-telefonía
+      8) Propiedades fundamentales:
+      - Marca una diferencia esencial entre información clásica y cuántica
+      - Refleja la naturaleza probabilística de la mecánica cuántica
+      - Conecta con otros principios como la complementariedad y el teorema de no-telefonía
 
-			9) Ventajas prácticas:
-			- Base para el dinero cuántico: billetes que no pueden falsificarse
-			- Permite verificación de posición cuántica
-			- Posibilita testigos cuánticos no falsificables
-			- Habilita esquemas de firma ciega cuántica
+      9) Ventajas prácticas:
+      - Base para el dinero cuántico: billetes que no pueden falsificarse
+      - Permite verificación de posición cuántica
+      - Posibilita testigos cuánticos no falsificables
+      - Habilita esquemas de firma ciega cuántica
 
-			El teorema de no clonación representa uno de los resultados más fundamentales en información cuántica, resaltando tanto las limitaciones como las capacidades únicas que ofrece la mecánica cuántica para el procesamiento y transmisión de información. Sus implicaciones técnicas y conceptuales continúan siendo exploradas y aplicadas en nuevos protocolos y algoritmos, consolidando su estatus como piedra angular de la teoría de información cuántica.
-		\end{solution}
+      El teorema de no clonación representa uno de los resultados más fundamentales en información cuántica, resaltando tanto las limitaciones como las capacidades únicas que ofrece la mecánica cuántica para el procesamiento y transmisión de información. Sus implicaciones técnicas y conceptuales continúan siendo exploradas y aplicadas en nuevos protocolos y algoritmos, consolidando su estatus como piedra angular de la teoría de información cuántica.
+    \end{solution}
 
-	\end{parts}
+  \end{parts}
 
-	\question[3]
-	Considere un sistema de dos qubits y los operadores de Pauli $X$, $Y$ y $Z$ que actúan sobre qubits individuales.
-	\begin{parts}
+  \question[3]
+  Considere un sistema de dos qubits y los operadores de Pauli $X$, $Y$ y $Z$ que actúan sobre qubits individuales.
+  \begin{parts}
 
-		\part Escriba las expresiones matriciales de $X \otimes I$, $I \otimes Z$ y $X \otimes Z$ en la base computacional $\{|00\rangle, |01\rangle, |10\rangle, |11\rangle\}$.
-		\part Verifique que $[X \otimes I, I \otimes Z] = 0$ y calcule $[X \otimes I, Z \otimes I]$.
-		\part ¿Es el estado resultante entrelazado? Justifique su respuesta.
-	\end{parts}
+    \part Escriba las expresiones matriciales de $X \otimes I$, $I \otimes Z$ y $X \otimes Z$ en la base computacional $\{|00\rangle, |01\rangle, |10\rangle, |11\rangle\}$.
+    \part Verifique que $[X \otimes I, I \otimes Z] = 0$ y calcule $[X \otimes I, Z \otimes I]$.
+    \part ¿Es el estado resultante entrelazado? Justifique su respuesta.
+  \end{parts}
 
-	\begin{solution}
-		a) Para escribir las expresiones matriciales de los operadores en la base computacional, recordemos primero las matrices de Pauli y la identidad:
+  \begin{solution}
+    a) Para escribir las expresiones matriciales de los operadores en la base computacional, recordemos primero las matrices de Pauli y la identidad:
 
-		$X = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$, $Y = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}$, $Z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$, $I = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$
+    $X = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$, $Y = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}$, $Z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$, $I = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$
 
-		Ahora calculamos los productos tensoriales:
+    Ahora calculamos los productos tensoriales:
 
-		$X \otimes I = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} \otimes \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = \begin{pmatrix} 0 \cdot I & 1 \cdot I \\ 1 \cdot I & 0 \cdot I \end{pmatrix} = \begin{pmatrix} 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \\ 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \end{pmatrix}$
+    $X \otimes I = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} \otimes \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = \begin{pmatrix} 0 \cdot I & 1 \cdot I \\ 1 \cdot I & 0 \cdot I \end{pmatrix} = \begin{pmatrix} 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \\ 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \end{pmatrix}$
 
-		$I \otimes Z = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} \otimes \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} = \begin{pmatrix} 1 \cdot Z & 0 \cdot Z \\ 0 \cdot Z & 1 \cdot Z \end{pmatrix} = \begin{pmatrix} 1 & 0 & 0 & 0 \\ 0 & -1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & -1 \end{pmatrix}$
+    $I \otimes Z = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} \otimes \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} = \begin{pmatrix} 1 \cdot Z & 0 \cdot Z \\ 0 \cdot Z & 1 \cdot Z \end{pmatrix} = \begin{pmatrix} 1 & 0 & 0 & 0 \\ 0 & -1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & -1 \end{pmatrix}$
 
-		$X \otimes Z = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} \otimes \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} = \begin{pmatrix} 0 \cdot Z & 1 \cdot Z \\ 1 \cdot Z & 0 \cdot Z \end{pmatrix} = \begin{pmatrix} 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & -1 \\ 1 & 0 & 0 & 0 \\ 0 & -1 & 0 & 0 \end{pmatrix}$
+    $X \otimes Z = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} \otimes \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} = \begin{pmatrix} 0 \cdot Z & 1 \cdot Z \\ 1 \cdot Z & 0 \cdot Z \end{pmatrix} = \begin{pmatrix} 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & -1 \\ 1 & 0 & 0 & 0 \\ 0 & -1 & 0 & 0 \end{pmatrix}$
 
-		b) Para verificar que $[X \otimes I, I \otimes Z] = 0$, calculamos el conmutador:
+    b) Para verificar que $[X \otimes I, I \otimes Z] = 0$, calculamos el conmutador:
 
-		$[X \otimes I, I \otimes Z] = (X \otimes I)(I \otimes Z) - (I \otimes Z)(X \otimes I)$
+    $[X \otimes I, I \otimes Z] = (X \otimes I)(I \otimes Z) - (I \otimes Z)(X \otimes I)$
 
-		Primero calculamos el producto $(X \otimes I)(I \otimes Z)$:
-		$(X \otimes I)(I \otimes Z) = X \otimes Z$
+    Primero calculamos el producto $(X \otimes I)(I \otimes Z)$:
+    $(X \otimes I)(I \otimes Z) = X \otimes Z$
 
-		Esto se debe a que $(A \otimes B)(C \otimes D) = (AC) \otimes (BD)$, por lo que:
-		$(X \otimes I)(I \otimes Z) = (XI) \otimes (IZ) = X \otimes Z$
+    Esto se debe a que $(A \otimes B)(C \otimes D) = (AC) \otimes (BD)$, por lo que:
+    $(X \otimes I)(I \otimes Z) = (XI) \otimes (IZ) = X \otimes Z$
 
-		De manera similar, calculamos $(I \otimes Z)(X \otimes I)$:
-		$(I \otimes Z)(X \otimes I) = (IX) \otimes (ZI) = X \otimes Z$
+    De manera similar, calculamos $(I \otimes Z)(X \otimes I)$:
+    $(I \otimes Z)(X \otimes I) = (IX) \otimes (ZI) = X \otimes Z$
 
-		Por lo tanto:
-		$[X \otimes I, I \otimes Z] = X \otimes Z - X \otimes Z = 0$
+    Por lo tanto:
+    $[X \otimes I, I \otimes Z] = X \otimes Z - X \otimes Z = 0$
 
-		Esto confirma que $X \otimes I$ y $I \otimes Z$ conmutan, lo cual es esperado ya que actúan en qubits diferentes.
+    Esto confirma que $X \otimes I$ y $I \otimes Z$ conmutan, lo cual es esperado ya que actúan en qubits diferentes.
 
-		Para calcular $[X \otimes I, Z \otimes I]$:
+    Para calcular $[X \otimes I, Z \otimes I]$:
 
-		$(X \otimes I)(Z \otimes I) = (XZ) \otimes (II) = XZ \otimes I$
-		$(Z \otimes I)(X \otimes I) = (ZX) \otimes (II) = ZX \otimes I$
+    $(X \otimes I)(Z \otimes I) = (XZ) \otimes (II) = XZ \otimes I$
+    $(Z \otimes I)(X \otimes I) = (ZX) \otimes (II) = ZX \otimes I$
 
-		Sabemos que $[X, Z] = XZ - ZX = 2iY$, por lo tanto:
-		$[X \otimes I, Z \otimes I] = XZ \otimes I - ZX \otimes I = [X, Z] \otimes I = 2iY \otimes I$
+    Sabemos que $[X, Z] = XZ - ZX = 2iY$, por lo tanto:
+    $[X \otimes I, Z \otimes I] = XZ \otimes I - ZX \otimes I = [X, Z] \otimes I = 2iY \otimes I$
 
-		En forma matricial:
-		$2iY \otimes I = 2i \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix} \otimes \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = 2i \begin{pmatrix} 0 & -i & 0 & 0 \\ i & 0 & 0 & 0 \\ 0 & 0 & 0 & -i \\ 0 & 0 & i & 0 \end{pmatrix} = \begin{pmatrix} 0 & 2 & 0 & 0 \\ -2 & 0 & 0 & 0 \\ 0 & 0 & 0 & 2 \\ 0 & 0 & -2 & 0 \end{pmatrix}$
+    En forma matricial:
+    $2iY \otimes I = 2i \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix} \otimes \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = 2i \begin{pmatrix} 0 & -i & 0 & 0 \\ i & 0 & 0 & 0 \\ 0 & 0 & 0 & -i \\ 0 & 0 & i & 0 \end{pmatrix} = \begin{pmatrix} 0 & 2 & 0 & 0 \\ -2 & 0 & 0 & 0 \\ 0 & 0 & 0 & 2 \\ 0 & 0 & -2 & 0 \end{pmatrix}$
 
-		c) Para determinar el resultado de aplicar $X \otimes Z$ al estado $|\psi\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$, calculamos:
+    c) Para determinar el resultado de aplicar $X \otimes Z$ al estado $|\psi\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$, calculamos:
 
-		$(X \otimes Z)|\psi\rangle = \frac{1}{\sqrt{2}}(X \otimes Z)|00\rangle + \frac{1}{\sqrt{2}}(X \otimes Z)|11\rangle$
+    $(X \otimes Z)|\psi\rangle = \frac{1}{\sqrt{2}}(X \otimes Z)|00\rangle + \frac{1}{\sqrt{2}}(X \otimes Z)|11\rangle$
 
-		Calculamos la acción de $X \otimes Z$ sobre los estados base:
-		$(X \otimes Z)|00\rangle = X|0\rangle \otimes Z|0\rangle = |1\rangle \otimes |0\rangle = |10\rangle$
-		$(X \otimes Z)|11\rangle = X|1\rangle \otimes Z|1\rangle = |0\rangle \otimes (-|1\rangle) = -|01\rangle$
+    Calculamos la acción de $X \otimes Z$ sobre los estados base:
+    $(X \otimes Z)|00\rangle = X|0\rangle \otimes Z|0\rangle = |1\rangle \otimes |0\rangle = |10\rangle$
+    $(X \otimes Z)|11\rangle = X|1\rangle \otimes Z|1\rangle = |0\rangle \otimes (-|1\rangle) = -|01\rangle$
 
-		Por lo tanto:
-		$(X \otimes Z)|\psi\rangle = \frac{1}{\sqrt{2}}(|10\rangle - |01\rangle)$
+    Por lo tanto:
+    $(X \otimes Z)|\psi\rangle = \frac{1}{\sqrt{2}}(|10\rangle - |01\rangle)$
 
-		d) Para determinar si el estado resultante $|\psi'\rangle = \frac{1}{\sqrt{2}}(|10\rangle - |01\rangle)$ está entrelazado, verificamos si puede escribirse como un producto tensorial de dos estados de un qubit.
+    d) Para determinar si el estado resultante $|\psi'\rangle = \frac{1}{\sqrt{2}}(|10\rangle - |01\rangle)$ está entrelazado, verificamos si puede escribirse como un producto tensorial de dos estados de un qubit.
 
-		Supongamos que $|\psi'\rangle$ es separable. Entonces debe existir $|\phi_A\rangle = a|0\rangle + b|1\rangle$ y $|\phi_B\rangle = c|0\rangle + d|1\rangle$ tales que:
-		$|\psi'\rangle = |\phi_A\rangle \otimes |\phi_B\rangle = (a|0\rangle + b|1\rangle) \otimes (c|0\rangle + d|1\rangle) = ac|00\rangle + ad|01\rangle + bc|10\rangle + bd|11\rangle$
+    Supongamos que $|\psi'\rangle$ es separable. Entonces debe existir $|\phi_A\rangle = a|0\rangle + b|1\rangle$ y $|\phi_B\rangle = c|0\rangle + d|1\rangle$ tales que:
+    $|\psi'\rangle = |\phi_A\rangle \otimes |\phi_B\rangle = (a|0\rangle + b|1\rangle) \otimes (c|0\rangle + d|1\rangle) = ac|00\rangle + ad|01\rangle + bc|10\rangle + bd|11\rangle$
 
-		Comparando con $|\psi'\rangle = \frac{1}{\sqrt{2}}(|10\rangle - |01\rangle)$, obtenemos:
-		$ac = 0$
-		$ad = -\frac{1}{\sqrt{2}}$
-		$bc = \frac{1}{\sqrt{2}}$
-		$bd = 0$
+    Comparando con $|\psi'\rangle = \frac{1}{\sqrt{2}}(|10\rangle - |01\rangle)$, obtenemos:
+    $ac = 0$
+    $ad = -\frac{1}{\sqrt{2}}$
+    $bc = \frac{1}{\sqrt{2}}$
+    $bd = 0$
 
-		De $ac = 0$ y $bd = 0$, tenemos que $a = 0$ o $c = 0$, y $b = 0$ o $d = 0$.
+    De $ac = 0$ y $bd = 0$, tenemos que $a = 0$ o $c = 0$, y $b = 0$ o $d = 0$.
 
-		Si $a = 0$, entonces de $bc = \frac{1}{\sqrt{2}}$ necesitamos $b \neq 0$ y $c \neq 0$. Pero esto implica que $bd = 0$ requiere $d = 0$. Pero entonces $ad = -\frac{1}{\sqrt{2}}$ no puede satisfacerse ya que $a = 0$.
+    Si $a = 0$, entonces de $bc = \frac{1}{\sqrt{2}}$ necesitamos $b \neq 0$ y $c \neq 0$. Pero esto implica que $bd = 0$ requiere $d = 0$. Pero entonces $ad = -\frac{1}{\sqrt{2}}$ no puede satisfacerse ya que $a = 0$.
 
-		De manera similar, podemos verificar que ninguna otra combinación de $a = 0$ o $c = 0$ junto con $b = 0$ o $d = 0$ puede satisfacer todas las ecuaciones simultáneamente.
+    De manera similar, podemos verificar que ninguna otra combinación de $a = 0$ o $c = 0$ junto con $b = 0$ o $d = 0$ puede satisfacer todas las ecuaciones simultáneamente.
 
-		Por lo tanto, $|\psi'\rangle$ no puede expresarse como un producto tensorial, lo que significa que está entrelazado.
+    Por lo tanto, $|\psi'\rangle$ no puede expresarse como un producto tensorial, lo que significa que está entrelazado.
 
-		De hecho, $|\psi'\rangle = \frac{1}{\sqrt{2}}(|10\rangle - |01\rangle)$ es uno de los estados de Bell (específicamente $|\Psi^-\rangle$), conocido por ser un estado máximamente entrelazado de dos qubits.
+    De hecho, $|\psi'\rangle = \frac{1}{\sqrt{2}}(|10\rangle - |01\rangle)$ es uno de los estados de Bell (específicamente $|\Psi^-\rangle$), conocido por ser un estado máximamente entrelazado de dos qubits.
 
-		Otra forma de verificar el entrelazamiento es calcular la matriz de densidad reducida de uno de los qubits. Si el estado es puro y entrelazado, la matriz reducida será mixta.
+    Otra forma de verificar el entrelazamiento es calcular la matriz de densidad reducida de uno de los qubits. Si el estado es puro y entrelazado, la matriz reducida será mixta.
 
-		$\rho = |\psi'\rangle\langle\psi'| = \frac{1}{2}(|10\rangle - |01\rangle)(\langle10| - \langle01|) = \frac{1}{2}(|10\rangle\langle10| + |01\rangle\langle01| - |10\rangle\langle01| - |01\rangle\langle10|)$
+    $\rho = |\psi'\rangle\langle\psi'| = \frac{1}{2}(|10\rangle - |01\rangle)(\langle10| - \langle01|) = \frac{1}{2}(|10\rangle\langle10| + |01\rangle\langle01| - |10\rangle\langle01| - |01\rangle\langle10|)$
 
-		La matriz de densidad reducida del primer qubit es:
-		$\rho_A = \text{Tr}_B(\rho) = \frac{1}{2}(|1\rangle\langle1| + |0\rangle\langle0|) = \frac{1}{2}I$
+    La matriz de densidad reducida del primer qubit es:
+    $\rho_A = \text{Tr}_B(\rho) = \frac{1}{2}(|1\rangle\langle1| + |0\rangle\langle0|) = \frac{1}{2}I$
 
-		Dado que $\rho_A$ representa un estado máximamente mixto (sus valores propios son ambos $\frac{1}{2}$), podemos confirmar que $|\psi'\rangle$ está máximamente entrelazado.
-	\end{solution}
+    Dado que $\rho_A$ representa un estado máximamente mixto (sus valores propios son ambos $\frac{1}{2}$), podemos confirmar que $|\psi'\rangle$ está máximamente entrelazado.
+  \end{solution}
 
-	\question[3]
-	Considere un sistema cuántico con espacio de Hilbert $\mathbb{C}^4$ y un operador hermitiano
-	$H = \begin{pmatrix}
-			2 & 0 & 1 & 0 \\
-			0 & 3 & 0 & 0 \\
-			1 & 0 & 2 & 0 \\
-			0 & 0 & 0 & 1
-		\end{pmatrix}$
-	\begin{parts}
+  \question[3]
+  Considere un sistema cuántico con espacio de Hilbert $\mathbb{C}^4$ y el operador hermitiano
+  \[
+    H = \begin{pmatrix}
+      2 & 0 & 1 & 0 \\
+      0 & 3 & 0 & 0 \\
+      1 & 0 & 2 & 0 \\
+      0 & 0 & 0 & 1
+    \end{pmatrix}
+  \]
+  \begin{parts}
 
-		\part Determine los valores propios y vectores propios de $H$.
-		\part Escriba la descomposición espectral de $H$.
-		\part Si el sistema está inicialmente en el estado $|\psi(0)\rangle = \frac{1}{2}(|0\rangle + |1\rangle + |2\rangle + |3\rangle)$, determine el estado $|\psi(t)\rangle = e^{-iHt}|\psi(0)\rangle$.
-	\end{parts}
+    \part Determine los valores propios y vectores propios de $H$.
+    \part Escriba la descomposición espectral de $H$.
+    \part Si el sistema está inicialmente en el estado $|\psi(0)\rangle = \frac{1}{2}(|0\rangle + |1\rangle + |2\rangle + |3\rangle)$, determine el estado $|\psi(t)\rangle = e^{-iHt}|\psi(0)\rangle$.
+  \end{parts}
 
-	\begin{solution}
-		a) Para determinar los valores propios y vectores propios del operador hermitiano $H$, primero observamos que $H$ tiene una estructura especial que nos permite simplificar el cálculo.
+  \begin{solution}
+    a) Para determinar los valores propios y vectores propios del operador hermitiano $H$, primero observamos que $H$ tiene una estructura especial que nos permite simplificar el cálculo.
 
-		La matriz $H$ puede verse como una suma directa de dos bloques:
-		- Un bloque $2 \times 2$ en la esquina superior izquierda: $\begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}$
-		- Dos valores en la diagonal: $3$ y $1$
+    La matriz $H$ puede verse como una suma directa de dos bloques:
+    - Un bloque $2 \times 2$ en la esquina superior izquierda: $\begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}$
+    - Dos valores en la diagonal: $3$ y $1$
 
-		Calculemos primero los valores propios y vectores propios del bloque $2 \times 2$:
+    Calculemos primero los valores propios y vectores propios del bloque $2 \times 2$:
 
-		$\begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}$
+    $\begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}$
 
-		El polinomio característico es:
-		$\det\begin{pmatrix} 2-\lambda & 1 \\ 1 & 2-\lambda \end{pmatrix} = (2-\lambda)^2 - 1 = \lambda^2 - 4\lambda + 3 = (\lambda-3)(\lambda-1)$
+    El polinomio característico es:
+    $\det\begin{pmatrix} 2-\lambda & 1 \\ 1 & 2-\lambda \end{pmatrix} = (2-\lambda)^2 - 1 = \lambda^2 - 4\lambda + 3 = (\lambda-3)(\lambda-1)$
 
-		Por lo tanto, los valores propios son $\lambda_1 = 3$ y $\lambda_2 = 1$.
+    Por lo tanto, los valores propios son $\lambda_1 = 3$ y $\lambda_2 = 1$.
 
-		Para $\lambda_1 = 3$, encontramos el vector propio:
-		$\begin{pmatrix} 2-3 & 1 \\ 1 & 2-3 \end{pmatrix}\begin{pmatrix} v_1 \\ v_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}$
-		$\begin{pmatrix} -1 & 1 \\ 1 & -1 \end{pmatrix}\begin{pmatrix} v_1 \\ v_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}$
+    Para $\lambda_1 = 3$, encontramos el vector propio:
+    $\begin{pmatrix} 2-3 & 1 \\ 1 & 2-3 \end{pmatrix}\begin{pmatrix} v_1 \\ v_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}$
+    $\begin{pmatrix} -1 & 1 \\ 1 & -1 \end{pmatrix}\begin{pmatrix} v_1 \\ v_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}$
 
-		Esto nos da $v_1 = v_2$. Normalizando, obtenemos el vector propio:
-		$|v_1\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 1 \end{pmatrix}$
+    Esto nos da $v_1 = v_2$. Normalizando, obtenemos el vector propio:
+    $|v_1\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 1 \end{pmatrix}$
 
-		Para $\lambda_2 = 1$, encontramos el vector propio:
-		$\begin{pmatrix} 2-1 & 1 \\ 1 & 2-1 \end{pmatrix}\begin{pmatrix} v_1 \\ v_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}$
-		$\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}\begin{pmatrix} v_1 \\ v_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}$
+    Para $\lambda_2 = 1$, encontramos el vector propio:
+    $\begin{pmatrix} 2-1 & 1 \\ 1 & 2-1 \end{pmatrix}\begin{pmatrix} v_1 \\ v_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}$
+    $\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}\begin{pmatrix} v_1 \\ v_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}$
 
-		Esto nos da $v_1 = -v_2$. Normalizando, obtenemos el vector propio:
-		$|v_2\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ -1 \end{pmatrix}$
+    Esto nos da $v_1 = -v_2$. Normalizando, obtenemos el vector propio:
+    $|v_2\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ -1 \end{pmatrix}$
 
-		Ahora, necesitamos extender estos vectores al espacio completo $\mathbb{C}^4$.
+    Ahora, necesitamos extender estos vectores al espacio completo $\mathbb{C}^4$.
 
-		Los valores propios y vectores propios de $H$ son:
+    Los valores propios y vectores propios de $H$ son:
 
-		$\lambda_1 = 3$ con vector propio $|u_1\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 0 \\ 1 \\ 0 \end{pmatrix}$
+    $\lambda_1 = 3$ con vector propio $|u_1\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 0 \\ 1 \\ 0 \end{pmatrix}$
 
-		$\lambda_2 = 1$ con vector propio $|u_2\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 0 \\ -1 \\ 0 \end{pmatrix}$
+    $\lambda_2 = 1$ con vector propio $|u_2\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 0 \\ -1 \\ 0 \end{pmatrix}$
 
-		$\lambda_3 = 3$ con vector propio $|u_3\rangle = \begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \end{pmatrix}$
+    $\lambda_3 = 3$ con vector propio $|u_3\rangle = \begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \end{pmatrix}$
 
-		$\lambda_4 = 1$ con vector propio $|u_4\rangle = \begin{pmatrix} 0 \\ 0 \\ 0 \\ 1 \end{pmatrix}$
+    $\lambda_4 = 1$ con vector propio $|u_4\rangle = \begin{pmatrix} 0 \\ 0 \\ 0 \\ 1 \end{pmatrix}$
 
-		Nota: Hay una degeneración en los valores propios, ya que $\lambda_1 = \lambda_3 = 3$ y $\lambda_2 = \lambda_4 = 1$.
+    Nota: Hay una degeneración en los valores propios, ya que $\lambda_1 = \lambda_3 = 3$ y $\lambda_2 = \lambda_4 = 1$.
 
-		b) La descomposición espectral de $H$ es:
+    b) La descomposición espectral de $H$ es:
 
-		$H = \sum_{i=1}^{4} \lambda_i |u_i\rangle\langle u_i|$
+    $H = \sum_{i=1}^{4} \lambda_i |u_i\rangle\langle u_i|$
 
-		$H = 3 |u_1\rangle\langle u_1| + 1 |u_2\rangle\langle u_2| + 3 |u_3\rangle\langle u_3| + 1 |u_4\rangle\langle u_4|$
+    $H = 3 |u_1\rangle\langle u_1| + 1 |u_2\rangle\langle u_2| + 3 |u_3\rangle\langle u_3| + 1 |u_4\rangle\langle u_4|$
 
-		Sustituyendo los vectores propios:
+    Sustituyendo los vectores propios:
 
-		$H = 3 \cdot \frac{1}{2}\begin{pmatrix} 1 \\ 0 \\ 1 \\ 0 \end{pmatrix}\begin{pmatrix} 1 & 0 & 1 & 0 \end{pmatrix} + 1 \cdot \frac{1}{2}\begin{pmatrix} 1 \\ 0 \\ -1 \\ 0 \end{pmatrix}\begin{pmatrix} 1 & 0 & -1 & 0 \end{pmatrix} + 3 \begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \end{pmatrix}\begin{pmatrix} 0 & 1 & 0 & 0 \end{pmatrix} + 1 \begin{pmatrix} 0 \\ 0 \\ 0 \\ 1 \end{pmatrix}\begin{pmatrix} 0 & 0 & 0 & 1 \end{pmatrix}$
+    $H = 3 \cdot \frac{1}{2}\begin{pmatrix} 1 \\ 0 \\ 1 \\ 0 \end{pmatrix}\begin{pmatrix} 1 & 0 & 1 & 0 \end{pmatrix} + 1 \cdot \frac{1}{2}\begin{pmatrix} 1 \\ 0 \\ -1 \\ 0 \end{pmatrix}\begin{pmatrix} 1 & 0 & -1 & 0 \end{pmatrix} + 3 \begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \end{pmatrix}\begin{pmatrix} 0 & 1 & 0 & 0 \end{pmatrix} + 1 \begin{pmatrix} 0 \\ 0 \\ 0 \\ 1 \end{pmatrix}\begin{pmatrix} 0 & 0 & 0 & 1 \end{pmatrix}$
 
-		$H = \frac{3}{2}\begin{pmatrix} 1 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 \\ 1 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 \end{pmatrix} + \frac{1}{2}\begin{pmatrix} 1 & 0 & -1 & 0 \\ 0 & 0 & 0 & 0 \\ -1 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 \end{pmatrix} + 3\begin{pmatrix} 0 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \end{pmatrix} + \begin{pmatrix} 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 \end{pmatrix}$
+    $H = \frac{3}{2}\begin{pmatrix} 1 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 \\ 1 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 \end{pmatrix} + \frac{1}{2}\begin{pmatrix} 1 & 0 & -1 & 0 \\ 0 & 0 & 0 & 0 \\ -1 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 \end{pmatrix} + 3\begin{pmatrix} 0 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \end{pmatrix} + \begin{pmatrix} 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 \end{pmatrix}$
 
-		Sumando estas matrices, obtenemos:
+    Sumando estas matrices, obtenemos:
 
-		$H = \begin{pmatrix} 2 & 0 & 1 & 0 \\ 0 & 3 & 0 & 0 \\ 1 & 0 & 2 & 0 \\ 0 & 0 & 0 & 1 \end{pmatrix}$
+    $H = \begin{pmatrix} 2 & 0 & 1 & 0 \\ 0 & 3 & 0 & 0 \\ 1 & 0 & 2 & 0 \\ 0 & 0 & 0 & 1 \end{pmatrix}$
 
-		Lo cual verifica nuestra descomposición espectral.
+    Lo cual verifica nuestra descomposición espectral.
 
-		c) Para calcular $e^{iH}$ utilizando la descomposición espectral, aplicamos la fórmula:
+    c) Para calcular $e^{iH}$ utilizando la descomposición espectral, aplicamos la fórmula:
 
-		$e^{iH} = \sum_{i=1}^{4} e^{i\lambda_i} |u_i\rangle\langle u_i|$
+    $e^{iH} = \sum_{i=1}^{4} e^{i\lambda_i} |u_i\rangle\langle u_i|$
 
-		$e^{iH} = e^{3i} |u_1\rangle\langle u_1| + e^i |u_2\rangle\langle u_2| + e^{3i} |u_3\rangle\langle u_3| + e^i |u_4\rangle\langle u_4|$
+    $e^{iH} = e^{3i} |u_1\rangle\langle u_1| + e^i |u_2\rangle\langle u_2| + e^{3i} |u_3\rangle\langle u_3| + e^i |u_4\rangle\langle u_4|$
 
-		Sustituyendo los vectores propios:
+    Sustituyendo los vectores propios:
 
-		$e^{iH} = e^{3i} \cdot \frac{1}{2}\begin{pmatrix} 1 \\ 0 \\ 1 \\ 0 \end{pmatrix}\begin{pmatrix} 1 & 0 & 1 & 0 \end{pmatrix} + e^i \cdot \frac{1}{2}\begin{pmatrix} 1 \\ 0 \\ -1 \\ 0 \end{pmatrix}\begin{pmatrix} 1 & 0 & -1 & 0 \end{pmatrix} + e^{3i} \begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \end{pmatrix}\begin{pmatrix} 0 & 1 & 0 & 0 \end{pmatrix} + e^i \begin{pmatrix} 0 \\ 0 \\ 0 \\ 1 \end{pmatrix}\begin{pmatrix} 0 & 0 & 0 & 1 \end{pmatrix}$
+    $e^{iH} = e^{3i} \cdot \frac{1}{2}\begin{pmatrix} 1 \\ 0 \\ 1 \\ 0 \end{pmatrix}\begin{pmatrix} 1 & 0 & 1 & 0 \end{pmatrix} + e^i \cdot \frac{1}{2}\begin{pmatrix} 1 \\ 0 \\ -1 \\ 0 \end{pmatrix}\begin{pmatrix} 1 & 0 & -1 & 0 \end{pmatrix} + e^{3i} \begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \end{pmatrix}\begin{pmatrix} 0 & 1 & 0 & 0 \end{pmatrix} + e^i \begin{pmatrix} 0 \\ 0 \\ 0 \\ 1 \end{pmatrix}\begin{pmatrix} 0 & 0 & 0 & 1 \end{pmatrix}$
 
-		$e^{iH} = \frac{e^{3i}}{2}\begin{pmatrix} 1 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 \\ 1 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 \end{pmatrix} + \frac{e^i}{2}\begin{pmatrix} 1 & 0 & -1 & 0 \\ 0 & 0 & 0 & 0 \\ -1 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 \end{pmatrix} + e^{3i}\begin{pmatrix} 0 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \end{pmatrix} + e^i\begin{pmatrix} 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 \end{pmatrix}$
+    $e^{iH} = \frac{e^{3i}}{2}\begin{pmatrix} 1 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 \\ 1 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 \end{pmatrix} + \frac{e^i}{2}\begin{pmatrix} 1 & 0 & -1 & 0 \\ 0 & 0 & 0 & 0 \\ -1 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 \end{pmatrix} + e^{3i}\begin{pmatrix} 0 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \end{pmatrix} + e^i\begin{pmatrix} 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 \end{pmatrix}$
 
-		Simplificando:
+    Simplificando:
 
-		$e^{iH} = \begin{pmatrix} \frac{e^{3i}+e^i}{2} & 0      & \frac{e^{3i}-e^i}{2} & 0   \\
+    $e^{iH} = \begin{pmatrix} \frac{e^{3i}+e^i}{2} & 0      & \frac{e^{3i}-e^i}{2} & 0   \\
                 0                    & e^{3i} & 0                    & 0   \\
                 \frac{e^{3i}-e^i}{2} & 0      & \frac{e^{3i}+e^i}{2} & 0   \\
                 0                    & 0      & 0                    & e^i\end{pmatrix}$
 
-		d) Para determinar el estado $|\psi(t)\rangle = e^{-iHt}|\psi(0)\rangle$, primero necesitamos calcular $e^{-iHt}$ utilizando la descomposición espectral:
+    d) Para determinar el estado $|\psi(t)\rangle = e^{-iHt}|\psi(0)\rangle$, primero necesitamos calcular $e^{-iHt}$ utilizando la descomposición espectral:
 
-		$e^{-iHt} = \sum_{i=1}^{4} e^{-i\lambda_i t} |u_i\rangle\langle u_i|$
+    $e^{-iHt} = \sum_{i=1}^{4} e^{-i\lambda_i t} |u_i\rangle\langle u_i|$
 
-		$e^{-iHt} = e^{-3it} |u_1\rangle\langle u_1| + e^{-it} |u_2\rangle\langle u_2| + e^{-3it} |u_3\rangle\langle u_3| + e^{-it} |u_4\rangle\langle u_4|$
+    $e^{-iHt} = e^{-3it} |u_1\rangle\langle u_1| + e^{-it} |u_2\rangle\langle u_2| + e^{-3it} |u_3\rangle\langle u_3| + e^{-it} |u_4\rangle\langle u_4|$
 
-		Ahora, aplicamos este operador al estado inicial:
+    Ahora, aplicamos este operador al estado inicial:
 
-		$|\psi(0)\rangle = \frac{1}{2}(|0\rangle + |1\rangle + |2\rangle + |3\rangle) = \frac{1}{2}\begin{pmatrix} 1 \\ 1 \\ 1 \\ 1 \end{pmatrix}$
+    $|\psi(0)\rangle = \frac{1}{2}(|0\rangle + |1\rangle + |2\rangle + |3\rangle) = \frac{1}{2}\begin{pmatrix} 1 \\ 1 \\ 1 \\ 1 \end{pmatrix}$
 
-		Para facilitar el cálculo, expresamos $|\psi(0)\rangle$ en términos de los vectores propios de $H$. Para esto, calculamos los coeficientes $c_i = \langle u_i|\psi(0)\rangle$:
+    Para facilitar el cálculo, expresamos $|\psi(0)\rangle$ en términos de los vectores propios de $H$. Para esto, calculamos los coeficientes $c_i = \langle u_i|\psi(0)\rangle$:
 
-		$c_1 = \langle u_1|\psi(0)\rangle = \frac{1}{\sqrt{2}} \cdot \frac{1}{2}(1 + 0 + 1 + 0) = \frac{1}{\sqrt{2}} \cdot \frac{2}{2} = \frac{1}{\sqrt{2}}$
+    $c_1 = \langle u_1|\psi(0)\rangle = \frac{1}{\sqrt{2}} \cdot \frac{1}{2}(1 + 0 + 1 + 0) = \frac{1}{\sqrt{2}} \cdot \frac{2}{2} = \frac{1}{\sqrt{2}}$
 
-		$c_2 = \langle u_2|\psi(0)\rangle = \frac{1}{\sqrt{2}} \cdot \frac{1}{2}(1 + 0 - 1 + 0) = \frac{1}{\sqrt{2}} \cdot \frac{0}{2} = 0$
+    $c_2 = \langle u_2|\psi(0)\rangle = \frac{1}{\sqrt{2}} \cdot \frac{1}{2}(1 + 0 - 1 + 0) = \frac{1}{\sqrt{2}} \cdot \frac{0}{2} = 0$
 
-		$c_3 = \langle u_3|\psi(0)\rangle = 1 \cdot \frac{1}{2}(0 + 1 + 0 + 0) = \frac{1}{2}$
+    $c_3 = \langle u_3|\psi(0)\rangle = 1 \cdot \frac{1}{2}(0 + 1 + 0 + 0) = \frac{1}{2}$
 
-		$c_4 = \langle u_4|\psi(0)\rangle = 1 \cdot \frac{1}{2}(0 + 0 + 0 + 1) = \frac{1}{2}$
+    $c_4 = \langle u_4|\psi(0)\rangle = 1 \cdot \frac{1}{2}(0 + 0 + 0 + 1) = \frac{1}{2}$
 
-		Entonces:
-		$|\psi(0)\rangle = c_1|u_1\rangle + c_2|u_2\rangle + c_3|u_3\rangle + c_4|u_4\rangle = \frac{1}{\sqrt{2}}|u_1\rangle + 0|u_2\rangle + \frac{1}{2}|u_3\rangle + \frac{1}{2}|u_4\rangle$
+    Entonces:
+    $|\psi(0)\rangle = c_1|u_1\rangle + c_2|u_2\rangle + c_3|u_3\rangle + c_4|u_4\rangle = \frac{1}{\sqrt{2}}|u_1\rangle + 0|u_2\rangle + \frac{1}{2}|u_3\rangle + \frac{1}{2}|u_4\rangle$
 
-		Ahora, calculamos el estado evolucionado:
-		$|\psi(t)\rangle = e^{-iHt}|\psi(0)\rangle = \sum_{i=1}^{4} e^{-i\lambda_i t} \langle u_i|\psi(0)\rangle |u_i\rangle$
+    Ahora, calculamos el estado evolucionado:
+    $|\psi(t)\rangle = e^{-iHt}|\psi(0)\rangle = \sum_{i=1}^{4} e^{-i\lambda_i t} \langle u_i|\psi(0)\rangle |u_i\rangle$
 
-		$|\psi(t)\rangle = e^{-3it} \cdot \frac{1}{\sqrt{2}} \cdot |u_1\rangle + e^{-it} \cdot 0 \cdot |u_2\rangle + e^{-3it} \cdot \frac{1}{2} \cdot |u_3\rangle + e^{-it} \cdot \frac{1}{2} \cdot |u_4\rangle$
+    $|\psi(t)\rangle = e^{-3it} \cdot \frac{1}{\sqrt{2}} \cdot |u_1\rangle + e^{-it} \cdot 0 \cdot |u_2\rangle + e^{-3it} \cdot \frac{1}{2} \cdot |u_3\rangle + e^{-it} \cdot \frac{1}{2} \cdot |u_4\rangle$
 
-		$|\psi(t)\rangle = \frac{e^{-3it}}{\sqrt{2}}|u_1\rangle + \frac{e^{-3it}}{2}|u_3\rangle + \frac{e^{-it}}{2}|u_4\rangle$
+    $|\psi(t)\rangle = \frac{e^{-3it}}{\sqrt{2}}|u_1\rangle + \frac{e^{-3it}}{2}|u_3\rangle + \frac{e^{-it}}{2}|u_4\rangle$
 
-		Sustituyendo los vectores propios:
+    Sustituyendo los vectores propios:
 
-		$|\psi(t)\rangle = \frac{e^{-3it}}{\sqrt{2}} \cdot \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 0 \\ 1 \\ 0 \end{pmatrix} + \frac{e^{-3it}}{2}\begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \end{pmatrix} + \frac{e^{-it}}{2}\begin{pmatrix} 0 \\ 0 \\ 0 \\ 1 \end{pmatrix}$
+    $|\psi(t)\rangle = \frac{e^{-3it}}{\sqrt{2}} \cdot \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 0 \\ 1 \\ 0 \end{pmatrix} + \frac{e^{-3it}}{2}\begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \end{pmatrix} + \frac{e^{-it}}{2}\begin{pmatrix} 0 \\ 0 \\ 0 \\ 1 \end{pmatrix}$
 
-		$|\psi(t)\rangle = \frac{e^{-3it}}{2}\begin{pmatrix} 1 \\ 0 \\ 1 \\ 0 \end{pmatrix} + \frac{e^{-3it}}{2}\begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \end{pmatrix} + \frac{e^{-it}}{2}\begin{pmatrix} 0 \\ 0 \\ 0 \\ 1 \end{pmatrix}$
+    $|\psi(t)\rangle = \frac{e^{-3it}}{2}\begin{pmatrix} 1 \\ 0 \\ 1 \\ 0 \end{pmatrix} + \frac{e^{-3it}}{2}\begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \end{pmatrix} + \frac{e^{-it}}{2}\begin{pmatrix} 0 \\ 0 \\ 0 \\ 1 \end{pmatrix}$
 
-		$|\psi(t)\rangle = \frac{1}{2}\begin{pmatrix} e^{-3it} \\ e^{-3it} \\ e^{-3it} \\ e^{-it} \end{pmatrix}$
+    $|\psi(t)\rangle = \frac{1}{2}\begin{pmatrix} e^{-3it} \\ e^{-3it} \\ e^{-3it} \\ e^{-it} \end{pmatrix}$
 
-		Esto muestra que el estado evoluciona con diferentes fases para sus componentes, de acuerdo con los valores propios de $H$. Las componentes correspondientes a los valores propios $\lambda = 3$ oscilan con frecuencia $3$ veces mayor que las componentes correspondientes a $\lambda = 1$.
+    Esto muestra que el estado evoluciona con diferentes fases para sus componentes, de acuerdo con los valores propios de $H$. Las componentes correspondientes a los valores propios $\lambda = 3$ oscilan con frecuencia $3$ veces mayor que las componentes correspondientes a $\lambda = 1$.
 
-		En la base computacional, el estado evolucionado es:
+    En la base computacional, el estado evolucionado es:
 
-		$|\psi(t)\rangle = \frac{1}{2}(e^{-3it}|0\rangle + e^{-3it}|1\rangle + e^{-3it}|2\rangle + e^{-it}|3\rangle)$
+    $|\psi(t)\rangle = \frac{1}{2}(e^{-3it}|0\rangle + e^{-3it}|1\rangle + e^{-3it}|2\rangle + e^{-it}|3\rangle)$
 
-		$|\psi(t)\rangle = \frac{e^{-3it}}{2}(|0\rangle + |1\rangle + |2\rangle) + \frac{e^{-it}}{2}|3\rangle$
+    $|\psi(t)\rangle = \frac{e^{-3it}}{2}(|0\rangle + |1\rangle + |2\rangle) + \frac{e^{-it}}{2}|3\rangle$
 
-		Este resultado muestra cómo el hamiltoniano $H$ genera una evolución temporal que afecta de manera diferente a las distintas componentes del estado, creando una dinámica de fases relativas que es característica de los sistemas cuánticos.
-	\end{solution}
+    Este resultado muestra cómo el hamiltoniano $H$ genera una evolución temporal que afecta de manera diferente a las distintas componentes del estado, creando una dinámica de fases relativas que es característica de los sistemas cuánticos.
+  \end{solution}
 \end{questions}

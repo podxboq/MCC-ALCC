@@ -1,292 +1,289 @@
-\codigonombre{}{MCC-ALCC-25Q104}
 \begin{questions}
-	\question[4] Responda a las siguientes cuestiones:
-	\begin{parts}
-		\part Explique el producto tensorial entre operadores lineales y su aplicación en sistemas cuánticos compuestos.
-
-		\begin{solution}
-			El producto tensorial entre operadores lineales es una operación fundamental que permite construir operadores que actúan sobre espacios vectoriales compuestos a partir de operadores que actúan sobre espacios más simples.
-
-			Definición formal:
-			Dados dos operadores lineales $A: V \rightarrow V'$ y $B: W \rightarrow W'$, su producto tensorial $A \otimes B: V \otimes W \rightarrow V' \otimes W'$ es un operador lineal definido por:
-			$(A \otimes B)(v \otimes w) = (Av) \otimes (Bw)$
-			para todo $v \in V$ y $w \in W$, extendido por linealidad al espacio completo.
-
-			Representación matricial:
-			Si $A$ es una matriz $m \times n$ y $B$ es una matriz $p \times q$, entonces $A \otimes B$ es una matriz $(mp) \times (nq)$ con estructura de bloques:
-			$A \otimes B =
-				\begin{pmatrix}
-					a_{11}B & a_{12}B & \cdots & a_{1n}B \\
-					a_{21}B & a_{22}B & \cdots & a_{2n}B \\
-					\vdots  & \vdots  & \ddots & \vdots  \\
-					a_{m1}B & a_{m2}B & \cdots & a_{mn}B
-				\end{pmatrix}$
-
-			Propiedades principales:
-			1) Bilinealidad: $(aA + bC) \otimes B = a(A \otimes B) + b(C \otimes B)$
-			2) Asociatividad: $A \otimes (B \otimes C) = (A \otimes B) \otimes C$
-			3) Producto con escalares: $(kA) \otimes B = A \otimes (kB) = k(A \otimes B)$
-			4) Compatibilidad con el producto de operadores: $(A \otimes B)(C \otimes D) = (AC) \otimes (BD)$
-			5) Para operadores hermíticos: $(A \otimes B)^\dagger = A^\dagger \otimes B^\dagger$
-			6) Para operadores unitarios: Si $A$ y $B$ son unitarios, entonces $A \otimes B$ es unitario
-
-			Aplicaciones en sistemas cuánticos compuestos:
-
-			1) Operadores sobre múltiples qubits:
-			- Si $X, Y, Z$ son matrices de Pauli, $X \otimes Z$ actúa como $X$ en el primer qubit y $Z$ en el segundo
-			- Compuertas de dos qubits como CNOT se pueden expresar usando productos tensoriales
-			- Para un sistema de $n$ qubits, los operadores tienen forma $A_1 \otimes A_2 \otimes \cdots \otimes A_n$
-
-			2) Operadores de medición:
-			- Las mediciones sobre subsistemas individuales se representan como $M \otimes I$
-			- Proyectores compuestos: $P = |v\rangle\langle v| \otimes |w\rangle\langle w| = (|v\rangle \otimes |w\rangle)(\langle v| \otimes \langle w|)$
-
-			3) Hamiltoniano de sistemas compuestos:
-			- $H_{total} = H_A \otimes I_B + I_A \otimes H_B + H_{int}$, donde $H_{int}$ representa interacciones
-			- Permite modelar la evolución de sistemas que interactúan
-
-			4) Operaciones locales:
-			- Las operaciones que afectan solo a subsistemas específicos se expresan mediante productos tensoriales
-			- Fundamental en protocolos de información cuántica, teleportación y corrección de errores
-
-			5) Matrices de densidad para sistemas compuestos:
-			- Estados separables: $\rho = \rho_A \otimes \rho_B$
-			- La traza parcial permite obtener matrices de densidad reducidas
-
-			El producto tensorial de operadores es esencial para entender y manipular sistemas cuánticos compuestos, permitiendo construir operaciones complejas a partir de bloques simples y analizar cómo las operaciones locales afectan al sistema global.
-		\end{solution}
-
-		\part Describa la matriz de densidad reducida y su utilidad para analizar subsistemas en sistemas cuánticos compuestos.
-
-		\begin{solution}
-			La matriz de densidad reducida es una herramienta matemática fundamental que permite describir y analizar el estado de un subsistema dentro de un sistema cuántico compuesto.
-
-			Definición formal:
-			Dado un sistema bipartito A+B en un estado $\rho_{AB}$, la matriz de densidad reducida del subsistema A se obtiene mediante la traza parcial sobre el subsistema B:
-			$\rho_A = \text{Tr}_B(\rho_{AB}) = \sum_i (I_A \otimes \langle i|_B) \rho_{AB} (I_A \otimes |i\rangle_B)$
-			donde $\{|i\rangle_B\}$ es una base ortonormal del espacio de Hilbert del subsistema B.
-
-			En notación de componentes, si $\rho_{AB}$ tiene elementos $\rho_{ab,cd}$ en la base $\{|a\rangle_A \otimes |c\rangle_B\}$, entonces:
-			$(\rho_A)_{ab} = \sum_c \rho_{ac,bc}$
-
-			Propiedades fundamentales:
-			1) $\rho_A$ es una matriz hermitiana: $\rho_A = \rho_A^\dagger$
-			2) $\rho_A$ tiene traza 1: $\text{Tr}(\rho_A) = 1$
-			3) $\rho_A$ es positiva semidefinida: $\langle\phi|\rho_A|\phi\rangle \geq 0$ para todo $|\phi\rangle$
-			4) El espectro de $\rho_A$ contiene los cuadrados de los coeficientes de Schmidt de la descomposición del estado puro original
-
-			Utilidad para analizar subsistemas:
-
-			1) Descripción de subsistemas:
-			- Proporciona la única descripción completa y correcta de un subsistema de un sistema cuántico
-			- Contiene toda la información accesible mediante mediciones locales en ese subsistema
-			- Los valores esperados de observables locales: $\langle O_A \rangle = \text{Tr}(\rho_A O_A)$
-
-			2) Detección y cuantificación de entrelazamiento:
-			- Un estado puro $|\psi\rangle_{AB}$ está entrelazado si y solo si $\rho_A$ (y $\rho_B$) es un estado mixto
-			- Para estados puros, la pureza $\text{Tr}(\rho_A^2) < 1$ indica entrelazamiento
-			- La entropía de von Neumann $S(\rho_A) = -\text{Tr}(\rho_A \log \rho_A)$ cuantifica el entrelazamiento
-
-			3) Análisis de decoherencia:
-			- Permite estudiar cómo la interacción con el entorno afecta a un sistema cuántico
-			- La evolución hacia estados mixtos se refleja en la matriz reducida
-			- Monitoriza la pérdida de información cuántica
-
-			4) Criptografía y protocolos cuánticos:
-			- En teleportación cuántica, la matriz reducida del receptor antes de recibir información clásica es completamente mixta
-			- Garantiza la seguridad de ciertos protocolos criptográficos cuánticos
-			- Permite verificar la distribución segura de entrelazamiento
-
-			5) Algoritmos cuánticos:
-			- Ayuda a analizar el estado de qubits específicos durante la ejecución de algoritmos
-			- Permite evaluar el impacto de las operaciones en subsistemas individuales
-			- Facilita la depuración de circuitos cuánticos complejos
+  \question[4] Responda a las siguientes cuestiones:
+  \begin{parts}
+    \part Defina la esfera de Bloch y explica como se puede representar un cúbit puro como un punto de dicha esfera.
+
+    \begin{solution}
+      El producto tensorial entre operadores lineales es una operación fundamental que permite construir operadores que actúan sobre espacios vectoriales compuestos a partir de operadores que actúan sobre espacios más simples.
+
+      Definición formal:
+      Dados dos operadores lineales $A: V \rightarrow V'$ y $B: W \rightarrow W'$, su producto tensorial $A \otimes B: V \otimes W \rightarrow V' \otimes W'$ es un operador lineal definido por:
+      $(A \otimes B)(v \otimes w) = (Av) \otimes (Bw)$
+      para todo $v \in V$ y $w \in W$, extendido por linealidad al espacio completo.
+
+      Representación matricial:
+      Si $A$ es una matriz $m \times n$ y $B$ es una matriz $p \times q$, entonces $A \otimes B$ es una matriz $(mp) \times (nq)$ con estructura de bloques:
+      $A \otimes B =
+        \begin{pmatrix}
+          a_{11}B & a_{12}B & \cdots & a_{1n}B \\
+          a_{21}B & a_{22}B & \cdots & a_{2n}B \\
+          \vdots  & \vdots  & \ddots & \vdots  \\
+          a_{m1}B & a_{m2}B & \cdots & a_{mn}B
+        \end{pmatrix}$
+
+      Propiedades principales:
+      1) Bilinealidad: $(aA + bC) \otimes B = a(A \otimes B) + b(C \otimes B)$
+      2) Asociatividad: $A \otimes (B \otimes C) = (A \otimes B) \otimes C$
+      3) Producto con escalares: $(kA) \otimes B = A \otimes (kB) = k(A \otimes B)$
+      4) Compatibilidad con el producto de operadores: $(A \otimes B)(C \otimes D) = (AC) \otimes (BD)$
+      5) Para operadores hermíticos: $(A \otimes B)^\dagger = A^\dagger \otimes B^\dagger$
+      6) Para operadores unitarios: Si $A$ y $B$ son unitarios, entonces $A \otimes B$ es unitario
+
+      Aplicaciones en sistemas cuánticos compuestos:
+
+      1) Operadores sobre múltiples qubits:
+      - Si $X, Y, Z$ son matrices de Pauli, $X \otimes Z$ actúa como $X$ en el primer qubit y $Z$ en el segundo
+      - Compuertas de dos qubits como CNOT se pueden expresar usando productos tensoriales
+      - Para un sistema de $n$ qubits, los operadores tienen forma $A_1 \otimes A_2 \otimes \cdots \otimes A_n$
+
+      2) Operadores de medición:
+      - Las mediciones sobre subsistemas individuales se representan como $M \otimes I$
+      - Proyectores compuestos: $P = |v\rangle\langle v| \otimes |w\rangle\langle w| = (|v\rangle \otimes |w\rangle)(\langle v| \otimes \langle w|)$
+
+      3) Hamiltoniano de sistemas compuestos:
+      - $H_{total} = H_A \otimes I_B + I_A \otimes H_B + H_{int}$, donde $H_{int}$ representa interacciones
+      - Permite modelar la evolución de sistemas que interactúan
+
+      4) Operaciones locales:
+      - Las operaciones que afectan solo a subsistemas específicos se expresan mediante productos tensoriales
+      - Fundamental en protocolos de información cuántica, teleportación y corrección de errores
+
+      5) Matrices de densidad para sistemas compuestos:
+      - Estados separables: $\rho = \rho_A \otimes \rho_B$
+      - La traza parcial permite obtener matrices de densidad reducidas
+
+      El producto tensorial de operadores es esencial para entender y manipular sistemas cuánticos compuestos, permitiendo construir operaciones complejas a partir de bloques simples y analizar cómo las operaciones locales afectan al sistema global.
+    \end{solution}
+
+    \part Describa la matriz de densidad reducida y su utilidad para analizar subsistemas en sistemas cuánticos compuestos.
+
+    \begin{solution}
+      La matriz de densidad reducida es una herramienta matemática fundamental que permite describir y analizar el estado de un subsistema dentro de un sistema cuántico compuesto.
+
+      Definición formal:
+      Dado un sistema bipartito A+B en un estado $\rho_{AB}$, la matriz de densidad reducida del subsistema A se obtiene mediante la traza parcial sobre el subsistema B:
+      $\rho_A = \text{Tr}_B(\rho_{AB}) = \sum_i (I_A \otimes \langle i|_B) \rho_{AB} (I_A \otimes |i\rangle_B)$
+      donde $\{|i\rangle_B\}$ es una base ortonormal del espacio de Hilbert del subsistema B.
+
+      En notación de componentes, si $\rho_{AB}$ tiene elementos $\rho_{ab,cd}$ en la base $\{|a\rangle_A \otimes |c\rangle_B\}$, entonces:
+      $(\rho_A)_{ab} = \sum_c \rho_{ac,bc}$
+
+      Propiedades fundamentales:
+      1) $\rho_A$ es una matriz hermitiana: $\rho_A = \rho_A^\dagger$
+      2) $\rho_A$ tiene traza 1: $\text{Tr}(\rho_A) = 1$
+      3) $\rho_A$ es positiva semidefinida: $\langle\phi|\rho_A|\phi\rangle \geq 0$ para todo $|\phi\rangle$
+      4) El espectro de $\rho_A$ contiene los cuadrados de los coeficientes de Schmidt de la descomposición del estado puro original
+
+      Utilidad para analizar subsistemas:
+
+      1) Descripción de subsistemas:
+      - Proporciona la única descripción completa y correcta de un subsistema de un sistema cuántico
+      - Contiene toda la información accesible mediante mediciones locales en ese subsistema
+      - Los valores esperados de observables locales: $\langle O_A \rangle = \text{Tr}(\rho_A O_A)$
+
+      2) Detección y cuantificación de entrelazamiento:
+      - Un estado puro $|\psi\rangle_{AB}$ está entrelazado si y solo si $\rho_A$ (y $\rho_B$) es un estado mixto
+      - Para estados puros, la pureza $\text{Tr}(\rho_A^2) < 1$ indica entrelazamiento
+      - La entropía de von Neumann $S(\rho_A) = -\text{Tr}(\rho_A \log \rho_A)$ cuantifica el entrelazamiento
+
+      3) Análisis de decoherencia:
+      - Permite estudiar cómo la interacción con el entorno afecta a un sistema cuántico
+      - La evolución hacia estados mixtos se refleja en la matriz reducida
+      - Monitoriza la pérdida de información cuántica
+
+      4) Criptografía y protocolos cuánticos:
+      - En teleportación cuántica, la matriz reducida del receptor antes de recibir información clásica es completamente mixta
+      - Garantiza la seguridad de ciertos protocolos criptográficos cuánticos
+      - Permite verificar la distribución segura de entrelazamiento
+
+      5) Algoritmos cuánticos:
+      - Ayuda a analizar el estado de qubits específicos durante la ejecución de algoritmos
+      - Permite evaluar el impacto de las operaciones en subsistemas individuales
+      - Facilita la depuración de circuitos cuánticos complejos
 
-			6) Tecnologías emergentes:
-			- En computación cuántica de estado sólido, permite estudiar la interacción entre el qubit y su entorno
-			- En procesadores multicore, permite analizar la coherencia entre diferentes regiones
-			- En simulaciones numéricas, permite reducir la complejidad computacional
-
-			La matriz de densidad reducida es, en resumen, la herramienta matemática fundamental que nos permite "abrir la caja" de un sistema cuántico compuesto y examinar sus partes constituyentes, manteniendo toda la información sobre correlaciones cuánticas que afectan al subsistema de interés.
-		\end{solution}
-	\end{parts}
+      6) Tecnologías emergentes:
+      - En computación cuántica de estado sólido, permite estudiar la interacción entre el qubit y su entorno
+      - En procesadores multicore, permite analizar la coherencia entre diferentes regiones
+      - En simulaciones numéricas, permite reducir la complejidad computacional
 
-	\question[3] Considere un sistema de dos qubits en el estado
-	$|\psi\rangle = \alpha|00\rangle + \beta|01\rangle + \gamma|10\rangle + \delta|11\rangle$
-	donde $\alpha, \beta, \gamma, \delta \in \mathbb{C}$ y $|\alpha|^2 + |\beta|^2 + |\gamma|^2 + |\delta|^2 = 1$.
-	\begin{parts}
+      La matriz de densidad reducida es, en resumen, la herramienta matemática fundamental que nos permite "abrir la caja" de un sistema cuántico compuesto y examinar sus partes constituyentes, manteniendo toda la información sobre correlaciones cuánticas que afectan al subsistema de interés.
+    \end{solution}
+  \end{parts}
 
-		\part  Determine la condición necesaria y suficiente sobre los coeficientes para que $|\psi\rangle$ sea un estado separable.
-		\part  Calcule la matriz de densidad $\rho = |\psi\rangle\langle\psi|$ para el caso particular $\alpha = \delta = \frac{1}{\sqrt{2}}$ y $\beta = \gamma = 0$.
-		\part  Obtenga la matriz de densidad reducida $\rho_A$ del primer qubit en este caso particular.
-		\part  Calcule la entropía de von Neumann $S(\rho_A) = -\text{Tr}(\rho_A \log_2 \rho_A)$ y explique su significado físico.
-	\end{parts}
+  \question[3] Considere un sistema de dos qubits en el estado
+  $|\psi\rangle = \alpha|00\rangle + \beta|01\rangle + \gamma|10\rangle + \delta|11\rangle$
+  donde $\alpha, \beta, \gamma, \delta \in \mathbb{C}$ y $|\alpha|^2 + |\beta|^2 + |\gamma|^2 + |\delta|^2 = 1$.
+  \begin{parts}
 
-	\begin{solution}
-		a) Un estado de dos qubits es separable si y solo si puede escribirse como el producto tensorial de dos estados de un qubit:
-		$|\psi\rangle = |\phi_A\rangle \otimes |\phi_B\rangle$
+    \part  Determine la condición necesaria y suficiente sobre los coeficientes para que $|\psi\rangle$ sea un estado separable.
+    \part  Calcule la matriz de densidad $\rho = |\psi\rangle\langle\psi|$ para el caso particular $\alpha = \delta = \frac{1}{\sqrt{2}}$ y $\beta = \gamma = 0$.
+    \part  Obtenga la matriz de densidad reducida $\rho_A$ del primer qubit en este caso particular.
+  \end{parts}
 
-		Supongamos que:
-		$|\phi_A\rangle = a|0\rangle + b|1\rangle$ y $|\phi_B\rangle = c|0\rangle + d|1\rangle$
+  \begin{solution}
+    a) Un estado de dos qubits es separable si y solo si puede escribirse como el producto tensorial de dos estados de un qubit:
+    $|\psi\rangle = |\phi_A\rangle \otimes |\phi_B\rangle$
 
-		Entonces:
-		$|\phi_A\rangle \otimes |\phi_B\rangle = (a|0\rangle + b|1\rangle) \otimes (c|0\rangle + d|1\rangle)$
-		$= ac|00\rangle + ad|01\rangle + bc|10\rangle + bd|11\rangle$
+    Supongamos que:
+    $|\phi_A\rangle = a|0\rangle + b|1\rangle$ y $|\phi_B\rangle = c|0\rangle + d|1\rangle$
 
-		Comparando con $|\psi\rangle = \alpha|00\rangle + \beta|01\rangle + \gamma|10\rangle + \delta|11\rangle$, obtenemos:
-		$\alpha = ac$
-		$\beta = ad$
-		$\gamma = bc$
-		$\delta = bd$
+    Entonces:
+    $|\phi_A\rangle \otimes |\phi_B\rangle = (a|0\rangle + b|1\rangle) \otimes (c|0\rangle + d|1\rangle)$
+    $= ac|00\rangle + ad|01\rangle + bc|10\rangle + bd|11\rangle$
 
-		Para que exista una solución, debe cumplirse:
-		$\alpha\delta = \beta\gamma$
+    Comparando con $|\psi\rangle = \alpha|00\rangle + \beta|01\rangle + \gamma|10\rangle + \delta|11\rangle$, obtenemos:
+    $\alpha = ac$
+    $\beta = ad$
+    $\gamma = bc$
+    $\delta = bd$
 
-		Esta es la condición necesaria y suficiente para que $|\psi\rangle$ sea separable. En términos físicos, significa que el determinante de la matriz de coeficientes (cuando se reorganiza el estado como una matriz $2 \times 2$) debe ser cero.
+    Para que exista una solución, debe cumplirse:
+    $\alpha\delta = \beta\gamma$
 
-		b) Para el caso particular $\alpha = \delta = \frac{1}{\sqrt{2}}$ y $\beta = \gamma = 0$, el estado es:
-		$|\psi\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$
+    Esta es la condición necesaria y suficiente para que $|\psi\rangle$ sea separable. En términos físicos, significa que el determinante de la matriz de coeficientes (cuando se reorganiza el estado como una matriz $2 \times 2$) debe ser cero.
 
-		Este estado no cumple la condición de separabilidad ya que $\alpha\delta = \frac{1}{2} \neq 0 = \beta\gamma$, por lo que es un estado entrelazado (concretamente, uno de los estados de Bell).
+    b) Para el caso particular $\alpha = \delta = \frac{1}{\sqrt{2}}$ y $\beta = \gamma = 0$, el estado es:
+    $|\psi\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$
 
-		La matriz de densidad $\rho = |\psi\rangle\langle\psi|$ es:
-		$\rho = \frac{1}{2}(|00\rangle + |11\rangle)(\langle00| + \langle11|)$
-		$= \frac{1}{2}(|00\rangle\langle00| + |00\rangle\langle11| + |11\rangle\langle00| + |11\rangle\langle11|)$
+    Este estado no cumple la condición de separabilidad ya que $\alpha\delta = \frac{1}{2} \neq 0 = \beta\gamma$, por lo que es un estado entrelazado (concretamente, uno de los estados de Bell).
 
-		En forma matricial (en la base $\{|00\rangle, |01\rangle, |10\rangle, |11\rangle\}$):
-		$\rho = \frac{1}{2}\begin{pmatrix}
-				1 & 0 & 0 & 1 \\
-				0 & 0 & 0 & 0 \\
-				0 & 0 & 0 & 0 \\
-				1 & 0 & 0 & 1
-			\end{pmatrix}$
+    La matriz de densidad $\rho = |\psi\rangle\langle\psi|$ es:
+    $\rho = \frac{1}{2}(|00\rangle + |11\rangle)(\langle00| + \langle11|)$
+    $= \frac{1}{2}(|00\rangle\langle00| + |00\rangle\langle11| + |11\rangle\langle00| + |11\rangle\langle11|)$
 
-		c) La matriz de densidad reducida $\rho_A$ del primer qubit se obtiene tomando la traza parcial sobre el segundo qubit:
+    En forma matricial (en la base $\{|00\rangle, |01\rangle, |10\rangle, |11\rangle\}$):
+    $\rho = \frac{1}{2}\begin{pmatrix}
+        1 & 0 & 0 & 1 \\
+        0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 \\
+        1 & 0 & 0 & 1
+      \end{pmatrix}$
 
-		$\rho_A = \text{Tr}_B(\rho) = \sum_{i=0}^1 (I \otimes \langle i|)\rho(I \otimes |i\rangle)$
+    c) La matriz de densidad reducida $\rho_A$ del primer qubit se obtiene tomando la traza parcial sobre el segundo qubit:
 
-		$\rho_A = (I \otimes \langle 0|)\rho(I \otimes |0\rangle) + (I \otimes \langle 1|)\rho(I \otimes |1\rangle)$
+    $\rho_A = \text{Tr}_B(\rho) = \sum_{i=0}^1 (I \otimes \langle i|)\rho(I \otimes |i\rangle)$
 
-		Calculando cada término:
-		$(I \otimes \langle 0|)\rho(I \otimes |0\rangle) = \frac{1}{2}|0\rangle\langle0|$
-		$(I \otimes \langle 1|)\rho(I \otimes |1\rangle) = \frac{1}{2}|1\rangle\langle1|$
+    $\rho_A = (I \otimes \langle 0|)\rho(I \otimes |0\rangle) + (I \otimes \langle 1|)\rho(I \otimes |1\rangle)$
 
-		Por tanto:
-		$\rho_A = \frac{1}{2}|0\rangle\langle0| + \frac{1}{2}|1\rangle\langle1| = \frac{1}{2}I$
+    Calculando cada término:
+    $(I \otimes \langle 0|)\rho(I \otimes |0\rangle) = \frac{1}{2}|0\rangle\langle0|$
+    $(I \otimes \langle 1|)\rho(I \otimes |1\rangle) = \frac{1}{2}|1\rangle\langle1|$
 
-		En forma matricial:
-		$\rho_A = \frac{1}{2}\begin{pmatrix}
-				1 & 0 \\
-				0 & 1
-			\end{pmatrix}$
+    Por tanto:
+    $\rho_A = \frac{1}{2}|0\rangle\langle0| + \frac{1}{2}|1\rangle\langle1| = \frac{1}{2}I$
 
-		d) La entropía de von Neumann de $\rho_A$ es:
-		$S(\rho_A) = -\text{Tr}(\rho_A \log_2 \rho_A)$
+    En forma matricial:
+    $\rho_A = \frac{1}{2}\begin{pmatrix}
+        1 & 0 \\
+        0 & 1
+      \end{pmatrix}$
 
-		Para calcularla, primero necesitamos $\log_2 \rho_A$. Dado que $\rho_A = \frac{1}{2}I$, tenemos $\log_2 \rho_A = \log_2(\frac{1}{2})I = -I$. Por tanto:
+    d) La entropía de von Neumann de $\rho_A$ es:
+    $S(\rho_A) = -\text{Tr}(\rho_A \log_2 \rho_A)$
 
-		$S(\rho_A) = -\text{Tr}(\frac{1}{2}I \cdot (-I)) = \text{Tr}(\frac{1}{2}I^2) = \frac{1}{2}\text{Tr}(I) = \frac{1}{2} \cdot 2 = 1$
+    Para calcularla, primero necesitamos $\log_2 \rho_A$. Dado que $\rho_A = \frac{1}{2}I$, tenemos $\log_2 \rho_A = \log_2(\frac{1}{2})I = -I$. Por tanto:
 
-		Significado físico:
-		- La entropía de von Neumann cuantifica la mezcla o incertidumbre en el estado del sistema
-		- $S(\rho_A) = 1$ es el valor máximo posible para un sistema de un qubit, indicando un estado completamente mixto
-		- Para un estado puro bipartito, $S(\rho_A)$ cuantifica el grado de entrelazamiento entre los subsistemas
-		- El valor $S(\rho_A) = 1$ confirma que el estado original $|\psi\rangle$ es máximamente entrelazado
-		- Este resultado implica que no podemos predecir el resultado de una medición en el primer qubit independientemente del segundo qubit
-		- La información del subsistema A está completamente compartida con el subsistema B
+    $S(\rho_A) = -\text{Tr}(\frac{1}{2}I \cdot (-I)) = \text{Tr}(\frac{1}{2}I^2) = \frac{1}{2}\text{Tr}(I) = \frac{1}{2} \cdot 2 = 1$
 
-		Este es un ejemplo de cómo el entrelazamiento cuántico causa que un subsistema de un estado global puro aparezca en un estado mixto cuando se considera aisladamente.
-	\end{solution}
+    Significado físico:
+    - La entropía de von Neumann cuantifica la mezcla o incertidumbre en el estado del sistema
+    - $S(\rho_A) = 1$ es el valor máximo posible para un sistema de un qubit, indicando un estado completamente mixto
+    - Para un estado puro bipartito, $S(\rho_A)$ cuantifica el grado de entrelazamiento entre los subsistemas
+    - El valor $S(\rho_A) = 1$ confirma que el estado original $|\psi\rangle$ es máximamente entrelazado
+    - Este resultado implica que no podemos predecir el resultado de una medición en el primer qubit independientemente del segundo qubit
+    - La información del subsistema A está completamente compartida con el subsistema B
 
-	\question[3] Considere las siguientes matrices de Pauli:
-	$X = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$, $Y = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}$ y $Z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$
-	\begin{parts}
-		\part  Calcule explícitamente $[X,Y]$, $[Y,Z]$ y $[Z,X]$, donde $[A,B] = AB - BA$ es el conmutador.
-		\part  Exprese la matriz $A = \begin{pmatrix} 3 & 2-i \\ 2+i & 5 \end{pmatrix}$ como combinación lineal de la identidad y las matrices de Pauli.
-		\part  Verifique si la matriz $A$ es hermitiana, y calcule sus valores y vectores propios.
-		\part  Determine la expresión de la matriz exponencial $e^{i\theta X}$ para $\theta \in \mathbb{R}$ y explique su interpretación en la esfera de Bloch.
-	\end{parts}
+    Este es un ejemplo de cómo el entrelazamiento cuántico causa que un subsistema de un estado global puro aparezca en un estado mixto cuando se considera aisladamente.
+  \end{solution}
 
-	\begin{solution}
-		a) Calculemos los conmutadores:
+  \question[3] Considere las siguientes matrices de Pauli:
+  $X$, $Y$ y $Z$.
+  \begin{parts}
+    \part  Calcule explícitamente $[X,Y]$, $[Y,Z]$ y $[Z,X]$, donde $[A,B] = AB - BA$ es el conmutador.
+    \part  Exprese la matriz $A = \begin{pmatrix} 3 & 2-i \\ 2+i & 5 \end{pmatrix}$ como combinación lineal de la identidad y las matrices de Pauli.
+    \part  Verifique si la matriz $A$ es hermitiana, y calcule sus valores y vectores propios.
+  \end{parts}
 
-		$[X,Y] = XY - YX = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}\begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix} - \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$
-		$= \begin{pmatrix} i & 0 \\ 0 & i \end{pmatrix} - \begin{pmatrix} -i & 0 \\ 0 & -i \end{pmatrix} = \begin{pmatrix} 2i & 0 \\ 0 & 2i \end{pmatrix} = 2iZ$
+  \begin{solution}
+    a) Calculemos los conmutadores:
 
-		$[Y,Z] = YZ - ZY = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} - \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}\begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}$
-		$= \begin{pmatrix} 0 & i \\ i & 0 \end{pmatrix} - \begin{pmatrix} 0 & -i \\ -i & 0 \end{pmatrix} = \begin{pmatrix} 0 & 2i \\ 2i & 0 \end{pmatrix} = 2iX$
+    $[X,Y] = XY - YX = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}\begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix} - \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$
+    $= \begin{pmatrix} i & 0 \\ 0 & i \end{pmatrix} - \begin{pmatrix} -i & 0 \\ 0 & -i \end{pmatrix} = \begin{pmatrix} 2i & 0 \\ 0 & 2i \end{pmatrix} = 2iZ$
 
-		$[Z,X] = ZX - XZ = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} - \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$
-		$= \begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix} - \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} = \begin{pmatrix} 0 & 2 \\ -2 & 0 \end{pmatrix} = 2iY$
+    $[Y,Z] = YZ - ZY = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} - \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}\begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}$
+    $= \begin{pmatrix} 0 & i \\ i & 0 \end{pmatrix} - \begin{pmatrix} 0 & -i \\ -i & 0 \end{pmatrix} = \begin{pmatrix} 0 & 2i \\ 2i & 0 \end{pmatrix} = 2iX$
 
-		Observamos que $[X,Y] = 2iZ$, $[Y,Z] = 2iX$, $[Z,X] = 2iY$, lo que constituye las relaciones de conmutación cíclicas de las matrices de Pauli.
+    $[Z,X] = ZX - XZ = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} - \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$
+    $= \begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix} - \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} = \begin{pmatrix} 0 & 2 \\ -2 & 0 \end{pmatrix} = 2iY$
 
-		b) Para expresar $A = \begin{pmatrix} 3 & 2-i \\ 2+i & 5 \end{pmatrix}$ como combinación lineal de la identidad y las matrices de Pauli, usamos:
-		$A = aI + bX + cY + dZ$
+    Observamos que $[X,Y] = 2iZ$, $[Y,Z] = 2iX$, $[Z,X] = 2iY$, lo que constituye las relaciones de conmutación cíclicas de las matrices de Pauli.
 
-		Igualando componentes:
-		$\begin{pmatrix} 3 & 2-i \\ 2+i & 5 \end{pmatrix} = \begin{pmatrix} a+d & b-ic \\ b+ic & a-d \end{pmatrix}$
+    b) Para expresar $A = \begin{pmatrix} 3 & 2-i \\ 2+i & 5 \end{pmatrix}$ como combinación lineal de la identidad y las matrices de Pauli, usamos:
+    $A = aI + bX + cY + dZ$
 
-		Esto nos da:
-		$a+d = 3$
-		$b-ic = 2-i$
-		$b+ic = 2+i$
-		$a-d = 5$
+    Igualando componentes:
+    $\begin{pmatrix} 3 & 2-i \\ 2+i & 5 \end{pmatrix} = \begin{pmatrix} a+d & b-ic \\ b+ic & a-d \end{pmatrix}$
 
-		Resolviendo:
-		De $a+d=3$ y $a-d=5$, obtenemos $2a=8 \Rightarrow a=4$ y $d=-1$
-		De $b-ic=2-i$ y $b+ic=2+i$, obtenemos $2b=4 \Rightarrow b=2$ y $2ic=2i \Rightarrow c=1$
+    Esto nos da:
+    $a+d = 3$
+    $b-ic = 2-i$
+    $b+ic = 2+i$
+    $a-d = 5$
 
-		Por tanto:
-		$A = 4I + 2X + Y - Z$
+    Resolviendo:
+    De $a+d=3$ y $a-d=5$, obtenemos $2a=8 \Rightarrow a=4$ y $d=-1$
+    De $b-ic=2-i$ y $b+ic=2+i$, obtenemos $2b=4 \Rightarrow b=2$ y $2ic=2i \Rightarrow c=1$
 
-		c) Verificación de si $A$ es hermitiana:
-		$A^\dagger = \begin{pmatrix} 3 & 2+i \\ 2-i & 5 \end{pmatrix} = A$
+    Por tanto:
+    $A = 4I + 2X + Y - Z$
 
-		Efectivamente, $A$ es hermitiana.
+    c) Verificación de si $A$ es hermitiana:
+    $A^\dagger = \begin{pmatrix} 3 & 2+i \\ 2-i & 5 \end{pmatrix} = A$
 
-		Para calcular los valores propios, resolvemos la ecuación característica:
-		$\det(A-\lambda I) = 0$
+    Efectivamente, $A$ es hermitiana.
 
-		$\det\begin{pmatrix} 3-\lambda & 2-i \\ 2+i & 5-\lambda \end{pmatrix} = (3-\lambda)(5-\lambda) - (2-i)(2+i) = 0$
-		$(3-\lambda)(5-\lambda) - (4+1) = 0$
-		$(3-\lambda)(5-\lambda) - 5 = 0$
-		$15 - 3\lambda - 5\lambda + \lambda^2 - 5 = 0$
-		$\lambda^2 - 8\lambda + 10 = 0$
+    Para calcular los valores propios, resolvemos la ecuación característica:
+    $\det(A-\lambda I) = 0$
 
-		Usando la fórmula cuadrática:
-		$\lambda = \frac{8 \pm \sqrt{64-40}}{2} = \frac{8 \pm \sqrt{24}}{2} = 4 \pm \sqrt{6}$
+    $\det\begin{pmatrix} 3-\lambda & 2-i \\ 2+i & 5-\lambda \end{pmatrix} = (3-\lambda)(5-\lambda) - (2-i)(2+i) = 0$
+    $(3-\lambda)(5-\lambda) - (4+1) = 0$
+    $(3-\lambda)(5-\lambda) - 5 = 0$
+    $15 - 3\lambda - 5\lambda + \lambda^2 - 5 = 0$
+    $\lambda^2 - 8\lambda + 10 = 0$
 
-		Los valores propios son $\lambda_1 = 4 + \sqrt{6} \approx 6.45$ y $\lambda_2 = 4 - \sqrt{6} \approx 1.55$.
+    Usando la fórmula cuadrática:
+    $\lambda = \frac{8 \pm \sqrt{64-40}}{2} = \frac{8 \pm \sqrt{24}}{2} = 4 \pm \sqrt{6}$
 
-		Para los vectores propios, para $\lambda_1 = 4 + \sqrt{6}$:
-		$(A - \lambda_1 I)v = 0$
-		$\begin{pmatrix} 3-(4+\sqrt{6}) & 2-i \\ 2+i & 5-(4+\sqrt{6}) \end{pmatrix}v = 0$
-		$\begin{pmatrix} -1-\sqrt{6} & 2-i \\ 2+i & 1-\sqrt{6} \end{pmatrix}v = 0$
+    Los valores propios son $\lambda_1 = 4 + \sqrt{6} \approx 6.45$ y $\lambda_2 = 4 - \sqrt{6} \approx 1.55$.
 
-		Resolviendo este sistema, obtenemos el vector propio (no normalizado):
-		$v_1 = \begin{pmatrix} 2-i \\ 1+\sqrt{6} \end{pmatrix}$
+    Para los vectores propios, para $\lambda_1 = 4 + \sqrt{6}$:
+    $(A - \lambda_1 I)v = 0$
+    $\begin{pmatrix} 3-(4+\sqrt{6}) & 2-i \\ 2+i & 5-(4+\sqrt{6}) \end{pmatrix}v = 0$
+    $\begin{pmatrix} -1-\sqrt{6} & 2-i \\ 2+i & 1-\sqrt{6} \end{pmatrix}v = 0$
 
-		Similarmente, para $\lambda_2 = 4 - \sqrt{6}$, el vector propio es:
-		$v_2 = \begin{pmatrix} 2-i \\ 1-\sqrt{6} \end{pmatrix}$
+    Resolviendo este sistema, obtenemos el vector propio (no normalizado):
+    $v_1 = \begin{pmatrix} 2-i \\ 1+\sqrt{6} \end{pmatrix}$
 
-		Normalizando estos vectores, obtenemos los vectores propios normalizados.
+    Similarmente, para $\lambda_2 = 4 - \sqrt{6}$, el vector propio es:
+    $v_2 = \begin{pmatrix} 2-i \\ 1-\sqrt{6} \end{pmatrix}$
 
-		d) Para calcular $e^{i\theta X}$, usamos la expansión en serie de la exponencial:
-		$e^{i\theta X} = I + i\theta X + \frac{(i\theta X)^2}{2!} + \frac{(i\theta X)^3}{3!} + \ldots$
+    Normalizando estos vectores, obtenemos los vectores propios normalizados.
 
-		Dado que $X^2 = I$, tenemos:
-		$e^{i\theta X} = I + i\theta X + \frac{(i\theta)^2}{2!}I + \frac{(i\theta)^3}{3!}X + \ldots$
-		$= I(1 - \frac{\theta^2}{2!} + \frac{\theta^4}{4!} - \ldots) + iX(\theta - \frac{\theta^3}{3!} + \frac{\theta^5}{5!} - \ldots)$
-		$= I\cos\theta + iX\sin\theta$
-		$= \begin{pmatrix} \cos\theta & i\sin\theta \\ i\sin\theta & \cos\theta \end{pmatrix}$
+    d) Para calcular $e^{i\theta X}$, usamos la expansión en serie de la exponencial:
+    $e^{i\theta X} = I + i\theta X + \frac{(i\theta X)^2}{2!} + \frac{(i\theta X)^3}{3!} + \ldots$
 
-		Interpretación en la esfera de Bloch:
-		- $e^{i\theta X}$ representa una rotación en la esfera de Bloch alrededor del eje x por un ángulo $2\theta$
-		- Esta operación transforma el estado $|0\rangle$ en $\cos\theta|0\rangle + i\sin\theta|1\rangle$
-		- Para $\theta = \pi/2$, obtenemos $e^{i\pi X/2} = iX$, que es equivalente a la compuerta cuántica $X$ salvo fase global
-		- Esta compuerta es esencial en circuitos cuánticos para realizar rotaciones controladas de un solo qubit
-		- En computación cuántica, se conoce como la compuerta $R_X(\theta)$ y es parte del conjunto universal de compuertas
-		- La unitariedad de $e^{i\theta X}$ garantiza que la transformación preserva la norma del estado
-	\end{solution}
+    Dado que $X^2 = I$, tenemos:
+    $e^{i\theta X} = I + i\theta X + \frac{(i\theta)^2}{2!}I + \frac{(i\theta)^3}{3!}X + \ldots$
+    $= I(1 - \frac{\theta^2}{2!} + \frac{\theta^4}{4!} - \ldots) + iX(\theta - \frac{\theta^3}{3!} + \frac{\theta^5}{5!} - \ldots)$
+    $= I\cos\theta + iX\sin\theta$
+    $= \begin{pmatrix} \cos\theta & i\sin\theta \\ i\sin\theta & \cos\theta \end{pmatrix}$
+
+    Interpretación en la esfera de Bloch:
+    - $e^{i\theta X}$ representa una rotación en la esfera de Bloch alrededor del eje x por un ángulo $2\theta$
+    - Esta operación transforma el estado $|0\rangle$ en $\cos\theta|0\rangle + i\sin\theta|1\rangle$
+    - Para $\theta = \pi/2$, obtenemos $e^{i\pi X/2} = iX$, que es equivalente a la compuerta cuántica $X$ salvo fase global
+    - Esta compuerta es esencial en circuitos cuánticos para realizar rotaciones controladas de un solo qubit
+    - En computación cuántica, se conoce como la compuerta $R_X(\theta)$ y es parte del conjunto universal de compuertas
+    - La unitariedad de $e^{i\theta X}$ garantiza que la transformación preserva la norma del estado
+  \end{solution}
 \end{questions}

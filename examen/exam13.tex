@@ -1,464 +1,462 @@
-\codigonombre{}{MCC-ALCC-25Q113}
 \begin{questions}
-	\question[4] Responda a las siguientes cuestiones:
-	\begin{parts}
-		\part Defina qué es la esfera de Bloch y explique cómo se utiliza para representar estados de un qubit. Incluya la relación entre las coordenadas en la esfera y los parámetros del estado cuántico.
-
-		\begin{solution}
-			La esfera de Bloch es una representación geométrica del espacio de estados puros de un qubit, que permite visualizar y manipular estados cuánticos de dos niveles de manera intuitiva mediante un modelo tridimensional.
-
-			Definición formal:
-			La esfera de Bloch es una esfera unitaria en $\mathbb{R}^3$ donde:
-			- Cada punto de la superficie representa un estado cuántico puro de un qubit
-			- Los puntos en el interior representan estados mixtos (matrices de densidad)
-			- El centro de la esfera representa el estado máximamente mixto
-
-			Relación con estados de qubit:
-
-			1) Parametrización general:
-			Todo estado puro de un qubit puede escribirse como:
-			$|\psi\rangle = \cos\frac{\theta}{2}|0\rangle + e^{i\phi}\sin\frac{\theta}{2}|1\rangle$
-			donde:
-			- $\theta \in [0, \pi]$ es el ángulo polar (latitud)
-			- $\phi \in [0, 2\pi)$ es el ángulo azimutal (longitud)
-
-			2) Coordenadas cartesianas:
-			El estado $|\psi\rangle$ se representa por el punto $(x, y, z)$ en la esfera de Bloch donde:
-			$x = \sin\theta\cos\phi$
-			$y = \sin\theta\sin\phi$
-			$z = \cos\theta$
-
-			3) Relación con parámetros del estado:
-			Si escribimos $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$ con $|\alpha|^2 + |\beta|^2 = 1$, entonces:
-			- $z = |\alpha|^2 - |\beta|^2$ (diferencia de probabilidades)
-			- La fase relativa entre $\alpha$ y $\beta$ determina la posición en el plano $xy$
-
-			4) Estados especiales en la esfera:
-			- Polo norte $(0,0,1)$: estado $|0\rangle$
-			- Polo sur $(0,0,-1)$: estado $|1\rangle$
-			- Ecuador $(x,y,0)$: superposiciones de igual amplitud como $|+\rangle$, $|-\rangle$, $|+i\rangle$, $|-i\rangle$
-			- Eje $x$ positivo $(1,0,0)$: estado $|+\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$
-			- Eje $x$ negativo $(-1,0,0)$: estado $|-\rangle = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle)$
-			- Eje $y$ positivo $(0,1,0)$: estado $|+i\rangle = \frac{1}{\sqrt{2}}(|0\rangle + i|1\rangle)$
-			- Eje $y$ negativo $(0,-1,0)$: estado $|-i\rangle = \frac{1}{\sqrt{2}}(|0\rangle - i|1\rangle)$
-
-			5) Relación con matrices de densidad:
-			Para un estado puro $|\psi\rangle$, la matriz de densidad es $\rho = |\psi\rangle\langle\psi|$
-			Esta matriz puede expresarse como:
-			$\rho = \frac{1}{2}(I + \vec{r} \cdot \vec{\sigma})$
-			donde:
-			- $\vec{r} = (x, y, z)$ es el vector de Bloch (vector unitario para estados puros)
-			- $\vec{\sigma} = (\sigma_x, \sigma_y, \sigma_z)$ son las matrices de Pauli
-			- $I$ es la matriz identidad
-
-			Para estados mixtos, $|\vec{r}| < 1$ y el estado corresponde a un punto interior de la esfera.
-
-			Utilidad de la esfera de Bloch:
-
-			1) Visualización geométrica:
-			- Permite visualizar estados cuánticos como puntos en un espacio tridimensional
-			- Facilita la comprensión intuitiva de superposiciones y fases cuánticas
-			- Ayuda a entender la relación entre diferentes estados
-
-			2) Representación de operaciones:
-			- Las compuertas cuánticas de un qubit corresponden a rotaciones en la esfera de Bloch
-			- Operaciones unitarias son rotaciones rígidas de la esfera
-			- Matrices de Pauli representan rotaciones de 180° alrededor de los ejes principales:
-			* $X$: rotación de 180° alrededor del eje $x$
-			* $Y$: rotación de 180° alrededor del eje $y$
-			* $Z$: rotación de 180° alrededor del eje $z$
-			- La matriz Hadamard corresponde a una rotación de 180° alrededor del eje $\hat{n}=\frac{1}{\sqrt{2}}(0,1,1)$
-
-			3) Medición y decoherencia:
-			- La medición en la base computacional proyecta el estado al polo norte o sur
-			- La decoherencia tiende a reducir el radio del vector de Bloch
-			- La pérdida completa de coherencia lleva al estado al centro de la esfera
-
-			4) Estados mixtos:
-			- Puntos interiores de la esfera representan estados mixtos
-			- La distancia desde el centro indica la "pureza" del estado
-			- El estado en el centro representa máxima mezcla (máxima entropía)
-
-			5) Limitaciones:
-			- Solo representa sistemas de un qubit (estados de dos niveles)
-			- No visualiza directamente el entrelazamiento entre múltiples qubits
-			- Para sistemas multi-qubit se requieren extensiones o representaciones alternativas
-
-			La esfera de Bloch es una herramienta fundamental en computación cuántica, proporcionando una conexión intuitiva entre el formalismo matemático abstracto y una representación geométrica concreta que facilita el diseño y análisis de algoritmos y protocolos cuánticos.
-		\end{solution}
-
-
-		\part Describa los postulados de la mecánica cuántica en el contexto de la computación cuántica, enfatizando su interpretación y aplicación práctica en algoritmos cuánticos.
-
-		\begin{solution}
-			Los postulados de la mecánica cuántica constituyen los principios fundamentales que rigen el comportamiento de los sistemas cuánticos. En el contexto de la computación cuántica, estos postulados adquieren una interpretación específica y tienen aplicaciones prácticas directas en el diseño e implementación de algoritmos cuánticos.
-
-			1) Postulado sobre espacios de estados:
-
-			Formulación:
-			- Todo sistema cuántico está asociado a un espacio de Hilbert complejo $\mathcal{H}$
-			- El estado del sistema se representa por un vector unitario $|\psi\rangle$ en este espacio
-			- Si el sistema está en los estados $|\psi_1\rangle$ o $|\psi_2\rangle$, también puede estar en cualquier superposición $\alpha|\psi_1\rangle + \beta|\psi_2\rangle$ donde $|\alpha|^2 + |\beta|^2 = 1$
-
-			Interpretación en computación cuántica:
-			- Un qubit se representa como un vector en $\mathbb{C}^2$: $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$
-			- Un sistema de $n$ qubits corresponde a un vector en $\mathbb{C}^{2^n}$
-			- La superposición permite que un registro de $n$ qubits represente simultáneamente $2^n$ estados computacionales clásicos
-			- Esta representación exponencial es el origen del poder computacional cuántico
-
-			Aplicaciones prácticas:
-			- Inicialización: Los algoritmos comienzan típicamente con qubits en estado $|0\rangle^{\otimes n}$
-			- Paralelismo cuántico: Algoritmos como Deutsch-Jozsa, Grover y Shor explotan la capacidad de procesar muchos valores simultáneamente
-			- Ejemplo concreto: En el algoritmo de Shor, la superposición permite explorar múltiples factores potenciales simultáneamente
-
-			2) Postulado sobre evolución:
-
-			Formulación:
-			- La evolución de un sistema cuántico cerrado se describe mediante transformaciones unitarias
-			- Si el estado inicial es $|\psi(0)\rangle$, su evolución a tiempo $t$ es $|\psi(t)\rangle = U(t)|\psi(0)\rangle$
-			- El operador evolución $U(t)$ es unitario: $U^\dagger U = UU^\dagger = I$
-
-			Interpretación en computación cuántica:
-			- Las compuertas cuánticas son operadores unitarios que transforman los estados
-			- La unitariedad garantiza la reversibilidad computacional
-			- Las secuencias de compuertas forman circuitos cuánticos
-			- La evolución conserva la norma, manteniendo la interpretación probabilística
-
-			Aplicaciones prácticas:
-			- Compuertas fundamentales: Hadamard, CNOT, T, etc., son transformaciones unitarias específicas
-			- Algoritmo de búsqueda de Grover: Utiliza reflexiones (operaciones unitarias) para amplificar amplitudes
-			- Transformada cuántica de Fourier: Implementada como secuencia específica de compuertas
-			- Error
-			- Transformada cuántica de Fourier: Implementada como secuencia específica de compuertas
-			- Errores cuánticos: Se manifiestan como desviaciones no unitarias, por lo que la corrección busca restablecer la unitariedad
-
-			3) Postulado sobre mediciones:
-
-			Formulación:
-			- Las mediciones cuánticas están asociadas a operadores hermíticos (observables) $M$
-			- Los posibles resultados de la medición son los valores propios $\{m\}$ del observable
-			- La probabilidad de obtener el resultado $m$ al medir el estado $|\psi\rangle$ es $p(m) = \langle\psi|P_m|\psi\rangle$ donde $P_m$ es el proyector al subespacio propio de $m$
-			- Después de la medición con resultado $m$, el estado colapsa a $|\psi'\rangle = \frac{P_m|\psi\rangle}{\sqrt{p(m)}}$
-
-			Interpretación en computación cuántica:
-			- La medición en la base computacional proyecta a estados clásicos $|0\rangle$ o $|1\rangle$ con probabilidades $|\alpha|^2$ y $|\beta|^2$
-			- La medición extrae información clásica del sistema cuántico, pero destruye la superposición
-			- Las mediciones intermedias pueden alterar la ejecución del algoritmo
-			- La medición es el paso final para obtener el resultado de un cálculo cuántico
-
-			Aplicaciones prácticas:
-			- Lectura de resultados: Al final de algoritmos cuánticos se miden los qubits para obtener el resultado clásico
-			- Corrección de errores: Las mediciones de síndrome permiten detectar errores sin colapsar la información codificada
-			- Computación basada en mediciones: Paradigmas como "one-way quantum computing" utilizan mediciones como operaciones fundamentales
-			- Algoritmo de Grover: La medición final proporciona la solución con alta probabilidad
-			- Teleportación cuántica: Requiere mediciones específicas seguidas de correcciones clásicas
-
-			4) Postulado sobre sistemas compuestos:
-
-			Formulación:
-			- El espacio de estados de un sistema compuesto es el producto tensorial de los espacios de los subsistemas individuales
-			- Si los subsistemas están en estados $|\psi_1\rangle, |\psi_2\rangle, \ldots, |\psi_n\rangle$, el estado conjunto es $|\psi_1\rangle \otimes |\psi_2\rangle \otimes \ldots \otimes |\psi_n\rangle$
-			- Existen estados del sistema compuesto que no pueden expresarse como productos tensoriales (estados entrelazados)
-
-			Interpretación en computación cuántica:
-			- Un registro de $n$ qubits ocupa un espacio de Hilbert de dimensión $2^n$
-			- El entrelazamiento permite correlaciones no clásicas entre qubits
-			- Las operaciones en qubits individuales afectan al estado global del sistema
-			- El entrelazamiento es un recurso fundamental para ventajas cuánticas
-
-			Aplicaciones prácticas:
-			- Compuertas de múltiples qubits: CNOT, Toffoli, etc., generan entrelazamiento
-			- Algoritmo de Shor: El entrelazamiento entre registros de periodo y función permite la factorización eficiente
-			- Codificación superdensa: Permite enviar 2 bits clásicos con 1 qubit aprovechando un par entrelazado
-			- Teleportación: Transmite estados cuánticos usando entrelazamiento y comunicación clásica
-			- Corrección de errores: Los códigos utilizan entrelazamiento para proteger información de la decoherencia
-
-			Interpretación e implicaciones específicas para algoritmos cuánticos:
-
-			1) Paradigma computacional cuántico:
-			- Inicializar: Preparar qubits en estados específicos (usualmente $|0\rangle^{\otimes n}$)
-			- Procesar: Aplicar secuencias de compuertas unitarias para transformar el estado
-			- Medir: Extraer resultados clásicos mediante mediciones apropiadas
-			- La eficiencia computacional proviene de:
-			* Superposición (procesar muchos valores a la vez)
-			* Interferencia (amplificar respuestas correctas, cancelar incorrectas)
-			* Entrelazamiento (correlaciones no locales entre partes del registro)
-
-			2) Ejemplos concretos de aplicación de los postulados:
-
-			a) Algoritmo de Deutsch:
-			- Superposición (Postulado 1): La aplicación de Hadamard crea $\frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$
-			- Evolución unitaria (Postulado 2): El oráculo $U_f$ evalúa la función en superposición
-			- Interferencia: Las fases se ajustan para que la medición final revele la paridad
-			- Medición (Postulado 3): Determina si la función es constante o balanceada en una sola consulta
-
-			b) Algoritmo de Grover:
-			- Superposición (Postulado 1): Hadamards crean $\frac{1}{\sqrt{N}}\sum_x |x\rangle$
-			- Evolución unitaria (Postulado 2): Iteraciones de Grover son operaciones unitarias
-			- Amplificación de amplitud: Las iteraciones aumentan probabilidad del estado buscado
-			- Medición (Postulado 3): Obtiene el elemento buscado con alta probabilidad
-			- Sistema compuesto (Postulado 4): La difusión de Grover opera sobre todos los qubits simultáneamente
-
-			c) Algoritmo de Shor:
-			- Sistema compuesto (Postulado 4): Utiliza dos registros (estimación de fase y evaluación de función)
-			- Evolución unitaria (Postulado 2): La transformada cuántica de Fourier es una operación unitaria
-			- Entrelazamiento: Fundamental para la correlación entre estimación de fase y orden multiplicativo
-			- Medición (Postulado 3): La lectura del primer registro proporciona aproximaciones a fracciones con denominador r
-
-			3) Ventajas computacionales derivadas de los postulados:
-			- Simulación eficiente de sistemas cuánticos (usar cuántico para modelar cuántico)
-			- Aceleración exponencial en problemas específicos (factorización, búsqueda en bases de datos no estructuradas)
-			- Procesamiento de información cuántica (criptografía, corrección de errores, teleportación)
-			- Nuevos paradigmas computacionales (computación adiabática, basada en mediciones, topológica)
-
-			4) Desafíos de implementación relacionados con los postulados:
-			- Decoherencia: La interacción con el entorno viola el postulado 2 (evoluciones no unitarias)
-			- Errores de compuerta: Las implementaciones físicas producen aproximaciones de operaciones unitarias ideales
-			- Inicialización imperfecta: Dificultad para preparar estados iniciales puros
-			- Mediciones ruidosas: Las mediciones reales tienen eficiencias inferiores al 100%
-
-			Los postulados de la mecánica cuántica, al aplicarse al contexto computacional, proporcionan tanto las herramientas matemáticas para diseñar algoritmos como las restricciones físicas que deben respetarse en sus implementaciones. Entender estos principios fundamentales permite explotar eficazmente los recursos cuánticos y desarrollar algoritmos que aprovechen las propiedades únicas de los sistemas cuánticos para resolver problemas computacionales.
-		\end{solution}
-	\end{parts}
-
-	\question[3]
-	Considere la compuerta Hadamard (H) y la compuerta de fase (S) definidas por:
-	$H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}, \quad S = \begin{pmatrix} 1 & 0 \\ 0 & i \end{pmatrix}$
-	\begin{parts}
-
-		\part Verifique que ambas compuertas son unitarias.
-		\part Calcule el producto $HSH$ y determine si el resultado es una compuerta conocida.
-		\part Si se aplica la secuencia HSH al estado $|0\rangle$, ¿cuál será el estado resultante?
-	\end{parts}
-
-	\begin{solution}
-		a) Para verificar que una compuerta es unitaria, debemos comprobar que $U^\dagger U = UU^\dagger = I$.
-
-		Para la compuerta Hadamard $H$:
-		$H^\dagger = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$ (H es real y simétrica, por lo que $H^\dagger = H$)
-
-		$H^\dagger H = H^2 = \frac{1}{2}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$
-		$= \frac{1}{2}\begin{pmatrix} 1+1 & 1-1 \\ 1-1 & 1+1 \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = I$
-
-		Para la compuerta de fase $S$:
-		$S^\dagger = \begin{pmatrix} 1 & 0 \\ 0 & -i \end{pmatrix}$ (conjugado transpuesto de $S$)
-
-		$S^\dagger S = \begin{pmatrix} 1 & 0 \\ 0 & -i \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 0 & i \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & -i \cdot i \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = I$
-
-		$SS^\dagger = \begin{pmatrix} 1 & 0 \\ 0 & i \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 0 & -i \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & i \cdot (-i) \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = I$
-
-		Por lo tanto, ambas compuertas H y S son unitarias.
-
-		b) Calculemos el producto $HSH$:
-
-		Primero, calculamos $SH$:
-		$SH = \begin{pmatrix} 1 & 0 \\ 0 & i \end{pmatrix} \cdot \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix} = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ i & -i \end{pmatrix}$
-
-		Ahora, calculamos $HSH$:
-		$HSH = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix} \cdot \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ i & -i \end{pmatrix}$
-		$= \frac{1}{2}\begin{pmatrix} 1+i & 1-i \\ 1-i & -1-i \end{pmatrix}$
-
-		Para determinar si esta es una compuerta conocida, podemos compararla con compuertas estándar o buscar propiedades especiales.
-
-		En este caso, podemos factorizar un término de fase global $e^{i\pi/4}$ (que no afecta las mediciones):
-		$HSH = e^{i\pi/4} \cdot \frac{1}{\sqrt{2}}\begin{pmatrix} e^{-i\pi/4} & e^{i\pi/4} \\ e^{i\pi/4} & -e^{-i\pi/4} \end{pmatrix}$
-
-		Comparando con compuertas conocidas, observamos que $HSH$ se relaciona con la compuerta $Y = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}$ de la siguiente manera:
-		$HSH = e^{i\pi/4} \cdot \frac{Y+I}{\sqrt{2}}$
-
-		Esto significa que $HSH$ es equivalente (salvo fase global) a la compuerta $\frac{Y+I}{\sqrt{2}}$, que es una rotación específica en la esfera de Bloch. También puede verse como una rotación del tipo $R_y(\pi/2)$, es decir, una rotación de 90° alrededor del eje y.
-
-		c) Representación en la esfera de Bloch:
-
-		1) Compuerta H:
-		- Efecto sobre los ejes: $H$ transforma el eje z al eje x y el eje x al eje z (con inversión)
-		- Geométricamente: Rotación de 90° alrededor del eje y, seguida de una reflexión en el plano xz
-		- Mapeo específico:
-		* $|0\rangle$ (polo norte) → $|+\rangle$ (eje x positivo)
-		* $|1\rangle$ (polo sur) → $|-\rangle$ (eje x negativo)
-		* $|+\rangle$ (eje x positivo) → $|0\rangle$ (polo norte)
-		* $|-\rangle$ (eje x negativo) → $|1\rangle$ (polo sur)
+  \question[4] Responda a las siguientes cuestiones:
+  \begin{parts}
+    \part Defina qué es la esfera de Bloch y explique cómo se utiliza para representar estados de un qubit. Incluya la relación entre las coordenadas en la esfera y los coeficientes del estado cuántico.
+
+    \begin{solution}
+      La esfera de Bloch es una representación geométrica del espacio de estados puros de un qubit, que permite visualizar y manipular estados cuánticos de dos niveles de manera intuitiva mediante un modelo tridimensional.
+
+      Definición formal:
+      La esfera de Bloch es una esfera unitaria en $\mathbb{R}^3$ donde:
+      - Cada punto de la superficie representa un estado cuántico puro de un qubit
+      - Los puntos en el interior representan estados mixtos (matrices de densidad)
+      - El centro de la esfera representa el estado máximamente mixto
+
+      Relación con estados de qubit:
+
+      1) Parametrización general:
+      Todo estado puro de un qubit puede escribirse como:
+      $|\psi\rangle = \cos\frac{\theta}{2}|0\rangle + e^{i\phi}\sin\frac{\theta}{2}|1\rangle$
+      donde:
+      - $\theta \in [0, \pi]$ es el ángulo polar (latitud)
+      - $\phi \in [0, 2\pi)$ es el ángulo azimutal (longitud)
+
+      2) Coordenadas cartesianas:
+      El estado $|\psi\rangle$ se representa por el punto $(x, y, z)$ en la esfera de Bloch donde:
+      $x = \sin\theta\cos\phi$
+      $y = \sin\theta\sin\phi$
+      $z = \cos\theta$
+
+      3) Relación con parámetros del estado:
+      Si escribimos $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$ con $|\alpha|^2 + |\beta|^2 = 1$, entonces:
+      - $z = |\alpha|^2 - |\beta|^2$ (diferencia de probabilidades)
+      - La fase relativa entre $\alpha$ y $\beta$ determina la posición en el plano $xy$
+
+      4) Estados especiales en la esfera:
+      - Polo norte $(0,0,1)$: estado $|0\rangle$
+      - Polo sur $(0,0,-1)$: estado $|1\rangle$
+      - Ecuador $(x,y,0)$: superposiciones de igual amplitud como $|+\rangle$, $|-\rangle$, $|+i\rangle$, $|-i\rangle$
+      - Eje $x$ positivo $(1,0,0)$: estado $|+\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$
+      - Eje $x$ negativo $(-1,0,0)$: estado $|-\rangle = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle)$
+      - Eje $y$ positivo $(0,1,0)$: estado $|+i\rangle = \frac{1}{\sqrt{2}}(|0\rangle + i|1\rangle)$
+      - Eje $y$ negativo $(0,-1,0)$: estado $|-i\rangle = \frac{1}{\sqrt{2}}(|0\rangle - i|1\rangle)$
+
+      5) Relación con matrices de densidad:
+      Para un estado puro $|\psi\rangle$, la matriz de densidad es $\rho = |\psi\rangle\langle\psi|$
+      Esta matriz puede expresarse como:
+      $\rho = \frac{1}{2}(I + \vec{r} \cdot \vec{\sigma})$
+      donde:
+      - $\vec{r} = (x, y, z)$ es el vector de Bloch (vector unitario para estados puros)
+      - $\vec{\sigma} = (\sigma_x, \sigma_y, \sigma_z)$ son las matrices de Pauli
+      - $I$ es la matriz identidad
+
+      Para estados mixtos, $|\vec{r}| < 1$ y el estado corresponde a un punto interior de la esfera.
+
+      Utilidad de la esfera de Bloch:
+
+      1) Visualización geométrica:
+      - Permite visualizar estados cuánticos como puntos en un espacio tridimensional
+      - Facilita la comprensión intuitiva de superposiciones y fases cuánticas
+      - Ayuda a entender la relación entre diferentes estados
+
+      2) Representación de operaciones:
+      - Las compuertas cuánticas de un qubit corresponden a rotaciones en la esfera de Bloch
+      - Operaciones unitarias son rotaciones rígidas de la esfera
+      - Matrices de Pauli representan rotaciones de 180° alrededor de los ejes principales:
+      * $X$: rotación de 180° alrededor del eje $x$
+      * $Y$: rotación de 180° alrededor del eje $y$
+      * $Z$: rotación de 180° alrededor del eje $z$
+      - La matriz Hadamard corresponde a una rotación de 180° alrededor del eje $\hat{n}=\frac{1}{\sqrt{2}}(0,1,1)$
+
+      3) Medición y decoherencia:
+      - La medición en la base computacional proyecta el estado al polo norte o sur
+      - La decoherencia tiende a reducir el radio del vector de Bloch
+      - La pérdida completa de coherencia lleva al estado al centro de la esfera
+
+      4) Estados mixtos:
+      - Puntos interiores de la esfera representan estados mixtos
+      - La distancia desde el centro indica la "pureza" del estado
+      - El estado en el centro representa máxima mezcla (máxima entropía)
+
+      5) Limitaciones:
+      - Solo representa sistemas de un qubit (estados de dos niveles)
+      - No visualiza directamente el entrelazamiento entre múltiples qubits
+      - Para sistemas multi-qubit se requieren extensiones o representaciones alternativas
+
+      La esfera de Bloch es una herramienta fundamental en computación cuántica, proporcionando una conexión intuitiva entre el formalismo matemático abstracto y una representación geométrica concreta que facilita el diseño y análisis de algoritmos y protocolos cuánticos.
+    \end{solution}
+
+
+    \part Describa los postulados de la mecánica cuántica en el contexto de la computación cuántica, en términos de espacios de Hilbert.
+
+    \begin{solution}
+      Los postulados de la mecánica cuántica constituyen los principios fundamentales que rigen el comportamiento de los sistemas cuánticos. En el contexto de la computación cuántica, estos postulados adquieren una interpretación específica y tienen aplicaciones prácticas directas en el diseño e implementación de algoritmos cuánticos.
+
+      1) Postulado sobre espacios de estados:
+
+      Formulación:
+      - Todo sistema cuántico está asociado a un espacio de Hilbert complejo $\mathcal{H}$
+      - El estado del sistema se representa por un vector unitario $|\psi\rangle$ en este espacio
+      - Si el sistema está en los estados $|\psi_1\rangle$ o $|\psi_2\rangle$, también puede estar en cualquier superposición $\alpha|\psi_1\rangle + \beta|\psi_2\rangle$ donde $|\alpha|^2 + |\beta|^2 = 1$
+
+      Interpretación en computación cuántica:
+      - Un qubit se representa como un vector en $\mathbb{C}^2$: $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$
+      - Un sistema de $n$ qubits corresponde a un vector en $\mathbb{C}^{2^n}$
+      - La superposición permite que un registro de $n$ qubits represente simultáneamente $2^n$ estados computacionales clásicos
+      - Esta representación exponencial es el origen del poder computacional cuántico
+
+      Aplicaciones prácticas:
+      - Inicialización: Los algoritmos comienzan típicamente con qubits en estado $|0\rangle^{\otimes n}$
+      - Paralelismo cuántico: Algoritmos como Deutsch-Jozsa, Grover y Shor explotan la capacidad de procesar muchos valores simultáneamente
+      - Ejemplo concreto: En el algoritmo de Shor, la superposición permite explorar múltiples factores potenciales simultáneamente
+
+      2) Postulado sobre evolución:
+
+      Formulación:
+      - La evolución de un sistema cuántico cerrado se describe mediante transformaciones unitarias
+      - Si el estado inicial es $|\psi(0)\rangle$, su evolución a tiempo $t$ es $|\psi(t)\rangle = U(t)|\psi(0)\rangle$
+      - El operador evolución $U(t)$ es unitario: $U^\dagger U = UU^\dagger = I$
+
+      Interpretación en computación cuántica:
+      - Las compuertas cuánticas son operadores unitarios que transforman los estados
+      - La unitariedad garantiza la reversibilidad computacional
+      - Las secuencias de compuertas forman circuitos cuánticos
+      - La evolución conserva la norma, manteniendo la interpretación probabilística
+
+      Aplicaciones prácticas:
+      - Compuertas fundamentales: Hadamard, CNOT, T, etc., son transformaciones unitarias específicas
+      - Algoritmo de búsqueda de Grover: Utiliza reflexiones (operaciones unitarias) para amplificar amplitudes
+      - Transformada cuántica de Fourier: Implementada como secuencia específica de compuertas
+      - Error
+      - Transformada cuántica de Fourier: Implementada como secuencia específica de compuertas
+      - Errores cuánticos: Se manifiestan como desviaciones no unitarias, por lo que la corrección busca restablecer la unitariedad
+
+      3) Postulado sobre mediciones:
+
+      Formulación:
+      - Las mediciones cuánticas están asociadas a operadores hermíticos (observables) $M$
+      - Los posibles resultados de la medición son los valores propios $\{m\}$ del observable
+      - La probabilidad de obtener el resultado $m$ al medir el estado $|\psi\rangle$ es $p(m) = \langle\psi|P_m|\psi\rangle$ donde $P_m$ es el proyector al subespacio propio de $m$
+      - Después de la medición con resultado $m$, el estado colapsa a $|\psi'\rangle = \frac{P_m|\psi\rangle}{\sqrt{p(m)}}$
+
+      Interpretación en computación cuántica:
+      - La medición en la base computacional proyecta a estados clásicos $|0\rangle$ o $|1\rangle$ con probabilidades $|\alpha|^2$ y $|\beta|^2$
+      - La medición extrae información clásica del sistema cuántico, pero destruye la superposición
+      - Las mediciones intermedias pueden alterar la ejecución del algoritmo
+      - La medición es el paso final para obtener el resultado de un cálculo cuántico
+
+      Aplicaciones prácticas:
+      - Lectura de resultados: Al final de algoritmos cuánticos se miden los qubits para obtener el resultado clásico
+      - Corrección de errores: Las mediciones de síndrome permiten detectar errores sin colapsar la información codificada
+      - Computación basada en mediciones: Paradigmas como "one-way quantum computing" utilizan mediciones como operaciones fundamentales
+      - Algoritmo de Grover: La medición final proporciona la solución con alta probabilidad
+      - Teleportación cuántica: Requiere mediciones específicas seguidas de correcciones clásicas
+
+      4) Postulado sobre sistemas compuestos:
+
+      Formulación:
+      - El espacio de estados de un sistema compuesto es el producto tensorial de los espacios de los subsistemas individuales
+      - Si los subsistemas están en estados $|\psi_1\rangle, |\psi_2\rangle, \ldots, |\psi_n\rangle$, el estado conjunto es $|\psi_1\rangle \otimes |\psi_2\rangle \otimes \ldots \otimes |\psi_n\rangle$
+      - Existen estados del sistema compuesto que no pueden expresarse como productos tensoriales (estados entrelazados)
+
+      Interpretación en computación cuántica:
+      - Un registro de $n$ qubits ocupa un espacio de Hilbert de dimensión $2^n$
+      - El entrelazamiento permite correlaciones no clásicas entre qubits
+      - Las operaciones en qubits individuales afectan al estado global del sistema
+      - El entrelazamiento es un recurso fundamental para ventajas cuánticas
+
+      Aplicaciones prácticas:
+      - Compuertas de múltiples qubits: CNOT, Toffoli, etc., generan entrelazamiento
+      - Algoritmo de Shor: El entrelazamiento entre registros de periodo y función permite la factorización eficiente
+      - Codificación superdensa: Permite enviar 2 bits clásicos con 1 qubit aprovechando un par entrelazado
+      - Teleportación: Transmite estados cuánticos usando entrelazamiento y comunicación clásica
+      - Corrección de errores: Los códigos utilizan entrelazamiento para proteger información de la decoherencia
+
+      Interpretación e implicaciones específicas para algoritmos cuánticos:
+
+      1) Paradigma computacional cuántico:
+      - Inicializar: Preparar qubits en estados específicos (usualmente $|0\rangle^{\otimes n}$)
+      - Procesar: Aplicar secuencias de compuertas unitarias para transformar el estado
+      - Medir: Extraer resultados clásicos mediante mediciones apropiadas
+      - La eficiencia computacional proviene de:
+      * Superposición (procesar muchos valores a la vez)
+      * Interferencia (amplificar respuestas correctas, cancelar incorrectas)
+      * Entrelazamiento (correlaciones no locales entre partes del registro)
+
+      2) Ejemplos concretos de aplicación de los postulados:
+
+      a) Algoritmo de Deutsch:
+      - Superposición (Postulado 1): La aplicación de Hadamard crea $\frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$
+      - Evolución unitaria (Postulado 2): El oráculo $U_f$ evalúa la función en superposición
+      - Interferencia: Las fases se ajustan para que la medición final revele la paridad
+      - Medición (Postulado 3): Determina si la función es constante o balanceada en una sola consulta
+
+      b) Algoritmo de Grover:
+      - Superposición (Postulado 1): Hadamards crean $\frac{1}{\sqrt{N}}\sum_x |x\rangle$
+      - Evolución unitaria (Postulado 2): Iteraciones de Grover son operaciones unitarias
+      - Amplificación de amplitud: Las iteraciones aumentan probabilidad del estado buscado
+      - Medición (Postulado 3): Obtiene el elemento buscado con alta probabilidad
+      - Sistema compuesto (Postulado 4): La difusión de Grover opera sobre todos los qubits simultáneamente
+
+      c) Algoritmo de Shor:
+      - Sistema compuesto (Postulado 4): Utiliza dos registros (estimación de fase y evaluación de función)
+      - Evolución unitaria (Postulado 2): La transformada cuántica de Fourier es una operación unitaria
+      - Entrelazamiento: Fundamental para la correlación entre estimación de fase y orden multiplicativo
+      - Medición (Postulado 3): La lectura del primer registro proporciona aproximaciones a fracciones con denominador r
+
+      3) Ventajas computacionales derivadas de los postulados:
+      - Simulación eficiente de sistemas cuánticos (usar cuántico para modelar cuántico)
+      - Aceleración exponencial en problemas específicos (factorización, búsqueda en bases de datos no estructuradas)
+      - Procesamiento de información cuántica (criptografía, corrección de errores, teleportación)
+      - Nuevos paradigmas computacionales (computación adiabática, basada en mediciones, topológica)
+
+      4) Desafíos de implementación relacionados con los postulados:
+      - Decoherencia: La interacción con el entorno viola el postulado 2 (evoluciones no unitarias)
+      - Errores de compuerta: Las implementaciones físicas producen aproximaciones de operaciones unitarias ideales
+      - Inicialización imperfecta: Dificultad para preparar estados iniciales puros
+      - Mediciones ruidosas: Las mediciones reales tienen eficiencias inferiores al 100%
+
+      Los postulados de la mecánica cuántica, al aplicarse al contexto computacional, proporcionan tanto las herramientas matemáticas para diseñar algoritmos como las restricciones físicas que deben respetarse en sus implementaciones. Entender estos principios fundamentales permite explotar eficazmente los recursos cuánticos y desarrollar algoritmos que aprovechen las propiedades únicas de los sistemas cuánticos para resolver problemas computacionales.
+    \end{solution}
+  \end{parts}
+
+  \question[3]
+  Considere la compuerta Hadamard (H) y la compuerta de fase (S).
+  \begin{parts}
+
+    \part Verifique que ambas compuertas son unitarias.
+    \part Calcule el producto $HSH$ y determine si el resultado es una compuerta conocida.
+    \part Si se aplica la secuencia HSH al estado $|0\rangle$, ¿cuál será el estado resultante?
+  \end{parts}
+
+  \begin{solution}
+    a) Para verificar que una compuerta es unitaria, debemos comprobar que $U^\dagger U = UU^\dagger = I$.
+
+    Para la compuerta Hadamard $H$:
+    $H^\dagger = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$ (H es real y simétrica, por lo que $H^\dagger = H$)
+
+    $H^\dagger H = H^2 = \frac{1}{2}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$
+    $= \frac{1}{2}\begin{pmatrix} 1+1 & 1-1 \\ 1-1 & 1+1 \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = I$
+
+    Para la compuerta de fase $S$:
+    $S^\dagger = \begin{pmatrix} 1 & 0 \\ 0 & -i \end{pmatrix}$ (conjugado transpuesto de $S$)
+
+    $S^\dagger S = \begin{pmatrix} 1 & 0 \\ 0 & -i \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 0 & i \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & -i \cdot i \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = I$
+
+    $SS^\dagger = \begin{pmatrix} 1 & 0 \\ 0 & i \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 0 & -i \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & i \cdot (-i) \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = I$
+
+    Por lo tanto, ambas compuertas H y S son unitarias.
+
+    b) Calculemos el producto $HSH$:
+
+    Primero, calculamos $SH$:
+    $SH = \begin{pmatrix} 1 & 0 \\ 0 & i \end{pmatrix} \cdot \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix} = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ i & -i \end{pmatrix}$
+
+    Ahora, calculamos $HSH$:
+    $HSH = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix} \cdot \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ i & -i \end{pmatrix}$
+    $= \frac{1}{2}\begin{pmatrix} 1+i & 1-i \\ 1-i & -1-i \end{pmatrix}$
+
+    Para determinar si esta es una compuerta conocida, podemos compararla con compuertas estándar o buscar propiedades especiales.
+
+    En este caso, podemos factorizar un término de fase global $e^{i\pi/4}$ (que no afecta las mediciones):
+    $HSH = e^{i\pi/4} \cdot \frac{1}{\sqrt{2}}\begin{pmatrix} e^{-i\pi/4} & e^{i\pi/4} \\ e^{i\pi/4} & -e^{-i\pi/4} \end{pmatrix}$
+
+    Comparando con compuertas conocidas, observamos que $HSH$ se relaciona con la compuerta $Y = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}$ de la siguiente manera:
+    $HSH = e^{i\pi/4} \cdot \frac{Y+I}{\sqrt{2}}$
+
+    Esto significa que $HSH$ es equivalente (salvo fase global) a la compuerta $\frac{Y+I}{\sqrt{2}}$, que es una rotación específica en la esfera de Bloch. También puede verse como una rotación del tipo $R_y(\pi/2)$, es decir, una rotación de 90° alrededor del eje y.
+
+    c) Representación en la esfera de Bloch:
 
-		2) Compuerta S:
-		- Efecto: Rotación de 90° alrededor del eje z
-		- Mapeo específico:
-		* $|0\rangle$ (polo norte) → permanece igual
-		* $|1\rangle$ (polo sur) → permanece igual
-		* $|+\rangle$ (eje x positivo) → $|+i\rangle$ (eje y positivo)
-		* $|-\rangle$ (eje x negativo) → $|-i\rangle$ (eje y negativo)
+    1) Compuerta H:
+    - Efecto sobre los ejes: $H$ transforma el eje z al eje x y el eje x al eje z (con inversión)
+    - Geométricamente: Rotación de 90° alrededor del eje y, seguida de una reflexión en el plano xz
+    - Mapeo específico:
+    * $|0\rangle$ (polo norte) → $|+\rangle$ (eje x positivo)
+    * $|1\rangle$ (polo sur) → $|-\rangle$ (eje x negativo)
+    * $|+\rangle$ (eje x positivo) → $|0\rangle$ (polo norte)
+    * $|-\rangle$ (eje x negativo) → $|1\rangle$ (polo sur)
 
-		3) Compuerta HSH:
-		- Efecto compuesto:
-		* H: Rota el eje z al eje x
-		* S: Rota el eje x al eje y
-		* H: Rota el eje y al eje z (con inversión)
-		* Resultado neto: Rotación de 90° alrededor del eje x
-		- Mapeo específico:
-		* $|0\rangle$ (polo norte) → eje y positivo
-		* $|1\rangle$ (polo sur) → eje y negativo
-		* $|+\rangle$ (eje x positivo) → permanece similar
-		* $|-\rangle$ (eje x negativo) → permanece similar
+    2) Compuerta S:
+    - Efecto: Rotación de 90° alrededor del eje z
+    - Mapeo específico:
+    * $|0\rangle$ (polo norte) → permanece igual
+    * $|1\rangle$ (polo sur) → permanece igual
+    * $|+\rangle$ (eje x positivo) → $|+i\rangle$ (eje y positivo)
+    * $|-\rangle$ (eje x negativo) → $|-i\rangle$ (eje y negativo)
 
-		La secuencia HSH efectúa una rotación que lleva el eje z al eje y, realizando una rotación de 90° en la esfera de Bloch alrededor del eje x.
+    3) Compuerta HSH:
+    - Efecto compuesto:
+    * H: Rota el eje z al eje x
+    * S: Rota el eje x al eje y
+    * H: Rota el eje y al eje z (con inversión)
+    * Resultado neto: Rotación de 90° alrededor del eje x
+    - Mapeo específico:
+    * $|0\rangle$ (polo norte) → eje y positivo
+    * $|1\rangle$ (polo sur) → eje y negativo
+    * $|+\rangle$ (eje x positivo) → permanece similar
+    * $|-\rangle$ (eje x negativo) → permanece similar
 
-		d) Estado resultante al aplicar HSH al estado $|0\rangle$:
+    La secuencia HSH efectúa una rotación que lleva el eje z al eje y, realizando una rotación de 90° en la esfera de Bloch alrededor del eje x.
 
-		Calculemos paso a paso:
-		$H|0\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) = |+\rangle$
+    d) Estado resultante al aplicar HSH al estado $|0\rangle$:
 
-		$SH|0\rangle = S|+\rangle = S\frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) = \frac{1}{\sqrt{2}}(|0\rangle + i|1\rangle)$
+    Calculemos paso a paso:
+    $H|0\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) = |+\rangle$
 
-		$HSH|0\rangle = H\frac{1}{\sqrt{2}}(|0\rangle + i|1\rangle)$
-		$= \frac{1}{\sqrt{2}} \cdot \frac{1}{\sqrt{2}}[(|0\rangle + |1\rangle) + i(|0\rangle - |1\rangle)]$
-		$= \frac{1}{2}[(1+i)|0\rangle + (1-i)|1\rangle]$
+    $SH|0\rangle = S|+\rangle = S\frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) = \frac{1}{\sqrt{2}}(|0\rangle + i|1\rangle)$
 
-		Simplificando:
-		$HSH|0\rangle = \frac{1+i}{2}|0\rangle + \frac{1-i}{2}|1\rangle$
+    $HSH|0\rangle = H\frac{1}{\sqrt{2}}(|0\rangle + i|1\rangle)$
+    $= \frac{1}{\sqrt{2}} \cdot \frac{1}{\sqrt{2}}[(|0\rangle + |1\rangle) + i(|0\rangle - |1\rangle)]$
+    $= \frac{1}{2}[(1+i)|0\rangle + (1-i)|1\rangle]$
 
-		Podemos expresar este estado en forma polar:
-		$\frac{1+i}{2} = \frac{\sqrt{2}}{2}e^{i\pi/4}$ y $\frac{1-i}{2} = \frac{\sqrt{2}}{2}e^{-i\pi/4}$
+    Simplificando:
+    $HSH|0\rangle = \frac{1+i}{2}|0\rangle + \frac{1-i}{2}|1\rangle$
 
-		Por lo tanto:
-		$HSH|0\rangle = \frac{\sqrt{2}}{2}e^{i\pi/4}|0\rangle + \frac{\sqrt{2}}{2}e^{-i\pi/4}|1\rangle$
+    Podemos expresar este estado en forma polar:
+    $\frac{1+i}{2} = \frac{\sqrt{2}}{2}e^{i\pi/4}$ y $\frac{1-i}{2} = \frac{\sqrt{2}}{2}e^{-i\pi/4}$
 
-		Extrayendo una fase global $e^{i\pi/4}$:
-		$HSH|0\rangle = e^{i\pi/4} \cdot \frac{1}{\sqrt{2}}(|0\rangle + e^{-i\pi/2}|1\rangle) = e^{i\pi/4} \cdot \frac{1}{\sqrt{2}}(|0\rangle - i|1\rangle)$
+    Por lo tanto:
+    $HSH|0\rangle = \frac{\sqrt{2}}{2}e^{i\pi/4}|0\rangle + \frac{\sqrt{2}}{2}e^{-i\pi/4}|1\rangle$
 
-		Ignorando la fase global $e^{i\pi/4}$ (que no es observable):
-		$HSH|0\rangle \approx \frac{1}{\sqrt{2}}(|0\rangle - i|1\rangle)$
+    Extrayendo una fase global $e^{i\pi/4}$:
+    $HSH|0\rangle = e^{i\pi/4} \cdot \frac{1}{\sqrt{2}}(|0\rangle + e^{-i\pi/2}|1\rangle) = e^{i\pi/4} \cdot \frac{1}{\sqrt{2}}(|0\rangle - i|1\rangle)$
 
-		Este estado corresponde al estado $|-i\rangle$, que se encuentra en el eje y negativo de la esfera de Bloch, confirmando nuestra descripción geométrica anterior.
-	\end{solution}
+    Ignorando la fase global $e^{i\pi/4}$ (que no es observable):
+    $HSH|0\rangle \approx \frac{1}{\sqrt{2}}(|0\rangle - i|1\rangle)$
 
-	\question[3]
-	Considere un sistema de dos qubits y los siguientes estados:
-	$|\psi_1\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle), \quad |\psi_2\rangle = |0\rangle \otimes \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$
-	\begin{parts}
+    Este estado corresponde al estado $|-i\rangle$, que se encuentra en el eje y negativo de la esfera de Bloch, confirmando nuestra descripción geométrica anterior.
+  \end{solution}
 
-		\part ¿Cuál de estos estados está entrelazado? Justifique su respuesta.
-		\part Explique cómo la entropía de von Neumann de la matriz de densidad reducida nos permite cuantificar el entrelazamiento en sistemas bipartitos puros.
-	\end{parts}
+  \question[3]
+  Considere un sistema de dos qubits y los siguientes estados:
+  $|\psi_1\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$ y $|\psi_2\rangle = |0\rangle \otimes \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$.
+  \begin{parts}
 
-	\begin{solution}
-		a) Para determinar si un estado está entrelazado, debemos verificar si puede expresarse como un producto tensorial de estados individuales.
+    \part ¿Cuál de estos estados está entrelazado? Justifique su respuesta.
+    \part Con respecto a la base computacional del espacio de Hilbert asociado, calcula la matriz que representa el estado $|\psi_1\psi_2\rangle$.
+  \end{parts}
 
-		Análisis del estado $|\psi_1\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$:
+  \begin{solution}
+    a) Para determinar si un estado está entrelazado, debemos verificar si puede expresarse como un producto tensorial de estados individuales.
 
-		Supongamos que $|\psi_1\rangle$ es separable. Entonces existirían estados $|\phi_A\rangle = a|0\rangle + b|1\rangle$ y $|\phi_B\rangle = c|0\rangle + d|1\rangle$ tales que:
-		$|\psi_1\rangle = |\phi_A\rangle \otimes |\phi_B\rangle = (a|0\rangle + b|1\rangle) \otimes (c|0\rangle + d|1\rangle)$
-		$= ac|00\rangle + ad|01\rangle + bc|10\rangle + bd|11\rangle$
+    Análisis del estado $|\psi_1\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$:
 
-		Comparando con $|\psi_1\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$, tenemos:
-		$ac = \frac{1}{\sqrt{2}}$
-		$ad = 0$
-		$bc = 0$
-		$bd = \frac{1}{\sqrt{2}}$
+    Supongamos que $|\psi_1\rangle$ es separable. Entonces existirían estados $|\phi_A\rangle = a|0\rangle + b|1\rangle$ y $|\phi_B\rangle = c|0\rangle + d|1\rangle$ tales que:
+    $|\psi_1\rangle = |\phi_A\rangle \otimes |\phi_B\rangle = (a|0\rangle + b|1\rangle) \otimes (c|0\rangle + d|1\rangle)$
+    $= ac|00\rangle + ad|01\rangle + bc|10\rangle + bd|11\rangle$
 
-		De $ad = 0$ y $bc = 0$, dado que $ac \neq 0$ y $bd \neq 0$, deducimos que $a \neq 0$, $b \neq 0$, $c \neq 0$, $d \neq 0$. Pero esto contradice las ecuaciones $ad = 0$ y $bc = 0$.
+    Comparando con $|\psi_1\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$, tenemos:
+    $ac = \frac{1}{\sqrt{2}}$
+    $ad = 0$
+    $bc = 0$
+    $bd = \frac{1}{\sqrt{2}}$
 
-		Por lo tanto, $|\psi_1\rangle$ no puede expresarse como un producto tensorial, lo que significa que está entrelazado. Este es un ejemplo de un estado de Bell, que es un estado máximamente entrelazado de dos qubits.
+    De $ad = 0$ y $bc = 0$, dado que $ac \neq 0$ y $bd \neq 0$, deducimos que $a \neq 0$, $b \neq 0$, $c \neq 0$, $d \neq 0$. Pero esto contradice las ecuaciones $ad = 0$ y $bc = 0$.
 
-		Análisis del estado $|\psi_2\rangle = |0\rangle \otimes \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$:
+    Por lo tanto, $|\psi_1\rangle$ no puede expresarse como un producto tensorial, lo que significa que está entrelazado. Este es un ejemplo de un estado de Bell, que es un estado máximamente entrelazado de dos qubits.
 
-		Este estado ya está escrito explícitamente como un producto tensorial:
-		$|\psi_2\rangle = |0\rangle \otimes \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$
+    Análisis del estado $|\psi_2\rangle = |0\rangle \otimes \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$:
 
-		donde $|\phi_A\rangle = |0\rangle$ y $|\phi_B\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$.
+    Este estado ya está escrito explícitamente como un producto tensorial:
+    $|\psi_2\rangle = |0\rangle \otimes \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$
 
-		Por lo tanto, $|\psi_2\rangle$ es un estado separable (no entrelazado).
+    donde $|\phi_A\rangle = |0\rangle$ y $|\phi_B\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$.
 
-		Conclusión: $|\psi_1\rangle$ está entrelazado, mientras que $|\psi_2\rangle$ no lo está.
+    Por lo tanto, $|\psi_2\rangle$ es un estado separable (no entrelazado).
 
-		b) Para calcular las matrices de densidad reducidas del primer qubit, debemos calcular primero las matrices de densidad completas y luego tomar la traza parcial sobre el segundo qubit.
+    Conclusión: $|\psi_1\rangle$ está entrelazado, mientras que $|\psi_2\rangle$ no lo está.
 
-		Para $|\psi_1\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$:
+    b) Para calcular las matrices de densidad reducidas del primer qubit, debemos calcular primero las matrices de densidad completas y luego tomar la traza parcial sobre el segundo qubit.
 
-		La matriz de densidad completa es:
-		$\rho_1 = |\psi_1\rangle\langle\psi_1| = \frac{1}{2}(|00\rangle + |11\rangle)(\langle00| + \langle11|)$
-		$= \frac{1}{2}(|00\rangle\langle00| + |00\rangle\langle11| + |11\rangle\langle00| + |11\rangle\langle11|)$
+    Para $|\psi_1\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$:
 
-		La matriz de densidad reducida del primer qubit se obtiene tomando la traza parcial sobre el segundo qubit:
-		$\rho_{1A} = \text{Tr}_B(\rho_1) = \sum_i (I \otimes \langle i|)\rho_1(I \otimes |i\rangle)$
+    La matriz de densidad completa es:
+    $\rho_1 = |\psi_1\rangle\langle\psi_1| = \frac{1}{2}(|00\rangle + |11\rangle)(\langle00| + \langle11|)$
+    $= \frac{1}{2}(|00\rangle\langle00| + |00\rangle\langle11| + |11\rangle\langle00| + |11\rangle\langle11|)$
 
-		$\rho_{1A} = (I \otimes \langle 0|)\rho_1(I \otimes |0\rangle) + (I \otimes \langle 1|)\rho_1(I \otimes |1\rangle)$
+    La matriz de densidad reducida del primer qubit se obtiene tomando la traza parcial sobre el segundo qubit:
+    $\rho_{1A} = \text{Tr}_B(\rho_1) = \sum_i (I \otimes \langle i|)\rho_1(I \otimes |i\rangle)$
 
-		Calculando cada término:
-		$(I \otimes \langle 0|)\rho_1(I \otimes |0\rangle) = \frac{1}{2}|0\rangle\langle0|$
-		$(I \otimes \langle 1|)\rho_1(I \otimes |1\rangle) = \frac{1}{2}|1\rangle\langle1|$
+    $\rho_{1A} = (I \otimes \langle 0|)\rho_1(I \otimes |0\rangle) + (I \otimes \langle 1|)\rho_1(I \otimes |1\rangle)$
 
-		Por tanto:
-		$\rho_{1A} = \frac{1}{2}|0\rangle\langle0| + \frac{1}{2}|1\rangle\langle1| = \frac{1}{2}I$
+    Calculando cada término:
+    $(I \otimes \langle 0|)\rho_1(I \otimes |0\rangle) = \frac{1}{2}|0\rangle\langle0|$
+    $(I \otimes \langle 1|)\rho_1(I \otimes |1\rangle) = \frac{1}{2}|1\rangle\langle1|$
 
-		En forma matricial:
-		$\rho_{1A} = \frac{1}{2}\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$
+    Por tanto:
+    $\rho_{1A} = \frac{1}{2}|0\rangle\langle0| + \frac{1}{2}|1\rangle\langle1| = \frac{1}{2}I$
 
-		Para $|\psi_2\rangle = |0\rangle \otimes \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) = \frac{1}{\sqrt{2}}(|00\rangle + |01\rangle)$:
+    En forma matricial:
+    $\rho_{1A} = \frac{1}{2}\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$
 
-		La matriz de densidad completa es:
-		$\rho_2 = |\psi_2\rangle\langle\psi_2| = \frac{1}{2}(|00\rangle + |01\rangle)(\langle00| + \langle01|)$
-		$= \frac{1}{2}(|00\rangle\langle00| + |00\rangle\langle01| + |01\rangle\langle00| + |01\rangle\langle01|)$
+    Para $|\psi_2\rangle = |0\rangle \otimes \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) = \frac{1}{\sqrt{2}}(|00\rangle + |01\rangle)$:
 
-		La matriz de densidad reducida del primer qubit:
-		$\rho_{2A} = \text{Tr}_B(\rho_2)$
+    La matriz de densidad completa es:
+    $\rho_2 = |\psi_2\rangle\langle\psi_2| = \frac{1}{2}(|00\rangle + |01\rangle)(\langle00| + \langle01|)$
+    $= \frac{1}{2}(|00\rangle\langle00| + |00\rangle\langle01| + |01\rangle\langle00| + |01\rangle\langle01|)$
 
-		Calculando:
-		$(I \otimes \langle 0|)\rho_2(I \otimes |0\rangle) = \frac{1}{2}|0\rangle\langle0|$
-		$(I \otimes \langle 1|)\rho_2(I \otimes |1\rangle) = \frac{1}{2}|0\rangle\langle0|$
+    La matriz de densidad reducida del primer qubit:
+    $\rho_{2A} = \text{Tr}_B(\rho_2)$
 
-		Por tanto:
-		$\rho_{2A} = \frac{1}{2}|0\rangle\langle0| + \frac{1}{2}|0\rangle\langle0| = |0\rangle\langle0|$
+    Calculando:
+    $(I \otimes \langle 0|)\rho_2(I \otimes |0\rangle) = \frac{1}{2}|0\rangle\langle0|$
+    $(I \otimes \langle 1|)\rho_2(I \otimes |1\rangle) = \frac{1}{2}|0\rangle\langle0|$
 
-		En forma matricial:
-		$\rho_{2A} = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}$
+    Por tanto:
+    $\rho_{2A} = \frac{1}{2}|0\rangle\langle0| + \frac{1}{2}|0\rangle\langle0| = |0\rangle\langle0|$
 
-		Observación: Mientras que para el estado entrelazado $|\psi_1\rangle$ la matriz reducida es máximamente mixta, para el estado separable $|\psi_2\rangle$ la matriz reducida representa un estado puro. Esto es consistente con la teoría del entrelazamiento.
+    En forma matricial:
+    $\rho_{2A} = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}$
 
-		c) Aplicación de la compuerta CNOT al estado $|\psi_2\rangle$:
+    Observación: Mientras que para el estado entrelazado $|\psi_1\rangle$ la matriz reducida es máximamente mixta, para el estado separable $|\psi_2\rangle$ la matriz reducida representa un estado puro. Esto es consistente con la teoría del entrelazamiento.
 
-		Recordemos cómo actúa la compuerta CNOT en la base computacional:
-		$\text{CNOT}|00\rangle = |00\rangle$
-		$\text{CNOT}|01\rangle = |01\rangle$
-		$\text{CNOT}|10\rangle = |11\rangle$
-		$\text{CNOT}|11\rangle = |10\rangle$
+    c) Aplicación de la compuerta CNOT al estado $|\psi_2\rangle$:
 
-		Ahora apliquemos CNOT a $|\psi_2\rangle$:
-		$\text{CNOT}|\psi_2\rangle = \text{CNOT}\frac{1}{\sqrt{2}}(|00\rangle + |01\rangle)$
-		$= \frac{1}{\sqrt{2}}(\text{CNOT}|00\rangle + \text{CNOT}|01\rangle)$
-		$= \frac{1}{\sqrt{2}}(|00\rangle + |01\rangle)$
+    Recordemos cómo actúa la compuerta CNOT en la base computacional:
+    $\text{CNOT}|00\rangle = |00\rangle$
+    $\text{CNOT}|01\rangle = |01\rangle$
+    $\text{CNOT}|10\rangle = |11\rangle$
+    $\text{CNOT}|11\rangle = |10\rangle$
 
-		Por lo tanto, $\text{CNOT}|\psi_2\rangle = |\psi_2\rangle$
+    Ahora apliquemos CNOT a $|\psi_2\rangle$:
+    $\text{CNOT}|\psi_2\rangle = \text{CNOT}\frac{1}{\sqrt{2}}(|00\rangle + |01\rangle)$
+    $= \frac{1}{\sqrt{2}}(\text{CNOT}|00\rangle + \text{CNOT}|01\rangle)$
+    $= \frac{1}{\sqrt{2}}(|00\rangle + |01\rangle)$
 
-		El estado resultante sigue siendo $|\psi_2\rangle = |0\rangle \otimes \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$, que está en forma de producto tensorial. Por lo tanto, permanece como un estado no entrelazado.
+    Por lo tanto, $\text{CNOT}|\psi_2\rangle = |\psi_2\rangle$
 
-		Esto tiene sentido porque la compuerta CNOT solo entrelaza estados cuando el qubit de control (el primer qubit en este caso) está en superposición. Como el primer qubit de $|\psi_2\rangle$ está en el estado determinado $|0\rangle$, CNOT no crea entrelazamiento.
+    El estado resultante sigue siendo $|\psi_2\rangle = |0\rangle \otimes \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$, que está en forma de producto tensorial. Por lo tanto, permanece como un estado no entrelazado.
 
-		d) La entropía de von Neumann de la matriz de densidad reducida como medida de entrelazamiento:
+    Esto tiene sentido porque la compuerta CNOT solo entrelaza estados cuando el qubit de control (el primer qubit en este caso) está en superposición. Como el primer qubit de $|\psi_2\rangle$ está en el estado determinado $|0\rangle$, CNOT no crea entrelazamiento.
 
-		Para estados bipartitos puros, la entropía de von Neumann de la matriz de densidad reducida proporciona una medida cuantitativa del grado de entrelazamiento entre los subsistemas.
+    d) La entropía de von Neumann de la matriz de densidad reducida como medida de entrelazamiento:
 
-		Definición y propiedades:
+    Para estados bipartitos puros, la entropía de von Neumann de la matriz de densidad reducida proporciona una medida cuantitativa del grado de entrelazamiento entre los subsistemas.
 
-		1) Para un estado bipartito puro $|\psi\rangle_{AB}$ con matriz de densidad $\rho_{AB} = |\psi\rangle\langle\psi|$, la entropía de von Neumann de la matriz reducida $\rho_A = \text{Tr}_B(\rho_{AB})$ se define como:
-		$S(\rho_A) = -\text{Tr}(\rho_A \log_2 \rho_A) = -\sum_i \lambda_i \log_2 \lambda_i$
-		donde $\lambda_i$ son los valores propios de $\rho_A$
+    Definición y propiedades:
 
-		2) Propiedades clave:
-		- $S(\rho_A) = S(\rho_B)$ para estados puros (simetría del entrelazamiento)
-		- $0 \leq S(\rho_A) \leq \log_2 d$ donde $d = \min(\dim \mathcal{H}_A, \dim \mathcal{H}_B)$
-		- $S(\rho_A) = 0$ si y solo si el estado es separable
-		- $S(\rho_A) = \log_2 d$ si y solo si el estado es máximamente entrelazado
+    1) Para un estado bipartito puro $|\psi\rangle_{AB}$ con matriz de densidad $\rho_{AB} = |\psi\rangle\langle\psi|$, la entropía de von Neumann de la matriz reducida $\rho_A = \text{Tr}_B(\rho_{AB})$ se define como:
+    $S(\rho_A) = -\text{Tr}(\rho_A \log_2 \rho_A) = -\sum_i \lambda_i \log_2 \lambda_i$
+    donde $\lambda_i$ son los valores propios de $\rho_A$
 
-		3) Interpretación en términos de la descomposición de Schmidt:
-		- Si $|\psi\rangle_{AB} = \sum_i \sqrt{\lambda_i} |i_A\rangle \otimes |i_B\rangle$ (descomposición de Schmidt)
-		- Entonces $\rho_A = \sum_i \lambda_i |i_A\rangle\langle i_A|$
-		- La entropía $S(\rho_A) = -\sum_i \lambda_i \log_2 \lambda_i$ es función directa de los coeficientes de Schmidt al cuadrado
+    2) Propiedades clave:
+    - $S(\rho_A) = S(\rho_B)$ para estados puros (simetría del entrelazamiento)
+    - $0 \leq S(\rho_A) \leq \log_2 d$ donde $d = \min(\dim \mathcal{H}_A, \dim \mathcal{H}_B)$
+    - $S(\rho_A) = 0$ si y solo si el estado es separable
+    - $S(\rho_A) = \log_2 d$ si y solo si el estado es máximamente entrelazado
 
-		Aplicación a nuestros ejemplos:
+    3) Interpretación en términos de la descomposición de Schmidt:
+    - Si $|\psi\rangle_{AB} = \sum_i \sqrt{\lambda_i} |i_A\rangle \otimes |i_B\rangle$ (descomposición de Schmidt)
+    - Entonces $\rho_A = \sum_i \lambda_i |i_A\rangle\langle i_A|$
+    - La entropía $S(\rho_A) = -\sum_i \lambda_i \log_2 \lambda_i$ es función directa de los coeficientes de Schmidt al cuadrado
 
-		1) Para $|\psi_1\rangle$ (estado entrelazado):
-		- La matriz reducida es $\rho_{1A} = \frac{1}{2}I$ con valores propios $\lambda_1 = \lambda_2 = \frac{1}{2}$
-		- $S(\rho_{1A}) = -\frac{1}{2}\log_2\frac{1}{2} - \frac{1}{2}\log_2\frac{1}{2} = -\frac{1}{2}(-1) - \frac{1}{2}(-1) = 1$
-		- Este es el valor máximo posible para dos qubits, indicando entrelazamiento máximo
+    Aplicación a nuestros ejemplos:
 
-	\end{solution}
+    1) Para $|\psi_1\rangle$ (estado entrelazado):
+    - La matriz reducida es $\rho_{1A} = \frac{1}{2}I$ con valores propios $\lambda_1 = \lambda_2 = \frac{1}{2}$
+    - $S(\rho_{1A}) = -\frac{1}{2}\log_2\frac{1}{2} - \frac{1}{2}\log_2\frac{1}{2} = -\frac{1}{2}(-1) - \frac{1}{2}(-1) = 1$
+    - Este es el valor máximo posible para dos qubits, indicando entrelazamiento máximo
+
+  \end{solution}
 \end{questions}

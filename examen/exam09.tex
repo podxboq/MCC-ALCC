@@ -1,509 +1,510 @@
-\codigonombre{}{MCC-ALCC-25Q109}
 \begin{questions}
-	\question[4] Responda a las siguientes cuestiones:
-	\begin{parts}
-
-		\part Explique qué son las compuertas cuánticas controladas, cómo funcionan y su importancia en la computación cuántica.
-
-		\begin{solution}
-			Las compuertas cuánticas controladas son operadores unitarios que realizan operaciones condicionales en sistemas de múltiples qubits, donde la aplicación de una operación sobre un qubit "objetivo" depende del estado de uno o más qubits "control". Estas compuertas son fundamentales para la computación cuántica ya que permiten implementar operaciones condicionales, generar entrelazamiento y construir algoritmos cuánticos complejos.
-
-			Principios y funcionamiento:
-
-			1) Estructura básica:
-			- Una compuerta controlada tiene uno o más qubits de control y uno o más qubits objetivo
-			- La operación se aplica al qubit objetivo solo si todos los qubits de control están en el estado $|1\rangle$
-			- Si algún qubit de control está en el estado $|0\rangle$, el qubit objetivo permanece sin cambios
-			- Formalmente, para una operación $U$ de un qubit: $C^n(U)|c_1,c_2,...,c_n,t\rangle = |c_1,c_2,...,c_n\rangle \otimes U^{c_1 \cdot c_2 \cdot ... \cdot c_n}|t\rangle$
-
-			2) Representación matemática:
-			- Para una compuerta controlada con un qubit de control y uno objetivo, la matriz es:
-			$C(U) = |0\rangle\langle0| \otimes I + |1\rangle\langle1| \otimes U$
-			- Esto proyecta en el subespacio donde el control es $|0\rangle$ y aplica la identidad, o proyecta donde el control es $|1\rangle$ y aplica $U$
-
-			3) Implementación física:
-			- Requiere interacción entre qubits
-			- Más compleja y propensa a errores que las compuertas de un solo qubit
-			- Puede realizarse mediante acoplamientos directos o mediados según la plataforma física
-
-			Ejemplos importantes:
-
-			1) CNOT (Controlled-NOT):
-			- La compuerta controlada más fundamental
-			- Matriz: $\begin{pmatrix} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 \\ 0 & 0 & 1 & 0 \end{pmatrix}$
-			- Acción: Invierte el qubit objetivo solo si el qubit de control es $|1\rangle$
-			- Mapeo: $|c,t\rangle \mapsto |c,t \oplus c\rangle$ donde $\oplus$ es XOR bit a bit
-			- Equivale a medir el qubit de control en la base computacional y aplicar condicionalmente X al objetivo
-
-			2) Controlled-Z (CZ):
-			- Aplica la puerta Z al objetivo si el control es $|1\rangle$
-			- Matriz: $\begin{pmatrix} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & -1 \end{pmatrix}$
-			- Introduce fase de -1 solo si ambos qubits están en estado $|1\rangle$
-			- Simétrica respecto a qué qubit es control y cuál objetivo
-			- Relación con CNOT: $CZ = (I \otimes H) \cdot CNOT \cdot (I \otimes H)$
-
-			3) Controlled-Phase (CP o CR$_\phi$):
-			- Aplica rotación de fase $e^{i\phi}$ cuando ambos qubits son $|1\rangle$
-			- Matriz: $\begin{pmatrix} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & e^{i\phi} \end{pmatrix}$
-			- Caso especial: CS (controlled-S) cuando $\phi = \pi/2$
-
-			4) Toffoli (CCNOT):
-			- Compuerta NOT doblemente controlada
-			- Aplica X al tercer qubit solo si los dos primeros están en estado $|1\rangle$
-			- Matriz: $8 \times 8$ con un único intercambio entre los estados $|110\rangle$ y $|111\rangle$
-			- Universal para computación clásica reversible
-
-			5) Fredkin (CSWAP):
-			- Compuerta SWAP controlada
-			- Intercambia el segundo y tercer qubit cuando el primero está en $|1\rangle$
-			- También universal para computación clásica reversible
-
-			Importancia en computación cuántica:
-
-			1) Generación de entrelazamiento:
-			- Las compuertas controladas son las únicas que pueden crear entrelazamiento entre qubits
-			- CNOT convierte $|+\rangle|0\rangle$ en el estado entrelazado $\frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$
-			- Son esenciales para crear estados de Bell, GHZ y otros estados entrelazados útiles
-
-			2) Universalidad computacional:
-			- Cualquier operación unitaria puede descomponerse en compuertas de un qubit y CNOT
-			- El conjunto {H, T, CNOT} es universal para aproximar cualquier operación
-			- Sin compuertas controladas, sólo se podrían aplicar operaciones de un qubit en paralelo
-
-			3) Operaciones condicionales:
-			- Implementan la lógica "if-then" en algoritmos cuánticos
-			- Permiten que el procesamiento dependa del valor de ciertos qubits
-			- Esenciales para algoritmos como Shor y Grover
-
-			4) Transformaciones cuánticas fundamentales:
-			- La transformada cuántica de Fourier (QFT) requiere compuertas CR$_\phi$ controladas
-			- La adición cuántica utiliza secuencias de compuertas Toffoli
-			- El cálculo de multiplicación modular en el algoritmo de Shor depende de operaciones controladas
-
-			5) Reversibilidad computacional:
-			- Las compuertas Toffoli y Fredkin son universales para computación clásica reversible
-			- Permiten incorporar cualquier algoritmo clásico en un circuito cuántico
-			- Esenciales para implementar oráculos en algoritmos cuánticos
-
-			6) Corrección de errores:
-			- Los códigos de corrección de errores cuánticos utilizan CNOTs para propagar información de síndrome
-			- Permiten la detección y corrección de errores sin colapsar el estado cuántico
-
-			7) Mediciones e inicialización:
-			- Permiten mediciones en diferentes bases mediante operaciones controladas
-			- Facilitan la inicialización condicional de registros
-
-			8) Aplicaciones específicas:
-			- Teleportación cuántica: Utiliza CNOT para compartir entrelazamiento
-			- Algoritmo de Deutsch-Jozsa: Emplea compuertas controladas para evaluar la función en una sola consulta
-			- Estimación de fase: Usa CR$_\phi$ controladas para extraer información de fase
-
-			9) Eficiencia computacional:
-			- Permiten paralelismo cuántico y superposición de caminos computacionales
-			- Habilitan ventajas asintóticas sobre algoritmos clásicos
-
-			Desafíos y consideraciones prácticas:
-
-			1) Implementación física:
-			- Requieren interacción entre qubits, más difícil de implementar que compuertas de un qubit
-			- Típicamente más lentas y con mayor tasa de error
-			- Distintas plataformas tienen acoplamientos nativos diferentes (CZ en superconductores, XX en iones)
-
-			2) Optimización de circuitos:
-			- Los circuitos se optimizan para minimizar el número de compuertas controladas
-			- La topología de conexiones entre qubits limita dónde se pueden aplicar directamente
-			- Los compiladores cuánticos transforman circuitos para adaptarlos a la arquitectura física
-
-			3) Decoherencia:
-			- Las compuertas de dos qubits suelen ser más vulnerables a la decoherencia
-			- Los tiempos de operación más largos aumentan la exposición a errores
-			- La fidelidad de compuertas controladas es a menudo el factor limitante en procesadores cuánticos actuales
-
-			Las compuertas controladas representan la capacidad de la computación cuántica para realizar operaciones condicionales y generar correlaciones no clásicas, elementos que son fundamentales para desarrollar algoritmos que superen las capacidades clásicas.
-		\end{solution}
-
-		\part Explique qué es la matriz de densidad y cómo se utiliza para describir estados cuánticos mixtos y puros.
-
-		\begin{solution}
-			La matriz de densidad es un formalismo matemático que generaliza la descripción de estados cuánticos, permitiendo representar tanto estados puros como mixtos en un marco unificado. Este formalismo es especialmente útil para describir sistemas cuánticos abiertos, subsistemas de sistemas entrelazados y situaciones con incertidumbre clásica sobre la preparación del estado.
-
-			Definición y formulación matemática:
-
-			1) Estado puro:
-			- Un estado cuántico puro $|\psi\rangle$ se describe mediante su matriz de densidad como:
-			$\rho = |\psi\rangle\langle\psi|$
-			- Es un operador de proyección sobre el espacio unidimensional generado por $|\psi\rangle$
-			- Para un qubit con $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$, la matriz de densidad es:
-			$\rho = \begin{pmatrix} |\alpha|^2 & \alpha\beta^* \\ \alpha^*\beta & |\beta|^2 \end{pmatrix}$
-
-			2) Estado mixto:
-			- Representa un ensamble estadístico de estados puros $\{|\psi_i\rangle\}$ con probabilidades $\{p_i\}$
-			- Definido como: $\rho = \sum_i p_i |\psi_i\rangle\langle\psi_i|$
-			- Las probabilidades cumplen $p_i \geq 0$ y $\sum_i p_i = 1$
-			- No hay una representación única (diferentes ensambles pueden dar la misma matriz)
-
-			3) Propiedades matemáticas fundamentales:
-			- Hermítica: $\rho = \rho^\dagger$
-			- Semidefinida positiva: $\langle\phi|\rho|\phi\rangle \geq 0$ para todo $|\phi\rangle$
-			- Traza unitaria: $\text{Tr}(\rho) = 1$
-			- Idempotencia (solo para estados puros): $\rho^2 = \rho$
-
-			4) Representación de Bloch para un qubit:
-			- Cualquier matriz de densidad de un qubit puede escribirse como:
-			$\rho = \frac{1}{2}(I + \vec{r} \cdot \vec{\sigma})$
-			- Donde $\vec{r}$ es el vector de Bloch y $\vec{\sigma} = (\sigma_x, \sigma_y, \sigma_z)$ son las matrices de Pauli
-			- Para estados puros: $|\vec{r}| = 1$ (superficie de la esfera de Bloch)
-			- Para estados mixtos: $|\vec{r}| < 1$ (interior de la esfera de Bloch)
-			- El estado máximamente mixto es $\rho = \frac{1}{2}I$ (centro de la esfera)
-
-			Distinción entre estados puros y mixtos:
-
-			1) Criterios matemáticos:
-			- Un estado $\rho$ es puro si y solo si $\text{Tr}(\rho^2) = 1$
-			- Para estados mixtos: $\text{Tr}(\rho^2) < 1$
-			- Pureza: $\gamma = \text{Tr}(\rho^2)$ cuantifica qué tan "puro" es un estado
-			- Un estado es puro si y solo si $\rho^2 = \rho$ (idempotencia)
-			- Un estado es puro si y solo si $\text{rank}(\rho) = 1$
-
-			2) Interpretación física:
-			- Estados puros: Representan información cuántica máxima (incertidumbre puramente cuántica)
-			- Estados mixtos: Combinan incertidumbre cuántica y clásica (conocimiento incompleto)
-			- Los estados puros no pueden representarse como mezclas de otros estados distintos
-			- Un estado máximamente mixto representa ignorancia completa sobre el estado del sistema
-
-			Utilidad y aplicaciones:
-
-			1) Descripción de sistemas abiertos:
-			- Los sistemas que interactúan con el entorno evolucionan de estados puros a mixtos debido a la decoherencia
-			- La matriz de densidad captura esta pérdida gradual de coherencia cuántica
-			- Ejemplo: Un qubit que sufre decoherencia de fase ve reducidas sus coherencias (elementos fuera de la diagonal)
-
-			2) Caracterización de subsistemas entrelazados:
-			- Si un sistema bipartito AB está en un estado puro entrelazado, los subsistemas A y B están en estados mixtos
-			- La matriz de densidad reducida $\rho_A = \text{Tr}_B(\rho_{AB})$ describe completamente el subsistema A
-			- Ejemplo: Para un estado de Bell $|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$, la matriz reducida es $\rho_A = \frac{1}{2}I$
-
-			3) Mediciones y valores esperados:
-			- El valor esperado de un observable $A$ se calcula como: $\langle A \rangle = \text{Tr}(\rho A)$
-			- Esta fórmula unifica el cálculo para estados puros y mixtos
-			- La probabilidad de medir el valor propio $a$ es: $p(a) = \text{Tr}(\rho P_a)$ donde $P_a$ es el proyector
-
-			4) Evolución temporal:
-			- Para sistemas cerrados: $\frac{d\rho}{dt} = -\frac{i}{\hbar}[H, \rho]$ (ecuación de von Neumann)
-			- Para sistemas abiertos: Se utilizan ecuaciones maestras como la de Lindblad
-			- Permite describir dinámicas de decoherencia y disipación
+  \question[4] Responda a las siguientes cuestiones:
+  \begin{parts}
+
+    \part Explique qué son las compuertas cuánticas controladas, cómo funcionan y su importancia en la computación cuántica.
+
+    \begin{solution}
+      Las compuertas cuánticas controladas son operadores unitarios que realizan operaciones condicionales en sistemas de múltiples qubits, donde la aplicación de una operación sobre un qubit "objetivo" depende del estado de uno o más qubits "control". Estas compuertas son fundamentales para la computación cuántica ya que permiten implementar operaciones condicionales, generar entrelazamiento y construir algoritmos cuánticos complejos.
+
+      Principios y funcionamiento:
+
+      1) Estructura básica:
+      - Una compuerta controlada tiene uno o más qubits de control y uno o más qubits objetivo
+      - La operación se aplica al qubit objetivo solo si todos los qubits de control están en el estado $|1\rangle$
+      - Si algún qubit de control está en el estado $|0\rangle$, el qubit objetivo permanece sin cambios
+      - Formalmente, para una operación $U$ de un qubit: $C^n(U)|c_1,c_2,...,c_n,t\rangle = |c_1,c_2,...,c_n\rangle \otimes U^{c_1 \cdot c_2 \cdot ... \cdot c_n}|t\rangle$
+
+      2) Representación matemática:
+      - Para una compuerta controlada con un qubit de control y uno objetivo, la matriz es:
+      $C(U) = |0\rangle\langle0| \otimes I + |1\rangle\langle1| \otimes U$
+      - Esto proyecta en el subespacio donde el control es $|0\rangle$ y aplica la identidad, o proyecta donde el control es $|1\rangle$ y aplica $U$
+
+      3) Implementación física:
+      - Requiere interacción entre qubits
+      - Más compleja y propensa a errores que las compuertas de un solo qubit
+      - Puede realizarse mediante acoplamientos directos o mediados según la plataforma física
+
+      Ejemplos importantes:
+
+      1) CNOT (Controlled-NOT):
+      - La compuerta controlada más fundamental
+      - Matriz: $\begin{pmatrix} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 \\ 0 & 0 & 1 & 0 \end{pmatrix}$
+      - Acción: Invierte el qubit objetivo solo si el qubit de control es $|1\rangle$
+      - Mapeo: $|c,t\rangle \mapsto |c,t \oplus c\rangle$ donde $\oplus$ es XOR bit a bit
+      - Equivale a medir el qubit de control en la base computacional y aplicar condicionalmente X al objetivo
+
+      2) Controlled-Z (CZ):
+      - Aplica la puerta Z al objetivo si el control es $|1\rangle$
+      - Matriz: $\begin{pmatrix} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & -1 \end{pmatrix}$
+      - Introduce fase de -1 solo si ambos qubits están en estado $|1\rangle$
+      - Simétrica respecto a qué qubit es control y cuál objetivo
+      - Relación con CNOT: $CZ = (I \otimes H) \cdot CNOT \cdot (I \otimes H)$
+
+      3) Controlled-Phase (CP o CR$_\phi$):
+      - Aplica rotación de fase $e^{i\phi}$ cuando ambos qubits son $|1\rangle$
+      - Matriz: $\begin{pmatrix} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & e^{i\phi} \end{pmatrix}$
+      - Caso especial: CS (controlled-S) cuando $\phi = \pi/2$
+
+      4) Toffoli (CCNOT):
+      - Compuerta NOT doblemente controlada
+      - Aplica X al tercer qubit solo si los dos primeros están en estado $|1\rangle$
+      - Matriz: $8 \times 8$ con un único intercambio entre los estados $|110\rangle$ y $|111\rangle$
+      - Universal para computación clásica reversible
+
+      5) Fredkin (CSWAP):
+      - Compuerta SWAP controlada
+      - Intercambia el segundo y tercer qubit cuando el primero está en $|1\rangle$
+      - También universal para computación clásica reversible
+
+      Importancia en computación cuántica:
+
+      1) Generación de entrelazamiento:
+      - Las compuertas controladas son las únicas que pueden crear entrelazamiento entre qubits
+      - CNOT convierte $|+\rangle|0\rangle$ en el estado entrelazado $\frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$
+      - Son esenciales para crear estados de Bell, GHZ y otros estados entrelazados útiles
+
+      2) Universalidad computacional:
+      - Cualquier operación unitaria puede descomponerse en compuertas de un qubit y CNOT
+      - El conjunto {H, T, CNOT} es universal para aproximar cualquier operación
+      - Sin compuertas controladas, sólo se podrían aplicar operaciones de un qubit en paralelo
+
+      3) Operaciones condicionales:
+      - Implementan la lógica "if-then" en algoritmos cuánticos
+      - Permiten que el procesamiento dependa del valor de ciertos qubits
+      - Esenciales para algoritmos como Shor y Grover
+
+      4) Transformaciones cuánticas fundamentales:
+      - La transformada cuántica de Fourier (QFT) requiere compuertas CR$_\phi$ controladas
+      - La adición cuántica utiliza secuencias de compuertas Toffoli
+      - El cálculo de multiplicación modular en el algoritmo de Shor depende de operaciones controladas
+
+      5) Reversibilidad computacional:
+      - Las compuertas Toffoli y Fredkin son universales para computación clásica reversible
+      - Permiten incorporar cualquier algoritmo clásico en un circuito cuántico
+      - Esenciales para implementar oráculos en algoritmos cuánticos
+
+      6) Corrección de errores:
+      - Los códigos de corrección de errores cuánticos utilizan CNOTs para propagar información de síndrome
+      - Permiten la detección y corrección de errores sin colapsar el estado cuántico
+
+      7) Mediciones e inicialización:
+      - Permiten mediciones en diferentes bases mediante operaciones controladas
+      - Facilitan la inicialización condicional de registros
+
+      8) Aplicaciones específicas:
+      - Teleportación cuántica: Utiliza CNOT para compartir entrelazamiento
+      - Algoritmo de Deutsch-Jozsa: Emplea compuertas controladas para evaluar la función en una sola consulta
+      - Estimación de fase: Usa CR$_\phi$ controladas para extraer información de fase
+
+      9) Eficiencia computacional:
+      - Permiten paralelismo cuántico y superposición de caminos computacionales
+      - Habilitan ventajas asintóticas sobre algoritmos clásicos
+
+      Desafíos y consideraciones prácticas:
+
+      1) Implementación física:
+      - Requieren interacción entre qubits, más difícil de implementar que compuertas de un qubit
+      - Típicamente más lentas y con mayor tasa de error
+      - Distintas plataformas tienen acoplamientos nativos diferentes (CZ en superconductores, XX en iones)
+
+      2) Optimización de circuitos:
+      - Los circuitos se optimizan para minimizar el número de compuertas controladas
+      - La topología de conexiones entre qubits limita dónde se pueden aplicar directamente
+      - Los compiladores cuánticos transforman circuitos para adaptarlos a la arquitectura física
+
+      3) Decoherencia:
+      - Las compuertas de dos qubits suelen ser más vulnerables a la decoherencia
+      - Los tiempos de operación más largos aumentan la exposición a errores
+      - La fidelidad de compuertas controladas es a menudo el factor limitante en procesadores cuánticos actuales
+
+      Las compuertas controladas representan la capacidad de la computación cuántica para realizar operaciones condicionales y generar correlaciones no clásicas, elementos que son fundamentales para desarrollar algoritmos que superen las capacidades clásicas.
+    \end{solution}
+
+    \part Explique qué es la matriz de densidad y cómo se utiliza para describir estados cuánticos mixtos y puros.
+
+    \begin{solution}
+      La matriz de densidad es un formalismo matemático que generaliza la descripción de estados cuánticos, permitiendo representar tanto estados puros como mixtos en un marco unificado. Este formalismo es especialmente útil para describir sistemas cuánticos abiertos, subsistemas de sistemas entrelazados y situaciones con incertidumbre clásica sobre la preparación del estado.
+
+      Definición y formulación matemática:
+
+      1) Estado puro:
+      - Un estado cuántico puro $|\psi\rangle$ se describe mediante su matriz de densidad como:
+      $\rho = |\psi\rangle\langle\psi|$
+      - Es un operador de proyección sobre el espacio unidimensional generado por $|\psi\rangle$
+      - Para un qubit con $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$, la matriz de densidad es:
+      $\rho = \begin{pmatrix} |\alpha|^2 & \alpha\beta^* \\ \alpha^*\beta & |\beta|^2 \end{pmatrix}$
+
+      2) Estado mixto:
+      - Representa un ensamble estadístico de estados puros $\{|\psi_i\rangle\}$ con probabilidades $\{p_i\}$
+      - Definido como: $\rho = \sum_i p_i |\psi_i\rangle\langle\psi_i|$
+      - Las probabilidades cumplen $p_i \geq 0$ y $\sum_i p_i = 1$
+      - No hay una representación única (diferentes ensambles pueden dar la misma matriz)
+
+      3) Propiedades matemáticas fundamentales:
+      - Hermítica: $\rho = \rho^\dagger$
+      - Semidefinida positiva: $\langle\phi|\rho|\phi\rangle \geq 0$ para todo $|\phi\rangle$
+      - Traza unitaria: $\text{Tr}(\rho) = 1$
+      - Idempotencia (solo para estados puros): $\rho^2 = \rho$
+
+      4) Representación de Bloch para un qubit:
+      - Cualquier matriz de densidad de un qubit puede escribirse como:
+      $\rho = \frac{1}{2}(I + \vec{r} \cdot \vec{\sigma})$
+      - Donde $\vec{r}$ es el vector de Bloch y $\vec{\sigma} = (\sigma_x, \sigma_y, \sigma_z)$ son las matrices de Pauli
+      - Para estados puros: $|\vec{r}| = 1$ (superficie de la esfera de Bloch)
+      - Para estados mixtos: $|\vec{r}| < 1$ (interior de la esfera de Bloch)
+      - El estado máximamente mixto es $\rho = \frac{1}{2}I$ (centro de la esfera)
+
+      Distinción entre estados puros y mixtos:
+
+      1) Criterios matemáticos:
+      - Un estado $\rho$ es puro si y solo si $\text{Tr}(\rho^2) = 1$
+      - Para estados mixtos: $\text{Tr}(\rho^2) < 1$
+      - Pureza: $\gamma = \text{Tr}(\rho^2)$ cuantifica qué tan "puro" es un estado
+      - Un estado es puro si y solo si $\rho^2 = \rho$ (idempotencia)
+      - Un estado es puro si y solo si $\text{rank}(\rho) = 1$
+
+      2) Interpretación física:
+      - Estados puros: Representan información cuántica máxima (incertidumbre puramente cuántica)
+      - Estados mixtos: Combinan incertidumbre cuántica y clásica (conocimiento incompleto)
+      - Los estados puros no pueden representarse como mezclas de otros estados distintos
+      - Un estado máximamente mixto representa ignorancia completa sobre el estado del sistema
+
+      Utilidad y aplicaciones:
+
+      1) Descripción de sistemas abiertos:
+      - Los sistemas que interactúan con el entorno evolucionan de estados puros a mixtos debido a la decoherencia
+      - La matriz de densidad captura esta pérdida gradual de coherencia cuántica
+      - Ejemplo: Un qubit que sufre decoherencia de fase ve reducidas sus coherencias (elementos fuera de la diagonal)
+
+      2) Caracterización de subsistemas entrelazados:
+      - Si un sistema bipartito AB está en un estado puro entrelazado, los subsistemas A y B están en estados mixtos
+      - La matriz de densidad reducida $\rho_A = \text{Tr}_B(\rho_{AB})$ describe completamente el subsistema A
+      - Ejemplo: Para un estado de Bell $|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$, la matriz reducida es $\rho_A = \frac{1}{2}I$
+
+      3) Mediciones y valores esperados:
+      - El valor esperado de un observable $A$ se calcula como: $\langle A \rangle = \text{Tr}(\rho A)$
+      - Esta fórmula unifica el cálculo para estados puros y mixtos
+      - La probabilidad de medir el valor propio $a$ es: $p(a) = \text{Tr}(\rho P_a)$ donde $P_a$ es el proyector
+
+      4) Evolución temporal:
+      - Para sistemas cerrados: $\frac{d\rho}{dt} = -\frac{i}{\hbar}[H, \rho]$ (ecuación de von Neumann)
+      - Para sistemas abiertos: Se utilizan ecuaciones maestras como la de Lindblad
+      - Permite describir dinámicas de decoherencia y disipación
 
-			5) Cuantificación de entrelazamiento y correlaciones:
-			- Entropía de von Neumann: $S(\rho) = -\text{Tr}(\rho \log \rho)$
-			- Negatividad (en sistemas bipartitos): Suma de valores propios negativos de la transpuesta parcial
-			- Discordia cuántica: Mide correlaciones cuánticas más allá del entrelazamiento
+      5) Cuantificación de entrelazamiento y correlaciones:
+      - Entropía de von Neumann: $S(\rho) = -\text{Tr}(\rho \log \rho)$
+      - Negatividad (en sistemas bipartitos): Suma de valores propios negativos de la transpuesta parcial
+      - Discordia cuántica: Mide correlaciones cuánticas más allá del entrelazamiento
 
-			6) Ejemplos prácticos:
+      6) Ejemplos prácticos:
 
-			a) Estado puro de un qubit:
-			$|\psi\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$
+      a) Estado puro de un qubit:
+      $|\psi\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$
 
-			Matriz de densidad:
-			$\rho = |\psi\rangle\langle\psi| = \frac{1}{2}\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}$
+      Matriz de densidad:
+      $\rho = |\psi\rangle\langle\psi| = \frac{1}{2}\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}$
 
-			Características:
-			- $\text{Tr}(\rho^2) = 1$ (puro)
-			- Contiene coherencias cuánticas (elementos no diagonales)
-			- Vector de Bloch: $\vec{r} = (1,0,0)$ (en la superficie de la esfera)
+      Características:
+      - $\text{Tr}(\rho^2) = 1$ (puro)
+      - Contiene coherencias cuánticas (elementos no diagonales)
+      - Vector de Bloch: $\vec{r} = (1,0,0)$ (en la superficie de la esfera)
 
-			b) Estado mixto de un qubit:
-			Mezcla estadística: 50% en $|0\rangle$ y 50% en $|1\rangle$
+      b) Estado mixto de un qubit:
+      Mezcla estadística: 50% en $|0\rangle$ y 50% en $|1\rangle$
 
-			Matriz de densidad:
-			$\rho = \frac{1}{2}|0\rangle\langle0| + \frac{1}{2}|1\rangle\langle1| = \frac{1}{2}\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$
+      Matriz de densidad:
+      $\rho = \frac{1}{2}|0\rangle\langle0| + \frac{1}{2}|1\rangle\langle1| = \frac{1}{2}\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$
 
-			Características:
-			- $\text{Tr}(\rho^2) = \frac{1}{2} < 1$ (mixto)
-			- Sin coherencias cuánticas (elementos no diagonales nulos)
-			- Vector de Bloch: $\vec{r} = (0,0,0)$ (centro de la esfera)
+      Características:
+      - $\text{Tr}(\rho^2) = \frac{1}{2} < 1$ (mixto)
+      - Sin coherencias cuánticas (elementos no diagonales nulos)
+      - Vector de Bloch: $\vec{r} = (0,0,0)$ (centro de la esfera)
 
-			c) Estado parcialmente mixto:
-			$\rho = 0.8|+\rangle\langle+| + 0.2|-\rangle\langle-| = \frac{1}{2}\begin{pmatrix} 1 & 0.6 \\ 0.6 & 1 \end{pmatrix}$
+      c) Estado parcialmente mixto:
+      $\rho = 0.8|+\rangle\langle+| + 0.2|-\rangle\langle-| = \frac{1}{2}\begin{pmatrix} 1 & 0.6 \\ 0.6 & 1 \end{pmatrix}$
 
-			Características:
-			- $\text{Tr}(\rho^2) = 0.68 < 1$ (mixto)
-			- Coherencias reducidas pero no nulas
-			- Vector de Bloch: $\vec{r} = (0.6,0,0)$ (interior de la esfera)
+      Características:
+      - $\text{Tr}(\rho^2) = 0.68 < 1$ (mixto)
+      - Coherencias reducidas pero no nulas
+      - Vector de Bloch: $\vec{r} = (0.6,0,0)$ (interior de la esfera)
 
-			Ventajas del formalismo de matriz de densidad:
+      Ventajas del formalismo de matriz de densidad:
 
-			1) Unificación conceptual:
-			- Proporciona un marco teórico único para estados puros y mixtos
-			- Permite tratar consistentemente incertidumbres cuánticas y clásicas
-			- Facilita la transición entre descripciones cuánticas y clásicas
+      1) Unificación conceptual:
+      - Proporciona un marco teórico único para estados puros y mixtos
+      - Permite tratar consistentemente incertidumbres cuánticas y clásicas
+      - Facilita la transición entre descripciones cuánticas y clásicas
 
-			2) Tratamiento matemático:
-			- Todas las propiedades físicas se pueden calcular directamente desde la matriz
-			- Permite aplicar herramientas del álgebra lineal y teoría de operadores
-			- Simplifica la descripción de sistemas compuestos y su reducción
+      2) Tratamiento matemático:
+      - Todas las propiedades físicas se pueden calcular directamente desde la matriz
+      - Permite aplicar herramientas del álgebra lineal y teoría de operadores
+      - Simplifica la descripción de sistemas compuestos y su reducción
 
-			3) Aplicaciones prácticas:
-			- Esencial en teoría de información cuántica
-			- Fundamental para corrección de errores cuánticos
-			- Necesario para describir resultados de tomografía de estado cuántico
-			- Clave para entender la interfaz cuántico-clásica en mediciones y decoherencia
+      3) Aplicaciones prácticas:
+      - Esencial en teoría de información cuántica
+      - Fundamental para corrección de errores cuánticos
+      - Necesario para describir resultados de tomografía de estado cuántico
+      - Clave para entender la interfaz cuántico-clásica en mediciones y decoherencia
 
-			4) Computación cuántica:
-			- Describe estados en presencia de ruido y errores
-			- Permite caracterizar la fidelidad de compuertas y operaciones
-			- Facilita el análisis de algoritmos en presencia de decoherencia
+      4) Computación cuántica:
+      - Describe estados en presencia de ruido y errores
+      - Permite caracterizar la fidelidad de compuertas y operaciones
+      - Facilita el análisis de algoritmos en presencia de decoherencia
 
-			Limitaciones:
+      Limitaciones:
 
-			1) Complejidad computacional:
-			- Para un sistema de n qubits, la matriz de densidad tiene tamaño $2^n \times 2^n$
-			- El almacenamiento y manipulación se vuelven exponencialmente costosos
-			- Existen representaciones más eficientes para casos específicos (MPS, PEPS, etc.)
+      1) Complejidad computacional:
+      - Para un sistema de n qubits, la matriz de densidad tiene tamaño $2^n \times 2^n$
+      - El almacenamiento y manipulación se vuelven exponencialmente costosos
+      - Existen representaciones más eficientes para casos específicos (MPS, PEPS, etc.)
 
-			2) Interpretación conceptual:
-			- La descomposición de un estado mixto en estados puros no es única
-			- Surgen ambigüedades en la interpretación física
-			- No captura toda la información sobre correlaciones en sistemas compuestos
+      2) Interpretación conceptual:
+      - La descomposición de un estado mixto en estados puros no es única
+      - Surgen ambigüedades en la interpretación física
+      - No captura toda la información sobre correlaciones en sistemas compuestos
 
-			El formalismo de la matriz de densidad constituye una herramienta matemática fundamental que extiende el marco del vector de estado, permitiendo describir sistemas cuánticos en situaciones realistas donde la decoherencia, las mediciones parciales y la información incompleta juegan un papel crucial.
-		\end{solution}
-	\end{parts}
+      El formalismo de la matriz de densidad constituye una herramienta matemática fundamental que extiende el marco del vector de estado, permitiendo describir sistemas cuánticos en situaciones realistas donde la decoherencia, las mediciones parciales y la información incompleta juegan un papel crucial.
+    \end{solution}
+  \end{parts}
 
-	\question[3]
-	Considere un sistema de dos qubits y los operadores de Pauli $X$, $Y$ y $Z$ que actúan sobre qubits individuales.
-	\begin{parts}
+  \question[3]
+  Considere un sistema de dos qubits y los operadores de Pauli $X$, $Y$ y $Z$ que actúan sobre qubits individuales.
+  \begin{parts}
 
-		\part Escriba las expresiones matriciales de $X \otimes I$, $I \otimes Z$ y $X \otimes Z$ en la base computacional $\{|00\rangle, |01\rangle, |10\rangle, |11\rangle\}$.
-		\part Verifique que $[X \otimes I, I \otimes Z] = 0$ y calcule $[X \otimes I, Z \otimes I]$.
-		\part Determine el resultado de aplicar el operador $X \otimes Z$ al estado $|\psi\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$.
-	\end{parts}
+    \part Escriba las expresiones matriciales de $X \otimes I$, $I \otimes Z$ y $X \otimes Z$ en la base computacional $\{|00\rangle, |01\rangle, |10\rangle, |11\rangle\}$.
+    \part Verifique que $[X \otimes I, I \otimes Z] = 0$ y calcule $[X \otimes I, Z \otimes I]$.
+    \part Determine el resultado de aplicar el operador $X \otimes Z$ al estado $|\psi\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$.
+  \end{parts}
 
-	\begin{solution}
-		a) Para escribir las expresiones matriciales de los operadores en la base computacional, recordemos primero las matrices de Pauli y la identidad:
+  \begin{solution}
+    a) Para escribir las expresiones matriciales de los operadores en la base computacional, recordemos primero las matrices de Pauli y la identidad:
 
-		$X = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$, $Y = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}$, $Z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$, $I = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$
+    $X = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$, $Y = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}$, $Z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$, $I = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$
 
-		Ahora calculamos los productos tensoriales:
+    Ahora calculamos los productos tensoriales:
 
-		$X \otimes I = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} \otimes \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = \begin{pmatrix} 0 \cdot I & 1 \cdot I \\ 1 \cdot I & 0 \cdot I \end{pmatrix} = \begin{pmatrix} 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \\ 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \end{pmatrix}$
+    $X \otimes I = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} \otimes \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = \begin{pmatrix} 0 \cdot I & 1 \cdot I \\ 1 \cdot I & 0 \cdot I \end{pmatrix} = \begin{pmatrix} 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \\ 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \end{pmatrix}$
 
-		$I \otimes Z = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} \otimes \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} = \begin{pmatrix} 1 \cdot Z & 0 \cdot Z \\ 0 \cdot Z & 1 \cdot Z \end{pmatrix} = \begin{pmatrix} 1 & 0 & 0 & 0 \\ 0 & -1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & -1 \end{pmatrix}$
+    $I \otimes Z = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} \otimes \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} = \begin{pmatrix} 1 \cdot Z & 0 \cdot Z \\ 0 \cdot Z & 1 \cdot Z \end{pmatrix} = \begin{pmatrix} 1 & 0 & 0 & 0 \\ 0 & -1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & -1 \end{pmatrix}$
 
-		$X \otimes Z = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} \otimes \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} = \begin{pmatrix} 0 \cdot Z & 1 \cdot Z \\ 1 \cdot Z & 0 \cdot Z \end{pmatrix} = \begin{pmatrix} 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & -1 \\ 1 & 0 & 0 & 0 \\ 0 & -1 & 0 & 0 \end{pmatrix}$
+    $X \otimes Z = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} \otimes \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} = \begin{pmatrix} 0 \cdot Z & 1 \cdot Z \\ 1 \cdot Z & 0 \cdot Z \end{pmatrix} = \begin{pmatrix} 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & -1 \\ 1 & 0 & 0 & 0 \\ 0 & -1 & 0 & 0 \end{pmatrix}$
 
-		b) Para verificar que $[X \otimes I, I \otimes Z] = 0$, calculamos el conmutador:
+    b) Para verificar que $[X \otimes I, I \otimes Z] = 0$, calculamos el conmutador:
 
-		$[X \otimes I, I \otimes Z] = (X \otimes I)(I \otimes Z) - (I \otimes Z)(X \otimes I)$
+    $[X \otimes I, I \otimes Z] = (X \otimes I)(I \otimes Z) - (I \otimes Z)(X \otimes I)$
 
-		Primero calculamos el producto $(X \otimes I)(I \otimes Z)$:
-		$(X \otimes I)(I \otimes Z) = X \otimes Z$
+    Primero calculamos el producto $(X \otimes I)(I \otimes Z)$:
+    $(X \otimes I)(I \otimes Z) = X \otimes Z$
 
-		Esto se debe a que $(A \otimes B)(C \otimes D) = (AC) \otimes (BD)$, por lo que:
-		$(X \otimes I)(I \otimes Z) = (XI) \otimes (IZ) = X \otimes Z$
+    Esto se debe a que $(A \otimes B)(C \otimes D) = (AC) \otimes (BD)$, por lo que:
+    $(X \otimes I)(I \otimes Z) = (XI) \otimes (IZ) = X \otimes Z$
 
-		De manera similar, calculamos $(I \otimes Z)(X \otimes I)$:
-		$(I \otimes Z)(X \otimes I) = (IX) \otimes (ZI) = X \otimes Z$
+    De manera similar, calculamos $(I \otimes Z)(X \otimes I)$:
+    $(I \otimes Z)(X \otimes I) = (IX) \otimes (ZI) = X \otimes Z$
 
-		Por lo tanto:
-		$[X \otimes I, I \otimes Z] = X \otimes Z - X \otimes Z = 0$
+    Por lo tanto:
+    $[X \otimes I, I \otimes Z] = X \otimes Z - X \otimes Z = 0$
 
-		Esto confirma que $X \otimes I$ y $I \otimes Z$ conmutan, lo cual es esperado ya que actúan en qubits diferentes.
+    Esto confirma que $X \otimes I$ y $I \otimes Z$ conmutan, lo cual es esperado ya que actúan en qubits diferentes.
 
-		Para calcular $[X \otimes I, Z \otimes I]$:
+    Para calcular $[X \otimes I, Z \otimes I]$:
 
-		$(X \otimes I)(Z \otimes I) = (XZ) \otimes (II) = XZ \otimes I$
-		$(Z \otimes I)(X \otimes I) = (ZX) \otimes (II) = ZX \otimes I$
+    $(X \otimes I)(Z \otimes I) = (XZ) \otimes (II) = XZ \otimes I$
+    $(Z \otimes I)(X \otimes I) = (ZX) \otimes (II) = ZX \otimes I$
 
-		Sabemos que $[X, Z] = XZ - ZX = 2iY$, por lo tanto:
-		$[X \otimes I, Z \otimes I] = XZ \otimes I - ZX \otimes I = [X, Z] \otimes I = 2iY \otimes I$
+    Sabemos que $[X, Z] = XZ - ZX = 2iY$, por lo tanto:
+    $[X \otimes I, Z \otimes I] = XZ \otimes I - ZX \otimes I = [X, Z] \otimes I = 2iY \otimes I$
 
-		En forma matricial:
-		$2iY \otimes I = 2i \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix} \otimes \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = 2i \begin{pmatrix} 0 & -i & 0 & 0 \\ i & 0 & 0 & 0 \\ 0 & 0 & 0 & -i \\ 0 & 0 & i & 0 \end{pmatrix} = \begin{pmatrix} 0 & 2 & 0 & 0 \\ -2 & 0 & 0 & 0 \\ 0 & 0 & 0 & 2 \\ 0 & 0 & -2 & 0 \end{pmatrix}$
+    En forma matricial:
+    $2iY \otimes I = 2i \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix} \otimes \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = 2i \begin{pmatrix} 0 & -i & 0 & 0 \\ i & 0 & 0 & 0 \\ 0 & 0 & 0 & -i \\ 0 & 0 & i & 0 \end{pmatrix} = \begin{pmatrix} 0 & 2 & 0 & 0 \\ -2 & 0 & 0 & 0 \\ 0 & 0 & 0 & 2 \\ 0 & 0 & -2 & 0 \end{pmatrix}$
 
-		c) Para determinar el resultado de aplicar $X \otimes Z$ al estado $|\psi\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$, calculamos:
+    c) Para determinar el resultado de aplicar $X \otimes Z$ al estado $|\psi\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$, calculamos:
 
-		$(X \otimes Z)|\psi\rangle = \frac{1}{\sqrt{2}}(X \otimes Z)|00\rangle + \frac{1}{\sqrt{2}}(X \otimes Z)|11\rangle$
+    $(X \otimes Z)|\psi\rangle = \frac{1}{\sqrt{2}}(X \otimes Z)|00\rangle + \frac{1}{\sqrt{2}}(X \otimes Z)|11\rangle$
 
-		Calculamos la acción de $X \otimes Z$ sobre los estados base:
-		$(X \otimes Z)|00\rangle = X|0\rangle \otimes Z|0\rangle = |1\rangle \otimes |0\rangle = |10\rangle$
-		$(X \otimes Z)|11\rangle = X|1\rangle \otimes Z|1\rangle = |0\rangle \otimes (-|1\rangle) = -|01\rangle$
+    Calculamos la acción de $X \otimes Z$ sobre los estados base:
+    $(X \otimes Z)|00\rangle = X|0\rangle \otimes Z|0\rangle = |1\rangle \otimes |0\rangle = |10\rangle$
+    $(X \otimes Z)|11\rangle = X|1\rangle \otimes Z|1\rangle = |0\rangle \otimes (-|1\rangle) = -|01\rangle$
 
-		Por lo tanto:
-		$(X \otimes Z)|\psi\rangle = \frac{1}{\sqrt{2}}(|10\rangle - |01\rangle)$
+    Por lo tanto:
+    $(X \otimes Z)|\psi\rangle = \frac{1}{\sqrt{2}}(|10\rangle - |01\rangle)$
 
-		d) Para determinar si el estado resultante $|\psi'\rangle = \frac{1}{\sqrt{2}}(|10\rangle - |01\rangle)$ está entrelazado, verificamos si puede escribirse como un producto tensorial de dos estados de un qubit.
+    d) Para determinar si el estado resultante $|\psi'\rangle = \frac{1}{\sqrt{2}}(|10\rangle - |01\rangle)$ está entrelazado, verificamos si puede escribirse como un producto tensorial de dos estados de un qubit.
 
-		Supongamos que $|\psi'\rangle$ es separable. Entonces debe existir $|\phi_A\rangle = a|0\rangle + b|1\rangle$ y $|\phi_B\rangle = c|0\rangle + d|1\rangle$ tales que:
-		$|\psi'\rangle = |\phi_A\rangle \otimes |\phi_B\rangle = (a|0\rangle + b|1\rangle) \otimes (c|0\rangle + d|1\rangle) = ac|00\rangle + ad|01\rangle + bc|10\rangle + bd|11\rangle$
+    Supongamos que $|\psi'\rangle$ es separable. Entonces debe existir $|\phi_A\rangle = a|0\rangle + b|1\rangle$ y $|\phi_B\rangle = c|0\rangle + d|1\rangle$ tales que:
+    $|\psi'\rangle = |\phi_A\rangle \otimes |\phi_B\rangle = (a|0\rangle + b|1\rangle) \otimes (c|0\rangle + d|1\rangle) = ac|00\rangle + ad|01\rangle + bc|10\rangle + bd|11\rangle$
 
-		Comparando con $|\psi'\rangle = \frac{1}{\sqrt{2}}(|10\rangle - |01\rangle)$, obtenemos:
-		$ac = 0$
-		$ad = -\frac{1}{\sqrt{2}}$
-		$bc = \frac{1}{\sqrt{2}}$
-		$bd = 0$
+    Comparando con $|\psi'\rangle = \frac{1}{\sqrt{2}}(|10\rangle - |01\rangle)$, obtenemos:
+    $ac = 0$
+    $ad = -\frac{1}{\sqrt{2}}$
+    $bc = \frac{1}{\sqrt{2}}$
+    $bd = 0$
 
-		De $ac = 0$ y $bd = 0$, tenemos que $a = 0$ o $c = 0$, y $b = 0$ o $d = 0$.
+    De $ac = 0$ y $bd = 0$, tenemos que $a = 0$ o $c = 0$, y $b = 0$ o $d = 0$.
 
-		Si $a = 0$, entonces de $bc = \frac{1}{\sqrt{2}}$ necesitamos $b \neq 0$ y $c \neq 0$. Pero esto implica que $bd = 0$ requiere $d = 0$. Pero entonces $ad = -\frac{1}{\sqrt{2}}$ no puede satisfacerse ya que $a = 0$.
+    Si $a = 0$, entonces de $bc = \frac{1}{\sqrt{2}}$ necesitamos $b \neq 0$ y $c \neq 0$. Pero esto implica que $bd = 0$ requiere $d = 0$. Pero entonces $ad = -\frac{1}{\sqrt{2}}$ no puede satisfacerse ya que $a = 0$.
 
-		De manera similar, podemos verificar que ninguna otra combinación de $a = 0$ o $c = 0$ junto con $b = 0$ o $d = 0$ puede satisfacer todas las ecuaciones simultáneamente.
+    De manera similar, podemos verificar que ninguna otra combinación de $a = 0$ o $c = 0$ junto con $b = 0$ o $d = 0$ puede satisfacer todas las ecuaciones simultáneamente.
 
-		Por lo tanto, $|\psi'\rangle$ no puede expresarse como un producto tensorial, lo que significa que está entrelazado.
+    Por lo tanto, $|\psi'\rangle$ no puede expresarse como un producto tensorial, lo que significa que está entrelazado.
 
-		De hecho, $|\psi'\rangle = \frac{1}{\sqrt{2}}(|10\rangle - |01\rangle)$ es uno de los estados de Bell (específicamente $|\Psi^-\rangle$), conocido por ser un estado máximamente entrelazado de dos qubits.
+    De hecho, $|\psi'\rangle = \frac{1}{\sqrt{2}}(|10\rangle - |01\rangle)$ es uno de los estados de Bell (específicamente $|\Psi^-\rangle$), conocido por ser un estado máximamente entrelazado de dos qubits.
 
-		Otra forma de verificar el entrelazamiento es calcular la matriz de densidad reducida de uno de los qubits. Si el estado es puro y entrelazado, la matriz reducida será mixta.
+    Otra forma de verificar el entrelazamiento es calcular la matriz de densidad reducida de uno de los qubits. Si el estado es puro y entrelazado, la matriz reducida será mixta.
 
-		$\rho = |\psi'\rangle\langle\psi'| = \frac{1}{2}(|10\rangle - |01\rangle)(\langle10| - \langle01|) = \frac{1}{2}(|10\rangle\langle10| + |01\rangle\langle01| - |10\rangle\langle01| - |01\rangle\langle10|)$
+    $\rho = |\psi'\rangle\langle\psi'| = \frac{1}{2}(|10\rangle - |01\rangle)(\langle10| - \langle01|) = \frac{1}{2}(|10\rangle\langle10| + |01\rangle\langle01| - |10\rangle\langle01| - |01\rangle\langle10|)$
 
-		La matriz de densidad reducida del primer qubit es:
-		$\rho_A = \text{Tr}_B(\rho) = \frac{1}{2}(|1\rangle\langle1| + |0\rangle\langle0|) = \frac{1}{2}I$
+    La matriz de densidad reducida del primer qubit es:
+    $\rho_A = \text{Tr}_B(\rho) = \frac{1}{2}(|1\rangle\langle1| + |0\rangle\langle0|) = \frac{1}{2}I$
 
-		Dado que $\rho_A$ representa un estado máximamente mixto (sus valores propios son ambos $\frac{1}{2}$), podemos confirmar que $|\psi'\rangle$ está máximamente entrelazado.
-	\end{solution}
+    Dado que $\rho_A$ representa un estado máximamente mixto (sus valores propios son ambos $\frac{1}{2}$), podemos confirmar que $|\psi'\rangle$ está máximamente entrelazado.
+  \end{solution}
 
-	\question[3]
-	Considere un sistema cuántico con espacio de Hilbert $\mathbb{C}^4$ y un operador hermitiano
-	$H = \begin{pmatrix}
-			2 & 0 & 1 & 0 \\
-			0 & 3 & 0 & 0 \\
-			1 & 0 & 2 & 0 \\
-			0 & 0 & 0 & 1
-		\end{pmatrix}$
-	\begin{parts}
+  \question[3]
+  Considere un sistema cuántico con espacio de Hilbert sobre $\mathbb{C}^4$ y el operador hermitiano
+  \[
+    H = \begin{pmatrix}
+      2 & 0 & 1 & 0 \\
+      0 & 3 & 0 & 0 \\
+      1 & 0 & 2 & 0 \\
+      0 & 0 & 0 & 1
+    \end{pmatrix}\
+  \]
+  \begin{parts}
 
-		\part Determine los valores propios y vectores propios de $H$.
-		\part Escriba la descomposición espectral de $H$.
-		\part Calcule $e^{iH}$ utilizando la descomposición espectral.
-	\end{parts}
+    \part Determine los valores propios y vectores propios de $H$.
+    \part Escriba la descomposición espectral de $H$.
+    \part Calcule $e^{iH}$ utilizando la descomposición espectral.
+  \end{parts}
 
-	\begin{solution}
-		a) Para determinar los valores propios y vectores propios del operador hermitiano $H$, primero observamos que $H$ tiene una estructura especial que nos permite simplificar el cálculo.
+  \begin{solution}
+    a) Para determinar los valores propios y vectores propios del operador hermitiano $H$, primero observamos que $H$ tiene una estructura especial que nos permite simplificar el cálculo.
 
-		La matriz $H$ puede verse como una suma directa de dos bloques:
-		- Un bloque $2 \times 2$ en la esquina superior izquierda: $\begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}$
-		- Dos valores en la diagonal: $3$ y $1$
+    La matriz $H$ puede verse como una suma directa de dos bloques:
+    - Un bloque $2 \times 2$ en la esquina superior izquierda: $\begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}$
+    - Dos valores en la diagonal: $3$ y $1$
 
-		Calculemos primero los valores propios y vectores propios del bloque $2 \times 2$:
+    Calculemos primero los valores propios y vectores propios del bloque $2 \times 2$:
 
-		$\begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}$
+    $\begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}$
 
-		El polinomio característico es:
-		$\det\begin{pmatrix} 2-\lambda & 1 \\ 1 & 2-\lambda \end{pmatrix} = (2-\lambda)^2 - 1 = \lambda^2 - 4\lambda + 3 = (\lambda-3)(\lambda-1)$
+    El polinomio característico es:
+    $\det\begin{pmatrix} 2-\lambda & 1 \\ 1 & 2-\lambda \end{pmatrix} = (2-\lambda)^2 - 1 = \lambda^2 - 4\lambda + 3 = (\lambda-3)(\lambda-1)$
 
-		Por lo tanto, los valores propios son $\lambda_1 = 3$ y $\lambda_2 = 1$.
+    Por lo tanto, los valores propios son $\lambda_1 = 3$ y $\lambda_2 = 1$.
 
-		Para $\lambda_1 = 3$, encontramos el vector propio:
-		$\begin{pmatrix} 2-3 & 1 \\ 1 & 2-3 \end{pmatrix}\begin{pmatrix} v_1 \\ v_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}$
-		$\begin{pmatrix} -1 & 1 \\ 1 & -1 \end{pmatrix}\begin{pmatrix} v_1 \\ v_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}$
+    Para $\lambda_1 = 3$, encontramos el vector propio:
+    $\begin{pmatrix} 2-3 & 1 \\ 1 & 2-3 \end{pmatrix}\begin{pmatrix} v_1 \\ v_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}$
+    $\begin{pmatrix} -1 & 1 \\ 1 & -1 \end{pmatrix}\begin{pmatrix} v_1 \\ v_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}$
 
-		Esto nos da $v_1 = v_2$. Normalizando, obtenemos el vector propio:
-		$|v_1\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 1 \end{pmatrix}$
+    Esto nos da $v_1 = v_2$. Normalizando, obtenemos el vector propio:
+    $|v_1\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 1 \end{pmatrix}$
 
-		Para $\lambda_2 = 1$, encontramos el vector propio:
-		$\begin{pmatrix} 2-1 & 1 \\ 1 & 2-1 \end{pmatrix}\begin{pmatrix} v_1 \\ v_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}$
-		$\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}\begin{pmatrix} v_1 \\ v_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}$
+    Para $\lambda_2 = 1$, encontramos el vector propio:
+    $\begin{pmatrix} 2-1 & 1 \\ 1 & 2-1 \end{pmatrix}\begin{pmatrix} v_1 \\ v_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}$
+    $\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}\begin{pmatrix} v_1 \\ v_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}$
 
-		Esto nos da $v_1 = -v_2$. Normalizando, obtenemos el vector propio:
-		$|v_2\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ -1 \end{pmatrix}$
+    Esto nos da $v_1 = -v_2$. Normalizando, obtenemos el vector propio:
+    $|v_2\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ -1 \end{pmatrix}$
 
-		Ahora, necesitamos extender estos vectores al espacio completo $\mathbb{C}^4$.
+    Ahora, necesitamos extender estos vectores al espacio completo $\mathbb{C}^4$.
 
-		Los valores propios y vectores propios de $H$ son:
+    Los valores propios y vectores propios de $H$ son:
 
-		$\lambda_1 = 3$ con vector propio $|u_1\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 0 \\ 1 \\ 0 \end{pmatrix}$
+    $\lambda_1 = 3$ con vector propio $|u_1\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 0 \\ 1 \\ 0 \end{pmatrix}$
 
-		$\lambda_2 = 1$ con vector propio $|u_2\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 0 \\ -1 \\ 0 \end{pmatrix}$
+    $\lambda_2 = 1$ con vector propio $|u_2\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 0 \\ -1 \\ 0 \end{pmatrix}$
 
-		$\lambda_3 = 3$ con vector propio $|u_3\rangle = \begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \end{pmatrix}$
+    $\lambda_3 = 3$ con vector propio $|u_3\rangle = \begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \end{pmatrix}$
 
-		$\lambda_4 = 1$ con vector propio $|u_4\rangle = \begin{pmatrix} 0 \\ 0 \\ 0 \\ 1 \end{pmatrix}$
+    $\lambda_4 = 1$ con vector propio $|u_4\rangle = \begin{pmatrix} 0 \\ 0 \\ 0 \\ 1 \end{pmatrix}$
 
-		Nota: Hay una degeneración en los valores propios, ya que $\lambda_1 = \lambda_3 = 3$ y $\lambda_2 = \lambda_4 = 1$.
+    Nota: Hay una degeneración en los valores propios, ya que $\lambda_1 = \lambda_3 = 3$ y $\lambda_2 = \lambda_4 = 1$.
 
-		b) La descomposición espectral de $H$ es:
+    b) La descomposición espectral de $H$ es:
 
-		$H = \sum_{i=1}^{4} \lambda_i |u_i\rangle\langle u_i|$
+    $H = \sum_{i=1}^{4} \lambda_i |u_i\rangle\langle u_i|$
 
-		$H = 3 |u_1\rangle\langle u_1| + 1 |u_2\rangle\langle u_2| + 3 |u_3\rangle\langle u_3| + 1 |u_4\rangle\langle u_4|$
+    $H = 3 |u_1\rangle\langle u_1| + 1 |u_2\rangle\langle u_2| + 3 |u_3\rangle\langle u_3| + 1 |u_4\rangle\langle u_4|$
 
-		Sustituyendo los vectores propios:
+    Sustituyendo los vectores propios:
 
-		$H = 3 \cdot \frac{1}{2}\begin{pmatrix} 1 \\ 0 \\ 1 \\ 0 \end{pmatrix}\begin{pmatrix} 1 & 0 & 1 & 0 \end{pmatrix} + 1 \cdot \frac{1}{2}\begin{pmatrix} 1 \\ 0 \\ -1 \\ 0 \end{pmatrix}\begin{pmatrix} 1 & 0 & -1 & 0 \end{pmatrix} + 3 \begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \end{pmatrix}\begin{pmatrix} 0 & 1 & 0 & 0 \end{pmatrix} + 1 \begin{pmatrix} 0 \\ 0 \\ 0 \\ 1 \end{pmatrix}\begin{pmatrix} 0 & 0 & 0 & 1 \end{pmatrix}$
+    $H = 3 \cdot \frac{1}{2}\begin{pmatrix} 1 \\ 0 \\ 1 \\ 0 \end{pmatrix}\begin{pmatrix} 1 & 0 & 1 & 0 \end{pmatrix} + 1 \cdot \frac{1}{2}\begin{pmatrix} 1 \\ 0 \\ -1 \\ 0 \end{pmatrix}\begin{pmatrix} 1 & 0 & -1 & 0 \end{pmatrix} + 3 \begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \end{pmatrix}\begin{pmatrix} 0 & 1 & 0 & 0 \end{pmatrix} + 1 \begin{pmatrix} 0 \\ 0 \\ 0 \\ 1 \end{pmatrix}\begin{pmatrix} 0 & 0 & 0 & 1 \end{pmatrix}$
 
-		$H = \frac{3}{2}\begin{pmatrix} 1 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 \\ 1 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 \end{pmatrix} + \frac{1}{2}\begin{pmatrix} 1 & 0 & -1 & 0 \\ 0 & 0 & 0 & 0 \\ -1 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 \end{pmatrix} + 3\begin{pmatrix} 0 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \end{pmatrix} + \begin{pmatrix} 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 \end{pmatrix}$
+    $H = \frac{3}{2}\begin{pmatrix} 1 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 \\ 1 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 \end{pmatrix} + \frac{1}{2}\begin{pmatrix} 1 & 0 & -1 & 0 \\ 0 & 0 & 0 & 0 \\ -1 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 \end{pmatrix} + 3\begin{pmatrix} 0 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \end{pmatrix} + \begin{pmatrix} 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 \end{pmatrix}$
 
-		Sumando estas matrices, obtenemos:
+    Sumando estas matrices, obtenemos:
 
-		$H = \begin{pmatrix} 2 & 0 & 1 & 0 \\ 0 & 3 & 0 & 0 \\ 1 & 0 & 2 & 0 \\ 0 & 0 & 0 & 1 \end{pmatrix}$
+    $H = \begin{pmatrix} 2 & 0 & 1 & 0 \\ 0 & 3 & 0 & 0 \\ 1 & 0 & 2 & 0 \\ 0 & 0 & 0 & 1 \end{pmatrix}$
 
-		Lo cual verifica nuestra descomposición espectral.
+    Lo cual verifica nuestra descomposición espectral.
 
-		c) Para calcular $e^{iH}$ utilizando la descomposición espectral, aplicamos la fórmula:
+    c) Para calcular $e^{iH}$ utilizando la descomposición espectral, aplicamos la fórmula:
 
-		$e^{iH} = \sum_{i=1}^{4} e^{i\lambda_i} |u_i\rangle\langle u_i|$
+    $e^{iH} = \sum_{i=1}^{4} e^{i\lambda_i} |u_i\rangle\langle u_i|$
 
-		$e^{iH} = e^{3i} |u_1\rangle\langle u_1| + e^i |u_2\rangle\langle u_2| + e^{3i} |u_3\rangle\langle u_3| + e^i |u_4\rangle\langle u_4|$
+    $e^{iH} = e^{3i} |u_1\rangle\langle u_1| + e^i |u_2\rangle\langle u_2| + e^{3i} |u_3\rangle\langle u_3| + e^i |u_4\rangle\langle u_4|$
 
-		Sustituyendo los vectores propios:
+    Sustituyendo los vectores propios:
 
-		$e^{iH} = e^{3i} \cdot \frac{1}{2}\begin{pmatrix} 1 \\ 0 \\ 1 \\ 0 \end{pmatrix}\begin{pmatrix} 1 & 0 & 1 & 0 \end{pmatrix} + e^i \cdot \frac{1}{2}\begin{pmatrix} 1 \\ 0 \\ -1 \\ 0 \end{pmatrix}\begin{pmatrix} 1 & 0 & -1 & 0 \end{pmatrix} + e^{3i} \begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \end{pmatrix}\begin{pmatrix} 0 & 1 & 0 & 0 \end{pmatrix} + e^i \begin{pmatrix} 0 \\ 0 \\ 0 \\ 1 \end{pmatrix}\begin{pmatrix} 0 & 0 & 0 & 1 \end{pmatrix}$
+    $e^{iH} = e^{3i} \cdot \frac{1}{2}\begin{pmatrix} 1 \\ 0 \\ 1 \\ 0 \end{pmatrix}\begin{pmatrix} 1 & 0 & 1 & 0 \end{pmatrix} + e^i \cdot \frac{1}{2}\begin{pmatrix} 1 \\ 0 \\ -1 \\ 0 \end{pmatrix}\begin{pmatrix} 1 & 0 & -1 & 0 \end{pmatrix} + e^{3i} \begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \end{pmatrix}\begin{pmatrix} 0 & 1 & 0 & 0 \end{pmatrix} + e^i \begin{pmatrix} 0 \\ 0 \\ 0 \\ 1 \end{pmatrix}\begin{pmatrix} 0 & 0 & 0 & 1 \end{pmatrix}$
 
-		$e^{iH} = \frac{e^{3i}}{2}\begin{pmatrix} 1 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 \\ 1 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 \end{pmatrix} + \frac{e^i}{2}\begin{pmatrix} 1 & 0 & -1 & 0 \\ 0 & 0 & 0 & 0 \\ -1 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 \end{pmatrix} + e^{3i}\begin{pmatrix} 0 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \end{pmatrix} + e^i\begin{pmatrix} 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 \end{pmatrix}$
+    $e^{iH} = \frac{e^{3i}}{2}\begin{pmatrix} 1 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 \\ 1 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 \end{pmatrix} + \frac{e^i}{2}\begin{pmatrix} 1 & 0 & -1 & 0 \\ 0 & 0 & 0 & 0 \\ -1 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 \end{pmatrix} + e^{3i}\begin{pmatrix} 0 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \end{pmatrix} + e^i\begin{pmatrix} 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 \end{pmatrix}$
 
-		Simplificando:
+    Simplificando:
 
-		$e^{iH} = \begin{pmatrix} \frac{e^{3i}+e^i}{2} & 0      & \frac{e^{3i}-e^i}{2} & 0   \\
+    $e^{iH} = \begin{pmatrix} \frac{e^{3i}+e^i}{2} & 0      & \frac{e^{3i}-e^i}{2} & 0   \\
                 0                    & e^{3i} & 0                    & 0   \\
                 \frac{e^{3i}-e^i}{2} & 0      & \frac{e^{3i}+e^i}{2} & 0   \\
                 0                    & 0      & 0                    & e^i\end{pmatrix}$
 
-		d) Para determinar el estado $|\psi(t)\rangle = e^{-iHt}|\psi(0)\rangle$, primero necesitamos calcular $e^{-iHt}$ utilizando la descomposición espectral:
+    d) Para determinar el estado $|\psi(t)\rangle = e^{-iHt}|\psi(0)\rangle$, primero necesitamos calcular $e^{-iHt}$ utilizando la descomposición espectral:
 
-		$e^{-iHt} = \sum_{i=1}^{4} e^{-i\lambda_i t} |u_i\rangle\langle u_i|$
+    $e^{-iHt} = \sum_{i=1}^{4} e^{-i\lambda_i t} |u_i\rangle\langle u_i|$
 
-		$e^{-iHt} = e^{-3it} |u_1\rangle\langle u_1| + e^{-it} |u_2\rangle\langle u_2| + e^{-3it} |u_3\rangle\langle u_3| + e^{-it} |u_4\rangle\langle u_4|$
+    $e^{-iHt} = e^{-3it} |u_1\rangle\langle u_1| + e^{-it} |u_2\rangle\langle u_2| + e^{-3it} |u_3\rangle\langle u_3| + e^{-it} |u_4\rangle\langle u_4|$
 
-		Ahora, aplicamos este operador al estado inicial:
+    Ahora, aplicamos este operador al estado inicial:
 
-		$|\psi(0)\rangle = \frac{1}{2}(|0\rangle + |1\rangle + |2\rangle + |3\rangle) = \frac{1}{2}\begin{pmatrix} 1 \\ 1 \\ 1 \\ 1 \end{pmatrix}$
+    $|\psi(0)\rangle = \frac{1}{2}(|0\rangle + |1\rangle + |2\rangle + |3\rangle) = \frac{1}{2}\begin{pmatrix} 1 \\ 1 \\ 1 \\ 1 \end{pmatrix}$
 
-		Para facilitar el cálculo, expresamos $|\psi(0)\rangle$ en términos de los vectores propios de $H$. Para esto, calculamos los coeficientes $c_i = \langle u_i|\psi(0)\rangle$:
+    Para facilitar el cálculo, expresamos $|\psi(0)\rangle$ en términos de los vectores propios de $H$. Para esto, calculamos los coeficientes $c_i = \langle u_i|\psi(0)\rangle$:
 
-		$c_1 = \langle u_1|\psi(0)\rangle = \frac{1}{\sqrt{2}} \cdot \frac{1}{2}(1 + 0 + 1 + 0) = \frac{1}{\sqrt{2}} \cdot \frac{2}{2} = \frac{1}{\sqrt{2}}$
+    $c_1 = \langle u_1|\psi(0)\rangle = \frac{1}{\sqrt{2}} \cdot \frac{1}{2}(1 + 0 + 1 + 0) = \frac{1}{\sqrt{2}} \cdot \frac{2}{2} = \frac{1}{\sqrt{2}}$
 
-		$c_2 = \langle u_2|\psi(0)\rangle = \frac{1}{\sqrt{2}} \cdot \frac{1}{2}(1 + 0 - 1 + 0) = \frac{1}{\sqrt{2}} \cdot \frac{0}{2} = 0$
+    $c_2 = \langle u_2|\psi(0)\rangle = \frac{1}{\sqrt{2}} \cdot \frac{1}{2}(1 + 0 - 1 + 0) = \frac{1}{\sqrt{2}} \cdot \frac{0}{2} = 0$
 
-		$c_3 = \langle u_3|\psi(0)\rangle = 1 \cdot \frac{1}{2}(0 + 1 + 0 + 0) = \frac{1}{2}$
+    $c_3 = \langle u_3|\psi(0)\rangle = 1 \cdot \frac{1}{2}(0 + 1 + 0 + 0) = \frac{1}{2}$
 
-		$c_4 = \langle u_4|\psi(0)\rangle = 1 \cdot \frac{1}{2}(0 + 0 + 0 + 1) = \frac{1}{2}$
+    $c_4 = \langle u_4|\psi(0)\rangle = 1 \cdot \frac{1}{2}(0 + 0 + 0 + 1) = \frac{1}{2}$
 
-		Entonces:
-		$|\psi(0)\rangle = c_1|u_1\rangle + c_2|u_2\rangle + c_3|u_3\rangle + c_4|u_4\rangle = \frac{1}{\sqrt{2}}|u_1\rangle + 0|u_2\rangle + \frac{1}{2}|u_3\rangle + \frac{1}{2}|u_4\rangle$
+    Entonces:
+    $|\psi(0)\rangle = c_1|u_1\rangle + c_2|u_2\rangle + c_3|u_3\rangle + c_4|u_4\rangle = \frac{1}{\sqrt{2}}|u_1\rangle + 0|u_2\rangle + \frac{1}{2}|u_3\rangle + \frac{1}{2}|u_4\rangle$
 
-		Ahora, calculamos el estado evolucionado:
-		$|\psi(t)\rangle = e^{-iHt}|\psi(0)\rangle = \sum_{i=1}^{4} e^{-i\lambda_i t} \langle u_i|\psi(0)\rangle |u_i\rangle$
+    Ahora, calculamos el estado evolucionado:
+    $|\psi(t)\rangle = e^{-iHt}|\psi(0)\rangle = \sum_{i=1}^{4} e^{-i\lambda_i t} \langle u_i|\psi(0)\rangle |u_i\rangle$
 
-		$|\psi(t)\rangle = e^{-3it} \cdot \frac{1}{\sqrt{2}} \cdot |u_1\rangle + e^{-it} \cdot 0 \cdot |u_2\rangle + e^{-3it} \cdot \frac{1}{2} \cdot |u_3\rangle + e^{-it} \cdot \frac{1}{2} \cdot |u_4\rangle$
+    $|\psi(t)\rangle = e^{-3it} \cdot \frac{1}{\sqrt{2}} \cdot |u_1\rangle + e^{-it} \cdot 0 \cdot |u_2\rangle + e^{-3it} \cdot \frac{1}{2} \cdot |u_3\rangle + e^{-it} \cdot \frac{1}{2} \cdot |u_4\rangle$
 
-		$|\psi(t)\rangle = \frac{e^{-3it}}{\sqrt{2}}|u_1\rangle + \frac{e^{-3it}}{2}|u_3\rangle + \frac{e^{-it}}{2}|u_4\rangle$
+    $|\psi(t)\rangle = \frac{e^{-3it}}{\sqrt{2}}|u_1\rangle + \frac{e^{-3it}}{2}|u_3\rangle + \frac{e^{-it}}{2}|u_4\rangle$
 
-		Sustituyendo los vectores propios:
+    Sustituyendo los vectores propios:
 
-		$|\psi(t)\rangle = \frac{e^{-3it}}{\sqrt{2}} \cdot \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 0 \\ 1 \\ 0 \end{pmatrix} + \frac{e^{-3it}}{2}\begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \end{pmatrix} + \frac{e^{-it}}{2}\begin{pmatrix} 0 \\ 0 \\ 0 \\ 1 \end{pmatrix}$
+    $|\psi(t)\rangle = \frac{e^{-3it}}{\sqrt{2}} \cdot \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 0 \\ 1 \\ 0 \end{pmatrix} + \frac{e^{-3it}}{2}\begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \end{pmatrix} + \frac{e^{-it}}{2}\begin{pmatrix} 0 \\ 0 \\ 0 \\ 1 \end{pmatrix}$
 
-		$|\psi(t)\rangle = \frac{e^{-3it}}{2}\begin{pmatrix} 1 \\ 0 \\ 1 \\ 0 \end{pmatrix} + \frac{e^{-3it}}{2}\begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \end{pmatrix} + \frac{e^{-it}}{2}\begin{pmatrix} 0 \\ 0 \\ 0 \\ 1 \end{pmatrix}$
+    $|\psi(t)\rangle = \frac{e^{-3it}}{2}\begin{pmatrix} 1 \\ 0 \\ 1 \\ 0 \end{pmatrix} + \frac{e^{-3it}}{2}\begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \end{pmatrix} + \frac{e^{-it}}{2}\begin{pmatrix} 0 \\ 0 \\ 0 \\ 1 \end{pmatrix}$
 
-		$|\psi(t)\rangle = \frac{1}{2}\begin{pmatrix} e^{-3it} \\ e^{-3it} \\ e^{-3it} \\ e^{-it} \end{pmatrix}$
+    $|\psi(t)\rangle = \frac{1}{2}\begin{pmatrix} e^{-3it} \\ e^{-3it} \\ e^{-3it} \\ e^{-it} \end{pmatrix}$
 
-		Esto muestra que el estado evoluciona con diferentes fases para sus componentes, de acuerdo con los valores propios de $H$. Las componentes correspondientes a los valores propios $\lambda = 3$ oscilan con frecuencia $3$ veces mayor que las componentes correspondientes a $\lambda = 1$.
+    Esto muestra que el estado evoluciona con diferentes fases para sus componentes, de acuerdo con los valores propios de $H$. Las componentes correspondientes a los valores propios $\lambda = 3$ oscilan con frecuencia $3$ veces mayor que las componentes correspondientes a $\lambda = 1$.
 
-		En la base computacional, el estado evolucionado es:
+    En la base computacional, el estado evolucionado es:
 
-		$|\psi(t)\rangle = \frac{1}{2}(e^{-3it}|0\rangle + e^{-3it}|1\rangle + e^{-3it}|2\rangle + e^{-it}|3\rangle)$
+    $|\psi(t)\rangle = \frac{1}{2}(e^{-3it}|0\rangle + e^{-3it}|1\rangle + e^{-3it}|2\rangle + e^{-it}|3\rangle)$
 
-		$|\psi(t)\rangle = \frac{e^{-3it}}{2}(|0\rangle + |1\rangle + |2\rangle) + \frac{e^{-it}}{2}|3\rangle$
+    $|\psi(t)\rangle = \frac{e^{-3it}}{2}(|0\rangle + |1\rangle + |2\rangle) + \frac{e^{-it}}{2}|3\rangle$
 
-		Este resultado muestra cómo el hamiltoniano $H$ genera una evolución temporal que afecta de manera diferente a las distintas componentes del estado, creando una dinámica de fases relativas que es característica de los sistemas cuánticos.
-	\end{solution}
+    Este resultado muestra cómo el hamiltoniano $H$ genera una evolución temporal que afecta de manera diferente a las distintas componentes del estado, creando una dinámica de fases relativas que es característica de los sistemas cuánticos.
+  \end{solution}
 \end{questions}

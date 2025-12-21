@@ -1,436 +1,434 @@
-\codigonombre{}{MCC-ALCC-25Q105}
 \begin{questions}
-	\question[4] Responda a las siguientes cuestiones:
-	\begin{parts}
-
-		\part Explique la diferencia entre matrices hermitianas y matrices unitarias, y su respectiva interpretación física en mecánica cuántica.
-
-		\begin{solution}
-			Matrices hermitianas y unitarias son dos clases fundamentales de operadores lineales en mecánica cuántica, con diferentes propiedades matemáticas e interpretaciones físicas.
-
-			Matrices hermitianas:
-
-			Definición matemática:
-			- Una matriz $A$ es hermitiana si $A = A^\dagger$, donde $A^\dagger$ es la conjugada transpuesta de $A$
-			- Equivalentemente, $\langle \psi|A|\phi \rangle = \langle \phi|A|\psi \rangle^*$ para todos los estados $|\psi\rangle$ y $|\phi\rangle$
-
-			Propiedades principales:
-			1) Tienen valores propios reales
-			2) Sus vectores propios correspondientes a valores propios distintos son ortogonales
-			3) Forman una base completa (diagonalización espectral): $A = \sum_i \lambda_i |i\rangle\langle i|$
-			4) Los valores esperados son reales: $\langle \psi|A|\psi \rangle \in \mathbb{R}$
-
-			Interpretación física:
-			- Representan observables físicos (cantidades medibles)
-			- Los valores propios corresponden a los posibles resultados de medición
-			- Los vectores propios corresponden a los estados donde la medición da un resultado determinado
-			- El valor esperado $\langle \psi|A|\psi \rangle$ es el resultado promedio de muchas mediciones en el estado $|\psi\rangle$
-			- Ejemplos: energía (hamiltoniano), posición, momento angular, espín
-
-			Matrices unitarias:
-
-			Definición matemática:
-			- Una matriz $U$ es unitaria si $U^\dagger U = UU^\dagger = I$, donde $I$ es la matriz identidad
-			- Equivalentemente, preservan el producto interno: $\langle U\psi|U\phi \rangle = \langle \psi|\phi \rangle$
-
-			Propiedades principales:
-			1) Tienen valores propios de módulo 1 (de la forma $e^{i\theta}$)
-			2) Preservan la norma: $\|U|\psi\rangle\| = \||\psi\rangle\|$
-			3) Son isometrías (preservan distancias entre estados)
-			4) Pueden expresarse como $U = e^{iH}$, donde $H$ es hermitiano
-
-			Interpretación física:
-			- Representan evoluciones temporales de sistemas cuánticos cerrados
-			- Describen transformaciones entre estados cuánticos
-			- Preservan la probabilidad total (unitariedad)
-			- Garantizan reversibilidad de los procesos cuánticos
-			- Ejemplos: compuertas cuánticas, operador de evolución temporal $U(t) = e^{-iHt/\hbar}$
-
-			Comparación y contraste:
-
-			1) Relación matemática:
-			- Cada matriz unitaria $U$ puede escribirse como $U = e^{iH}$, donde $H$ es hermitiana
-			- Las matrices hermitianas son generadores de grupos unitarios
-
-			2) Papel en mecánica cuántica:
-			- Hermitianas: representan lo que podemos medir (observables)
-			- Unitarias: representan cómo evoluciona el sistema (transformaciones)
-
-			3) Conservación de información:
-			- Las operaciones unitarias preservan la información cuántica
-			- Las mediciones (proyecciones basadas en operadores hermitianos) generalmente destruyen información
-
-			4) Uso práctico en computación cuántica:
-			- Compuertas cuánticas: operadores unitarios que manipulan qubits
-			- Algoritmos cuánticos: secuencias de operaciones unitarias
-			- Mediciones: basadas en observables hermitianos al final del cómputo
-
-			Esta dualidad entre operadores hermitianos (observables) y unitarios (evoluciones) es una característica estructural fundamental de la teoría cuántica.
-		\end{solution}
-
-		\part Describa las compuertas cuánticas fundamentales, explicando su funcionamiento y propiedades.
-
-		\begin{solution}
-			Las compuertas cuánticas fundamentales son operadores unitarios que actúan sobre sistemas de qubits, permitiendo manipular la información cuántica. Son los bloques básicos de construcción de circuitos cuánticos.
-
-			1) Compuertas de un qubit:
-
-			a) Compuerta de Pauli-X (NOT):
-			- Matriz: $X = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$
-			- Acción: Invierte estados $X|0\rangle = |1\rangle$, $X|1\rangle = |0\rangle$
-			- Interpretación: Rotación de 180° alrededor del eje X en la esfera de Bloch
-			- Propiedad: $X^2 = I$
-
-			b) Compuerta de Pauli-Y:
-			- Matriz: $Y = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}$
-			- Acción: $Y|0\rangle = i|1\rangle$, $Y|1\rangle = -i|0\rangle$
-			- Interpretación: Rotación de 180° alrededor del eje Y
-			- Propiedad: $Y^2 = I$
-
-			c) Compuerta de Pauli-Z:
-			- Matriz: $Z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$
-			- Acción: $Z|0\rangle = |0\rangle$, $Z|1\rangle = -|1\rangle$
-			- Interpretación: Rotación de 180° alrededor del eje Z
-			- Propiedad: $Z^2 = I$
-
-			d) Compuerta Hadamard (H):
-			- Matriz: $H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$
-			- Acción: $H|0\rangle = \frac{|0\rangle+|1\rangle}{\sqrt{2}}$, $H|1\rangle = \frac{|0\rangle-|1\rangle}{\sqrt{2}}$
-			- Crea superposiciones equitativas
-			- Interpretación: Rotación de 90° alrededor del eje Y, seguida de 180° alrededor del eje X
-			- Propiedad: $H^2 = I$
-
-			e) Compuerta de fase (S):
-			- Matriz: $S = \begin{pmatrix} 1 & 0 \\ 0 & i \end{pmatrix}$
-			- Acción: $S|0\rangle = |0\rangle$, $S|1\rangle = i|1\rangle$
-			- Añade una fase relativa de $\frac{\pi}{2}$
-			- Propiedad: $S^2 = Z$
-
-			f) Compuerta T:
-			- Matriz: $T = \begin{pmatrix} 1 & 0 \\ 0 & e^{i\pi/4} \end{pmatrix}$
-			- Acción: $T|0\rangle = |0\rangle$, $T|1\rangle = e^{i\pi/4}|1\rangle$
-			- Añade una fase relativa de $\frac{\pi}{4}$
-			- Importancia: No puede simularse eficientemente con puertas clásicas
-			- Propiedad: $T^2 = S$
-
-			g) Compuertas de rotación:
-			- $R_x(\theta) = e^{-i\theta X/2} = \cos(\theta/2)I - i\sin(\theta/2)X$
-			- $R_y(\theta) = e^{-i\theta Y/2} = \cos(\theta/2)I - i\sin(\theta/2)Y$
-			- $R_z(\theta) = e^{-i\theta Z/2} = \cos(\theta/2)I - i\sin(\theta/2)Z$
-			- Permiten rotaciones precisas en cualquier dirección en la esfera de Bloch
-
-			2) Compuertas de múltiples qubits:
+  \question[4] Responda a las siguientes cuestiones:
+  \begin{parts}
+
+    \part Explique la diferencia entre matrices hermitianas y matrices unitarias, y su respectiva interpretación física en mecánica cuántica.
+
+    \begin{solution}
+      Matrices hermitianas y unitarias son dos clases fundamentales de operadores lineales en mecánica cuántica, con diferentes propiedades matemáticas e interpretaciones físicas.
+
+      Matrices hermitianas:
+
+      Definición matemática:
+      - Una matriz $A$ es hermitiana si $A = A^\dagger$, donde $A^\dagger$ es la conjugada transpuesta de $A$
+      - Equivalentemente, $\langle \psi|A|\phi \rangle = \langle \phi|A|\psi \rangle^*$ para todos los estados $|\psi\rangle$ y $|\phi\rangle$
+
+      Propiedades principales:
+      1) Tienen valores propios reales
+      2) Sus vectores propios correspondientes a valores propios distintos son ortogonales
+      3) Forman una base completa (diagonalización espectral): $A = \sum_i \lambda_i |i\rangle\langle i|$
+      4) Los valores esperados son reales: $\langle \psi|A|\psi \rangle \in \mathbb{R}$
+
+      Interpretación física:
+      - Representan observables físicos (cantidades medibles)
+      - Los valores propios corresponden a los posibles resultados de medición
+      - Los vectores propios corresponden a los estados donde la medición da un resultado determinado
+      - El valor esperado $\langle \psi|A|\psi \rangle$ es el resultado promedio de muchas mediciones en el estado $|\psi\rangle$
+      - Ejemplos: energía (hamiltoniano), posición, momento angular, espín
+
+      Matrices unitarias:
+
+      Definición matemática:
+      - Una matriz $U$ es unitaria si $U^\dagger U = UU^\dagger = I$, donde $I$ es la matriz identidad
+      - Equivalentemente, preservan el producto interno: $\langle U\psi|U\phi \rangle = \langle \psi|\phi \rangle$
+
+      Propiedades principales:
+      1) Tienen valores propios de módulo 1 (de la forma $e^{i\theta}$)
+      2) Preservan la norma: $\|U|\psi\rangle\| = \||\psi\rangle\|$
+      3) Son isometrías (preservan distancias entre estados)
+      4) Pueden expresarse como $U = e^{iH}$, donde $H$ es hermitiano
+
+      Interpretación física:
+      - Representan evoluciones temporales de sistemas cuánticos cerrados
+      - Describen transformaciones entre estados cuánticos
+      - Preservan la probabilidad total (unitariedad)
+      - Garantizan reversibilidad de los procesos cuánticos
+      - Ejemplos: compuertas cuánticas, operador de evolución temporal $U(t) = e^{-iHt/\hbar}$
+
+      Comparación y contraste:
+
+      1) Relación matemática:
+      - Cada matriz unitaria $U$ puede escribirse como $U = e^{iH}$, donde $H$ es hermitiana
+      - Las matrices hermitianas son generadores de grupos unitarios
+
+      2) Papel en mecánica cuántica:
+      - Hermitianas: representan lo que podemos medir (observables)
+      - Unitarias: representan cómo evoluciona el sistema (transformaciones)
+
+      3) Conservación de información:
+      - Las operaciones unitarias preservan la información cuántica
+      - Las mediciones (proyecciones basadas en operadores hermitianos) generalmente destruyen información
+
+      4) Uso práctico en computación cuántica:
+      - Compuertas cuánticas: operadores unitarios que manipulan qubits
+      - Algoritmos cuánticos: secuencias de operaciones unitarias
+      - Mediciones: basadas en observables hermitianos al final del cómputo
+
+      Esta dualidad entre operadores hermitianos (observables) y unitarios (evoluciones) es una característica estructural fundamental de la teoría cuántica.
+    \end{solution}
+
+    \part Describa las compuertas cuánticas fundamentales, explicando su funcionamiento y propiedades.
+
+    \begin{solution}
+      Las compuertas cuánticas fundamentales son operadores unitarios que actúan sobre sistemas de qubits, permitiendo manipular la información cuántica. Son los bloques básicos de construcción de circuitos cuánticos.
+
+      1) Compuertas de un qubit:
+
+      a) Compuerta de Pauli-X (NOT):
+      - Matriz: $X = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$
+      - Acción: Invierte estados $X|0\rangle = |1\rangle$, $X|1\rangle = |0\rangle$
+      - Interpretación: Rotación de 180° alrededor del eje X en la esfera de Bloch
+      - Propiedad: $X^2 = I$
+
+      b) Compuerta de Pauli-Y:
+      - Matriz: $Y = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}$
+      - Acción: $Y|0\rangle = i|1\rangle$, $Y|1\rangle = -i|0\rangle$
+      - Interpretación: Rotación de 180° alrededor del eje Y
+      - Propiedad: $Y^2 = I$
+
+      c) Compuerta de Pauli-Z:
+      - Matriz: $Z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$
+      - Acción: $Z|0\rangle = |0\rangle$, $Z|1\rangle = -|1\rangle$
+      - Interpretación: Rotación de 180° alrededor del eje Z
+      - Propiedad: $Z^2 = I$
+
+      d) Compuerta Hadamard (H):
+      - Matriz: $H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$
+      - Acción: $H|0\rangle = \frac{|0\rangle+|1\rangle}{\sqrt{2}}$, $H|1\rangle = \frac{|0\rangle-|1\rangle}{\sqrt{2}}$
+      - Crea superposiciones equitativas
+      - Interpretación: Rotación de 90° alrededor del eje Y, seguida de 180° alrededor del eje X
+      - Propiedad: $H^2 = I$
+
+      e) Compuerta de fase (S):
+      - Matriz: $S = \begin{pmatrix} 1 & 0 \\ 0 & i \end{pmatrix}$
+      - Acción: $S|0\rangle = |0\rangle$, $S|1\rangle = i|1\rangle$
+      - Añade una fase relativa de $\frac{\pi}{2}$
+      - Propiedad: $S^2 = Z$
+
+      f) Compuerta T:
+      - Matriz: $T = \begin{pmatrix} 1 & 0 \\ 0 & e^{i\pi/4} \end{pmatrix}$
+      - Acción: $T|0\rangle = |0\rangle$, $T|1\rangle = e^{i\pi/4}|1\rangle$
+      - Añade una fase relativa de $\frac{\pi}{4}$
+      - Importancia: No puede simularse eficientemente con puertas clásicas
+      - Propiedad: $T^2 = S$
+
+      g) Compuertas de rotación:
+      - $R_x(\theta) = e^{-i\theta X/2} = \cos(\theta/2)I - i\sin(\theta/2)X$
+      - $R_y(\theta) = e^{-i\theta Y/2} = \cos(\theta/2)I - i\sin(\theta/2)Y$
+      - $R_z(\theta) = e^{-i\theta Z/2} = \cos(\theta/2)I - i\sin(\theta/2)Z$
+      - Permiten rotaciones precisas en cualquier dirección en la esfera de Bloch
+
+      2) Compuertas de múltiples qubits:
 
-			a) Compuerta CNOT (Controlled-NOT):
-			- Matriz: $CNOT = \begin{pmatrix} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 \\ 0 & 0 & 1 & 0 \end{pmatrix}$
-			- Acción: $CNOT|a,b\rangle = |a, a \oplus b\rangle$ donde $\oplus$ es XOR bit a bit
-			- Función: Aplica X al segundo qubit (target) solo si el primer qubit (control) es $|1\rangle$
-			- Importancia: Crea entrelazamiento entre qubits
-			- Propiedad: $(CNOT)^2 = I$
+      a) Compuerta CNOT (Controlled-NOT):
+      - Matriz: $CNOT = \begin{pmatrix} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 \\ 0 & 0 & 1 & 0 \end{pmatrix}$
+      - Acción: $CNOT|a,b\rangle = |a, a \oplus b\rangle$ donde $\oplus$ es XOR bit a bit
+      - Función: Aplica X al segundo qubit (target) solo si el primer qubit (control) es $|1\rangle$
+      - Importancia: Crea entrelazamiento entre qubits
+      - Propiedad: $(CNOT)^2 = I$
 
-			b) Compuerta SWAP:
-			- Matriz: $SWAP = \begin{pmatrix} 1 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 \end{pmatrix}$
-			- Acción: $SWAP|a,b\rangle = |b,a\rangle$
-			- Función: Intercambia los estados de dos qubits
-			- Implementación: Se puede construir con tres CNOT: $SWAP = (CNOT_{12})(CNOT_{21})(CNOT_{12})$
-			- Propiedad: $(SWAP)^2 = I$
+      b) Compuerta SWAP:
+      - Matriz: $SWAP = \begin{pmatrix} 1 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 \end{pmatrix}$
+      - Acción: $SWAP|a,b\rangle = |b,a\rangle$
+      - Función: Intercambia los estados de dos qubits
+      - Implementación: Se puede construir con tres CNOT: $SWAP = (CNOT_{12})(CNOT_{21})(CNOT_{12})$
+      - Propiedad: $(SWAP)^2 = I$
 
-			c) Compuerta Toffoli (CCNOT):
-			- Una compuerta NOT doblemente controlada
-			- Acción: $CCNOT|a,b,c\rangle = |a,b,c \oplus (a \cdot b)\rangle$
-			- Función: Aplica X al tercer qubit solo si los dos primeros son $|1\rangle$
-			- Importancia: Universal para computación clásica reversible
-			- Propiedad: $(CCNOT)^2 = I$
+      c) Compuerta Toffoli (CCNOT):
+      - Una compuerta NOT doblemente controlada
+      - Acción: $CCNOT|a,b,c\rangle = |a,b,c \oplus (a \cdot b)\rangle$
+      - Función: Aplica X al tercer qubit solo si los dos primeros son $|1\rangle$
+      - Importancia: Universal para computación clásica reversible
+      - Propiedad: $(CCNOT)^2 = I$
 
-			d) Compuerta Fredkin (CSWAP):
-			- Una compuerta SWAP controlada
-			- Acción: Intercambia los estados del segundo y tercer qubit solo si el primero es $|1\rangle$
-			- Importancia: Universal para computación clásica reversible
-			- Propiedad: $(CSWAP)^2 = I$
+      d) Compuerta Fredkin (CSWAP):
+      - Una compuerta SWAP controlada
+      - Acción: Intercambia los estados del segundo y tercer qubit solo si el primero es $|1\rangle$
+      - Importancia: Universal para computación clásica reversible
+      - Propiedad: $(CSWAP)^2 = I$
 
-			3) Propiedades generales y universalidad:
+      3) Propiedades generales y universalidad:
 
-			a) Universalidad:
-			- Cualquier operación unitaria puede aproximarse con precisión arbitraria usando solo un conjunto finito de compuertas
-			- Un conjunto universal común es {H, CNOT, T}
-			- Las compuertas de Clifford (generadas por H, S, CNOT) con T forman un conjunto universal
+      a) Universalidad:
+      - Cualquier operación unitaria puede aproximarse con precisión arbitraria usando solo un conjunto finito de compuertas
+      - Un conjunto universal común es {H, CNOT, T}
+      - Las compuertas de Clifford (generadas por H, S, CNOT) con T forman un conjunto universal
 
-			b) Implementación física:
-			- Las diferentes plataformas físicas (iones atrapados, superconductores, fotónica) implementan compuertas cuánticas mediante diferentes mecanismos
-			- Las compuertas de un qubit generalmente son más fáciles de implementar que las de múltiples qubits
-			- La fidelidad de las compuertas es crucial para la computación cuántica tolerante a fallos
+      b) Implementación física:
+      - Las diferentes plataformas físicas (iones atrapados, superconductores, fotónica) implementan compuertas cuánticas mediante diferentes mecanismos
+      - Las compuertas de un qubit generalmente son más fáciles de implementar que las de múltiples qubits
+      - La fidelidad de las compuertas es crucial para la computación cuántica tolerante a fallos
 
-			Las compuertas cuánticas fundamentales permiten transformar la información cuántica de manera coherente, preservando la superposición y el entrelazamiento, lo que posibilita las ventajas algorítmicas de la computación cuántica sobre la clásica.
-		\end{solution}
-	\end{parts}
+      Las compuertas cuánticas fundamentales permiten transformar la información cuántica de manera coherente, preservando la superposición y el entrelazamiento, lo que posibilita las ventajas algorítmicas de la computación cuántica sobre la clásica.
+    \end{solution}
+  \end{parts}
 
-	\question[3]
-	Considere un sistema de tres niveles con espacio de Hilbert $\mathbb{C}^3$ y base $\{|0\rangle, |1\rangle, |2\rangle\}$. Sean los operadores lineales:
+  \question[3]
+  Considere un sistema cuántico de tres qubits con espacio de Hilbert sobre $\mathbb{C}^3$ y base $\{|0\rangle, |1\rangle, |2\rangle\}$. Sean los operadores lineales:
 
-	$S_+ = |0\rangle\langle 1| + |1\rangle\langle 2| \quad \text{y} \quad S_- = |1\rangle\langle 0| + |2\rangle\langle 1|$
-	\begin{parts}
+  $S_+ = |0\rangle\langle 1| + |1\rangle\langle 2| \quad \text{y} \quad S_- = |1\rangle\langle 0| + |2\rangle\langle 1|$
+  \begin{parts}
 
-		\part  Determine las representaciones matriciales de $S_+$ y $S_-$ en la base dada.
-		\part  Verifique si estos operadores son hermitianos y/o unitarios.
-		\part  Calcule $S_+S_-$ y $S_-S_+$. ¿Conmutan estos operadores?
-		\part  Determine los valores propios y vectores propios del operador $S_z = [S_+, S_-]$.
-	\end{parts}
-
-	\begin{solution}
-		a) Para determinar las representaciones matriciales de $S_+$ y $S_-$, calculamos cómo actúan sobre cada vector de la base:
-
-		Para $S_+$:
-		$S_+|0\rangle = |0\rangle\langle 1|0\rangle + |1\rangle\langle 2|0\rangle = 0 + 0 = 0$
-		$S_+|1\rangle = |0\rangle\langle 1|1\rangle + |1\rangle\langle 2|1\rangle = |0\rangle + 0 = |0\rangle$
-		$S_+|2\rangle = |0\rangle\langle 1|2\rangle + |1\rangle\langle 2|2\rangle = 0 + |1\rangle = |1\rangle$
-
-		Por tanto, la matriz de $S_+$ en la base $\{|0\rangle, |1\rangle, |2\rangle\}$ es:
-		$S_+ = \begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ 0 & 0 & 0 \end{pmatrix}$
-
-		Para $S_-$:
-		$S_-|0\rangle = |1\rangle\langle 0|0\rangle + |2\rangle\langle 1|0\rangle = |1\rangle + 0 = |1\rangle$
-		$S_-|1\rangle = |1\rangle\langle 0|1\rangle + |2\rangle\langle 1|1\rangle = 0 + |2\rangle = |2\rangle$
-		$S_-|2\rangle = |1\rangle\langle 0|2\rangle + |2\rangle\langle 1|2\rangle = 0 + 0 = 0$
-
-		Por tanto, la matriz de $S_-$ en la base $\{|0\rangle, |1\rangle, |2\rangle\}$ es:
-		$S_- = \begin{pmatrix} 0 & 0 & 0 \\ 1 & 0 & 0 \\ 0 & 1 & 0 \end{pmatrix}$
-
-		b) Verificación de si son hermitianos y/o unitarios:
-
-		Para ser hermitiano, se debe cumplir $A = A^\dagger$.
-		$S_+^\dagger = \begin{pmatrix} 0 & 0 & 0 \\ 1 & 0 & 0 \\ 0 & 1 & 0 \end{pmatrix} = S_-$
-
-		Por tanto, $S_+ \neq S_+^\dagger$, lo que significa que $S_+$ no es hermitiano.
-		Similarmente, $S_- \neq S_-^\dagger$, por lo que $S_-$ tampoco es hermitiano.
-
-		Para ser unitario, se debe cumplir $AA^\dagger = A^\dagger A = I$.
-		$S_+S_+^\dagger = S_+S_- = \begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ 0 & 0 & 0 \end{pmatrix}\begin{pmatrix} 0 & 0 & 0 \\ 1 & 0 & 0 \\ 0 & 1 & 0 \end{pmatrix} = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 0 \end{pmatrix} \neq I$
-
-		Por tanto, $S_+$ no es unitario.
-		Similarmente, $S_-S_-^\dagger = S_-S_+ = \begin{pmatrix} 0 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix} \neq I$, por lo que $S_-$ tampoco es unitario.
-
-		Conclusión: Ni $S_+$ ni $S_-$ son hermitianos o unitarios.
-
-		c) Calculemos $S_+S_-$ y $S_-S_+$:
-
-		$S_+S_- = \begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ 0 & 0 & 0 \end{pmatrix}\begin{pmatrix} 0 & 0 & 0 \\ 1 & 0 & 0 \\ 0 & 1 & 0 \end{pmatrix} = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 0 \end{pmatrix}$
-
-		$S_-S_+ = \begin{pmatrix} 0 & 0 & 0 \\ 1 & 0 & 0 \\ 0 & 1 & 0 \end{pmatrix}\begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ 0 & 0 & 0 \end{pmatrix} = \begin{pmatrix} 0 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}$
-
-		Claramente $S_+S_- \neq S_-S_+$, por lo que estos operadores no conmutan.
-
-		d) El operador $S_z = [S_+, S_-] = S_+S_- - S_-S_+$ es:
-
-		$S_z = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 0 \end{pmatrix} - \begin{pmatrix} 0 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix} = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & -1 \end{pmatrix}$
-
-		Para encontrar los valores propios y vectores propios, resolvemos la ecuación característica:
-		$\det(S_z - \lambda I) = 0$
-
-		$\det\begin{pmatrix} 1-\lambda & 0 & 0 \\ 0 & -\lambda & 0 \\ 0 & 0 & -1-\lambda \end{pmatrix} = (1-\lambda)(-\lambda)(-1-\lambda) = 0$
-
-		Esto nos da los valores propios: $\lambda_1 = 1$, $\lambda_2 = 0$, $\lambda_3 = -1$
-
-		Para $\lambda_1 = 1$:
-		$(S_z - I)|v\rangle = 0$ nos da el vector propio $|v_1\rangle = |0\rangle$
-
-		Para $\lambda_2 = 0$:
-		$S_z|v\rangle = 0$ nos da el vector propio $|v_2\rangle = |1\rangle$
-
-		Para $\lambda_3 = -1$:
-		$(S_z + I)|v\rangle = 0$ nos da el vector propio $|v_3\rangle = |2\rangle$
-
-		Por tanto, los valores propios de $S_z$ son 1, 0, -1 con vectores propios $|0\rangle$, $|1\rangle$, $|2\rangle$ respectivamente. Esto significa que la base dada ya es la base de vectores propios de $S_z$.
-
-		Observación: $S_+$, $S_-$ y $S_z$ son análogos a los operadores de subida, bajada y componente z del momento angular para un sistema de espín 1, usados frecuentemente en mecánica cuántica.
-	\end{solution}
-
-	\question[3]
-	Considere un sistema de dos qubits y la siguiente compuerta cuántica:
-	\[
-		U = \frac{1}{\sqrt{2}}\begin{pmatrix}
-			1 & 0 & 0  & 1  \\
-			0 & 1 & 1  & 0  \\
-			0 & 1 & -1 & 0  \\
-			1 & 0 & 0  & -1
-		\end{pmatrix}
-	\]
-	\begin{parts}
-
-		\part  Verifique que $U$ es unitaria.
-		\part  Determine cómo actúa $U$ sobre los estados de la base computacional $\{|00\rangle, |01\rangle, |10\rangle, |11\rangle\}$.
-		\part  Exprese $U$ como producto tensorial de compuertas de un qubit y compuertas CNOT, si es posible.
-		\part  ¿Puede $U$ crear entrelazamiento a partir de estados separables? Justifique su respuesta con un ejemplo.
-	\end{parts}
-
-	\begin{solution}
-		a) Para verificar que $U$ es unitaria, debemos comprobar que $UU^\dagger = U^\dagger U = I$.
-
-		Primero, calculamos $U^\dagger$:
-		$U^\dagger = \frac{1}{\sqrt{2}}\begin{pmatrix}
-				1 & 0 & 0  & 1  \\
-				0 & 1 & 1  & 0  \\
-				0 & 1 & -1 & 0  \\
-				1 & 0 & 0  & -1
-			\end{pmatrix}^\dagger = \frac{1}{\sqrt{2}}\begin{pmatrix}
-				1 & 0 & 0  & 1  \\
-				0 & 1 & 1  & 0  \\
-				0 & 1 & -1 & 0  \\
-				1 & 0 & 0  & -1
-			\end{pmatrix}$
-
-		En este caso, $U^\dagger = U$ porque $U$ es real y simétrica, lo que significa que $U$ es hermitiana.
-
-		Ahora, calculamos $UU^\dagger = U^2$:
-		$U^2 = \frac{1}{2}\begin{pmatrix}
-				1 & 0 & 0  & 1  \\
-				0 & 1 & 1  & 0  \\
-				0 & 1 & -1 & 0  \\
-				1 & 0 & 0  & -1
-			\end{pmatrix}\begin{pmatrix}
-				1 & 0 & 0  & 1  \\
-				0 & 1 & 1  & 0  \\
-				0 & 1 & -1 & 0  \\
-				1 & 0 & 0  & -1
-			\end{pmatrix}$
-
-		Realizando la multiplicación matricial:
-		$U^2 = \frac{1}{2}\begin{pmatrix}
-				1 + 1 & 0     & 0      & 1 - 1  \\
-				0     & 1 + 1 & 1 - 1  & 0      \\
-				0     & 1 - 1 & -1 - 1 & 0      \\
-				1 - 1 & 0     & 0      & -1 - 1
-			\end{pmatrix} = \begin{pmatrix}
-				1 & 0 & 0  & 0  \\
-				0 & 1 & 0  & 0  \\
-				0 & 0 & -1 & 0  \\
-				0 & 0 & 0  & -1
-			\end{pmatrix}$
-
-		Este resultado muestra que $U^2 \neq I$, por lo que $U$ no es unitaria según la definición estándar.
-
-		Corrección: Recalculemos el producto $UU^\dagger$ con más cuidado:
-
-		$UU^\dagger = \frac{1}{2}\begin{pmatrix}
-				1 & 0 & 0  & 1  \\
-				0 & 1 & 1  & 0  \\
-				0 & 1 & -1 & 0  \\
-				1 & 0 & 0  & -1
-			\end{pmatrix}\begin{pmatrix}
-				1 & 0 & 0  & 1  \\
-				0 & 1 & 1  & 0  \\
-				0 & 1 & -1 & 0  \\
-				1 & 0 & 0  & -1
-			\end{pmatrix}$
-
-		$= \frac{1}{2}\begin{pmatrix}
-				1^2 + 1^2            & 0                    & 0                    & 1\cdot1 + 1\cdot(-1) \\
-				0                    & 1^2 + 1^2            & 1\cdot1 + 1\cdot(-1) & 0                    \\
-				0                    & 1\cdot1 + (-1)\cdot1 & 1^2 + (-1)^2         & 0                    \\
-				1\cdot1 + (-1)\cdot1 & 0                    & 0                    & 1^2 + (-1)^2
-			\end{pmatrix}$
-
-		$= \frac{1}{2}\begin{pmatrix}
-				2 & 0 & 0 & 0 \\
-				0 & 2 & 0 & 0 \\
-				0 & 0 & 2 & 0 \\
-				0 & 0 & 0 & 2
-			\end{pmatrix} = \begin{pmatrix}
-				1 & 0 & 0 & 0 \\
-				0 & 1 & 0 & 0 \\
-				0 & 0 & 1 & 0 \\
-				0 & 0 & 0 & 1
-			\end{pmatrix} = I$
-
-		Por tanto, $U$ es unitaria.
-
-		b) Acción de $U$ sobre los estados de la base computacional:
-
-		$U|00\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix}
-				1 & 0 & 0  & 1  \\
-				0 & 1 & 1  & 0  \\
-				0 & 1 & -1 & 0  \\
-				1 & 0 & 0  & -1
-			\end{pmatrix}\begin{pmatrix}
-				1 \\
-				0 \\
-				0 \\
-				0
-			\end{pmatrix} = \frac{1}{\sqrt{2}}\begin{pmatrix}
-				1 \\
-				0 \\
-				0 \\
-				1
-			\end{pmatrix} = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$
-
-		$U|01\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix}
-				1 & 0 & 0  & 1  \\
-				0 & 1 & 1  & 0  \\
-				0 & 1 & -1 & 0  \\
-				1 & 0 & 0  & -1
-			\end{pmatrix}\begin{pmatrix}
-				0 \\
-				1 \\
-				0 \\
-				0
-			\end{pmatrix} = \frac{1}{\sqrt{2}}\begin{pmatrix}
-				0 \\
-				1 \\
-				1 \\
-				0
-			\end{pmatrix} = \frac{1}{\sqrt{2}}(|01\rangle + |10\rangle)$
-
-		$U|10\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix}
-				1 & 0 & 0  & 1  \\
-				0 & 1 & 1  & 0  \\
-				0 & 1 & -1 & 0  \\
-				1 & 0 & 0  & -1
-			\end{pmatrix}\begin{pmatrix}
-				0 \\
-				0 \\
-				1 \\
-				0
-			\end{pmatrix} = \frac{1}{\sqrt{2}}\begin{pmatrix}
-				0  \\
-				1  \\
-				-1 \\
-				0
-			\end{pmatrix} = \frac{1}{\sqrt{2}}(|01\rangle - |10\rangle)$
-
-		$U|11\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix}
-				1 & 0 & 0  & 1  \\
-				0 & 1 & 1  & 0  \\
-				0 & 1 & -1 & 0  \\
-				1 & 0 & 0  & -1
-			\end{pmatrix}\begin{pmatrix}
-				0 \\
-				0 \\
-				0 \\
-				1
-			\end{pmatrix} = \frac{1}{\sqrt{2}}\begin{pmatrix}
-				1 \\
-				0 \\
-				0 \\
-				-1
-			\end{pmatrix} = \frac{1}{\sqrt{2}}(|00\rangle - |11\rangle)$
-
-		c) Reconocemos que:
-		$U|00\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle) = |\Phi^+\rangle$ (estado de Bell)
-		$U|01\rangle = \frac{1}{\sqrt{2}}(|01\rangle + |10\rangle) = |\Psi^+\rangle$ (estado de Bell)
-		$U|10\rangle = \frac{1}{\sqrt{2}}(|01\rangle - |10\rangle) = |\Psi^-\rangle$ (estado de Bell)
-		$U|11\rangle = \frac{1}{\sqrt{2}}(|00\rangle - |11\rangle) = |\Phi^-\rangle$ (estado de Bell)
-
-		Esta compuerta transforma los estados de la base computacional en los cuatro estados de Bell. Podemos expresarla como:
-
-		$U = H_1 \otimes I_2 \cdot \text{CNOT}_{12}$
-
-		donde $H_1$ es la compuerta Hadamard aplicada al primer qubit, $I_2$ es la identidad en el segundo qubit, y $\text{CNOT}_{12}$ es la compuerta CNOT con el primer qubit como control y el segundo como objetivo.
-
-		d) Sí, $U$ puede crear entrelazamiento a partir de estados separables. Para demostrarlo, consideremos el estado separable $|00\rangle$ y apliquemos $U$:
-
-		$U|00\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$
-
-		Este es un estado entrelazado (específicamente el estado de Bell $|\Phi^+\rangle$), ya que no puede expresarse como un producto tensorial de dos estados de un qubit. De hecho, $U$ transforma todos los estados de la base computacional (que son separables) en estados de Bell (que están máximamente entrelazados).
-
-		La compuerta $U$ es equivalente a la compuerta que se utiliza en el protocolo de teleportación cuántica para crear el par EPR necesario para el protocolo. Es una de las compuertas fundamentales para generar entrelazamiento en circuitos cuánticos.
-	\end{solution}
+    \part  Determine las representaciones matriciales de $S_+$ y $S_-$ en la base dada.
+    \part  Verifique si estos operadores son hermitianos y/o unitarios.
+    \part  Calcule $S_+S_-$ y $S_-S_+$. ¿Conmutan estos operadores?
+    \part  Determine los valores propios y vectores propios del operador $S_z = [S_+, S_-]$.
+  \end{parts}
+
+  \begin{solution}
+    a) Para determinar las representaciones matriciales de $S_+$ y $S_-$, calculamos cómo actúan sobre cada vector de la base:
+
+    Para $S_+$:
+    $S_+|0\rangle = |0\rangle\langle 1|0\rangle + |1\rangle\langle 2|0\rangle = 0 + 0 = 0$
+    $S_+|1\rangle = |0\rangle\langle 1|1\rangle + |1\rangle\langle 2|1\rangle = |0\rangle + 0 = |0\rangle$
+    $S_+|2\rangle = |0\rangle\langle 1|2\rangle + |1\rangle\langle 2|2\rangle = 0 + |1\rangle = |1\rangle$
+
+    Por tanto, la matriz de $S_+$ en la base $\{|0\rangle, |1\rangle, |2\rangle\}$ es:
+    $S_+ = \begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ 0 & 0 & 0 \end{pmatrix}$
+
+    Para $S_-$:
+    $S_-|0\rangle = |1\rangle\langle 0|0\rangle + |2\rangle\langle 1|0\rangle = |1\rangle + 0 = |1\rangle$
+    $S_-|1\rangle = |1\rangle\langle 0|1\rangle + |2\rangle\langle 1|1\rangle = 0 + |2\rangle = |2\rangle$
+    $S_-|2\rangle = |1\rangle\langle 0|2\rangle + |2\rangle\langle 1|2\rangle = 0 + 0 = 0$
+
+    Por tanto, la matriz de $S_-$ en la base $\{|0\rangle, |1\rangle, |2\rangle\}$ es:
+    $S_- = \begin{pmatrix} 0 & 0 & 0 \\ 1 & 0 & 0 \\ 0 & 1 & 0 \end{pmatrix}$
+
+    b) Verificación de si son hermitianos y/o unitarios:
+
+    Para ser hermitiano, se debe cumplir $A = A^\dagger$.
+    $S_+^\dagger = \begin{pmatrix} 0 & 0 & 0 \\ 1 & 0 & 0 \\ 0 & 1 & 0 \end{pmatrix} = S_-$
+
+    Por tanto, $S_+ \neq S_+^\dagger$, lo que significa que $S_+$ no es hermitiano.
+    Similarmente, $S_- \neq S_-^\dagger$, por lo que $S_-$ tampoco es hermitiano.
+
+    Para ser unitario, se debe cumplir $AA^\dagger = A^\dagger A = I$.
+    $S_+S_+^\dagger = S_+S_- = \begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ 0 & 0 & 0 \end{pmatrix}\begin{pmatrix} 0 & 0 & 0 \\ 1 & 0 & 0 \\ 0 & 1 & 0 \end{pmatrix} = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 0 \end{pmatrix} \neq I$
+
+    Por tanto, $S_+$ no es unitario.
+    Similarmente, $S_-S_-^\dagger = S_-S_+ = \begin{pmatrix} 0 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix} \neq I$, por lo que $S_-$ tampoco es unitario.
+
+    Conclusión: Ni $S_+$ ni $S_-$ son hermitianos o unitarios.
+
+    c) Calculemos $S_+S_-$ y $S_-S_+$:
+
+    $S_+S_- = \begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ 0 & 0 & 0 \end{pmatrix}\begin{pmatrix} 0 & 0 & 0 \\ 1 & 0 & 0 \\ 0 & 1 & 0 \end{pmatrix} = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 0 \end{pmatrix}$
+
+    $S_-S_+ = \begin{pmatrix} 0 & 0 & 0 \\ 1 & 0 & 0 \\ 0 & 1 & 0 \end{pmatrix}\begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ 0 & 0 & 0 \end{pmatrix} = \begin{pmatrix} 0 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}$
+
+    Claramente $S_+S_- \neq S_-S_+$, por lo que estos operadores no conmutan.
+
+    d) El operador $S_z = [S_+, S_-] = S_+S_- - S_-S_+$ es:
+
+    $S_z = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 0 \end{pmatrix} - \begin{pmatrix} 0 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix} = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & -1 \end{pmatrix}$
+
+    Para encontrar los valores propios y vectores propios, resolvemos la ecuación característica:
+    $\det(S_z - \lambda I) = 0$
+
+    $\det\begin{pmatrix} 1-\lambda & 0 & 0 \\ 0 & -\lambda & 0 \\ 0 & 0 & -1-\lambda \end{pmatrix} = (1-\lambda)(-\lambda)(-1-\lambda) = 0$
+
+    Esto nos da los valores propios: $\lambda_1 = 1$, $\lambda_2 = 0$, $\lambda_3 = -1$
+
+    Para $\lambda_1 = 1$:
+    $(S_z - I)|v\rangle = 0$ nos da el vector propio $|v_1\rangle = |0\rangle$
+
+    Para $\lambda_2 = 0$:
+    $S_z|v\rangle = 0$ nos da el vector propio $|v_2\rangle = |1\rangle$
+
+    Para $\lambda_3 = -1$:
+    $(S_z + I)|v\rangle = 0$ nos da el vector propio $|v_3\rangle = |2\rangle$
+
+    Por tanto, los valores propios de $S_z$ son 1, 0, -1 con vectores propios $|0\rangle$, $|1\rangle$, $|2\rangle$ respectivamente. Esto significa que la base dada ya es la base de vectores propios de $S_z$.
+
+    Observación: $S_+$, $S_-$ y $S_z$ son análogos a los operadores de subida, bajada y componente z del momento angular para un sistema de espín 1, usados frecuentemente en mecánica cuántica.
+  \end{solution}
+
+  \question[3]
+  Considere un sistema de dos qubits y la siguiente compuerta cuántica:
+  \[
+    U = \frac{1}{\sqrt{2}}\begin{pmatrix}
+      1 & 0 & 0  & 1  \\
+      0 & 1 & 1  & 0  \\
+      0 & 1 & -1 & 0  \\
+      1 & 0 & 0  & -1
+    \end{pmatrix}
+  \]
+  \begin{parts}
+
+    \part  Verifique que $U$ es unitaria.
+    \part  Exprese $U$ como producto tensorial de compuertas de un qubit y compuertas CNOT, si es posible.
+    \part  ¿Puede $U$ crear entrelazamiento a partir de estados separables? Justifique su respuesta con un ejemplo.
+  \end{parts}
+
+  \begin{solution}
+    a) Para verificar que $U$ es unitaria, debemos comprobar que $UU^\dagger = U^\dagger U = I$.
+
+    Primero, calculamos $U^\dagger$:
+    $U^\dagger = \frac{1}{\sqrt{2}}\begin{pmatrix}
+        1 & 0 & 0  & 1  \\
+        0 & 1 & 1  & 0  \\
+        0 & 1 & -1 & 0  \\
+        1 & 0 & 0  & -1
+      \end{pmatrix}^\dagger = \frac{1}{\sqrt{2}}\begin{pmatrix}
+        1 & 0 & 0  & 1  \\
+        0 & 1 & 1  & 0  \\
+        0 & 1 & -1 & 0  \\
+        1 & 0 & 0  & -1
+      \end{pmatrix}$
+
+    En este caso, $U^\dagger = U$ porque $U$ es real y simétrica, lo que significa que $U$ es hermitiana.
+
+    Ahora, calculamos $UU^\dagger = U^2$:
+    $U^2 = \frac{1}{2}\begin{pmatrix}
+        1 & 0 & 0  & 1  \\
+        0 & 1 & 1  & 0  \\
+        0 & 1 & -1 & 0  \\
+        1 & 0 & 0  & -1
+      \end{pmatrix}\begin{pmatrix}
+        1 & 0 & 0  & 1  \\
+        0 & 1 & 1  & 0  \\
+        0 & 1 & -1 & 0  \\
+        1 & 0 & 0  & -1
+      \end{pmatrix}$
+
+    Realizando la multiplicación matricial:
+    $U^2 = \frac{1}{2}\begin{pmatrix}
+        1 + 1 & 0     & 0      & 1 - 1  \\
+        0     & 1 + 1 & 1 - 1  & 0      \\
+        0     & 1 - 1 & -1 - 1 & 0      \\
+        1 - 1 & 0     & 0      & -1 - 1
+      \end{pmatrix} = \begin{pmatrix}
+        1 & 0 & 0  & 0  \\
+        0 & 1 & 0  & 0  \\
+        0 & 0 & -1 & 0  \\
+        0 & 0 & 0  & -1
+      \end{pmatrix}$
+
+    Este resultado muestra que $U^2 \neq I$, por lo que $U$ no es unitaria según la definición estándar.
+
+    Corrección: Recalculemos el producto $UU^\dagger$ con más cuidado:
+
+    $UU^\dagger = \frac{1}{2}\begin{pmatrix}
+        1 & 0 & 0  & 1  \\
+        0 & 1 & 1  & 0  \\
+        0 & 1 & -1 & 0  \\
+        1 & 0 & 0  & -1
+      \end{pmatrix}\begin{pmatrix}
+        1 & 0 & 0  & 1  \\
+        0 & 1 & 1  & 0  \\
+        0 & 1 & -1 & 0  \\
+        1 & 0 & 0  & -1
+      \end{pmatrix}$
+
+    $= \frac{1}{2}\begin{pmatrix}
+        1^2 + 1^2            & 0                    & 0                    & 1\cdot1 + 1\cdot(-1) \\
+        0                    & 1^2 + 1^2            & 1\cdot1 + 1\cdot(-1) & 0                    \\
+        0                    & 1\cdot1 + (-1)\cdot1 & 1^2 + (-1)^2         & 0                    \\
+        1\cdot1 + (-1)\cdot1 & 0                    & 0                    & 1^2 + (-1)^2
+      \end{pmatrix}$
+
+    $= \frac{1}{2}\begin{pmatrix}
+        2 & 0 & 0 & 0 \\
+        0 & 2 & 0 & 0 \\
+        0 & 0 & 2 & 0 \\
+        0 & 0 & 0 & 2
+      \end{pmatrix} = \begin{pmatrix}
+        1 & 0 & 0 & 0 \\
+        0 & 1 & 0 & 0 \\
+        0 & 0 & 1 & 0 \\
+        0 & 0 & 0 & 1
+      \end{pmatrix} = I$
+
+    Por tanto, $U$ es unitaria.
+
+    b) Acción de $U$ sobre los estados de la base computacional:
+
+    $U|00\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix}
+        1 & 0 & 0  & 1  \\
+        0 & 1 & 1  & 0  \\
+        0 & 1 & -1 & 0  \\
+        1 & 0 & 0  & -1
+      \end{pmatrix}\begin{pmatrix}
+        1 \\
+        0 \\
+        0 \\
+        0
+      \end{pmatrix} = \frac{1}{\sqrt{2}}\begin{pmatrix}
+        1 \\
+        0 \\
+        0 \\
+        1
+      \end{pmatrix} = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$
+
+    $U|01\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix}
+        1 & 0 & 0  & 1  \\
+        0 & 1 & 1  & 0  \\
+        0 & 1 & -1 & 0  \\
+        1 & 0 & 0  & -1
+      \end{pmatrix}\begin{pmatrix}
+        0 \\
+        1 \\
+        0 \\
+        0
+      \end{pmatrix} = \frac{1}{\sqrt{2}}\begin{pmatrix}
+        0 \\
+        1 \\
+        1 \\
+        0
+      \end{pmatrix} = \frac{1}{\sqrt{2}}(|01\rangle + |10\rangle)$
+
+    $U|10\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix}
+        1 & 0 & 0  & 1  \\
+        0 & 1 & 1  & 0  \\
+        0 & 1 & -1 & 0  \\
+        1 & 0 & 0  & -1
+      \end{pmatrix}\begin{pmatrix}
+        0 \\
+        0 \\
+        1 \\
+        0
+      \end{pmatrix} = \frac{1}{\sqrt{2}}\begin{pmatrix}
+        0  \\
+        1  \\
+        -1 \\
+        0
+      \end{pmatrix} = \frac{1}{\sqrt{2}}(|01\rangle - |10\rangle)$
+
+    $U|11\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix}
+        1 & 0 & 0  & 1  \\
+        0 & 1 & 1  & 0  \\
+        0 & 1 & -1 & 0  \\
+        1 & 0 & 0  & -1
+      \end{pmatrix}\begin{pmatrix}
+        0 \\
+        0 \\
+        0 \\
+        1
+      \end{pmatrix} = \frac{1}{\sqrt{2}}\begin{pmatrix}
+        1 \\
+        0 \\
+        0 \\
+        -1
+      \end{pmatrix} = \frac{1}{\sqrt{2}}(|00\rangle - |11\rangle)$
+
+    c) Reconocemos que:
+    $U|00\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle) = |\Phi^+\rangle$ (estado de Bell)
+    $U|01\rangle = \frac{1}{\sqrt{2}}(|01\rangle + |10\rangle) = |\Psi^+\rangle$ (estado de Bell)
+    $U|10\rangle = \frac{1}{\sqrt{2}}(|01\rangle - |10\rangle) = |\Psi^-\rangle$ (estado de Bell)
+    $U|11\rangle = \frac{1}{\sqrt{2}}(|00\rangle - |11\rangle) = |\Phi^-\rangle$ (estado de Bell)
+
+    Esta compuerta transforma los estados de la base computacional en los cuatro estados de Bell. Podemos expresarla como:
+
+    $U = H_1 \otimes I_2 \cdot \text{CNOT}_{12}$
+
+    donde $H_1$ es la compuerta Hadamard aplicada al primer qubit, $I_2$ es la identidad en el segundo qubit, y $\text{CNOT}_{12}$ es la compuerta CNOT con el primer qubit como control y el segundo como objetivo.
+
+    d) Sí, $U$ puede crear entrelazamiento a partir de estados separables. Para demostrarlo, consideremos el estado separable $|00\rangle$ y apliquemos $U$:
+
+    $U|00\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$
+
+    Este es un estado entrelazado (específicamente el estado de Bell $|\Phi^+\rangle$), ya que no puede expresarse como un producto tensorial de dos estados de un qubit. De hecho, $U$ transforma todos los estados de la base computacional (que son separables) en estados de Bell (que están máximamente entrelazados).
+
+    La compuerta $U$ es equivalente a la compuerta que se utiliza en el protocolo de teleportación cuántica para crear el par EPR necesario para el protocolo. Es una de las compuertas fundamentales para generar entrelazamiento en circuitos cuánticos.
+  \end{solution}
 \end{questions}

@@ -1,421 +1,420 @@
-\codigonombre{}{MCC-ALCC-25Q108}
 \begin{questions}
-	\question[4] Responda a las siguientes cuestiones:
-	\begin{parts}
+  \question[4] Responda a las siguientes cuestiones:
+  \begin{parts}
 
 
-		\part Explique cómo se representa un operador lineal mediante una matriz y cómo se calcula la representación matricial de un operador en una base dada. Proporcione un ejemplo relacionado con operadores cuánticos.
+    \part Explique cómo se representa un operador lineal mediante una matriz y cómo se calcula la representación matricial de un operador en una base dada.
 
-		\begin{solution}
-			Un operador lineal sobre un espacio vectorial puede representarse mediante una matriz respecto a una base determinada, permitiendo realizar cálculos concretos utilizando las propiedades del álgebra matricial.
+    \begin{solution}
+      Un operador lineal sobre un espacio vectorial puede representarse mediante una matriz respecto a una base determinada, permitiendo realizar cálculos concretos utilizando las propiedades del álgebra matricial.
 
-			Representación matricial de un operador:
+      Representación matricial de un operador:
 
-			1) Definición formal:
-			Sea $T: V \rightarrow W$ un operador lineal entre espacios vectoriales de dimensión finita, y sean $\{v_1, v_2, ..., v_n\}$ y $\{w_1, w_2, ..., w_m\}$ bases ordenadas de $V$ y $W$ respectivamente. La representación matricial de $T$ respecto a estas bases es la matriz $[T]$ de dimensión $m \times n$ cuyos elementos están dados por:
+      1) Definición formal:
+      Sea $T: V \rightarrow W$ un operador lineal entre espacios vectoriales de dimensión finita, y sean $\{v_1, v_2, ..., v_n\}$ y $\{w_1, w_2, ..., w_m\}$ bases ordenadas de $V$ y $W$ respectivamente. La representación matricial de $T$ respecto a estas bases es la matriz $[T]$ de dimensión $m \times n$ cuyos elementos están dados por:
 
-			$T(v_j) = \sum_{i=1}^{m} [T]_{ij} w_i$ para $j = 1, 2, ..., n$
+      $T(v_j) = \sum_{i=1}^{m} [T]_{ij} w_i$ para $j = 1, 2, ..., n$
 
-			donde $[T]_{ij}$ es el elemento en la fila $i$, columna $j$ de la matriz $[T]$.
+      donde $[T]_{ij}$ es el elemento en la fila $i$, columna $j$ de la matriz $[T]$.
 
-			2) Procedimiento para calcular $[T]$:
-			a) Aplicar el operador $T$ a cada vector de la base de $V$
-			b) Expresar cada resultado $T(v_j)$ como combinación lineal de los vectores de la base de $W$
-			c) Los coeficientes de estas combinaciones lineales constituyen las columnas de la matriz $[T]$
+      2) Procedimiento para calcular $[T]$:
+      a) Aplicar el operador $T$ a cada vector de la base de $V$
+      b) Expresar cada resultado $T(v_j)$ como combinación lineal de los vectores de la base de $W$
+      c) Los coeficientes de estas combinaciones lineales constituyen las columnas de la matriz $[T]$
 
-			3) Propiedades clave:
-			- Si $T: V \rightarrow V$ y usamos la misma base para representar el dominio y codominio, obtenemos una matriz cuadrada
-			- La composición de operadores corresponde al producto de matrices: $[S \circ T] = [S][T]$
-			- El operador identidad corresponde a la matriz identidad
-			- El cambio de base transforma la matriz del operador mediante: $[T]_{\mathcal{B}'} = P^{-1}[T]_{\mathcal{B}}P$ donde $P$ es la matriz de cambio de base
+      3) Propiedades clave:
+      - Si $T: V \rightarrow V$ y usamos la misma base para representar el dominio y codominio, obtenemos una matriz cuadrada
+      - La composición de operadores corresponde al producto de matrices: $[S \circ T] = [S][T]$
+      - El operador identidad corresponde a la matriz identidad
+      - El cambio de base transforma la matriz del operador mediante: $[T]_{\mathcal{B}'} = P^{-1}[T]_{\mathcal{B}}P$ donde $P$ es la matriz de cambio de base
 
-			Cálculo de la representación matricial:
+      Cálculo de la representación matricial:
 
-			Sea $T: V \rightarrow V$ un operador lineal en un espacio vectorial $V$ de dimensión $n$ con base $\mathcal{B} = \{v_1, v_2, ..., v_n\}$. Para obtener la matriz $[T]_{\mathcal{B}}$:
+      Sea $T: V \rightarrow V$ un operador lineal en un espacio vectorial $V$ de dimensión $n$ con base $\mathcal{B} = \{v_1, v_2, ..., v_n\}$. Para obtener la matriz $[T]_{\mathcal{B}}$:
 
-			1) Para cada $j = 1, 2, ..., n$, calculamos $T(v_j)$
-			2) Expresamos $T(v_j) = \sum_{i=1}^{n} c_{ij} v_i$ (donde $c_{ij}$ son coeficientes escalares)
-			3) Los coeficientes $c_{ij}$ forman la $j$-ésima columna de la matriz $[T]_{\mathcal{B}}$
+      1) Para cada $j = 1, 2, ..., n$, calculamos $T(v_j)$
+      2) Expresamos $T(v_j) = \sum_{i=1}^{n} c_{ij} v_i$ (donde $c_{ij}$ son coeficientes escalares)
+      3) Los coeficientes $c_{ij}$ forman la $j$-ésima columna de la matriz $[T]_{\mathcal{B}}$
 
-			Ejemplo en contexto cuántico:
+      Ejemplo en contexto cuántico:
 
-			Consideremos el operador de Hadamard $H$ que actúa sobre un qubit. Determinaremos su representación matricial en la base computacional $\mathcal{B} = \{|0\rangle, |1\rangle\}$.
+      Consideremos el operador de Hadamard $H$ que actúa sobre un qubit. Determinaremos su representación matricial en la base computacional $\mathcal{B} = \{|0\rangle, |1\rangle\}$.
 
-			Por definición, el operador Hadamard actúa sobre los vectores de la base como:
-			$H(|0\rangle) = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$
-			$H(|1\rangle) = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle)$
+      Por definición, el operador Hadamard actúa sobre los vectores de la base como:
+      $H(|0\rangle) = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$
+      $H(|1\rangle) = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle)$
 
-			Paso 1: Aplicamos $H$ a cada vector de la base.
-			$H(|0\rangle) = \frac{1}{\sqrt{2}}|0\rangle + \frac{1}{\sqrt{2}}|1\rangle$
-			$H(|1\rangle) = \frac{1}{\sqrt{2}}|0\rangle - \frac{1}{\sqrt{2}}|1\rangle$
+      Paso 1: Aplicamos $H$ a cada vector de la base.
+      $H(|0\rangle) = \frac{1}{\sqrt{2}}|0\rangle + \frac{1}{\sqrt{2}}|1\rangle$
+      $H(|1\rangle) = \frac{1}{\sqrt{2}}|0\rangle - \frac{1}{\sqrt{2}}|1\rangle$
 
-			Paso 2: Identificamos los coeficientes en estas expresiones.
-			Para $H(|0\rangle)$, los coeficientes son $c_{10} = \frac{1}{\sqrt{2}}$ y $c_{20} = \frac{1}{\sqrt{2}}$
-			Para $H(|1\rangle)$, los coeficientes son $c_{11} = \frac{1}{\sqrt{2}}$ y $c_{21} = -\frac{1}{\sqrt{2}}$
+      Paso 2: Identificamos los coeficientes en estas expresiones.
+      Para $H(|0\rangle)$, los coeficientes son $c_{10} = \frac{1}{\sqrt{2}}$ y $c_{20} = \frac{1}{\sqrt{2}}$
+      Para $H(|1\rangle)$, los coeficientes son $c_{11} = \frac{1}{\sqrt{2}}$ y $c_{21} = -\frac{1}{\sqrt{2}}$
 
-			Paso 3: Construimos la matriz $[H]_{\mathcal{B}}$ colocando estos coeficientes como columnas.
-			$[H]_{\mathcal{B}} = \begin{pmatrix} \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}} \end{pmatrix}$
+      Paso 3: Construimos la matriz $[H]_{\mathcal{B}}$ colocando estos coeficientes como columnas.
+      $[H]_{\mathcal{B}} = \begin{pmatrix} \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}} \end{pmatrix}$
 
-			Esta es la conocida matriz de Hadamard:
-			$H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$
+      Esta es la conocida matriz de Hadamard:
+      $H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$
 
-			Ejemplo adicional: Representación del operador $Z$ (Pauli-Z) en diferentes bases.
+      Ejemplo adicional: Representación del operador $Z$ (Pauli-Z) en diferentes bases.
 
-			1) En la base computacional $\mathcal{B} = \{|0\rangle, |1\rangle\}$:
-			$Z(|0\rangle) = |0\rangle$ implica coeficientes $c_{10} = 1$, $c_{20} = 0$
-			$Z(|1\rangle) = -|1\rangle$ implica coeficientes $c_{11} = 0$, $c_{21} = -1$
+      1) En la base computacional $\mathcal{B} = \{|0\rangle, |1\rangle\}$:
+      $Z(|0\rangle) = |0\rangle$ implica coeficientes $c_{10} = 1$, $c_{20} = 0$
+      $Z(|1\rangle) = -|1\rangle$ implica coeficientes $c_{11} = 0$, $c_{21} = -1$
 
-			Por tanto:
-			$[Z]_{\mathcal{B}} = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$
+      Por tanto:
+      $[Z]_{\mathcal{B}} = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$
 
-			2) En la base de Hadamard $\mathcal{B}' = \{|+\rangle, |-\rangle\}$ donde $|+\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$ y $|-\rangle = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle)$:
+      2) En la base de Hadamard $\mathcal{B}' = \{|+\rangle, |-\rangle\}$ donde $|+\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$ y $|-\rangle = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle)$:
 
-			$Z(|+\rangle) = Z\left(\frac{|0\rangle + |1\rangle}{\sqrt{2}}\right) = \frac{|0\rangle - |1\rangle}{\sqrt{2}} = |-\rangle$
+      $Z(|+\rangle) = Z\left(\frac{|0\rangle + |1\rangle}{\sqrt{2}}\right) = \frac{|0\rangle - |1\rangle}{\sqrt{2}} = |-\rangle$
 
-			$Z(|-\rangle) = Z\left(\frac{|0\rangle - |1\rangle}{\sqrt{2}}\right) = \frac{|0\rangle + |1\rangle}{\sqrt{2}} = |+\rangle$
+      $Z(|-\rangle) = Z\left(\frac{|0\rangle - |1\rangle}{\sqrt{2}}\right) = \frac{|0\rangle + |1\rangle}{\sqrt{2}} = |+\rangle$
 
-			Por tanto:
-			$[Z]_{\mathcal{B}'} = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$
+      Por tanto:
+      $[Z]_{\mathcal{B}'} = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$
 
-			Observamos que en la base de Hadamard, ¡el operador $Z$ se representa mediante la misma matriz que representa al operador $X$ en la base computacional!
+      Observamos que en la base de Hadamard, ¡el operador $Z$ se representa mediante la misma matriz que representa al operador $X$ en la base computacional!
 
-			Esta representación matricial es fundamental en computación cuántica para:
-			- Implementar algoritmos mediante secuencias de matrices
-			- Analizar propiedades de observables físicos
-			- Calcular evoluciones temporales de sistemas cuánticos
-			- Diseñar y optimizar compuertas cuánticas
-			- Verificar la unitariedad y otras propiedades de transformaciones cuánticas
+      Esta representación matricial es fundamental en computación cuántica para:
+      - Implementar algoritmos mediante secuencias de matrices
+      - Analizar propiedades de observables físicos
+      - Calcular evoluciones temporales de sistemas cuánticos
+      - Diseñar y optimizar compuertas cuánticas
+      - Verificar la unitariedad y otras propiedades de transformaciones cuánticas
 
-			La elección adecuada de la base puede simplificar significativamente el análisis y la implementación de operaciones cuánticas, como demuestra el ejemplo del operador $Z$ en diferentes bases.
-		\end{solution}
+      La elección adecuada de la base puede simplificar significativamente el análisis y la implementación de operaciones cuánticas, como demuestra el ejemplo del operador $Z$ en diferentes bases.
+    \end{solution}
 
-		\part Explique en qué consiste la descomposición de Schmidt de un estado bipartito y su utilidad para detectar y cuantificar el entrelazamiento cuántico.
+    \part Explique en qué consiste la descomposición de Schmidt de un estado bipartito y su utilidad para detectar y cuantificar el entrelazamiento cuántico.
 
-		\begin{solution}
-			La descomposición de Schmidt es una técnica matemática fundamental en información cuántica que proporciona una forma canónica para representar estados bipartitos, facilitando la detección y cuantificación del entrelazamiento entre los subsistemas.
+    \begin{solution}
+      La descomposición de Schmidt es una técnica matemática fundamental en información cuántica que proporciona una forma canónica para representar estados bipartitos, facilitando la detección y cuantificación del entrelazamiento entre los subsistemas.
 
-			Definición formal:
+      Definición formal:
 
-			Sea $|\psi\rangle \in \mathcal{H}_A \otimes \mathcal{H}_B$ un estado puro bipartito (normalizado) en un sistema cuántico compuesto por dos subsistemas $A$ y $B$. La descomposición de Schmidt afirma que existe una base ortonormal $\{|i_A\rangle\}$ para el subsistema $A$ y una base ortonormal $\{|i_B\rangle\}$ para el subsistema $B$ tales que:
+      Sea $|\psi\rangle \in \mathcal{H}_A \otimes \mathcal{H}_B$ un estado puro bipartito (normalizado) en un sistema cuántico compuesto por dos subsistemas $A$ y $B$. La descomposición de Schmidt afirma que existe una base ortonormal $\{|i_A\rangle\}$ para el subsistema $A$ y una base ortonormal $\{|i_B\rangle\}$ para el subsistema $B$ tales que:
 
-			$|\psi\rangle = \sum_{i=1}^{r} \lambda_i |i_A\rangle \otimes |i_B\rangle$
+      $|\psi\rangle = \sum_{i=1}^{r} \lambda_i |i_A\rangle \otimes |i_B\rangle$
 
-			donde:
-			- $\lambda_i > 0$ son números reales positivos llamados coeficientes de Schmidt
-			- $\sum_{i=1}^{r} \lambda_i^2 = 1$ (normalización)
-			- $r \leq \min(\dim \mathcal{H}_A, \dim \mathcal{H}_B)$ es el rango de Schmidt del estado
+      donde:
+      - $\lambda_i > 0$ son números reales positivos llamados coeficientes de Schmidt
+      - $\sum_{i=1}^{r} \lambda_i^2 = 1$ (normalización)
+      - $r \leq \min(\dim \mathcal{H}_A, \dim \mathcal{H}_B)$ es el rango de Schmidt del estado
 
-			Propiedades clave:
+      Propiedades clave:
 
-			1) Unicidad:
-			- Los coeficientes de Schmidt $\lambda_i$ son únicos (salvo permutaciones)
-			- Las bases $\{|i_A\rangle\}$ y $\{|i_B\rangle\}$ son únicas cuando los $\lambda_i$ son todos distintos
+      1) Unicidad:
+      - Los coeficientes de Schmidt $\lambda_i$ son únicos (salvo permutaciones)
+      - Las bases $\{|i_A\rangle\}$ y $\{|i_B\rangle\}$ son únicas cuando los $\lambda_i$ son todos distintos
 
-			2) Matrices de densidad reducidas:
-			- Ambas matrices de densidad reducidas tienen los mismos valores propios no nulos: $\lambda_i^2$
-			- $\rho_A = \text{Tr}_B(|\psi\rangle\langle\psi|) = \sum_{i=1}^{r} \lambda_i^2 |i_A\rangle\langle i_A|$
-			- $\rho_B = \text{Tr}_A(|\psi\rangle\langle\psi|) = \sum_{i=1}^{r} \lambda_i^2 |i_B\rangle\langle i_B|$
+      2) Matrices de densidad reducidas:
+      - Ambas matrices de densidad reducidas tienen los mismos valores propios no nulos: $\lambda_i^2$
+      - $\rho_A = \text{Tr}_B(|\psi\rangle\langle\psi|) = \sum_{i=1}^{r} \lambda_i^2 |i_A\rangle\langle i_A|$
+      - $\rho_B = \text{Tr}_A(|\psi\rangle\langle\psi|) = \sum_{i=1}^{r} \lambda_i^2 |i_B\rangle\langle i_B|$
 
-			3) Rango de Schmidt:
-			- Coincide con el rango de ambas matrices de densidad reducidas
-			- $r = 1$ si y solo si el estado es separable (no entrelazado)
-			- $r > 1$ implica que el estado está entrelazado
-			- $r = \min(\dim \mathcal{H}_A, \dim \mathcal{H}_B)$ indica entrelazamiento máximo cuando todos los $\lambda_i$ son iguales
+      3) Rango de Schmidt:
+      - Coincide con el rango de ambas matrices de densidad reducidas
+      - $r = 1$ si y solo si el estado es separable (no entrelazado)
+      - $r > 1$ implica que el estado está entrelazado
+      - $r = \min(\dim \mathcal{H}_A, \dim \mathcal{H}_B)$ indica entrelazamiento máximo cuando todos los $\lambda_i$ son iguales
 
-			Procedimiento para calcular la descomposición de Schmidt:
+      Procedimiento para calcular la descomposición de Schmidt:
 
-			1) Expresar el estado en la forma general:
-			$|\psi\rangle = \sum_{i,j} c_{ij} |i_A\rangle \otimes |j_B\rangle$
-			donde $\{|i_A\rangle\}$ y $\{|j_B\rangle\}$ son bases ortonormales arbitrarias
+      1) Expresar el estado en la forma general:
+      $|\psi\rangle = \sum_{i,j} c_{ij} |i_A\rangle \otimes |j_B\rangle$
+      donde $\{|i_A\rangle\}$ y $\{|j_B\rangle\}$ son bases ortonormales arbitrarias
 
-			2) Construir la matriz de coeficientes $C = (c_{ij})$
+      2) Construir la matriz de coeficientes $C = (c_{ij})$
 
-			3) Calcular la descomposición en valores singulares (SVD) de $C$:
-			$C = UDV^\dagger$ donde $D$ es diagonal con elementos $\lambda_i$
+      3) Calcular la descomposición en valores singulares (SVD) de $C$:
+      $C = UDV^\dagger$ donde $D$ es diagonal con elementos $\lambda_i$
 
-			4) Construir las nuevas bases:
-			$|i_A'\rangle = \sum_j U_{ji} |j_A\rangle$
-			$|i_B'\rangle = \sum_j V_{ji}^* |j_B\rangle$
+      4) Construir las nuevas bases:
+      $|i_A'\rangle = \sum_j U_{ji} |j_A\rangle$
+      $|i_B'\rangle = \sum_j V_{ji}^* |j_B\rangle$
 
-			5) Reescribir el estado en la forma de Schmidt:
-			$|\psi\rangle = \sum_i \lambda_i |i_A'\rangle \otimes |i_B'\rangle$
+      5) Reescribir el estado en la forma de Schmidt:
+      $|\psi\rangle = \sum_i \lambda_i |i_A'\rangle \otimes |i_B'\rangle$
 
-			Ejemplos ilustrativos:
+      Ejemplos ilustrativos:
 
-			1) Estado separable:
-			$|\psi\rangle = |0_A\rangle \otimes |1_B\rangle$
+      1) Estado separable:
+      $|\psi\rangle = |0_A\rangle \otimes |1_B\rangle$
 
-			Este estado ya está en forma de Schmidt con $r = 1$ y $\lambda_1 = 1$
-			Al tener rango de Schmidt 1, es separable (no entrelazado)
+      Este estado ya está en forma de Schmidt con $r = 1$ y $\lambda_1 = 1$
+      Al tener rango de Schmidt 1, es separable (no entrelazado)
 
-			2) Estado de Bell:
-			$|\psi\rangle = \frac{1}{\sqrt{2}}(|0_A\rangle \otimes |0_B\rangle + |1_A\rangle \otimes |1_B\rangle)$
+      2) Estado de Bell:
+      $|\psi\rangle = \frac{1}{\sqrt{2}}(|0_A\rangle \otimes |0_B\rangle + |1_A\rangle \otimes |1_B\rangle)$
 
-			Este estado ya está en forma de Schmidt con $r = 2$ y $\lambda_1 = \lambda_2 = \frac{1}{\sqrt{2}}$
-			Al tener rango de Schmidt 2 y coeficientes iguales, está máximamente entrelazado
+      Este estado ya está en forma de Schmidt con $r = 2$ y $\lambda_1 = \lambda_2 = \frac{1}{\sqrt{2}}$
+      Al tener rango de Schmidt 2 y coeficientes iguales, está máximamente entrelazado
 
-			3) Estado asimétrico:
-			$|\psi\rangle = \frac{\sqrt{3}}{2}|0_A\rangle \otimes |0_B\rangle + \frac{1}{2}|1_A\rangle \otimes |1_B\rangle$
+      3) Estado asimétrico:
+      $|\psi\rangle = \frac{\sqrt{3}}{2}|0_A\rangle \otimes |0_B\rangle + \frac{1}{2}|1_A\rangle \otimes |1_B\rangle$
 
-			Este estado ya está en forma de Schmidt con $r = 2$, $\lambda_1 = \frac{\sqrt{3}}{2}$ y $\lambda_2 = \frac{1}{2}$
-			Está entrelazado pero no máximamente
+      Este estado ya está en forma de Schmidt con $r = 2$, $\lambda_1 = \frac{\sqrt{3}}{2}$ y $\lambda_2 = \frac{1}{2}$
+      Está entrelazado pero no máximamente
 
-			Utilidad para detectar y cuantificar entrelazamiento:
+      Utilidad para detectar y cuantificar entrelazamiento:
 
-			1) Criterio para detectar entrelazamiento:
-			- Un estado bipartito puro está entrelazado si y solo si su rango de Schmidt es mayor que 1
-			- Este es un criterio exacto y computacionalmente eficiente para estados puros
-			- Análisis: si $r = 1$, entonces $|\psi\rangle = |a\rangle \otimes |b\rangle$ es un producto tensorial (separable)
+      1) Criterio para detectar entrelazamiento:
+      - Un estado bipartito puro está entrelazado si y solo si su rango de Schmidt es mayor que 1
+      - Este es un criterio exacto y computacionalmente eficiente para estados puros
+      - Análisis: si $r = 1$, entonces $|\psi\rangle = |a\rangle \otimes |b\rangle$ es un producto tensorial (separable)
 
-			2) Cuantificación del entrelazamiento:
-			- Entropía de entrelazamiento: $E(|\psi\rangle) = -\sum_i \lambda_i^2 \log_2 \lambda_i^2$
-			- Este es un medidor estándar del entrelazamiento en estados puros
-			- $E = 0$ para estados separables (un solo coeficiente igual a 1)
-			- $E = \log_2 d$ para estados máximamente entrelazados ($d$ coeficientes iguales a $1/\sqrt{d}$)
-			- La entropía de entrelazamiento coincide con la entropía de von Neumann de cualquiera de las matrices reducidas
+      2) Cuantificación del entrelazamiento:
+      - Entropía de entrelazamiento: $E(|\psi\rangle) = -\sum_i \lambda_i^2 \log_2 \lambda_i^2$
+      - Este es un medidor estándar del entrelazamiento en estados puros
+      - $E = 0$ para estados separables (un solo coeficiente igual a 1)
+      - $E = \log_2 d$ para estados máximamente entrelazados ($d$ coeficientes iguales a $1/\sqrt{d}$)
+      - La entropía de entrelazamiento coincide con la entropía de von Neumann de cualquiera de las matrices reducidas
 
-			3) Otras medidas basadas en la descomposición:
-			- Entrelazamiento de formación
-			- Concurrencia (para dos qubits)
-			- Negatividad
-			- Todas estas medidas pueden expresarse en términos de los coeficientes de Schmidt para estados puros
+      3) Otras medidas basadas en la descomposición:
+      - Entrelazamiento de formación
+      - Concurrencia (para dos qubits)
+      - Negatividad
+      - Todas estas medidas pueden expresarse en términos de los coeficientes de Schmidt para estados puros
 
-			4) Purificación y extensión a estados mixtos:
-			- La descomposición de Schmidt está directamente relacionada con la purificación de estados mixtos
-			- Permite desarrollar medidas de entrelazamiento para estados mixtos a través de la "extensión de techo convexo"
+      4) Purificación y extensión a estados mixtos:
+      - La descomposición de Schmidt está directamente relacionada con la purificación de estados mixtos
+      - Permite desarrollar medidas de entrelazamiento para estados mixtos a través de la "extensión de techo convexo"
 
-			5) Aplicaciones prácticas:
-			- Evaluación de recursos cuánticos disponibles para protocolos de información cuántica
-			- Análisis de capacidad de canales cuánticos
-			- Diseño de códigos correctores de errores cuánticos
-			- Caracterización experimental de estados cuánticos
+      5) Aplicaciones prácticas:
+      - Evaluación de recursos cuánticos disponibles para protocolos de información cuántica
+      - Análisis de capacidad de canales cuánticos
+      - Diseño de códigos correctores de errores cuánticos
+      - Caracterización experimental de estados cuánticos
 
-			Limitaciones:
+      Limitaciones:
 
-			1) Solo aplicable a estados puros bipartitos
-			- Para estados mixtos se requieren otras técnicas como PPT o testigos de entrelazamiento
-			- Para sistemas multipartitos se necesitan generalizaciones (descomposición de tensor)
+      1) Solo aplicable a estados puros bipartitos
+      - Para estados mixtos se requieren otras técnicas como PPT o testigos de entrelazamiento
+      - Para sistemas multipartitos se necesitan generalizaciones (descomposición de tensor)
 
-			2) No proporciona clasificación completa del entrelazamiento multipartito
-			- No distingue entre diferentes clases de entrelazamiento (como GHZ vs. W)
-			- No caracteriza completamente correlaciones cuánticas en sistemas de más de dos partes
+      2) No proporciona clasificación completa del entrelazamiento multipartito
+      - No distingue entre diferentes clases de entrelazamiento (como GHZ vs. W)
+      - No caracteriza completamente correlaciones cuánticas en sistemas de más de dos partes
 
-			La descomposición de Schmidt es una herramienta matemática poderosa que conecta áreas como el álgebra lineal (valores singulares), la teoría de la información (entropía) y la mecánica cuántica (entrelazamiento), proporcionando una descripción elegante y útil de los estados cuánticos compuestos.
-		\end{solution}
+      La descomposición de Schmidt es una herramienta matemática poderosa que conecta áreas como el álgebra lineal (valores singulares), la teoría de la información (entropía) y la mecánica cuántica (entrelazamiento), proporcionando una descripción elegante y útil de los estados cuánticos compuestos.
+    \end{solution}
 
-	\end{parts}
+  \end{parts}
 
-	\question[3]
-	Considere la compuerta Hadamard (H) y la compuerta de fase (S) definidas por:
-	$H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}, \quad S = \begin{pmatrix} 1 & 0 \\ 0 & i \end{pmatrix}$.
-	\begin{parts}
+  \question[3]
+  Considere la compuerta Hadamard (H) y la compuerta de fase (S) definidas por:
+  $H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}, \quad S = \begin{pmatrix} 1 & 0 \\ 0 & i \end{pmatrix}$.
+  \begin{parts}
 
-		\part Verifique que ambas compuertas son unitarias.
-		\part Calcule el producto $HSH$ y determine si el resultado es una compuerta conocida.
-		\part Represente la acción de las compuertas H, S y HSH en la esfera de Bloch.
-	\end{parts}
+    \part Verifique que ambas compuertas son unitarias.
+    \part Calcule el producto $HSH$ y determine si el resultado es una compuerta conocida.
+    \part Represente la acción de las compuertas H, S y HSH en la esfera de Bloch.
+  \end{parts}
 
-	\begin{solution}
-		a) Para verificar que una compuerta es unitaria, debemos comprobar que $U^\dagger U = UU^\dagger = I$.
+  \begin{solution}
+    a) Para verificar que una compuerta es unitaria, debemos comprobar que $U^\dagger U = UU^\dagger = I$.
 
-		Para la compuerta Hadamard $H$:
-		$H^\dagger = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$ (H es real y simétrica, por lo que $H^\dagger = H$)
+    Para la compuerta Hadamard $H$:
+    $H^\dagger = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$ (H es real y simétrica, por lo que $H^\dagger = H$)
 
-		$H^\dagger H = H^2 = \frac{1}{2}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$
-		$= \frac{1}{2}\begin{pmatrix} 1+1 & 1-1 \\ 1-1 & 1+1 \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = I$
+    $H^\dagger H = H^2 = \frac{1}{2}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$
+    $= \frac{1}{2}\begin{pmatrix} 1+1 & 1-1 \\ 1-1 & 1+1 \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = I$
 
-		Para la compuerta de fase $S$:
-		$S^\dagger = \begin{pmatrix} 1 & 0 \\ 0 & -i \end{pmatrix}$ (conjugado transpuesto de $S$)
+    Para la compuerta de fase $S$:
+    $S^\dagger = \begin{pmatrix} 1 & 0 \\ 0 & -i \end{pmatrix}$ (conjugado transpuesto de $S$)
 
-		$S^\dagger S = \begin{pmatrix} 1 & 0 \\ 0 & -i \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 0 & i \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & -i \cdot i \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = I$
+    $S^\dagger S = \begin{pmatrix} 1 & 0 \\ 0 & -i \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 0 & i \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & -i \cdot i \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = I$
 
-		$SS^\dagger = \begin{pmatrix} 1 & 0 \\ 0 & i \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 0 & -i \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & i \cdot (-i) \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = I$
+    $SS^\dagger = \begin{pmatrix} 1 & 0 \\ 0 & i \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 0 & -i \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & i \cdot (-i) \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = I$
 
-		Por lo tanto, ambas compuertas H y S son unitarias.
+    Por lo tanto, ambas compuertas H y S son unitarias.
 
-		b) Calculemos el producto $HSH$:
+    b) Calculemos el producto $HSH$:
 
-		Primero, calculamos $SH$:
-		$SH = \begin{pmatrix} 1 & 0 \\ 0 & i \end{pmatrix} \cdot \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix} = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ i & -i \end{pmatrix}$
+    Primero, calculamos $SH$:
+    $SH = \begin{pmatrix} 1 & 0 \\ 0 & i \end{pmatrix} \cdot \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix} = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ i & -i \end{pmatrix}$
 
-		Ahora, calculamos $HSH$:
-		$HSH = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix} \cdot \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ i & -i \end{pmatrix}$
-		$= \frac{1}{2}\begin{pmatrix} 1+i & 1-i \\ 1-i & -1-i \end{pmatrix}$
+    Ahora, calculamos $HSH$:
+    $HSH = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix} \cdot \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ i & -i \end{pmatrix}$
+    $= \frac{1}{2}\begin{pmatrix} 1+i & 1-i \\ 1-i & -1-i \end{pmatrix}$
 
-		Para determinar si esta es una compuerta conocida, podemos compararla con compuertas estándar o buscar propiedades especiales.
+    Para determinar si esta es una compuerta conocida, podemos compararla con compuertas estándar o buscar propiedades especiales.
 
-		En este caso, podemos factorizar un término de fase global $e^{i\pi/4}$ (que no afecta las mediciones):
-		$HSH = e^{i\pi/4} \cdot \frac{1}{\sqrt{2}}\begin{pmatrix} e^{-i\pi/4} & e^{i\pi/4} \\ e^{i\pi/4} & -e^{-i\pi/4} \end{pmatrix}$
+    En este caso, podemos factorizar un término de fase global $e^{i\pi/4}$ (que no afecta las mediciones):
+    $HSH = e^{i\pi/4} \cdot \frac{1}{\sqrt{2}}\begin{pmatrix} e^{-i\pi/4} & e^{i\pi/4} \\ e^{i\pi/4} & -e^{-i\pi/4} \end{pmatrix}$
 
-		Comparando con compuertas conocidas, observamos que $HSH$ se relaciona con la compuerta $Y = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}$ de la siguiente manera:
-		$HSH = e^{i\pi/4} \cdot \frac{Y+I}{\sqrt{2}}$
+    Comparando con compuertas conocidas, observamos que $HSH$ se relaciona con la compuerta $Y = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}$ de la siguiente manera:
+    $HSH = e^{i\pi/4} \cdot \frac{Y+I}{\sqrt{2}}$
 
-		Esto significa que $HSH$ es equivalente (salvo fase global) a la compuerta $\frac{Y+I}{\sqrt{2}}$, que es una rotación específica en la esfera de Bloch. También puede verse como una rotación del tipo $R_y(\pi/2)$, es decir, una rotación de 90° alrededor del eje y.
+    Esto significa que $HSH$ es equivalente (salvo fase global) a la compuerta $\frac{Y+I}{\sqrt{2}}$, que es una rotación específica en la esfera de Bloch. También puede verse como una rotación del tipo $R_y(\pi/2)$, es decir, una rotación de 90° alrededor del eje y.
 
-		c) Representación en la esfera de Bloch:
+    c) Representación en la esfera de Bloch:
 
-		1) Compuerta H:
-		- Efecto sobre los ejes: $H$ transforma el eje z al eje x y el eje x al eje z (con inversión)
-		- Geométricamente: Rotación de 90° alrededor del eje y, seguida de una reflexión en el plano xz
-		- Mapeo específico:
-		* $|0\rangle$ (polo norte) → $|+\rangle$ (eje x positivo)
-		* $|1\rangle$ (polo sur) → $|-\rangle$ (eje x negativo)
-		* $|+\rangle$ (eje x positivo) → $|0\rangle$ (polo norte)
-		* $|-\rangle$ (eje x negativo) → $|1\rangle$ (polo sur)
+    1) Compuerta H:
+    - Efecto sobre los ejes: $H$ transforma el eje z al eje x y el eje x al eje z (con inversión)
+    - Geométricamente: Rotación de 90° alrededor del eje y, seguida de una reflexión en el plano xz
+    - Mapeo específico:
+    * $|0\rangle$ (polo norte) → $|+\rangle$ (eje x positivo)
+    * $|1\rangle$ (polo sur) → $|-\rangle$ (eje x negativo)
+    * $|+\rangle$ (eje x positivo) → $|0\rangle$ (polo norte)
+    * $|-\rangle$ (eje x negativo) → $|1\rangle$ (polo sur)
 
-		2) Compuerta S:
-		- Efecto: Rotación de 90° alrededor del eje z
-		- Mapeo específico:
-		* $|0\rangle$ (polo norte) → permanece igual
-		* $|1\rangle$ (polo sur) → permanece igual
-		* $|+\rangle$ (eje x positivo) → $|+i\rangle$ (eje y positivo)
-		* $|-\rangle$ (eje x negativo) → $|-i\rangle$ (eje y negativo)
+    2) Compuerta S:
+    - Efecto: Rotación de 90° alrededor del eje z
+    - Mapeo específico:
+    * $|0\rangle$ (polo norte) → permanece igual
+    * $|1\rangle$ (polo sur) → permanece igual
+    * $|+\rangle$ (eje x positivo) → $|+i\rangle$ (eje y positivo)
+    * $|-\rangle$ (eje x negativo) → $|-i\rangle$ (eje y negativo)
 
-		3) Compuerta HSH:
-		- Efecto compuesto:
-		* H: Rota el eje z al eje x
-		* S: Rota el eje x al eje y
-		* H: Rota el eje y al eje z (con inversión)
-		* Resultado neto: Rotación de 90° alrededor del eje x
-		- Mapeo específico:
-		* $|0\rangle$ (polo norte) → eje y positivo
-		* $|1\rangle$ (polo sur) → eje y negativo
-		* $|+\rangle$ (eje x positivo) → permanece similar
-		* $|-\rangle$ (eje x negativo) → permanece similar
+    3) Compuerta HSH:
+    - Efecto compuesto:
+    * H: Rota el eje z al eje x
+    * S: Rota el eje x al eje y
+    * H: Rota el eje y al eje z (con inversión)
+    * Resultado neto: Rotación de 90° alrededor del eje x
+    - Mapeo específico:
+    * $|0\rangle$ (polo norte) → eje y positivo
+    * $|1\rangle$ (polo sur) → eje y negativo
+    * $|+\rangle$ (eje x positivo) → permanece similar
+    * $|-\rangle$ (eje x negativo) → permanece similar
 
-		La secuencia HSH efectúa una rotación que lleva el eje z al eje y, realizando una rotación de 90° en la esfera de Bloch alrededor del eje x.
+    La secuencia HSH efectúa una rotación que lleva el eje z al eje y, realizando una rotación de 90° en la esfera de Bloch alrededor del eje x.
 
-		d) Estado resultante al aplicar HSH al estado $|0\rangle$:
+    d) Estado resultante al aplicar HSH al estado $|0\rangle$:
 
-		Calculemos paso a paso:
-		$H|0\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) = |+\rangle$
+    Calculemos paso a paso:
+    $H|0\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) = |+\rangle$
 
-		$SH|0\rangle = S|+\rangle = S\frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) = \frac{1}{\sqrt{2}}(|0\rangle + i|1\rangle)$
+    $SH|0\rangle = S|+\rangle = S\frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) = \frac{1}{\sqrt{2}}(|0\rangle + i|1\rangle)$
 
-		$HSH|0\rangle = H\frac{1}{\sqrt{2}}(|0\rangle + i|1\rangle)$
-		$= \frac{1}{\sqrt{2}} \cdot \frac{1}{\sqrt{2}}[(|0\rangle + |1\rangle) + i(|0\rangle - |1\rangle)]$
-		$= \frac{1}{2}[(1+i)|0\rangle + (1-i)|1\rangle]$
+    $HSH|0\rangle = H\frac{1}{\sqrt{2}}(|0\rangle + i|1\rangle)$
+    $= \frac{1}{\sqrt{2}} \cdot \frac{1}{\sqrt{2}}[(|0\rangle + |1\rangle) + i(|0\rangle - |1\rangle)]$
+    $= \frac{1}{2}[(1+i)|0\rangle + (1-i)|1\rangle]$
 
-		Simplificando:
-		$HSH|0\rangle = \frac{1+i}{2}|0\rangle + \frac{1-i}{2}|1\rangle$
+    Simplificando:
+    $HSH|0\rangle = \frac{1+i}{2}|0\rangle + \frac{1-i}{2}|1\rangle$
 
-		Podemos expresar este estado en forma polar:
-		$\frac{1+i}{2} = \frac{\sqrt{2}}{2}e^{i\pi/4}$ y $\frac{1-i}{2} = \frac{\sqrt{2}}{2}e^{-i\pi/4}$
+    Podemos expresar este estado en forma polar:
+    $\frac{1+i}{2} = \frac{\sqrt{2}}{2}e^{i\pi/4}$ y $\frac{1-i}{2} = \frac{\sqrt{2}}{2}e^{-i\pi/4}$
 
-		Por lo tanto:
-		$HSH|0\rangle = \frac{\sqrt{2}}{2}e^{i\pi/4}|0\rangle + \frac{\sqrt{2}}{2}e^{-i\pi/4}|1\rangle$
+    Por lo tanto:
+    $HSH|0\rangle = \frac{\sqrt{2}}{2}e^{i\pi/4}|0\rangle + \frac{\sqrt{2}}{2}e^{-i\pi/4}|1\rangle$
 
-		Extrayendo una fase global $e^{i\pi/4}$:
-		$HSH|0\rangle = e^{i\pi/4} \cdot \frac{1}{\sqrt{2}}(|0\rangle + e^{-i\pi/2}|1\rangle) = e^{i\pi/4} \cdot \frac{1}{\sqrt{2}}(|0\rangle - i|1\rangle)$
+    Extrayendo una fase global $e^{i\pi/4}$:
+    $HSH|0\rangle = e^{i\pi/4} \cdot \frac{1}{\sqrt{2}}(|0\rangle + e^{-i\pi/2}|1\rangle) = e^{i\pi/4} \cdot \frac{1}{\sqrt{2}}(|0\rangle - i|1\rangle)$
 
-		Ignorando la fase global $e^{i\pi/4}$ (que no es observable):
-		$HSH|0\rangle \approx \frac{1}{\sqrt{2}}(|0\rangle - i|1\rangle)$
+    Ignorando la fase global $e^{i\pi/4}$ (que no es observable):
+    $HSH|0\rangle \approx \frac{1}{\sqrt{2}}(|0\rangle - i|1\rangle)$
 
-		Este estado corresponde al estado $|-i\rangle$, que se encuentra en el eje y negativo de la esfera de Bloch, confirmando nuestra descripción geométrica anterior.
-	\end{solution}
+    Este estado corresponde al estado $|-i\rangle$, que se encuentra en el eje y negativo de la esfera de Bloch, confirmando nuestra descripción geométrica anterior.
+  \end{solution}
 
-	\question[3]
-	Considere un sistema de dos qubits y los siguientes estados:
-	$|\psi_1\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle), \quad |\psi_2\rangle = |0\rangle \otimes \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$.
-	\begin{parts}
+  \question[3]
+  Considere un sistema de dos qubits y los siguientes estados:
+  $|\psi_1\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$, $|\psi_2\rangle = |0\rangle \otimes \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$.
+  \begin{parts}
 
-		\part ¿Cuál de estos estados está entrelazado? Justifique su respuesta.
-		\part Calcule las matrices de densidad reducidas para el primer qubit en ambos estados.
-		\part Supongamos que aplicamos la compuerta CNOT al estado $|\psi_2\rangle$. ¿Cuál será el estado resultante y está entrelazado?
-	\end{parts}
+    \part ¿Cuál de estos estados está entrelazado? Justifique su respuesta.
+    \part Calcule las matrices de densidad reducidas para el primer qubit en ambos estados.
+    \part Supongamos que aplicamos la compuerta CNOT al estado $|\psi_2\rangle$. ¿Cuál será el estado resultante? ¿Está entrelazado?
+  \end{parts}
 
-	\begin{solution}
-		a) Para determinar si un estado está entrelazado, debemos verificar si puede expresarse como un producto tensorial de estados individuales.
+  \begin{solution}
+    a) Para determinar si un estado está entrelazado, debemos verificar si puede expresarse como un producto tensorial de estados individuales.
 
-		Análisis del estado $|\psi_1\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$:
+    Análisis del estado $|\psi_1\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$:
 
-		Supongamos que $|\psi_1\rangle$ es separable. Entonces existirían estados $|\phi_A\rangle = a|0\rangle + b|1\rangle$ y $|\phi_B\rangle = c|0\rangle + d|1\rangle$ tales que:
-		$|\psi_1\rangle = |\phi_A\rangle \otimes |\phi_B\rangle = (a|0\rangle + b|1\rangle) \otimes (c|0\rangle + d|1\rangle)$
-		$= ac|00\rangle + ad|01\rangle + bc|10\rangle + bd|11\rangle$
+    Supongamos que $|\psi_1\rangle$ es separable. Entonces existirían estados $|\phi_A\rangle = a|0\rangle + b|1\rangle$ y $|\phi_B\rangle = c|0\rangle + d|1\rangle$ tales que:
+    $|\psi_1\rangle = |\phi_A\rangle \otimes |\phi_B\rangle = (a|0\rangle + b|1\rangle) \otimes (c|0\rangle + d|1\rangle)$
+    $= ac|00\rangle + ad|01\rangle + bc|10\rangle + bd|11\rangle$
 
-		Comparando con $|\psi_1\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$, tenemos:
-		$ac = \frac{1}{\sqrt{2}}$
-		$ad = 0$
-		$bc = 0$
-		$bd = \frac{1}{\sqrt{2}}$
+    Comparando con $|\psi_1\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$, tenemos:
+    $ac = \frac{1}{\sqrt{2}}$
+    $ad = 0$
+    $bc = 0$
+    $bd = \frac{1}{\sqrt{2}}$
 
-		De $ad = 0$ y $bc = 0$, dado que $ac \neq 0$ y $bd \neq 0$, deducimos que $a \neq 0$, $b \neq 0$, $c \neq 0$, $d \neq 0$. Pero esto contradice las ecuaciones $ad = 0$ y $bc = 0$.
+    De $ad = 0$ y $bc = 0$, dado que $ac \neq 0$ y $bd \neq 0$, deducimos que $a \neq 0$, $b \neq 0$, $c \neq 0$, $d \neq 0$. Pero esto contradice las ecuaciones $ad = 0$ y $bc = 0$.
 
-		Por lo tanto, $|\psi_1\rangle$ no puede expresarse como un producto tensorial, lo que significa que está entrelazado. Este es un ejemplo de un estado de Bell, que es un estado máximamente entrelazado de dos qubits.
+    Por lo tanto, $|\psi_1\rangle$ no puede expresarse como un producto tensorial, lo que significa que está entrelazado. Este es un ejemplo de un estado de Bell, que es un estado máximamente entrelazado de dos qubits.
 
-		Análisis del estado $|\psi_2\rangle = |0\rangle \otimes \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$:
+    Análisis del estado $|\psi_2\rangle = |0\rangle \otimes \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$:
 
-		Este estado ya está escrito explícitamente como un producto tensorial:
-		$|\psi_2\rangle = |0\rangle \otimes \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$
+    Este estado ya está escrito explícitamente como un producto tensorial:
+    $|\psi_2\rangle = |0\rangle \otimes \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$
 
-		donde $|\phi_A\rangle = |0\rangle$ y $|\phi_B\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$.
+    donde $|\phi_A\rangle = |0\rangle$ y $|\phi_B\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$.
 
-		Por lo tanto, $|\psi_2\rangle$ es un estado separable (no entrelazado).
+    Por lo tanto, $|\psi_2\rangle$ es un estado separable (no entrelazado).
 
-		Conclusión: $|\psi_1\rangle$ está entrelazado, mientras que $|\psi_2\rangle$ no lo está.
+    Conclusión: $|\psi_1\rangle$ está entrelazado, mientras que $|\psi_2\rangle$ no lo está.
 
-		b) Para calcular las matrices de densidad reducidas del primer qubit, debemos calcular primero las matrices de densidad completas y luego tomar la traza parcial sobre el segundo qubit.
+    b) Para calcular las matrices de densidad reducidas del primer qubit, debemos calcular primero las matrices de densidad completas y luego tomar la traza parcial sobre el segundo qubit.
 
-		Para $|\psi_1\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$:
+    Para $|\psi_1\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$:
 
-		La matriz de densidad completa es:
-		$\rho_1 = |\psi_1\rangle\langle\psi_1| = \frac{1}{2}(|00\rangle + |11\rangle)(\langle00| + \langle11|)$
-		$= \frac{1}{2}(|00\rangle\langle00| + |00\rangle\langle11| + |11\rangle\langle00| + |11\rangle\langle11|)$
+    La matriz de densidad completa es:
+    $\rho_1 = |\psi_1\rangle\langle\psi_1| = \frac{1}{2}(|00\rangle + |11\rangle)(\langle00| + \langle11|)$
+    $= \frac{1}{2}(|00\rangle\langle00| + |00\rangle\langle11| + |11\rangle\langle00| + |11\rangle\langle11|)$
 
-		La matriz de densidad reducida del primer qubit se obtiene tomando la traza parcial sobre el segundo qubit:
-		$\rho_{1A} = \text{Tr}_B(\rho_1) = \sum_i (I \otimes \langle i|)\rho_1(I \otimes |i\rangle)$
+    La matriz de densidad reducida del primer qubit se obtiene tomando la traza parcial sobre el segundo qubit:
+    $\rho_{1A} = \text{Tr}_B(\rho_1) = \sum_i (I \otimes \langle i|)\rho_1(I \otimes |i\rangle)$
 
-		$\rho_{1A} = (I \otimes \langle 0|)\rho_1(I \otimes |0\rangle) + (I \otimes \langle 1|)\rho_1(I \otimes |1\rangle)$
+    $\rho_{1A} = (I \otimes \langle 0|)\rho_1(I \otimes |0\rangle) + (I \otimes \langle 1|)\rho_1(I \otimes |1\rangle)$
 
-		Calculando cada término:
-		$(I \otimes \langle 0|)\rho_1(I \otimes |0\rangle) = \frac{1}{2}|0\rangle\langle0|$
-		$(I \otimes \langle 1|)\rho_1(I \otimes |1\rangle) = \frac{1}{2}|1\rangle\langle1|$
+    Calculando cada término:
+    $(I \otimes \langle 0|)\rho_1(I \otimes |0\rangle) = \frac{1}{2}|0\rangle\langle0|$
+    $(I \otimes \langle 1|)\rho_1(I \otimes |1\rangle) = \frac{1}{2}|1\rangle\langle1|$
 
-		Por tanto:
-		$\rho_{1A} = \frac{1}{2}|0\rangle\langle0| + \frac{1}{2}|1\rangle\langle1| = \frac{1}{2}I$
+    Por tanto:
+    $\rho_{1A} = \frac{1}{2}|0\rangle\langle0| + \frac{1}{2}|1\rangle\langle1| = \frac{1}{2}I$
 
-		En forma matricial:
-		$\rho_{1A} = \frac{1}{2}\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$
+    En forma matricial:
+    $\rho_{1A} = \frac{1}{2}\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$
 
-		Para $|\psi_2\rangle = |0\rangle \otimes \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) = \frac{1}{\sqrt{2}}(|00\rangle + |01\rangle)$:
+    Para $|\psi_2\rangle = |0\rangle \otimes \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) = \frac{1}{\sqrt{2}}(|00\rangle + |01\rangle)$:
 
-		La matriz de densidad completa es:
-		$\rho_2 = |\psi_2\rangle\langle\psi_2| = \frac{1}{2}(|00\rangle + |01\rangle)(\langle00| + \langle01|)$
-		$= \frac{1}{2}(|00\rangle\langle00| + |00\rangle\langle01| + |01\rangle\langle00| + |01\rangle\langle01|)$
+    La matriz de densidad completa es:
+    $\rho_2 = |\psi_2\rangle\langle\psi_2| = \frac{1}{2}(|00\rangle + |01\rangle)(\langle00| + \langle01|)$
+    $= \frac{1}{2}(|00\rangle\langle00| + |00\rangle\langle01| + |01\rangle\langle00| + |01\rangle\langle01|)$
 
-		La matriz de densidad reducida del primer qubit:
-		$\rho_{2A} = \text{Tr}_B(\rho_2)$
+    La matriz de densidad reducida del primer qubit:
+    $\rho_{2A} = \text{Tr}_B(\rho_2)$
 
-		Calculando:
-		$(I \otimes \langle 0|)\rho_2(I \otimes |0\rangle) = \frac{1}{2}|0\rangle\langle0|$
-		$(I \otimes \langle 1|)\rho_2(I \otimes |1\rangle) = \frac{1}{2}|0\rangle\langle0|$
+    Calculando:
+    $(I \otimes \langle 0|)\rho_2(I \otimes |0\rangle) = \frac{1}{2}|0\rangle\langle0|$
+    $(I \otimes \langle 1|)\rho_2(I \otimes |1\rangle) = \frac{1}{2}|0\rangle\langle0|$
 
-		Por tanto:
-		$\rho_{2A} = \frac{1}{2}|0\rangle\langle0| + \frac{1}{2}|0\rangle\langle0| = |0\rangle\langle0|$
+    Por tanto:
+    $\rho_{2A} = \frac{1}{2}|0\rangle\langle0| + \frac{1}{2}|0\rangle\langle0| = |0\rangle\langle0|$
 
-		En forma matricial:
-		$\rho_{2A} = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}$
+    En forma matricial:
+    $\rho_{2A} = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}$
 
-		Observación: Mientras que para el estado entrelazado $|\psi_1\rangle$ la matriz reducida es máximamente mixta, para el estado separable $|\psi_2\rangle$ la matriz reducida representa un estado puro. Esto es consistente con la teoría del entrelazamiento.
+    Observación: Mientras que para el estado entrelazado $|\psi_1\rangle$ la matriz reducida es máximamente mixta, para el estado separable $|\psi_2\rangle$ la matriz reducida representa un estado puro. Esto es consistente con la teoría del entrelazamiento.
 
-		c) Aplicación de la compuerta CNOT al estado $|\psi_2\rangle$:
+    c) Aplicación de la compuerta CNOT al estado $|\psi_2\rangle$:
 
-		Recordemos cómo actúa la compuerta CNOT en la base computacional:
-		$\text{CNOT}|00\rangle = |00\rangle$
-		$\text{CNOT}|01\rangle = |01\rangle$
-		$\text{CNOT}|10\rangle = |11\rangle$
-		$\text{CNOT}|11\rangle = |10\rangle$
+    Recordemos cómo actúa la compuerta CNOT en la base computacional:
+    $\text{CNOT}|00\rangle = |00\rangle$
+    $\text{CNOT}|01\rangle = |01\rangle$
+    $\text{CNOT}|10\rangle = |11\rangle$
+    $\text{CNOT}|11\rangle = |10\rangle$
 
-		Ahora apliquemos CNOT a $|\psi_2\rangle$:
-		$\text{CNOT}|\psi_2\rangle = \text{CNOT}\frac{1}{\sqrt{2}}(|00\rangle + |01\rangle)$
-		$= \frac{1}{\sqrt{2}}(\text{CNOT}|00\rangle + \text{CNOT}|01\rangle)$
-		$= \frac{1}{\sqrt{2}}(|00\rangle + |01\rangle)$
+    Ahora apliquemos CNOT a $|\psi_2\rangle$:
+    $\text{CNOT}|\psi_2\rangle = \text{CNOT}\frac{1}{\sqrt{2}}(|00\rangle + |01\rangle)$
+    $= \frac{1}{\sqrt{2}}(\text{CNOT}|00\rangle + \text{CNOT}|01\rangle)$
+    $= \frac{1}{\sqrt{2}}(|00\rangle + |01\rangle)$
 
-		Por lo tanto, $\text{CNOT}|\psi_2\rangle = |\psi_2\rangle$
+    Por lo tanto, $\text{CNOT}|\psi_2\rangle = |\psi_2\rangle$
 
-		El estado resultante sigue siendo $|\psi_2\rangle = |0\rangle \otimes \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$, que está en forma de producto tensorial. Por lo tanto, permanece como un estado no entrelazado.
+    El estado resultante sigue siendo $|\psi_2\rangle = |0\rangle \otimes \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$, que está en forma de producto tensorial. Por lo tanto, permanece como un estado no entrelazado.
 
-		Esto tiene sentido porque la compuerta CNOT solo entrelaza estados cuando el qubit de control (el primer qubit en este caso) está en superposición. Como el primer qubit de $|\psi_2\rangle$ está en el estado determinado $|0\rangle$, CNOT no crea entrelazamiento.
+    Esto tiene sentido porque la compuerta CNOT solo entrelaza estados cuando el qubit de control (el primer qubit en este caso) está en superposición. Como el primer qubit de $|\psi_2\rangle$ está en el estado determinado $|0\rangle$, CNOT no crea entrelazamiento.
 
-	\end{solution}
+  \end{solution}
 \end{questions}
