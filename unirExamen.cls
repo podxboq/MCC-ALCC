@@ -10,7 +10,6 @@
 \usepackage{etoolbox}
 
 \newcommand\asignatura[1]{\def\@asignatura{#1}}
-\newcommand\per[1]{\def\@per{#1}}
 
 \definecolor{azulunir}{RGB}{0, 152, 205}
 \definecolor{grisunir}{RGB}{119, 119, 119}
@@ -32,5 +31,5 @@
 \pointpoints{punto}{puntos}
 \renewcommand{\solutiontitle}{\textbf{Solución: }}
 
-\newcommand{\codigonombreord}[2]{#1 & ALCC\_PER\@per\_MOD#1\_ORD & \texttt{#2}}
-\newcommand{\codigonombreext}[2]{#1 & ALCC\_PER\@per\_MOD#1\_EXT & \texttt{#2}}
+\newcommand{\codigonombreord}[3]{#1 & ALCC\_PER#2\_MOD#1\_ORD & \texttt{#3}}
+\newcommand{\codigonombreext}[3]{#1 & ALCC\_PER#2\_MOD#1\_EXT & \texttt{#3}}
