@@ -2,77 +2,160 @@
 
 \begin{questions}
 
-  \question Verificar que las siguientes funciones definen productos internos y calcular la norma inducida:
+\question Verificar que las siguientes funciones definen productos internos y calcular la norma inducida:
+\begin{parts}
+  \part En $\C^2$: $\langle \mathbf{u}, \mathbf{v} \rangle = 2u_1\conj{v_1} + u_1\conj{v_2} + u_2\conj{v_1} + 3u_2\conj{v_2}$
+  \part En $\C^{2 \times 2}$: $\langle A, B \rangle = \text{tr}(A^* B)$
+\end{parts}
+
+\question Aplicar el proceso de Gram-Schmidt para ortogonalizar:
+$$\left\{\begin{pmatrix} 1 \\ 1 \\ i \end{pmatrix}, \begin{pmatrix} 1 \\ i \\ 0 \end{pmatrix}, \begin{pmatrix} i \\ 1 \\ 1 \end{pmatrix}\right\}$$
+
+\question Sea $W = \text{gen}\left\{\begin{pmatrix} 1 \\ i \\ 0 \end{pmatrix}, \begin{pmatrix} 0 \\ 1 \\ i \end{pmatrix}\right\} \subset \C^3$.
+\begin{parts}
+  \part Encontrar una base ortonormal para $W$
+  \part Calcular $\text{proj}_W\begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix}$
+  \part Encontrar el complemento ortogonal $W^\perp$
+\end{parts}
+
+\question Para las matrices $A = \begin{pmatrix} 2 & 1+i \\ 1-i & 3 \end{pmatrix}$ y $B = \begin{pmatrix} 1 & 2i \\ -2i & 1 \end{pmatrix}$:
+\begin{parts}
+  \part Verificar cuáles son hermitianas
+  \part Calcular los valores propios y vectores propios de las hermitianas
+  \part Diagonalizar las matrices hermitianas usando una base ortonormal
+\end{parts}
+
+\question Demostrar que las siguientes matrices son unitarias y encontrar su descomposición espectral:
+\begin{parts}
+  \part $U_1 = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & i \\ i & 1 \end{pmatrix}$
+  \part $U_2 = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$ (matriz de Hadamard)
+\end{parts}
+
+\question Un qubit se encuentra en el estado $\ket{\psi} = \frac{3}{5}\ket{0} + \frac{4i}{5}\ket{1}$.
+\begin{parts}
+  \part Verificar que el estado está normalizado
+  \part Calcular las probabilidades de medir $\sigma_x$, $\sigma_y$ y $\sigma_z$
+  \part Determinar el estado después de medir $\sigma_z$ y obtener el resultado $+1$
+\end{parts}
+
+\question Demostrar las siguientes propiedades para operadores en espacios de Hilbert:
+\begin{parts}
+  \part Si $T$ es hermitiano, entonces $\langle T\mathbf{v}, \mathbf{v} \rangle \in \R$ para todo $\mathbf{v}$
+  \part Si $U$ es unitario, entonces $U$ preserva el producto interno
+  \part El producto de dos operadores unitarios es unitario
+\end{parts}
+
+\question Para el operador $H = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 0 & 1 \\ 0 & 1 & 0 \end{pmatrix}$:
+\begin{parts}
+  \part Verificar que $H$ es hermitiano
+  \part Encontrar todos los valores propios y vectores propios
+  \part Construir la descomposición espectral $H = \sum_i \lambda_i P_i$ donde $P_i$ son proyecciones ortogonales
+\end{parts}
+
+\question Para el observable $\hat{A} = \begin{pmatrix} 2 & 1-i \\ 1+i & 3 \end{pmatrix}$:
+\begin{parts}
+  \part Verificar que $\hat{A}$ es hermitiano
+  \part Encontrar los valores propios y vectores propios
+  \part Escribir la descomposición espectral de $\hat{A}$
+\end{parts}
+
+\question Un cúbit se encuentra en el estado $\ket{\psi} = \frac{1}{\sqrt{5}}(2\ket{0} + i\ket{1})$:
+\begin{parts}
+  \part Calcular las probabilidades de medir $\sigma_x$, $\sigma_y$ y $\sigma_z$
+  \part Determinar los valores esperados $\langle\sigma_x\rangle$, $\langle\sigma_y\rangle$ y $\langle\sigma_z\rangle$
+  \part Si se mide $\sigma_x$ y se obtiene el resultado $+1$, ¿cuál es el estado después de la medición?
+\end{parts}
+
+\question Demostrar que si $\hat{A}$ y $\hat{B}$ son operadores hermitianos que conmutan ($[\hat{A}, \hat{B}] = 0$), entonces tienen una base común de vectores propios.
+
+\question Para el operador $\hat{H} = \frac{1}{\sqrt{2}}(\sigma_x + \sigma_z)$:
+\begin{parts}
+  \part Verificar que $\hat{H}$ es hermitiano
+  \part Encontrar la descomposición espectral de $\hat{H}$
+  \part Si un cúbit está en estado $\ket{0}$, ¿cuáles son las probabilidades de medir $\pm 1$ para el observable $\hat{H}$?
+\end{parts}
+
+\begin{questions}
+
+  \question Sea $V = \mathbb{C}^2$ con la base $\mathcal{B} = \left\{\begin{pmatrix} 1 \\ i \end{pmatrix}, \begin{pmatrix} 1 \\ -i \end{pmatrix}\right\}$.
   \begin{parts}
-    \part En $\C^2$: $\langle \mathbf{u}, \mathbf{v} \rangle = 2u_1\conj{v_1} + u_1\conj{v_2} + u_2\conj{v_1} + 3u_2\conj{v_2}$
-    \part En $\C^{2 \times 2}$: $\langle A, B \rangle = \text{tr}(A^* B)$
+    \part Verificar que $\mathcal{B}$ es efectivamente una base de $V$.
+    \part Encontrar la base dual $\mathcal{B}^* = \{e_1^*, e_2^*\}$ correspondiente.
+    \part Expresar el funcional $f(x,y) = x + 2y$ como combinación lineal de elementos de $\mathcal{B}^*$.
+    \part Calcular $e_1^*\begin{pmatrix} 2+i \\ 1-i \end{pmatrix}$ y $e_2^*\begin{pmatrix} 2+i \\ 1-i \end{pmatrix}$.
   \end{parts}
 
-  \question Aplicar el proceso de Gram-Schmidt para ortogonalizar:
-  $$\left\{\begin{pmatrix} 1 \\ 1 \\ i \end{pmatrix}, \begin{pmatrix} 1 \\ i \\ 0 \end{pmatrix}, \begin{pmatrix} i \\ 1 \\ 1 \end{pmatrix}\right\}$$
-
-  \question Sea $W = \text{gen}\left\{\begin{pmatrix} 1 \\ i \\ 0 \end{pmatrix}, \begin{pmatrix} 0 \\ 1 \\ i \end{pmatrix}\right\} \subset \C^3$.
+  \question En un espacio de Hilbert $\mathcal{H} = \mathbb{C}^2$ con el producto interno estándar:
   \begin{parts}
-    \part Encontrar una base ortonormal para $W$
-    \part Calcular $\text{proj}_W\begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix}$
-    \part Encontrar el complemento ortogonal $W^\perp$
+    \part Usar el teorema de Riesz-Fréchet para encontrar el vector $y_f \in \mathcal{H}$ que representa el funcional $f(x) = \begin{pmatrix} 1-i & 2+i \end{pmatrix} x$
+    \part Verificar que $f(x) = \langle x, y_f \rangle$ para cualquier $x \in \mathcal{H}$.
   \end{parts}
 
-  \question Para las matrices $A = \begin{pmatrix} 2 & 1+i \\ 1-i & 3 \end{pmatrix}$ y $B = \begin{pmatrix} 1 & 2i \\ -2i & 1 \end{pmatrix}$:
+  \question Considerar el operador $T: \mathbb{C}^2 \to \mathbb{C}^2$ definido por la matriz $T = \begin{pmatrix} 1 & i \\ 0 & 2 \end{pmatrix}$.
   \begin{parts}
-    \part Verificar cuáles son hermitianas
-    \part Calcular los valores propios y vectores propios de las hermitianas
-    \part Diagonalizar las matrices hermitianas usando una base ortonormal
+    \part Encontrar la representación matricial del operador adjunto $T^*$.
+    \part Verificar que $\langle Tx, y \rangle = \langle x, T^*y \rangle$ para $x = \begin{pmatrix} 1 \\ i \end{pmatrix}$ y $y = \begin{pmatrix} 1+i \\ 1-i \end{pmatrix}$.
+    \part Determinar si $T$ es hermitiano, unitario o normal.
   \end{parts}
 
-  \question Demostrar que las siguientes matrices son unitarias y encontrar su descomposición espectral:
+  \question Considere el estado cuántico normalizado en el espacio de Hilbert $\mathcal{H} \cong \mathbb{C}^2$:
+  $$ |\psi\rangle = \frac{1}{\sqrt{5}} \begin{pmatrix} 1+i \\ 2 \end{pmatrix} $$
+
+  \question Sea el operador lineal $A$ actuando sobre $\mathbb{C}^2$, representado por la matriz:
+  $$A = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}$$
+
   \begin{parts}
-    \part $U_1 = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & i \\ i & 1 \end{pmatrix}$
-    \part $U_2 = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$ (matriz de Hadamard)
+    \part Calcule el operador adjunto $A^\dagger$ (transpuesta conjugada de $A$).
+    \part Determine si $A$ es un operador \textbf{hermítico} (autoadjunto). ¿Qué implicación física tiene esta propiedad en la Mecánica Cuántica?
+    \part Calcule los valores propios de $A$ y demuestre que son reales.
   \end{parts}
 
-  \question Un qubit se encuentra en el estado $\ket{\psi} = \frac{3}{5}\ket{0} + \frac{4i}{5}\ket{1}$.
+  \question Considere el operador hermítico (observable) $H$ dado por:
+  $$H = \begin{pmatrix} 3 & 1 \\ 1 & 3 \end{pmatrix}$$
+
+  \begin{parts}
+    \part Encuentre los valores propios $\lambda_1$ y $\lambda_2$.
+    \part Determine los vectores propios normalizados $v_1$ y $v_2$ asociados a estos valores propios.
+    \part Escriba la matriz diagonal $D$ y la matriz unitaria de cambio de base $U$ (la matriz de los estados propios). Confirme la descomposición espectral: $H = U D U^\dagger$.
+  \end{parts}
+
+  \question Considere el sistema compuesto de dos qubits. El espacio de Hilbert es $\mathcal{H}_{AB} = \mathcal{H}_A \otimes \mathcal{H}_B$, donde $\mathcal{H}_A \cong \mathbb{C}^2$ y $\mathcal{H}_B \cong \mathbb{C}^2$.
+
+  \begin{parts}
+    \part ¿Cuál es la dimensión de $\mathcal{H}_{AB}$? Enumere todos los elementos de la base canónica tensorial.
+    \part Considere el tensor $t = \frac{1}{\sqrt{2}}(e_0\otimes e_1 - e_1\otimes e_0)$. Intente encontrar dos vectores $a \in \mathcal{H}_A$ y $b \in \mathcal{H}_B$ tal que $t = a \otimes b$. ¿Es $t$ un tensor simple (estado separable)?
+  \end{parts}
+
+  \question Sea el operador $X$ (la matriz NOT cuántica o Pauli $X$) y el operador $Z$ (Pauli $Z$):
+  $$ X = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}, \quad Z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} $$
+
+  \begin{parts}
+    \part Calcule el operador compuesto $C = X \otimes Z$ utilizando el producto de Kronecker. Escriba la matriz resultante en $\mathbb{C}^4$.
+    \part El estado $|01\rangle$ se representa como el vector:
+    $$ |01\rangle = |0\rangle \otimes |1\rangle = \begin{pmatrix} 1 \\ 0 \end{pmatrix} \otimes \begin{pmatrix} 0 \\ 1 \end{pmatrix} = \begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \end{pmatrix} $$
+    Calcule el resultado de aplicar el operador $C$ a este estado, es decir, $C|01\rangle$.
+    \part Verifique el resultado anterior aplicando la propiedad del producto tensorial de operadores directamente sobre el tensor simple:
+    $$ C|01\rangle = (X \otimes Z) (|0\rangle \otimes |1\rangle) = (X|0\rangle) \otimes (Z|1\rangle)\,. $$
+  \end{parts}
+
+  \question Para el sistema de dos cúbits en el estado $\ket{\psi} = \frac{1}{\sqrt{3}}(\ket{00} + \ket{01} + \ket{11})$:
   \begin{parts}
     \part Verificar que el estado está normalizado
-    \part Calcular las probabilidades de medir $\sigma_x$, $\sigma_y$ y $\sigma_z$
-    \part Determinar el estado después de medir $\sigma_z$ y obtener el resultado $+1$
+    \part Calcular las probabilidades de medir cada estado de la base computacional
+    \part Determinar si el estado es separable o entrelazado
+    \part Calcular la probabilidad de medir el primer cúbit en $\ket{0}$
   \end{parts}
 
-  \question Demostrar las siguientes propiedades para operadores en espacios de Hilbert:
+  \question Para los cuatro estados de Bell:
   \begin{parts}
-    \part Si $T$ es hermitiano, entonces $\langle T\mathbf{v}, \mathbf{v} \rangle \in \R$ para todo $\mathbf{v}$
-    \part Si $U$ es unitario, entonces $U$ preserva el producto interno
-    \part El producto de dos operadores unitarios es unitario
+    \part Verificar que forman una base ortonormal
+    \part Expresar cada estado de Bell como combinación lineal de la base computacional
+    \part Demostrar que todos son entrelazados usando la descomposición de Schmidt
+    \part Calcular las probabilidades de medir cada cúbit individualmente
   \end{parts}
 
-  \question Para el operador $H = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 0 & 1 \\ 0 & 1 & 0 \end{pmatrix}$:
-  \begin{parts}
-    \part Verificar que $H$ es hermitiano
-    \part Encontrar todos los valores propios y vectores propios
-    \part Construir la descomposición espectral $H = \sum_i \lambda_i P_i$ donde $P_i$ son proyecciones ortogonales
-  \end{parts}
+  \question Determine si el estado $\ket{\psi} = \frac{1}{\sqrt{3}}(\ket{00} + \ket{01} + \ket{10})$ es entrelazado.
 
-  \question Para el observable $\hat{A} = \begin{pmatrix} 2 & 1-i \\ 1+i & 3 \end{pmatrix}$:
-  \begin{parts}
-    \part Verificar que $\hat{A}$ es hermitiano
-    \part Encontrar los valores propios y vectores propios
-    \part Escribir la descomposición espectral de $\hat{A}$
-  \end{parts}
-
-  \question Un cúbit se encuentra en el estado $\ket{\psi} = \frac{1}{\sqrt{5}}(2\ket{0} + i\ket{1})$:
-  \begin{parts}
-    \part Calcular las probabilidades de medir $\sigma_x$, $\sigma_y$ y $\sigma_z$
-    \part Determinar los valores esperados $\langle\sigma_x\rangle$, $\langle\sigma_y\rangle$ y $\langle\sigma_z\rangle$
-    \part Si se mide $\sigma_x$ y se obtiene el resultado $+1$, ¿cuál es el estado después de la medición?
-  \end{parts}
-
-  \question Demostrar que si $\hat{A}$ y $\hat{B}$ son operadores hermitianos que conmutan ($[\hat{A}, \hat{B}] = 0$), entonces tienen una base común de vectores propios.
-
-  \question Para el operador $\hat{H} = \frac{1}{\sqrt{2}}(\sigma_x + \sigma_z)$:
-  \begin{parts}
-    \part Verificar que $\hat{H}$ es hermitiano
-    \part Encontrar la descomposición espectral de $\hat{H}$
-    \part Si un cúbit está en estado $\ket{0}$, ¿cuáles son las probabilidades de medir $\pm 1$ para el observable $\hat{H}$?
-  \end{parts}
+  \question Para $A = \sigma_x$ y $B = \sigma_y$, calcule explícitamente $(A \otimes B)\ket{01}$.
 
 \end{questions}
