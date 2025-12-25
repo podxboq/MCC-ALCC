@@ -7,19 +7,19 @@
     \conceptoEsquema{Norma inducida}{}
   }
   \temaEsquema{Espacios prehilbert}{
-    \conceptoEsquema{Desigualdad de Cauchy-Schwarz}{$|\langle \mathbf{u}, \mathbf{v} \rangle|^2 \leq \langle \mathbf{u}, \mathbf{u} \rangle \langle \mathbf{v}, \mathbf{v} \rangle$}
+    \conceptoEsquema{Desigualdad de Cauchy-Schwarz}{$|\langle u, v \rangle|^2 \leq \langle u, u \rangle \langle v, v \rangle$}
     \conceptoEsquema{Ortogonalidad}{}
     \conceptoEsquema{Proyecciones ortogonales}{}
   }
   \temaEsquema{Espacios de Hilbert}{
     \conceptoEsquema{Completitud}{}
     \conceptoEsquema{Bases ortonormales}{}
-    \conceptoEsquema{Teorema de Parseval}{$\|\mathbf{v}\|^2 = \sum_{k=1}^n |\langle \mathbf{v}, \mathbf{e}_k \rangle|^2$}
+    \conceptoEsquema{Teorema de Parseval}{$\|v\|^2 = \sum_{k=1}^n |\langle v, e_k \rangle|^2$}
   }
   \temaEsquema{Operadores en espacios de Hilbert}{
     \conceptoEsquema{Operadores hermitianos}{$A^\dagger = A$}
     \conceptoEsquema{Operadores unitarios}{$U^\dagger U = UU^\dagger = I$}
-    \conceptoEsquema{Teorema espectral}{$A = \sum_{i} \lambda_i \mathbf{e}_i \mathbf{e}_i^\dagger$}
+    \conceptoEsquema{Teorema espectral}{$A = \sum_{i} \lambda_i e_i e_i^\dagger$}
   }
   \temaEsquema{Postulados de la mecánica cuántica}{
     \conceptoEsquema{Postulado II: Observables}{}
@@ -47,69 +47,73 @@ En este tema desarrollaremos la teoría de espacios con producto interno, culmin
 
 Mientras no se diga lo contrario, durante todo el tema estaremos trabajando con espacios vectoriales complejos de dimensión finita.
 
-\subsection{Producto interno complejo}
+\subsection{Producto interno}
 
-\begin{defi}[Producto interno complejo]
-  Sea $V$ un espacio vectorial. Un \textbf{producto interno} en $V$ es una función $\langle \cdot, \cdot \rangle: V \times V \to \C$ que satisface para todos $\mathbf{u}, \mathbf{v}, \mathbf{w} \in V$ y $\alpha, \beta \in \C$:
+\begin{defi}[Producto interno]
+  Sea $V$ un espacio vectorial. Un \textbf{producto interno} en $V$ es una función $\langle \cdot, \cdot \rangle: V \times V \to \C$ que satisface para todo $u, v, w \in V$ y $\alpha, \beta \in \C$:
 
   \begin{enumerate}
-    \item \textbf{Linealidad en el segundo argumento:}
-          $\langle \mathbf{u} , \alpha\mathbf{v}+\beta \mathbf{w} \rangle = \alpha\langle\mathbf{u}, \mathbf{w}\rangle + \beta\langle\mathbf{v}, \mathbf{w}\rangle$.
+    \item \textbf{Linealidad en el primer argumento:}
+          $\langle \alpha u + \beta v, w \rangle = \alpha\langle u, w\rangle + \beta\langle v, w\rangle$.
 
     \item \textbf{Antisimetría hermítica:}
-          $\langle \mathbf{u}, \mathbf{v} \rangle = \conj{\langle \mathbf{v}, \mathbf{u} \rangle}$.
+          $\langle u, v \rangle = \conj{\langle v, u \rangle}$.
 
     \item \textbf{Positividad:}
-          $\langle \mathbf{v}, \mathbf{v} \rangle \geq 0$, con igualdad si y solo si $\mathbf{v} = \mathbf{0}$.
+          $\langle v, v \rangle \geq 0$, con igualdad si y solo si $v = 0$.
   \end{enumerate}
 \end{defi}
 \semisepara
 \begin{nota}
-  De las propiedades (1) y (2) se deduce que el producto interno es antilineal en el primer argumento:
-  $$\langle \alpha\mathbf{u} + \beta\mathbf{v}, \mathbf{w} \rangle = \conj{\alpha}\langle\mathbf{u}, \mathbf{w}\rangle + \conj{\beta}\langle\mathbf{v}, \mathbf{w}\rangle$$
+  De las propiedades (1) y (2) se deduce que el producto interno es antilineal en el segundo argumento
+  $$\langle u, \alpha v + \beta w \rangle = \conj{\alpha}\langle u, v\rangle + \conj{\beta}\langle u, w\rangle\,.$$
 \end{nota}
 
 \begin{eje}[Productos internos estándar]
+  Algunos ejemplos de productos internos en espacios vectoriales complejos son:
   \begin{enumerate}
-    \item \textbf{En $\C^n$:} $\langle \mathbf{u}, \mathbf{v} \rangle = \sum_{k=1}^n  \conj{u_k} v_k$.
+    \item En $\C^n$: $\langle u, v \rangle = \sum_{k=1}^n  u_k \conj{v_k}$.
 
-    \item \textbf{En $\C^{m \times n}$:} $\langle A, B \rangle = \text{tr}(A^\dagger B) = \sum_{i,j} \conj{A_{ji}}B_{ji}$.
+    \item En $\C^{m \times n}$: $\langle A, B \rangle = \text{tr}(A B^\dagger) = \sum_{i,j} A_{ij}\conj{B_{ij}}$.
 
-    \item \textbf{En $L^2([a,b])$:} $\langle f, g \rangle = \int_a^b \conj{f(x)} g(x)\, dx$.
+    \item En $L^2([a,b])$: $\langle f, g \rangle = \int_a^b f(x)\conj{g(x)} \, dx$.
   \end{enumerate}
 \end{eje}
 
+Nuestro objetivo es dotar a los espacios vectoriales de una estructura geométrica que nos permita definir conceptos como ángulos, longitudes y ortogonalidad. Para ello, necesitamos de un poderoso concepto, la distancia, que nos permitirá definir conceptos de proximidad e incluso de dotar al espacio de una topología adecuada.
+
+Para ello, partimos de la definición de norma inducida por un producto interno.
 \begin{defi}[Norma inducida]
-  El producto interno induce una norma en $V$ definida por:
-  $$\|\mathbf{v}\| = \sqrt{\langle \mathbf{v}, \mathbf{v} \rangle}$$
+  El producto interno define la \textbf{norma inducida} en $V$ definida por:
+  $$\|v\| = \sqrt{\langle v, v \rangle}$$
 \end{defi}
 
 \begin{prop}
   La norma inducida por un producto interno satisface:
   \begin{enumerate}
-    \item $\|\mathbf{v}\| \geq 0$, con igualdad si y solo si $\mathbf{v} = \mathbf{0}$
-    \item $\|\alpha \mathbf{v}\| = |\alpha| \|\mathbf{v}\|$ para todo $\alpha \in \C$
-    \item $\|\mathbf{u} + \mathbf{v}\| \leq \|\mathbf{u}\| + \|\mathbf{v}\|$ (desigualdad triangular)
+    \item $\|v\| \geq 0$, con igualdad si y solo si $v = 0$.
+    \item $\|\alpha v\| = |\alpha| \|v\|$ para todo $\alpha \in \C$.
+    \item $\|u + v\| \leq \|u\| + \|v\|$ (desigualdad triangular).
   \end{enumerate}
 \end{prop}
 
 \begin{theo}[Desigualdad de Cauchy-Schwarz]
-  Para cualquier espacio con producto interno:
-  $$|\langle \mathbf{u}, \mathbf{v} \rangle|^2 \leq \langle \mathbf{u}, \mathbf{u} \rangle \langle \mathbf{v}, \mathbf{v} \rangle$$
-
-  Equivalentemente: $|\langle \mathbf{u}, \mathbf{v} \rangle| \leq \|\mathbf{u}\| \|\mathbf{v}\|$
-
-  La igualdad se da si y solo si $\mathbf{u}$ y $\mathbf{v}$ son linealmente dependientes.
+  \label{th:cauchy_schwarz}
+  Sea $V$ un espacio vectorial con producto interno, para todo $u, v \in V$ se cumple que
+  \[
+    |\langle u, v \rangle|^2 \leq \|u\| \|v\|\,.
+  \]
+  La igualdad se da si y solo si $u$ y $v$ son linealmente dependientes.
 \end{theo}
 
 Por último, la norma nos permite definir el concepto de distancia, que juega un papel fundamental en los desarrollos asociados a la información cuántica.
 
 \begin{defi}[Distancia]
-  Sea $V$ un espacio vectorial, definimos \textbf{distancia} sobre $V$ a una aplicación $d: V \times V \to \R$ que satisface para todos $\mathbf{u}, \mathbf{v}, \mathbf{w} \in V$:
+  Sea $V$ un espacio vectorial, definimos \textbf{distancia} sobre $V$ a una aplicación $d: V \times V \to \R$ que satisface para todos $u, v, w \in V$:
   \begin{enumerate}
-    \item $d(\mathbf{u}, \mathbf{v}) \geq 0$, siendo cero si y solo si $\mathbf{u}=\mathbf{v}$.
-    \item $d(\mathbf{u}, \mathbf{v}) = d(\mathbf{v}, \mathbf{u})$.
-    \item $d(\mathbf{u}, \mathbf{v}) \leq d(\mathbf{u}, \mathbf{w}) + d(\mathbf{w}, \mathbf{v})$.
+    \item $d(u, v) \geq 0$, siendo cero si y solo si $u=v$.
+    \item $d(u, v) = d(v, u)$.
+    \item $d(u, v) \leq d(u, w) + d(w, v)$.
   \end{enumerate}
 
 \end{defi}
@@ -117,77 +121,124 @@ Por último, la norma nos permite definir el concepto de distancia, que juega un
 Todos los espacios vectoriales que dispongan de un producto interno, pueden definir una función distancia.
 
 \begin{prop}
-  Sea $V$ un espacio vectorial con un producto interno, llamaremos \textbf{distancia asociada a la norma} a la función distancia definida por:
+  Sea $V$ un espacio vectorial con un producto interno, la función definida por
   \[
-    d(\mathbf{u}, \mathbf{v}) = \| \mathbf{u} - \mathbf{v} \|\,.
+    d(u, v) = \| u - v \|\,,
   \]
-  Llamamos a esta distancia, \textbf{distancia asociada a la norma}.
+  es una función distancia sobre $V$. Llamamos a esta distancia, \textbf{distancia asociada a la norma}.
 \end{prop}
 
 \subsection{Ortogonalidad y proyecciones}
 
 \begin{defi}[Ortogonalidad]
-  Dos vectores $\mathbf{u}, \mathbf{v}$ en un espacio con producto interno son ortogonales si $\langle \mathbf{u}, \mathbf{v} \rangle = 0$. Se denota $\mathbf{u} \perp \mathbf{v}$.
+  Dos vectores $u, v$ en un espacio con producto interno son \textbf{ortogonales} si $\langle u, v \rangle = 0$. Se denota $u \perp v$.
+
+  Dos subespacios $W_1, W_2$ de un espacio con producto interno $V$ son \textbf{ortogonales} si $\langle u, v \rangle = 0$ para todo $u \in W_1$ y $v \in W_2$.
 \end{defi}
 
 \begin{defi}[Conjunto ortonormal]
-  Un conjunto $\{\mathbf{e}_1, \mathbf{e}_2, \ldots\}$ de vectores es:
+  Un conjunto $\{e_1, e_2, \ldots\}$ de vectores es:
   \begin{itemize}
-    \item \textbf{Ortogonal} si $\langle \mathbf{e}_i, \mathbf{e}_j \rangle = 0$ para $i \neq j$.
-    \item \textbf{Ortonormal} si además $\|\mathbf{e}_i\| = 1$ para todo $i$.
+    \item \textbf{Ortogonal} si $\langle e_i, e_j \rangle = 0$ para $i \neq j$.
+    \item \textbf{Ortonormal} si es ortogonal y además $\|e_i\| = 1$ para todo $i$.
   \end{itemize}
 
-  O expresado de forma más compacta, un conjunto es ortonormal si $\langle \mathbf{e}_i, \mathbf{e}_j \rangle = \delta_{ij}$.
+  O expresado de forma más compacta, un conjunto es ortonormal si $\langle e_i, e_j \rangle = \delta_{ij}$.
 \end{defi}
+
+El producto interno, es una herramienta fundamental para conocer cuanto de un vector está contenido en la dirección de otro vector.
+Si $V$ es un espacio vectorial con producto interno, y $\mathcal{B}=\{v_1, \ldots, v_n\}$ es una base ortonormal de $V$, todo vector $v$ expresado como combinación lineal de los elementos de la base
+\[
+  v = \sum_{i=1}^n a_i v_i\,,
+\]
+nos permite expresar el producto interno con un vector de la base $v_k$ como
+\[
+  \langle v, v_k \rangle = \sum_{i=1}^n a_i \langle v_i, v_k \rangle = a_k\,,
+\]
+y de esta igualdad deducimos que los coeficientes de la combinación lineal son simplemente los productos internos con los vectores de la base ortonormal
+\[
+  v = \sum_{i=1}^n \langle v, v_i \rangle v_i\,.
+\]
+
+La igualdad anterior podemos interpretarla como la descomposición de $v$ en suma de vectores en la misma dirección que los vectores de la base ortonormal, y donde la magnitud de cada vector es el producto interno de $v$ con el vector de la base.
+
+Es decir que la descomposición de $v$ en la base ortonormal es simplemente la proyección ortogonal de $v$ sobre el subespacio generado por la base ortonormal.
+
+\begin{defi}[Proyección ortogonal]
+  Sea $W$ un subespacio de un espacio con producto interno $V$, y sea $\{e_1, \ldots, e_k\}$ una base ortonormal de $W$. La \textbf{proyección ortogonal} de $v \in V$ sobre $W$ es
+  $$\text{proj}_W(v) = \sum_{i=1}^k \langle v, e_i \rangle e_i\,.$$
+\end{defi}
+
+Si $W$ está generado por los vectores $\{v_1, \ldots, v_k\}$, entonces podemos denotar
+\[
+  \text{proj}_{v_1, \ldots, v_k}(v) = \text{proj}_W(v)\,.
+\]
+
+\begin{theo}[Teorema de proyección]
+  Sea $W$ un subespacio de un espacio con producto interno $V$. Para cualquier $v \in V$
+  se cumple que
+  \[
+    v - \text{proj}_W(v) \perp W\,.
+  \]
+\end{theo}
+
+El teorema anterior nos permite definir el subespacio ortogonal a $W$ como
+\[
+  W^\perp = \{v \in V \mid v \perp W\} = \langle v - \text{proj}_W(v)\mid \forall v \in V \rangle\,,
+\]
+que es fácil comprobar que además está en suma directa con $W$
+\[
+  V=W\oplus W^\perp\,.
+\]
+
+Este proceso de obtener espacios ortogonales, es fundamental para la construcción de una base ortonormal de $V$ a partir de un conjunto linealmente independiente.
 
 \begin{theo}[Proceso de Gram-Schmidt]
   \label{th:gram_schmidt}
-  Todo conjunto linealmente independiente finito $\{\mathbf{v}_1, \ldots, \mathbf{v}_n\}$ puede transformarse en un conjunto ortonormal $\{\mathbf{w}_1, \ldots, \mathbf{w}_n\}$ que genera el mismo subespacio.
+  Todo conjunto linealmente independiente $\{v_1, \ldots, v_n\}$ puede transformarse en un conjunto ortonormal $\{w_1, \ldots, w_n\}$ que genera el mismo subespacio.
 
   El proceso es:
-  \begin{align}
-    \mathbf{u}_1 & = \mathbf{v}_1                                                                                                                               \\
-    \mathbf{u}_k & = \mathbf{v}_k - \sum_{j=1}^{k-1} \frac{\langle \mathbf{u}_j, \mathbf{v}_k \rangle}{\langle \mathbf{u}_j, \mathbf{u}_j \rangle} \mathbf{u}_j \\
-    \mathbf{w}_k & = \frac{\mathbf{u}_k}{\|\mathbf{u}_k\|}
-  \end{align}
+  \begin{align*}
+    u_1    & = v_1                                           \\
+    w_1    & = \frac{u_1}{\|u_1\|}                           \\
+    u_2    & = v_2 - \text{proj}_{w_1}(v_2)                  \\
+    w_2    & = \frac{u_2}{\|u_2\|}                           \\
+    \vdots &                                                 \\
+    u_k    & = v_k - \sum_{j=1}^{k-1} \text{proj}_{w_j}(v_k) \\
+    w_k    & = \frac{u_k}{\|u_k\|}
+  \end{align*}
 \end{theo}
 
 El proceso de Gram-Schmidt nos permite construir para cualquier espacio vectorial una base ortonormal, que por su importancia en computación cuántica, es completamente imprescindible conocer.
 
 \begin{eje}[Ortogonalización en $\C^3$]
-  Ortogonalizar el conjunto $\left\{\mathbf{v}_1 = \begin{pmatrix} 1 \\ i \\ 0 \end{pmatrix}, \mathbf{v}_2 = \begin{pmatrix} i \\ 1 \\ 1 \end{pmatrix}, \mathbf{v}_3 = \begin{pmatrix} 0 \\ i \\ 1 \end{pmatrix}\right\}$.
+  Ortogonalizar el conjunto $\left\{v_1 = (1, i, 0), v_2 = (0, 1, i), v_3 = (i, 0, 1)\right\}$.
 
-  \textbf{Paso 1:} $\mathbf{u}_1 = \mathbf{v}_1$.
+  Primero tenemos que asegurar que los vectores son linealmente independientes.
+  Si partimos de una combinación lineal igualada a cero tendremos el sistema de ecuaciones
+  \[
+    0 = \alpha (1, i, 0) + \beta (0, 1, i) + \gamma (i, 0, 1)\Rightarrow
+    \begin{cases}
+      \alpha + \gamma i = 0    \\
+      \alpha i + \beta = 0 \,. \\
+      \beta i + \gamma = 0
+    \end{cases}
+  \]
+  Multiplicando la primera ecuación por $i$ y restando la segunda, obtenemos que $\beta=-\gamma$, que substituyendo en la tercera sale $\gamma=\beta=0$ y usando la primera ecuación $\alpha=0$.
 
-  \textbf{Paso 2:} $\mathbf{u}_2 = \mathbf{v}_2 - \frac{\langle \mathbf{u}_1, \mathbf{v}_2 \rangle}{\langle \mathbf{u}_1, \mathbf{u}_1 \rangle} \mathbf{u}_1$.
-
-  Calculamos: $\langle \mathbf{u}_1, \mathbf{v}_2 \rangle = (1 \cdot i + (-i) \cdot 1 + 0 \cdot 1) = 0$. Por tanto: $\mathbf{u}_2 = \mathbf{v}_2$.
-
-  \textbf{Paso 3:} $\mathbf{u}_3 = \mathbf{v}_3 - \frac{\langle \mathbf{u}_1, \mathbf{v}_3 \rangle}{\langle \mathbf{u}_1, \mathbf{u}_1 \rangle} \mathbf{u}_1 - \frac{\langle \mathbf{u}_2, \mathbf{v}_3\rangle}{\langle \mathbf{u}_2, \mathbf{u}_2\rangle}$.
-  Calculamos: $\langle \mathbf{u}_1, \mathbf{v}_3 \rangle = (1 \cdot 0 + (-i) \cdot i + 0 \cdot 1) = 1$.
-  $\langle \mathbf{u}_2, \mathbf{v}_3\rangle = (i \cdot 0 + 1 \cdot i + 1 \cdot 1) = i+1$.
-
-  $\langle \mathbf{u}_1, \mathbf{u}_1 \rangle = (1 \cdot 1 + (-i) \cdot i + 0 \cdot 0) = 2$.
-  $\langle \mathbf{u}_2, \mathbf{u}_2 \rangle = ((-i) \cdot i + 1 \cdot 1 + 1 \cdot 1) = 3$.
-
-  Por tanto $\mathbf{u}_3 = \mathbf{v}_3 - \frac{1}{2} \mathbf{u}_1 - \frac{1+i}{3} \mathbf{u}_2 = \begin{pmatrix} 0 \\ i \\ 1 \end{pmatrix} - \frac{1}{2} \begin{pmatrix} 1 \\ i \\ 0 \end{pmatrix} - \frac{1+i}{3} \begin{pmatrix} i \\ 1 \\ 1 \end{pmatrix} = \begin{pmatrix} \frac{-1-2i}{6}\\ \frac{-2+1i}{6}\\ \frac{2-i}{3}\end{pmatrix}$.
-
-  \textbf{Paso 4:} $\mathbf{w}_1 = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ i \\ 0 \end{pmatrix}, \mathbf{w}_2 = \frac{1}{\sqrt{3}}\begin{pmatrix} i \\ 1 \\ 1 \end{pmatrix}, \mathbf{w}_3 =\frac{1}{\sqrt{30}} \begin{pmatrix} -1-2i\\ -2+1i\\ 4-2i\end{pmatrix}$
+  Ahora pasemos a desarrollar el método de ortogonalización de Gram--Schmidt:
+  \begin{align*}
+    \textbf{1. } u_1 & = v_1 = (1, i, 0)                                                                                                                                                                               \\
+    \textbf{2. } w_1 & =  \frac{u_1}{\|u_1\|} = \frac{1}{\sqrt{2}} (1, i, 0)                                                                                                                                           \\
+    \textbf{3. } u_2 & = v_2 - \text{proj}_{w_1}(v_2) = (0, 1, i) - \langle v_2, w_1 \rangle w_1 = (0, 1, i) - \frac{i}{\sqrt{2}}w_1                                                                                   \\
+                     & = (0, 1, i) + \frac{i}{2}(1, i, 0) = \frac{1}{2}(i, 1, 2i)                                                                                                                                      \\
+    \textbf{4. } w_2 & = \frac{u_2}{\|u_2\|}=\frac{1}{\sqrt{6}} (i, 1, 2i)                                                                                                                                             \\
+    \textbf{5. } u_3 & = v_3 - \text{proj}_{w_1}(v_3) - \text{proj}_{w_2}(v_3) = (i, 0, 1) - \langle v_3, w_1 \rangle w_1 - \langle v_3, w_2 \rangle w_2                                                               \\
+                     & = (i, 0, 1) - \frac{i}{\sqrt{2}}w_1 - \frac{1-2i}{\sqrt{6}}w_2                                                                  = (i, 0, 1) - \frac{1}{2} (1, i, 0) - \frac{1-2i}{6} (i, 1, 2i) \\
+                     & = \frac{1}{3}(-1+i, 1+i, 1-i)                                                                                                                                                                   \\
+    \textbf{6. } w_3 & = \frac{u_3}{\|u_3\|}=\frac{1}{\sqrt{6}}(-1+i, 1+i, 1-i)\,.
+  \end{align*}
 \end{eje}
-
-\begin{defi}[Proyección ortogonal]
-  Sea $W$ un subespacio de dimensión finita de un espacio con producto interno $V$, y sea $\{\mathbf{e}_1, \ldots, \mathbf{e}_k\}$ una base ortonormal de $W$. La proyección ortogonal de $\mathbf{v} \in V$ sobre $W$ es:
-  $$\text{proj}_W(\mathbf{v}) = \sum_{i=1}^k \langle \mathbf{e}_i, \mathbf{v} \rangle \mathbf{e}_i$$
-\end{defi}
-
-\begin{theo}[Teorema de proyección]
-  Sea $W$ un subespacio de dimensión finita de un espacio con producto interno $V$. Para cualquier $\mathbf{v} \in V$:
-  \begin{enumerate}
-    \item Existe un único $\mathbf{w} \in W$ tal que $\mathbf{v} - \mathbf{w} \perp W$
-    \item Este vector es $\mathbf{w} = \text{proj}_W(\mathbf{v})$
-    \item $\|\mathbf{v} - \text{proj}_W(\mathbf{v})\| \leq \|\mathbf{v} - \mathbf{w}\|$ para todo $\mathbf{w} \in W$
-  \end{enumerate}
-\end{theo}
 
 \subsection{Espacios prehilbert y espacios de Hilbert}
 
@@ -196,49 +247,38 @@ El proceso de Gram-Schmidt nos permite construir para cualquier espacio vectoria
 \end{defi}
 
 \begin{defi}[Sucesión de Cauchy]
-  En un espacio prehilbert, una sucesión $\{\mathbf{v}_n\}$ es de Cauchy si para todo $\epsilon > 0$ existe $N$ tal que:
-  $$\|\mathbf{v}_m - \mathbf{v}_n\| < \epsilon \quad \text{para todos } m, n > N$$
+  En un espacio prehilbert, una sucesión $(v_n)$ es de Cauchy si para todo $\epsilon \in\R^+$ existe $N\in\N$ tal que
+  $$\|v_m - v_n\| < \epsilon \quad \forall m, n > N$$
 \end{defi}
 
 \begin{defi}[Espacio de Hilbert]
   Un espacio de Hilbert es un espacio prehilbert completo, es decir, donde toda sucesión de Cauchy converge.
 \end{defi}
 
-\begin{eje}[Espacios de Hilbert importantes]
-  \begin{enumerate}
+\begin{eje}
+  \begin{itemize}[topsep=-20pt]
     \item $\C^n$ con el producto interno estándar.
     \item $\ell^2(\C) = \left\{(a_n) : \sum_{n=1}^\infty |a_n|^2 < \infty\right\}$ con $\langle (a_n), (b_n) \rangle = \sum_{n=1}^\infty \conj{a_n} b_n$.
     \item $L^2([a,b])$ de funciones de cuadrado integrable con $\langle f, g \rangle = \int_a^b \conj{f(x)} g(x) \, dx$.
-  \end{enumerate}
+  \end{itemize}
 \end{eje}
 
 \begin{prop}
   Todo espacio prehilbert de dimensión finita es completo y, por tanto, es un espacio de Hilbert.
 \end{prop}
 
-\begin{defi}[Base ortonormal]
-  Un conjunto ortonormal $\mathcal{B}$ en un espacio de Hilbert $\H$ es una base ortonormal si todo vector $\mathbf{v} \in \H$ puede escribirse como:
-  $$\mathbf{v} = \sum_{\mathbf{e} \in \mathcal{B}} \langle \mathbf{e}, \mathbf{v} \rangle \mathbf{e}$$
-\end{defi}
+Como ya habíamos comentado, nuestro objeto de estudio será un espacio vectorial complejo de dimensión finita, que cuenta con un producto interno, y por el resultado anterior, un espacio de Hilbert. Esto nos permite hablar de espacios vectoriales y de espacios de Hilbert indistintamente.
 
-\begin{theo}[Expansión de Fourier]
-  Si $\{\mathbf{e}_1, \ldots, \mathbf{e}_n\}$ es una base ortonormal de un espacio de Hilbert de dimensión finita, entonces todo vector $\mathbf{v}$ se puede escribir como:
-  $$\mathbf{v} = \sum_{k=1}^n \langle \mathbf{e}_k, \mathbf{v} \rangle \mathbf{e}_k$$
+Sin embargo, haremos una distinción entre espacios vectoriales y espacios de Hilbert, sobre todo a partir del siguiente tema, usando el concepto de espacio de Hilbert para contextos cuánticos y de espacios vectoriales para contextos matemáticos.
 
-  Los coeficientes $\langle \mathbf{e}_k, \mathbf{v} \rangle$ se llaman coeficientes de Fourier.
-\end{theo}
-
-\begin{theo}[Identidad de Parseval]
-  Si $\{\mathbf{e}_1, \ldots, \mathbf{e}_n\}$ es una base ortonormal, entonces:
-  $$\|\mathbf{v}\|^2 = \sum_{k=1}^n |\langle \mathbf{e}_k, \mathbf{v} \rangle|^2$$
-\end{theo}
-
-\subsection{Operadores en espacios de Hilbert}
+\subsection{Operadores en espacios vectoriales con producto interno}
 
 \begin{defi}[Operador adjunto]
-  Sea $T: \H_1 \to \H_2$ un operador lineal entre espacios de Hilbert. El operador \textbf{adjunto} $T^\dagger: \H_2 \to \H_1$ es el único operador que satisface:
-  $$\langle T\mathbf{u}, \mathbf{v} \rangle = \langle \mathbf{u}, T^\dagger\mathbf{v} \rangle$$
-  para todos $\mathbf{u} \in \H_1$ y $\mathbf{v} \in \H_2$.
+  Sea $T\in\mathcal{L}(V)$ un operador lineal. El operador \textbf{adjunto} $T^\dagger\in\mathcal{L}(V)$ es el único operador que satisface
+  \begin{equation*}
+    \langle Tu, v \rangle = \langle u, T^\dagger v \rangle\,,
+  \end{equation*}
+  para todo $u,v \in V$.
 \end{defi}
 
 \begin{prop}
@@ -251,8 +291,8 @@ El proceso de Gram-Schmidt nos permite construir para cualquier espacio vectoria
   \end{enumerate}
 \end{prop}
 
-\begin{defi}[Operadores especiales]
-  Sea $T: \H \to \H$ un operador lineal en un espacio de Hilbert, diremos que $T$ es:
+\begin{defi}
+  Sea $T\in\mathcal{L}(V)$ un operador lineal. Diremos que $T$ es:
   \begin{itemize}
     \item \textbf{Hermitiano (autoadjunto):} $T^\dagger = T$.
     \item \textbf{Unitario:} $T^\dagger T = TT^\dagger = I$.
@@ -260,229 +300,340 @@ El proceso de Gram-Schmidt nos permite construir para cualquier espacio vectoria
   \end{itemize}
 \end{defi}
 
+El motivo de dar a estas definiciones a los operadores, con los mismos nombres que las que dimos para matrices, es que son equivalentes.
+
 \begin{prop}
-  Si $T$ es un operador lineal hermitiano en un espacio de Hilbert complejo:
+  \begin{itemize}
+    \item Sea $A \in \mathcal{M}_n(\C)$. Entonces $A$ es hermitiana, unitaria o normal si y solo si $T_A$ es hermitiano, unitario o normal, respectivamente.
+    \item Sea $T \in \mathcal{L}(V)$. Entonces $T$ es hermitiano, unitario o normal si y solo si $[T]$ es hermitiana, unitaria o normal, respectivamente.
+  \end{itemize}
+\end{prop}
+
+
+\begin{prop}
+  Si $T$ es un operador lineal hermitiano, entonces:
   \begin{enumerate}
     \item Todos los valores propios de $T$ son reales.
     \item Vectores propios correspondientes a valores propios distintos son ortogonales.
-    \item $\langle T\mathbf{v}, \mathbf{v} \rangle \in \R$ para todo $\mathbf{v}$.
+    \item $\langle Tv, v \rangle \in \R$ para todo $v$.
   \end{enumerate}
 \end{prop}
 
 \begin{prop}
-  Si $U$ es un operador lineal unitario en un espacio de Hilbert complejo, entonces:
+  Si $U$ es un operador lineal unitario, entonces:
   \begin{enumerate}
-    \item $U$ preserva el producto interno: $\langle U\mathbf{u}, U\mathbf{v} \rangle = \langle \mathbf{u}, \mathbf{v} \rangle$.
-    \item $U$ preserva la norma: $\|U\mathbf{v}\| = \|\mathbf{v}\|$.
+    \item $U$ preserva el producto interno: $\langle Uu, Uv \rangle = \langle u, v \rangle$, para todo $u$ y $v$.
+    \item $U$ preserva la norma: $\|Uv\| = \|v\|$.
     \item Todos los valores propios tienen módulo 1.
   \end{enumerate}
 \end{prop}
 
 \begin{theo}[Teorema espectral para dimensiones finitas]
-  Sea $T$ un operador normal en un espacio de Hilbert. Entonces existe una base ortonormal de vectores propios de $T$.
+  Sea $T$ un operador normal en un espacio vectorial complejo de dimensión finita $V$.  Entonces existe una base ortonormal de $V$ formada por los vectores propios de $T$. Ademas la representación matricial de $T$ con respecto a esta base es una matriz diagonal formada por los valores propios de $T$.
 \end{theo}
 
-\begin{eje}[Diagonalización espectral]
-  Considerar el operador hermitiano $A = \begin{pmatrix} 2 & 1-i \\ 1+i & 3 \end{pmatrix}$.
+Cuando se habla del los valores espectrales de un operador o matriz normal, se refiere a los valores propios de este, ordenados de menor a mayor.
 
+\begin{eje}[Diagonalización espectral]
+  Considerar el operador hermitiano
+  \[
+    A = \begin{pmatrix} 2 & 1-i \\ 1+i & 3 \end{pmatrix}\,.
+  \]
   Para calcular los valores propios, primero obtenemos el polinomio característico
   \[
-    \det(A - \lambda I) = (2-\lambda)(3-\lambda) - (1-i)(1+i) = \lambda^2 - 5\lambda + 4
+    \det(A - \lambda I) = (2-\lambda)(3-\lambda) - (1-i)(1+i) = \lambda^2 - 5\lambda + 4\,.
   \]
-
-  Y resolvemos $\lambda^2 - 5\lambda + 4 = 0$, obteniendo los valores propios $\lambda_1 = 4$ y $\lambda_2 = 1$.
+  Y resolvemos $\lambda^2 - 5\lambda + 4 = 0$, obteniendo los valores propios $\lambda_1 = 1$ y $\lambda_2 = 4$.
 
   Como $A$ es hermítica, sus valores propios son reales, tal como se esperaba.
 
-  El espacio propio asociado a $\lambda_1$ es $\text{gen}\left\{\begin{pmatrix} 1-i \\ 2 \end{pmatrix}\right\}$ mientras que el espacio propio asociado a $\lambda_2$ es $\text{gen}\left\{\begin{pmatrix} 1-i \\ -1 \end{pmatrix}\right\}$.
+  El espacio propio asociado a $\lambda_1$ es $\text{gen}\left\{(-1+i, 1)\right\}$, mientras que el espacio propio asociado a $\lambda_2$ es $\text{gen}\left\{(1, 1+i)\right\}$.
 
   Observamos que los espacios propios son ortogonales:
   \[
-    \left\langle \begin{pmatrix} 1-i \\ 2 \end{pmatrix}, \begin{pmatrix} 1-i \\ -1 \end{pmatrix} \right\rangle = (1+i)(1-i) + 2(-1) = 0
+    \left\langle (-1+i, 1), (1, 1+i) \right\rangle = (-1+i)(1) + 1(1-i) = 0\,.
   \]
-
-  Aplicando Gram-Schmidt obtenemos la base ortonormal:
+  Aplicando Gram-Schmidt obtenemos la base ortonormal
   \[
-    \left\{\frac{1}{\sqrt{6}}\begin{pmatrix} 1-i \\ 2 \end{pmatrix}, \frac{1}{\sqrt{3}}\begin{pmatrix} 1-i \\ -1 \end{pmatrix}\right\}
+    \left\{\frac{1}{\sqrt{3}}(-1+i, 1), \frac{1}{\sqrt{3}}(1, 1+i)\right\}\,.
   \]
-  La matriz unitaria de cambio de base $U$ se forma con los vectores propios normalizados como columnas:
+  La matriz unitaria de cambio de base $U$ se forma con los vectores propios normalizados como columnas
   \[
-    U = \begin{pmatrix} \frac{1-i}{\sqrt{6}} & \frac{-1+i}{\sqrt{3}} \\
-                \frac{2}{\sqrt{6}}   & \frac{1}{\sqrt{3}}\end{pmatrix}
+    U = \frac{1}{\sqrt{3}}\begin{pmatrix} -1+i & 1   \\
+                1    & 1+i\end{pmatrix}\,.
   \]
 
-  La matriz diagonal D se forma con los valores propios en la diagonal, en el mismo orden que sus vectores propios asociados en U:
+  La matriz diagonal D se forma con los valores propios en la diagonal, en el mismo orden que sus vectores propios asociados en U
   \[
-    D = \begin{pmatrix} 4 & 0 \\ 0 & 1 \end{pmatrix}
+    D = \begin{pmatrix} 1 & 0 \\ 0 & 4 \end{pmatrix}\,.
   \]
 
-  Finalmente, verificamos la diagonalización espectral:
-  \[
-    A = U D U^\dagger = \begin{pmatrix} 2 & 1-i \\ 1+i & 3 \end{pmatrix}
-  \]
-\end{eje}
-
-\subsection{Observables cuánticos}
-
-Con la teoría de espacios de Hilbert establecida, podemos formular el segundo postulado de la mecánica cuántica, que conecta las magnitudes físicas medibles con operadores hermitianos.
-
-\begin{resaltado}
-  \textbf{Postulado II: Observables}
-
-  Toda magnitud física observable de un sistema cuántico se representa mediante un operador hermitiano que actúa en el espacio de Hilbert del sistema.
-\end{resaltado}
-
-\begin{eje}[Observables fundamentales de un cúbit]
-  Para un cúbit, los observables más importantes son las componentes del espín, representadas por las matrices de Pauli:
-
-  \begin{align}
-    \sigma_x & = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} \quad \text{(espín en dirección x)}  \\
-    \sigma_y & = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix} \quad \text{(espín en dirección y)} \\
-    \sigma_z & = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \quad \text{(espín en dirección z)}
-  \end{align}
-
-  Verificación de hermiticidad para $\sigma_x$:
-  $$\sigma_x^\dagger = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}^* = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} = \sigma_x$$
-\end{eje}
-
-Veamos ahora cómo diagonalizar uno de estos observables, lo que nos permitirá conocer sus valores propios y vectores propios, fundamentales para entender las posibles mediciones en un sistema cuántico.
-
-\begin{eje}[Diagonalización de $\sigma_y$]
-  Para el observable $\sigma_y$:
-
-  \textbf{Valores propios:} Resolvemos $\det(\sigma_y - \lambda I) = 0$:
-  $$\det\begin{pmatrix} -\lambda & -i \\ i & -\lambda \end{pmatrix} = \lambda^2 - 1 = 0$$
-
-  Valores propios: $\lambda_1 = +1$, $\lambda_2 = -1$.
-
-  \textbf{Vectores propios:}
-  \begin{itemize}
-    \item Para $\lambda_1 = +1$: Resolvemos $(\sigma_y - I)\ket{e_1} = 0$:
-          $$\begin{pmatrix} -1 & -i \\ i & -1 \end{pmatrix}\begin{pmatrix} e_{11} \\ e_{12} \end{pmatrix} = 0$$
-          De la primera fila: $-e_{11} - i e_{12} = 0 \implies e_{11} = -i e_{12}$.
-          Tomando $e_{12} = 1$, obtenemos $\ket{e_1} = \begin{pmatrix} -i \\ 1 \end{pmatrix}$.
-    \item Para $\lambda_2 = -1$: Resolvemos $(\sigma_y + I)\ket{e_2} = 0$:
-          $$\begin{pmatrix} 1 & -i \\ i & 1 \end{pmatrix}\begin{pmatrix} e_{21} \\ e_{22} \end{pmatrix} = 0$$
-          De la primera fila: $e_{21} - i e_{22} = 0 \implies e_{21} = i e_{22}$.
-          Tomando $e_{22} = 1$, obtenemos $\ket{e_2} = \begin{pmatrix} i \\ 1 \end{pmatrix}$.
-  \end{itemize}
-
-  \textbf{Descomposición espectral:}
-  $$\sigma_y = \frac{1}{2}\begin{pmatrix}
-      -i & i \\
-      1  & 1
-    \end{pmatrix}\begin{pmatrix}
-      1 & 0  \\
-      0 & -1
-    \end{pmatrix}\begin{pmatrix}
-      i  & 1 \\
-      -i & 1
-    \end{pmatrix}$$
-\end{eje}
-
-\subsection{Medición cuántica}
-
-\begin{resaltado}
-  \textbf{Postulado III: Medición cuántica}
-
-  Al medir un observable $\hat{A}$ en un sistema en estado $\ket{\psi}$:
-  \begin{enumerate}
-    \item Los únicos resultados posibles son los valores propios $\{a_i\}$ de $\hat{A}$.
-    \item La probabilidad de obtener el resultado $a_i$ es:
-          $$P(a_i) = |\langle e_i , \psi \rangle|^2$$
-          donde $\ket{e_i}$ es el vector propio normalizado correspondiente a $a_i$.
-    \item Después de la medición, el sistema colapsa al estado:
-          $$\ket{\psi'} = \frac{P_i\ket{\psi}}{\|P_i\ket{\psi}\|} = \ket{e_i}$$
-          donde $P_i$ es el proyector sobre el subespacio propio.
-  \end{enumerate}
-\end{resaltado}
-
-\begin{eje}[Medición de $\sigma_z$ en estado general]
-  Considere el estado $\ket{\psi} = \frac{3}{5}\ket{0} + \frac{4i}{5}\ket{1}$ y queremos medir el observable $\sigma_z$. Como ya sabemos, los valores propios de $\sigma_z$ son $+1$ y $-1$, con vectores propios $\ket{0}$ y $\ket{1}$ respectivamente.
-
-  \textbf{Probabilidades:}
+  Finalmente, verificamos la diagonalización espectral
   \begin{align*}
-    P(+1) & = |\langle 0 , \psi \rangle|^2 = \left|\frac{3}{5}\right|^2 = \frac{9}{25}   \\
-    P(-1) & = |\langle 1 , \psi \rangle|^2 = \left|\frac{4i}{5}\right|^2 = \frac{16}{25}
+    A & = U D U^\dagger = \frac{1}{\sqrt{3}}\begin{pmatrix} -1+i & 1   \\
+                1    & 1+i\end{pmatrix}\begin{pmatrix} 1 & 0 \\ 0 & 4 \end{pmatrix}\frac{1}{\sqrt{3}}\begin{pmatrix} -1-i & 1   \\
+                1    & 1-i\end{pmatrix} \\
+      & = \frac{1}{3}\begin{pmatrix} -1+i & 4      \\
+                1    & 4(1+i)\end{pmatrix}\begin{pmatrix} -1-i & 1   \\
+                1    & 1-i\end{pmatrix}                                                                                   \\
+      & = \frac{1}{3}\begin{pmatrix} 6    & 3-3i \\
+                3+3i & 9\end{pmatrix} = \begin{pmatrix} 2 & 1-i \\ 1+i & 3 \end{pmatrix}\,.
+  \end{align*}
+\end{eje}
+
+Una de las operaciones más habituales en computación cuántica, es el cálculo de la exponencial de la matriz de una operación unitaria. La descomposición espectral de este tipo de matrices será crucial para este cálculo.
+
+\subsection{Exponencial de una matriz}
+
+Sin entrar en cuestiones sobre existencia y convergencia de series, vamos a definir la exponencial de una matriz $A$ de forma similar a la exponencial de un número real.
+
+\begin{defi}
+  Sea $T \in \mathcal{L}(V)$.
+  Definimos la exponencial de $T$ como la exponencial de la matriz $[T]$.
+  \[
+    e^T = e^{[T]} = \sum_{k=0}^\infty \frac{[T]^k}{k!}\,.
+  \]
+\end{defi}
+
+Para nuestro objetivo, podemos usar la descomposición espectral para calcular la exponencial. Sólo debemos observar que si $A$ es una matriz unitaria y su descomposición espectral es $U D U^\dagger$, entonces
+\begin{align*}
+  A^k & = (U D U^\dagger)^k = (U D U^\dagger)(U D U^\dagger)\dots (U D U^\dagger) \\
+      & = U D (U^\dagger U)D (U^\dagger U)\dots D (U^\dagger U)DU^\dagger         \\
+      & = U D D\dots DU^\dagger = U D^k U^\dagger\,.
+\end{align*}
+
+Por lo tanto, la exponencial de una matriz unitaria se puede calcular como
+\begin{align*}
+  e^A & = \sum_{k=0}^\infty \frac{A^k}{k!} = \sum_{k=0}^\infty \frac{U D^k U^\dagger}{k!} = U \sum_{k=0}^\infty \frac{D^k}{k!} U^\dagger = U e^D U^\dagger\,.
+\end{align*}
+
+Para las matrices diagonales, la exponencial es simplemente la exponencial de cada elemento de la diagonal. Si $D=\text{diag}(\lambda_1, \lambda_2, \dots, \lambda_n)$, entonces
+\begin{align*}
+  e^D & = \text{diag}(e^{\lambda_1}, e^{\lambda_2}, \dots, e^{\lambda_n})\,.
+\end{align*}
+
+\begin{eje}[Exponencial de una matriz diagonal]
+  \label{eje:exponencial_z}
+  Considerar la matriz diagonal
+  \[
+    Z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}\,.
+  \]
+
+  Entonces
+  \[
+    e^Z = \begin{pmatrix} e & 0 \\ 0 & e^{-1} \end{pmatrix}\,.
+  \]
+\end{eje}
+
+\begin{eje}[Exponencial de una matriz unitaria]
+  \label{eje:exponencial_x}
+  Considerar la matriz unitaria
+  \[
+    X = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}\,,
+  \]
+  que tiene la descomposición espectral
+  \[
+    X = H Z H^\dagger = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}\frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}\,.
+  \]
+
+  Entonces
+  \[
+    e^X = H e^Z H^\dagger = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}\begin{pmatrix} e & 0 \\ 0 & e^{-1} \end{pmatrix}\frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix} = \frac{1}{2}\begin{pmatrix} e+e^{-1} & e-e^{-1} \\ e-e^{-1} & e+e^{-1} \end{pmatrix}\,.
+  \]
+
+  La forma más habitual de ver desarrollada la exponencial de la matriz $X$ es mediante su expresión trigonométrica, para ello necesitamos conocer las siguientes identidades:
+  \begin{align*}
+    \sinh z & = \frac{e^z - e^{-z}}{2}    \\
+    \cosh z & = \frac{e^z + e^{-z}}{2}\,.
   \end{align*}
 
-  Verificación: $P(+1) + P(-1) = \frac{9}{25} + \frac{16}{25} = 1$.
-
-  \textbf{Estados post-medición:} Después de cada posible resultado de la medición, el estado del sistema colapsa a:
-  \begin{itemize}
-    \item Si se obtiene $+1$: el sistema colapsa a $\ket{0}$.
-    \item Si se obtiene $-1$: el sistema colapsa a $\ket{1}$.
-  \end{itemize}
+  Entonces
+  \[
+    e^X = \begin{pmatrix} \cosh 1 & \sinh 1 \\ \sinh 1 & \cosh 1 \end{pmatrix}\,.
+  \]
 \end{eje}
 
-\begin{defi}[Valor esperado]
-  El valor esperado de un observable $\hat{A}$ en el estado $\ket{\psi}$ es:
-  $$\langle \hat{A} \rangle = \sum_i a_i P(a_i)$$
+\subsection{Espacio dual}
+
+El concepto de espacio dual es fundamental en el análisis funcional y proporciona una perspectiva profunda sobre la estructura de los espacios vectoriales. En computación cuántica, el espacio dual adquiere un significado especial a través de la notación de Dirac, que veremos en el próximo capítulo.
+
+La importancia del espacio dual en matemáticas se manifiesta en varios aspectos:
+
+\begin{itemize}
+  \item Proporciona un marco \textbf{unificado} para entender funcionales lineales y formas multilineales.
+  \item Permite la \textbf{caracterización completa} de propiedades geométricas mediante funcionales.
+  \item Es esencial para la teoría de \textbf{operadores adjuntos} y autoadjuntos.
+\end{itemize}
+
+\begin{defi}[Espacio dual]
+  Sea $V$ un espacio vectorial. El \textbf{espacio dual} de $V$, denotado $V^*$, es el espacio vectorial de todos los funcionales lineales sobre $V$:
+  $$V^* = \{f: V \to \C \mid f \text{ es lineal}\}\,.$$
+
+  Las operaciones en $V^*$ se definen puntualmente
+  \begin{align}
+    (f + g)(x)    & = f(x) + g(x) & \forall x \in V                        \\
+    (\alpha f)(x) & = \alpha f(x) & \forall x \in V, \forall \alpha \in \C
+  \end{align}
 \end{defi}
 
-\begin{eje}[Cálculo de valor esperado]
-  Para el estado $\ket{\psi} = \frac{3}{5}\ket{0} + \frac{4i}{5}\ket{1}$ y el observable $\sigma_z$:
+\begin{theo}[Dimensión del espacio dual]
+  \label{th:dimension_dual}
+  Sea $V$ un espacio vectorial. Entonces $\dim V^* = \dim V$.
+\end{theo}
 
-  $$\langle \sigma_z \rangle = (+1) \cdot \frac{9}{25} + (-1) \cdot \frac{16}{25} = -\frac{7}{25}$$
-\end{eje}
+La demostración del teorema del espacio dual~\ref{th:dimension_dual} se basa en construir una base para el espacio dual a partir de una base del espacio $V$.
 
-\subsection{Matemáticas cuánticas}
+Sea $\{e_1, e_2, \ldots, e_n\}$ una base de $V$. Definimos los funcionales $\{e_1^*, e_2^*, \ldots, e_n^*\}$ mediante:
+$$e_i^*(e_j) = \delta_{ij} = \begin{cases}
+    1 & \text{si } i = j    \\
+    0 & \text{si } i \neq j
+  \end{cases}$$
 
-Ahora que hemos establecido la teoría de espacios vectoriales complejos, podemos formular matemáticamente el primer postulado fundamental de la mecánica cuántica.
+Para cualquier $f \in V^*$ y cualquier $x = \sum_{i=1}^n x_i e_i \in V$
+$$f(x) = f\left(\sum_{i=1}^n x_i e_i\right) = \sum_{i=1}^n x_i f(e_i) = \sum_{i=1}^n f(e_i) e_i^*(x)\,.$$
 
-\begin{resaltado}
-  \textbf{Postulado I: Estados cuánticos.}
+Por tanto
+\[
+  f = \sum_{i=1}^n f(e_i) e_i^*\,,
+\]
+lo que muestra que $\{e_1^*, e_2^*, \ldots, e_n^*\}$ genera $V^*$. La independencia lineal se verifica fácilmente, por lo que constituye una base de $V^*$, y esta construcción justifica la siguiente definición.
 
-  El estado de un sistema cuántico se describe completamente mediante un vector unitario en un espacio vectorial.
-\end{resaltado}
-
-\begin{eje}[Estado de un cúbit]
-  Un cúbit (sistema cuántico de dos niveles) tiene espacio de estados $\mathcal{H} = \mathbb{C}^2$ y se representa como:
-  $$\ket{\psi} = \alpha\ket{0} + \beta\ket{1}$$
-  donde $\{\ket{0}, \ket{1}\}$ es la base computacional de $\mathbb{C}^2$ y $\alpha, \beta \in \mathbb{C}$ satisfacen:
-  $$|\alpha|^2 + |\beta|^2 = 1 \quad \text{(condición de normalización)}$$
-
-  En términos de la base canónica:
-  $$\ket{0} = \begin{pmatrix} 1 \\ 0 \end{pmatrix}, \quad \ket{1} = \begin{pmatrix} 0 \\ 1 \end{pmatrix}$$
-
-  Por tanto:
-  $$\ket{\psi} = \begin{pmatrix} \alpha \\ \beta \end{pmatrix} \in \mathbb{C}^2$$
-\end{eje}
-
-\begin{defi}[Equivalencia por fase global]
-  Dos vectores estado que difieren por una fase global son físicamente equivalentes:
-  $$\ket{\psi} \sim e^{i\phi}\ket{\psi} \quad \forall \phi \in \mathbb{R}$$
-
-  Esto significa que solo las fases \textbf{relativas} entre componentes tienen significado físico.
+\begin{defi}[Base dual]
+  Si $\{e_1, e_2, \ldots, e_n\}$ es una base de $V$, la \textbf{base dual} $\{e_1^*, e_2^*, \ldots, e_n^*\}$ de $V^*$ se define por
+  $$e_i^*(e_j) = \delta_{ij}\,.$$
 \end{defi}
 
-\begin{info}
-  En realidad, los estados cuánticos se describen mediante \textbf{vectores de rayos}, que son clases de equivalencia de vectores unitarios bajo la relación de fase global. Esto refleja que las mediciones físicas dependen solo de las diferencias de fase entre componentes del estado. En consecuencia, el espacio de estados de un cúbit es isomorfo al conjunto cociente $\H\cong \mathbb{C}^2 / \sim$, aunque en la práctica se obvia esta distinción y se trabaja directamente con vectores unitarios.
-\end{info}
+Los resultados expuestos a continuación requieren de conocimientos avanzados en análisis funcional y teoría de espacios de Hilbert. Se recomienda consultar las referencias bibliográficas al final del tema para una comprensión más profunda. Se incluyen para entender la importancia del espacio dual y su conexión con la notación de Dirac.
 
-\begin{eje}[Parametrización general de un cúbit]
-  Eliminando la fase global, todo cúbit puede escribirse como:
-  $$\ket{\psi} = \cos\frac{\theta}{2}\ket{0} + e^{i\varphi}\sin\frac{\theta}{2}\ket{1}$$
-  donde $\theta \in [0,\pi]$ y $\varphi \in [0,2\pi]$ son parámetros reales.
+En espacios de Hilbert, existe una correspondencia especial entre el espacio y su dual.
 
-  Esta parametrización:
-  \begin{itemize}
-    \item Elimina la fase global irrelevante.
-    \item Usa solo 2 parámetros reales para describir el estado completo.
-    \item Corresponde a puntos en la superficie de la esfera de Bloch.
-  \end{itemize}
+\begin{theo}[Teorema de Riesz-Fréchet]
+  Sea $\mathcal{H}$ un espacio de Hilbert complejo con producto interno $\langle \cdot, \cdot \rangle$. Para cada funcional lineal continuo $f \in \mathcal{H}^*$, existe un único elemento $y_f \in \mathcal{H}$ tal que:
+  $$f(x) = \langle x, y_f \rangle \quad \forall x \in \mathcal{H}$$
+  La aplicación $\Phi: \mathcal{H} \to \mathcal{H}^*$ definida por $\Phi(y)(x) = \langle x, y \rangle$ es un isomorfismo antilineal isométrico.
+\end{theo}
+
+Si $V$ es un espacio vectorial, y $\mathcal{B}=\{e_1, e_2, \ldots, e_n\}$ es una base ortonormal de $V$, entonces
+\[
+  \mathcal{B}^*=\{\langle -, e_1 \rangle, \langle -, e_2 \rangle, \ldots, \langle -, e_n \rangle\}\,,
+\]
+es una base de $V^*$.
+
+\subsection{Producto tensorial}
+
+Sean $V$ y $W$ dos espacios vectoriales. El producto tensorial es, informalmente, el espacio vectorial más pequeño que contiene todos los productos formales de la forma $v \otimes w$, para $v \in V$ y $w \in W$, y que respeta la bilinealidad.
+
+\begin{defi}
+  El \textbf{producto tensorial} de dos espacios vectoriales $V$ y $W$, denotado por $V \otimes W$, es el espacio vectorial generado por los productos tensoriales simples $v \otimes w$, donde $v \in V$ y $w \in W$, sujeto a las relaciones de bilinealidad.
+\end{defi}
+
+Para no dejar dudas y respetar la formalidad del concepto, daremos la definición formal del producto tensorial.
+
+El producto tensorial $V \otimes W$ se construye a partir del espacio vectorial libre $F(V \times W)$ generado por los pares ordenados $(v, w) \in V \times W$, factorizando por el subespacio $R$ generado por las relaciones de \textbf{bilinealidad}:
+\begin{enumerate}
+  \item \textbf{Linealidad en el primer argumento:}
+        $$(\alpha v_1 + \beta v_2, w) - \alpha (v_1, w) - \beta (v_2, w)$$
+  \item \textbf{Linealidad en el segundo argumento:}
+        $$(v, \alpha w_1 + \beta w_2) - \alpha (v, w_1) - \beta (v, w_2)$$
+\end{enumerate}
+donde $v, v_1, v_2 \in V$, $w, w_1, w_2 \in W$, y $\alpha, \beta \in \C$.
+
+El \textbf{producto tensorial} es el espacio cociente
+$$V \otimes W := F(V \times W) / R\,.$$
+
+El \textbf{tensor simple} $v \otimes w$ es la clase de equivalencia del par $(v, w)$ en el espacio cociente.
+
+Al trabajar con espacios vectoriales de dimensión finita, podemos entender cómo se construyen las bases en el producto tensorial y por tanto su estructura.
+
+\begin{prop}
+  Sea $V$ un espacio vectorial de dimensión $n$ y $W$ un espacio vectorial de dimensión $m$. Si $\mathcal{B}_{V}=\{v_i\}_{i=1}^n$ es una base para $V$ y $\mathcal{B}_{W}=\{w_j\}_{j=1}^m$ es una base para $W$, entonces el conjunto de tensores simples
+  $$
+    \mathcal{B}_{V \otimes W} = \{v_i \otimes w_j\}_{i=1,\ldots,n}^{j=1,\ldots,m}
+  $$
+  es una base para $V \otimes W$.
+\end{prop}
+
+Como consecuencia del resultado anterior, todo elemento $t \in V \otimes W$ puede escribirse de manera única como una combinación lineal de los elementos de la base
+$$t = \sum_{i=1}^n \sum_{j=1}^m \alpha_{ij} (v_i \otimes w_j)$$
+donde $\alpha_{ij} \in \mathbb{C}$.
+
+Además, la dimensión del espacio tensorial es el producto de las dimensiones de los espacios originales
+$$\text{dim}(V \otimes W) = \text{dim}(V) \cdot \text{dim}(W) = n \cdot m\,.$$
+
+
+\begin{defi}
+  Sea $V$ y $W$ dos espacios vectoriales.
+  Un elemento $t \in V \otimes W$ que puede escribirse como $t = v \otimes w$, con $v\in V$ y $w\in W$, se llama \textbf{tensor simple} o \textbf{producto separable}.
+\end{defi}
+
+El producto tensorial cumple las siguientes propiedades:
+\begin{itemize}
+  \item \textbf{linealidad en el primer argumento:}
+        $$(u + v) \otimes w = u \otimes w + v \otimes w\,.$$
+  \item \textbf{linealidad en el segundo argumento:}
+        $$u \otimes (v + w) = u \otimes v + u \otimes w\,.$$
+  \item \textbf{linealidad por escalares:}
+        $$\alpha (u \otimes v) = (\alpha u) \otimes v = u \otimes (\alpha v)\,.$$
+\end{itemize}
+
+\subsection{Producto tensorial de operadores y matrices}
+Podemos extender la definición del producto tensorial a operadores lineales entre espacios vectoriales de manera natural.
+\begin{defi}
+  Si $A: V_1 \to V_2$ y $B: W_1 \to W_2$ son operadores lineales, podemos definir el \textbf{operador tensorial} $A \otimes B$ en el espacio tensorial $V_1 \otimes W_1$, como
+  \begin{align*}
+    A \otimes B : V_1 \times W_1                            & \to V_2 \times W_2                                                    \\
+    \sum_{i=1}^n \sum_{j=1}^m \alpha_{ij} (v_i \otimes w_j) & \mapsto \sum_{i=1}^n \sum_{j=1}^m \alpha_{ij} (A(v_i) \otimes B(w_j))
+  \end{align*}
+
+\end{defi}
+
+De igual manera, podemos definir el producto tensorial de matrices, siendo esta forma la más cómoda de trabajar.
+
+Sean $A \in M_{n \times m}(\C)$ y $B \in M_{p \times q}(\C)$ dos matrices complejas. El producto tensorial matricial $A \otimes B$ es una matriz en $M_{np \times mq}(\C)$ definida por
+$$
+  (A \otimes B)_{(i,j),(k,l)} = A_{i,k} B_{j,l}
+$$
+para $1 \leq i \leq n$, $1 \leq j \leq m$, $1 \leq k \leq p$, $1 \leq l \leq q$. Es decir, si
+$$A = \begin{pmatrix}
+    a_{11} & a_{12} & \ldots & a_{1m} \\
+    a_{21} & a_{22} & \ldots & a_{2m} \\
+    \vdots & \vdots & \ddots & \vdots \\
+    a_{n1} & a_{n2} & \ldots & a_{nm}
+  \end{pmatrix} \text{ y } \quad B = \begin{pmatrix}
+    b_{11} & b_{12} & \ldots & b_{1q} \\
+    b_{21} & b_{22} & \ldots & b_{2q} \\
+    \vdots & \vdots & \ddots & \vdots \\
+    b_{p1} & b_{p2} & \ldots & b_{pq}
+  \end{pmatrix},$$
+entonces
+$$A \otimes B = \begin{pmatrix}
+    a_{11}B & a_{12}B & \ldots & a_{1m}B \\
+    a_{21}B & a_{22}B & \ldots & a_{2m}B \\
+    \vdots  & \vdots  & \ddots & \vdots  \\
+    a_{n1}B & a_{n2}B & \ldots & a_{nm}B
+  \end{pmatrix}.$$
+
+Finalmente es importante resaltar que la representación matricial del producto tensorial de operadores lineales es la misma que la del producto tensorial de matrices.
+
+\begin{prop}
+  Sea $T\in\mathcal{L}(V)$ y $S\in\mathcal{L}(W)$ dos operadores lineales entre espacios vectoriales $V$ y $W$. Entonces
+  \[
+    [T\otimes S] = [T]\otimes[S]\.
+  \]
+\end{prop}
+
+\begin{eje}
+  Consideremos las matrices ya anteriormente utilizadas:
+  \[
+    X = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}\,, \quad Y = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}\,.
+  \]
+  Entonces
+  \begin{align*}
+    X \otimes Y & = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} \otimes \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} = \begin{pmatrix} 0 \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} & 1 \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \\ 1 \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} & 0 \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \end{pmatrix}  \\
+                & = \begin{pmatrix} 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & -1 \\ 1 & 0 & 0 & 0 \\ 0 & -1 & 0 & 0 \end{pmatrix}\,.                                                                                                                                                            \\
+    Y \otimes X & = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \otimes \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} = \begin{pmatrix} 1 \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} & 0 \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} \\ 0 \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} & -1 \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} \end{pmatrix} \\
+                & = \begin{pmatrix} 0 & 1 & 0 & 0 \\ 1 & 0 & 0 & 0 \\ 0 & 0 & 0 & -1 \\ 0 & 0 & -1 & 0 \end{pmatrix}\,.
+  \end{align*}
 \end{eje}
 
-\begin{eje}[Estados cuánticos importantes]
-  \begin{enumerate}
-    \item \textbf{Estados de la base computacional:}
-          $$\ket{0} = \begin{pmatrix} 1 \\ 0 \end{pmatrix}, \quad \ket{1} = \begin{pmatrix} 0 \\ 1 \end{pmatrix}$$
-
-    \item \textbf{Estados de superposición:}
-          $$\ket{+} = \frac{1}{\sqrt{2}}(\ket{0} + \ket{1}) = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 1 \end{pmatrix}$$
-          $$\ket{-} = \frac{1}{\sqrt{2}}(\ket{0} - \ket{1}) = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ -1 \end{pmatrix}$$
-
-    \item \textbf{Estados con fase compleja:}
-          $$\ket{i+} = \frac{1}{\sqrt{2}}(\ket{0} + i\ket{1}) = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ i \end{pmatrix}$$
-  \end{enumerate}
-\end{eje}
+Del ejemplo anterior, podemos sacar como conclusión que en general, el producto tensorial no es conmutativo.

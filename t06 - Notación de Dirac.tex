@@ -31,6 +31,13 @@
 
 \subsection{Introducción y objetivos}
 
+Hasta ahora hemos explorado la columna vertebral matemática de la Mecánica Cuántica: los espacios vectoriales complejos ($\C^n$) y los espacios de Hilbert ($\H$), que sirven como el \textbf{espacio de estados} para un \textbf{sistema cuántico simple} (un \textit{cúbit}, por ejemplo).
+
+\begin{itemize}
+  \item Un \textbf{cúbit} se describe en $\mathcal{H}_1 \cong \mathbb{C}^2$.
+  \item Un operador lineal (una medición, una compuerta) en este cúbit es una matriz en $\mathcal{L}(\mathcal{H}_1)$.
+\end{itemize}
+
 La notación de Dirac, también conocida como notación bra-ket, proporciona un formalismo elegante y poderoso para trabajar con estados cuánticos y operadores. Desarrollada por Paul Dirac, esta notación no solo simplifica los cálculos algebraicos, sino que también captura de manera intuitiva los conceptos físicos fundamentales de la mecánica cuántica.
 
 En computación cuántica, la notación de Dirac es indispensable porque:
@@ -44,6 +51,170 @@ En computación cuántica, la notación de Dirac es indispensable porque:
 \end{itemize}
 
 Este tema establece el puente definitivo entre la matemática abstracta de los espacios de Hilbert y la implementación práctica de sistemas cuánticos. Desarrollaremos desde los conceptos más básicos de la notación hasta aplicaciones avanzadas en sistemas de múltiples cúbits, proporcionando la base para la notación para todos los temas posteriores del curso.
+\subsection{Observables cuánticos}
+
+Con la teoría de espacios de Hilbert establecida, podemos formular el segundo postulado de la mecánica cuántica, que conecta las magnitudes físicas medibles con operadores hermitianos.
+
+\begin{resaltado}
+  \textbf{Postulado II: Observables}
+
+  Toda magnitud física observable de un sistema cuántico se representa mediante un operador hermitiano que actúa en el espacio de Hilbert del sistema.
+\end{resaltado}
+
+\begin{eje}[Observables fundamentales de un cúbit]
+  Para un cúbit, los observables más importantes son las componentes del espín, representadas por las matrices de Pauli:
+
+  \begin{align}
+    \sigma_x & = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} \quad \text{(espín en dirección x)}  \\
+    \sigma_y & = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix} \quad \text{(espín en dirección y)} \\
+    \sigma_z & = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \quad \text{(espín en dirección z)}
+  \end{align}
+
+  Verificación de hermiticidad para $\sigma_x$:
+  $$\sigma_x^\dagger = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}^* = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} = \sigma_x$$
+\end{eje}
+
+Veamos ahora cómo diagonalizar uno de estos observables, lo que nos permitirá conocer sus valores propios y vectores propios, fundamentales para entender las posibles mediciones en un sistema cuántico.
+
+\begin{eje}[Diagonalización de $\sigma_y$]
+  Para el observable $\sigma_y$:
+
+  \textbf{Valores propios:} Resolvemos $\det(\sigma_y - \lambda I) = 0$:
+  $$\det\begin{pmatrix} -\lambda & -i \\ i & -\lambda \end{pmatrix} = \lambda^2 - 1 = 0$$
+
+  Valores propios: $\lambda_1 = +1$, $\lambda_2 = -1$.
+
+  \textbf{Vectores propios:}
+  \begin{itemize}
+    \item Para $\lambda_1 = +1$: Resolvemos $(\sigma_y - I)\ket{e_1} = 0$:
+          $$\begin{pmatrix} -1 & -i \\ i & -1 \end{pmatrix}\begin{pmatrix} e_{11} \\ e_{12} \end{pmatrix} = 0$$
+          De la primera fila: $-e_{11} - i e_{12} = 0 \implies e_{11} = -i e_{12}$.
+          Tomando $e_{12} = 1$, obtenemos $\ket{e_1} = \begin{pmatrix} -i \\ 1 \end{pmatrix}$.
+    \item Para $\lambda_2 = -1$: Resolvemos $(\sigma_y + I)\ket{e_2} = 0$:
+          $$\begin{pmatrix} 1 & -i \\ i & 1 \end{pmatrix}\begin{pmatrix} e_{21} \\ e_{22} \end{pmatrix} = 0$$
+          De la primera fila: $e_{21} - i e_{22} = 0 \implies e_{21} = i e_{22}$.
+          Tomando $e_{22} = 1$, obtenemos $\ket{e_2} = \begin{pmatrix} i \\ 1 \end{pmatrix}$.
+  \end{itemize}
+
+  \textbf{Descomposición espectral:}
+  $$\sigma_y = \frac{1}{2}\begin{pmatrix}
+      -i & i \\
+      1  & 1
+    \end{pmatrix}\begin{pmatrix}
+      1 & 0  \\
+      0 & -1
+    \end{pmatrix}\begin{pmatrix}
+      i  & 1 \\
+      -i & 1
+    \end{pmatrix}$$
+\end{eje}
+
+\subsection{Medición cuántica}
+
+\begin{resaltado}
+  \textbf{Postulado III: Medición cuántica}
+
+  Al medir un observable $\hat{A}$ en un sistema en estado $\ket{\psi}$:
+  \begin{enumerate}
+    \item Los únicos resultados posibles son los valores propios $\{a_i\}$ de $\hat{A}$.
+    \item La probabilidad de obtener el resultado $a_i$ es:
+          $$P(a_i) = |\langle e_i , \psi \rangle|^2$$
+          donde $\ket{e_i}$ es el vector propio normalizado correspondiente a $a_i$.
+    \item Después de la medición, el sistema colapsa al estado:
+          $$\ket{\psi'} = \frac{P_i\ket{\psi}}{\|P_i\ket{\psi}\|} = \ket{e_i}$$
+          donde $P_i$ es el proyector sobre el subespacio propio.
+  \end{enumerate}
+\end{resaltado}
+
+\begin{eje}[Medición de $\sigma_z$ en estado general]
+  Considere el estado $\ket{\psi} = \frac{3}{5}\ket{0} + \frac{4i}{5}\ket{1}$ y queremos medir el observable $\sigma_z$. Como ya sabemos, los valores propios de $\sigma_z$ son $+1$ y $-1$, con vectores propios $\ket{0}$ y $\ket{1}$ respectivamente.
+
+  \textbf{Probabilidades:}
+  \begin{align*}
+    P(+1) & = |\langle 0 , \psi \rangle|^2 = \left|\frac{3}{5}\right|^2 = \frac{9}{25}   \\
+    P(-1) & = |\langle 1 , \psi \rangle|^2 = \left|\frac{4i}{5}\right|^2 = \frac{16}{25}
+  \end{align*}
+
+  Verificación: $P(+1) + P(-1) = \frac{9}{25} + \frac{16}{25} = 1$.
+
+  \textbf{Estados post-medición:} Después de cada posible resultado de la medición, el estado del sistema colapsa a:
+  \begin{itemize}
+    \item Si se obtiene $+1$: el sistema colapsa a $\ket{0}$.
+    \item Si se obtiene $-1$: el sistema colapsa a $\ket{1}$.
+  \end{itemize}
+\end{eje}
+
+\begin{defi}[Valor esperado]
+  El valor esperado de un observable $\hat{A}$ en el estado $\ket{\psi}$ es:
+  $$\langle \hat{A} \rangle = \sum_i a_i P(a_i)$$
+\end{defi}
+
+\begin{eje}[Cálculo de valor esperado]
+  Para el estado $\ket{\psi} = \frac{3}{5}\ket{0} + \frac{4i}{5}\ket{1}$ y el observable $\sigma_z$:
+
+  $$\langle \sigma_z \rangle = (+1) \cdot \frac{9}{25} + (-1) \cdot \frac{16}{25} = -\frac{7}{25}$$
+\end{eje}
+
+\subsection{Matemáticas cuánticas}
+
+Ahora que hemos establecido la teoría de espacios vectoriales complejos, podemos formular matemáticamente el primer postulado fundamental de la mecánica cuántica.
+
+\begin{resaltado}
+  \textbf{Postulado I: Estados cuánticos.}
+
+  El estado de un sistema cuántico se describe completamente mediante un vector unitario en un espacio vectorial.
+\end{resaltado}
+
+\begin{eje}[Estado de un cúbit]
+  Un cúbit (sistema cuántico de dos niveles) tiene espacio de estados $\mathcal{H} = \mathbb{C}^2$ y se representa como:
+  $$\ket{\psi} = \alpha\ket{0} + \beta\ket{1}$$
+  donde $\{\ket{0}, \ket{1}\}$ es la base computacional de $\mathbb{C}^2$ y $\alpha, \beta \in \mathbb{C}$ satisfacen:
+  $$|\alpha|^2 + |\beta|^2 = 1 \quad \text{(condición de normalización)}$$
+
+  En términos de la base canónica:
+  $$\ket{0} = \begin{pmatrix} 1 \\ 0 \end{pmatrix}, \quad \ket{1} = \begin{pmatrix} 0 \\ 1 \end{pmatrix}$$
+
+  Por tanto:
+  $$\ket{\psi} = \begin{pmatrix} \alpha \\ \beta \end{pmatrix} \in \mathbb{C}^2$$
+\end{eje}
+
+\begin{defi}[Equivalencia por fase global]
+  Dos vectores estado que difieren por una fase global son físicamente equivalentes:
+  $$\ket{\psi} \sim e^{i\phi}\ket{\psi} \quad \forall \phi \in \mathbb{R}$$
+
+  Esto significa que solo las fases \textbf{relativas} entre componentes tienen significado físico.
+\end{defi}
+
+\begin{info}
+  En realidad, los estados cuánticos se describen mediante \textbf{vectores de rayos}, que son clases de equivalencia de vectores unitarios bajo la relación de fase global. Esto refleja que las mediciones físicas dependen solo de las diferencias de fase entre componentes del estado. En consecuencia, el espacio de estados de un cúbit es isomorfo al conjunto cociente $\H\cong \mathbb{C}^2 / \sim$, aunque en la práctica se obvia esta distinción y se trabaja directamente con vectores unitarios.
+\end{info}
+
+\begin{eje}[Parametrización general de un cúbit]
+  Eliminando la fase global, todo cúbit puede escribirse como:
+  $$\ket{\psi} = \cos\frac{\theta}{2}\ket{0} + e^{i\varphi}\sin\frac{\theta}{2}\ket{1}$$
+  donde $\theta \in [0,\pi]$ y $\varphi \in [0,2\pi]$ son parámetros reales.
+
+  Esta parametrización:
+  \begin{itemize}
+    \item Elimina la fase global irrelevante.
+    \item Usa solo 2 parámetros reales para describir el estado completo.
+    \item Corresponde a puntos en la superficie de la esfera de Bloch.
+  \end{itemize}
+\end{eje}
+
+\begin{eje}[Estados cuánticos importantes]
+  \begin{enumerate}
+    \item \textbf{Estados de la base computacional:}
+          $$\ket{0} = \begin{pmatrix} 1 \\ 0 \end{pmatrix}, \quad \ket{1} = \begin{pmatrix} 0 \\ 1 \end{pmatrix}$$
+
+    \item \textbf{Estados de superposición:}
+          $$\ket{+} = \frac{1}{\sqrt{2}}(\ket{0} + \ket{1}) = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 1 \end{pmatrix}$$
+          $$\ket{-} = \frac{1}{\sqrt{2}}(\ket{0} - \ket{1}) = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ -1 \end{pmatrix}$$
+
+    \item \textbf{Estados con fase compleja:}
+          $$\ket{i+} = \frac{1}{\sqrt{2}}(\ket{0} + i\ket{1}) = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ i \end{pmatrix}$$
+  \end{enumerate}
+\end{eje}
 
 \subsection{Fundamentos de la notación bra-ket}
 
@@ -290,3 +461,105 @@ Normalmente, no se escriben los paréntesis y se entiende que el operador actúa
 \begin{info}
   El Postulado V garantiza que la información cuántica se conserva durante la evolución temporal de sistemas cerrados. Esto es fundamental para el diseño de algoritmos cuánticos, donde las operaciones se implementan mediante secuencias de operadores unitarios.
 \end{info}
+
+\subsection{Aplicaciones computacionales}
+
+\begin{eje}[Mediciones cuánticas como funcionales]
+  En mecánica cuántica, una medición de un observable $A$ en un estado $|\psi\rangle$ se puede interpretar como la evaluación de un funcional:
+
+  El valor esperado $\langle A \rangle$ se puede escribir como:
+  $$\langle A \rangle = f_A(|\psi\rangle)$$
+
+  donde $f_A$ es el funcional definido por $f_A(|\phi\rangle) = \ket{\phi}^*(A\ket{\phi})$.
+\end{eje}
+
+\begin{eje}[Fidelidad como producto en el dual]
+  La fidelidad cuántica entre dos estados $|\psi\rangle$ y $|\phi\rangle$ se define como:
+  $$F(|\psi\rangle, |\phi\rangle) = |\langle\psi, \phi\rangle|^2$$
+
+  Esto representa la evaluación del funcional $\langle\psi|$ sobre el vector $|\phi\rangle$, seguida de la toma del módulo al cuadrado.
+\end{eje}
+
+\subsection{Sistemas cuánticos compuestos}
+
+\begin{resaltado}
+  \textbf{Postulado IV: Composición de sistemas}
+
+  El espacio de estados de un sistema cuántico compuesto, es el formado por el producto tensorial de los subsistemas que lo componen.
+\end{resaltado}
+
+\begin{eje}[Sistema de dos cúbits]
+  Para dos cúbits independientes, el espacio de estados es $\mathbb{C}^2 \otimes \mathbb{C}^2 \cong \mathbb{C}^4$, con base computacional:
+  \begin{align}
+    \ket{0} \otimes \ket{0} = \begin{pmatrix} 1 \\ 0 \\ 0 \\ 0 \end{pmatrix} \\
+    \ket{0} \otimes \ket{1} = \begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \end{pmatrix} \\
+    \ket{1} \otimes \ket{0} = \begin{pmatrix} 0 \\ 0 \\ 1 \\ 0 \end{pmatrix} \\
+    \ket{1} \otimes \ket{1} = \begin{pmatrix} 0 \\ 0 \\ 0 \\ 1 \end{pmatrix}
+  \end{align}
+\end{eje}
+
+\subsection{Separabilidad y entrelazamiento cuántico}
+
+\begin{defi}[Estado separable]
+  Un estado $\ket{\psi} \in \mathcal{H}_A \otimes \mathcal{H}_B$ es \textbf{separable} si existen $\ket{\alpha} \in \mathcal{H}_A$ y $\ket{\beta} \in \mathcal{H}_B$ tales que:
+  $$\ket{\psi} = \ket{\alpha} \otimes \ket{\beta}$$
+
+  Un estado es \textbf{entrelazado} si no es separable.
+\end{defi}
+
+\begin{eje}[Estados separables]
+  Los siguientes estados de dos cúbits son separables:
+  \begin{itemize}
+    \item $\ket{0} \otimes \ket{0}$
+    \item $\frac{1}{\sqrt{2}}(\ket{0}\otimes\ket{1} + \ket{1}\otimes\ket{1}) = \frac{1}{\sqrt{2}}(\ket{0} + \ket{1}) \otimes \ket{1}$
+    \item $\frac{1}{2}(\ket{0}\otimes\ket{0} + \ket{0}\otimes\ket{1} + \ket{1}\otimes\ket{0} + \ket{1}\otimes\ket{1}) = \ket{+} \otimes \ket{+}$
+  \end{itemize}
+\end{eje}
+
+\begin{defi}[Estados de Bell]
+  Los cuatro estados de Bell forman una base ortonormal de estados entrelazados para dos cúbits:
+  \begin{align}
+    \ket{\Phi^+} & = \frac{1}{\sqrt{2}}(\ket{0} \otimes \ket{0} + \ket{1} \otimes \ket{1}) \quad \text{(estado EPR)}      \\
+    \ket{\Phi^-} & = \frac{1}{\sqrt{2}}(\ket{0} \otimes \ket{0} - \ket{1} \otimes \ket{1})                                \\
+    \ket{\Psi^+} & = \frac{1}{\sqrt{2}}(\ket{0} \otimes \ket{1} + \ket{1} \otimes \ket{0})                                \\
+    \ket{\Psi^-} & = \frac{1}{\sqrt{2}}(\ket{0} \otimes \ket{1} - \ket{1} \otimes \ket{0}) \quad \text{(estado singlete)}
+  \end{align}
+\end{defi}
+
+\begin{eje}[Verificación de entrelazamiento para $\ket{\Phi^+}$]
+  Si $\ket{\Phi^+}$ fuera separable, existirían $\ket{\alpha} = a\ket{0} + b\ket{1}$ y $\ket{\beta} = c\ket{0} + d\ket{1}$ tales que:
+  $$\ket{\Phi^+} = (a\ket{0} + b\ket{1}) \otimes (c\ket{0} + d\ket{1}) = ac\ket{0}\otimes\ket{0} + ad\ket{0}\otimes\ket{1} + bc\ket{1}\otimes\ket{0} + bd\ket{1}\otimes\ket{1}$$
+
+  Comparando con $\ket{\Phi^+} = \frac{1}{\sqrt{2}}(\ket{0} \otimes \ket{0} + \ket{1} \otimes \ket{1})$:
+  $$ac = \frac{1}{\sqrt{2}}, \quad ad = 0, \quad bc = 0, \quad bd = \frac{1}{\sqrt{2}}$$
+
+  De $ad = 0$ y $bc = 0$, o bien $a = c = 0$ o bien $b = d = 0$, pero esto contradice $ac = bd = \frac{1}{\sqrt{2}} \neq 0$.
+
+  Por tanto, $\ket{\Phi^+}$ es entrelazado.
+\end{eje}
+
+\begin{info}
+  Los estados de Bell exhiben correlaciones cuánticas no locales: medir un cúbit instantáneamente determina el resultado de medir el otro cúbit, independientemente de la distancia que los separe. Esta propiedad es fundamental para protocolos como la teleportación cuántica y la criptografía cuántica.
+\end{info}
+
+\begin{theo}[Descomposición de Schmidt]
+  Todo estado puro $\ket{\psi} \in \mathcal{H}_A \otimes \mathcal{H}_B$ puede escribirse como:
+  $$\ket{\psi} = \sum_{i} \sqrt{\lambda_i} \ket{u_i} \otimes \ket{v_i}$$
+  donde $\{\ket{u_i}\}$ y $\{\ket{v_i}\}$ son bases ortonormales, $\lambda_i \geq 0$, y los $\lambda_i$ son únicos.
+
+  El \textbf{número de Schmidt} es la cantidad de $\lambda_i > 0$ y caracteriza el entrelazamiento:
+  \begin{itemize}
+    \item Número de Schmidt = 1 $\Leftrightarrow$ Estado separable.
+    \item Número de Schmidt > 1 $\Leftrightarrow$ Estado entrelazado.
+  \end{itemize}
+\end{theo}
+
+Una vez que hemos definido el producto tensorial, podemos definir el producto exterior.
+
+\begin{defi}
+  Dado un espacio de Hilbert $\mathcal{H}$, se define el \textbf{producto exterior} de dos vectores $u, v \in \mathcal{H}$ por:
+  $$u \wedge v = u \otimes v^\dagger\,.$$
+\end{defi}
+
+Podemos interpretar el producto exterior como un operador lineal considerando su acción sobre un vector $w \in \mathcal{H}$:
+$$ (u \wedge v)(w) = (u \otimes v^\dagger)(w) = \langle v , w \rangle u\,.$$
