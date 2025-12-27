@@ -47,8 +47,19 @@
     \part Calcular las probabilidades de medir cada qubit individualmente
   \end{parts}
 
+  \question Verificar que $\ket{\Phi^+}$ estña entrelazado.
+  \begin{solution}
 
+    Si $\ket{\Phi^+}$ fuera separable, existirían $\ket{\alpha} = a\ket{0} + b\ket{1}$ y $\ket{\beta} = c\ket{0} + d\ket{1}$ tales que:
+    $$\ket{\Phi^+} = (a\ket{0} + b\ket{1}) \otimes (c\ket{0} + d\ket{1}) = ac\ket{0}\otimes\ket{0} + ad\ket{0}\otimes\ket{1} + bc\ket{1}\otimes\ket{0} + bd\ket{1}\otimes\ket{1}$$
 
+    Comparando con $\ket{\Phi^+} = \frac{1}{\sqrt{2}}(\ket{0} \otimes \ket{0} + \ket{1} \otimes \ket{1})$:
+    $$ac = \frac{1}{\sqrt{2}}, \quad ad = 0, \quad bc = 0, \quad bd = \frac{1}{\sqrt{2}}$$
+
+    De $ad = 0$ y $bc = 0$, o bien $a = c = 0$ o bien $b = d = 0$, pero esto contradice $ac = bd = \frac{1}{\sqrt{2}} \neq 0$.
+
+    Por tanto, $\ket{\Phi^+}$ es entrelazado.
+  \end{solution}
 
   \question Determine si el estado $\ket{\psi} = \frac{1}{\sqrt{3}}(\ket{00} + \ket{01} + \ket{10})$ es entrelazado.
 

@@ -668,7 +668,7 @@ typeset node}}}}
 
 \newenvironment{nota}%
 {\noindent\textcolor{azulunir}{\hrule}\textbf{Nota: }}
-{\noindent\textcolor{azulunir}{\hrule}}
+{\vspace*{.75\baselineskip}\noindent\textcolor{azulunir}{\hrule}}
 
 \newcommand{\corregir}[2]{\textcolor{red}{\sout{#1} \textcolor{blue}{\uline{#2}}}}
 
