@@ -2,31 +2,31 @@
 
 \begin{esquemaExplorador}
   \temaEsquema{Estados cuánticos mixtos}{
-    \conceptoEsquema{Estados puros vs estados mixtos}
-    \conceptoEsquema{Límites del formalismo de vectores estado}
-    \conceptoEsquema{Necesidad de la matriz de densidad}
+    \conceptoEsquema{Estados puros vs estados mixtos}{}
+    \conceptoEsquema{Límites del formalismo de vectores estado}{}
+    \conceptoEsquema{Necesidad de la matriz de densidad}{}
   }
   \temaEsquema{Matriz de densidad}{
-    \conceptoEsquema{Definición y propiedades}
-    \conceptoEsquema{Operador densidad para estados puros}
-    \conceptoEsquema{Estados mixtos y mezclas estadísticas}
-    \conceptoEsquema{Criterio de pureza}
+    \conceptoEsquema{Definición y propiedades}{}
+    \conceptoEsquema{Operador densidad para estados puros}{}
+    \conceptoEsquema{Estados mixtos y mezclas estadísticas}{}
+    \conceptoEsquema{Criterio de pureza}{}
   }
   \temaEsquema{Sistemas compuestos y traza parcial}{
-    \conceptoEsquema{Producto tensorial de matrices de densidad}
-    \conceptoEsquema{Traza parcial y sistemas abiertos}
-    \conceptoEsquema{Decoherencia cuántica}
+    \conceptoEsquema{Producto tensorial de matrices de densidad}{}
+    \conceptoEsquema{Traza parcial y sistemas abiertos}{}
+    \conceptoEsquema{Decoherencia cuántica}{}
   }
   \temaEsquema{Canales cuánticos}{
-    \conceptoEsquema{Representación de Kraus}
-    \conceptoEsquema{Teorema de no-clonación}
-    \conceptoEsquema{Operaciones completamente positivas}
+    \conceptoEsquema{Representación de Kraus}{}
+    \conceptoEsquema{Teorema de no-clonación}{}
+    \conceptoEsquema{Operaciones completamente positivas}{}
   }
   \temaEsquema{Información cuántica}{
-    \conceptoEsquema{Entropía de von Neumann}
-    \conceptoEsquema{Información mutua cuántica}
-    \conceptoEsquema{Fidelidad cuántica}
-    \conceptoEsquema{Distancia de traza}
+    \conceptoEsquema{Entropía de von Neumann}{}
+    \conceptoEsquema{Información mutua cuántica}{}
+    \conceptoEsquema{Fidelidad cuántica}{}
+    \conceptoEsquema{Distancia de traza}{}
   }
 \end{esquemaExplorador}
 
@@ -57,13 +57,16 @@ Este tema establece las bases matemáticas necesarias para comprender sistemas c
 \end{defi}
 
 \begin{defi}[Estado mixto]
-  Un estado cuántico mixto representa una situación donde el sistema puede estar en uno de varios estados puros $|\psi_i\rangle$ con probabilidades clásicas $p_i$:
-  $$\text{Estado mixto} = \{(p_1, |\psi_1\rangle), (p_2, |\psi_2\rangle), \ldots, (p_k, |\psi_k\rangle)\}$$
+  Un estado cuántico mixto representa una situación donde el sistema puede estar en uno de varios estados puros $|\psi_i\rangle$ con probabilidades clásicas $p_i$
+  $$\text{Estado mixto} = \{(p_1, |\psi_1\rangle), (p_2, |\psi_2\rangle), \ldots, (p_k, |\psi_k\rangle)\}\,,$$
 
-  donde $p_i \geq 0$ y $\sum_{i=1}^k p_i = 1$.
-
-  Esta descripción surge cuando hay incertidumbre clásica sobre cuál es el estado real del sistema.
+  donde
+  \[
+    p_i \geq 0\quad \text{y}\quad \sum_{i=1}^k p_i = 1\,.
+  \]
 \end{defi}
+
+Esta descripción surge cuando hay incertidumbre clásica sobre cuál es el estado real del sistema.
 
 \begin{eje}
   Considere las siguientes situaciones que requieren estados mixtos:
@@ -80,14 +83,14 @@ Este tema establece las bases matemáticas necesarias para comprender sistemas c
 \subsection{Matriz de densidad}
 
 \begin{defi}[Operador densidad]
-  El operador densidad de un sistema cuántico $\{(p_i, |\psi_i\rangle)\}$, es el operador $\rho$ definido por:
-  $$\rho = \sum_{i=1} p_i |\psi_i\rangle\langle\psi_i|$$
+  El operador densidad de un sistema cuántico $\{(p_i, |\psi_i\rangle)\}$, es el operador $\rho$ definido por
+  $$\rho = \sum_{i=1} p_i |\psi_i\rangle\langle\psi_i|\,.$$
 \end{defi}
 
-Para un estado puro $|\psi\rangle$ el operador densidad es el proyector:
-$$\rho = |\psi\rangle\langle\psi|$$
+Para un estado puro $|\psi\rangle$ el operador densidad es el proyector
+$$\rho = |\psi\rangle\langle\psi|\,.$$
 
-La matriz asociada, que también se denota como $\rho$ en una base ortonormal $\{|e_j\rangle\}$ es:
+La matriz asociada, que también se denota como $\rho$ en una base ortonormal $\{|e_j\rangle\}$, tiene las entradas $\rho = (\rho)_{mn}$ calculadas como
 $$\rho_{mn} = \langle e_m|\rho|e_n\rangle$$
 
 \begin{eje}
