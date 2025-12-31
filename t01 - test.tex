@@ -60,30 +60,6 @@
     Las raíces $n$-ésimas de la unidad son $e^{2\pi ik/n}$ para $k = 0, 1, \ldots, n-1$. Para $n = 4$: $e^{0} = 1$, $e^{i\pi/2} = i$, $e^{i\pi} = -1$, $e^{3i\pi/2} = -i$.
   \end{solution}
 
-  \question Una amplitud cuántica $\alpha = \frac{3}{5} + \frac{4i}{5}$ tiene probabilidad asociada:
-
-  \begin{choices}
-    \choice $\frac{7}{5}$
-    \CorrectChoice $1$
-    \choice $\frac{9}{25}$
-    \choice $\frac{16}{25}$
-  \end{choices}
-  \begin{solution}
-    La probabilidad es $|\alpha|^2 = \left(\frac{3}{5}\right)^2 + \left(\frac{4}{5}\right)^2 = \frac{9}{25} + \frac{16}{25} = 1$.
-  \end{solution}
-
-  \question Para que dos amplitudes $\alpha_1 = \frac{1}{\sqrt{2}}e^{i\theta_1}$ y $\alpha_2 = \frac{1}{\sqrt{2}}e^{i\theta_2}$ interfieran destructivamente, la diferencia de fases debe ser:
-
-  \begin{choices}
-    \choice $0$
-    \choice $\frac{\pi}{2}$
-    \CorrectChoice $\pi$
-    \choice $\frac{\pi}{4}$
-  \end{choices}
-  \begin{solution}
-    Para interferencia destructiva necesitamos que $\alpha_1 + \alpha_2 = 0$, lo que ocurre cuando las fases difieren en $\pi$: $e^{i\theta_1} + e^{i(\theta_1 + \pi)} = e^{i\theta_1}(1 - 1) = 0$.
-  \end{solution}
-
   \question El número complejo $z = 1 + i$ en forma exponencial es:
 
   \begin{choices}
@@ -100,7 +76,7 @@
 
   \begin{choices}
     \choice $6e^{i\pi}$
-    \CorrectChoice $8e^{i\pi} = -8$
+    \CorrectChoice $-8$
     \choice $8e^{i\pi/9}$
     \choice $2e^{i\pi}$
   \end{choices}
@@ -108,16 +84,39 @@
     Por la fórmula de De Moivre: $z^3 = (2e^{i\pi/3})^3 = 2^3 e^{i3\pi/3} = 8e^{i\pi} = -8$.
   \end{solution}
 
-  \question Dos amplitudes cuánticas con magnitudes $\frac{1}{\sqrt{2}}$ y fases que difieren en $\frac{\pi}{2}$ al sumarse tienen probabilidad total:
+  \question ¿Cual es el valor de $\cos(i)$?
 
   \begin{choices}
-    \choice $0$
-    \choice $\frac{1}{2}$
-    \CorrectChoice $1$
-    \choice $\frac{1}{4}$
+    \choice $-1$
+    \CorrectChoice $\frac{1+e^2}{2e}$
+    \choice $i\cos(e)$
+    \choice $1+\sin(e)$
   \end{choices}
   \begin{solution}
-    Si $\alpha_1 = \frac{1}{\sqrt{2}}$ y $\alpha_2 = \frac{1}{\sqrt{2}}e^{i\pi/2} = \frac{i}{\sqrt{2}}$, entonces $|\alpha_1 + \alpha_2|^2 = \left|\frac{1 + i}{\sqrt{2}}\right|^2 = \frac{|1 + i|^2}{2} = \frac{2}{2} = 1$.
+    Por la fórmula de Euler: $\cos(i) = \frac{e^{i^2} + e^{-i^2}}{2} = \frac{e^{-1} + e^{1}}{2} = \frac{1/e + e}{2} = \frac{1+e^2}{2e}$.
   \end{solution}
 
+  \question Si $f(a+bi) = ia$ es una función compleja con valores complejos, entonces $\bar{f}$:
+
+  \begin{choices}
+    \choice $\bar{f}$ es una función real de variable compleja.
+    \CorrectChoice $\bar{f}$ es una función compleja de variable compleja.
+    \choice $\bar{f}$ es una función real de variable real.
+    \choice $\bar{f}$ es una función compleja de variable real.
+  \end{choices}
+  \begin{solution}
+    Por definición de conjugado de una función, $\bar{f}(a+bi) = \overline{f(a+bi)} = \overline{ia} = -ia$. Por lo tanto, $\bar{f}$ es una función compleja de variable compleja.
+  \end{solution}
+
+  \question Sea $f$ un función compleja de variable compleja, simétrica respecto del eje real, y sea $g$ la función definida por $g(z) = if(z)$. Entonces $g$ cumple que:
+
+  \begin{choices}
+    \choice Es antisimétrica respecto del eje real.
+    \choice Es antisimétrica respecto del eje imaginario.
+    \CorrectChoice Es simétrica respecto del eje real.
+    \choice Es simétrica respecto del eje imaginario.
+  \end{choices}
+  \begin{solution}
+    Por definición de conjugado, $g(\bar{z}) = if(\bar{z}) = if(z)=g(z)$. Por lo tanto, $g$ es simétrica respecto del eje real.
+  \end{solution}
 \end{questions}

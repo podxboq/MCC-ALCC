@@ -1,6 +1,11 @@
 \portada
 
 \begin{esquemaExplorador}
+  \temaEsquema{Correspondencia cuántica}{
+    \conceptoEsquema{Amplitud cuántica}{$\alpha\in\C$}
+    \conceptoEsquema{Magnitud y probabilidad}{$P = |\alpha|^2$}
+    \conceptoEsquema{Fase e interferencia}{$\theta = arg(\alpha)$}
+  }
   \temaEsquema{Notación bra-ket}{
     \conceptoEsquema{Kets y bras}{}
     \conceptoEsquema{Productos internos}{}
@@ -54,6 +59,35 @@ Este tema establece el puente definitivo entre la matemática abstracta de los e
 \begin{nota}
   Recuerda que en todo el curso, siempre trabajaremos con espacios de Hilbert de dimensión finita, lo que simplifica muchos aspectos técnicos y nos permite centrarnos en los conceptos fundamentales.
 \end{nota}
+
+En el contexto de la mecánica cuántica, un número complejo se describe como una amplitud cuántica que está formado por un par de números llamados amplitud y fase, que no son más que el módulo y un argumento.
+
+\begin{defi}
+  Se denota por \textbf{amplitud cuántica} a un número complejo $\alpha \in \C$ que está caracterizado por dos valores:
+  \begin{itemize}
+    \item \textbf{Magnitud}: Igual al módulo $|\alpha|$.
+    \item \textbf{Fase}: Pertenece al argumento $\arg(\alpha)$.
+  \end{itemize}
+\end{defi}
+
+Por lo tanto, dos amplitudes cuánticas son iguales si tienen la misma magnitud y su diferencia de fases es un múltiplo de $2\pi$.
+
+\begin{eje}
+  Una amplitud cuántica de magnitud 2 con fase $\pi$ es igual a otra amplitud cuántica de magnitud 2 con fase $-\pi$.
+\end{eje}
+
+\begin{eje}[Interferencia cuántica]
+  Cuando dos amplitudes cuánticas interfieren, la amplitud cuántica resultante puede tener una fase menor, diremos entonces que las amplitudes interfieren de forma destructiva, si la fase resultante es mayor diremos que interfieren de forma constructiva:
+
+  \textbf{Interferencia destructiva}: Una amplitud cuántica de magnitud 2 con fase $\pi$ y otra amplitud cuántica de magnitud 2 con fase $\pi$ interfieren dando una amplitud cuántica de fase $0$.
+
+\end{eje}
+
+\begin{info}
+  La interferencia cuántica es el principio fundamental detrás de muchos algoritmos cuánticos: amplificamos las amplitudes de respuestas correctas e interferimos destructivamente con las incorrectas.
+\end{info}
+
+Al final una amplitud cuántica es la representación exponencial de un número complejo, y podemos trabajar con ellas usando las reglas vistas en este tema.
 
 \subsection{Postulado I: Sistemas cuánticos.}
 \begin{resaltado}
