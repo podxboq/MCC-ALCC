@@ -21,9 +21,6 @@
     \conceptoEsquema{Base canónica}{}
     \conceptoEsquema{Dimensión finita}{}
   }
-  \temaEsquema{Postulados de la mecánica cuántica}{
-    \conceptoEsquema{Postulado I: Estados cuánticos}{}
-  }
 \end{esquemaExplorador}
 
 \unirsection{Ideas clave}
@@ -32,7 +29,7 @@
 
 Un \textbf{espacio vectorial} es una estructura algebraica creada a partir de un conjunto no vacío, una operación interna llamada suma (definida para los elementos del conjunto) y una operación externa llamada producto por un escalar (definida entre dicho conjunto y otro conjunto con estructura de cuerpo) que satisface ocho propiedades fundamentales.
 
-Los espacios vectoriales se concibieron como una herramienta de geometría afín gracias a la introducción de coordenadas en el plano o espacio tridimensional.
+Los espacios vectoriales se concibieron como una herramienta de geometría afín gracias a la introducción de coordenadas en el plano bidimensional y el espacio tridimensional.
 Desde entonces, se ha visto que hay infinidad de espacios vectoriales además de \(\mathbb{R}^{n}\), como por ejemplo el espacio vectorial de las matrices o de los polinomios.
 
 En este tema dejaremos los números reales de lado y usaremos los números complejos como cuerpo del espacio vectorial, presentaremos las principales definiciones y resultados relacionados con los espacios vectoriales, usando multitud de ejemplos para ofrecer una mejor comprensión de los conceptos abordados.
@@ -41,14 +38,15 @@ Más concretamente, los objetivos que trataremos de alcanzar en este tema
 serán los siguientes:
 
 \begin{itemize}
-  \item Comprobar si cierto conjunto dotado de dos operaciones es o no espacio vectorial, así como verificar que cierto subconjunto es subespacio.
-  \item Razonar si una colección de vectores es linealmente independiente y si conforma o no un sistema generador o una base de cierto espacio vectorial.
+  \item Comprobar si cierto conjunto dotado de dos operaciones es un espacio vectorial.
+  \item Identificar cuando un subconjuto de un espacio vectoria, hereda la estructura de espacio vectorial.
+  \item Razonar si una colección de vectores es linealmente independiente y si conforma o no un sistema generador o una base.
   \item Hallar el mínimo número de vectores que se necesitan para formar base de un subespacio vectorial y usarlo para obtener la dimensión del espacio.
   \item Saber cómo expresar vectores con bases diferentes y el procedimiento para relacionar dichas representaciones.
   \item Calcular la intersección y suma de subespacios.
 \end{itemize}
 
-Esta base teórica será fundamental para comprender en los próximos temas la manipulación cde estados cuánticos como vectores.
+Esta base teórica será fundamental para comprender en los próximos temas la manipulación de estados cuánticos como vectores.
 
 \subsection{Espacios y subespacios vectoriales}
 
@@ -56,21 +54,21 @@ Esta base teórica será fundamental para comprender en los próximos temas la m
   Sea $\K$ un conjunto no vacio junto con una operación interna ($\circ$).
   Diremos que $(\K, \circ)$ es un \textbf{grupo} si verifica:
   \begin{enumerate}
-    \item[\likeitem{G1}] La propiedad \textbf{asociativa}.
+    \item[\likeitem{G1}] La propiedad \textbf{asociativa}
           \[
-            \forall a,b,c\in\K\Rightarrow a\circ(b\circ c) = (a\circ b)\circ c
+            \forall a,b,c\in\K\Rightarrow a\circ(b\circ c) = (a\circ b)\circ c\,.
           \]
-    \item[\likeitem{G2}] La propiedad \textbf{conmutativa}.
+    \item[\likeitem{G2}] La propiedad \textbf{conmutativa}
           \[
-            \forall a,b\in\K\Rightarrow a\circ b = b\circ a
+            \forall a,b\in\K\Rightarrow a\circ b = b\circ a\,.
           \]
-    \item[\likeitem{G3}] La existencia de \textbf{neutro}.
+    \item[\likeitem{G3}] La existencia de \textbf{neutro}
           \[
-            \exists! N\in\K \mid\forall a\in\K \Rightarrow a\circ N = a
+            \exists! N\in\K \mid\forall a\in\K \Rightarrow a\circ N = a\,.
           \]
-    \item[\likeitem{G4}] La existencia de \textbf{opuesto}.
+    \item[\likeitem{G4}] La existencia de \textbf{opuesto}
           \[
-            \forall a\in\K\Rightarrow \exists! O\in\K \mid a\circ O = N
+            \forall a\in\K\Rightarrow \exists! O\in\K \mid a\circ O = N\,.
           \]
   \end{enumerate}
 \end{defi}
@@ -82,6 +80,7 @@ Como ejemplos de grupos tenemos:
   \item El conjunto de matrices invertibles con la operación de multiplicación.
   \item El conjunto de permutaciones de $n$ elementos con la operación de composición.
   \item Las funciones biyectivas de un conjunto en sí mismo con la operación de composición.
+  \item Las rotaciones en el espacio con la composición.
 \end{itemize}
 
 \begin{defi}
@@ -97,7 +96,7 @@ Como ejemplos de grupos tenemos:
   \end{enumerate}
 \end{defi}
 
-Por regla general, siempre usamos la siguiente notación, con independencia de cuales son los componentes del cuerpo o de la operación que le da su estructura de cuerpo.
+Siempre usamos la siguiente notación, con independencia de cuales son los componentes del cuerpo o de la operación que le da su estructura de cuerpo.
 \begin{enumerate}
   \item Al neutro de la suma y la multiplicación lo denotamos por $0$ y $1$ respectivamente.
   \item Al elemento opuesto de $a$ para la suma lo denotamos $-a$.
@@ -105,7 +104,7 @@ Por regla general, siempre usamos la siguiente notación, con independencia de c
 \end{enumerate}
 
 Ejemplos de cuerpos infinitos tenemos $\Q, \R, \C$ y de cuerpos finitos $\Z_p$ para $p\in\N$ primo.
-Pero no todos los cuerpos son numéricos, si consideramos un polinomio de grado 1 $p(x)=x-\alpha$ con $\alpha\in\R^*$, entonces bajo la relación de equivalencia de la aritmética residual, el conjunto conciente $\R[X]/ p(x)$ es un cuerpo.
+Pero no todos los cuerpos son numéricos, si consideramos el polinomio de grado 1 definido como $p(x)=x-\alpha$ con $\alpha\in\R^*$, entonces bajo la relación de equivalencia de la aritmética residual, el conjunto conciente $\R[X]/ p(x)$ es un cuerpo.
 
 \begin{defi}
   Sea $\K$ un cuerpo.
@@ -114,21 +113,21 @@ Pero no todos los cuerpos son numéricos, si consideramos un polinomio de grado 
   verifica:
   \begin{enumerate}
     \item[\likeitem{E1}] $\V$ con la suma es un grupo.
-    \item[\likeitem{E2}] Distributiva de la multiplicación en $\K$ con respecto a la suma en $\V$.
+    \item[\likeitem{E2}] Distributiva de la multiplicación en $\K$ con respecto a la suma en $\V$
           \[
-            \forall k \in\K\ \forall u,v \in\V\Rightarrow k(u + v) = ku + kv
+            \forall k \in\K\ \forall u,v \in\V\Rightarrow k(u + v) = ku + kv\,.
           \]
-    \item[\likeitem{E3}] Linealidad.
+    \item[\likeitem{E3}] Linealidad
           \[
-            \forall k_{1},k_{2} \in\K\ \forall u \in\V\Rightarrow (k_{1} + k_{2})u = k_{1}u + k_{2}u
+            \forall k_{1},k_{2} \in\K\ \forall u \in\V\Rightarrow (k_{1} + k_{2})u = k_{1}u + k_{2}u\,.
           \]
-    \item[\likeitem{E4}] Asociativa.
+    \item[\likeitem{E4}] Asociativa
           \[
-            \forall k_{1},k_{2} \in\K\ \forall u \in\V\Rightarrow (k_{1}k_{2})u = k_{1}(k_{2}u)
+            \forall k_{1},k_{2} \in\K\ \forall u \in\V\Rightarrow (k_{1}k_{2})u = k_{1}(k_{2}u)\,.
           \]
-    \item[\likeitem{E5}] Neutro.
+    \item[\likeitem{E5}] Neutro
           \[
-            \forall u \in\V\Rightarrow 1u = u
+            \forall u \in\V\Rightarrow 1u = u\,.
           \]
   \end{enumerate}
 
@@ -139,10 +138,10 @@ Pero no todos los cuerpos son numéricos, si consideramos un polinomio de grado 
   $\C^n$ es un espacio vectorial sobre $\C$, con las operaciones usuales:
   \begin{align*}
     (x_1,\dots, x_n)
-    + ( y_1,\dots, y_n) & = ( x_1 + y_1,\dots, x_n + y_n) \\
-    k(x_{1},\dots,x_n)  & = (kx_1,\dots, kx_n)
+    + ( y_1,\dots, y_n) & = ( x_1 + y_1,\dots, x_n + y_n)\,. \\
+    k(x_{1},\dots,x_n)  & = (kx_1,\dots, kx_n)\,.
   \end{align*}
-  para $k \in\C$ y $(x_1, \dots, x_n), (y_1,\dots, y_n)\in\C^n$.
+  Para $k \in\C$ y $(x_1, \dots, x_n), (y_1,\dots, y_n)\in\C^n$.
 \end{eje}
 
 \begin{eje}
@@ -157,18 +156,33 @@ Pero no todos los cuerpos son numéricos, si consideramos un polinomio de grado 
 \end{eje}
 
 \begin{eje}
-  El conjunto de matrices $M_{m \times n}(\K)$.
+  Las matrices $M_{m \times n}(\K)$ con la suma y produto por escalares habituales.
 \end{eje}
 
 \begin{eje}
   Si $\K$ es un cuerpo, también podemos verlo como un espacio vectorial sobre sí mismo.
 \end{eje}
 
+\begin{prop}
+  Sea $V$ un $K$-espacio vectorial. Para todo $u\in V$ se cumple que
+  \[
+    0 \cdot u = 0\,.
+  \]
+\end{prop}
+\begin{proof}
+  Por la propiedad \likeitem{E3} tenemos que
+  \[
+    0 \cdot u = (0 + 0) \cdot u = 0 \cdot u + 0 \cdot u\,.
+  \]
+  Si sumamos el opuesto de $0 \cdot u$ a ambos miembros de la igualdad obtenemos
+  \[
+    0 = 0 \cdot u\,.
+  \]
+\end{proof}
+
 \subsection{Subespacio vectorial}
 
 A partir de este momento, nos centraremos en espacios vectoriales sobre el cuerpo de los números complejos, es decir, en \(\C\)-espacios vectoriales. No obstante, la mayoría de los resultados que se presentarán son válidos para espacios vectoriales sobre cualquier cuerpo.
-
-Además no vamos a volver a repetir que el espacio vectorial es sobre \(\C\), por lo que cuando hablemos de espacio vectorial, nos estaremos refiriendo a un \(\C\)-espacio vectorial.
 
 \begin{defi}
   Sea $\V$ un espacio vectorial.
@@ -185,8 +199,16 @@ Un subespacio vectorial es un subconjunto cerrado para las operaciones de suma y
   Sea $\V$ un espacio vectorial.
   Todo subespacio vectorial de $\V$ es también un espacio vectorial.
 \end{prop}
+\begin{proof}
+  Sea $U$ un subespacio vectorial de $\V$. Como $\V$ es un espacio vectorial, entonces $(\V, +)$ es un grupo. Por tanto, la operación suma en $U$ es asociativa y conmutativa, existe el neutro y el opuesto para cada elemento de $U$.
+
+  Además, las propiedades \likeitem{E2}, \likeitem{E3}, \likeitem{E4} y \likeitem{E5} se cumplen en $U$ porque se cumplen en $\V$ y $U \subseteq \V$.
+
+  Por tanto, $U$ es un espacio vectorial.
+\end{proof}
 
 \begin{eje}
+  Todo espacio vectorial tiene al menos un subespacio vectorial, llamado \textbf{subespacio trivial}, que es el conjunto que contiene únicamente el vector cero. Otros ejemplos no triviales son:
   \begin{itemize}
     \item La recta con ecuación \(\Ip(z) = 0\) es un subespacio vectorial de \(\mathbb{C}\).
     \item Las matrices triangulares inferiores forman un subespacio de \({M}_{n}(\C)\).
@@ -218,7 +240,7 @@ Un subespacio vectorial es un subconjunto cerrado para las operaciones de suma y
 \end{eje}
 
 \begin{defi}[Independencia lineal]
-  Los vectores $v_1, v_2, \ldots, v_k$ en un espacio vectorial $V$ son \textbf{linealmente independientes} si la única solución de la ecuación:
+  Los vectores $v_1, v_2, \ldots, v_k$ en un espacio vectorial $V$ son \textbf{linealmente independientes} si la única solución de la ecuación
   $$\alpha_1 v_1 + \alpha_2 v_2 + \cdots + \alpha_k v_k = 0\,,$$
   es $\alpha_1 = \alpha_2 = \cdots = \alpha_k = 0$.
 
@@ -241,12 +263,17 @@ Un subespacio vectorial es un subconjunto cerrado para las operaciones de suma y
   $$\alpha_1 + i\alpha_1 + (1+i)(-\alpha_1) = \alpha_1 + i\alpha_1 - \alpha_1 - i\alpha_1 = 0\,.$$
 
   Esta ecuación se satisface para cualquier $\alpha_1$, por lo que los vectores son linealmente dependientes.
+
+  Efectivamente podemos comprobar la dependencia lineal, pues
+  \[
+    v_3 = v_1 + v_2\,.
+  \]
 \end{eje}
 
 \begin{prop}
   \begin{enumerate}
     \item Un conjunto que contiene el vector cero es linealmente dependiente.
-    \item Si un conjunto, tiene un subconjunto de vectores linealmente dependiente, entonces el conjunto es linealmente dependiente.
+    \item Si un conjunto, contiene un subconjunto de vectores linealmente dependiente, entonces el conjunto es linealmente dependiente.
     \item Si un conjunto es linealmente independiente, entonces cualquier subconjunto también lo es.
     \item En $\C^n$, cualquier conjunto de más de $n$ vectores es linealmente dependiente.
     \item En $\C^n$, cualquier conjunto linealmente independiente tiene a lo sumo $n$ vectores.
@@ -267,24 +294,29 @@ Un subespacio vectorial es un subconjunto cerrado para las operaciones de suma y
   La base canónica (o estándar) de $\C^n$ es
   $$e_1 = (1, 0, \ldots, 0), e_2 = (0, 1, \ldots, 0), \ldots, e_n = (0, 0, \ldots, 1)\,.$$
 
-  Cualquier vector $v = (v_1, v_2, \ldots, v_n) \in \C^n$ se puede escribir como:
+  Cualquier vector $v = (v_1, v_2, \ldots, v_n) \in \C^n$ se puede escribir como
   $$v = v_1 e_1 + v_2 e_2 + \cdots + v_n e_n\,.$$
 \end{eje}
-\begin{prop}
-  Sea $V$ un espacio vectorial y $\mathcal{B}_1$ y $\mathcal{B}_2$ dos bases de $V$. Entonces, $\mathcal{B}_1$ y $\mathcal{B}_2$ tienen el mismo número de elementos.
-\end{prop}
 
 \begin{theo}[Existencia y unicidad de representación]
   Si $\mathcal{B} = \{v_1, v_2, \ldots, v_n\}$ es una base de un espacio vectorial $V$, entonces todo vector $v \in V$ se puede escribir de manera única como
   $$v = \alpha_1 v_1 + \alpha_2 v_2 + \cdots + \alpha_n v_n\,.$$
-  Los escalares $\alpha_1, \alpha_2, \ldots, \alpha_n$ se llaman las coordenadas de $v$ respecto a la base $\mathcal{B}$.
+  Los escalares $\alpha_1, \alpha_2, \ldots, \alpha_n$ se llaman las \textbf{coordenadas} de $v$ respecto a la base $\mathcal{B}$.
 \end{theo}
+
+El teorema de la existencia y unicidad de representación nos dice que una base nos permite expresar cualquier vector del espacio vectorial de una única manera como combinación lineal de los vectores de la base.
+
+\begin{prop}
+  Sea $V$ un espacio vectorial y $\mathcal{B}_1$ y $\mathcal{B}_2$ dos bases de $V$. Entonces, $\mathcal{B}_1$ y $\mathcal{B}_2$ tienen el mismo cardinal.
+\end{prop}
+
+Este resultado nos permite definir el siguiente concepto.
 
 \begin{defi}[Dimensión]
   La dimensión de un espacio vectorial $V$ es el número de vectores en cualquiera de sus bases y se denota por $\dim(V)$.
 \end{defi}
 
-El concepto de dimensión es fundamental en álgebra lineal, ya que proporciona una medida del tamaño o grado de libertad del espacio vectorial. Un espacio vectorial puede ser de dimensión finita o infinita, dependiendo de si tiene una base con un número finito o infinito de vectores. En este curso solo consideraremos espacios vectoriales de dimensión finita y así daremos por entendido cada vez que se mencione una base o dimensión.
+El concepto de dimensión es fundamental en álgebra lineal, ya que proporciona una medida del tamaño o grado de libertad del espacio vectorial. Un espacio vectorial puede ser de dimensión finita o infinita, dependiendo de si tiene una base con un número finito o infinito de vectores.
 
 \begin{nota}
   Sólo vamos a considerar espacios vectoriales de dimensión finita, es decir, aquellos que tienen una base con un número finito de vectores. El tratamiento de espacios vectoriales de dimensión infinita requiere herramientas adicionales que no son necesarias para los objetivos de este curso.
@@ -301,14 +333,14 @@ El concepto de dimensión es fundamental en álgebra lineal, ya que proporciona 
 
 \begin{eje}
   Queremos encontrar una base para el subespacio $W$ de $\C^4$ definido por
-  $$W = \left\{(x, y, z, w) \in \C^4 \mid x + y - z = 0, \, 2x - y + w = 0\right\}$$
-  De las ecuaciones que definen $W$, podemos expresar $z$ y $w$ en función de $x$ e $y$.
+  $$W = \left\{(x, y, z, w) \in \C^4 \mid x + y - z = 0, \, 2x - y + w = 0\right\}\,.$$
+  De las ecuaciones que definen $W$, podemos expresar $z$ y $w$ en función de $x$ e $y$
   \begin{align*}
-    x + y - z  & = 0 \Rightarrow z = x + y  \\
-    2x - y + w & = 0 \Rightarrow w = y - 2x
+    x + y - z  & = 0 \Rightarrow z = x + y\,,  \\
+    2x - y + w & = 0 \Rightarrow w = y - 2x\,.
   \end{align*}
   Por tanto, los vectores en $W$ tienen la forma $(x, y, x+y, y-2x)$ que podemos expresar como combinación lineal de dos vectores
-  $$(x, y, x+y, y-2x) = x(1, 0, 1, -2) + y(0, 1, 1, 1)$$
+  $$(x, y, x+y, y-2x) = x(1, 0, 1, -2) + y(0, 1, 1, 1)\,.$$
   Esta expresión muestra que cualquier vector en $W$ puede generarse a partir de los vectores $(1, 0, 1, -2)$ y $(0, 1, 1, 1)$. Es decir, $W = \text{gen}\{(1, 0, 1, -2), (0, 1, 1, 1)\}$.
 
   Por último tenemos que verificar que los vectores encontrados son linealmente independientes, para ello tomemos una combinación lineal que dé el vector cero
@@ -358,7 +390,7 @@ Formalizaremos este fenómeno más adelante al hablar de cambios de base o cambi
   Las coordenadas de la matriz \(\begin{pmatrix}
     2    & - i & 4 \\
     2+3i & - 1 & 1
-  \end{pmatrix}\) en la base usual es \((2, - i,4,2+3i, - 1,1)\).
+  \end{pmatrix}\) en la base usual es \((2, - i,4,2+3i, - 1,1)\) y que como podemos observar es un espacio vectorial de dimensión $6$.
 \end{eje}
 
 \begin{defi}
@@ -378,6 +410,13 @@ El motivo de llamar a $M_{\mathcal{B}}^{\mathcal{B}^\prime}$ la matriz cambio de
 La ecuación matricial del cambio de base de $\mathcal{B}$ a $\mathcal{B}^\prime$ permite calcular las coordenadas de un vector en la base $\mathcal{B}^\prime$ conociendo las coordenadas con respecto a la base $\mathcal{B}$.
 
 El cambio de base en el sentido contrario, es decir, calcular las coordenadas de un vector en la base $\mathcal{B}$ conociendo sus coordenadas en la base $\mathcal{B}^\prime$ viene dado por la matriz inversa.
+
+\begin{prop}
+  Sea $\V$ un espacio vectorial de dimensión $n$ y sean $\mathcal{B}$ y $\mathcal{B}^\prime$ dos bases de $\V$. La matriz cambio de base de $\mathcal{B}^\prime$ a $\mathcal{B}$ es la inversa de la matriz de cambio de base de $\mathcal{B}$ a $\mathcal{B}^\prime$
+  \[
+    M_{\mathcal{B}}^{\mathcal{B}^\prime} = \left(M_{\mathcal{B}^\prime}^{\mathcal{B}}\right)^{-1}\,.
+  \]
+\end{prop}
 
 \begin{eje}
   Consideremos en \(\mathbb{C}^{2}\) las siguientes bases, $\mathcal{B}=\set{(1,0), (i,2)}$ y $\mathcal{B}^{\prime}=\set{(2,3), (-1,2)}$.
@@ -457,9 +496,9 @@ En general, la unión de dos subespacios vectoriales no es un subespacio vectori
   Podemos ver que \(U \cap W = \{0\}\) por lo que la suma es directa.
   Además, como \(\dim(U) = 2\) y \(\dim(W) = 1\), tenemos que \(\dim(U) + \dim(W) = 3 = \dim(\mathbb{C}^{3})\), por lo que \(\mathbb{C}^{3} = U \oplus W\).
 
-  Por último, consideremos el vector \(v = (2,3,4)\). Podemos escribirlo como suma de un vector de \(U\) y otro de \(W\):
+  Por último, consideremos el vector \(v = (2,3,-2)\). Podemos escribirlo como suma de un vector de \(U\) y otro de \(W\):
   \[
-    v = (2,3,4) = (1,2,-3) + (1,1,1)
+    v = (2,3,-2) = (1,2,-3) + (1,1,1)
   \]
   donde \((1,2,-3) \in U\) y \((1,1,1) \in W\).
   Así, la proyección de \(v\) en \(U\) es \((1,2,-3)\) y la proyección de \(v\) en \(W\) es \((1,1,1)\).

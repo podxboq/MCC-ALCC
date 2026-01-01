@@ -1,12 +1,12 @@
 \begin{questions}
 
-  \question El conjunto $W = \left\{\begin{pmatrix} x \\ y \\ z \end{pmatrix} : x + y = 1\right\}$ es:
+  \question El conjunto $W = \left\{(x, y, z) \mid x + y = 1\right\}$:
 
   \begin{choices}
-    \choice Un subespacio vectorial de $\C^3$
-    \CorrectChoice No es un subespacio vectorial de $\C^3$
-    \choice Es un espacio vectorial completo
-    \choice Es la base canónica de $\C^3$
+    \choice Es un subespacio vectorial de $\C^3$.
+    \CorrectChoice No es un subespacio vectorial de $\C^3$.
+    \choice Es un espacio vectorial completo.
+    \choice Es la base canónica de $\C^3$.
   \end{choices}
   \begin{solution}
     No es subespacio porque no contiene el vector cero. Para $x = y = 0$ tendríamos $0 + 0 \neq 1$.
@@ -15,106 +15,107 @@
   \question La dimensión de $\C^{2 \times 2}$ (matrices complejas $2 \times 2$) es:
 
   \begin{choices}
-    \choice $2$
-    \CorrectChoice $4$
-    \choice $8$
-    \choice $16$
+    \CorrectChoice $4$.
+    \choice $2$.
+    \choice $16$.
+    \choice $8$.
   \end{choices}
   \begin{solution}
     Una matriz $2 \times 2$ tiene 4 entradas complejas, y el conjunto de todas ellas forma un espacio vectorial de dimensión 4 sobre $\C$.
   \end{solution}
 
-  \question Los vectores $\begin{pmatrix} 1 \\ i \end{pmatrix}$, $\begin{pmatrix} i \\ 1 \end{pmatrix}$ en $\C^2$ son:
+  \question Los vectores $(1, i)$, $(i, 1)$ en $\C^2$ son:
 
   \begin{choices}
-    \choice Linealmente dependientes
-    \CorrectChoice Linealmente independientes
-    \choice Ortogonales
-    \choice Ninguna de las anteriores
+    \choice Linealmente dependientes.
+    \choice Ninguna de las anteriores.
+    \choice Linealmente independientes y dependientes.
+    \CorrectChoice Linealmente independientes.
   \end{choices}
   \begin{solution}
-    Para que sean dependientes debe existir $\alpha \in \C$ tal que $\begin{pmatrix} 1 \\ i \end{pmatrix} = \alpha\begin{pmatrix} i \\ 1 \end{pmatrix}$, lo que implica $1 = \alpha i$ y $i = \alpha$. De la segunda ecuación $\alpha = i$, pero sustituyendo en la primera: $1 = i \cdot i = -1$, contradicción.
+    Para que sean dependientes debe existir $\alpha \in \C$ tal que $(1, i) = \alpha (i, 1)$, lo que implica $1 = \alpha i$ y $i = \alpha$. De la segunda ecuación $\alpha = i$, pero sustituyendo en la primera: $1 = i \cdot i = -1$, contradicción.
   \end{solution}
 
-  \question El estado cuántico $\ket{\psi} = \frac{1}{2}\ket{0} + \frac{\sqrt{3}i}{2}\ket{1}$ es:
+  \question El vector $(\frac{1}{2}, \frac{\sqrt{3}i}{2})$ es:
 
   \begin{choices}
-    \choice No está normalizado
-    \CorrectChoice Está normalizado y es válido
-    \choice No es un estado cuántico válido
-    \choice Representa dos qubits
+    \CorrectChoice Un vector de dimensión 2 sobre $\C$ como $\R$ espacio vectorial.
+    \choice Un vector de dimensión 2 sobre $\C$ como $\C$ espacio vectorial.
+    \choice Es un número complejo en forma cartesiana.
+    \choice Es un punto en el plano real.
   \end{choices}
   \begin{solution}
-    Verificamos: $\left|\frac{1}{2}\right|^2 + \left|\frac{\sqrt{3}i}{2}\right|^2 = \frac{1}{4} + \frac{3}{4} = 1$. El estado está normalizado.
+    Podemos expresar este elemento como $(\frac{1}{2}, \frac{\sqrt{3}i}{2}) = \frac{1}{2} (1, 0)+ \frac{\sqrt{3}i}{2} (0, i)$, lo que pone el vector con coordenadas reales sobre un espacio vectorial complejo sobre $\R$ y dimensión $2$.
   \end{solution}
 
-  \question En la parametrización $\ket{\psi} = \cos\frac{\theta}{2}\ket{0} + e^{i\varphi}\sin\frac{\theta}{2}\ket{1}$, el parámetro $\varphi$ representa:
+  \question El vector cero con respecto a una base, tiene coordenadas:
 
   \begin{choices}
-    \choice La probabilidad de medir $\ket{1}$
-    \CorrectChoice La fase relativa entre componentes
-    \choice El ángulo polar en la esfera de Bloch
-    \choice La norma del estado
+    \choice El cero es el único vector que no puede ser representado de forma única con respecto a una base.
+    \choice El cero no es un vector.
+    \choice Depende de la base.
+    \CorrectChoice $(0, 0)$.
   \end{choices}
   \begin{solution}
-    El parámetro $\varphi$ es la fase relativa que distingue estados con las mismas probabilidades pero diferentes propiedades de interferencia.
+    El vector cero con respecto a una base tiene coordenadas $(0, 0)$.
   \end{solution}
 
-  \question Dos vectores estado que difieren por una fase global $e^{i\phi}$ son:
+  \question Dos subespacios vectoriales de un espacio vectorial $V$, con dimensiones $2$ y $3$ respectivamente. Entonces la dimensión del espacio vectorial $V$ es:
 
   \begin{choices}
-    \choice Ortogonales
-    \choice Linealmente independientes
-    \CorrectChoice Físicamente equivalentes
-    \choice Representan estados diferentes medibles
+    \choice $5$.
+    \choice Como mínimo $2$.
+    \CorrectChoice Como mínimo $3$.
+    \choice Como máximo $3$.
   \end{choices}
   \begin{solution}
-    Los estados $\ket{\psi}$ y $e^{i\phi}\ket{\psi}$ son físicamente indistinguibles ya que todas las mediciones dan los mismos resultados: $|e^{i\phi}|^2 = 1$.
+    La dimensión del espacio vectorial $V$ es mayor o igual a la suma de las dimensiones de $V_1$ y $V_2$ menos la dimensión de la intersección.
+    Como la intersección es como mucho de dimensión $2$, la dimensión de $V$ es como mínimo $2 + 3 - 2 = 3$.
   \end{solution}
 
-  \question El espacio de Hilbert de un sistema de 3 qubits tiene dimensión:
+  \question La intersección de dos subespacios vectoriales ¿puede ser el conjunto vacio?:
 
   \begin{choices}
-    \choice $3$
-    \choice $6$
-    \CorrectChoice $8$
-    \choice $9$
+    \CorrectChoice No.
+    \choice Sí.
+    \choice Depende de la base.
+    \choice Depende de la dimensión.
   \end{choices}
   \begin{solution}
-    Un sistema de $n$ qubits tiene espacio de estados $(\C^2)^{\otimes n} \cong \C^{2^n}$. Para $n = 3$: $\dim = 2^3 = 8$.
+    Dos subespacios vectoriales no pueden intersectarse en el conjunto vacio, porque el cero está en todos los subespacios vectoriales.
   \end{solution}
 
   \question Una base de $\C^2$ debe tener:
 
   \begin{choices}
-    \choice Un vector
-    \CorrectChoice Dos vectores linealmente independientes
-    \choice Tres vectores
-    \choice Cuatro vectores
+    \choice Un vector.
+    \CorrectChoice Dos vectores.
+    \choice Tres vectores.
+    \choice Cuatro vectores.
   \end{choices}
   \begin{solution}
     Una base de un espacio de dimensión $n$ debe tener exactamente $n$ vectores linealmente independientes. Para $\C^2$, $n = 2$.
   \end{solution}
 
-  \question El conjunto $\{\ket{+}, \ket{-}\}$ donde $\ket{+} = \frac{\ket{0} + \ket{1}}{\sqrt{2}}$ y $\ket{-} = \frac{\ket{0} - \ket{1}}{\sqrt{2}}$:
+  \question Dada la base $\{v_1, v_2\}$ de $\C^2$, el conjunto $\{v_1 + v_2, v_1 - v_2\}$, ¿es una base de $\C^2$?:
 
   \begin{choices}
-    \choice No es una base de $\C^2$
-    \choice Es linealmente dependiente
-    \CorrectChoice Es una base ortonormal de $\C^2$
-    \choice Solo genera un subespacio unidimensional
+    \choice Depende de $v_1$ y $v_2$.
+    \choice Sí.
+    \CorrectChoice No.
+    \choice Solo si $v_1$ o $v_2$ es un número real.
   \end{choices}
   \begin{solution}
-    Son ortogonales: $\braket{+}{-} = \frac{1}{2}(1 - 1) = 0$, normalizados: $\braket{+}{+} = \braket{-}{-} = 1$, y linealmente independientes, por tanto forman una base ortonormal.
+    Siempre es base de $\C^2$, porque son linealmente independiente y tienen el mismo múmero de vectores que la dimensión.
   \end{solution}
 
-  \question Si $\{\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3\}$ es una base de $\C^3$, entonces:
+  \question Si $\{v_1, v_2, v_3\}$ es una base de $\C^3$, entonces:
 
   \begin{choices}
-    \choice Todo vector se puede escribir como combinación lineal de dos de ellos
-    \CorrectChoice Todo vector se puede escribir de forma única como combinación lineal de los tres
-    \choice Los vectores deben ser ortogonales
-    \choice Los vectores deben tener norma 1
+    \choice Todo vector se puede escribir como combinación lineal de dos de ellos.
+    \CorrectChoice Todo vector se puede escribir como combinación lineal de los tres.
+    \choice Todo vector se puede poner como suma de dos vectores, uno de ellos debe ser la base.
+    \choice Todo vector es múltiplo de algún vector de la base.
   \end{choices}
   \begin{solution}
     Por definición de base, todo vector del espacio se expresa de manera única como combinación lineal de los vectores de la base.

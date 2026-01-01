@@ -170,8 +170,7 @@
   label={\color{azulunir}$\blacktriangleright$},
   leftmargin=1.5em,
   itemsep=0.2\baselineskip,
-  parsep=0pt,
-  topsep=0.3\baselineskip
+  parsep=0pt
 }
 \renewcommand{\labelitemi}{\small\color{azulunir}{$\blacktriangleright$}}
 \renewcommand{\labelitemii}{\small\color{azulunir}{$\gg$}}
