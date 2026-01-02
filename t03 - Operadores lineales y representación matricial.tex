@@ -3,7 +3,7 @@
 \begin{esquemaExplorador}
   \temaEsquema{Transformaciones lineales}{
     \conceptoEsquema{Definición y propiedades}{}
-    \conceptoEsquema{Núcleo e imagen}{}
+    \conceptoEsquema{Núcleo e imagen}{$V/\ker(T) \cong \Ima(T)$}
     \conceptoEsquema{Inyectividad y sobreyectividad}{}
   }
   \temaEsquema{Operadores lineales}{
@@ -12,13 +12,19 @@
     \conceptoEsquema{Operador inverso}{}
   }
   \temaEsquema{Representación matricial}{
-    \conceptoEsquema{Matriz asociada a una transformación}{}
-    \conceptoEsquema{Cambio de base}{}
-    \conceptoEsquema{Isomorfismo con matrices}{}
+  \conceptoEsquema{Matriz asociada a una transformación}{$[T]$}
+  \conceptoEsquema{Cambio de base}{$[T]_\mathcal{B}^{\mathcal{B}^\prime}$}
+  \conceptoEsquema{Isomorfismo con matrices}{}
   }
   \temaEsquema{Matrices complejas}{
     \conceptoEsquema{Operaciones matriciales}{}
     \conceptoEsquema{Matrices especiales}{}
+  }
+  \temaEsquema{Diagonalización}{
+    \conceptoEsquema{Polinomio característico}{$p_A(\lambda) = \det(A-\lambda I)$}
+    \conceptoEsquema{Valores y vectores propios}{$vA = \lambda v$}
+    \conceptoEsquema{Diagonalización espectral}{$A = PDP^{-1}$}
+    \conceptoEsquema{Diagonalización SVD}{$A = U\Sigma V^\dagger$}
   }
 \end{esquemaExplorador}
 
@@ -51,9 +57,17 @@ Una definición equivalente es dar las propiedades por separado.
   Una transformación entre espacios vectoriales, $T$ es lineal si y solo si
   \begin{enumerate}
     \item \textbf{Conservación de la suma}. Para todo $u, v \in V$, se tiene que $T(u + v) = T(u) + T(v)$.
-    \item \textbf{Conservación del producto por escalar}. Para todo $v \in V$ y $\alpha \in \C$, se tiene que $T(\alpha v) = \alpha T(v)$.
+    \item \textbf{Conservación del producto por escalar}. Para todo $u \in V$ y $\alpha \in \C$, se tiene que $T(\alpha u) = \alpha T(u)$.
   \end{enumerate}
 \end{prop}
+\begin{proof}
+  La conservación de la suma se cumple de la definición de transformación lineal, al tomar $\alpha = \beta = 1$. Por otro lado, la conservación del producto por escalar se cumple al tomar $\beta = 0$ y $v=0$.
+
+  El recíproco se cumple pues al considerarse $\alpha u$ y $\beta v$ como vectores, aplicamos primero la conservación de la suma y luego la conservación del producto por escalar
+  \[
+    T(\alpha u + \beta v) = T(\alpha u) + T(\beta v) = \alpha T(u) + \beta T(v)\,.
+  \]
+\end{proof}
 
 \begin{eje}[Transformaciones lineales básicas]
   \begin{enumerate}
@@ -64,21 +78,24 @@ Una definición equivalente es dar las propiedades por separado.
     \item \textbf{Escalamiento}: Dado $\alpha \in \C$, $S_\alpha: \C^n \to \C^n$ definida por $S_\alpha(v) = \alpha v$.
 
     \item \textbf{Proyección}: $P: \C^3 \to \C^2$ definida por $P(x, y, z) = (x, y)$.
-
-    \item \textbf{Rotación en $\C^2$}: Dado $\theta \in \R^+$, $R_\theta: \C^2 \to \C^2$ definida por
-          $$R_\theta(x, y) = \begin{pmatrix} x\cos\theta - y\sin\theta \\ x\sin\theta + y\cos\theta \end{pmatrix}\,.$$
   \end{enumerate}
 \end{eje}
 
+Aunque es sencillo de comprobar, es intersante resaltar que toda aplicación lineal debe conservar el elemento nulo y el elemento opuesto.
+\begin{align*}
+  T(0)  & = T(0+0) = T(0) + T(0)\Rightarrow T(0) = 0\,. \\
+  T(-v) & = T(-1\cdot v) = -T(v)\,.
+\end{align*}
 \begin{prop}
   \label{prop:propiedadesTL}
-  Si $T: V \to W$ es una transformación lineal, entonces:
-  \begin{enumerate}
-    \item $T(0) = 0$.
-    \item $T(-v) = -T(v)$ para todo $v \in V$.
-    \item $T$ está completamente determinada por su acción sobre cualquier base de $V$. Es decir, si existe $\mathcal{B} = \{v_1, \ldots, v_n\}$ una base de $V$ y $U:V\to W$ otra transformación lineal tal que $U(v_i) = T(v_i)$ para todo $i$, entonces $U = T$.
-  \end{enumerate}
+  Si $T$ y $U$ son transformaciones lineales entre espacios vectoriales, y existe $\mathcal{B} = \{v_1, \ldots, v_n\}$ una base de $V$ tal que $U(v_i) = T(v_i)$ para todo $i$, entonces $U = T$.
 \end{prop}
+\begin{proof}
+  Si tenemos un vector $v=\sum_{i=1}^n \alpha_i v_i$, entonces
+  \begin{align*}
+    U(v) & = U\left(\sum_{i=1}^n \alpha_i v_i\right) = \sum_{i=1}^n \alpha_i U(v_i) = \sum_{i=1}^n \alpha_i T(v_i) = T\left(\sum_{i=1}^n \alpha_i v_i\right) = T(v)\,.
+  \end{align*}
+\end{proof}
 
 \begin{defi}
   Sea $T: V \to W$ una transformación lineal. Diremos que $T$ es:
@@ -97,6 +114,7 @@ Una definición equivalente es dar las propiedades por separado.
 \end{defi}
 
 \begin{prop}
+  \label{prop:propiedadesKerIma}
   Sea $T: V \to W$ una transformación lineal. Entonces:
   \begin{enumerate}
     \item $\Ker(T)$ es un subespacio de $V$.
@@ -104,6 +122,9 @@ Una definición equivalente es dar las propiedades por separado.
     \item $T$ es inyectiva si y solo si $\Ker(T) = \{0\}$.
   \end{enumerate}
 \end{prop}
+\begin{proof}
+  Se deja al lector como ejercicio (~\ref{ex:propiedadesKerIma}).
+\end{proof}
 
 \begin{eje}[Cálculo de núcleo e imagen]
   Considerar la transformación $T: \C^3 \to \C^2$ definida por:
@@ -127,6 +148,8 @@ Una definición equivalente es dar las propiedades por separado.
   Como $(1, 2) = -i(i, 0) - 2(0, -1)$ y los vectores $(i, 0)$ y $(0, -1)$ son linealmente independientes en $\C^2$, $\Ima(T) = \text{gen}\{(i, 0), (0, -1)\} = \C^2$.
 \end{eje}
 
+Como vemos, un homomorfismo genera un subespacio que puede ser menor al espacio de llegada, y nos interesa saber cuanto nos falta para llenar dicho espacio.
+
 \begin{theo}
   \label{th:descomposicion}
   Sea $T: V \to W$ una transformación lineal. Entonces:
@@ -147,6 +170,8 @@ Como consecuencia directa del Teorema~\ref{th:descomposicion} obtenemos el sigui
   \]
 \end{theo}
 
+Es por este resultado que es importante estudiar el núcleo de un homomorfismo.
+
 \subsection{Operadores lineales}
 
 \begin{defi}[Operador lineal]
@@ -155,14 +180,20 @@ Como consecuencia directa del Teorema~\ref{th:descomposicion} obtenemos el sigui
 
 Los operadores lineales tienen propiedades especiales debido a que el espacio de salida coincide con el de entrada, lo que permite usar conceptos como la composición o la inversa.
 
+Habitualmente se omite la parte de lineal y se habla solo de operadores, pero no debemos nunca olvidar esta condición.
+
 \begin{prop}
+  \label{prop:propiedadesOperadores}
   Sean $R,S$ y $T$ operadores lineales. La composición de operadores lineales satisface:
   \begin{enumerate}
-    \item \textbf{Asociatividad:} $(R \comp S) \comp T = R \comp (S \comp T)$.
+    \item \textbf{Asociativa:} $(R \comp S) \comp T = R \comp (S \comp T)$.
     \item \textbf{Elemento neutro:} $I \comp T = T \comp I = T$.
-    \item \textbf{Distributividad:} $R \comp (S + T) = R \comp S + R \comp T$.
+    \item \textbf{Distributiva:} $R \comp (S + T) = R \comp S + R \comp T$.
   \end{enumerate}
 \end{prop}
+\begin{proof}
+  Se deja al lector como ejercicio (~\ref{ex:propiedadesOperadores}).
+\end{proof}
 
 \begin{theo}[Caracterización de la invertibilidad]
   Un operador lineal $T \in \mathcal{L}(V)$ es invertible si y solo si es un isomorfismo. Equivalentemente:
@@ -197,8 +228,9 @@ La representación matricial establece una correspondencia biyectiva entre trans
     [T]_{\mathcal{B}_V}^{\mathcal{B}_W} = \begin{pmatrix} a_{11} & a_{12} & \cdots & a_{1m} \\ a_{21} & a_{22} & \cdots & a_{2m} \\ \vdots & \vdots & \ddots & \vdots \\ a_{n1} & a_{n2} & \cdots & a_{nm} \end{pmatrix}\,.
   \]
 \end{defi}
-
-En el caso de considerarse $\mathcal{B}_V$ y $\mathcal{B}_W$ las bases canónicas, la matriz de la transformación se denota simplemente como $[T]$.
+\separa
+Cuando al escrbir la matriz, o las coordenadas de un vector, no se especifica la base, se considera la base canónica.
+En este caso, la matriz de la transformación se denota simplemente como $[T]$.
 
 \begin{nota}
   La $j$-ésima fila de $[T]_{\mathcal{B}_V}^{\mathcal{B}_W}$ contiene las coordenadas de $T(v_j)$ respecto a la base $\mathcal{B}_W$
@@ -271,7 +303,7 @@ Estudiaremos con más detalle estas matrices en temas posteriores, ya que son fu
   \begin{itemize}
     \item $\sigma_i^2 = I$ para $i = x, y, z$.
     \item $\sigma_x\sigma_y = i\sigma_z$, $\sigma_y\sigma_z = i\sigma_x$, $\sigma_z\sigma_x = i\sigma_y$.
-    \item $\{\sigma_x, \sigma_y\} = \sigma_x\sigma_y + \sigma_y\sigma_x = 0$ (anticonmutan).
+    \item $\{\sigma_i, \sigma_j\} = \sigma_i\sigma_j + \sigma_j\sigma_i = 0$ para $i \neq j$ (anticonmutan).
     \item Junto con la identidad $I$, forman una base de $\mathcal{M}_2(\C)$.
   \end{itemize}
 \end{eje}
@@ -288,7 +320,7 @@ Estudiaremos con más detalle estas matrices en temas posteriores, ya que son fu
   \end{align*}
 \end{eje}
 
-Observar que las propiedades de hermitianidad, unitariedad y normalidad no dependen de las bases escogidas.
+Es importante recordar que las propiedades de hermitianidad, unitariedad y normalidad no dependen de las bases escogidas.
 
 \subsection{Valores y vectores propios}
 
@@ -345,6 +377,10 @@ Para obtener los valores propios de una matriz $A$, se resuelve el sistema $(A -
   donde $D$ es diagonal con los valores propios de $A$ en la diagonal y $P$ es la matriz cuyas columnas son los vectores propios de $A$.
 \end{theo}
 
+\begin{defi}[Diagonalización espectral]
+  Sea $A \in \mathcal{M}_n(\C)$ una matriz diagonalizable. Diremos que $A$ es \textbf{diagonalizable espectral} cuando tiene $n$ valores propios distintos. Llamaremos \textbf{espectro} de $A$ al conjunto de sus valores propios ordenados de mayor a menor.
+\end{defi}
+
 \begin{eje}
   Consideremos la matriz de Hadamard $H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$.
   Si calculamos su polinomio característico tenemos
@@ -378,6 +414,90 @@ Para obtener los valores propios de una matriz $A$, se resuelve el sistema $(A -
   \[
     H   = \frac{1}{2}\begin{pmatrix} 1+\sqrt{2} & 1-\sqrt{2} \\ 1 & 1 \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}2\begin{pmatrix} \frac{1}{2\sqrt{2}} & \frac{-1-\sqrt{2}}{2\sqrt{2}} \\ \frac{-1}{2\sqrt{2}} & \frac{1+\sqrt{2}}{2\sqrt{2}} \end{pmatrix}\,.
   \]
+\end{eje}
+
+\subsection{Descomposición en valores singulares}
+
+Una característica importante de las matrices complejas, es su descomposición en valores singulares, también llamada SVD (Singular Value Decomposition) por sus siglas en inglés, que permite representar una matriz como una combinación de matrices unitarias y una matriz diagonal.
+
+\begin{prop}
+  Sea $A \in \mathcal{M}_n(\C)$. Existe una descomposición $A = UDV^\dagger$, donde $U$ y $V$ son matrices unitarias y $D$ es una matriz diagonal con valores reales no negativos y ordenados de mayor a menor.
+\end{prop}
+
+\begin{defi}
+  A la matriz diagonal resultado de la descomposición en valores singulares la llamamos \textbf{matriz singular} y los elementos de la diagonal los llamamos \textbf{valores singulares} de $A$.
+\end{defi}
+
+Habitualmente, la descomposición en valores singulares tiene su propia notación y se denota por $\Sigma$ a la matriz diagonal y por $\sigma_i$ a los valores singulares de $A$.
+
+\begin{eje}
+  Consideremos la matriz $A = \begin{pmatrix} 1 & i \\ 1-i & 2 \end{pmatrix}$.
+
+  Para calcular la descomposición en valores singulares de $A$ debemos calcular los valores propios de la matriz $A^\dagger A$.
+
+  \[
+    A^\dagger A = \begin{pmatrix} 1 & 1+i \\ -i & 2 \end{pmatrix}\begin{pmatrix} 1 & i \\ 1-i & 2 \end{pmatrix} = \begin{pmatrix} 3 & 2+3i \\ 2-3i & 5 \end{pmatrix}\,.
+  \]
+
+  El polinomio característico de $A^\dagger A$ es
+  \begin{align*}
+    p_{A^\dagger A}(\lambda) & = \begin{vmatrix} 3-\lambda & 2+3i \\ 2-3i & 5-\lambda \end{vmatrix} \\
+                             & = (3-\lambda)(5-\lambda) - (2+3i)(2-3i)                              \\
+                             & = (15-8\lambda+\lambda^2) - (4+9)                                    \\
+                             & = \lambda^2 - 8\lambda + 2\,.
+  \end{align*}
+
+  Los valores propios de $A^\dagger A$ son
+  \[
+    \lambda =\frac{8\pm\sqrt{64-8}}{2} = \frac{8\pm\sqrt{56}}{2} = \frac{8\pm2\sqrt{14}}{2} = 4 \pm \sqrt{14}\,.
+  \]
+
+  Como los valores singulares de $A$ son las raices cuadradas de los valores propios de $A^\dagger A$, obtenemos los valores singulares
+  \[
+    \sigma_1 = \sqrt{4 + \sqrt{14}} \approx 2.7824\quad \text{y}\quad \sigma_2 = \sqrt{4 - \sqrt{14}} \approx 0.5083\,.
+  \]
+
+  Al ordenar de mayor a menor obtenemos la matriz singular
+  \[
+    \Sigma = \begin{pmatrix} \sqrt{4 + \sqrt{14}} & 0 \\ 0 & \sqrt{4 - \sqrt{14}} \end{pmatrix} \approx \begin{pmatrix}
+      2.7824 & 0      \\
+      0      & 0.5083
+    \end{pmatrix}\,.
+  \]
+
+  La matriz $V$ se obtiene a partir de los vectores propios normalizados de $A^\dagger A$.
+  \[
+    V \approx \begin{pmatrix}
+      -0.6051           & -0.7961          \\
+      -0.4411 + 0.6626i & 0.3353 + 0.5037i
+    \end{pmatrix}\,.
+  \]
+
+  Mientas que la matriz $U$ se obtiene a partir de los vectores obtenidos de la expresión
+  \[
+    u_i = \frac{1}{\sigma_i}v_i A\,.
+  \]
+  \[
+    U \approx \begin{pmatrix}
+      -0.3235 - 0.3235i & -0.6212 + 0.6212i \\
+      -0.8876           & -0.4607
+    \end{pmatrix}\,.
+  \]
+
+  Por lo tanto la descomposición en valores singulares de $A$ es
+  \begin{align*}
+    A & = U\Sigma V^\dagger                                        \\
+      & \approx \begin{pmatrix}
+                  -0.32 - 0.32i & -0.62 + 0.62i \\
+                  -0.88         & -0.46
+                \end{pmatrix} \begin{pmatrix}
+                                2.78 & 0    \\
+                                0    & 0.50
+                              \end{pmatrix} \begin{pmatrix}
+                                              -0.6  & -0.44 - 0.66i  \\
+                                              -0.79 & 0.335 + 0.504i
+                                            \end{pmatrix}
+  \end{align*}
 \end{eje}
 
 \subsection{Espacios de operadores}

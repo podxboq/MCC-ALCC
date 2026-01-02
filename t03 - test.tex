@@ -1,6 +1,6 @@
 \begin{questions}
 
-  \question La transformación $T: \C^2 \to \C^2$ definida por $T\begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} x + iy \\ 2x \end{pmatrix}$ es:
+  \question La transformación $T: \C^2 \to \C^2$ definida por $T(x,y) = (x + iy, 2x)$ es:
 
   \begin{choices}
     \CorrectChoice Lineal
@@ -9,19 +9,19 @@
     \choice Solo preserva el producto por escalar
   \end{choices}
   \begin{solution}
-    Es lineal porque $T(\alpha\mathbf{u} + \beta\mathbf{v}) = \alpha T(\mathbf{u}) + \beta T(\mathbf{v})$ para todos $\mathbf{u}, \mathbf{v} \in \C^2$ y $\alpha, \beta \in \C$.
+    Es lineal porque $T(\alpha u + \beta v) = \alpha T( u) + \beta T( v)$ para todos $ u,  v \in \C^2$ y $\alpha, \beta \in \C$.
   \end{solution}
 
-  \question El núcleo de la transformación $T\begin{pmatrix} x \\ y \\ z \end{pmatrix} = \begin{pmatrix} x + y \\ 2x + 2y \end{pmatrix}$ es:
+  \question El núcleo de la transformación lineal $T(x,y,z) = (x + y, 2x + 2y)$ de $\C^3$ en $\C^2$ es:
 
   \begin{choices}
-    \choice $\{\mathbf{0}\}$
-    \choice $\text{gen}\left\{\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}\right\}$
-    \CorrectChoice $\text{gen}\left\{\begin{pmatrix} -1 \\ 1 \\ 0 \end{pmatrix}, \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}\right\}$
+    \choice $\{0\}$
+    \choice $\text{gen}\left\{(1,0,0)\right\}$
+    \CorrectChoice $\text{gen}\left\{(-1,1,0), (0,0,1)\right\}$
     \choice Todo $\C^3$
   \end{choices}
   \begin{solution}
-    Resolviendo $T(\mathbf{v}) = \mathbf{0}$: $x + y = 0$ y $2x + 2y = 0$ implica $y = -x$ y $z$ libre. Base del núcleo: $\left\{\begin{pmatrix} -1 \\ 1 \\ 0 \end{pmatrix}, \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}\right\}$.
+    Resolviendo $T( v) = 0$: $x + y = 0$ y $2x + 2y = 0$ implica $y = -x$ y $z$ libre. Base del núcleo: $\left\{(-1,1,0), (0,0,1)\right\}$.
   \end{solution}
 
   \question La matriz adjunta de $A = \begin{pmatrix} 1 & 2i \\ 3 & 4 \end{pmatrix}$ es:
@@ -112,12 +112,12 @@
 
   \begin{choices}
     \choice $\dim(\Ker(T)) > 0$
-    \CorrectChoice $\Ker(T) = \{\mathbf{0}\}$
+    \CorrectChoice $\Ker(T) = \{0\}$
     \choice $\Ima(T) \neq V$
-    \choice $T$ es hermitiana
+    \choice $[T]$ es hermitiana
   \end{choices}
   \begin{solution}
-    Una transformación es invertible si y solo si es inyectiva, lo que ocurre cuando $\Ker(T) = \{\mathbf{0}\}$.
+    Una transformación es invertible si y solo si es inyectiva, lo que ocurre cuando $\Ker(T) = \{0\}$.
   \end{solution}
 
 \end{questions}
