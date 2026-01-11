@@ -1,0 +1,79 @@
+% Copyright 2024 by francisco.costacano@unir.net
+%
+% Este fichero puede ser libremente distribuido y modificado
+%
+% 1. LaTeX Project Public License.
+% 2. GNU Public License.
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{zref-totpages}
+\RequirePackage{graphicx}
+\RequirePackage{color}
+\RequirePackage{amssymb}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{tikz}
+\usepackage{braket}
+\useinnertheme[shadow]{rounded}
+\usefonttheme{serif}
+
+\definecolor{texto}{RGB}{18,18,18}
+\definecolor{subtexto}{RGB}{128,128,128}
+\definecolor{fondo}{RGB}{255,255,255}
+\definecolor{subfondo}{RGB}{243,243,243}
+\definecolor{azul}{RGB}{0,83,175}
+\definecolor{oro}{RGB}{250,200,73}
+\definecolor{naranja}{RGB}{238,105,70}
+\definecolor{marrón}{RGB}{190,36,36}
+\definecolor{verde}{RGB}{72,178,131}
+\definecolor{turquesa}{RGB}{126,211,240}
+
+\setbeamercolor{normal text}{fg=texto}
+
+\setbeamercolor{title}{bg=subfondo, fg=texto}
+\setbeamercolor{frametitle}{bg=subfondo, fg=subtexto}
+\setbeamercolor{unirbox}{bg=fondo, fg=subtexto}
+\setbeamercolor{invertunirbox}{fg=texto, bg=subfondo}
+
+\makeatother
+\setbeamertemplate{itemize item}{\scriptsize\color{azul}$\blacktriangleright$}
+\setbeamertemplate{itemize subitem}{\scriptsize\color{verde}$\gg$}
+\setbeamertemplate{enumerate items}[square]
+\setbeamercolor{item projected}{bg=subfondo,fg=texto}
+\setbeamertemplate{headline}
+{%
+  \leavevmode%
+  \hfill
+  \includegraphics[scale=0.25]{res/imgs/logo_unir.png}
+  \vskip0pt%
+}
+\setbeamertemplate{footline}
+{%
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm]{unirbox}%
+      \inserttitle
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]{invertunirbox}%
+      \hfill\insertpagenumber/\ztotpages%
+    \end{beamercolorbox}%
+  }%
+  \vskip0pt%
+}
+\makeatletter
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Índice}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\newcommand{\portada}{%
+  \frame{\titlepage}
+  \begin{frame}
+    \frametitle{Índice}
+    \tableofcontents
+  \end{frame}
+}
