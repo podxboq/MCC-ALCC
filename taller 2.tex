@@ -1,0 +1,1085 @@
+\documentclass[]{unirTema}
+
+\input{personalizacion}
+
+\printanswers
+
+\author{Francisco Costa Cano}
+\titulacion{Máster en computación cuántica}
+\asignatura{Álgebra lineal en computación cuántica}
+\bloque{1}{Fundamentos matemáticos}
+\tema{5}{Espacios de Hilbert}
+
+\begin{document}
+
+\portada
+
+\section{Introducción}
+
+Este taller integra los conceptos fundamentales de espacios de Hilbert a través de ejercicios progresivos. El objetivo es consolidar la comprensión de cada concepto y su interrelación mediante ejemplos concretos que preparan para aplicaciones en computación cuántica.
+
+\begin{info}
+  \textbf{Estructura del taller:}
+  \begin{itemize}
+    \item Duración: 2 horas.
+    \item Enfoque: Resolución guiada de ejercicios interconectados.
+    \item Metodología: Construcción progresiva desde conceptos básicos hasta descomposiciones avanzadas.
+  \end{itemize}
+\end{info}
+
+\section{Ejercicio Integrador: Sistema de dos cúbits}
+
+Consideramos el espacio de Hilbert $\mathcal{H} = \mathbb{C}^4$, que representa el espacio de estados de un sistema de dos cúbits. Trabajaremos con este espacio para explorar todos los conceptos del curso.
+
+\subsection{Parte 1: Espacio vectorial y bases (15 min)}
+
+\begin{questions}
+
+  \question Demuestra que $\mathcal{H} = \mathbb{C}^4$ con las operaciones usuales es un espacio vectorial sobre $\mathbb{C}$.
+
+  \begin{solution}
+
+    Debemos verificar los axiomas de espacio vectorial. Para vectores $v, w, u \in \mathbb{C}^4$ y escalares $\alpha, \beta \in \mathbb{C}$:
+
+    \begin{enumerate}
+      \item \textbf{Cerradura bajo suma:} Si $v = (v_1, v_2, v_3, v_4)$ y $w = (w_1, w_2, w_3, w_4)$, entonces:
+            \[
+              v + w = (v_1+w_1, v_2+w_2, v_3+w_3, v_4+w_4) \in \mathbb{C}^4
+            \]
+
+      \item \textbf{Cerradura bajo producto por escalar:}
+            \[
+              \alpha v = (\alpha v_1, \alpha v_2, \alpha v_3, \alpha v_4) \in \mathbb{C}^4
+            \]
+
+      \item \textbf{Elemento neutro:} $0 = (0,0,0,0)$ satisface $v + 0 = v$.
+
+      \item \textbf{Elemento opuesto:} Para cada $v$ existe $-v = (-v_1, -v_2, -v_3, -v_4)$ tal que $v + (-v) = 0$.
+
+      \item \textbf{Asociatividad de la suma:} $(u + v) + w = u + (v + w)$.
+
+      \item \textbf{Conmutatividad de la suma:} $v + w = w + v$.
+
+      \item \textbf{Distributividad:} $\alpha(v + w) = \alpha v + \alpha w$ y $(\alpha + \beta)v = \alpha v + \beta w$.
+
+      \item \textbf{Asociatividad del producto:} $(\alpha\beta)v = \alpha(\beta w)$.
+
+      \item \textbf{Elemento neutro del producto:} $1\cdot v = v$.
+    \end{enumerate}
+
+  \end{solution}
+
+  \question \textbf{Base de Bell}
+
+  Consideramos la base de Bell $\mathcal{B}_B=\{B_1,B_2,B_3,B_4\}$, fundamental en computación cuántica:
+  \begin{align*}
+    B_1 & = \frac{1}{\sqrt{2}}(1, 0, 0, 1)\,,  \\
+    B_2 & = \frac{1}{\sqrt{2}}(1, 0, 0, -1)\,, \\
+    B_3 & = \frac{1}{\sqrt{2}}(0, 1, 1, 0)\,,  \\
+    B_4 & = \frac{1}{\sqrt{2}}(0, 1, -1, 0)\,.
+  \end{align*}
+  Verifica que $\mathcal{B}_B$ forma una base ortonormal.
+
+  \begin{solution}
+    Recordamos que la norma de un vector se define como
+    \[
+      \|(v_1, v_2, v_3, v_4)\| = \sqrt{|v_1|^2 + |v_2|^2 + |v_3|^2 + |v_4|^2}\,.
+    \]
+    \textbf{Normalización:}
+    \begin{align*}
+      \|B_1\| & = \frac{1}{\sqrt{2}}\sqrt{1^2 + 0^2 + 0^2 + 1^2} = \frac{1}{\sqrt{2}}\sqrt{2} = 1 \,.    \\
+      \|B_2\| & = \frac{1}{\sqrt{2}}\sqrt{1^2 + 0^2 + 0^2 + (-1)^2} = \frac{1}{\sqrt{2}}\sqrt{2} = 1 \,. \\
+      \|B_3\| & = \frac{1}{\sqrt{2}}\sqrt{0^2 + 1^2 + 1^2 + 0^2} = \frac{1}{\sqrt{2}}\sqrt{2} = 1 \,.    \\
+      \|B_4\| & = \frac{1}{\sqrt{2}}\sqrt{0^2 + 1^2 + (-1)^2 + 0^2} = \frac{1}{\sqrt{2}}\sqrt{2} = 1 \,. \\
+    \end{align*}
+
+    \textbf{Ortogonalidad:}
+    Recordamos que dos vectores $v,w$ son ortogonales si
+    \[
+      \langle v, w \rangle = 0\,.
+    \]
+    Por la propiedad del producto interno $\langle v, w \rangle = \overline{\langle w, v \rangle}$, para la ortogonalidad solo será necesario por parejas sin importar el orden.
+    \begin{align*}
+      \langle B_1, B_2 \rangle & = \frac{1}{\sqrt{2}}\frac{1}{\sqrt{2}}(1\bar{1}+ 0\bar{0} + 0\bar{0}+ 1(\overline{-1})= \frac{1}{2}(1 - 1) = 0        \\
+      \langle B_1, B_3 \rangle & = \frac{1}{\sqrt{2}}\frac{1}{\sqrt{2}}(1\bar{0}+ 0\bar{1} + 0\bar{1}+ 1\overline{0}= \frac{1}{2}(0 + 0) = 0           \\
+      \langle B_1, B_4 \rangle & = \frac{1}{\sqrt{2}}\frac{1}{\sqrt{2}}(1\bar{0}+ 0\bar{1} + 0(\overline{-1})+ 1\overline{0}= \frac{1}{2}(0 - 0) = 0   \\
+      \langle B_2, B_3 \rangle & = \frac{1}{\sqrt{2}}\frac{1}{\sqrt{2}}(1\bar{0}+ 0\bar{1} + 0\bar{1}- 1\overline{0}= \frac{1}{2}(0 - 0) = 0           \\
+      \langle B_2, B_4 \rangle & = \frac{1}{\sqrt{2}}\frac{1}{\sqrt{2}}(1\bar{0}+ 0(\overline{-1}) + 0\bar{1}- 1\overline{0}= \frac{1}{2}(0 - 0) = 0   \\
+      \langle B_3, B_4 \rangle & = \frac{1}{\sqrt{2}}\frac{1}{\sqrt{2}}(0\bar{0}+ 1\bar{1} + 1(\overline{-1})+ 0(\overline{0})= \frac{1}{2}(1 - 1) = 0 \\
+    \end{align*}
+
+    Todos los productos internos entre estados distintos son cero, verificando la ortogonalidad.
+
+    \textbf{Base:}
+    Como sabemos que $\C^4$ es un espacio vectorial de dimensión 4, y tenemos 4 vectores, solo debemos o ver que son linealmente independientes o un sistema generador.
+
+    Veamos que son linealmente independientes. Por definición $\{v_1,v_2,v_3,v_4\}$ son linealmente independientes si y solo si $\forall \alpha_1,\alpha_2,\alpha_3,\alpha_4 \in \C$ se cumple
+    \[
+      \alpha_1 v_1 + \alpha_2 v_2 + \alpha_3 v_3 + \alpha_4 v_4 = 0 \Rightarrow \alpha_1 = \alpha_2 = \alpha_3 = \alpha_4 = 0\,.
+    \]
+    En nuestro caso
+    \[
+      \alpha_1 B_1 + \alpha_2 B_2 + \alpha_3 B_3 + \alpha_4 B_4 = 0 \Rightarrow \begin{cases}
+        \alpha_1 + \alpha_2 = 0 \\
+        \alpha_3 + \alpha_4 = 0 \\
+        \alpha_3 - \alpha_4 = 0 \\
+        \alpha_1 - \alpha_2 = 0
+      \end{cases} \Rightarrow \alpha_i = 0\,.
+    \]
+  \end{solution}
+
+  \question Encuentra la matriz $P$ que permite cambiar de la base estándar a la base de Bell.
+  \begin{solution}
+
+    Llamando $\mathcal{B}=\{e_1, e_2, e_3, e_4\}$ la base estándar, la matriz de cambio de base $\mathcal{B_B}$ a $\mathcal{B}$ tiene como filas las coordenadas de los vectores de la nueva base expresados en la base antigua. Por lo tanto
+
+    \[
+      M_{\mathcal{B}_B}^{\mathcal{B}} = \frac{1}{\sqrt{2}}\begin{pmatrix}
+        1 & 0 & 0  & 1  \\
+        1 & 0 & 0  & -1 \\
+        0 & 1 & 1  & 0  \\
+        0 & 1 & -1 & 0
+      \end{pmatrix}\,.
+    \]
+  \end{solution}
+
+  \question Expresa el vector
+  \[
+    u = \frac{1}{2}(1, 1, 1, 1)\,,
+  \]
+  en la base de Bell.
+
+  \begin{solution}
+
+    Como las coordenadas de $u$ están dadas en la base estándar, su expresión desarrollada en esta base es
+    \[
+      u = \frac{1}{2}\sum_{i=1}^4 e_i\,.
+    \]
+
+    Para obtener las coordenadas en la base de Bell, usamos $M_{\mathcal{B}}^{\mathcal{B}_B} = (M_{\mathcal{B}_B}^{\mathcal{B}})^{-1}$. Como $M_{\mathcal{B}_B}^{\mathcal{B}}$ es unitaria (producto de operaciones unitarias), $(M_{\mathcal{B}_B}^{\mathcal{B}})^{-1} = (M_{\mathcal{B}_B}^{\mathcal{B}})^\dagger$:
+
+    \begin{align*}
+      u_{\mathcal{B}_B} = u_{\mathcal{B}} M_{\mathcal{B}_B}^{\mathcal{B}} & = \frac{1}{2}(1, 1, 1, 1) \frac{1}{\sqrt{2}}\begin{pmatrix}
+                                                                                                                          1 & 1  & 0 & 0  \\
+                                                                                                                          0 & 0  & 1 & 1  \\
+                                                                                                                          0 & 0  & 1 & -1 \\
+                                                                                                                          1 & -1 & 0 & 0
+                                                                                                                        \end{pmatrix}        \\
+                                                                          & = \frac{1}{2\sqrt{2}}(2, 0, 2, 0) = \frac{1}{\sqrt{2}}(1, 0, 1, 0)
+    \end{align*}
+
+    Por lo tanto:
+    \[
+      u = \frac{1}{\sqrt{2}}B_1 + \frac{1}{\sqrt{2}}B_3\,.
+    \]
+  \end{solution}
+
+  \question
+  Sea el subespacio $\mathcal{S} \subset \mathbb{C}^4$ definido por
+  \[
+    \mathcal{S} = \text{span}\{B_1, B_3\}
+  \]
+
+  Encuentra una base ortonormal para el subespacio ortogonal $\mathcal{S}^\perp$.
+
+  \begin{solution}
+
+    El subespacio ortogonal $\mathcal{S}^\perp$ contiene todos los vectores ortogonales a $\mathcal{S}$. De la base de Bell, sabemos que $B_2$ y $B_4$ son ortogonales a $B_1$ y $B_3$, que son linealmente independientes y que
+    \[
+      \mathbb{C}^4 = \mathcal{S} \oplus \mathcal{S}^\perp \Rightarrow \dim(\C^4) = \dim(\mathcal{S}) + \dim(\mathcal{S}^\perp)\Rightarrow \dim(\mathcal{S}^\perp) = 2
+    \]
+
+    Por lo tanto, una base ortonormal para $\mathcal{S}^\perp$ es
+    \[
+      \mathcal{S}^\perp = \text{span}\{B_2, B_4\}
+    \]
+  \end{solution}
+
+  \question Construye el proyector ortogonal $P_{\mathcal{S}}$ sobre el subespacio simétrico.
+
+  \begin{solution}
+
+    El proyector sobre un subespacio generado por la base ortonormal $\{B_1, B_3\}$ se construye usando el producto externo como
+    \[
+      P_{\mathcal{S}} = B_1\wedge B_1 + B_3\wedge B_3\,.
+    \]
+
+    Calculamos explícitamente
+    \begin{align*}
+      B_1\wedge B_1 & = \frac{1}{\sqrt{2}}(1, 0, 0, 1)\otimes \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 0 \\ 0 \\ 1 \end{pmatrix} = \frac{1}{2}\begin{pmatrix}
+                                                                                                                                              1 & 0 & 0 & 1 \\
+                                                                                                                                              0 & 0 & 0 & 0 \\
+                                                                                                                                              0 & 0 & 0 & 0 \\
+                                                                                                                                              1 & 0 & 0 & 1
+                                                                                                                                            \end{pmatrix}\,. \\
+      B_3\wedge B_3 & = \frac{1}{\sqrt{2}}(0, 1, 1, 0)\otimes \frac{1}{\sqrt{2}}\begin{pmatrix} 0 \\ 1 \\ 1 \\ 0 \end{pmatrix} = \frac{1}{2}\begin{pmatrix}
+                                                                                                                                              0 & 0 & 0 & 0 \\
+                                                                                                                                              0 & 1 & 1 & 0 \\
+                                                                                                                                              0 & 1 & 1 & 0 \\
+                                                                                                                                              0 & 0 & 0 & 0
+                                                                                                                                            \end{pmatrix}\,.
+    \end{align*}
+
+
+    Por lo tanto:
+    \[
+      P_{\mathcal{S}} = \frac{1}{2}\begin{pmatrix}
+        1 & 0 & 0 & 1 \\
+        0 & 1 & 1 & 0 \\
+        0 & 1 & 1 & 0 \\
+        1 & 0 & 0 & 1
+      \end{pmatrix}
+    \]
+
+    Verificamos que es un proyector: $P_{\mathcal{S}}^2 = P_{\mathcal{S}}$ y $P_{\mathcal{S}}^\dagger = P_{\mathcal{S}}$.
+  \end{solution}
+
+  \question Calcula la proyección del vector $(1, 0 , 0, 0)$ sobre el subespacio $\mathcal{S}$.
+  \begin{solution}
+
+    La proyección se calcula aplicando el proyector, o lo que es lo mismo, multiplicando por la matriz del proyector:
+    \[
+      P_{\mathcal{S}}((1, 0, 0,0)) = (1, 0, 0,0)\frac{1}{2}\begin{pmatrix}
+        1 & 0 & 0 & 1 \\
+        0 & 1 & 1 & 0 \\
+        0 & 1 & 1 & 0 \\
+        1 & 0 & 0 & 1
+      \end{pmatrix} = \frac{1}{2}(1, 0, 0, 1)\,.
+    \]
+  \end{solution}
+
+  \subsection{Parte 4: Proceso de Gram-Schmidt (15 min)}
+
+  \begin{solution}
+    Considera los siguientes vectores linealmente independientes en $\mathbb{C}^4$:
+    \begin{align*}
+      \ket{v_1} & = \ket{00} + \ket{11} = \begin{pmatrix} 1 \\ 0 \\ 0 \\ 1 \end{pmatrix}            \\
+      \ket{v_2} & = \ket{00} + \ket{01} = \begin{pmatrix} 1 \\ 1 \\ 0 \\ 0 \end{pmatrix}            \\
+      \ket{v_3} & = \ket{00} + \ket{01} + \ket{10} = \begin{pmatrix} 1 \\ 1 \\ 1 \\ 0 \end{pmatrix}
+    \end{align*}
+
+    Aplica el proceso de Gram-Schmidt para obtener una base ortonormal.
+
+    \textbf{Solución:}
+
+    \textbf{Paso 1:} Normalizamos $\ket{v_1}$:
+    \[
+      \ket{u_1} = \frac{\ket{v_1}}{\|\ket{v_1}\|} = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 0 \\ 0 \\ 1 \end{pmatrix}
+    \]
+
+    donde $\|\ket{v_1}\| = \sqrt{1^2 + 0^2 + 0^2 + 1^2} = \sqrt{2}$.
+
+    \textbf{Paso 2:} Ortogonalizamos $\ket{v_2}$ respecto a $\ket{u_1}$:
+    \[
+      \ket{w_2} = \ket{v_2} - \braket{u_1|v_2}\ket{u_1}
+    \]
+
+    Calculamos:
+    \[
+      \braket{u_1|v_2} = \frac{1}{\sqrt{2}}(1, 0, 0, 1)\begin{pmatrix} 1 \\ 1 \\ 0 \\ 0 \end{pmatrix} = \frac{1}{\sqrt{2}}
+    \]
+
+    Por lo tanto:
+    \[
+      \ket{w_2} = \begin{pmatrix} 1 \\ 1 \\ 0 \\ 0 \end{pmatrix} - \frac{1}{\sqrt{2}} \cdot \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 0 \\ 0 \\ 1 \end{pmatrix} = \begin{pmatrix} 1 \\ 1 \\ 0 \\ 0 \end{pmatrix} - \begin{pmatrix} 1/2 \\ 0 \\ 0 \\ 1/2 \end{pmatrix} = \begin{pmatrix} 1/2 \\ 1 \\ 0 \\ -1/2 \end{pmatrix}
+    \]
+
+    Normalizamos:
+    \[
+      \|\ket{w_2}\| = \sqrt{(1/2)^2 + 1^2 + 0^2 + (-1/2)^2} = \sqrt{1/4 + 1 + 1/4} = \sqrt{3/2}
+    \]
+
+    \[
+      \ket{u_2} = \frac{1}{\sqrt{3/2}}\begin{pmatrix} 1/2 \\ 1 \\ 0 \\ -1/2 \end{pmatrix} = \sqrt{\frac{2}{3}}\begin{pmatrix} 1/2 \\ 1 \\ 0 \\ -1/2 \end{pmatrix} = \frac{1}{\sqrt{6}}\begin{pmatrix} 1 \\ 2 \\ 0 \\ -1 \end{pmatrix}
+    \]
+
+    \textbf{Paso 3:} Ortogonalizamos $\ket{v_3}$ respecto a $\ket{u_1}$ y $\ket{u_2}$:
+    \[
+      \ket{w_3} = \ket{v_3} - \braket{u_1|v_3}\ket{u_1} - \braket{u_2|v_3}\ket{u_2}
+    \]
+
+    Calculamos:
+    \[
+      \braket{u_1|v_3} = \frac{1}{\sqrt{2}}(1, 0, 0, 1)\begin{pmatrix} 1 \\ 1 \\ 1 \\ 0 \end{pmatrix} = \frac{1}{\sqrt{2}}
+    \]
+
+    \[
+      \braket{u_2|v_3} = \frac{1}{\sqrt{6}}(1, 2, 0, -1)\begin{pmatrix} 1 \\ 1 \\ 1 \\ 0 \end{pmatrix} = \frac{1}{\sqrt{6}}(1 + 2) = \frac{3}{\sqrt{6}} = \sqrt{\frac{3}{2}}
+    \]
+
+    Por lo tanto:
+    \[
+      \ket{w_3} = \begin{pmatrix} 1 \\ 1 \\ 1 \\ 0 \end{pmatrix} - \frac{1}{\sqrt{2}} \cdot \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 0 \\ 0 \\ 1 \end{pmatrix} - \sqrt{\frac{3}{2}} \cdot \frac{1}{\sqrt{6}}\begin{pmatrix} 1 \\ 2 \\ 0 \\ -1 \end{pmatrix}
+    \]
+
+    \[
+      = \begin{pmatrix} 1 \\ 1 \\ 1 \\ 0 \end{pmatrix} - \begin{pmatrix} 1/2 \\ 0 \\ 0 \\ 1/2 \end{pmatrix} - \frac{1}{2}\begin{pmatrix} 1 \\ 2 \\ 0 \\ -1 \end{pmatrix} = \begin{pmatrix} 1 \\ 1 \\ 1 \\ 0 \end{pmatrix} - \begin{pmatrix} 1/2 \\ 0 \\ 0 \\ 1/2 \end{pmatrix} - \begin{pmatrix} 1/2 \\ 1 \\ 0 \\ -1/2 \end{pmatrix}
+    \]
+
+    \[
+      = \begin{pmatrix} 0 \\ 0 \\ 1 \\ 0 \end{pmatrix}
+    \]
+
+    Este vector ya está normalizado:
+    \[
+      \ket{u_3} = \begin{pmatrix} 0 \\ 0 \\ 1 \\ 0 \end{pmatrix} = \ket{10}
+    \]
+
+    \textbf{Base ortonormal resultante:}
+    \[
+      \left\{\frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 0 \\ 0 \\ 1 \end{pmatrix}, \frac{1}{\sqrt{6}}\begin{pmatrix} 1 \\ 2 \\ 0 \\ -1 \end{pmatrix}, \begin{pmatrix} 0 \\ 0 \\ 1 \\ 0 \end{pmatrix}\right\}
+    \]
+  \end{solution}
+
+  \subsection{Parte 5: Endomorfismos y representación matricial (15 min)}
+
+  \begin{solution}
+    Considera el operador de intercambio (SWAP) que intercambia los dos cúbits:
+    \[
+      \text{SWAP}: \ket{ij} \mapsto \ket{ji}
+    \]
+
+    \textbf{a) Representación en la base computacional:}
+
+    Encuentra la matriz del operador SWAP en la base computacional.
+
+    \textbf{Solución:}
+
+    Para encontrar la matriz, aplicamos el operador a cada vector de la base:
+    \begin{align*}
+      \text{SWAP}(\ket{00}) & = \ket{00} \\
+      \text{SWAP}(\ket{01}) & = \ket{10} \\
+      \text{SWAP}(\ket{10}) & = \ket{01} \\
+      \text{SWAP}(\ket{11}) & = \ket{11}
+    \end{align*}
+
+    Las columnas de la matriz son las imágenes de los vectores de la base:
+    \[
+      [\text{SWAP}]_{\mathcal{B}_c} = \begin{pmatrix}
+        1 & 0 & 0 & 0 \\
+        0 & 0 & 1 & 0 \\
+        0 & 1 & 0 & 0 \\
+        0 & 0 & 0 & 1
+      \end{pmatrix}
+    \]
+  \end{solution}
+
+  \begin{solution}
+    \textbf{b) Representación en la base de Bell:}
+
+    Encuentra la matriz del operador SWAP en la base de Bell.
+
+    \textbf{Solución:}
+
+    Aplicamos el operador a cada vector de la base de Bell:
+    \begin{align*}
+      \text{SWAP}(\ket{\Phi^+}) & = \text{SWAP}\left(\frac{1}{\sqrt{2}}(\ket{00} + \ket{11})\right) = \frac{1}{\sqrt{2}}(\ket{00} + \ket{11}) = \ket{\Phi^+}  \\
+      \text{SWAP}(\ket{\Phi^-}) & = \text{SWAP}\left(\frac{1}{\sqrt{2}}(\ket{00} - \ket{11})\right) = \frac{1}{\sqrt{2}}(\ket{00} - \ket{11}) = \ket{\Phi^-}  \\
+      \text{SWAP}(\ket{\Psi^+}) & = \text{SWAP}\left(\frac{1}{\sqrt{2}}(\ket{01} + \ket{10})\right) = \frac{1}{\sqrt{2}}(\ket{10} + \ket{01}) = \ket{\Psi^+}  \\
+      \text{SWAP}(\ket{\Psi^-}) & = \text{SWAP}\left(\frac{1}{\sqrt{2}}(\ket{01} - \ket{10})\right) = \frac{1}{\sqrt{2}}(\ket{10} - \ket{01}) = -\ket{\Psi^-}
+    \end{align*}
+
+    Por lo tanto, en la base de Bell:
+    \[
+      [\text{SWAP}]_{\mathcal{B}_B} = \begin{pmatrix}
+        1 & 0 & 0 & 0  \\
+        0 & 1 & 0 & 0  \\
+        0 & 0 & 1 & 0  \\
+        0 & 0 & 0 & -1
+      \end{pmatrix}
+    \]
+
+    Observamos que en la base de Bell, el operador SWAP es diagonal.
+  \end{solution}
+
+  \begin{solution}
+    \textbf{c) Cambio de representación:}
+
+    Verifica que las dos representaciones están relacionadas por:
+    \[
+      [\text{SWAP}]_{\mathcal{B}_B} = P [\text{SWAP}]_{\mathcal{B}_c} P
+    \]
+
+    \textbf{Solución:}
+
+    Calculamos el lado derecho:
+    \[
+      P [\text{SWAP}]_{\mathcal{B}_c} P = P \begin{pmatrix}
+        1 & 0 & 0 & 0 \\
+        0 & 0 & 1 & 0 \\
+        0 & 1 & 0 & 0 \\
+        0 & 0 & 0 & 1
+      \end{pmatrix} P
+    \]
+
+    Primero calculamos $[\text{SWAP}]_{\mathcal{B}_c} P$:
+    \[
+      \begin{pmatrix}
+        1 & 0 & 0 & 0 \\
+        0 & 0 & 1 & 0 \\
+        0 & 1 & 0 & 0 \\
+        0 & 0 & 0 & 1
+      \end{pmatrix} \frac{1}{\sqrt{2}}\begin{pmatrix}
+        1 & 1  & 0 & 0  \\
+        0 & 0  & 1 & 1  \\
+        0 & 0  & 1 & -1 \\
+        1 & -1 & 0 & 0
+      \end{pmatrix} = \frac{1}{\sqrt{2}}\begin{pmatrix}
+        1 & 1  & 0 & 0  \\
+        0 & 0  & 1 & -1 \\
+        0 & 0  & 1 & 1  \\
+        1 & -1 & 0 & 0
+      \end{pmatrix}
+    \]
+
+    Luego multiplicamos por $P$:
+    \[
+      \frac{1}{\sqrt{2}}\begin{pmatrix}
+        1 & 0 & 0  & 1  \\
+        1 & 0 & 0  & -1 \\
+        0 & 1 & 1  & 0  \\
+        0 & 1 & -1 & 0
+      \end{pmatrix} \frac{1}{\sqrt{2}}\begin{pmatrix}
+        1 & 1  & 0 & 0  \\
+        0 & 0  & 1 & -1 \\
+        0 & 0  & 1 & 1  \\
+        1 & -1 & 0 & 0
+      \end{pmatrix} = \begin{pmatrix}
+        1 & 0 & 0 & 0  \\
+        0 & 1 & 0 & 0  \\
+        0 & 0 & 1 & 0  \\
+        0 & 0 & 0 & -1
+      \end{pmatrix}
+    \]
+
+    que coincide con $[\text{SWAP}]_{\mathcal{B}_B}$.
+  \end{solution}
+
+  \subsection{Parte 6: Valores propios y subespacios propios (15 min)}
+
+  \begin{solution}
+    \textbf{a) Espectro del operador SWAP:}
+
+    Encuentra los valores propios y vectores propios del operador SWAP.
+
+    \textbf{Solución:}
+
+    De la representación en la base de Bell, vemos directamente que:
+
+    \textbf{Valor propio $\lambda_1 = 1$:} Con multiplicidad 3.
+
+    Vectores propios:
+    \[
+      \ket{\Phi^+}, \quad \ket{\Phi^-}, \quad \ket{\Psi^+}
+    \]
+
+    El subespacio propio es:
+    \[
+      E_1 = \text{span}\{\ket{\Phi^+}, \ket{\Phi^-}, \ket{\Psi^+}\} = \text{span}\left\{\ket{00}, \ket{11}, \frac{1}{\sqrt{2}}(\ket{01} + \ket{10})\right\}
+    \]
+
+    \textbf{Valor propio $\lambda_2 = -1$:} Con multiplicidad 1.
+
+    Vector propio:
+    \[
+      \ket{\Psi^-} = \frac{1}{\sqrt{2}}(\ket{01} - \ket{10})
+    \]
+
+    El subespacio propio es:
+    \[
+      E_{-1} = \text{span}\{\ket{\Psi^-}\}
+    \]
+
+    Verificamos para $\ket{\Psi^-}$:
+    \[
+      \text{SWAP}(\ket{\Psi^-}) = \text{SWAP}\left(\frac{1}{\sqrt{2}}(\ket{01} - \ket{10})\right) = \frac{1}{\sqrt{2}}(\ket{10} - \ket{01}) = -\frac{1}{\sqrt{2}}(\ket{01} - \ket{10}) = -\ket{\Psi^-}
+    \]
+  \end{solution}
+
+  \begin{solution}
+    \textbf{b) Descomposición espectral:}
+
+    Escribe el operador SWAP como suma de proyectores sobre sus subespacios propios.
+
+    \textbf{Solución:}
+
+    La descomposición espectral es:
+    \[
+      \text{SWAP} = 1 \cdot P_{E_1} + (-1) \cdot P_{E_{-1}}
+    \]
+
+    donde:
+    \[
+      P_{E_1} = \ket{\Phi^+}\bra{\Phi^+} + \ket{\Phi^-}\bra{\Phi^-} + \ket{\Psi^+}\bra{\Psi^+}
+    \]
+
+    \[
+      P_{E_{-1}} = \ket{\Psi^-}\bra{\Psi^-}
+    \]
+
+    Calculamos explícitamente:
+    \[
+      P_{E_{-1}} = \frac{1}{2}\begin{pmatrix} 0 \\ 1 \\ -1 \\ 0 \end{pmatrix}\begin{pmatrix} 0 & 1 & -1 & 0 \end{pmatrix} = \frac{1}{2}\begin{pmatrix}
+        0 & 0  & 0  & 0 \\
+        0 & 1  & -1 & 0 \\
+        0 & -1 & 1  & 0 \\
+        0 & 0  & 0  & 0
+      \end{pmatrix}
+    \]
+
+    Y podemos verificar:
+    \[
+      P_{E_1} = \mathbb{I} - P_{E_{-1}} = \begin{pmatrix}
+        1 & 0 & 0 & 0 \\
+        0 & 1 & 0 & 0 \\
+        0 & 0 & 1 & 0 \\
+        0 & 0 & 0 & 1
+      \end{pmatrix} - \frac{1}{2}\begin{pmatrix}
+        0 & 0  & 0  & 0 \\
+        0 & 1  & -1 & 0 \\
+        0 & -1 & 1  & 0 \\
+        0 & 0  & 0  & 0
+      \end{pmatrix}
+    \]
+
+    \[
+      = \begin{pmatrix}
+        1 & 0   & 0   & 0 \\
+        0 & 1/2 & 1/2 & 0 \\
+        0 & 1/2 & 1/2 & 0 \\
+        0 & 0   & 0   & 1
+      \end{pmatrix}
+    \]
+
+    Por lo tanto:
+    \[
+      \text{SWAP} = P_{E_1} - P_{E_{-1}} = \begin{pmatrix}
+        1 & 0   & 0   & 0 \\
+        0 & 1/2 & 1/2 & 0 \\
+        0 & 1/2 & 1/2 & 0 \\
+        0 & 0   & 0   & 1
+      \end{pmatrix} - \frac{1}{2}\begin{pmatrix}
+        0 & 0  & 0  & 0 \\
+        0 & 1  & -1 & 0 \\
+        0 & -1 & 1  & 0 \\
+        0 & 0  & 0  & 0
+      \end{pmatrix}
+    \]
+
+    \[
+      = \begin{pmatrix}
+        1 & 0 & 0 & 0 \\
+        0 & 0 & 1 & 0 \\
+        0 & 1 & 0 & 0 \\
+        0 & 0 & 0 & 1
+      \end{pmatrix}
+    \]
+  \end{solution}
+
+  \subsection{Parte 7: Operadores hermitianos y unitarios (10 min)}
+
+  \begin{solution}
+    \textbf{a) Hermiticidad del operador SWAP:}
+
+    Verifica que el operador SWAP es hermitiano.
+
+    \textbf{Solución:}
+
+    Un operador es hermitiano si $A^\dagger = A$. Para la matriz en la base computacional:
+    \[
+      [\text{SWAP}]_{\mathcal{B}_c}^\dagger = \begin{pmatrix}
+        1 & 0 & 0 & 0 \\
+        0 & 0 & 1 & 0 \\
+        0 & 1 & 0 & 0 \\
+        0 & 0 & 0 & 1
+      \end{pmatrix}^* = \begin{pmatrix}
+        1 & 0 & 0 & 0 \\
+        0 & 0 & 1 & 0 \\
+        0 & 1 & 0 & 0 \\
+        0 & 0 & 0 & 1
+      \end{pmatrix} = [\text{SWAP}]_{\mathcal{B}_c}
+    \]
+
+    Por lo tanto, SWAP es hermitiano.
+
+    \textbf{Consecuencias:}
+    \begin{itemize}
+      \item Los valores propios son reales: $\lambda \in \{1, -1\} \subset \mathbb{R}$.
+      \item Los vectores propios correspondientes a valores propios distintos son ortogonales.
+      \item El operador es diagonalizable en una base ortonormal.
+    \end{itemize}
+  \end{solution}
+
+  \begin{solution}
+    \textbf{b) Unitariedad del operador SWAP:}
+
+    Verifica que el operador SWAP es unitario.
+
+    \textbf{Solución:}
+
+    Un operador es unitario si $U^\dagger U = U U^\dagger = \mathbb{I}$. Como SWAP es hermitiano, debemos verificar que $\text{SWAP}^2 = \mathbb{I}$:
+
+    \[
+      [\text{SWAP}]_{\mathcal{B}_c}^2 = \begin{pmatrix}
+        1 & 0 & 0 & 0 \\
+        0 & 0 & 1 & 0 \\
+        0 & 1 & 0 & 0 \\
+        0 & 0 & 0 & 1
+      \end{pmatrix}^2 = \begin{pmatrix}
+        1 & 0 & 0 & 0 \\
+        0 & 1 & 0 & 0 \\
+        0 & 0 & 1 & 0 \\
+        0 & 0 & 0 & 1
+      \end{pmatrix} = \mathbb{I}
+    \]
+
+    Por lo tanto, SWAP es unitario.
+
+    \textbf{Consecuencias:}
+    \begin{itemize}
+      \item SWAP preserva el producto interno: $\braket{\text{SWAP}(\psi)|\text{SWAP}(\phi)} = \braket{\psi|\phi}$.
+      \item Los valores propios tienen módulo 1: $|\lambda| = 1$.
+      \item SWAP es reversible: $\text{SWAP}^{-1} = \text{SWAP}^\dagger = \text{SWAP}$.
+    \end{itemize}
+
+    En este caso particular, SWAP es tanto hermitiano como unitario, lo que implica que sus valores propios son reales y de módulo 1, es decir, $\lambda \in \{-1, 1\}$.
+  \end{solution}
+
+  \subsection{Parte 8: Descomposición en valores singulares (10 min)}
+
+  \begin{solution}
+    Considera el operador de medida parcial en el primer cúbit definido por:
+    \[
+      M_0 = \ket{0}\bra{0} \otimes \mathbb{I}_2 = \begin{pmatrix}
+        1 & 0 \\
+        0 & 0
+      \end{pmatrix} \otimes \begin{pmatrix}
+        1 & 0 \\
+        0 & 1
+      \end{pmatrix}
+    \]
+
+    \textbf{a) Representación matricial:}
+
+    Calcula la representación matricial de $M_0$ en la base computacional de dos cúbits.
+
+    \textbf{Solución:}
+
+    Usando la definición del producto tensorial:
+    \[
+      M_0 = \begin{pmatrix}
+        1 \cdot \mathbb{I}_2 & 0 \cdot \mathbb{I}_2 \\
+        0 \cdot \mathbb{I}_2 & 0 \cdot \mathbb{I}_2
+      \end{pmatrix} = \begin{pmatrix}
+        1 & 0 & 0 & 0 \\
+        0 & 1 & 0 & 0 \\
+        0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0
+      \end{pmatrix}
+    \]
+
+    Verificamos que $M_0$ proyecta sobre el subespacio donde el primer cúbit está en $\ket{0}$:
+    \begin{align*}
+      M_0 \ket{00} & = \ket{00}, \quad M_0 \ket{01} = \ket{01} \\
+      M_0 \ket{10} & = 0, \quad M_0 \ket{11} = 0
+    \end{align*}
+  \end{solution}
+
+  \begin{solution}
+    \textbf{b) Descomposición en valores singulares:}
+
+    Calcula la SVD de $M_0$.
+
+    \textbf{Solución:}
+
+    Primero calculamos $M_0^\dagger M_0$:
+    \[
+      M_0^\dagger M_0 = M_0^2 = M_0 = \begin{pmatrix}
+        1 & 0 & 0 & 0 \\
+        0 & 1 & 0 & 0 \\
+        0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0
+      \end{pmatrix}
+    \]
+
+    Los valores propios de $M_0^\dagger M_0$ son los cuadrados de los valores singulares:
+    \[
+      \sigma_1^2 = 1, \quad \sigma_2^2 = 1, \quad \sigma_3^2 = 0, \quad \sigma_4^2 = 0
+    \]
+
+    Por lo tanto, los valores singulares son:
+    \[
+      \sigma_1 = 1, \quad \sigma_2 = 1, \quad \sigma_3 = 0, \quad \sigma_4 = 0
+    \]
+
+    Los vectores propios de $M_0^\dagger M_0$ forman la matriz $V$:
+    \[
+      V = \begin{pmatrix}
+        1 & 0 & 0 & 0 \\
+        0 & 1 & 0 & 0 \\
+        0 & 0 & 1 & 0 \\
+        0 & 0 & 0 & 1
+      \end{pmatrix}
+    \]
+
+    Para $M_0 M_0^\dagger = M_0$, los vectores propios forman la matriz $U = V$.
+
+    La descomposición SVD es:
+    \[
+      M_0 = U \Sigma V^\dagger = \begin{pmatrix}
+        1 & 0 & 0 & 0 \\
+        0 & 1 & 0 & 0 \\
+        0 & 0 & 1 & 0 \\
+        0 & 0 & 0 & 1
+      \end{pmatrix} \begin{pmatrix}
+        1 & 0 & 0 & 0 \\
+        0 & 1 & 0 & 0 \\
+        0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0
+      \end{pmatrix} \begin{pmatrix}
+        1 & 0 & 0 & 0 \\
+        0 & 1 & 0 & 0 \\
+        0 & 0 & 1 & 0 \\
+        0 & 0 & 0 & 1
+      \end{pmatrix}
+    \]
+
+    \textbf{Interpretación:} Los dos primeros valores singulares no nulos corresponden a las direcciones $\ket{00}$ y $\ket{01}$ que se preservan bajo la proyección.
+  \end{solution}
+
+  \subsection{Parte 9: Producto tensorial (10 min)}
+
+  \begin{solution}
+    \textbf{a) Construcción del espacio producto:}
+
+    Verifica que $\mathbb{C}^4 \cong \mathbb{C}^2 \otimes \mathbb{C}^2$ construyendo explícitamente el isomorfismo.
+
+    \textbf{Solución:}
+
+    El isomorfismo natural mapea:
+    \[
+      \ket{i} \otimes \ket{j} \mapsto \ket{ij}
+    \]
+
+    donde $\ket{i}, \ket{j} \in \{\ket{0}, \ket{1}\}$ son las bases de $\mathbb{C}^2$.
+
+    Explícitamente:
+    \begin{align*}
+      \ket{0} \otimes \ket{0} & = \begin{pmatrix} 1 \\ 0 \end{pmatrix} \otimes \begin{pmatrix} 1 \\ 0 \end{pmatrix} = \begin{pmatrix} 1 \\ 0 \\ 0 \\ 0 \end{pmatrix} = \ket{00} \\
+      \ket{0} \otimes \ket{1} & = \begin{pmatrix} 1 \\ 0 \end{pmatrix} \otimes \begin{pmatrix} 0 \\ 1 \end{pmatrix} = \begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \end{pmatrix} = \ket{01} \\
+      \ket{1} \otimes \ket{0} & = \begin{pmatrix} 0 \\ 1 \end{pmatrix} \otimes \begin{pmatrix} 1 \\ 0 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 1 \\ 0 \end{pmatrix} = \ket{10} \\
+      \ket{1} \otimes \ket{1} & = \begin{pmatrix} 0 \\ 1 \end{pmatrix} \otimes \begin{pmatrix} 0 \\ 1 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \\ 1 \end{pmatrix} = \ket{11}
+    \end{align*}
+
+    Este mapeo es lineal, biyectivo y preserva el producto interno, por lo que es un isomorfismo de espacios de Hilbert.
+  \end{solution}
+
+  \begin{solution}
+    \textbf{b) Estados separables vs. entrelazados:}
+
+    Determina cuáles de los siguientes estados son separables (pueden escribirse como $\ket{\psi} = \ket{\phi} \otimes \ket{\chi}$) y cuáles están entrelazados:
+
+    \begin{enumerate}
+      \item $\ket{\psi_1} = \frac{1}{2}(\ket{00} + \ket{01} + \ket{10} + \ket{11})$
+      \item $\ket{\psi_2} = \frac{1}{\sqrt{2}}(\ket{00} + \ket{11})$
+      \item $\ket{\psi_3} = \frac{1}{\sqrt{2}}(\ket{01} + \ket{10})$
+    \end{enumerate}
+
+    \textbf{Solución:}
+
+    \textbf{Estado 1:}
+    \[
+      \ket{\psi_1} = \frac{1}{2}(\ket{00} + \ket{01} + \ket{10} + \ket{11}) = \frac{1}{\sqrt{2}}(\ket{0} + \ket{1}) \otimes \frac{1}{\sqrt{2}}(\ket{0} + \ket{1})
+    \]
+
+    Este estado es \textbf{separable}. Cada cúbit está en el estado $\ket{+} = \frac{1}{\sqrt{2}}(\ket{0} + \ket{1})$.
+
+    \textbf{Estado 2:}
+    Para que $\ket{\psi_2}$ sea separable, debería existir:
+    \[
+      \ket{\psi_2} = (\alpha\ket{0} + \beta\ket{1}) \otimes (\gamma\ket{0} + \delta\ket{1}) = \alpha\gamma\ket{00} + \alpha\delta\ket{01} + \beta\gamma\ket{10} + \beta\delta\ket{11}
+    \]
+
+    Comparando con $\ket{\psi_2} = \frac{1}{\sqrt{2}}(\ket{00} + \ket{11})$:
+    \[
+      \alpha\gamma = \frac{1}{\sqrt{2}}, \quad \alpha\delta = 0, \quad \beta\gamma = 0, \quad \beta\delta = \frac{1}{\sqrt{2}}
+    \]
+
+    De $\alpha\delta = 0$, tenemos $\alpha = 0$ o $\delta = 0$. Si $\alpha = 0$, entonces $\alpha\gamma = 0 \neq \frac{1}{\sqrt{2}}$. Si $\delta = 0$, entonces $\beta\delta = 0 \neq \frac{1}{\sqrt{2}}$.
+
+    Este estado es \textbf{entrelazado}. Es el estado de Bell $\ket{\Phi^+}$.
+
+    \textbf{Estado 3:}
+    Similarmente, para $\ket{\psi_3} = \frac{1}{\sqrt{2}}(\ket{01} + \ket{10})$:
+    \[
+      \alpha\gamma = 0, \quad \alpha\delta = \frac{1}{\sqrt{2}}, \quad \beta\gamma = \frac{1}{\sqrt{2}}, \quad \beta\delta = 0
+    \]
+
+    De $\alpha\gamma = 0$, tenemos $\alpha = 0$ o $\gamma = 0$. Si $\alpha = 0$, entonces $\alpha\delta = 0 \neq \frac{1}{\sqrt{2}}$. Si $\gamma = 0$, entonces $\beta\gamma = 0 \neq \frac{1}{\sqrt{2}}$.
+
+    Este estado es \textbf{entrelazado}. Es el estado de Bell $\ket{\Psi^+}$.
+  \end{solution}
+
+  \subsection{Parte 10: Espacio dual y producto externo (15 min)}
+
+  \begin{solution}
+    \textbf{a) Isomorfismo de Riesz:}
+
+    Para el vector $\ket{\psi} = \frac{1}{\sqrt{2}}(\ket{00} + \ket{11})$, encuentra el funcional lineal correspondiente $\bra{\psi} \in (\mathbb{C}^4)^*$ mediante el isomorfismo de Riesz.
+
+    \textbf{Solución:}
+
+    El isomorfismo de Riesz asocia a cada vector $\ket{\psi}$ el funcional lineal:
+    \[
+      \bra{\psi}: \mathbb{C}^4 \to \mathbb{C}, \quad \ket{\phi} \mapsto \braket{\psi|\phi}
+    \]
+
+    En coordenadas, si:
+    \[
+      \ket{\psi} = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 0 \\ 0 \\ 1 \end{pmatrix}
+    \]
+
+    entonces:
+    \[
+      \bra{\psi} = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 0 & 0 & 1 \end{pmatrix}
+    \]
+
+    Para cualquier $\ket{\phi} = \begin{pmatrix} a \\ b \\ c \\ d \end{pmatrix}$:
+    \[
+      \braket{\psi|\phi} = \frac{1}{\sqrt{2}}(1, 0, 0, 1)\begin{pmatrix} a \\ b \\ c \\ d \end{pmatrix} = \frac{1}{\sqrt{2}}(a + d)
+    \]
+
+    Este funcional es antilineal en el sentido de que $\bra{\psi}(\alpha\ket{\phi}) = \bar{\alpha}\braket{\psi|\phi}$.
+  \end{solution}
+
+  \begin{solution}
+    \textbf{b) Producto externo:}
+
+    Calcula el operador $\ket{\psi}\bra{\phi}$ donde:
+    \[
+      \ket{\psi} = \frac{1}{\sqrt{2}}(\ket{00} + \ket{11}), \quad \ket{\phi} = \frac{1}{\sqrt{2}}(\ket{01} + \ket{10})
+    \]
+
+    \textbf{Solución:}
+
+    El producto externo es:
+    \[
+      \ket{\psi}\bra{\phi} = \frac{1}{2}\begin{pmatrix} 1 \\ 0 \\ 0 \\ 1 \end{pmatrix}\begin{pmatrix} 0 & 1 & 1 & 0 \end{pmatrix} = \frac{1}{2}\begin{pmatrix}
+        0 & 1 & 1 & 0 \\
+        0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 \\
+        0 & 1 & 1 & 0
+      \end{pmatrix}
+    \]
+
+    Este operador mapea:
+    \begin{align*}
+      \ket{\psi}\bra{\phi}(\ket{00}) & = 0                                                                \\
+      \ket{\psi}\bra{\phi}(\ket{01}) & = \frac{1}{2}\ket{\psi} = \frac{1}{2\sqrt{2}}(\ket{00} + \ket{11}) \\
+      \ket{\psi}\bra{\phi}(\ket{10}) & = \frac{1}{2}\ket{\psi} = \frac{1}{2\sqrt{2}}(\ket{00} + \ket{11}) \\
+      \ket{\psi}\bra{\phi}(\ket{11}) & = 0
+    \end{align*}
+
+    Verificamos:
+    \[
+      \ket{\psi}\bra{\phi}(\ket{\chi}) = \ket{\psi} \braket{\phi|\chi}
+    \]
+
+    Por ejemplo, para $\ket{\chi} = \ket{01}$:
+    \[
+      \braket{\phi|01} = \frac{1}{\sqrt{2}}(0, 1, 1, 0)\begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \end{pmatrix} = \frac{1}{\sqrt{2}}
+    \]
+
+    \[
+      \ket{\psi}\braket{\phi|01} = \frac{1}{\sqrt{2}}\ket{\psi} = \frac{1}{2}(\ket{00} + \ket{11}) = \ket{\psi}\bra{\phi}(\ket{01})
+    \]
+  \end{solution}
+
+  \begin{solution}
+    \textbf{c) Propiedades del producto externo:}
+
+    Verifica las siguientes propiedades:
+    \begin{enumerate}
+      \item $(\ket{\psi}\bra{\phi})^\dagger = \ket{\phi}\bra{\psi}$
+      \item $(\ket{\psi}\bra{\phi})(\ket{\chi}\bra{\omega}) = \braket{\phi|\chi}\ket{\psi}\bra{\omega}$
+      \item $\text{Tr}(\ket{\psi}\bra{\phi}) = \braket{\phi|\psi}$
+    \end{enumerate}
+
+    \textbf{Solución:}
+
+    \textbf{Propiedad 1:} Adjunto del producto externo.
+    \[
+      (\ket{\psi}\bra{\phi})^\dagger = \left(\begin{pmatrix} 1 \\ 0 \\ 0 \\ 1 \end{pmatrix}\begin{pmatrix} 0 & 1 & 1 & 0 \end{pmatrix}\right)^\dagger = \begin{pmatrix} 0 & 1 & 1 & 0 \end{pmatrix}^\dagger \begin{pmatrix} 1 \\ 0 \\ 0 \\ 1 \end{pmatrix}^\dagger
+    \]
+
+    \[
+      = \begin{pmatrix} 0 \\ 1 \\ 1 \\ 0 \end{pmatrix}\begin{pmatrix} 1 & 0 & 0 & 1 \end{pmatrix} = \ket{\phi}\bra{\psi}
+    \]
+
+    \textbf{Propiedad 2:} Producto de operadores de rango 1.
+
+    Tomemos $\ket{\chi} = \ket{00}$ y $\ket{\omega} = \ket{11}$:
+    \[
+      (\ket{\psi}\bra{\phi})(\ket{\chi}\bra{\omega}) = \ket{\psi}\bra{\phi}(\ket{\chi})\bra{\omega} = \ket{\psi}\braket{\phi|\chi}\bra{\omega}
+    \]
+
+    Calculamos:
+    \[
+      \braket{\phi|\chi} = \frac{1}{\sqrt{2}}(0, 1, 1, 0)\begin{pmatrix} 1 \\ 0 \\ 0 \\ 0 \end{pmatrix} = 0
+    \]
+
+    Por lo tanto:
+    \[
+      (\ket{\psi}\bra{\phi})(\ket{\chi}\bra{\omega}) = 0 = 0 \cdot \ket{\psi}\bra{\omega}
+    \]
+
+    \textbf{Propiedad 3:} Traza del producto externo.
+    \[
+      \text{Tr}(\ket{\psi}\bra{\phi}) = \text{Tr}\left(\frac{1}{2}\begin{pmatrix}
+        0 & 1 & 1 & 0 \\
+        0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 \\
+        0 & 1 & 1 & 0
+      \end{pmatrix}\right) = \frac{1}{2}(0 + 0 + 0 + 0) = 0
+    \]
+
+    Verificamos:
+    \[
+      \braket{\phi|\psi} = \frac{1}{2}(0, 1, 1, 0)\begin{pmatrix} 1 \\ 0 \\ 0 \\ 1 \end{pmatrix} = 0
+    \]
+  \end{solution}
+
+  \subsection{Parte 11: Descomposición como suma de proyectores (10 min)}
+
+  \begin{solution}
+    \textbf{a) Matriz densidad como suma de proyectores:}
+
+    La matriz densidad de un estado puro $\ket{\psi}$ es $\rho = \ket{\psi}\bra{\psi}$. Para el estado de Bell:
+    \[
+      \ket{\Phi^+} = \frac{1}{\sqrt{2}}(\ket{00} + \ket{11})
+    \]
+
+    Expresa $\rho = \ket{\Phi^+}\bra{\Phi^+}$ como suma de proyectores sobre los estados de la base computacional.
+
+    \textbf{Solución:}
+
+    Calculamos:
+    \[
+      \rho = \ket{\Phi^+}\bra{\Phi^+} = \frac{1}{2}(\ket{00} + \ket{11})(\bra{00} + \bra{11})
+    \]
+
+    \[
+      = \frac{1}{2}(\ket{00}\bra{00} + \ket{00}\bra{11} + \ket{11}\bra{00} + \ket{11}\bra{11})
+    \]
+
+    En forma matricial:
+    \[
+      \rho = \frac{1}{2}\begin{pmatrix}
+        1 & 0 & 0 & 1 \\
+        0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 \\
+        1 & 0 & 0 & 1
+      \end{pmatrix}
+    \]
+
+    Esta no es una suma de proyectores ortogonales (que requeriría $P_i P_j = 0$ para $i \neq j$), sino la descomposición en productos externos:
+    \[
+      \rho = \frac{1}{2}P_{00} + \frac{1}{2}\ket{00}\bra{11} + \frac{1}{2}\ket{11}\bra{00} + \frac{1}{2}P_{11}
+    \]
+
+    donde $P_{ij} = \ket{ij}\bra{ij}$.
+  \end{solution}
+
+  \begin{solution}
+    \textbf{b) Operador general como suma de proyectores:}
+
+    Considera el operador:
+    \[
+      A = \begin{pmatrix}
+        2 & 0 & 0 & 0  \\
+        0 & 1 & 0 & 0  \\
+        0 & 0 & 1 & 0  \\
+        0 & 0 & 0 & -1
+      \end{pmatrix}
+    \]
+
+    Exprésalo como suma de proyectores sobre sus subespacios propios.
+
+    \textbf{Solución:}
+
+    Los valores propios son:
+    \[
+      \lambda_1 = 2, \quad \lambda_2 = 1, \quad \lambda_3 = -1
+    \]
+
+    Los vectores propios correspondientes son:
+    \begin{align*}
+      \ket{e_1} & = \ket{00} \text{ para } \lambda_1 = 2  \\
+      \ket{e_2} & = \ket{01} \text{ para } \lambda_2 = 1  \\
+      \ket{e_3} & = \ket{10} \text{ para } \lambda_2 = 1  \\
+      \ket{e_4} & = \ket{11} \text{ para } \lambda_3 = -1
+    \end{align*}
+
+    La descomposición espectral es:
+    \[
+      A = 2P_1 + 1P_2 + (-1)P_3
+    \]
+
+    donde:
+    \begin{align*}
+      P_1 & = \ket{00}\bra{00}                    \\
+      P_2 & = \ket{01}\bra{01} + \ket{10}\bra{10} \\
+      P_3 & = \ket{11}\bra{11}
+    \end{align*}
+
+    Explícitamente:
+    \[
+      A = 2\begin{pmatrix}
+        1 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0
+      \end{pmatrix} + \begin{pmatrix}
+        0 & 0 & 0 & 0 \\
+        0 & 1 & 0 & 0 \\
+        0 & 0 & 1 & 0 \\
+        0 & 0 & 0 & 0
+      \end{pmatrix} - \begin{pmatrix}
+        0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 1
+      \end{pmatrix}
+    \]
+  \end{solution}
+
+  \section{Conclusiones y conexión con computación cuántica}
+
+  \begin{resaltado}
+    Este taller ha integrado los conceptos fundamentales del álgebra lineal en espacios de Hilbert aplicados a sistemas cuánticos de dos cúbits. Hemos visto cómo:
+
+    \begin{itemize}
+      \item Las diferentes bases (computacional, Bell) proporcionan distintas perspectivas del mismo espacio de estados.
+
+      \item Los subespacios ortogonales permiten clasificar estados según simetría (estados simétricos vs. antisimétricos).
+
+      \item Los operadores hermitianos representan observables físicos con valores propios reales.
+
+      \item Los operadores unitarios representan evoluciones cuánticas reversibles.
+
+      \item El entrelazamiento cuántico se caracteriza mediante el producto tensorial y estados no separables.
+
+      \item Las descomposiciones espectrales y en valores singulares revelan la estructura de operadores cuánticos.
+    \end{itemize}
+
+    Estos conceptos son fundamentales para:
+    \begin{itemize}
+      \item Algoritmos cuánticos (teleportación, superdensa codificación).
+      \item Corrección de errores cuánticos.
+      \item Teoría de la información cuántica.
+      \item Simulación de sistemas cuánticos.
+    \end{itemize}
+  \end{resaltado}
+
+\end{questions}
+\end{document}
