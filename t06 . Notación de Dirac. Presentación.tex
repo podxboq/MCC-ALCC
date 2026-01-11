@@ -1,0 +1,190 @@
+\documentclass[aspectratio=169]{beamer}
+\usetheme{Unir}
+\usepackage{float}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{physics}
+\include{personalizacion}
+
+\title[5 Postulados de la Mecánica Cuántica]{Notación de Dirac: Los 5 postulados}
+\subtitle{Conexión entre matemáticas y física cuántica}
+\author[F. Costa Cano]{Dr. Francisco Costa Cano}
+\institute[UNIR]{Universidad Internacional de La Rioja}
+\date{Enero 2026}
+
+\begin{document}
+\maketitle
+
+\section{Postulado I: Sistemas Cuánticos}
+\begin{frame}{Postulado I: Sistemas Cuánticos}
+  \begin{columns}[T]
+    \begin{column}{0.5\textwidth}
+      \textbf{Representación Matemática:}
+      \begin{itemize}
+        \item Espacio de Hilbert $\H$.
+        \item Vector $u \in \H$.
+        \item Unitario $\|u\| = 1$.
+        \item $u,v \in \H\Rightarrow \langle u,v \rangle\in\C$.\pause
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \textbf{Representación Dirac:}
+      \begin{itemize}
+        \item Espacio de Hilbert $\H$.
+        \item Vector $\ket{u} \in \H$ (Ket).
+        \item Unitario $\|\ket{u}\| = 1$.
+        \item $\ket{u},\ket{v} \in \H\Rightarrow \braket{u}{v}\in\C$.\pause
+      \end{itemize}
+    \end{column}
+  \end{columns}
+
+  \separa
+  \textbf{Computación cuántica:}
+
+  \separa
+  \textbf{Cúbit}: Espacio de Hilbert de dimensión 2. $\mathcal{C} = \C^2$, con base canónica $\{\ket{0}, \ket{1}\}$.
+
+  Un ket $\ket{u} = \alpha \ket{0} + \beta \ket{1}$, con $\alpha, \beta \in \C$.
+
+  $\|\ket{u}\| = 1 \Rightarrow |\alpha|^2 + |\beta|^2 = 1$.
+
+\end{frame}
+
+\section{Postulado II: Observables}
+\begin{frame}{Postulado II: Observables}
+  \begin{columns}[T]
+    \begin{column}{0.5\textwidth}
+      \textbf{Representación Matemática:}
+      \begin{itemize}
+        \item Operador hermitiano $O$.
+        \item $O^\dagger = O$.
+        \item Valores propios reales.
+        \item Autovectores ortonormales.
+        \item $v\in\H\Rightarrow v^*\in\H^*$. $v^* = \langle v,\cdot\rangle$.\pause
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \textbf{Representación Dirac:}
+      \begin{itemize}
+        \item Operador hermitiano $O$.
+        \item $O^\dagger = O$.
+        \item Valores propios reales $\lambda_i$.
+        \item Autovector normalizado $\ket{\lambda_i}$.
+        \item $\ket{v}\in\H\Rightarrow \bra{v}\in\H^*$ (Bra). $\bra{v} = \braket{v}{\cdot}$.\pause
+      \end{itemize}
+    \end{column}
+  \end{columns}
+  \separa
+  \textbf{Computación cuántica:}
+
+  \separa
+  \textbf{Observables}: Matrices $2\times 2$ hermitianos.
+
+  Las matrices de Pauli son observables.
+
+
+\end{frame}
+
+\section{Postulado III: Medición}
+\begin{frame}{Postulado III: Medición}
+  \begin{columns}[T]
+    \begin{column}{0.5\textwidth}
+      \textbf{Representación Matemática:}
+      \begin{itemize}
+        \item Probabilidad: $P(\lambda_i) = \langle v, v_i \rangle^2$.
+        \item Estado post-medición:
+              $w = \frac{\text{proy}_{v_i}v}{\|\text{proy}_{v_i}v\|}$.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \textbf{Interpretación Cuántica:}
+      \begin{itemize}
+        \item Probabilidad: $P(\lambda_i) = \|\braket{v}{\lambda_i}\|$.
+        \item Estado post-medición:
+              $\ket{w} = \frac{\braket{v}{\lambda_i}}{\|\braket{v}{\lambda_i}\|}\ket{\lambda_i}$.
+      \end{itemize}
+    \end{column}
+  \end{columns}
+
+  \separa
+  \textbf{Computación cuántica:}
+
+  \separa
+  \textbf{Mediciones sobre X}: posibles valores $-1$ quedando el estado en $\ket{0}$ y $1$ quedando el estado en $\ket{1}$.
+
+\end{frame}
+
+\section{Postulado IV: Evolución Temporal}
+\begin{frame}{Postulado IV: Evolución Temporal}
+  \begin{columns}[T]
+    \begin{column}{0.5\textwidth}
+      \textbf{Representación Matemática:}
+      \begin{itemize}
+        \item Ecuación de Schrödinger
+              \[i\hbar \frac{\partial \ket{\psi}}{\partial t} = H \ket{\psi}\]
+        \item Solución: $\ket{\psi(t)} = e^{-iHt/\hbar}\ket{\psi(0)}$
+        \item Operador unitario $U(t) = e^{-iHt/\hbar}$
+        \item Conservación de norma\pause
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \textbf{Interpretación Cuántica:}
+      \begin{itemize}
+        \item Evolución coherente
+        \item Conservación de información
+        \item Reversibilidad de procesos
+        \item Puertas cuánticas como operadores
+        \item Fases cuánticas evolucionan
+        \item Base para algoritmos cuánticos\pause
+      \end{itemize}
+    \end{column}
+  \end{columns}
+
+  [Puerta cuántica]
+  Puerta de Hadamard: $H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$
+
+\end{frame}
+
+\section{Postulado V: Sistemas Compuestos}
+\begin{frame}{Postulado V: Sistemas Compuestos}
+  \begin{columns}[T]
+    \begin{column}{0.5\textwidth}
+      \textbf{Representación Matemática:}
+      \begin{itemize}
+        \item Producto tensorial $\otimes$
+        \item Estado compuesto: $\ket{\psi_{AB}} = \ket{A} \otimes \ket{B}$
+        \item Dimensión: $\dim(\H_A \otimes \H_B) = \dim(\H_A) \cdot \dim(\H_B)$
+        \item Estados separables vs entrelazados
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \textbf{Interpretación Cuántica:}
+      \begin{itemize}
+        \item Sistemas interactuantes
+        \item Correlaciones no locales
+        \item Entrelazamiento cuántico
+        \item Base computacional extendida
+        \item Fundamento de protocolos cuánticos
+        \item Teleportación cuántica
+      \end{itemize}
+    \end{column}
+  \end{columns}
+
+  [Estado de Bell]
+  Estado de Bell: $\ket{\Phi^-} = \frac{\ket{00} - \ket{11}}{\sqrt{2}}$
+
+\end{frame}
+
+\section{Conclusiones}
+\begin{frame}{Conclusiones}
+  Los 5 postulados describen completamente sistemas cuánticos:
+  \begin{itemize}
+    \item Notación de Dirac unifica representación matemática y física
+    \item Cada postulado tiene interpretación profunda
+    \item La mecánica cuántica desafía intuiciones clásicas
+  \end{itemize}
+
+  La mecánica cuántica no es solo una teoría, ¡es un nuevo paradigma de comprensión de la realidad!
+\end{frame}
+
+\end{document}
