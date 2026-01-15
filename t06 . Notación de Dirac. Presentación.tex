@@ -23,7 +23,6 @@
       \begin{itemize}
         \item Espacio de Hilbert $\H$.
         \item Vector $u \in \H$.
-        \item Unitario $\|u\| = 1$.
         \item $u,v \in \H\Rightarrow \langle u,v \rangle\in\C$.\pause
       \end{itemize}
     \end{column}
@@ -42,7 +41,7 @@
   \textbf{Computación cuántica:}
 
   \separa
-  \textbf{Cúbit}: Espacio de Hilbert de dimensión 2. $\mathcal{C} = \C^2$, con base canónica $\{\ket{0}, \ket{1}\}$.
+  \textbf{Cúbit}: Espacio de Hilbert de dimensión 2. $\mathcal{C} \subset \C^2$, con base canónica $\{\ket{0}, \ket{1}\}$.
 
   Un ket $\ket{u} = \alpha \ket{0} + \beta \ket{1}$, con $\alpha, \beta \in \C$.
 
@@ -60,17 +59,20 @@
         \item $O^\dagger = O$.
         \item Valores propios reales.
         \item Autovectores ortonormales.
-        \item $v\in\H\Rightarrow v^*\in\H^*$. $v^* = \langle v,\cdot\rangle$.\pause
+        \item $v\in\H\Rightarrow v^*\in\H^*$. $v^* = \langle v,\cdot\rangle$.
+        \item $[v^*] = (\bar{v}_1, \dots, \bar{v}_n)^t$
+        \item producto externo $v\wedge w$.\pause
       \end{itemize}
     \end{column}
     \begin{column}{0.5\textwidth}
       \textbf{Representación Dirac:}
       \begin{itemize}
-        \item Operador hermitiano $O$.
-        \item $O^\dagger = O$.
-        \item Valores propios reales $\lambda_i$.
         \item Autovector normalizado $\ket{\lambda_i}$.
-        \item $\ket{v}\in\H\Rightarrow \bra{v}\in\H^*$ (Bra). $\bra{v} = \braket{v}{\cdot}$.\pause
+        \item $\ket{v}\in\H\Rightarrow \bra{v}\in\H^*$ (Bra). $\bra{v} = \braket{v}{\cdot}$.
+        \item $\bra{v}(\ket{w}) = \braket{v}{w}$.
+        \item $\bra{v} = \ket{v}^\dagger$.
+        \item producto externo $\ketbra{v}{w}$.
+        \item $O = \sum_{i}\lambda_i \ket{\lambda_i}\bra{\lambda_i}$.\pause
       \end{itemize}
     \end{column}
   \end{columns}
@@ -91,17 +93,18 @@
     \begin{column}{0.5\textwidth}
       \textbf{Representación Matemática:}
       \begin{itemize}
-        \item Probabilidad: $P(\lambda_i) = \langle v, v_i \rangle^2$.
-        \item Estado post-medición:
-              $w = \frac{\text{proy}_{v_i}v}{\|\text{proy}_{v_i}v\|}$.
+        \item proyección sobre autovectores:
+              \[w = \frac{\text{proy}_{V_i}v}{\|\text{proy}_{V_i}v\|}\,.\]\pause
       \end{itemize}
     \end{column}
     \begin{column}{0.5\textwidth}
-      \textbf{Interpretación Cuántica:}
+      \textbf{Representación Dirac:}
       \begin{itemize}
-        \item Probabilidad: $P(\lambda_i) = \|\braket{v}{\lambda_i}\|$.
+        \item Probabilidad: $P(\lambda_i) = \|P_i\ket{v}\|^2$.
         \item Estado post-medición:
-              $\ket{w} = \frac{\braket{v}{\lambda_i}}{\|\braket{v}{\lambda_i}\|}\ket{\lambda_i}$.
+              \[
+                \ket{w} = \frac{P_i\ket{v}}{\sqrt{P(\lambda_i)}}\,.
+              \]\pause
       \end{itemize}
     \end{column}
   \end{columns}
@@ -121,26 +124,29 @@
       \textbf{Representación Matemática:}
       \begin{itemize}
         \item Ecuación de Schrödinger
-              \[i\hbar \frac{\partial \ket{\psi}}{\partial t} = H \ket{\psi}\]
-        \item Solución: $\ket{\psi(t)} = e^{-iHt/\hbar}\ket{\psi(0)}$
-        \item Operador unitario $U(t) = e^{-iHt/\hbar}$
-        \item Conservación de norma\pause
+              \[i\hbar \frac{\partial \psi}{\partial t} = H \psi\,.\]
+        \item Solución: $\psi(t) = e^{-iHt/\hbar}\psi(0)$.
+        \item Operador unitario $U(t) = e^{-iHt/\hbar}$.
+        \item Conservación de norma.\pause
       \end{itemize}
     \end{column}
     \begin{column}{0.5\textwidth}
-      \textbf{Interpretación Cuántica:}
+      \textbf{Representación de Dirac:}
       \begin{itemize}
-        \item Evolución coherente
-        \item Conservación de información
-        \item Reversibilidad de procesos
-        \item Puertas cuánticas como operadores
-        \item Fases cuánticas evolucionan
-        \item Base para algoritmos cuánticos\pause
+        \item Ecuación de Schrödinger
+              \[i\hbar \frac{\partial \ket{\psi}}{\partial t} = H \ket{\psi}\,.\]
+        \item Solución: $\ket{\psi(t)} = e^{-iHt/\hbar}\ket{\psi(0)}$.
+        \item Operador unitario $U(t) = e^{-iHt/\hbar}$.
+        \item Conservación de norma\pause
       \end{itemize}
     \end{column}
   \end{columns}
 
-  [Puerta cuántica]
+  \separa
+  \textbf{Computación cuántica:}
+
+  \separa
+  \textbf{Puertas cuánticas:}
   Puerta de Hadamard: $H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$
 
 \end{frame}
@@ -151,27 +157,27 @@
     \begin{column}{0.5\textwidth}
       \textbf{Representación Matemática:}
       \begin{itemize}
-        \item Producto tensorial $\otimes$
-        \item Estado compuesto: $\ket{\psi_{AB}} = \ket{A} \otimes \ket{B}$
-        \item Dimensión: $\dim(\H_A \otimes \H_B) = \dim(\H_A) \cdot \dim(\H_B)$
-        \item Estados separables vs entrelazados
+        \item Producto tensorial $\otimes$.
+        \item Estado compuesto: $v\otimes w$.
+        \item Estados separables vs no separables.\pause
       \end{itemize}
     \end{column}
     \begin{column}{0.5\textwidth}
       \textbf{Interpretación Cuántica:}
       \begin{itemize}
-        \item Sistemas interactuantes
-        \item Correlaciones no locales
-        \item Entrelazamiento cuántico
-        \item Base computacional extendida
-        \item Fundamento de protocolos cuánticos
-        \item Teleportación cuántica
+        \item Producto tensorial.
+        \item Estado compuesto: $\ket{vw}$.
+        \item Estados separables vs entrelazados.\pause
       \end{itemize}
     \end{column}
   \end{columns}
 
-  [Estado de Bell]
-  Estado de Bell: $\ket{\Phi^-} = \frac{\ket{00} - \ket{11}}{\sqrt{2}}$
+  \separa
+  \textbf{Computación cuántica:}
+
+  \separa
+  en $\mathcal{C}^2$ base canónica: $\{\ket{00}, \ket{01}, \ket{10}, \ket{11}\}$.
+  Estado entrelazado: $\frac{\ket{00} + \ket{11}}{\sqrt{2}}$.
 
 \end{frame}
 
