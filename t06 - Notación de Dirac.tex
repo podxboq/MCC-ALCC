@@ -87,20 +87,26 @@ Por lo tanto, dos amplitudes cuánticas son iguales si tienen la misma magnitud 
   La interferencia cuántica es el principio fundamental detrás de muchos algoritmos cuánticos: amplificamos las amplitudes de respuestas correctas e interferimos destructivamente con las incorrectas.
 \end{info}
 
-Al final una amplitud cuántica es la representación exponencial de un número complejo, y podemos trabajar con ellas usando las reglas vistas en este tema.
+Al final una amplitud cuántica es la representación exponencial de un número complejo, y podemos trabajar con ellas usando las reglas vistas en este curso.
 
 \subsection{Postulado I: Sistemas cuánticos.}
 \begin{resaltado}
   Un sistema cuántico se describe completamente mediante un vector unitario en un espacio vectorial de Hilbert.
 \end{resaltado}
 
-Aunque para nosotros los espacios vectoriales y los espacios de Hilbert sean lo mismo, es a partir de ahora, cuando empezamos a diferenciar ambos conceptos. Un espacio de Hilbert es un espacio vectorial complejo con un producto interno definido, y en el contexto de la mecánica cuántica, este espacio es el \textbf{espacio de estados} del sistema cuántico.
+Aunque para nosotros los espacios vectoriales y los espacios de Hilbert sean lo mismo, es a partir de ahora, cuando empezamos a diferenciar ambos conceptos. Un espacio de Hilbert es un espacio vectorial complejo con un producto interno definido, y en el contexto de la mecánica cuántica, este espacio es el \textbf{espacio de estados normalizados} del sistema cuántico.
 
-A los elementos de un espacio de estados $\H$, no los llamaremos vectores sino \textbf{estados cuánticos} o en la notación de Dirac \textbf{kets} y se denota por $\ket{v}\in\H$.
+\begin{defi}
+  A los elementos de un espacio de estados $\H$, no los llamaremos vectores sino \textbf{estados cuánticos} o en la notación de Dirac \textbf{kets} y se denota por $\ket{v}\in\H$.
+\end{defi}
+
+Siempre que hablamos de estado cuántico o de ket, estamos asumiendo ya que el vector es unitario, es decir, que cumple $\|\ket{v}\| = 1$.
 
 En computación cuántica, el sistema cuántico más básico es el \textbf{cúbit}, en el que podemos medir dos estados bien diferenciados, y por tanto es un espacio de estados $\mathcal{C}$ de dimensión 2.
 
 Que un sistema cuántico se describa mediante un vector unitario implica que los estados cuánticos deben cumplir la \textbf{condición de normalización}, y por tanto, no todos los vectores del espacio vectorial son estados físicos válidos. Tenemos que considerar el espacio de Hilbert $\H$ como el subespacio de todos los vectores unitarios del espacio vectorial complejo asociado.
+
+En mecánica cuántica, un ket cuando es representado por coordenadas se escribe como una columna matricial, siguiendo la convención de que las coordenadas son los coeficientes de la combinación lineal de los vectores de una base ortonormal.
 
 \begin{eje}[Espacio de estado de un cúbit]
   Como hemos definido, un cúbit tiene espacio de estados $\mathcal{C}$ de dimensión 2 y si $\mathcal{B} = \{e_1, e_2\}$ es una base, todo estado cuántico $\ket{v}$ viene representado por
@@ -115,11 +121,19 @@ Para definir formalmente $\mathcal{C}$, necesitamos imponer la condición de nor
 
 \begin{prop}
   La relación $R$ sobre $\mathbb{C}^2$ definida por
-  $$v R w \iff \exists \phi \in \mathbb{R}\mid w = e^{i\phi}v\,,$$
+  $$v R w \iff \exists r \in \mathbb{R}\mid w = rv\,,$$
   es una relación de equivalencia.
 \end{prop}
+\begin{proof}
+  Veamos que $R$ cumple las tres propiedades de una relación de equivalencia:
+  \begin{itemize}
+    \item \textbf{Reflexiva}: Para todo $v \in \mathbb{C}^2$, existe $r = 1 \in \mathbb{R}$ tal que $v = 1 \cdot v$, por lo que $v R v$.
+    \item \textbf{Simétrica}: Si $v R w$, entonces existe $r \in \mathbb{R}$ tal que $w = rv$. Entonces, si $r \neq 0$, podemos escribir $v = r^{-1}w$, con $r^{-1} \in \mathbb{R}$, por lo que $w R v$. Si $r = 0$, entonces $w = 0$ y también $v = 0$, por lo que $w R v$.
+    \item \textbf{Transitiva}: Si $v R w$ y $w R u$, entonces existen $r_1, r_2 \in \mathbb{R}$ tales que $w = r_1 v$ y $u = r_2 w$. Sustituyendo, obtenemos $u = r_2 (r_1 v) = (r_2 r_1) v$, con $r_2 r_1 \in \mathbb{R}$, por lo que $v R u$.
+  \end{itemize}
+\end{proof}
 
-Ahora podemos establecer la relación entre los espacios formalmente, considerando $\mathcal{C}$ como el conjunto cociente $\mathbb{C}^2 / R$, y cada clase de equivalencia representa un estado cuántico físico, $\ket{v} = [v]$.
+Ahora podemos establecer la relación entre los espacios formalmente, considerando $\mathcal{C}$ como el conjunto cociente $\mathbb{C}^2 / R$, y cada clase de equivalencia representa un estado cuántico físico, tomando como representante de la clase $\ket{v}$ aquel que tiene norma 1.
 
 \begin{eje}
   Consideremos el cúbit resultado de medir el spin de un electrón en un dirección del espacio. Llamemos $\ket{\uparrow}$ al estado en el que el spin mide en dicha dirección y $\ket{\downarrow}$ al estado en el que el spin mide en la dirección opuesta.
@@ -137,15 +151,15 @@ Ahora podemos establecer la relación entre los espacios formalmente, consideran
 \end{defi}
 
 \begin{eje}[Parametrización general de un cúbit]
-  Eliminando la fase global, todo cúbit puede escribirse como:
-  $$\ket{v} = \cos\frac{\theta}{2}\ket{0} + e^{i\varphi}\sin\frac{\theta}{2}\ket{1}$$
-  donde $\theta \in [0,\pi]$ y $\varphi \in [0,2\pi]$ son parámetros reales.
+  Eliminando la fase global, todo cúbit puede escribirse como
+  $$\ket{v} = \cos\frac{\theta}{2}\ket{0} + e^{i\varphi}\sin\frac{\theta}{2}\ket{1}\,,$$
+  donde $\theta \in [0,\pi]$ y $\varphi \in [0,2\pi)$ son parámetros reales.
 
   Esta parametrización:
   \begin{itemize}
     \item Elimina la fase global irrelevante.
     \item Usa solo 2 parámetros reales para describir el estado completo.
-    \item Corresponde a puntos en la superficie de la esfera de Bloch.
+    \item Corresponde a puntos en la superficie de una esfera (Esfera de Bloch).
   \end{itemize}
 \end{eje}
 
@@ -175,19 +189,23 @@ $$\bra{v} = \ket{v}^\dagger\,.$$
 \subsection{Postulado II: Observables}
 
 \begin{resaltado}
-  Toda magnitud física observable de un sistema cuántico se representa mediante un operador hermitiano que actúa en el espacio de Hilbert del sistema. La medición obtenida es un valor propio del operador.
+  Toda magnitud física observable de un sistema cuántico se representa mediante un operador hermitiano que actúa en el espacio de Hilbert del sistema y cuyos valores propios son todos los posibles valores que podemos observar.
 \end{resaltado}
 
 Este postulado nos indica, que dado un cúbit, y fijado los estados básicos que lo definen, tendremos operadores hermíticos que actúan sobre el cúbit y cuyos valores propios son los posibles resultados de medir la magnitud observable.
 
-\begin{eje}[Observables fundamentales de un cúbit basado en el spin]
-  Para un cúbit que representa el spin de un electrón, los observables más importantes son las componentes del espín en cada una de las direcciones del espacio, representadas por las matrices de Pauli:
+En la notación de Dirac, no se diferencia entre operadores lineales y sus representaciones matriciales, por lo que la representación matricial de un operador hermítico $T:\H\to\H$ se denota simplemente por $T$.
 
-  \begin{align}
+Tampoco se diferencia entre la imagen de un ket $\ket{v}$ por el operador $T$ o el producto de su representación matricial por la representación del vector, lo que $T\ket{v}$ significa a la misma vez la imagen del ket por el operador o el produto de la matriz por el vector columna.
+
+\begin{eje}[Observables fundamentales de un cúbit basado en el spin]
+  Para un cúbit que representa el spin de un electrón, los observables más importantes son las componentes del espín en cada una de las direcciones del espacio, representadas por las matrices de Pauli.
+
+  \begin{align*}
     X & = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}  & \text{(espín en dirección x)} \\
     Y & = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix} & \text{(espín en dirección y)} \\
     Z & = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} & \text{(espín en dirección z)}
-  \end{align}
+  \end{align*}
 \end{eje}
 
 La matriz de Pauli $Z$ ya es diagonal y en el tema anteriorio~\ref{eje:exponencial_x} se calculó la representación espectral de la matriz de Pauli $X$.
@@ -200,14 +218,14 @@ Veamos ahora cómo diagonalizar la matriz de Pauli $Y$, lo que nos permitirá co
 
   \textbf{Vectores propios:}
   \begin{itemize}
-    \item Para $\lambda_1 = 1$: Resolvemos $\ket{v}(Y - I) = 0$
-          $$(v_1, v_2)\begin{pmatrix} -1 & -i \\ i & -1 \end{pmatrix} = 0\,.$$
-          De la primera fila: $-v_1 + i v_2 = 0 \implies v_1 = iv_2$.
-          Tomando $v_2 = 1$, obtenemos $\ket{v} = (i, 1)$.
-    \item Para $\lambda_2 = -1$: Resolvemos $\ket{w}(Y + I) = 0$
-          $$(w_1, w_2)\begin{pmatrix} 1 & -i \\ i & 1 \end{pmatrix} = 0\,.$$
-          De la primera fila: $w_1 + i w_2 = 0 \implies w_1 = -i w_2$.
-          Tomando $w_2 = 1$, obtenemos $\ket{w} = (-i, 1)$.
+    \item Para $\lambda_1 = 1$: Resolvemos $(Y - I)\ket{v} = 0$
+          $$\begin{pmatrix} -1 & -i \\ i & -1 \end{pmatrix}\begin{pmatrix} v_1 \\ v_2 \end{pmatrix} = 0\,.$$
+          De la primera fila: $-v_1 - i v_2 = 0 \implies v_1 = -i v_2$.
+          Tomando $v_2 = 1$, obtenemos $\ket{v} = (-i, 1)^t$.
+    \item Para $\lambda_2 = -1$: Resolvemos $(Y + I)\ket{w} = 0$
+          $$\begin{pmatrix} 1 & -i \\ i & 1 \end{pmatrix}\begin{pmatrix} w_1 \\ w_2 \end{pmatrix} = 0\,.$$
+          De la primera fila: $w_1 - i w_2 = 0 \implies w_1 = i w_2$.
+          Tomando $w_2 = 1$, obtenemos $\ket{w} = (i, 1)^t$.
   \end{itemize}
 
   \textbf{Descomposición espectral:}
@@ -220,7 +238,7 @@ Veamos ahora cómo diagonalizar la matriz de Pauli $Y$, lo que nos permitirá co
     \end{pmatrix}\begin{pmatrix}
       -i & 1 \\
       i  & 1
-    \end{pmatrix}$$
+    \end{pmatrix}\,.$$
 \end{eje}
 
 \subsection{Postulado III: Medición cuántica}
@@ -229,36 +247,36 @@ Veamos ahora cómo diagonalizar la matriz de Pauli $Y$, lo que nos permitirá co
   Al medir con un observable $T$ el estado $\ket{v}$:
   \begin{enumerate}
     \item La probabilidad de obtener el resultado $\lambda_i$ es
-          $$P(\lambda_i) = \|\text{proy}_{e_i}\ket{v}\|^2\,.$$
-    \item Después de la medición, el sistema colapsa al estado
-          $$\ket{w} = \frac{\text{proy}_{e_i}\ket{v}}{\|\text{proy}_{e_i}\ket{v}\|}\,.$$
+          $$P(\lambda_i) = \|\text{proy}_{V_i}\ket{v}\|^2\,.$$
+    \item Después de la medición, el sistema se representa con el estado
+          $$\ket{w} = \frac{\text{proy}_{V_i}\ket{v}}{\|\text{proy}_{V_i}\ket{v}\|}\,.$$
   \end{enumerate}
-  Donde $e_i$ es el vector propio normalizado correspondiente al valor propio $\lambda_i$.
+  Donde $V_i$ es el subespacio propio correspondiente al valor propio $\lambda_i$.
 \end{resaltado}
 
 El tercer postulado es menos intuitivo de todos los postulados, pues nos asegura que no sabemos que ocurre al medir, solo podemos tener un conocimiento probabilístico sobre los distintos resultados que podemos obtener.
 
 Aunque sí podemos obtener un valor sobre dicha probabilidad, y es el módulo de la proyección del estado sobre los vectores de la base formada por los vectores propios del observable.
 
-Si recordamos las ecuaciones del tema anterior, el módulo de la proyección es precisamente el módulo del producto interno. Y por otro lado, es precisamente este valor del producto interno la coordendada del estado con respecto a la base.
+Si recordamos las ecuaciones del tema anterior, cuando tenemos valores propios distintos, el módulo de la proyección es precisamente el módulo del producto interno. Y por otro lado, es precisamente este valor del producto interno la coordendada del estado con respecto a la base propia.
 \begin{align*}
-  \ket{v}                      & = \sum_{k=1}^n \braket{v}{e_i}\ket{e_i}\,. \\
-  \|\text{proy}_{e_i}\ket{v}\| & = \|\braket{v}{e_i}\|\,.
+  \ket{v}                      & = \sum_{i=1}^n \braket{e_i}{v}\ket{e_i}\,. \\
+  \|\text{proy}_{e_i}\ket{v}\| & = \|\braket{e_i}{v}\|\,.
 \end{align*}
 
 \begin{eje}
-  Considere el estado $\ket{v} = \frac{3}{5}\ket{0} + \frac{4i}{5}\ket{1}$ y queremos medir el observable $ Z$. Como ya sabemos, los valores propios de $ Z$ son $+1$ y $-1$, con vectores propios $\ket{0}$ y $\ket{1}$ respectivamente.
+  Considere el estado $\ket{v} = \frac{3}{5}\ket{0} + \frac{4i}{5}\ket{1}$ y queremos medir con el observable $Z$. Como ya sabemos, los valores propios de $Z$ son $+1$ y $-1$, con vectores propios $\ket{0}$ y $\ket{1}$ respectivamente.
 
   \textbf{Probabilidades:}
   \begin{align*}
-    P(+1) & = |\braket{v}{0}|^2 = \left|\frac{3}{5}\right|^2 = \frac{9}{25}   \\
-    P(-1) & = |\braket{v}{1}|^2 = \left|\frac{4i}{5}\right|^2 = \frac{16}{25}
+    P(+1) & = |\braket{0}{v}|^2 = \left|\frac{3}{5}\right|^2 = \frac{9}{25}\,.   \\
+    P(-1) & = |\braket{1}{v}|^2 = \left|\frac{4i}{5}\right|^2 = \frac{16}{25}\,.
   \end{align*}
 
-  \textbf{Estados post-medición:} Después de cada posible resultado de la medición, el estado del sistema colapsa a:
+  \textbf{Estados post-medición:} Después de cada posible resultado de la medición, el estado del sistema se representa con el estado:
   \begin{itemize}
-    \item Si se obtiene $+1$: el sistema colapsa a $\ket{0}$.
-    \item Si se obtiene $-1$: el sistema colapsa a $\ket{1}$.
+    \item $\ket{0}$ si se obtiene $+1$.
+    \item $\ket{1}$ si se obtiene $-1$.
   \end{itemize}
 \end{eje}
 
@@ -276,45 +294,56 @@ Si recordamos las ecuaciones del tema anterior, el módulo de la proyección es 
 
 La definición de valor esperado es una generalización del valor esperado en estadística, donde el valor esperado es la media de una variable aleatoria. Pero si realizamos algunos cálculos, podemos ver que el valor esperado es el producto interno entre el ket y el observable.
 
-Como $P(\lambda_i) = \|\text{proy}_{e_i}\ket{v}\|^2 = \|\braket{v}{e_i}\|^2$, y para cada estado propio $\ket{e_i}$ se cumple $T(\ket{e_i})  = \lambda_i \ket{e_i}$, entonces el valor esperado es
+Como $P(\lambda_i) = \|\text{proy}_{V_i}\ket{v}\|^2 = \sum_{e_j\in\V_i}\|\braket{e_j}{v}\|^2$, y para cada estado propio $\ket{e_i}$ se cumple $T\ket{e_i}  = \lambda_i \ket{e_i}$, entonces el valor esperado es
 \begin{align*}
-  \langle T \rangle_v & = \sum_i \lambda_i P(\lambda_i) = \sum_i \lambda_i \|\braket{v}{e_i}\|^2 = \sum_i \lambda_i \braket{v}{e_i}\braket{e_i}{v} = \sum_i \braket{v}{e_i}\braket{\lambda_i e_i}{v} \\
-                      & = \sum_i \braket{v}{e_i}\braket{T(\ket{e_i})}{v}= \braket{\sum_i \braket{v}{e_i}T(\ket{e_i})}{v} = \braket{T\left(\sum_i \braket{v}{e_i}\ket{e_i}\right)}{v}                 \\
-                      & = \braket{T(\ket{v})}{v}\,.
+  \langle T \rangle_v & = \sum_i \lambda_i P(\lambda_i) = \sum_i \lambda_i \|\braket{e_i}{v}\|^2 = \sum_i \lambda_i \braket{e_i}{v}\braket{v}{e_i} = \sum_i \braket{e_i}{v}\braket{v}{\lambda_i e_i} \\
+                      & = \sum_i \braket{e_i}{v}\braket{v}{T\ket{e_i}}= \braket{v}{\sum_i \braket{e_i}{v}T\ket{e_i}} = \braket{v}{T\left(\sum_i \braket{e_i}{v}\ket{e_i}\right)}                     \\
+                      & = \braket{v}{T\ket{v}}\,.
 \end{align*}
+
+Observamos que por ser $T$ un operador hermítico, el valor esperado también se puede escribir como $\braket{T\ket{v}}{v}$.
+
+Como la notación anterior puede dar lugar a confusión, la notación de Dirac usa la siguiente expresión para el valor esperado.
+\[
+  \langle T \rangle_v = \expval{T}{v}\,.
+\]
 
 \begin{eje}
   Para el estado del ejemplo anterior, calculemos con esta nueva expresión el valor esperado
-  $$\langle  Z \rangle_v = \braket{Z(\ket{v})}{v} = \braket{\frac{3}{5}\ket{0} - \frac{4i}{5}\ket{1}}{\frac{3}{5}\ket{0} + \frac{4i}{5}\ket{1}} = \frac{9}{25} - \frac{16}{25} = -\frac{7}{25}\,.$$
+  $$\langle  Z \rangle_v = \expval{Z}{v} = \braket{\frac{3}{5}\ket{0} - \frac{4i}{5}\ket{1}}{\frac{3}{5}\ket{0} + \frac{4i}{5}\ket{1}} = \frac{9}{25} - \frac{16}{25} = -\frac{7}{25}\,.$$
 \end{eje}
-
-En la notación de Dirac, el valor esperado de un observable $T$ sobre el estado $\ket{v}$ se denota por $\expval{T}{v}$.
 
 \subsection{Postulado IV: Evolución temporal}
 
 \begin{resaltado}
   Un estado cuántico $\ket{v(t)}$ evoluciona a lo largo del tiempo cumpliendo con la ecuación de Schrödinger
   \[
-    i\hbar \frac{\partial \ket{v(t)}}{\partial t} = H \ket{v(t)}\,,
+    i\hbar \frac{\partial \Psi(x,t)}{\partial t} = H \Psi(x,t)\,,
   \]
   donde $H$ es el operador hamiltoniano del sistema cuántico.
 \end{resaltado}
 
 
-En computación cuántica, los estados deben ser invariantes temporales, por lo que deben cumplir con la ecuación estacionaria de Schrödinger y que tiene por solución
-$$\ket{v}(t) = e^{-iHt/\hbar}\ket{v}(0)\,,$$
-donde $H$ es el hamiltoniano del sistema. De esta solución el operador que rigue la evolución $U(t) = e^{-iHt/\hbar}$ es unitario.
+En computación cuántica, los estados deben ser invariantes temporales, por lo que debe cumplir con la ecuación estacionaria de Schrödinger
+\[
+  H \Psi(x,t) = E\Psi(x,t)\,,
+\]
+donde $E$ es la energía del sistema y que tiene por solución
+\[
+  \ket{\Psi(t)} = e^{-iEt/\hbar}\ket{\Psi(0)}\,.
+\]
+De esta solución el operador que rigue la evolución $U(t) = e^{-iEt/\hbar}$ es unitario.
 
 \begin{eje}
   Para un cúbit con hamiltoniano $H = \frac{\omega}{2} Z$
   $$U(t) = e^{-i\omega t Z/2} =  \begin{pmatrix} e^{-i\omega t/2} & 0 \\ 0 & e^{i\omega t/2} \end{pmatrix}\,.$$
-  Si el estado inicial es $\ket{v(0)} = \alpha\ket{0} + \beta\ket{1}$, entonces
-  $$\ket{v(t)} = \alpha e^{-i\omega t/2}\ket{0} + \beta e^{i\omega t/2}\ket{1}\,.$$
+  Si el estado inicial es $\ket{\psi(0)} = \alpha\ket{0} + \beta\ket{1}$, entonces
+  $$\ket{\psi(t)} = \alpha e^{-i\omega t/2}\ket{0} + \beta e^{i\omega t/2}\ket{1}\,.$$
   Las probabilidades $|\alpha|^2$ y $|\beta|^2$ se mantienen constantes, pero las fases evolucionan.
 \end{eje}
 
 \begin{info}
-  El Postulado V garantiza que la información cuántica se conserva durante la evolución temporal de sistemas cerrados. Esto es fundamental para el diseño de algoritmos cuánticos, donde las operaciones se implementan mediante secuencias de operadores unitarios.
+  El Postulado IV garantiza que la información cuántica se conserva durante la evolución temporal de sistemas cerrados. Esto es fundamental para el diseño de algoritmos cuánticos, donde las operaciones se implementan mediante secuencias de operadores unitarios.
 \end{info}
 
 \begin{defi}
@@ -339,21 +368,25 @@ En la notación de Dirac, el producto tensorial de los estados $\ket{v}$ y $\ket
 $$\ket{vw} = \ket{v} \tensor \ket{w}\,.$$
 
 \begin{eje}
-  El sistema cuántico formado por dos cúbits es $\mathcal{C} \tensor \mathcal{C}$ y tiene dimensión $2^2 = 4$. En este espacio cuántico, contamos con dos bases ortonormales de forma natural:
-  \begin{itemize}
-    \item La base computacional: $\{\ket{0}, \ket{1}, \ket{2}, \ket{3}\}$.
-    \item La base tensorial heredada: $\{\ket{00}, \ket{01}, \ket{10}, \ket{11}\}$.
-  \end{itemize}
+  El sistema cuántico formado por dos cúbits es $\mathcal{C}^2 = \mathcal{C} \tensor \mathcal{C}$ y tiene dimensión $2^2 = 4$. En este espacio cuántico, contamos con dos formas de expresar la base computacional:
+  \begin{enumerate}
+    \item La base decimal: $\{\ket{0}, \ket{1}, \ket{2}, \ket{3}\}$.
+    \item La base binaria: $\{\ket{00}, \ket{01}, \ket{10}, \ket{11}\}$.
+  \end{enumerate}
 \end{eje}
 
 \begin{defi}[Base computacional para múltiples cúbits]
   Para $n$ cúbits, la base computacional está formada por
-  $$\{\ket{b_1 b_2 \cdots b_n} \mid b_i \in \{0,1\}\}\,.$$
+  $$\{\ket{b_1 b_2 \cdots b_n} \mid b_i \in \{0,1\} \quad i=1,\cdots,n\}\,,$$
+  o
+  $$\{\ket{i} \quad i=0,\cdots,2^n-1\}\,.$$
 \end{defi}
 
 \begin{eje}[Sistema de dos cúbits]
   Un estado general de dos cúbits se escribe como
-  $$\ket{v} = \alpha_{00}\ket{00} + \alpha_{01}\ket{01} + \alpha_{10}\ket{10} + \alpha_{11}\ket{11}\,,$$
+  $$\ket{\psi} = \alpha_{00}\ket{00} + \alpha_{01}\ket{01} + \alpha_{10}\ket{10} + \alpha_{11}\ket{11}\,,$$
+  o en su forma decimal
+  $$\ket{\psi} = \alpha_{00}\ket{0} + \alpha_{01}\ket{1} + \alpha_{10}\ket{2} + \alpha_{11}\ket{3}\,,$$
   con $\sum_{ij} |\alpha_{ij}|^2 = 1$.
 \end{eje}
 
@@ -372,7 +405,9 @@ Los sistemas formados a partir de productos tensoriales, clasifican los estados 
   \end{itemize}
 \end{eje}
 
-Como ejemplo de estados entrelazados debemos prestar atención a los estados de Bell. Son ejemplos sencillos pero poderosos para poder entender la verdadera potencia de la computación cuántica.
+Como ejemplo de estados entrelazados debemos prestar especial atención a los estados de Bell. Son ejemplos sencillos pero poderosos para poder entender la verdadera potencia de la computación cuántica.
+
+Los estados de Bell son estados entrelazados de dos cúbits que forman una base ortonormal del espacio de estados de dos cúbits.
 
 \begin{eje}[Estados de Bell]
   Los cuatro estados de Bell forman una base ortonormal de estados entrelazados para dos cúbits:
@@ -392,25 +427,35 @@ El producto externo tiene con la notación de Dirac una nueva forma de expresars
 $$ \ket{u} \wedge \ket{v} = \ket{u} \otimes \ket{v}^\dagger = \ket{u} \otimes \bra{v} = \ketbra{u}{v}\,.$$
 
 Para entender como actua con esta notación, pasamos a la notación matemática, operamos y volvemos a la notación de Dirac
-$$ \ketbra{u}{v}(\ket{w}) = (u \wedge v)(w) = \langle w, v\rangle u = \braket{w}{v}\ket{u}\,.$$
+$$ \ketbra{u}{v}\ket{w} = (u \wedge v)(w) = \langle v, w\rangle u = \braket{v}{w}\ket{u}\,.$$
 
-Normalmente, no se escriben los paréntesis y se entiende que el operador actúa sobre un ket a su derecha.
-$$ \ketbra{u}{v} \ket{w} = \braket{w}{v}\ket{u}\,.$$
+\begin{eje}
+  Los operadores de Pauli, expresados en notación de Dirac son
+  \begin{align*}
+    X & = \ketbra{1}{0} + \ketbra{0}{1}\,.   \\
+    Y & = i\ketbra{1}{0} - i\ketbra{0}{1}\,. \\
+    Z & = \ketbra{0}{0} - \ketbra{1}{1}\,.
+  \end{align*}
+  Mientras que la puerta de Hadamard es
+  $$H = \frac{1}{\sqrt{2}}\left(\ketbra{0}{0} + \ketbra{0}{1} + \ketbra{1}{0} - \ketbra{1}{1}\right)\,.$$
+\end{eje}
+
+Usando esta notación, podemos expresar la acción de un operador sobre un ket, solo en términos del producto interno, y simplemente moviendo símbolos de un lado a otro, esta notación nos permite expresar de forma compacta las operaciones que realizamos.
+
+\begin{eje}
+  Veamos cómo actúa la puerta de Hadamard sobre el estado $\ket{0}$.
+  \begin{align*}
+    H\ket{0} & = \left(\frac{1}{\sqrt{2}}\ketbra{0}{0} + \frac{1}{\sqrt{2}}\ketbra{0}{1} + \frac{1}{\sqrt{2}}\ketbra{1}{0} - \frac{1}{\sqrt{2}}\ketbra{1}{1}\right)\ket{0}         \\
+             & = \frac{1}{\sqrt{2}}\braket{0}{0}\ket{0} + \frac{1}{\sqrt{2}}\braket{1}{0}\ket{0} + \frac{1}{\sqrt{2}}\braket{0}{0}\ket{1} + \frac{1}{\sqrt{2}}\braket{1}{0}\ket{1} \\
+             & = \frac{1}{\sqrt{2}}\ket{0} + \frac{1}{\sqrt{2}}\ket{1} = \ket{+}\,.
+  \end{align*}
+\end{eje}
 
 \subsection{Observables, mediciones y estados}
 
 La notación de Dirac nos permite expresar observables, mediciones y estados de manera compacta, haciendo uso de símbolos que según su posición o su notación juegan distintos papeles pero que dejan muy claro que representan, y sobre todo, mantienen el significado de la operación que representan.
 
 Por este motivo, una expresión del tipo $\ketbra{\$}{€}+\ketbra{€}{\$}$ representa un observable, donde $€$ representa una medición y $\ket{€}$ representa un estado propio del observable.
-
-\begin{eje}[Matrices de Pauli en notación de Dirac]
-  Las matrices de Pauli se pueden expresar como:
-  \begin{align*}
-    X & = \ketbra{-1}{1} + \ketbra{1}{-1}\,.    \\
-    Y & = -i\ketbra{-1}{1} + i\ketbra{1}{-1}\,. \\
-    Z & = \ketbra{1}{1} - \ketbra{-1}{-1}\,.
-  \end{align*}
-\end{eje}
 
 En general, un observable $O$ puede escribirse en su descomposición espectral
 $$O = \sum_i \lambda_i \ketbra{\lambda_i}{\lambda_i}\,,$$
@@ -445,7 +490,103 @@ Algunas veces, por comodidad de notación, se utilizará $\ket{1}$ y $\ket{2}$ a
   ¿Cual es el valor esperado de medir $O_z$ en el estado $\ket{\rightarrow}$?
 
   Recordando la definición del valor esperado en una medida~\ref{defi:valor_esperado}, tenemos
-  \[
-    \expval{O_z}{\rightarrow} = \frac{\hbar}{2}P(\uparrow) - \frac{\hbar}{2}P(\downarrow) = \frac{\hbar}{2}\left(P(\uparrow) - P(\downarrow)\right) = \frac{\hbar}{2}\left(\frac{1}{2} - \frac{1}{2}\right) = 0\,.
-  \]
+  \begin{align*}
+    \expval{O_z}{\rightarrow} & = \braket{\frac{1}{\sqrt{2}}(\ket{\uparrow}+\ket{\downarrow})}{\left(\frac{\hbar}{2}\ketbra{\uparrow}{\uparrow} - \frac{\hbar}{2}\ketbra{\downarrow}{\downarrow}\right)\frac{1}{\sqrt{2}}(\ket{\uparrow}+\ket{\downarrow})}                        \\
+                              & = \frac{\hbar}{4}\braket{\ket{\uparrow}+\ket{\downarrow}}{\ketbra{\uparrow}{\uparrow}\ket{\uparrow} - \ketbra{\downarrow}{\downarrow}\ket{\uparrow}+\ketbra{\uparrow}{\uparrow}\ket{\downarrow} - \ketbra{\downarrow}{\downarrow}\ket{\downarrow}} \\
+                              & = \frac{\hbar}{4}\braket{\ket{\uparrow}+\ket{\downarrow}}{\braket{\uparrow}{\uparrow}\ket{\uparrow} - \braket{\downarrow}{\uparrow}\ket{\downarrow}+\braket{\uparrow}{\downarrow}\ket{\uparrow} - \braket{\downarrow}{\downarrow}\ket{\downarrow}} \\
+                              & = \frac{\hbar}{4}\braket{\ket{\uparrow}+\ket{\downarrow}}{\ket{\uparrow} - \ket{\downarrow}}                                                                                                                                                       \\
+                              & = \frac{\hbar}{4}\left(\braket{\uparrow}{\uparrow}+\braket{\downarrow}{\uparrow} - \braket{\downarrow}{\uparrow} - \braket{\downarrow}{\downarrow}\right)                                                                                          \\
+                              & = \frac{\hbar}{4}\left(1+0 - 0 - 1\right) = 0\,.
+  \end{align*}
+\end{eje}
+
+\subsection{La esfera de Bloch}
+La esfera de Bloch es una representación geométrica de los estados de un cúbit. Cada punto en la superficie de la esfera corresponde a un estado del cúbit.
+
+Todo ket $\ket{a}$ de un cúbit puede ser expresado como una combinación lineal de los kets de la base computacional $\{\ket{0}, \ket{1}\}$
+\[
+  \ket{a} = \alpha \ket{0} + \beta \ket{1}\,,
+\]
+donde expresando $\alpha$ y $\beta$ en forma polar,
+\[\alpha = r_0 e^{i\gamma_0}, \quad \beta = r_1 e^{i\gamma_1} \quad \text{con } r_0, r_1 \geq 0 \text{ y } \gamma_0, \gamma_1 \in \R\,,\]
+nos permite expresar el ket $\ket{a}$ como
+\[
+  \ket{a} = r_0 e^{i\gamma_0} \ket{0} + r_1 e^{i\gamma_1} \ket{1}\,.
+\]
+
+Como ya hemos explicado anteriormente, dos kets que difieren en una fase global representan el mismo estado físico, por lo que podemos eliminar el factor $e^{i\gamma_0}$, quedando
+\[
+  \ket{a} = r_0 \ket{0} + r_1 e^{i(\gamma_1 - \gamma_0)} \ket{1}\,.
+\]
+Denotando $\phi = \gamma_1 - \gamma_0$, y usando la condición de normalización $r_0^2 + r_1^2 = 1$, podemos expresar $r_0$ y $r_1$ en función de un ángulo $\theta \in [0, 2\pi)$ como
+\[r_0 = \cos\left(\theta\right), \quad r_1 = \sin\left(\theta\right)\,.\]
+
+Finalmente, el ket $\ket{a}$ puede ser expresado a partir de dos valores reales, $\theta$ y $\phi$, como
+\[
+  \ket{a}=\cos\left(\theta\right)\ket{0}+e^{i\phi}\sin\left(\theta\right)\ket{1}\quad (\theta,\phi)\in [0, 2\pi)\times[0, 2\pi)
+\]
+
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}
+    [line cap=round, line join=round]
+    \clip (-2.19,-2.49) rectangle (2.66,2.58);
+    \draw [shift={(0,0)}, fill, fill opacity=0.1] (0,0) -- (56.7:0.4) arc (56.7:90.:0.4) -- cycle;
+    \draw [shift={(0,0)}, fill, fill opacity=0.1] (0,0) -- (-135.7:0.4) arc (-135.7:-33.2:0.4) -- cycle;
+    \draw (0,0) circle (2cm);
+    \draw [rotate around={0.:(0.,0.)},dash pattern=on 3pt off 3pt] (0,0) ellipse (2cm and 0.9cm);
+    \draw (0,0)-- (0.70,1.07);
+    \draw (0,0) -- (0,2);
+    \draw (0,0) -- (-0.81,-0.79);
+    \draw (0,0) -- (2,0);
+    \draw [dotted] (0.7,1) -- (0.7,-0.46);
+    \draw [dotted] (0,0) -- (0.7,-0.46);
+    \draw (-0.08,-0.3) node[anchor=north west] {$\phi$};
+    \draw (0.01,0.9) node[anchor=north west] {$\theta$};
+    \draw (0.4,1.65) node[anchor=north west] {$\ket{a}$};
+    \scriptsize
+    \draw [fill] (0,0) circle (1.5pt);
+    \draw [fill] (0.7,1.1) circle (0.5pt);
+  \end{tikzpicture}
+  \caption{Representación de un ket $\ket{a}\in\mathcal{C}$ en la esfera}
+\end{figure}
+
+Pero no podemos realizar esta representación sobre toda la esfera, pues los valores de $\theta$ y $\phi$ no son únicos para cada estado, ya que
+\[
+  \cos(\theta)\ket{0}+e^{i\phi}\sin(\theta)\ket{1}=-(\cos(\pi-\theta)\ket{0}+e^{i(\pi+\phi)}\sin(\pi-\theta)\ket{1})\,,
+\]
+solo se diferencian en una fase global. Por lo que los puntos $(\theta,\phi)$ y $(\pi-\theta,\pi+\phi)$ representan el mismo estado físico.
+
+Para evitar esta ambigüedad, se suele restringir el valor de $\theta$ al intervalo $[0, \pi/2)$, lo que corresponde a la mitad superior de la esfera.
+
+Por convenio, se dibuja la esfera sobre los tres ejes espaciales X, Y, Z de tal modo que el ecuador quede en el plano XY, igualmente se considera el eje Z perpendicular a dicho plano.
+Los kets de la base canónica computacional se sitúan sobre el eje Z, estando el ket $\ket{0}$ en el eje positivo y el ket $\ket{1}$ sobre el eje negativo.
+
+Esta forma de representación de un estado del cúbit recibe el nombre de \textbf{esfera de Bloch}.
+
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}
+    [line cap=round, line join=round]
+    \draw (0,0) circle (2cm);
+    \draw [rotate around={0.:(0.,0.)},dash pattern=on 3pt off 3pt] (0,0) ellipse (2cm and 0.9cm);
+    \draw (0,0) -- (0,2);
+    \draw (0,0) -- (0,-2);
+    \draw (0,0) -- (2,0);
+    \draw (0,0) -- (-2,0);
+    \draw (0,0) -- (-0.81,-0.79);
+    \draw (0,0) -- (0.81,0.79);
+    \draw (-0.3,3) node[anchor=north west] {Z};
+    \draw (-0.3,2.6) node[anchor=north west] {$\ket{0}$};
+    \draw (-0.3,-2) node[anchor=north west] {$\ket{1}$};
+    \draw (2,0.3) node[anchor=north west] {Y};
+    \draw (-1.2,-0.8) node[anchor=north west] {X};
+  \end{tikzpicture}
+  \caption{Ejes espaciales y representación de la base canónica computacional en la esfera de Bloch}
+\end{figure}
+
+\begin{eje}
+  El estado $\ket{+} = \frac{1}{\sqrt{2}}(\ket{0} + \ket{1})$ corresponde al punto en el ecuador con $\phi=0$.
+
+  Mientras que $\ket{-} = \frac{1}{\sqrt{2}}(\ket{0} - \ket{1})$ corresponde al punto en el ecuador con $\phi=\pi$.
 \end{eje}
