@@ -21,8 +21,39 @@
     \part ¿Cuál es el período de oscilación?
   \end{parts}
 
-  \question Dado un operador unitario general $U \in SU(2)$, describa un algoritmo para descomponerlo en el conjunto universal $\{H, T, CNOT\}$.
+  \question Utilizando la notación de Dirac, demuestre que la puerta CSWAP puede escribirse como
+  \[
+    \text{CSWAP} = \ket{0}\bra{0} \otimes I \otimes I + \ket{1}\bra{1} \otimes \text{SWAP}\,.
+  \]
 
+  \question Demuestre que la puerta CNOT puede construirse a partir de puertas Hadamard y CZ.
+
+  \question Muestre que la puerta SWAP puede construirse a partir de tres puertas CNOT.
+
+  \question Comprueba que la matriz de Hadamard es equivalente a $\dfrac{X+Z}{\sqrt{2}}$.
+
+  \question Demuestra que todo operador unitario y hermítico tiene autovalores $\pm 1$.
+
+  \question Demuestra las siguientes igualdades:
+  \begin{parts}
+    \part $H X H = Z$.
+    \part $H Z H = X$.
+    \part $H Y H = -Y$.
+    \part $X^2_1 = H_1 H_2 X^1_2 H_1 H_2$.
+    \part $Z^2_1 = Z^1_2$.
+  \end{parts}
+
+  \question Considere el siguiente operador unitario sobre 3 cúbits
+  \[
+    U = H_1(\text{SWAP})^1_{2,3}H_1\,.
+  \]
+
+  Dado dos cúbits $\ket{a}$ y $\ket{b}$,
+  \begin{parts}
+    \part ¿cuál es el resultado de aplicar $U$ al estado $\ket{0ab}$?
+    \part ¿Cual es la probabilidad de medir el primer cúbit en estado $\ket{0}$ tras aplicar $U$?
+    \part Indica como podemos usar este operador para comparar si los cúbits $\ket{a}$ y $\ket{b}$ son iguales.
+  \end{parts}
 
 \end{questions}
 

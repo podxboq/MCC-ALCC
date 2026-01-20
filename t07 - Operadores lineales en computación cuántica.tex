@@ -53,14 +53,20 @@ Los objetivos específicos de este tema son:
 
 Empecemos con el espacio de un solo cúbit, $\mathcal{C}$. Aquí, los operadores se representan como matrices $2 \times 2$, y su estudio es fundamental para entender la computación cuántica. La dimensión del espacio de matrices $2 \times 2$ es 4, lo que implica que éste es el número de matrices linealmente independientes que cualquier base va a tener.
 
-\begin{eje}
-  Las matrices de Pauli $X, Y, Z$ junto con la identidad $I$ es una base.
-
+\begin{prop}
+  Las matrices de Pauli $X, Y, Z$ junto con la identidad $I$ es una base de $\mathcal{M}_2(\C)$.
+\end{prop}
+\begin{proof}
   Al coincidir el número de matrices del conjunto con la dimensión del espacio, podemos estudiar solo una condición de base, ser linealmente independiente o generar el espacio.
 
-  Veamos que son linealmente independientes. Si existen $a, b, c, d \in \mathcal{C}$ tales que $aI + bX + cY + dZ = 0$, entonces
+  Veamos que son linealmente independientes. Si existen $a, b, c, d \in \mathcal{C}$ tales que
+  \[
+    aI + bX + cY + dZ = 0\,,
+  \]
+  entonces
   \begin{align*}
-    0 & = aI + bX + cY + dZ = a\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}+b \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}    +c \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}+d \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \\
+    0 & = aI + bX + cY + dZ                                                                                                                                                                               \\
+      & =a\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}+b \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}    +c \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}+d \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \\
       & = \begin{pmatrix} a+d & b - ic \\ b + ic & a - d \end{pmatrix}\Rightarrow
     \begin{cases}
       a + d = 0  \\
@@ -69,9 +75,9 @@ Empecemos con el espacio de un solo cúbit, $\mathcal{C}$. Aquí, los operadores
       a - d = 0
     \end{cases} \Rightarrow a = b = c = d = 0\,.
   \end{align*}
-\end{eje}
+\end{proof}
 
-Cualquier matriz hermítica $A = \begin{pmatrix} a & b \\ \overline{b} & c \end{pmatrix}$ con $a, c \in \mathbb{R}$ y $b \in \mathcal{C}$ puede expresarse en esta base de la siguiente manera
+Cualquier matriz hermítica $A = \begin{pmatrix} a & b \\ \overline{b} & c \end{pmatrix}$ con $a, c \in \mathbb{R}$ y $b \in \C$ puede expresarse en esta base de la siguiente manera
 $$A = \frac{a+c}{2}I + \Rp(b)X - \Ip(b)Y+ \frac{a-c}{2}Z\,. $$
 
 El postulado 3 de la teoría cuántica establece que la ecuación de Schrödinger para la evolución temporal de un cúbit debe ser un operador unitario.
@@ -82,82 +88,116 @@ En cuanto a los operadores unitarios, la condición $U^\dagger U = I$ impone res
   Llamaremos \textbf{puertas cuánticas} a los operadores unitarios en $\mathcal{C}^n$.
 \end{defi}
 
-\begin{theo}[Parametrización de puertas cuánticas de un cúbit]
+Sobre un cúbit, ya hemos visto que los kets pueden representarse como puntos de la esfera de Bloch, y por tanto, aplicar una puerta cuántica a un punto de la esfera, debe llevarlo a otro punto de la esfera. De manera similar, los operadores unitarios en $\mathcal{C}$ pueden interpretarse como rotaciones de esta esfera.
+
+\begin{prop}
+  Un operador $U$ en $\mathcal{C}$ es unitario si y solo si puede escribirse como
+  $$U = \begin{pmatrix} e^{i(\alpha - \frac{\beta}{2}-\frac{\delta}{2})} \cos(\frac{\gamma}{2}) & -e^{i(\alpha - \frac{\beta}{2}+\frac{\delta}{2})} \sin(\frac{\gamma}{2}) \\
+                e^{i(\alpha + \frac{\beta}{2}-\frac{\delta}{2})} \sin(\frac{\gamma}{2}) & e^{i(\alpha + \frac{\beta}{2}+\frac{\delta}{2})} \cos(\frac{\gamma}{2})\end{pmatrix}\,,$$
+  con $\alpha, \beta, \delta, \gamma \in \R$.
+\end{prop}
+\begin{proof}
+  Sea $U = \begin{pmatrix} a & b \\ c & d \end{pmatrix}$ un operador unitario en $\mathcal{C}$, entonces de la condición $U^\dagger U = I$ se tiene que
+  \[
+    \begin{pmatrix} \bar{a} & \bar{c} \\ \bar{b} & \bar{d} \end{pmatrix} \begin{pmatrix} a & b \\ c & d \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}\,.
+  \]
+  De donde se deduce el sistema de ecuaciones
+  \begin{align}
+    |a|^2 + |b|^2       & = 1\,. \\
+    |c|^2 + |d|^2       & = 1\,. \\
+    a\bar{c} + b\bar{d} & = 0\,.
+  \end{align}
+
+  Distinguimos tres casos:
+  \begin{enumerate}
+    \item $c=0$.
+
+          De la segunda ecuación nos dice que $d\neq 0$, y de la tercera ecuación nos obliga a que $b=0$.
+          Entonces de la primera ecuación $|a|^2 = 1$ y de la segunda $|d|^2 = 1$, por lo que
+          \[
+            U = \begin{pmatrix} e^{i\theta} & 0 \\ 0 & e^{i\phi} \end{pmatrix}\,,
+          \]
+          con $\theta, \phi \in \mathbb{R}$.
+
+          Ahora solo basta tomar $\alpha = \frac{\theta + \phi}{2}$, $\delta = \gamma = 0$, y $\beta = \phi - \theta$, para obtener la expresión del enunciado.
+    \item $a=0$.
+
+          Usando el mismo razonamiento, llegamos a que
+          \[
+            U = \begin{pmatrix} 0 & -e^{i\phi} \\ e^{i\theta} & 0 \end{pmatrix}\,,
+          \]
+          y tomando $\alpha = \frac{\theta + \phi}{2}$ y $\beta = \frac{\theta - \phi}{2}$, $\gamma = \pi$ y $\delta = 0$ obtenemos la expresión del enunciado.
+    \item $a\bar{c}\neq 0$.
+
+          La tercera ecuación se puede reescribir como
+          $$\bar{a}c + \bar{b}d = 0 \Rightarrow a = -\frac{b}{\bar{c}}\bar{d}\Rightarrow a = \frac{|b|}{|c|}|d|\,.$$
+          Sustituyendo en la primera ecuación:
+          \begin{align*}
+            1 & = |a|^2 + |b|^2                                                            \\
+              & = \left(\frac{|b|}{|c|}|d|\right)^2 + |b|^2                                \\
+              & = |b|^2\left(\frac{|d|^2}{|c|^2} + 1\right)                                \\
+              & = |b|^2\left(\frac{|d|^2+|c|^2}{|c|^2}\right) & \text{por la ecuación (2)} \\
+              & = \frac{|b|^2}{|c|^2}                                                      \\
+          \end{align*}
+          Por lo tanto, $|b| = |c|$ y de la ecuación (1) y (2) se deduce que $|a| = |d|$. Podemos por tanto encontrar $\gamma, \theta, \phi, \psi, \chi \in \R$ tales que
+          \begin{align*}
+            |a| & = |d| = \cos\left(\frac{\gamma}{2}\right)\,. \\
+            |b| & = |c| = \sin\left(\frac{\gamma}{2}\right)\,. \\
+            a   & = |a|e^{i\theta}                             \\
+            b   & = -|b|e^{i\phi}                              \\
+            c   & = |c|e^{i\psi}                               \\
+            d   & = |d|e^{i\chi}                               \\
+          \end{align*}
+
+          Como $a\bar{c} + b\bar{d} = 0$, se tiene que
+          \[
+            |a||c|e^{i(\theta - \psi)} - |b||d|e^{i(\phi - \chi)} = 0\Rightarrow e^{i(\theta - \psi)} =  e^{i(\phi - \chi)} \Rightarrow \theta - \psi = \phi - \chi \,,
+          \]
+
+          Tomando $\alpha = \frac{\theta + \chi}{2}$, $\beta = \chi - \theta$, y $\delta = \phi - \chi$, obtenemos la expresión del enunciado.
+  \end{enumerate}
+\end{proof}
+
+Podemos parametrizar por tanto toda matriz unitaria en $\mathcal{C}$ con cuatro parámetros reales, y dee ellos, uno solo afecta a las probabilidades de medición, el parámetro $\gamma$. Los otros tres parámetros corresponden a fases globales o relativas que no afectan a las probabilidades de medición. Llamaremos puerta genérica a la expresión $U(\alpha, \beta,\delta,\gamma)$ dada por la proposición anterior.
+
+Podemos simplificar la expresión anterior y obtener un bonito resultado geométrico. Para ello vamos a introducir las matrices de rotación sobre los ejes de la esfera de Bloch.
+
+\begin{defi}
+  Sea $U$ una matriz unitaria en $\mathcal{C}$. Llamamos matriz de rotación de $U$ a la matriz parametrizada por
+  $$R_U(\theta) = e^{-i\theta U/2}\,.$$
+\end{defi}
+
+Sin entrar en detalles sobre la definición de la exponencial de una matriz, podemos calcular las matrices de rotación sobre las matrices de Pauli.
+
+\begin{prop}
+  Las matrices de rotación sobre las matrices de Pauli son:
+  \begin{align*}
+    R_X(\theta) & = \begin{pmatrix} \cos\frac{\theta}{2} & -i\sin\frac{\theta}{2} \\ -i\sin\frac{\theta}{2} & \cos\frac{\theta}{2} \end{pmatrix}\,, \\
+    R_Y(\theta) & = \begin{pmatrix} \cos\frac{\theta}{2} & -\sin\frac{\theta}{2} \\ \sin\frac{\theta}{2} & \cos\frac{\theta}{2} \end{pmatrix}\,,    \\
+    R_Z(\theta) & = \begin{pmatrix} e^{-i\theta/2} & 0 \\ 0 & e^{i\theta/2} \end{pmatrix}\,.
+  \end{align*}
+\end{prop}
+
+Ahora podemos expresar cualquier puerta cuántica en $\mathcal{C}$ como una combinación de rotaciones alrededor de los ejes de la esfera de Bloch.
+
+\begin{prop}
   Toda puerta cuántica en $\mathcal{C}$ puede escribirse como
-  $$U = \begin{pmatrix} e^{i\alpha} & 0 \\ 0 & e^{i\beta} \end{pmatrix} \begin{pmatrix} \cos\frac{\theta}{2} & \sin\frac{\theta}{2} \\ -\sin\frac{\theta}{2} & \cos\frac{\theta}{2} \end{pmatrix} \begin{pmatrix} e^{-i\alpha} & 0 \\ 0 & e^{-i\beta} \end{pmatrix}\,,$$
-  donde $\alpha, \beta, \theta \in \mathbb{R}$.
-\end{theo}
+  $$U = e^{i\alpha} R_Z(\beta) R_Y(\gamma) R_Z(\delta)\,,$$
+  donde $\alpha, \beta, \delta, \gamma \in \mathbb{R}$.
+\end{prop}
 
-\begin{info}
-  Debería notarse que esta parametrización no es compatible con el grupo de operadores unitarios $2 \times 2$ isomorfo a $U(2)$ y con dimensión real 4, como cabría esperar. En computación cuántica, típicamente ignoramos fases globales, y es por ello que en realidad estamos trabajando con el grupo $SU(2)/\mathbb{Z}_2 \cong SO(3)$.
-\end{info}
-
-\subsection{La esfera de Bloch}
-La esfera de Bloch es una representación geométrica de los estados de un cúbit. Cada punto en la superficie de la esfera corresponde a un estado del cúbit.
-
-Todo ket $\ket{a}$ de un cúbit puede ser expresado a partir de dos valores reales, $\theta$ y $\phi$, como:
-\[
-  \ket{a}=\cos\left(\frac{\theta}{2}\right)\ket{0}+e^{i\phi}\sin\left(\frac{\theta}{2}\right)\ket{1}\ (\theta,\phi)\in [0, \pi]\times[0, 2\pi]
-\]
-
-\begin{figure}[H]
-  \centering
-  \begin{tikzpicture}
-    [line cap=round, line join=round]
-    \clip (-2.19,-2.49) rectangle (2.66,2.58);
-    \draw [shift={(0,0)}, fill, fill opacity=0.1] (0,0) -- (56.7:0.4) arc (56.7:90.:0.4) -- cycle;
-    \draw [shift={(0,0)}, fill, fill opacity=0.1] (0,0) -- (-135.7:0.4) arc (-135.7:-33.2:0.4) -- cycle;
-    \draw (0,0) circle (2cm);
-    \draw [rotate around={0.:(0.,0.)},dash pattern=on 3pt off 3pt] (0,0) ellipse (2cm and 0.9cm);
-    \draw (0,0)-- (0.70,1.07);
-    \draw (0,0) -- (0,2);
-    \draw (0,0) -- (-0.81,-0.79);
-    \draw (0,0) -- (2,0);
-    \draw [dotted] (0.7,1) -- (0.7,-0.46);
-    \draw [dotted] (0,0) -- (0.7,-0.46);
-    \draw (-0.08,-0.3) node[anchor=north west] {$\phi$};
-    \draw (0.01,0.9) node[anchor=north west] {$\theta$};
-    \draw (0.4,1.65) node[anchor=north west] {$\ket{a}$};
-    \scriptsize
-    \draw [fill] (0,0) circle (1.5pt);
-    \draw [fill] (0.7,1.1) circle (0.5pt);
-  \end{tikzpicture}
-  \caption{Representación de un ket $\ket{a}\in\H$ en la esfera de Bloch}
-\end{figure}
-
-Por convenio, se dibuja la esfera sobre los tres ejes espaciales X, Y, Z de tal modo que el ecuador quede en el plano XY, igualmente se considera el eje Z perpendicular a dicho plano.
-Los kets de la base canónica computacional se sitúan sobre el eje Z, estando el ket $\ket{0}$ en el eje positivo y el ket $\ket{1}$ sobre el eje negativo.
-
-\begin{figure}[H]
-  \centering
-  \begin{tikzpicture}
-    [line cap=round, line join=round]
-    \draw (0,0) circle (2cm);
-    \draw [rotate around={0.:(0.,0.)},dash pattern=on 3pt off 3pt] (0,0) ellipse (2cm and 0.9cm);
-    \draw (0,0) -- (0,2);
-    \draw (0,0) -- (0,-2);
-    \draw (0,0) -- (2,0);
-    \draw (0,0) -- (-2,0);
-    \draw (0,0) -- (-0.81,-0.79);
-    \draw (0,0) -- (0.81,0.79);
-    \draw (-0.3,3) node[anchor=north west] {Z};
-    \draw (-0.3,2.6) node[anchor=north west] {$\ket{0}$};
-    \draw (-0.3,-2) node[anchor=north west] {$\ket{1}$};
-    \draw (2,0.3) node[anchor=north west] {Y};
-    \draw (-1.2,-0.8) node[anchor=north west] {X};
-  \end{tikzpicture}
-  \caption{Ejes espaciales y representación de la base canónica computacional en la esfera de Bloch}
-\end{figure}
+Como la fase global no tiene efectos en las observaciones, podemos prescindir de este parámetro y dejar la expresión como
+$$U = U(\alpha, \beta, \gamma) = R_Z(\beta) R_Y(\alpha) R_Z(\gamma) = \begin{pmatrix} \cos\frac{\alpha}{2} & -e^{i\gamma}\sin\frac{\alpha}{2} \\ e^{i\beta}\sin\frac{\alpha}{2} & e^{i(\beta+\gamma)}\cos\frac{\alpha}{2} \end{pmatrix}\,,$$
+donde $\alpha, \beta, \gamma \in \mathbb{R}$.
 
 \begin{eje}
-  Así por ejemplo, el estado $\ket{+} = \frac{1}{\sqrt{2}}(\ket{0} + \ket{1})$ corresponde al punto en el ecuador con $\phi=0$.
-
-  Mientras que $\ket{-} = \frac{1}{\sqrt{2}}(\ket{0} - \ket{1})$ corresponde al punto en el ecuador con $\phi=\pi$.
+  Las puertas de rotación de Pauli expresadas como puertas genéricas son:
+  \begin{itemize}
+    \item $R_X(\theta) = U(\theta, -\frac{\pi}{2}, \frac{\pi}{2})$.
+    \item $R_Y(\theta) = U(\theta, 0, 0)$.
+    \item $R_Z(\theta) = U(0, \theta, 0)$.
+  \end{itemize}
 \end{eje}
-
-\begin{info}
-  La esfera de Bloch proporciona una visualización intuitiva de las operaciones cuánticas como rotaciones en el espacio tridimensional. Cada operador unitario en $\mathcal{C}$ corresponde a una rotación de la esfera.
-\end{info}
 
 \subsection{Puertas cuánticas fundamentales de un cúbit}
 
@@ -165,27 +205,27 @@ Las matrices de Pauli son las puertas cuánticas más fundamentales y correspond
 
 \begin{defi}[Puertas de Pauli]
   \begin{align*}
-    X & = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}  & \text{(puerta NOT)}     \\
-    Y & = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}                           \\
-    Z & = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} & \text{(puerta de fase)}
+    X & = U(\pi, 0, \pi) = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}        & \text{(puerta NOT)}     \\
+    Y & = U(\pi, \pi/2, \pi/2) = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}                           \\
+    Z & = U(\pi, 0, 0) = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}         & \text{(puerta de fase)}
   \end{align*}
 \end{defi}
 
 La puerta $X$ a veces se representa como $\oplus$ porque esencialmente es un sumador binario. Para ello solo tenemos que ver como actúa sobre los estados de la base computacional
 \begin{align*}
-  \ket{0}X & = \ket{1} \quad \text{que es } \ket{0\oplus 1}    \\
-  \ket{1}X & = \ket{0} \quad \text{que es } \ket{1\oplus 1}\,,
+  X\ket{0} & = \ket{1} \quad \text{que es } \ket{0\oplus 1}    \\
+  X\ket{1} & = \ket{0} \quad \text{que es } \ket{1\oplus 1}\,,
 \end{align*}
 donde $\oplus$ es la operación de \textbf{suma binaria}.
 Por este motivo, podemos expresar la acción de $X$ sobre la base computacional como
 \[
-  \ket{a}X = \ket{a\oplus 1}\,,
+  X\ket{a} = \ket{a\oplus 1}\,,
 \]
 para $a\in\{0,1\}$.
 
 Para la puerta $Z$ podemos representar su acción sobre la base computacional como
 \[
-  \ket{a}Z = (-1)^a \ket{a}\,,
+  Z\ket{a} = (-1)^a \ket{a}\,,
 \]
 para $a\in\{0,1\}$.
 
@@ -201,35 +241,35 @@ para $a\in\{0,1\}$.
 Otra puerta comúmente usada es la puerta de Hadamard, que es una puerta cuántica que crea superposiciones equiprobables.
 
 \begin{defi}[Puerta de Hadamard]
-  $$H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$$
+  $$H = U(\pi/2, 0, \pi) = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}\,.$$
 \end{defi}
 
 La puerta de Hadamard es fundamental para crear superposiciones, y su acción sobre los estados de la base computacional es:
 \begin{itemize}
-  \item $\ket{0}H = \frac{1}{\sqrt{2}}(\ket{0} + \ket{1}) = \ket{+}$.
-  \item $\ket{1}H = \frac{1}{\sqrt{2}}(\ket{0} - \ket{1}) = \ket{-}$.
+  \item $H\ket{0} = \frac{1}{\sqrt{2}}(\ket{0} + \ket{1}) = \ket{+}$.
+  \item $H\ket{1} = \frac{1}{\sqrt{2}}(\ket{0} - \ket{1}) = \ket{-}$.
 \end{itemize}
 
 \begin{defi}[Base de Hadamard]
   Llamaremos base de Hadamard a la base ortonormal $\{\ket{+}, \ket{-}\}$.
 \end{defi}
-Las siguientes identidades conectan las puertas de Pauli y la puerta de Hadamard:
+Las siguientes identidades conectan las puertas de Pauli y la puerta de Hadamard
 \begin{align*}
-  HXH & = Z  \\
-  HZH & = X  \\
-  HYH & = -Y
+  HXH & = Z     \\
+  HZH & = X     \\
+  HYH & = -Y\,.
 \end{align*}
 
 Para la puerta $H$ podemos representar su acción sobre la base computacional como
 \[
-  \ket{a}H = \frac{1}{\sqrt{2}}(\ket{0} + (-1)^a \ket{1})\,,
+  H\ket{a} = \frac{1}{\sqrt{2}}(\ket{0} + (-1)^a \ket{1})\,,
 \]
 para $a\in\{0,1\}$.
 
 \begin{prop}
-  La representación de la puerta de Hadamard en términos del producto exterior es:
+  La representación de la puerta de Hadamard en términos del producto exterior es
   \begin{align*}
-    H & = \frac{1}{\sqrt{2}}(\ketbra{0}{0} + \ketbra{1}{1})
+    H & = \frac{1}{\sqrt{2}}(\ketbra{0}{0} + \ketbra{1}{1})\,.
   \end{align*}
 \end{prop}
 
@@ -237,9 +277,9 @@ Otras puertas más genéricas son las puertas de fase.
 
 \begin{defi}[Puertas de fase]
   \begin{align*}
-    R_\phi & = \begin{pmatrix} 1 & 0 \\ 0 & e^{i\phi} \end{pmatrix}  & \text{(puerta de fase general)} \\
-    S      & = \begin{pmatrix} 1 & 0 \\ 0 & i \end{pmatrix}          & R_{\frac{\pi}{2}}               \\
-    T      & = \begin{pmatrix} 1 & 0 \\ 0 & e^{i\pi/4} \end{pmatrix} & R_{\frac{\pi}{4}}
+    R_\theta & = U(0, 0, \theta) =  \begin{pmatrix} 1 & 0 \\ 0 & e^{i\theta} \end{pmatrix} & \text{(puerta de fase general)} \\
+    S        & = U(0, 0, \pi/2) = \begin{pmatrix} 1 & 0 \\ 0 & i \end{pmatrix}             & R_{\frac{\pi}{2}}               \\
+    T        & = U(0, 0, \pi/4) = \begin{pmatrix} 1 & 0 \\ 0 & e^{i\pi/4} \end{pmatrix}    & R_{\frac{\pi}{4}}
   \end{align*}
 \end{defi}
 
@@ -252,38 +292,13 @@ Las puertas de fase introducen una fase relativa entre los estados $\ket{0}$ y $
 \end{itemize}
 
 \begin{prop}
-  La representación de las puertas de fase en términos del producto exterior es:
+  La representación de las puertas de fase en términos del producto exterior es
   \begin{enumerate}
     \item $R_\phi = \ketbra{0}{0} + e^{i\phi}\ketbra{1}{1}$.
     \item $S = \ketbra{0}{0} + i\ketbra{1}{1}$.
     \item $T = \ketbra{0}{0} + e^{i\pi/4}\ketbra{1}{1}$.
   \end{enumerate}
 \end{prop}
-
-
-\subsection{Rotaciones en la Esfera de Bloch}
-
-Toda rotación en la esfera de Bloch corresponde a un operador unitario en $\mathcal{C}$:
-
-\begin{defi}[Rotaciones de Pauli]
-  Las rotaciones alrededor de los ejes de Pauli son:
-  \begin{align*}
-    R_x(\theta) & = e^{-i\theta X/2} = \cos\frac{\theta}{2}I - i\sin\frac{\theta}{2}X = \begin{pmatrix} \cos\frac{\theta}{2} & -i\sin\frac{\theta}{2} \\ -i\sin\frac{\theta}{2} & \cos\frac{\theta}{2} \end{pmatrix} \\
-    R_y(\theta) & = e^{-i\theta Y/2} = \cos\frac{\theta}{2}I - i\sin\frac{\theta}{2}Y = \begin{pmatrix} \cos\frac{\theta}{2} & -\sin\frac{\theta}{2} \\ \sin\frac{\theta}{2} & \cos\frac{\theta}{2} \end{pmatrix}    \\
-    R_z(\theta) & = e^{-i\theta Z/2} = \cos\frac{\theta}{2}I - i\sin\frac{\theta}{2}Z = \begin{pmatrix} e^{-i\theta/2} & 0 \\ 0 & e^{i\theta/2} \end{pmatrix}
-  \end{align*}
-\end{defi}
-
-\begin{theo}[Descomposición universal para $SU(2)$]
-  Toda matriz unitaria $U \in SU(2)$ puede descomponerse como:
-  $$U = e^{i\alpha}R_z(\beta)R_y(\gamma)R_z(\delta)$$
-  para algunos ángulos reales $\alpha, \beta, \gamma, \delta$.
-\end{theo}
-
-\begin{eje}[Implementación de rotación arbitraria]
-  Para implementar una rotación alrededor del vector $\hat{n} = (n_x, n_y, n_z)$ por ángulo $\theta$:
-  $$R_{\hat{n}}(\theta) = \cos\frac{\theta}{2}I - i\sin\frac{\theta}{2}(n_xX + n_yY + n_zZ)$$
-\end{eje}
 
 \subsection{Operadores en $\mathcal{C}^n$: Sistemas multicúbit}
 
@@ -295,8 +310,8 @@ $$\{\ket{b_1 b_2 \ldots b_n} : b_i \in \{0,1\}\}$$
 
   Algunos ejemplo de como actuan las puertas construidas como tensoriales:
   \begin{align*}
-    \ket{01}(X \otimes I) & = \ket{0}X \otimes \ket{1}I = \ket{1} \otimes \ket{1} = \ket{11}    \\
-    \ket{10}(I \otimes Z) & = \ket{1}I \otimes \ket{0}Z = \ket{1} \otimes \ket{0} = \ket{10}\,.
+    (X \otimes I)\ket{01} & = X\ket{0} \otimes I\ket{1} = \ket{1} \otimes \ket{1} = \ket{11}    \\
+    (I \otimes Z)\ket{10} & = I\ket{1} \otimes Z\ket{0} = \ket{1} \otimes \ket{0} = \ket{10}\,.
   \end{align*}
 \end{eje}
 
@@ -313,10 +328,10 @@ $$\text{CNOT} = \ketbra{00}{00} + \ketbra{11}{11} + \ketbra{01}{10} + \ketbra{10
 
 \begin{eje}
   \begin{align*}
-    \ket{00}\text{CNOT} & = \ket{00} \\
-    \ket{01}\text{CNOT} & = \ket{01} \\
-    \ket{10}\text{CNOT} & = \ket{11} \\
-    \ket{11}\text{CNOT} & = \ket{10}
+    \text{CNOT}\ket{00} & = \ket{00} \\
+    \text{CNOT}\ket{01} & = \ket{01} \\
+    \text{CNOT}\ket{10} & = \ket{11} \\
+    \text{CNOT}\ket{11} & = \ket{10}
   \end{align*}
   El nombre de CNOT es Control NOT, pues el primer cúbit actúa como control, esta puerta solo actúa si el primer cúbit está en $\ket{1}$, en tal caso aplica $X$ al segundo cúbit.
 \end{eje}
@@ -333,7 +348,7 @@ Una notación más compacta y clara es indicar con un subíndice el cúbit sobre
 \begin{eje}
   $H_2$ denota la puerta de Hadamard aplicada al cúbit 2.
   \[
-    \ket{001}H_2 = \frac{\ket{001}+\ket{011}}{\sqrt{2}}
+    H_2\ket{001} = \frac{\ket{001}+\ket{011}}{\sqrt{2}}
   \]
 \end{eje}
 
@@ -344,6 +359,15 @@ Una notación más compacta y clara es indicar con un subíndice el cúbit sobre
   $$C_U = \ket{0}\bra{0} \otimes I + \ket{1}\bra{1} \otimes U = \begin{pmatrix} I & 0 \\ 0 & U \end{pmatrix}$$
 \end{defi}
 
+Al igual que las puertas unitarias de un cúbit, actuando sobre varios cúbits, las puertas controladas también tienen el problema de no indicar claramente cuál cúbit es el control y cuál es el objetivo. Para ello introducimos la notación de indicar con un superíndice la posición del cúbit control y un subíndice el cúbit objetivo.
+
+\begin{eje}
+  La puerta CNOT se puede escribir como $X^1_2$.
+  \[
+    X^1_2H_1\ket{00} = X^1_2\frac{\ket{00} + \ket{10}}{\sqrt{2}} = \frac{\ket{00} + \ket{11}}{\sqrt{2}} = \ket{\Phi^+}\,.
+  \]
+\end{eje}
+
 \begin{eje}[Otras puertas controladas importantes]
   \begin{itemize}
     \item \textbf{Controlled-Z}: $C_Z = \text{diag}(1, 1, 1, -1)$
@@ -352,21 +376,7 @@ Una notación más compacta y clara es indicar con un subíndice el cúbit sobre
   \end{itemize}
 \end{eje}
 
-Para puertas controladas de dos cúbits, a veces se ejecuta el control sobre el segundo cúbit, pero en estas situaciones, no podemos identificar claramente el control y el objetivo solo por el nombre de la puerta.
-
-En estas situaciones es necesario indicar donde está el cúbit de control.
-\begin{defi}
-  Sea $U$ una puerta cuántica de un cúbit. Denotamos por $U^j_k$ a la puerta controlada de $U$ con el cúbit $j$ como control y el cúbit $k$ como objetivo.
-\end{defi}
-
-\begin{eje}
-  \begin{itemize}
-    \item La puerta controlada CNOT se puede escribir como $X^1_2$.
-    \item La puerta controlada Hadamard se puede escribir como $H^1_2$.
-    \item La puerta controlada $X^2_1$ esta representada por la matriz
-          $$\begin{pmatrix} 1 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 \\ 0 & 0 & 1 & 0 \\ 0 & 1 & 0 & 0 \end{pmatrix}\,.$$
-  \end{itemize}
-\end{eje}
+Podemos expresar relaciones entre las puertas cuánticas con esta nueva notación.
 
 \begin{prop}
   Se dan las siguientes igualdades:
@@ -379,9 +389,17 @@ En estas situaciones es necesario indicar donde está el cúbit de control.
 
 \subsubsection{Puerta SWAP}
 \begin{defi}
-  La puerta SWAP intercambia dos cúbits
+  La puerta SWAP intercambia la posición de los dos cúbits
   $$\text{SWAP} = \begin{pmatrix} 1 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 \end{pmatrix}\,.$$
 \end{defi}
+
+Actuando sobre la base computacional la puerta SWAP es
+\begin{align*}
+  \text{SWAP}\ket{00} & = \ket{00}    \\
+  \text{SWAP}\ket{01} & = \ket{10}    \\
+  \text{SWAP}\ket{10} & = \ket{01}    \\
+  \text{SWAP}\ket{11} & = \ket{11}\,.
+\end{align*}
 
 \begin{prop}
   La puerta SWAP cumple
@@ -402,6 +420,8 @@ En estas situaciones es necesario indicar donde está el cúbit de control.
 
   Aplica $X$ al tercer cúbit solo si los primeros dos están en $\ket{11}$.
 \end{defi}
+
+
 
 \subsection{Evolución Temporal y Hamiltonianos}
 
@@ -441,15 +461,46 @@ $$e^{-iHt} = \sum_i e^{-i\lambda_i t} P_i\,.$$
 \begin{eje}[Estados de Bell]
   A partir del estádo básico $\ket{00}$ podemos construir cualquier estado de Bell aplicando las puertas $H$ y $X^1_2$. Por ejemplo
   \[
-    \ket{00}H_1 X^1_2 = \frac{1}{\sqrt{2}}(\ket{00} + \ket{10})X^1_2 = \frac{1}{\sqrt{2}}(\ket{00} + \ket{11}) = \ket{\Phi^+}\,.
+    X^1_2H_1 \ket{00} = X^1_2\frac{1}{\sqrt{2}}(\ket{00} + \ket{10}) = \frac{1}{\sqrt{2}}(\ket{00} + \ket{11}) = \ket{\Phi^+}\,.
   \]
 \end{eje}
 
 \begin{eje}[Estado GHZ]
   El estado Greenberger-Horne-Zeilinger (GHZ) es un estado de tres cúbits que es un estado de Bell generalizado. Su construcción es similar a la de los estados de Bell, pero en lugar de aplicar $X^1_2$ aplicamos $X^1_2 X^2_3$.
   \[
-    \ket{000}H_1 X^1_2 X^2_3 = \frac{1}{\sqrt{2}}(\ket{000} + \ket{111}) = \ket{\text{GHZ}}\,.
+    X^2_3 X^1_2 H_1\ket{000} = \frac{1}{\sqrt{2}}(\ket{000} + \ket{111}) = \ket{\text{GHZ}}\,.
   \]
+\end{eje}
+
+Este último resultado, nos hace preguntarnos por la existencia de algún conjunto de puertas cuánticas que permitan construir cualquier operador unitario en $\mathcal{C}^n$ de forma exacta y no aproximada. La respuesta es negativa.
+
+Sin embargo, podemos construir cualquier operador unitario en $\mathcal{C}^n$ de forma aproximada usando solo las puertas $H$, $T$, y CNOT.
+
+De forma exacta, podemos construir cualquier operador unitario en $\mathcal{C}^n$ usando puertas controladas de un cúbit y puertas de un cúbit parametrizadas, obteniendo una conjunto infinito no numerable de puertas, pero construibles. En particular el siguiente conjunto permite esta construcción
+\[
+  \{U(\alpha, \beta, \gamma), X^i_j \mid \alpha, \beta, \gamma \in \R\quad 1\leq i \neq j \leq 2^n\}\,.
+\]
+
+\begin{eje}
+  Veamos algunos ejemplos de puertas comunmente usadas en computación cuántica y como se puede construir a partir de las puertas H, T y CNOT.
+  \begin{itemize}
+    \item \textbf{Puerta SWAP}: intercambia dos cúbits. Se puede construir como
+          \[
+            \text{SWAP} = X^2_1 X^1_2 X^2_1\,.
+          \]
+    \item \textbf{Puerta Fredkin (CSWAP)}: es una puerta de tres cúbits que intercambia los dos últimos cúbits si el primero está en $\ket{1}$. Se puede construir como
+          \[
+            \text{CSWAP} = X^{1 3}_2 X^{1 2}_3 X^{1 3}_2\,.
+          \]
+    \item \textbf{Puerta fase 90º}: es una puerta de un cúbit que introduce una fase de $90$ grados al estado $\ket{1}$. Se puede construir como
+          \[
+            \text{S} = TT\,.
+          \]
+    \item textbf{Puerta NOT}: es una puerta de un cúbit que invierte los estados $\ket{0}$ y $\ket{1}$. Se puede construir como
+          \[
+            X = HTTTTH\,.
+          \]
+  \end{itemize}
 \end{eje}
 
 Por último veamos el teorema de no clonación. Este teorema nos impide clonar estados cuánticos arbitrariamente y es el motivo por el que no podemos implementar clonadores cuánticos o dicho de otra manera, no podemos hacer copias de estados cuánticos.
@@ -457,3 +508,26 @@ Por último veamos el teorema de no clonación. Este teorema nos impide clonar e
 \begin{theo}[Teorema de no clonación]
   No existe un operador unitario que pueda clonar estados cuánticos arbitrariamente.
 \end{theo}
+\begin{proof}
+  Supongamos que existe un operador unitario $U$ que clona estados cuánticos arbitrarios, es decir, para cualquier estado $\ket{\psi}$ y un estado base $\ket{e}$,
+  $$U\ket{e\psi} = \ket{\psi\psi}\,.$$
+
+  Consideremos el estado cuántico $\ket{\psi}$ con respecto a la base canónica
+  \[
+    \ket{\psi} = \sum_{j=0}^{2^n-1}\alpha_j\ket{j}\,.
+  \]
+
+  Entonces el estado clonado sería
+  \begin{align*}
+    U\ket{e\psi} & = \sum_{j=0}^{2^n-1}\alpha_j U\ket{ej} = \sum_{j=0}^{2^n-1}\alpha_j \ket{jj}\,, \\
+  \end{align*}
+
+  Igualando ambas expresiones tenemos que
+  \[
+    \sum_{j=0}^{2^n-1}\alpha_j \ket{jj} = \ket{\psi\psi}\,,
+  \]
+  siendo esta igualdad una contradición porque el estado de la izquierda es un estado entrelazado, mientras que el de la derecha no lo es.
+
+  Por lo tanto, no existe un operador unitario que pueda clonar estados cuánticos arbitrarios.
+\end{proof}
+
