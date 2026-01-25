@@ -1,15 +1,15 @@
 \begin{questions}
 
-  \question El producto interno de $\mathbf{u} = \begin{pmatrix} 1 \\ i \end{pmatrix}$ y $\mathbf{v} = \begin{pmatrix} 2 \\ 1 \end{pmatrix}$ en $\C^2$ es:
+  \question El producto interno de $u = (1, i)$ y $v = (2, 1)$ en $\C^2$ es:
 
   \begin{choices}
-    \choice $2 + i$
-    \CorrectChoice $2 - i$
+    \choice $2 - i$
+    \CorrectChoice $2 + i$
     \choice $2 + 2i$
     \choice $3$
   \end{choices}
   \begin{solution}
-    $\langle \mathbf{u}, \mathbf{v} \rangle = \conj{1} \cdot 2 + \conj{i} \cdot 1 = 2 + (-i) \cdot 1 = 2 - i$.
+    $\langle u, v \rangle = 1 \cdot \conj{2} + i \cdot \conj{1} = 2 + i \cdot 1 = 2 + i$.
   \end{solution}
 
   \question La matriz $A = \begin{pmatrix} 1 & i \\ -i & 2 \end{pmatrix}$ es:
@@ -36,64 +36,16 @@
     Es una propiedad fundamental de las matrices hermitianas: todos sus valores propios son reales, lo que las hace apropiadas para representar observables físicos.
   \end{solution}
 
-  \question Si $U$ es un operador unitario y $\ket{\psi}$ un vector unitario, entonces $\|U\ket{\psi}\|$ es:
+  \question Si $U$ es un operador unitario y $u$ un vector unitario, entonces $\|uU\|$ es:
 
   \begin{choices}
     \choice $0$
-    \choice Depende de $\ket{\psi}$
+    \choice Depende de $u$
     \CorrectChoice $1$
     \choice $\|U\|$
   \end{choices}
   \begin{solution}
-    Los operadores unitarios preservan la norma: $\|U\ket{\psi}\|^2 = \langle U\psi, U\psi \rangle = \langle \psi, U^\dagger U\psi \rangle = \langle \psi, \psi \rangle = 1$.
-  \end{solution}
-
-  \question Al medir el observable $\sigma_z$ en el estado $\ket{\psi} = \frac{1}{\sqrt{2}}(\ket{0} + \ket{1})$, la probabilidad de obtener $+1$ es:
-
-  \begin{choices}
-    \choice $0$
-    \choice $1$
-    \CorrectChoice $\frac{1}{2}$
-    \choice $\frac{1}{\sqrt{2}}$
-  \end{choices}
-  \begin{solution}
-    $\sigma_z$ tiene valor propio $+1$ para $\ket{0}$. La probabilidad es $P(+1) = |\braket{0}{\psi}|^2 = \left|\frac{1}{\sqrt{2}}\right|^2 = \frac{1}{2}$.
-  \end{solution}
-
-  \question Después de medir $\sigma_z$ en $\ket{\psi} = \frac{3}{5}\ket{0} + \frac{4i}{5}\ket{1}$ y obtener $-1$, el estado colapsa a:
-
-  \begin{choices}
-    \choice $\ket{0}$
-    \CorrectChoice $\ket{1}$
-    \choice $\frac{3}{5}\ket{0} + \frac{4i}{5}\ket{1}$
-    \choice $\frac{3}{5}\ket{0}$
-  \end{choices}
-  \begin{solution}
-    El valor propio $-1$ de $\sigma_z$ corresponde al vector propio $\ket{1}$, por tanto el estado colapsa a $\ket{1}$.
-  \end{solution}
-
-  \question El valor esperado $\langle \sigma_x \rangle$ en el estado $\ket{0}$ es:
-
-  \begin{choices}
-    \choice $1$
-    \choice $-1$
-    \CorrectChoice $0$
-    \choice $\frac{1}{2}$
-  \end{choices}
-  \begin{solution}
-    $\langle \sigma_x \rangle = \bra{0}\sigma_x\ket{0} = \bra{0}\ket{1} = 0$.
-  \end{solution}
-
-  \question La descomposición espectral de $\sigma_z$ es:
-
-  \begin{choices}
-    \choice $(+1)\ketbra{+}{+} + (-1)\ketbra{-}{-}$
-    \CorrectChoice $(+1)\ketbra{0}{0} + (-1)\ketbra{1}{1}$
-    \choice $(+1)\ketbra{1}{1} + (-1)\ketbra{0}{0}$
-    \choice $\ketbra{0}{0} + \ketbra{1}{1}$
-  \end{choices}
-  \begin{solution}
-    Los valores propios de $\sigma_z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$ son $+1$ (con $\ket{0}$) y $-1$ (con $\ket{1}$).
+    Los operadores unitarios preservan la norma: $\|uU\|^2 = \langle uU, uU \rangle = \langle u, U^\dagger Uu \rangle = \langle u, u \rangle = 1$.
   \end{solution}
 
   \question Dos vectores propios de un operador hermitiano correspondientes a valores propios distintos son:
@@ -102,7 +54,7 @@
     \choice Linealmente dependientes
     \choice Paralelos
     \CorrectChoice Ortogonales
-    \choice Idénticos salvo fase global
+    \choice Idénticos
   \end{choices}
   \begin{solution}
     Es una propiedad fundamental: vectores propios de un operador hermitiano con valores propios diferentes son automáticamente ortogonales.
@@ -111,133 +63,57 @@
   \question La identidad de Parseval para una base ortonormal $\{\ket{e_k}\}$ establece que:
 
   \begin{choices}
-    \choice $\|\mathbf{v}\| = \sum_k \langle \mathbf{v}, \ket{e_k} \rangle$
-    \CorrectChoice $\|\mathbf{v}\|^2 = \sum_k |\langle \mathbf{v}, \ket{e_k} \rangle|^2$
-    \choice $\mathbf{v} = \sum_k \ket{e_k}$
+    \choice $\|v\| = \sum_k \langle v, \ket{e_k} \rangle$
+    \CorrectChoice $\|v\|^2 = \sum_k |\langle v, \ket{e_k} \rangle|^2$
+    \choice $v = \sum_k \ket{e_k}$
     \choice $\sum_k \ket{e_k} = 1$
   \end{choices}
   \begin{solution}
     La identidad de Parseval expresa que la norma al cuadrado de un vector es la suma de los cuadrados de sus coeficientes de Fourier respecto a una base ortonormal.
   \end{solution}
 
-  \question La dimensión del espacio dual $V^*$ de un espacio vectorial $V$ de dimensión finita $n$ es:
-
+  \question Si $A$ es una matriz normal, entonces:
   \begin{choices}
-    \choice $n^2$
-    \choice $2n$
-    \CorrectChoice $n$
-    \choice $n-1$
+    \choice $A$ es diagonalizable mediante una matriz ortogonal
+    \choice $A$ es hermitiana
+    \CorrectChoice $A$ es diagonalizable mediante una matriz unitaria
+    \choice $A$ es unitaria
   \end{choices}
   \begin{solution}
-    El espacio dual de un espacio de dimensión finita tiene la misma dimensión que el espacio original: $\dim(V^*) = \dim(V) = n$.
+    Una matriz normal es diagonalizable mediante una matriz unitaria, es decir, existe una matriz unitaria $U$ tal que $A = UDU^\dagger$, donde $D$ es diagonal.
   \end{solution}
 
-  \question Si $\{e_1, e_2\}$ es una base de $V$, la base dual $\{e_1^*, e_2^*\}$ satisface:
-
+  \question El espacio de Hilbert $\ell^2$ consiste en:
   \begin{choices}
-    \choice $e_1^*(e_1) = 0$
-    \CorrectChoice $e_i^*(e_j) = \delta_{ij}$
-    \choice $e_1^*(e_2) = 1$
-    \choice $e_1^* = e_2^*$
+    \choice Todas las sucesiones de números complejos
+    \choice Todas las sucesiones de números reales
+    \CorrectChoice Todas las sucesiones de números complejos cuya serie de cuadrados es convergente
+    \choice Todas las sucesiones de números complejos cuya serie es convergente
   \end{choices}
   \begin{solution}
-    Por definición de base dual: $e_i^*(e_j) = \delta_{ij}$, donde $\delta_{ij} = 1$ si $i = j$ y $0$ si $i \neq j$.
+    El espacio de Hilbert $\ell^2$ está formado por todas las sucesiones $(x_n)$ de números complejos tales que la serie $\sum_{n=1}^\infty |x_n|^2$ converge.
   \end{solution}
 
-  \question La dimensión del producto tensorial $\C^2 \otimes \C^3$ es:
-
+  \question En un espacio de Hilbert, una base ortonormal es:
   \begin{choices}
-    \choice $5$
-    \CorrectChoice $6$
-    \choice $8$
-    \choice $9$
+    \choice Un conjunto de vectores linealmente independientes
+    \choice Un conjunto de vectores que generan el espacio
+    \CorrectChoice Un conjunto de vectores ortogonales y normalizados que generan el espacio
+    \choice Un conjunto de vectores que son todos unitarios
   \end{choices}
   \begin{solution}
-    $\dim(V \otimes W) = \dim(V) \cdot \dim(W) = 2 \cdot 3 = 6$.
+    Una base ortonormal es un conjunto de vectores que son mutuamente ortogonales, cada uno de norma 1, y que generan todo el espacio.
   \end{solution}
 
-  \question El estado $\ket{\psi} = \frac{1}{\sqrt{2}}(\ket{00} + \ket{11})$ es:
-
+  \question El teorema espectral para operadores hermitianos establece que:
   \begin{choices}
-    \choice Separable
-    \CorrectChoice Entrelazado
-    \choice Un estado de un solo qubit
-    \choice No está normalizado
+    \choice Todo operador hermitiano es invertible
+    \choice Todo operador hermitiano tiene valores propios complejos
+    \CorrectChoice Todo operador hermitiano puede ser diagonalizado mediante una base ortonormal
+    \choice Todo operador hermitiano es unitario
   \end{choices}
   \begin{solution}
-    No puede escribirse como $\ket{\psi}_A \otimes \ket{\phi}_B$, por tanto es entrelazado. Si fuera separable, tendríamos $(a\ket{0} + b\ket{1}) \otimes (c\ket{0} + d\ket{1}) = ac\ket{00} + ad\ket{01} + bc\ket{10} + bd\ket{11}$, lo que requeriría $ad = bc = 0$ pero $ac = bd = \frac{1}{\sqrt{2}}$, lo cual es imposible.
-  \end{solution}
-
-  \question Los cuatro estados de Bell forman:
-
-  \begin{choices}
-    \choice Una base de $\C^2$
-    \CorrectChoice Una base de $\C^4$
-    \choice Un conjunto linealmente dependiente
-    \choice Estados separables
-  \end{choices}
-  \begin{solution}
-    Los cuatro estados de Bell $\{\ket{\Phi^+}, \ket{\Phi^-}, \ket{\Psi^+}, \ket{\Psi^-}\}$ forman una base ortonormal de $\C^4 = \C^2 \otimes \C^2$.
-  \end{solution}
-
-  \question El producto $(X \otimes Y)\ket{01}$ donde $X$ e $Y$ son matrices de Pauli es igual a:
-
-  \begin{choices}
-    \choice $\ket{01}$
-    \choice $\ket{10}$
-    \CorrectChoice $-i\ket{10}$
-    \choice $i\ket{01}$
-  \end{choices}
-  \begin{solution}
-    $(X \otimes Y)\ket{01} = (X\ket{0}) \otimes (Y\ket{1}) = \ket{1} \otimes (-i\ket{0}) = -i\ket{10}$.
-  \end{solution}
-
-  \question El número de Schmidt del estado $\ket{\Phi^+} = \frac{1}{\sqrt{2}}(\ket{00} + \ket{11})$ es:
-
-  \begin{choices}
-    \choice $1$
-    \CorrectChoice $2$
-    \choice $3$
-    \choice $4$
-  \end{choices}
-  \begin{solution}
-    La descomposición de Schmidt ya está dada: $\ket{\Phi^+} = \frac{1}{\sqrt{2}}\ket{0}\otimes\ket{0} + \frac{1}{\sqrt{2}}\ket{1}\otimes\ket{1}$. Hay dos términos no nulos, por tanto el número de Schmidt es 2.
-  \end{solution}
-
-  \question El producto exterior $\ket{\psi}\bra{\phi}$ es:
-
-  \begin{choices}
-    \choice Un número complejo
-    \choice Un vector
-    \CorrectChoice Un operador lineal
-    \choice Una matriz diagonal
-  \end{choices}
-  \begin{solution}
-    El producto exterior $\ket{\psi}\bra{\phi}$ es un operador lineal que actúa como $(\ket{\psi}\bra{\phi})\ket{\chi} = \braket{\phi}{\chi}\ket{\psi}$.
-  \end{solution}
-
-  \question El teorema de Riesz-Fréchet establece que en un espacio de Hilbert:
-
-  \begin{choices}
-    \choice El espacio dual es de mayor dimensión
-    \CorrectChoice Cada funcional lineal continuo puede representarse como producto interno
-    \choice No existe isomorfismo con el dual
-    \choice Los funcionales son todos discontinuos
-  \end{choices}
-  \begin{solution}
-    El teorema de Riesz-Fréchet establece que para cada funcional lineal continuo $f$ existe único $y_f$ tal que $f(x) = \langle x, y_f \rangle$.
-  \end{solution}
-
-  \question Para un sistema de $n$ qubits, el espacio de estados tiene dimensión:
-
-  \begin{choices}
-    \choice $n$
-    \choice $n^2$
-    \CorrectChoice $2^n$
-    \choice $2n$
-  \end{choices}
-  \begin{solution}
-    El espacio de estados de $n$ qubits es $(\C^2)^{\otimes n} \cong \C^{2^n}$, que tiene dimensión $2^n$.
+    El teorema espectral afirma que cualquier operador hermitiano en un espacio de Hilbertiano puede ser diagonalizado mediante una base ortonormal de vectores propios.
   \end{solution}
 
 \end{questions}

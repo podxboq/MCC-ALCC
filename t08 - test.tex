@@ -84,18 +84,6 @@
     Para estados puros, $F(\ket{\psi}, \ket{\phi}) = |\braket{\psi}{\phi}| = |0| = 0$.
   \end{solution}
 
-  \question El teorema de no-clonación establece que:
-
-  \begin{choices}
-    \choice Todo estado cuántico puede ser copiado
-    \CorrectChoice No existe operación que pueda clonar un estado cuántico arbitrario desconocido
-    \choice Solo los estados de la base computacional pueden ser clonados
-    \choice Solo los estados entrelazados no pueden ser clonados
-  \end{choices}
-  \begin{solution}
-    El teorema de no-clonación es fundamental en teoría cuántica de información: no existe canal cuántico que pueda copiar un estado desconocido arbitrario.
-  \end{solution}
-
   \question Los operadores de Kraus $\{K_i\}$ de un canal cuántico satisfacen:
 
   \begin{choices}
@@ -120,4 +108,14 @@
     Para $p = 1$, el canal de despolarización $\mathcal{E}(\rho) = (1-p)\rho + \frac{p}{3}(\sigma_x\rho\sigma_x + \sigma_y\rho\sigma_y + \sigma_z\rho\sigma_z)$ se reduce a aplicar todas las matrices de Pauli con igual probabilidad, resultando en $\frac{I}{2}$.
   \end{solution}
 
+  \question La evolución de un estado mixto $\rho$ bajo un canal cuántico $\mathcal{E}$ se describe como:
+  \begin{choices}
+    \choice $\mathcal{E}(\rho) = U \rho U^\dagger$
+    \choice $\mathcal{E}(\rho) = \sum_i K_i \rho K_i$
+    \CorrectChoice $\mathcal{E}(\rho) = \sum_i K_i \rho K_i^\dagger$
+    \choice $\mathcal{E}(\rho) = \rho$
+  \end{choices}
+  \begin{solution}
+    La evolución de un estado mixto bajo un canal cuántico se describe mediante la suma sobre los operadores de Kraus: $\mathcal{E}(\rho) = \sum_i K_i \rho K_i^\dagger$.
+  \end{solution}
 \end{questions}

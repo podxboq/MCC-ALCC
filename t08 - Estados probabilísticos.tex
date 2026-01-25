@@ -2,31 +2,33 @@
 
 \begin{esquemaExplorador}
   \temaEsquema{Estados cuánticos mixtos}{
-    \conceptoEsquema{Estados puros vs estados mixtos}{}
-    \conceptoEsquema{Límites del formalismo de vectores estado}{}
+    \conceptoEsquema{Estados puros}{$\ket{a}$}
+    \conceptoEsquema{Estados mixtos}{$\{(p_1, |\psi_1\rangle), \ldots, (p_k, |\psi_k\rangle)\}$}
     \conceptoEsquema{Necesidad de la matriz de densidad}{}
   }
   \temaEsquema{Matriz de densidad}{
-    \conceptoEsquema{Definición y propiedades}{}
-    \conceptoEsquema{Operador densidad para estados puros}{}
+    \conceptoEsquema{Definición y propiedades}{$\sum_{i=1} p_i |\psi_i\rangle\langle\psi_i|$}
+    \conceptoEsquema{Operador densidad para estados puros}{$\rho = |\psi\rangle\langle\psi|$}
     \conceptoEsquema{Estados mixtos y mezclas estadísticas}{}
     \conceptoEsquema{Criterio de pureza}{}
   }
-  \temaEsquema{Sistemas compuestos y traza parcial}{
-    \conceptoEsquema{Producto tensorial de matrices de densidad}{}
-    \conceptoEsquema{Traza parcial y sistemas abiertos}{}
+  \temaEsquema{Sistemas compuestos}{
+    \conceptoEsquema{Producto tensorial de matrices de densidad}{$\rho_{AB} = \rho_A \otimes \rho_B$}
+    \conceptoEsquema{Evolución matriz densidad}{}
+  }
+  \temaEsquema{Traza parcial}{
+    \conceptoEsquema{Traza parcial y sistemas abiertos}{$\text{Tr}_B(\rho_{AB})$}
     \conceptoEsquema{Decoherencia cuántica}{}
   }
   \temaEsquema{Canales cuánticos}{
-    \conceptoEsquema{Representación de Kraus}{}
-    \conceptoEsquema{Teorema de no-clonación}{}
+    \conceptoEsquema{Representación de Kraus}{$\rho' = \sum_k E_k \rho E_k^\dagger$}
     \conceptoEsquema{Operaciones completamente positivas}{}
   }
   \temaEsquema{Información cuántica}{
-    \conceptoEsquema{Entropía de von Neumann}{}
-    \conceptoEsquema{Información mutua cuántica}{}
-    \conceptoEsquema{Fidelidad cuántica}{}
-    \conceptoEsquema{Distancia de traza}{}
+    \conceptoEsquema{Entropía de von Neumann}{$S(\rho) = -\text{Tr}(\rho \log \rho)$}
+    \conceptoEsquema{Información mutua cuántica}{$I(A:B) = S(\rho_A) + S(\rho_B) - S(\rho_{AB})$}
+    \conceptoEsquema{Fidelidad cuántica}{$F(\rho, \sigma) = \left(\text{Tr}\sqrt{\sqrt{\rho}\sigma\sqrt{\rho}}\right)^2$}
+    \conceptoEsquema{Distancia de traza}{$D(\rho, \sigma) = \frac{1}{2}\text{Tr}|\rho - \sigma|$}
   }
 \end{esquemaExplorador}
 
