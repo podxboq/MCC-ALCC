@@ -57,7 +57,7 @@ Este tema establece las bases matemáticas necesarias para comprender sistemas c
 \end{defi}
 
 \begin{defi}[Estado mixto]
-  Un estado cuántico mixto representa una situación donde el sistema puede estar en uno de varios estados puros $|\psi_i\rangle$ con probabilidades clásicas $p_i$
+  Un estado cuántico mixto representa una situación donde el sistema puede estar en uno de varios estados puros $|\psi_i\rangle$ con probabilidades clásicas $p_i$.
   $$\text{Estado mixto} = \{(p_1, |\psi_1\rangle), (p_2, |\psi_2\rangle), \ldots, (p_k, |\psi_k\rangle)\}\,,$$
 
   donde
@@ -83,7 +83,7 @@ Esta descripción surge cuando hay incertidumbre clásica sobre cuál es el esta
 \subsection{Matriz de densidad}
 
 \begin{defi}[Operador densidad]
-  El operador densidad de un sistema cuántico $\{(p_i, |\psi_i\rangle)\}$, es el operador $\rho$ definido por
+  El operador densidad de un sistema cuántico mixto $\{(p_i, |\psi_i\rangle)\}$, es el operador $\rho$ definido por
   $$\rho = \sum_{i=1} p_i |\psi_i\rangle\langle\psi_i|\,.$$
 \end{defi}
 
@@ -91,38 +91,86 @@ Para un estado puro $|\psi\rangle$ el operador densidad es el proyector
 $$\rho = |\psi\rangle\langle\psi|\,.$$
 
 La matriz asociada, que también se denota como $\rho$ en una base ortonormal $\{|e_j\rangle\}$, tiene las entradas $\rho = (\rho)_{mn}$ calculadas como
-$$\rho_{mn} = \langle e_m|\rho|e_n\rangle$$
+$$\rho_{mn} = \langle e_m|\rho|e_n\rangle\,.$$
 
 \begin{eje}
   \begin{enumerate}
     \item \textbf{Estado puro} $|0\rangle$:
-          $$\rho_0 = |0\rangle\langle 0| = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}$$
+          $$\rho_0 = |0\rangle\langle 0| = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}\,.$$
 
     \item \textbf{Estado de superposición} $|\psi\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$:
-          $$\rho_\psi = |\psi\rangle\langle\psi| = \frac{1}{2}\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}$$
+          $$\rho_\psi = |\psi\rangle\langle\psi| = \frac{1}{2}\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}\,.$$
 
     \item \textbf{Estado mixto equiprobable}:
-          $$\rho_{\text{mix}} = \frac{1}{2}|0\rangle\langle 0| + \frac{1}{2}|1\rangle\langle 1| = \frac{1}{2}\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = \frac{I}{2}$$
+          $$\rho_{\text{mix}} = \frac{1}{2}|0\rangle\langle 0| + \frac{1}{2}|1\rangle\langle 1| = \frac{1}{2}\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = \frac{I}{2}\,.$$
   \end{enumerate}
 \end{eje}
 
 \begin{prop}
-  Sea $\rho$ un operador densidad. Entonces:
+  Sea $\rho = \sum_{i=1}^k p_i \ketbra{\psi_i}$ un operador densidad. Entonces:
   \begin{enumerate}
     \item $\rho$ es hermitiana: $\rho = \rho^\dagger$.
     \item $\rho$ es positiva semidefinida: $\langle\phi|\rho|\phi\rangle \geq 0$ para todo $|\phi\rangle$.
     \item $\text{Tr}(\rho) = 1$ (normalización).
-    \item $0 \leq \text{Tr}(\rho^2) \leq 1$.
-    \item Los valores propios de $\rho$ son no negativos y suman 1.
   \end{enumerate}
 \end{prop}
+\begin{proof}
+  \begin{enumerate}
+    \item Para demostrar que $\rho$ es hermitiana, tenemos que tener en cuenta las propiedades de la traspuesta conjutada y que $p_i\in \R$, que $\ket{\psi_i}^\dagger = \bra{\psi_i}$ y $\bra{\psi_i}^\dagger = \ket{\psi_i}$ para todo $i$. Entonces
+          \[
+            \rho^\dagger = \sum_{i=1}^k p_i (\ketbra{\psi_i})^\dagger = \sum_{i=1}^k p_i \bra{\psi_i}^\dagger\ket{\psi_i}^\dagger  = \sum_{i=1}^k p_i \ketbra{\psi_i} = \rho\,.
+          \]
+    \item Para cualquier ket $\ket{\phi}$ tenemos
+          \begin{align*}
+            \expval{\rho}{\phi} & = \sum_{i=1}^{k}p_i\braket{\phi}{\psi_i}\braket{\psi_i}{\phi}   = \sum_{i=1}^{k}p_i\braket{\phi}{\psi_i}\braket{\phi_i}{\psi}^* \\
+                                & = \sum_{i=1}^{k}p_i|\braket{\phi}{\psi_i}|^2                    \geq 0\,.
+          \end{align*}
+    \item $\text{Tr}(\rho) = \sum_{i=1}^k p_i = 1$.
+  \end{enumerate}
+\end{proof}
 
 \begin{theo}[Criterio de pureza]
   Un estado descrito por el operador densidad $\rho$ es puro si y solo si $\text{Tr}(\rho^2) = 1$.
 
   Equivalentemente, el estado es mixto si y solo si $\text{Tr}(\rho^2) < 1$.
 \end{theo}
+\begin{proof}
+  Como $\rho$ es un operador hermitiano, existe una base ortonormal $\{\ket{i}\}$ en la que $\rho$ es diagonal:
+  \[
+    \rho = \sum_i \lambda_i \ketbra{i}\,,
+  \]
+  donde $\lambda_i$ son los valores propios de $\rho$. Por las propiedades de la matriz de densidad, sabemos que $\lambda_i \ge 0$ y $\sum_i \lambda_i = 1$. Esto implica que $0 \le \lambda_i \le 1$ para todo $i$.
 
+  La traza de $\rho^2$ se calcula como:
+  \[
+    \text{Tr}(\rho^2) = \sum_i \lambda_i^2\,.
+  \]
+
+  Dado que $0 \le \lambda_i \le 1$, se cumple que $\lambda_i^2 \le \lambda_i$, dándose la igualdad únicamente si $\lambda_i = 0$ o $\lambda_i = 1$. Sumando sobre todos los índices $i$:
+  \[
+    \text{Tr}(\rho^2) = \sum_i \lambda_i^2 \le \sum_i \lambda_i = 1\,.
+  \]
+
+  La igualdad $\text{Tr}(\rho^2) = 1$ ocurre si y solo si $\lambda_i^2 = \lambda_i$ para todo $i$. Teniendo en cuenta la restricción de normalización $\sum_i \lambda_i = 1$, esto fuerza a que exactamente un valor propio sea 1 (digamos $\lambda_k=1$) y todos los demás sean 0. En tal caso:
+  \[
+    \rho = \ketbra{k}\,,
+  \]
+  lo cual corresponde, por definición, a un estado puro. Si $\text{Tr}(\rho^2) < 1$, entonces el estado no es un proyector de rango 1, correspondiendo a una mezcla estadística.
+\end{proof}
+
+\begin{eje}
+  Sea $\rho = \frac{3}{4}\ketbra{0}{0} + \frac{1}{4}\ketbra{1}{1}$ la matriz densidad de un estado. Necesitamos saber si el estado es mixto o puro.
+  la matriz densidad es
+  \[
+    \rho = \begin{pmatrix} 3/4 & 0 \\ 0 & 1/4 \end{pmatrix}\,.
+  \]
+
+  Calculamos la traza de $\rho^2$
+  \[
+    \text{Tr}(\rho^2) = \text{Tr}\begin{pmatrix} (3/4)^2 & 0 \\ 0 & (1/4)^2 \end{pmatrix} = \frac{9}{16} + \frac{1}{16} = \frac{10}{16} = \frac{5}{8} < 1\,.
+  \]
+  Concluimos que el estado es mixto.
+\end{eje}
 \subsection{Evolución de la matriz de densidad}
 
 \begin{theo}[Evolución unitaria]
@@ -131,77 +179,157 @@ $$\rho_{mn} = \langle e_m|\rho|e_n\rangle$$
 
   Esta transformación preserva todas las propiedades de un operador densidad válido.
 \end{theo}
+\begin{proof}
+  Si $\rho^\prime$ es la matriz densidad del sistema después de la evolución unitaria $U$, entonces
+  \begin{align*}
+    \rho' & = \sum_i p_i \ketbra{U\psi_i}                         \\
+          & = \sum_i p_i U \ketbra{\psi_i} U^\dagger              \\
+          & = U \left(\sum_i p_i \ketbra{\psi_i}\right) U^\dagger \\
+          & = U \rho U^\dagger\,.
+  \end{align*}
+\end{proof}
 
-\begin{eje}[Aplicación de puertas cuánticas]
-  Considere un cúbit en el estado mixto $\rho = \frac{1}{2}I$ y apliquemos la puerta Hadamard $H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$:
-
-  $$\rho' = H\rho H^\dagger = H \cdot \frac{1}{2}I \cdot H^\dagger = \frac{1}{2}HH^\dagger = \frac{1}{2}I = \rho$$
+\begin{eje}
+  Consideremos la matriz densidad que representa un estado mixto en un cúbit equiprobable $\rho = \frac{1}{2}I$ y apliquemos cualquier puerta cuántica $U$.
+  $$\rho' = U\rho U^\dagger = U \cdot \frac{1}{2}I \cdot U^\dagger = \frac{1}{2}UU^\dagger = \frac{1}{2}I = \rho\,.$$
 
   El estado mixto completamente aleatorio es invariante bajo cualquier operación unitaria.
 \end{eje}
 
+\begin{eje}[Aplicación de puertas cuánticas]
+  Sea en un cúbit en el estado mixto con matriz de densidad
+  \[
+    \rho = \begin{pmatrix} 3/4 & 0 \\ 0 & 1/4 \end{pmatrix}\,,
+  \]
+  y apliquemos la puerta Hadamard $H$ al estado, la evolución dará lugar a la nueva matriz de densidad
+  \begin{align*}
+    \rho' & = H\rho H^\dagger = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}\begin{pmatrix} 3/4 & 0 \\ 0 & 1/4 \end{pmatrix}\frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}^\dagger \\
+          & = \frac{1}{2}\begin{pmatrix} 3/4 & 1/4 \\ 3/4 & -1/4 \end{pmatrix}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}                                                                                            \\
+          & = \frac{1}{2}\begin{pmatrix} 1 & 1/2 \\ 1/2 & 1 \end{pmatrix}\,.
+  \end{align*}
+\end{eje}
+
 \subsection{Representación en la esfera de Bloch}
 
-Para un cúbit, la matriz de densidad se puede escribir como:
-$$\rho = \frac{1}{2}(I + \vec{r} \cdot \vec{\sigma})$$
-donde $\vec{r} = (r_x, r_y, r_z)$ es el vector de Bloch y $\vec{\sigma} = (\sigma_x, \sigma_y, \sigma_z)$ son las matrices de Pauli.
+Para un cúbit $\ket{a}=\alpha\ket{0} + \beta\ket{1}$, el operador densidad es
+\[
+  \rho = |\alpha|^2 \ketbra{0} + |\beta|^2 \ketbra{1} + \alpha\beta^* \ketbra{0}{1} + \alpha^*\beta \ketbra{1}{0}\,.
+\]
 
+En forma matricial y expresado en términos de la base de Pauli, tenemos
+\begin{align*}
+  \rho & = \begin{pmatrix} |\alpha|^2 & \alpha\beta^* \\ \alpha^*\beta & |\beta|^2 \end{pmatrix}                                                   \\
+       & = \frac{1}{2}\begin{pmatrix} 1 + (|\alpha|^2 - |\beta|^2) & 2\alpha\beta^* \\ 2\alpha^*\beta & 1 - (|\alpha|^2 - |\beta|^2) \end{pmatrix} \\
+       & = \frac{1}{2}\left[I + (|\alpha|^2 - |\beta|^2)Z + 2\text{Re}(\alpha\beta^*)X + 2\text{Im}(\alpha\beta^*)Y\right]\,.
+\end{align*}
+
+Podemos escribir la matriz de densidad de forma más compacta como
+$$\rho = \frac{1}{2}(I + \vec{r} \cdot \vec{\sigma})\,,$$
+donde $\vec{r} = (r_x, r_y, r_z)$ lo llamamos el \textbf{vector de Bloch} y $\vec{\sigma} = (X, Y, Z)$.
+
+El vector de Bloch admite la siguiente interpretación geométrica:
 \begin{itemize}
   \item \textbf{Estados puros:} $|\vec{r}| = 1$ (superficie de la esfera).
   \item \textbf{Estados mixtos:} $|\vec{r}| < 1$ (interior de la esfera).
   \item \textbf{Estado completamente mixto:} $\vec{r} = 0$ (centro de la esfera).
 \end{itemize}
 
+El vector de Bloch se puede calcular a partir de la matriz de densidad como
+$$\vec{r} = (\text{Tr}(\rho X), \text{Tr}(\rho Y), \text{Tr}(\rho Z))\,.$$
+
 \begin{eje}[Cálculo del vector de Bloch]
-  Para el estado $\rho = \frac{3}{4}|0\rangle\langle 0| + \frac{1}{4}|1\rangle\langle 1| = \begin{pmatrix} 3/4 & 0 \\ 0 & 1/4 \end{pmatrix}$:
+  Para el estado $\rho = \frac{3}{4}|0\rangle\langle 0| + \frac{1}{4}|1\rangle\langle 1| = \begin{pmatrix} 3/4 & 0 \\ 0 & 1/4 \end{pmatrix}$, calculamos el vector de Bloch:
+  \begin{align*}
+    \rho X & = \begin{pmatrix} 3/4 & 0 \\ 0 & 1/4 \end{pmatrix}\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} = \begin{pmatrix} 0 & 3/4 \\ 1/4 & 0 \end{pmatrix}\,.    \\
+    \rho Y & = \begin{pmatrix} 3/4 & 0 \\ 0 & 1/4 \end{pmatrix}\begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix} = \begin{pmatrix} 0 & -3i/4 \\ i/4 & 0 \end{pmatrix}\,. \\
+    \rho Z & = \begin{pmatrix} 3/4 & 0 \\ 0 & 1/4 \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} = \begin{pmatrix} 3/4 & 0 \\ 0 & -1/4 \end{pmatrix}\,.
+  \end{align*}
+  Entonces
+  $$\vec{r} = \left(\text{Tr}(\rho X), \text{Tr}(\rho Y), \text{Tr}(\rho Z)\right) = (0, 0, 1/2)\,.$$
 
-  $$\vec{r} = \left(\text{Tr}(\rho\sigma_x), \text{Tr}(\rho\sigma_y), \text{Tr}(\rho\sigma_z)\right) = (0, 0, 1/2)$$
-
-  Por tanto $|\vec{r}| = 1/2 < 1$, confirmando que es un estado mixto.
+  Para calcular si el estado es puro o mixto, observamos que la norma del vector de Bloch es $|\vec{r}| = 1/2 < 1$, confirmando que es un estado mixto.
 \end{eje}
 
 \subsection{Sistemas compuestos y traza parcial}
 
 \begin{defi}[Producto tensorial de operadores densidad]
-  Para sistemas independientes descritos por matrices de densidad $\rho_A$ y $\rho_B$, el sistema compuesto se describe por:
-  $$\rho_{AB} = \rho_A \otimes \rho_B$$
+  Para sistemas independientes descritos por matrices de densidad $\rho_A$ y $\rho_B$, el sistema compuesto se describe por
+  $$\rho_{AB} = \rho_A \otimes \rho_B\,.$$
 
   Sin embargo, no todos los estados de sistemas compuestos pueden escribirse en esta forma separable.
 \end{defi}
 
 \begin{defi}[Traza parcial]
-  Dado un sistema bipartito $AB$ con matriz de densidad $\rho_{AB}$, la traza parcial sobre el subsistema $B$ se define como:
-  $$\rho_A = \text{Tr}_B(\rho_{AB}) = \sum_i (I_A \otimes \bra{i}_B) \rho_{AB} (I_A \otimes \ket{i}_B)$$
-  donde $\{\ket{i}_B\}$ es cualquier base ortonormal del subsistema $B$.
+  Sea $T$ un operador sobre un sistema bipartito $A\otimes B$, la traza parcial de $T$ sobre el subsistema $B$ se define como el operador $\text{Tr}_B(T)$ sobre el subsistema $A$ dado por la propiedad
+  $$\matrixelement{\phi}{\text{Tr}_B(T)}{\psi} = \sum_i \matrixelement{\phi \otimes \ket{i}}{T}{\psi \otimes \ket{i}}\,,$$
+  donde $\ket{\phi},\ket{\psi}\in A$ y $\{\ket{i}\}$ es cualquier base ortonormal del subsistema $B$.
 \end{defi}
 
 \begin{eje}
-  Consideremos el estado producto:
-  $$\ket{\psi} = \ket{0} \otimes \ket{+} = \frac{\ket{00} + \ket{01}}{\sqrt{2}}$$
+  Consideremos el estado producto
+  $$\ket{\psi} = \ket{0+} = \frac{\ket{00} + \ket{01}}{\sqrt{2}}\,.$$
 
-  La matriz de densidad del sistema compuesto es:
-  $$\rho_{AB} = \ket{\psi}\bra{\psi} = (\ket{0}\bra{0})_A \otimes (\ket{+}\bra{+})_B$$
+  La matriz de densidad del sistema compuesto es
+  $$\rho_{AB} = \ket{\psi}\bra{\psi} = \ket{0}\bra{0} \otimes \ket{+}\bra{+}\,.$$
 
-  En forma matricial (usando base $\{\ket{00}, \ket{01}, \ket{10}, \ket{11}\}$):
+  En forma matricial usando la base computacional, es
   $$\rho_{AB} = \frac{1}{2}\begin{pmatrix}
       1 & 1 & 0 & 0 \\
       1 & 1 & 0 & 0 \\
       0 & 0 & 0 & 0 \\
       0 & 0 & 0 & 0
-    \end{pmatrix}$$
+    \end{pmatrix}\,.$$
 
-  Usando la base $\{\ket{0}_B, \ket{1}_B\}$:
+  Para obtener la matriz de densidad del subsistema $A$, realizamos la traza parcial sobre $B$. Si $\ket{\phi}=a\ket{0}+b\ket{1}$ y $\ket{\psi}=c\ket{0}+d\ket{1}$ son dos kets arbitrarios en el subsistema $A$, calculamos los siguientes términos:
+  \begin{equation}
+    \label{eq:traza_parcial_eje_1}
+    \matrixelement{\phi\otimes \ket{0}}{\rho_{AB}}{\psi\otimes \ket{0}} = \frac{1}{2}ac^*\,,
+  \end{equation}
+  \begin{equation}
+    \label{eq:traza_parcial_eje_2}
+    \matrixelement{\phi\otimes \ket{1}}{\rho_{AB}}{\psi\otimes \ket{1}} = \frac{1}{2}ac^*\,.
+  \end{equation}
+
+  Por definición de traza parcial, sumamos ambos resultados obtenemos
   \begin{align*}
-    \rho_A & = \text{Tr}_B(\rho_{AB})                                                                                              \\
-           & = \bra{0}_B \rho_{AB} \ket{0}_B + \bra{1}_B \rho_{AB} \ket{1}_B                                                       \\
-           & = \frac{1}{2}\left[\begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix} + \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}\right] \\
-           & = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix} = \ket{0}\bra{0}
+    \eqref{eq:traza_parcial_eje_1} + \eqref{eq:traza_parcial_eje_2} & = \frac{1}{2}(ac^* + ac^*) = ac^*\,.
   \end{align*}
+
+  Por lo tanto la matriz de densidad del subsistema $A$ es
+  \[
+    \text{Tr}_B(\rho_{AB}) = \ket{0}\bra{0}\,.
+  \]
+
 \end{eje}
 
-\begin{info}
-  \textbf{Conclusión:} Para estados separables (no entrelazados), la traza parcial recupera exactamente el estado del subsistema.
-\end{info}
+\begin{prop}
+  Sea $T$ un operador sobre un sistema bipartito $A\otimes B$, definido como el producto tensorial de dos operadores $T_A \otimes T_B$, la traza parcial de $T$ sobre el subsistema $B$ se obtiene como
+  \[
+    \text{Tr}_B(T_A \otimes T_B) = \text{Tr}(T_B) T_A\,.
+  \]
+\end{prop}
+
+\begin{eje}
+  Volviendo al ejemplo anterior, la matriz de densidad del sistema compuesto es
+  $$\rho_{AB} = \frac{1}{2}\begin{pmatrix}
+      1 & 1 & 0 & 0 \\
+      1 & 1 & 0 & 0 \\
+      0 & 0 & 0 & 0 \\
+      0 & 0 & 0 & 0
+    \end{pmatrix} = \frac{1}{2}\begin{pmatrix}
+      1 & 0 \\
+      0 & 0
+    \end{pmatrix}\otimes \begin{pmatrix}
+      1 & 1 \\
+      1 & 1
+    \end{pmatrix}\,.$$
+
+  Usando el resultado anterior, para obtener la matriz de densidad del subsistema $A$, realizamos la traza parcial sobre $B$.
+  \[
+    \text{Tr}_B(\rho_{AB}) = \text{Tr}(\rho_B)\rho_A=\begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}=\outerproduct{0}{0}\,.
+  \]
+
+\end{eje}
 
 
 \begin{eje}
@@ -232,14 +360,12 @@ donde $\vec{r} = (r_x, r_y, r_z)$ es el vector de Bloch y $\vec{\sigma} = (\sigm
 La \textbf{decoherencia cuántica} es el proceso por el cual un sistema cuántico pierde su coherencia debido a interacciones incontroladas con el entorno, transformando estados puros en estados mixtos.
 
 \begin{eje}[Decoherencia de un cúbit]
-  Considere un cúbit inicialmente en el estado de superposición $|\psi\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$ que sufre decoherencia de desfase. Después de un tiempo $t$, el estado se convierte en:
-  $$\rho(t) = \frac{1}{2}\begin{pmatrix} 1 & e^{-\gamma t} \\ e^{-\gamma t} & 1 \end{pmatrix}$$
-
+  Considere un cúbit inicialmente en el estado de superposición $|\psi\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$ que sufre decoherencia de desfase. Después de un tiempo $t$, el estado viene representado por la matriz de densidad
+  $$\rho(t) = \frac{1}{2}\begin{pmatrix} 1 & e^{-\gamma t} \\ e^{-\gamma t} & 1 \end{pmatrix}\,.$$
   donde $\gamma > 0$ es la tasa de decoherencia.
-
   \begin{itemize}
-    \item En $t = 0$: $\rho(0) = |\psi\rangle\langle\psi|$ (estado puro), $S(\rho(0)) = 0$.
-    \item Cuando $t \to \infty$: $\rho(\infty) = \frac{I}{2}$ (estado mixto), $S(\rho(\infty)) = 1$.
+    \item En $t = 0$: $\rho(0) = |\psi\rangle\langle\psi|$, estado puro.
+    \item Cuando $t \to \infty$: $\rho(\infty) = \frac{I}{2}$, estado maximalmente mixto.
     \item La pureza decae como: $\text{Tr}(\rho(t)^2) = \frac{1}{2}(1 + e^{-2\gamma t})$.
   \end{itemize}
 \end{eje}
@@ -247,65 +373,41 @@ La \textbf{decoherencia cuántica} es el proceso por el cual un sistema cuántic
 \subsection{Canales cuánticos}
 
 \begin{defi}[Canal cuántico]
-  Un canal cuántico es una aplicación completamente positiva que preserva la traza:
+  Un canal cuántico es una aplicación completamente positiva que preserva la traza
   $$\mathcal{E}: \mathcal{L}(\mathcal{H}_A) \to \mathcal{L}(\mathcal{H}_B)$$
 
   Esta aplicación describe la evolución más general posible de un sistema cuántico abierto.
 \end{defi}
 
 \begin{theo}[Representación de Kraus]
-  Todo canal cuántico $\mathcal{E}$ puede representarse mediante operadores de Kraus $\{K_i\}$:
-  $$\mathcal{E}(\rho) = \sum_i K_i \rho K_i^\dagger$$
+  Todo canal cuántico $\mathcal{E}$ puede representarse mediante operadores de Kraus $\{K_i\}$
+  $$\mathcal{E}(\rho) = \sum_i K_i \rho K_i^\dagger\,,$$
 
-  donde los operadores satisfacen la condición de completitud:
-  $$\sum_i K_i^\dagger K_i = I$$
+  donde los operadores satisfacen la condición de completitud
+  $$\sum_i K_i^\dagger K_i = I\,.$$
 \end{theo}
 
 \begin{eje}[Canal de despolarización]
   El canal de despolarización para un cúbit con probabilidad $p$ tiene la forma:
-  $$\mathcal{E}(\rho) = (1-p)\rho + \frac{p}{3}(\sigma_x \rho \sigma_x + \sigma_y \rho \sigma_y + \sigma_z \rho \sigma_z)$$
+  $$\mathcal{E}(\rho) = (1-p)\rho + \frac{p}{3}(X \rho X + Y \rho Y + Z \rho Z)$$
 
   Los operadores de Kraus son:
-  $$K_0 = \sqrt{1-p}I, \quad K_1 = \sqrt{\frac{p}{3}}\sigma_x, \quad K_2 = \sqrt{\frac{p}{3}}\sigma_y, \quad K_3 = \sqrt{\frac{p}{3}}\sigma_z$$
+  $$K_0 = \sqrt{1-p}I, \quad K_1 = \sqrt{\frac{p}{3}}X, \quad K_2 = \sqrt{\frac{p}{3}}Y, \quad K_3 = \sqrt{\frac{p}{3}}Z\,.$$
 \end{eje}
-
-\begin{theo}[Teorema de no-clonación]
-  No existe un canal cuántico que pueda clonar un estado cuántico arbitrario desconocido.
-
-  Matemáticamente, no existe ninguna aplicación lineal $\mathcal{C}$ tal que:
-  $$\mathcal{C}(|\psi\rangle \otimes |0\rangle) = |\psi\rangle \otimes |\psi\rangle$$
-  para todo estado $|\psi\rangle$.
-\end{theo}
-
-\begin{proof}
-  Supongamos que existe tal operación. Para estados ortogonales $|0\rangle$ y $|1\rangle$:
-  \begin{align}
-    \mathcal{C}(|0\rangle \otimes |0\rangle) & = |0\rangle \otimes |0\rangle \\
-    \mathcal{C}(|1\rangle \otimes |0\rangle) & = |1\rangle \otimes |1\rangle
-  \end{align}
-
-  Para el estado $|\psi\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$:
-  $$\mathcal{C}(|\psi\rangle \otimes |0\rangle) = \frac{1}{\sqrt{2}}(|0\rangle \otimes |0\rangle + |1\rangle \otimes |1\rangle)$$
-
-  Pero también:
-  $$|\psi\rangle \otimes |\psi\rangle = \frac{1}{2}(|0\rangle \otimes |0\rangle + |0\rangle \otimes |1\rangle + |1\rangle \otimes |0\rangle + |1\rangle \otimes |1\rangle)$$
-
-  Como ambos resultados deben ser iguales, llegamos a una contradicción.
-\end{proof}
 
 \subsection{Medidas de información cuántica}
 
 \begin{defi}[Entropía de von Neumann]
-  La entropía de von Neumann de un estado cuántico descrito por la matriz de densidad $\rho$ se define como:
-  $$S(\rho) = -\text{Tr}(\rho \log_2 \rho)$$
-
-  Si $\rho$ tiene descomposición espectral $\rho = \sum_i \lambda_i |e_i\rangle\langle e_i|$, entonces:
-  $$S(\rho) = -\sum_i \lambda_i \log_2 \lambda_i$$
-
-  La entropía cuantifica el grado de "mezcla" o "desorden" del estado cuántico.
+  La entropía de von Neumann de un estado cuántico descrito por la matriz de densidad $\rho$ se define como
+  $$S(\rho) = -\text{Tr}(\rho \log_2 \rho)\,.$$
 \end{defi}
 
-\begin{prop}[Propiedades de la entropía de von Neumann]
+Si $\rho$ tiene descomposición espectral $\rho = \sum_i \lambda_i |e_i\rangle\langle e_i|$, entonces
+$$S(\rho) = -\sum_i \lambda_i \log_2 \lambda_i$$
+
+La entropía cuantifica el grado de "mezcla" o "desorden" del estado cuántico.
+
+\begin{prop}
   \begin{enumerate}
     \item $S(\rho) \geq 0$ para toda matriz de densidad $\rho$.
     \item $S(\rho) = 0$ si y solo si $\rho$ representa un estado puro.
@@ -316,14 +418,15 @@ La \textbf{decoherencia cuántica} es el proceso por el cual un sistema cuántic
 \end{prop}
 
 \begin{eje}[Cálculo de entropía]
+  Calculemos la entropía de von Neumann para los siguientes estados:
   \begin{enumerate}
     \item \textbf{Estado puro:} Para cualquier $|\psi\rangle$, $S(|\psi\rangle\langle\psi|) = 0$.
 
-    \item \textbf{Estado mixto equiprobable:} Para $\rho = \frac{I}{2}$ en un cúbit:
-          $$S(\rho) = -\frac{1}{2}\log_2\frac{1}{2} - \frac{1}{2}\log_2\frac{1}{2} = 1 \text{ bit}$$
+    \item \textbf{Estado mixto equiprobable:} Para $\rho = \frac{I}{2}$ en un cúbit
+          $$S(\rho) = -\frac{1}{2}\log_2\frac{1}{2} - \frac{1}{2}\log_2\frac{1}{2} = 1\,.$$
 
-    \item \textbf{Estado mixto general:} Para $\rho = p|0\rangle\langle 0| + (1-p)|1\rangle\langle 1|$:
-          $$S(\rho) = -p\log_2 p - (1-p)\log_2(1-p) = H(p)$$
+    \item \textbf{Estado mixto general:} Para $\rho = p|0\rangle\langle 0| + (1-p)|1\rangle\langle 1|$
+          $$S(\rho) = -p\log_2 p - (1-p)\log_2(1-p) = H(p)\,,$$
           donde $H(p)$ es la entropía de Shannon clásica.
   \end{enumerate}
 \end{eje}
@@ -342,10 +445,10 @@ La \textbf{decoherencia cuántica} es el proceso por el cual un sistema cuántic
   Para estados puros $|\psi\rangle$ y $|\phi\rangle$:
   $$F(|\psi\rangle, |\phi\rangle) = |\langle\psi|\phi\rangle|$$
 
-  La fidelidad mide qué tan "cercanos" están dos estados cuánticos.
+  La fidelidad mide qué tan cercanos están dos estados cuánticos.
 \end{defi}
 
-\begin{prop}[Propiedades de la fidelidad]
+\begin{prop}
   \begin{enumerate}
     \item $0 \leq F(\rho, \sigma) \leq 1$.
     \item $F(\rho, \sigma) = F(\sigma, \rho)$ (simetría).
@@ -362,7 +465,7 @@ La \textbf{decoherencia cuántica} es el proceso por el cual un sistema cuántic
   donde $|A| = \sqrt{A^\dagger A}$ es el valor absoluto del operador $A$.
 \end{defi}
 
-\begin{prop}[Propiedades de la distancia de traza]
+\begin{prop}
   \begin{enumerate}
     \item $0 \leq D(\rho, \sigma) \leq 1$.
     \item $D(\rho, \sigma) = 0$ si y solo si $\rho = \sigma$.
