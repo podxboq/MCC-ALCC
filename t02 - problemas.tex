@@ -3,7 +3,7 @@
 \begin{questions}
 
 
-  \question Determinar si los siguientes conjuntos son subespacios de $\C^3$:
+  \question Determinar si los siguientes conjuntos, definidos por las coordenadas de sus vectores son subespacios de $\C^3$:
   \begin{parts}
     \part $W_1 = \{(x, y, z)\in\C^3 \mid x + 2y - z = 1\}$.
     \part $W_2 = \{(x, y, z)\in\C^3 \mid x = \conj{z}\}$.
@@ -12,12 +12,17 @@
 
 
   \question
-  Encontrar una base y la dimensión del subespacio de $\C^4$ generado por
-  $$\{(1, i, 0, 1), (i, 1, 1, 0), (1+i, 1+i, 1, 1)\}\,.$$
+  Encontrar una base y la dimensión del subespacio de $\C^4$ generado por los vectores
+  \[
+    v_1=\mqty(1\\ i\\ 0\\ 1), \quad v_2=\mqty(i\\ 1\\ 1\\ 0), \quad v_3=\mqty(1+i\\ 1+i\\ 1\\ 1)\,.
+  \]
 
 
   \question
-  Verificar que el conjunto $\{(1, 1, 0, 1), (1, i, 0, 1), (0, 0, 1, 1)\}$ es linealmente independiente en $\C^4$ y extenderlo a una base de $\C^4$.
+  Verificar que el conjunto $\{v_1, v_2, v_3\}$ es linealmente independiente en $\C^4$ y extenderlo a una base de $\C^4$ para
+  \[
+    v_1=\mqty(1\\ 1\\ 0\\ 1), \quad v_2=\mqty(1\\ i\\ 0\\ 1), \quad v_3=\mqty(0\\ 0\\ 1\\ 1)\,.
+  \]
 
 
   \question
@@ -58,13 +63,15 @@
 
   \question Demostrar que si $V$ y $W$ son subespacios de $\C^3$ y $\dim(V) + \dim(W) = 4$, entonces $V \cap W \neq \{0\}$.
 
-  \question Sea $\mathcal{B}$ la base canónica de $\C^2$ y $\mathcal{B}^\prime$ la base de $\C^2$ formada por
+  \question Sean $\mathcal{B}$ y $\mathcal{B}^\prime$ bases de $\C^2$ formadas por
   \[
-    \mathcal{B}^\prime = \{(1, i), (i, 1)\}.
+    \mathcal{B} = \{(1, i), (i, 1)\},\quad
+    \mathcal{B}^\prime = \{(i, 0), (0, i)\}.
   \]
   \begin{parts}
+    \part Hallar la matriz cambio de coordenadas de $\mathcal{B}$ a $\mathcal{B}^\prime$.
+    \part Hallar la matriz cambio de coordenadas de $\mathcal{B}^\prime$ a $\mathcal{B}$.
+    \part Compruebe que la matriz cambio de coordenadas de $\mathcal{B}$ a $\mathcal{B}^\prime$ y la matriz cambio de coordenadas de $\mathcal{B}^\prime$ a $\mathcal{B}$ son inversas.
     \part Hallar la matriz cambio de base de $\mathcal{B}$ a $\mathcal{B}^\prime$.
-    \part Hallar la matriz cambio de base de $\mathcal{B}^\prime$ a $\mathcal{B}$.
-    \part Compruebe que la matriz cambio de base de $\mathcal{B}$ a $\mathcal{B}^\prime$ y la matriz cambio de base de $\mathcal{B}^\prime$ a $\mathcal{B}$ son inversas.
   \end{parts}
 \end{questions}

@@ -1,0 +1,144 @@
+\documentclass[]{unirTema}
+
+\input{personalizacion}
+
+\printanswers
+
+\author{Francisco Costa Cano}
+\titulacion{Máster en computación cuántica}
+\asignatura{Álgebra lineal en computación cuántica}
+\bloque{1}{Fundamentos matemáticos}
+\tema{2}{Matriz cambio de base vs matriz cambio de coordenadas}
+
+\begin{document}
+
+\caratula
+
+\section{Espacio vectorial de polinomios}
+
+Vamos a considerar el espacio vectorial $\mathcal{P}_1[x]=\{ax+b\mid a,b\in\mathbb{C}\}$ y las siguientes bases:
+\begin{align*}
+  \mathcal{B}  & = \{1+x, 1-x\}\,, \\
+  \mathcal{B}' & = \{i+x, i-x\}
+\end{align*}
+
+\subsection{Matriz cambio de base}
+La matriz cambio de base de $\mathcal{B}$ a $\mathcal{B}'$ que llamaremos $M_{\mathcal{B}\rightarrow\mathcal{B}'}$ es la matriz asociada al homomorfismo de espacios vectoriales $f: \mathcal{P}_1[x] \rightarrow \mathcal{P}_1[x]$ que lleva los vectores de $\mathcal{B}$ a los vectores de $\mathcal{B}'$. En este caso, tenemos que
+\begin{align*}
+  f(1+x) & = i+x \\
+  f(1-x) & = i-x
+\end{align*}
+Para calcular esta matriz tenemos que saber como actua el homomorfismo sobre los vectores de la base canónica de $\mathcal{P}_1[x]$.
+\begin{align*}
+  f(1) & = \frac{1}{2}(i+x) + \frac{1}{2}(i-x) = i\,, \\
+  f(x) & = \frac{1}{2}(i+x) - \frac{1}{2}(i-x) = x\,.
+\end{align*}
+
+Por lo tanto, la matriz cambio de base de $\mathcal{B}$ a $\mathcal{B}'$ es
+\begin{align*}
+  M_{\mathcal{B}\rightarrow\mathcal{B}'} & = \begin{pmatrix}
+                                               i & 0 \\
+                                               0 & 1
+                                             \end{pmatrix}\,.
+\end{align*}
+
+Para comprobarlo calculamos la imagen de $1+x$ usando la matriz cambio de base,
+\begin{align*}
+  f(1+x) & = M_{\mathcal{B}\rightarrow\mathcal{B}'} \begin{pmatrix}
+                                                      1 \\
+                                                      1
+                                                    \end{pmatrix} \\
+         & = \begin{pmatrix}
+               i & 0 \\
+               0 & 1
+             \end{pmatrix} \begin{pmatrix}
+                             1 \\
+                             1
+                           \end{pmatrix}                          \\
+         & = \begin{pmatrix}
+               i \\
+               1
+             \end{pmatrix} = i+x
+\end{align*}
+
+\subsection{No es lo mismo la matriz cambio de base que la matriz cambio de coordenadas}
+
+Tomemos el vector $2\in\mathcal{P}_1[x]$, y veamos sus coordenadas en la base $\mathcal{B}$ y en la base $\mathcal{B}'$.
+\begin{align*}
+  2 & = 1\cdot(1+x) + 1\cdot(1-x) =(1,1)_\mathcal{B}\,,            \\
+  2 & = (-i)\cdot(i+x) + (-i)\cdot(i-x) =(-i,-i)_{\mathcal{B}'}\,.
+\end{align*}
+
+Sin embargo, si multiplicamos la matriz cambio de base por las coordenadas de $2$ en la base $\mathcal{B}$ no obtenemos las coordenadas de 2 en la base $\mathcal{B}'$
+\begin{align*}
+  \begin{pmatrix}
+    i & 0 \\
+    0 & 1
+  \end{pmatrix} \begin{pmatrix}
+                  1 \\
+                  1
+                \end{pmatrix} = \begin{pmatrix}
+                                  i \\
+                                  1
+                                \end{pmatrix} \neq \begin{pmatrix}
+                                                     -i \\
+                                                     -i
+                                                   \end{pmatrix}\,.
+\end{align*}
+
+Concluimos que
+\[
+  M_{\mathcal{B}\rightarrow\mathcal{B}'} 2_{\mathcal{B}} \neq 2_{\mathcal{B}'}\,.
+\]
+
+\subsection{Matriz cambio de coordenadas}
+Para obtener la matriz cambio de coordenadas de $\mathcal{B}$ a $\mathcal{B}'$ tenemos que calcular como se expresa los vectores de la base $\mathcal{B}$ en la base $\mathcal{B}'$.
+\begin{align*}
+  1+x & = \frac{1+i}{2i}(i+x) + \frac{1-i}{2i}(i-x)\,, \\
+  1-x & = \frac{1-i}{2i}(i+x) + \frac{1+i}{2i}(i-x)\,.
+\end{align*}
+
+La matriz cambio de coordenadas es
+\[
+  M_\mathcal{B}^\mathcal{B'} = \frac{1}{2i} \begin{pmatrix}
+    1+i & 1-i \\
+    1-i & 1+i
+  \end{pmatrix}\,.
+\]
+
+Ahora calculamos las coordenadas de $2$ en la base $\mathcal{B}'$ usando la matriz cambio de coordenadas,
+\begin{align*}
+  2_{\mathcal{B}'} & = M_\mathcal{B}^\mathcal{B'} 2_\mathcal{B}      \\
+                   & = \frac{1}{2i} \begin{pmatrix}
+                                      1+i & 1-i \\
+                                      1-i & 1+i
+                                    \end{pmatrix} \begin{pmatrix}
+                                                    1 \\
+                                                    1
+                                                  \end{pmatrix}     \\
+                   & = \frac{1}{2i} \begin{pmatrix}
+                                      2 \\
+                                      2
+                                    \end{pmatrix} = \begin{pmatrix}
+                                                      -i \\
+                                                      -i
+                                                    \end{pmatrix}\,.
+\end{align*}
+
+Y para comprobarlo realizamos las operaciones
+\begin{align*}
+  2_{\mathcal{B}'} & = -i(i+x) -i(i-x)   \\
+                   & = -i^2 -ix -i^2 +ix \\
+                   & = 1 + 1 = 2\,.
+\end{align*}
+
+\subsection{Conclusión}
+
+En resumen podemos decir que
+
+\begin{align*}
+  M_{\mathcal{B}\rightarrow \mathcal{B'}} 2 & = (-1+i) + (i-1)x  & M_{\mathcal{B}\rightarrow \mathcal{B'}} 2_{\mathcal{B}} & \neq 2_{\mathcal{B}'}   \\
+  M_\mathcal{B}^\mathcal{B'} 2_\mathcal{B}  & = 2_{\mathcal{B}'} & M_\mathcal{B}^\mathcal{B'} 2                            & \neq (-1+i) + (i-1)x\,.
+\end{align*}
+
+\end{document}

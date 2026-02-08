@@ -4,10 +4,10 @@
   \temaEsquema{Fundamentos}{
     \conceptoEsquema{Definición y operaciones}{}
     \temaEsquema{Formas}{
-      \conceptoEsquema{Cartesiana}{}
-      \conceptoEsquema{Binomial}{}
-      \conceptoEsquema{Polar}{}
-      \conceptoEsquema{Exponencial}{}
+      \conceptoEsquema{Cartesiana}{$(a,b)$}
+      \conceptoEsquema{Binomial}{$a + bi$}
+      \conceptoEsquema{Polar}{$r(\cos(\theta) + i\sin(\theta))$}
+      \conceptoEsquema{Exponencial}{$re^{i\theta}$}
     }
   }
   \temaEsquema{Relaciones}{
@@ -22,11 +22,11 @@
     \conceptoEsquema{Raíces $n$-ésimas}{}
   }
   \temaEsquema{Funciones}{
-    \conceptoEsquema{Exponencial}{$e^z = \sum_{n=0}^{\infty} \frac{z^n}{n!}$}
-    \conceptoEsquema{Seno}{$\sin(z) = \frac{e^{iz} - e^{-iz}}{2i}$}
-    \conceptoEsquema{Coseno}{$\cos(z) = \frac{e^{iz} + e^{-iz}}{2}$}
-    \conceptoEsquema{Seno hiperbólico}{$\sinh(z) = \frac{e^z - e^{-z}}{2}$}
-    \conceptoEsquema{Coseno hiperbólico}{$\cosh(z) = \frac{e^z + e^{-z}}{2}$}
+    \conceptoEsquema{Exponencial}{$\sum_{n=0}^{\infty} \frac{z^n}{n!}$}
+    \conceptoEsquema{Seno}{$\frac{e^{iz} - e^{-iz}}{2i}$}
+    \conceptoEsquema{Coseno}{$\frac{e^{iz} + e^{-iz}}{2}$}
+    \conceptoEsquema{Seno hiperbólico}{$\frac{e^z - e^{-z}}{2}$}
+    \conceptoEsquema{Coseno hiperbólico}{$\frac{e^z + e^{-z}}{2}$}
   }
 \end{esquemaExplorador}
 
@@ -263,13 +263,13 @@ Observaremos que el argumento de un número complejo no está completamente defi
   \arg z = \left\{\theta\in\R\mid \cos(\theta) = \frac{a}{|z|}\,, \sin(\theta) = \frac{b}{|z|}\right\}\,.
 \]
 
-Si restringimos el valor del argumento al intervalo $[0, 2\pi)$, tendremos unicidad en la definición y por este motivo le damos a este valor el nombre de \textbf{argumento principal} y lo denotamos por $\Arg z$.
+Si restringimos el valor del argumento al intervalo $[-\pi, \pi)$, tendremos unicidad en la definición y por este motivo le damos a este valor el nombre de \textbf{argumento principal} y lo denotamos por $\Arg z$.
 
 Observamos por último que de las coordenadas polares, podemos deducir $r = \sqrt{x^2+y^2}$, y que este valor es exactamente el módulo del número complejo asociado.
 
 \begin{defi}[Forma polar]
   Sea $z$ un número  complejo. Llamaremos \textbf{forma polar} a la expresión
-  \[ z = |z|(\cos(\Arg z) + i\sin(\Arg z))\,. \]
+  \[ z = \abs{z}(\cos(\Arg z) + i\sin(\Arg z))\,. \]
 \end{defi}
 
 
@@ -441,8 +441,8 @@ Como elementos geométricos heredados de la geometría euclídea de $\R^2$ tenem
   \item \textbf{Discos}: (abiertos o cerrados):
         \[ D(z_0,r) = \{ z\in\C\ \vert\ d(z_0,z)<r \}\ ,\qquad \bar D(z_0,r) = \{ z\in\C\ \vert\ d(z_0,z)\leq r \}\,. \]
   \item \textbf{Circunferencias}:
-        \[ S(z_0,r) = \{ z\in\C\ \vert\ d(z_0,z) = r \} = \partial D(z_0,r)\,. \]
-        En particular, la circunferencia unidad $S_1 = \partial D(0, 1)= \{z\in\C\ \vert\ \abs{z}=1\}$.
+        \[ C(z_0,r) = \{ z\in\C\ \vert\ d(z_0,z) = r \} = \partial D(z_0,r)\,. \]
+        En particular, la circunferencia unidad $C_1 = \partial D(0, 1)= \{z\in\C\ \vert\ \abs{z}=1\}$.
   \item \textbf{Coronas circulares}:
         \[ C(z_0,r_1,r_2) = \{ z\in\C\ \vert\ r_1 < d(z_0,z) < r_2 \}\,. \]
   \item El \textbf{módulo} es la distancia del origen al punto, $|z|=d(0, z)$.
@@ -478,20 +478,19 @@ Toda función compleja puede escribirse de forma única como $f = u+iv$, donde $
 Ya hemos usado la función exponencial para expresar su valor con exponente un número complejo, pero podemos obtener la formulación analítica de la función exponencial, extendiendo la correspondiente función analítica de la exponencial real.
 
 \begin{defi}[Función exponencial compleja]
-  Para $z \in \C$, la función exponencial se define como
+  Para $z \in \C$, la función \textbf{exponencial compleja} se define como
   \[
     e^z = \sum_{n=0}^{\infty} \frac{z^n}{n!}\,.
   \]
 \end{defi}
 
-La función exponencial compleja, cumple las mismas propiedades que la exponencial real en cuanto a las manipulaciones algebraicas. El siguiente resultado, cuya demostración se basa en la fórmula de Euler~\eqref{eq:formula-euler}.
+La función exponencial compleja, cumple las mismas propiedades que la exponencial real en cuanto a las manipulaciones algebraicas, como vemos en el siguiente resultado, cuya demostración se basa en la fórmula de Euler~\eqref{eq:formula-euler}.
 
 \begin{prop}
   Sean $z=a+bi$ y $w$ dos números complejos con $a,b\in\R$, se cumple:
   \begin{itemize}
-    \item $e^{a+bi} = e^a (\cos(b) + i\sin(b))$.
     \item $e^{z+w} = e^z e^w$.
-    \item $(e^z)^n = e^{nz}\ \forall n\in\N$.
+    \item $(e^z)^n = e^{nz}\ \forall n\in\Z$.
   \end{itemize}
 \end{prop}
 
@@ -506,7 +505,7 @@ La función exponencial compleja es analítica en todo el plano complejo, contí
 
 Si usamos la fórmula de Euler~\eqref{eq:formula-euler} para el ángulo $\theta = \pi$, obtenemos una de las fórmulas más importantes de la matemática
 \[
-  e^{i\cdot \pi} + 1 = 0\,.
+  e^{i\pi} + 1 = 0\,.
 \]
 
 A partir de la definición de la función exponencial y usando la fórmula de Euler~\eqref{eq:formula-euler}, podemos definir analíticamente también las funciones seno y coseno para números complejos.

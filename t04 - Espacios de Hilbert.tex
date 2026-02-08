@@ -7,12 +7,10 @@
     \conceptoEsquema{Norma inducida}{}
     \conceptoEsquema{Distancia asociada a la norma}{}
   }
-  \temaEsquema{Espacios prehilbert}{
+  \temaEsquema{Espacios de Hilbert}{
     \conceptoEsquema{Desigualdad de Cauchy-Schwarz}{$|\langle u, v \rangle|^2 \leq \langle u, u \rangle \langle v, v \rangle$}
     \conceptoEsquema{Ortogonalidad}{}
     \conceptoEsquema{Proyecciones ortogonales}{}
-  }
-  \temaEsquema{Espacios de Hilbert}{
     \conceptoEsquema{Completitud}{}
     \conceptoEsquema{Bases ortonormales}{}
     \conceptoEsquema{Teorema de Parseval}{$\|v\|^2 = \sum_{k=1}^n |\langle v, e_k \rangle|^2$}
@@ -50,9 +48,9 @@ Mientras no se diga lo contrario, durante todo el tema estaremos trabajando con 
   Sea $V$ un espacio vectorial. Un \textbf{producto interno} en $V$ es una función $\langle \cdot, \cdot \rangle: V \times V \to \C$ que satisface para todo $u, v, w \in V$ y $\alpha, \beta \in \C$:
 
   \begin{enumerate}
-    \item \textbf{Linealidad en el primer argumento}
+    \item \textbf{Linealidad en el segundo argumento}
           \[
-            \langle \alpha u + \beta v, w \rangle = \alpha\langle u, w\rangle + \beta\langle v, w\rangle\,.
+            \pint{w}{\alpha u + \beta v}= \alpha\pint{w}{u} + \beta\pint{w}{v}\,.
           \]
 
     \item \textbf{Antisimetría hermítica}
@@ -72,11 +70,11 @@ Mientras no se diga lo contrario, durante todo el tema estaremos trabajando con 
 \begin{eje}[Productos internos estándar]
   Algunos ejemplos de productos internos en espacios vectoriales complejos son:
   \begin{enumerate}
-    \item En $\C^n$: $\langle u, v \rangle = \sum_{k=1}^n  u_k \conj{v_k}$.
+    \item En $\C^n$ $\langle u, v \rangle = \sum_{k=1}^n  \conj{u_k}v_k$.
 
-    \item En $\C^{m \times n}$: $\langle A, B \rangle = \text{tr}(A B^\dagger) = \sum_{i,j} A_{ij}\conj{B_{ij}}$.
+    \item En $\C^{m \times n}$ $\langle A, B \rangle = \text{tr}(A B^\dagger) = \sum_{i,j} \conj{A_{ij}}B_{ij}$.
 
-    \item En $L^2([a,b])$: $\langle f, g \rangle = \int_a^b f(x)\conj{g(x)} \, dx$.
+    \item En $L^2([a,b])$ $\langle f, g \rangle = \int_a^b \conj{f(x)}g(x) \, dx$.
   \end{enumerate}
 \end{eje}
 Veamos algunos resultados básicos sobre el producto interno que son importantes recordar.
@@ -84,8 +82,7 @@ Veamos algunos resultados básicos sobre el producto interno que son importantes
   \label{prop:propiedadesProductoInterno}
   Sean $u,v,w \in V$ vectores y $\alpha, \beta \in \C$. Entonces:
   \begin{enumerate}
-    \item $\langle u, \alpha v + \beta w \rangle = \conj{\alpha}\langle u, v\rangle + \conj{\beta}\langle u, w\rangle$.
-    \item $\langle u, v \rangle = \conj{\langle v, u \rangle}$.
+    \item $\pint{\alpha v + \beta w}{u} = \conj{\alpha}\langle v, u\rangle + \conj{\beta}\langle w, u\rangle$.
     \item $\langle u, 0 \rangle = 0$.
     \item $\abs{\langle u, v \rangle} = \abs{\langle v, u \rangle}$.
   \end{enumerate}
@@ -94,7 +91,7 @@ Veamos algunos resultados básicos sobre el producto interno que son importantes
   Se deja al lector como ejercicio (~\ref{ex:propiedadesProductoInterno}).
 \end{proof}
 
-Nuestro objetivo es dotar a los espacios vectoriales de una estructura geométrica que nos permita definir conceptos como ángulos, longitudes y ortogonalidad. Para ello, necesitamos de un poderoso concepto, la distancia, que nos permitirá definir conceptos de proximidad e incluso dotar al espacio de una topología adecuada.
+Nuestro objetivo es dotar a los espacios vectoriales de una estructura geométrica que nos permita definir conceptos como ángulos, longitudes y ortogonalidad. Para ello, necesitamos de una poderosa herramienta, la distancia, que nos permitirá establecer la noción de proximidad e incluso dotar al espacio de una topología adecuada.
 
 Para ello, partimos de la definición de norma inducida por un producto interno.
 \begin{defi}[Norma inducida]
@@ -151,7 +148,7 @@ Para ello, partimos de la definición de norma inducida por un producto interno.
   por lo que $u$ y $v$ son linealmente dependientes.
 \end{proof}
 
-Por último, la norma nos permite definir el concepto de distancia, que es esencial para para los resultados de en el estudio de la información cuántica.
+Por último, la norma nos permite definir el concepto de distancia, que es esencial para realizar procesos comparativos y de recuperación de estados cuánticos. Estos y otros temas que relacionados con espacios métricos se necesitan en el campo de la información cuántica.
 
 \begin{defi}[Distancia]
   Sea $V$ un espacio vectorial, definimos \textbf{distancia} sobre $V$ a una aplicación $d: V \times V \to \R$ que satisface para todos $u, v, w \in V$:
@@ -179,14 +176,10 @@ Todos los espacios vectoriales que dispongan de una norma, pueden definir una fu
 \end{proof}
 
 \begin{eje}
-  Usando los ejemplos de producto interno del inicio del tema podemos tener los siguientes ejemplos de distancias:
-  \begin{itemize}
-    \item En $\C^n$: $d(u, v) = \sum_{k=1}^n  |u_k - v_k|^2$.
-
-    \item En $\C^{m \times n}$: $d(A, B) = \sum_{i,j} |A_{ij} - B_{ij}|^2$.
-
-    \item En $L^2([a,b])$: $d(f, g) = \int_a^b |f(x) - g(x)|^2 \, dx$.
-  \end{itemize}
+  En $\C^n$ a partir del producto interno podemos construir la siguiente función de distancia
+  \[
+    d(u, v) = \|u-v\| = \sqrt{\pint{u-v}{u-v}} = \sqrt{\sum_{k=1}^n  |u_k - v_k|^2}\,.
+  \]
 \end{eje}
 
 \subsection{Ortogonalidad y proyecciones}
@@ -214,11 +207,11 @@ Si $V$ es un espacio vectorial con producto interno, y $\mathcal{B}=\{v_1, \ldot
 \]
 nos permite expresar el producto interno con un vector de la base $v_k$ como
 \[
-  \langle v, v_k \rangle = \sum_{i=1}^n a_i \langle v_i, v_k \rangle = a_k\,,
+  \pint{v_k}{v} = \sum_{i=1}^n a_i \pint{v_k}{v_i} = a_k\,,
 \]
 y de esta igualdad deducimos que los coeficientes de la combinación lineal son simplemente los productos internos con los vectores de la base ortonormal
 \[
-  v = \sum_{k=1}^n \langle v, v_k \rangle v_k\,.
+  v = \sum_{k=1}^n \pint{v_k}{v} v_k\,.
 \]
 
 La igualdad anterior podemos interpretarla como la descomposición de $v$ en suma de vectores en la misma dirección que los vectores de la base ortonormal, y donde la magnitud de cada vector es el producto interno de $v$ con el vector de la base.
@@ -226,14 +219,9 @@ La igualdad anterior podemos interpretarla como la descomposición de $v$ en sum
 Es decir que la descomposición de $v$ en la base ortonormal es simplemente la proyección ortogonal de $v$ sobre el subespacio generado por la base ortonormal.
 
 \begin{defi}[Proyección ortogonal]
-  Sea $W$ un subespacio de un espacio con producto interno $V$, y sea $\{e_1, \ldots, e_k\}$ una base ortonormal de $W$. La \textbf{proyección ortogonal} de $v \in V$ sobre $W$ es
-  $$\text{proj}_W(v) = \sum_{i=1}^k \langle v, e_i \rangle e_i\,.$$
+  Sea $W$ un subespacio de un espacio con producto interno $V$, y sea $\{v_1, \ldots, v_k\}$ una base ortonormal de $W$. La \textbf{proyección ortogonal} de $v \in V$ sobre $W$ es
+  $$\text{proj}_W(v) = \sum_{i=1}^k \pint{v_i}{v} v_i\,.$$
 \end{defi}
-
-Si $W$ está generado por los vectores $\{v_1, \ldots, v_k\}$, entonces podemos denotar
-\[
-  \text{proj}_{v_1, \ldots, v_k}(v) = \text{proj}_W(v)\,.
-\]
 
 \begin{prop}
   La proyección ortogonal sobre un subespacio vectorial $W$ de un espacio vectorial $V$ con producto interno es una aplicación lineal que cumple
@@ -334,7 +322,7 @@ El proceso de Gram-Schmidt nos permite construir para cualquier espacio vectoria
   \end{align*}
 \end{eje}
 
-\subsection{Espacios prehilbert y espacios de Hilbert}
+\subsection{Espacios de Hilbert}
 
 Le hmos dedicado mucho tiempo a estudiar los espacios vectoriales con producto interno, pero todavía no hemos nombrado el concepto que da título a este tema, y como en breve comprobarás, apenas le dedicaremos unas pocas líneas a su definición.
 
@@ -468,7 +456,7 @@ Cuando se habla del los valores espectrales de un operador o matriz normal, se r
   \[
     \left\{\frac{1}{\sqrt{3}}(-1+i, 1), \frac{1}{\sqrt{3}}(1, 1+i)\right\}\,.
   \]
-  La matriz unitaria de cambio de base $U$ se forma con los vectores propios normalizados como columnas
+  La matriz unitaria de cambio de coordenadas $U$ se forma con los vectores propios normalizados como columnas
   \[
     U = \frac{1}{\sqrt{3}}\begin{pmatrix} -1+i & 1   \\
                 1    & 1+i\end{pmatrix}\,.

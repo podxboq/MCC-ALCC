@@ -107,13 +107,13 @@ En espacios de Hilbert, existe una correspondencia especial entre el espacio dua
 
 \begin{theo}[Teorema de Riesz-Fréchet]
   Sea $\mathcal{H}$ un espacio de Hilbert complejo con producto interno $\langle \cdot, \cdot \rangle$. Para cada funcional lineal continuo $f \in \mathcal{H}^*$, existe un único elemento $y_f \in \mathcal{H}$ tal que:
-  $$f(x) = \langle x, y_f \rangle \quad \forall x \in \mathcal{H}\,.$$
-  La aplicación $\Phi: \mathcal{H} \to \mathcal{H}^*$ definida por $\Phi(y)(x) = \langle x, y \rangle$ es un isomorfismo antilineal isométrico.
+  $$f(x) = \langle y_f, x \rangle \quad \forall x \in \mathcal{H}\,.$$
+  La aplicación $\Phi: \mathcal{H} \to \mathcal{H}^*$ definida por $\Phi(x)(y) = \langle y, x \rangle$ es un isomorfismo antilineal isométrico.
 \end{theo}
 
 Si $V$ es un espacio vectorial, y $\mathcal{B}=\{e_1, e_2, \ldots, e_n\}$ es una base ortonormal de $V$, entonces
 \[
-  \mathcal{B}^*=\{\langle -, e_1 \rangle, \langle -, e_2 \rangle, \ldots, \langle -, e_n \rangle\}\,,
+  \mathcal{B}^*=\{\langle e_1, - \rangle, \langle e_2, - \rangle, \ldots, \langle e_n, - \rangle\}\,,
 \]
 es una base de $V^*$.
 
@@ -299,32 +299,32 @@ Una vez que hemos definido el producto tensorial, podemos definir el producto ex
 \end{defi}
 
 Si con respecto la base canónica, $u = \sum_{i=1}^n u_i e_i$ y $v = \sum_{j=1}^n v_j e_j$, entonces
-$$u \wedge v = \sum_{i,j=1}^n u_i \bar{v}_j e_i \otimes e_j^\dagger\,.$$
+$$u \wedge v = \sum_{i,j=1}^n u_i \bar{v}_j e_i \otimes e_j^\dagger= \sum_{i,j=1}^n u_i \bar{v}_j e_i \wedge e_j\,.$$
 
-Pero la expresión $e_i\wedge e_j^\dagger$ es la matriz con todas sus entradas cero excepto en la posición de la fila $i$ y columna $j$ que vale $1$. Por lo tanto, expresado el producto externo como una función $\wedge : V\times V\to V\otimes V$, su forma matricial es
+Pero la expresión $e_i\wedge e_j$ es la matriz con todas sus entradas cero excepto en la posición de la fila $i$ y columna $j$ que vale $1$. Por lo tanto, expresado el producto externo como una matriz
 \[
-  [\wedge] = \begin{pmatrix}
-    u_1 \bar{v}_1 & u_2 \bar{v}_1 & \dots  & u_n \bar{v}_1 \\
-    u_1 \bar{v}_2 & u_2 \bar{v}_2 & \dots  & u_n \bar{v}_2 \\
+  [u \wedge v] = \begin{pmatrix}
+    u_1 \bar{v}_1 & u_1 \bar{v}_2 & \dots  & u_1 \bar{v}_n \\
+    u_2 \bar{v}_1 & u_2 \bar{v}_2 & \dots  & u_2 \bar{v}_n \\
     \vdots        & \vdots        & \ddots & \vdots        \\
-    u_1 \bar{v}_n & u_2 \bar{v}_n & \dots  & u_n \bar{v}_n
+    u_n \bar{v}_1 & u_n \bar{v}_2 & \dots  & u_n \bar{v}_n
   \end{pmatrix}\,.
 \]
 
-Si multiplicamos por un vector $w=(w_1, \ldots, w_n) \in V$, obtenemos la siguiente igualdad
+Si multiplicamos por un vector $w=\mqty(w_1\\ \vdots\\ w_n) \in V$, obtenemos la siguiente igualdad
 \begin{align*}
-  w [\wedge] & = (w_1, \ldots, w_n)\begin{pmatrix}
-                                     u_1 \bar{v}_1 & u_2 \bar{v}_1 & \dots  & u_n \bar{v}_1 \\
-                                     u_1 \bar{v}_2 & u_2 \bar{v}_2 & \dots  & u_n \bar{v}_2 \\
-                                     \vdots        & \vdots        & \ddots & \vdots        \\
-                                     u_1 \bar{v}_n & u_2 \bar{v}_n & \dots  & u_n \bar{v}_n
-                                   \end{pmatrix}                                  \\
-             & = (w_1 u_1 \bar{v}_1 + \dots + w_n u_n \bar{v}_1,\, \dots,\, w_1 u_1 \bar{v}_n + \dots + w_n u_n \bar{v}_n) \\
-             & = (u_1(w_1 \bar{v}_1 + \dots + w_n \bar{v}_n),\, \dots,\, u_n(w_1 \bar{v}_1 + \dots + w_n  \bar{v}_n))      \\
-             & = (u_1\langle w, v\rangle,\, \dots,\, u_n\langle w, v\rangle) = \langle w, v\rangle u\,.
+  [u \wedge v]w & = \begin{pmatrix}
+                      u_1 \bar{v}_1 & u_1 \bar{v}_2 & \dots  & u_1 \bar{v}_n \\
+                      u_2 \bar{v}_1 & u_2 \bar{v}_2 & \dots  & u_2 \bar{v}_n \\
+                      \vdots        & \vdots        & \ddots & \vdots        \\
+                      u_n \bar{v}_1 & u_n \bar{v}_2 & \dots  & u_n \bar{v}_n
+                    \end{pmatrix}\mqty(w_1 \\ \vdots\\ w_n)                                  \\
+                & = \mqty(u_1 \bar{v}_1 w_1 + \dots + u_1 \bar{v}_n w_n    \\ \vdots\\ u_n \bar{v}_1 w_1 + \dots + u_n \bar{v}_n w_n) \\
+                & = \mqty((w_1 \bar{v}_1 + \dots + w_n \bar{v}_n)u_1       \\ \vdots\\ (w_1 \bar{v}_1 + \dots + w_n \bar{v}_n)u_n)      \\
+                & = \mqty(\langle v, w\rangle u_1                          \\ \vdots\\ \langle v, w\rangle u_n) = \langle v, w\rangle u\,.
 \end{align*}
 Por lo tanto como operadores se cumple
-$$ (u \wedge v)(w) = (u \otimes v^\dagger)(w) = \langle w, v\rangle u\,.$$
+$$ (u \wedge v)(w) = \langle v, w\rangle u\,.$$
 
 En términos del producto externo, podemos reescribir la expresión de un vector con respecto a una base ortonormal como
 $$u = \sum_{i=1}^n \langle u, e_i\rangle e_i = \sum_{i=1}^n e_i \wedge e_i(u)=\left( \sum_{i=1}^n e_i \wedge e_i\right)(u)\,.$$

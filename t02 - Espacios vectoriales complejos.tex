@@ -48,7 +48,7 @@ serán los siguientes:
 
 Esta base teórica será fundamental para comprender en los próximos temas la manipulación de estados cuánticos como vectores.
 
-\subsection{Espacios y subespacios vectoriales}
+\subsection{Espacio vectorial}
 
 \begin{defi}
   Sea $\K$ un conjunto no vacio junto con una operación interna ($\circ$).
@@ -106,6 +106,10 @@ Siempre usamos la siguiente notación, con independencia de cuales son los compo
 Ejemplos de cuerpos infinitos tenemos $\Q, \R, \C$ y de cuerpos finitos $\Z_p$ para $p\in\N$ primo.
 Pero no todos los cuerpos son numéricos, si consideramos el polinomio de grado 1 definido como $p(x)=x-\alpha$ con $\alpha\in\R^*$, entonces bajo la relación de equivalencia de la aritmética residual, el conjunto conciente $\R[X]/ p(x)$ es un cuerpo.
 
+Algunas veces se tiende a igualar el concepto de vector con el de coordenada, pues en la práctica se usan indistintamente, pero en teoría son conceptos diferentes. Cuando trabajemos con vectores en $\C^n$ usaremos la representación del vector como matriz columna, cuando trabajemos con coordenadas usaremos la representación del vector como matriz fila.
+
+Cuando por comodidad en la notación necesitemos la representación del vector como matriz fila, usaremos la traspuesta del vector que denotaremos con la letra $^t$.
+
 \begin{defi}
   Sea $\K$ un cuerpo.
   Un \textbf{espacio vectorial} sobre $\K$, o un $\K$-espacio vectorial, es un conjunto $\V$ no vacío junto con
@@ -137,11 +141,13 @@ Pero no todos los cuerpos son numéricos, si consideramos el polinomio de grado 
 \begin{eje}
   $\C^n$ es un espacio vectorial sobre $\C$, con las operaciones usuales:
   \begin{align*}
-    (x_1,\dots, x_n)
-    + ( y_1,\dots, y_n) & = ( x_1 + y_1,\dots, x_n + y_n)\,. \\
-    k(x_{1},\dots,x_n)  & = (kx_1,\dots, kx_n)\,.
+    \mqty(x_1            \\ \vdots \\ x_n)
+    + \mqty(y_1          \\ \vdots \\ y_n)
+     & = \mqty(x_1 + y_1 \\ \vdots \\ x_n + y_n) \\
+    k\mqty(x_1           \\ \vdots \\ x_n)
+     & = \mqty(kx_1      \\ \vdots \\ kx_n)\,,
   \end{align*}
-  Para $k \in\C$ y $(x_1, \dots, x_n), (y_1,\dots, y_n)\in\C^n$.
+  para $k \in\C$ y $(x_1 \dots x_n)^t, (y_1 \dots y_n)^t\in\C^n$.
 \end{eje}
 
 \begin{eje}
@@ -180,7 +186,7 @@ Pero no todos los cuerpos son numéricos, si consideramos el polinomio de grado 
   \]
 \end{proof}
 
-\subsection{Subespacio vectorial}
+\subsection{Subespacio vectorial complejo}
 
 A partir de este momento, nos centraremos en espacios vectoriales sobre el cuerpo de los números complejos, es decir, en \(\C\)-espacios vectoriales. No obstante, la mayoría de los resultados que se presentarán son válidos para espacios vectoriales sobre cualquier cuerpo.
 
@@ -217,8 +223,8 @@ Un subespacio vectorial es un subconjunto cerrado para las operaciones de suma y
 \end{eje}
 
 \begin{theo}[Caracterización de subespacios]
-  Un subconjunto no vacío $W$ de un espacio vectorial $V$ es un subespacio si y solo si es cerrado bajo combinaciones lineales, es decir:
-  $$\alpha u + \beta v \in W \quad \text{para todos } u, v \in W \text{ y } \alpha, \beta \in \C$$
+  Un subconjunto no vacío $W$ de un espacio vectorial $V$ es un subespacio si y solo si es cerrado bajo combinaciones lineales, es decir
+  $$\alpha u + \beta v \in W \quad \forall u, v \in W, \, \forall\alpha, \beta \in \C\,.$$
 \end{theo}
 
 \subsection{Combinaciones lineales y sistemas generadores}
@@ -235,8 +241,8 @@ Un subespacio vectorial es un subconjunto cerrado para las operaciones de suma y
 \end{defi}
 
 \begin{eje}
-  Consideremos el espacio vectorial $\C^3$ y los vectores $v_1 = (1, 0, i)$ y $v_2 = (i, 1, 0)$, el subespacio vectorial generado por $S = \{v_1, v_2\}$ es
-  $$\text{gen}(S) = \left\{\alpha (1, 0, i) + \beta (i, 1, 0) \mid \alpha, \beta \in \C\right\} = \left\{( \alpha + \beta i, \beta, \alpha i) \mid \alpha, \beta \in \C\right\}\,.$$
+  Consideremos el espacio vectorial $\C^3$ y los vectores $v_1 = (1\, 0\, i)^t$ y $v_2 = (i\, 1\, 0)^t$, el subespacio vectorial generado por $S = \{v_1, v_2\}$ es
+  $$\text{gen}(S) = \left\{\alpha \mqty(1\\ 0\\ i) + \beta \mqty(i\\ 1\\ 0) \mid \alpha, \beta \in \C\right\} = \left\{\mqty( \alpha + \beta i\\ \beta\\ \alpha i) \mid \alpha, \beta \in \C\right\}\,.$$
 \end{eje}
 
 \begin{defi}[Independencia lineal]
@@ -248,18 +254,16 @@ Un subespacio vectorial es un subconjunto cerrado para las operaciones de suma y
 \end{defi}
 
 \begin{eje}
-  Determinar si los vectores $v_1 = (1, i, 0)$, $v_2 = (i, 0, 1)$, $v_3 = (1+i, i, 1)$ de $\C^3$ son linealmente independientes.
-
-  \textbf{Solución:} Planteamos la ecuación
-  $$\alpha_1 (1, i, 0) + \alpha_2 (i, 0, 1) + \alpha_3 (1+i, i, 1) = (0, 0, 0)\,,$$
+  Para determinar si los vectores $v_1 = (1\, i\, 0)^t$, $v_2 = (i\, 0\, 1)^t$, $v_3 = (1+i\, i\, 1)^t$ de $\C^3$ son linealmente independientes, planteamos la ecuación
+  $$\alpha_1\mqty(1 \\ i \\0) + \alpha_2 \mqty(i\\ 0\\ 1) + \alpha_3 \mqty(1+i\\ i\\ 1) = \mqty(0\\ 0\\ 0)\,,$$
   que nos lleva al sistema de ecuaciones
-  \begin{align}
+  \begin{align*}
     \alpha_1 + i\alpha_2 + (1+i)\alpha_3 & = 0    \\
     i\alpha_1 + i\alpha_3                & = 0    \\
     \alpha_2 + \alpha_3                  & = 0\,.
-  \end{align}
+  \end{align*}
 
-  De la segunda ecuación: $\alpha_3 = -\alpha_1$. De la tercera: $\alpha_2 = -\alpha_3 = \alpha_1$. Sustituyendo en la primera:
+  De la segunda ecuación, obtenemos que $\alpha_3 = -\alpha_1$, y de la tercera $\alpha_2 = -\alpha_3 = \alpha_1$. Sustituyendo en la primera
   $$\alpha_1 + i\alpha_1 + (1+i)(-\alpha_1) = \alpha_1 + i\alpha_1 - \alpha_1 - i\alpha_1 = 0\,.$$
 
   Esta ecuación se satisface para cualquier $\alpha_1$, por lo que los vectores son linealmente dependientes.
@@ -274,7 +278,7 @@ Un subespacio vectorial es un subconjunto cerrado para las operaciones de suma y
   \begin{enumerate}
     \item Un conjunto que contiene el vector cero es linealmente dependiente.
     \item Si un conjunto, contiene un subconjunto de vectores linealmente dependiente, entonces el conjunto es linealmente dependiente.
-    \item Si un conjunto es linealmente independiente, entonces cualquier subconjunto también lo es.
+    \item Es linealmente independiente todo subconjunto de un conjunto linealmente independiente.
     \item En $\C^n$, cualquier conjunto de más de $n$ vectores es linealmente dependiente.
     \item En $\C^n$, cualquier conjunto linealmente independiente tiene a lo sumo $n$ vectores.
   \end{enumerate}
@@ -292,17 +296,22 @@ Un subespacio vectorial es un subconjunto cerrado para las operaciones de suma y
 
 \begin{eje}[Base canónica de $\C^n$]
   La base canónica (o estándar) de $\C^n$ es
-  $$e_1 = (1, 0, \ldots, 0), e_2 = (0, 1, \ldots, 0), \ldots, e_n = (0, 0, \ldots, 1)\,.$$
+  $$e_1 = \mqty(1\\0\\\vdots\\0), e_2 = \mqty(0\\1\\\vdots\\0), \ldots, e_n = \mqty(0\\0\\\vdots\\1)\,.$$
 
-  Cualquier vector $v = (v_1, v_2, \ldots, v_n) \in \C^n$ se puede escribir como
+  Cualquier vector $v = (v_1, v_2, \ldots, v_n)^t \in \C^n$ se puede escribir como
   $$v = v_1 e_1 + v_2 e_2 + \cdots + v_n e_n\,.$$
 \end{eje}
 
 \begin{theo}[Existencia y unicidad de representación]
   Si $\mathcal{B} = \{v_1, v_2, \ldots, v_n\}$ es una base de un espacio vectorial $V$, entonces todo vector $v \in V$ se puede escribir de manera única como
   $$v = \alpha_1 v_1 + \alpha_2 v_2 + \cdots + \alpha_n v_n\,.$$
-  Los escalares $\alpha_1, \alpha_2, \ldots, \alpha_n$ se llaman las \textbf{coordenadas} de $v$ respecto a la base $\mathcal{B}$.
+  Los escalares $\alpha_1, \alpha_2, \ldots, \alpha_n$ se llaman las \textbf{coordenadas} de $v$ respecto de la base $\mathcal{B}$ y lo denotaremos por
+  \[
+    v = (\alpha_1, \alpha_2, \ldots, \alpha_n)_\mathcal{B}\,.
+  \]
 \end{theo}
+
+Cuando no se especifica la base, se está utilizando la base canónica.
 
 El teorema de la existencia y unicidad de representación nos dice que una base nos permite expresar cualquier vector del espacio vectorial de una única manera como combinación lineal de los vectores de la base.
 
@@ -333,19 +342,22 @@ El concepto de dimensión es fundamental en álgebra lineal, ya que proporciona 
 
 \begin{eje}
   Queremos encontrar una base para el subespacio $W$ de $\C^4$ definido por
-  $$W = \left\{(x, y, z, w) \in \C^4 \mid x + y - z = 0, \, 2x - y + w = 0\right\}\,.$$
+  $$W = \left\{\mqty(x\\ y\\ z\\ w) \in \C^4 \mid x + y - z = 0, \, 2x - y + w = 0\right\}\,.$$
   De las ecuaciones que definen $W$, podemos expresar $z$ y $w$ en función de $x$ e $y$
   \begin{align*}
     x + y - z  & = 0 \Rightarrow z = x + y\,,  \\
     2x - y + w & = 0 \Rightarrow w = y - 2x\,.
   \end{align*}
-  Por tanto, los vectores en $W$ tienen la forma $(x, y, x+y, y-2x)$ que podemos expresar como combinación lineal de dos vectores
-  $$(x, y, x+y, y-2x) = x(1, 0, 1, -2) + y(0, 1, 1, 1)\,.$$
-  Esta expresión muestra que cualquier vector en $W$ puede generarse a partir de los vectores $(1, 0, 1, -2)$ y $(0, 1, 1, 1)$. Es decir, $W = \text{gen}\{(1, 0, 1, -2), (0, 1, 1, 1)\}$.
-
-  Por último tenemos que verificar que los vectores encontrados son linealmente independientes, para ello tomemos una combinación lineal que dé el vector cero
+  Por tanto, los vectores en $W$ tienen como coordenadas $(x, y, x+y, y-2x)$ que podemos expresar como combinación lineal de dos vectores
+  $$\mqty(x\\ y\\ x+y\\ y-2x) = x\mqty(1\\ 0\\ 1\\ -2) + y\mqty(0\\ 1\\ 1\\ 1)\,.$$
+  Esta expresión muestra nos da el conjunto generador de $W$, es decir,
   \[
-    \alpha(1, 0, 1, -2) + \beta(0, 1, 1, 1) = (0, 0, 0, 0)\,.
+    W = \text{gen}\left\{\mqty(1\\ 0\\ 1\\ -2), \mqty(0\\ 1\\ 1\\ 1)\right\}\,.
+  \]
+
+  Por último tenemos que verificar que los vectores encontrados son linealmente independientes, para ello tomemos una combinación lineal igualada al vector cero
+  \[
+    \alpha\mqty(1\\ 0\\ 1\\ -2) + \beta\mqty(0\\ 1\\ 1\\ 1) = \mqty(0\\ 0\\ 0\\ 0)\,.
   \]
   De la primera coordenada, obtenemos directamente que $\alpha = 0$, y de la segunda coordenada que $\beta = 0$, lo cual demuestra que los vectores son linealmente independientes.
 
@@ -354,10 +366,7 @@ El concepto de dimensión es fundamental en álgebra lineal, ya que proporciona 
   Por último podemos afirmar que $\dim(W) = 2$.
 \end{eje}
 
-Una de las razones por las cuales es importante el concepto de base de un espacio vectorial, es porque de esta manera podemos caracterizar cualquier elemento del espacio vectorial en función de los coeficientes usados al ser expresado como combinación lineal de los elementos de la base.
-
-A las coordenadas \(v_{1},\dots, v_{n}\) de \(v \in\V\) en la base $\mathcal{B}$  las representamos como un vector de $\C^n$ donde usaremos la notación \({v = (v_{1},\dots,v_{n})}_{\mathcal{B}} \in \C^n\).
-Cuando no se exprese la base, estamos queriendo decir que usamos la base canónica de $\V$.
+Una de las razones por las cuales es importante el concepto de base, es porque podemos caracterizar cualquier elemento del espacio vectorial en función de los coeficientes usados al ser expresado como combinación lineal de los elementos de la base.
 
 Elegir una base para un espacio vectorial de dimensión $n$ es equivalente a elegir un sistema de coordenadas para \(\C^n\).
 
@@ -366,11 +375,11 @@ Elegir una base para un espacio vectorial de dimensión $n$ es equivalente a ele
 \end{eje}
 
 \begin{nota}
-  Aunque se ha definido el concepto de base como un conjunto, en la práctica es habitual considerar las bases como listas ordenadas de vectores, pues el orden de los vectores en la base determina el orden de las coordenadas de un vector y este orden es importante en muchos contextos.
+  Aunque se ha definido el concepto de base como un conjunto, en la práctica es habitual considerar las bases como listas ordenadas de vectores, pues el orden de los vectores en la base determina el orden de las coordenadas de un vector y este orden es importante.
 \end{nota}
 
 Gráficamente podemos visualizar un sistema de coordenadas como una malla o cuadrícula en la que las unidades de medida vienen determinadas por los elementos de la base.
-Siguiendo con el ejemplo anterior, en la base usual \( B=\left\{ e_{1},\ e_{2} \right\}\) la malla consiste en los ejes coordenados usuales (Figura~\ref{fig:bases-rejilla}, izquierda), mientras que en la base \(B^{\prime} = \left\{ b_{1},\ b_{2} \right\}\) la dirección vertical de la malla tiene un ángulo menor de 90 grados (Figura~\ref{fig:bases-rejilla}, derecha).
+Siguiendo con el ejemplo anterior, en la base canónica \( B=\left\{ e_{1},\ e_{2} \right\}\) la malla consiste en los ejes coordenados usuales (Figura~\ref{fig:bases-rejilla}, izquierda), mientras que en la base \(B^{\prime} = \left\{ b_{1},\ b_{2} \right\}\) la dirección vertical de la malla tiene un ángulo menor de 90 grados (Figura~\ref{fig:bases-rejilla}, derecha).
 
 \begin{figure}[H]
   \centering
@@ -390,66 +399,160 @@ Formalizaremos este fenómeno más adelante al hablar de cambios de base o cambi
   Las coordenadas de la matriz \(\begin{pmatrix}
     2    & - i & 4 \\
     2+3i & - 1 & 1
-  \end{pmatrix}\) en la base usual es \((2, - i,4,2+3i, - 1,1)\) y que como podemos observar es un espacio vectorial de dimensión $6$.
+  \end{pmatrix}\) en la base canónica es \((2, - i,4,2+3i, - 1,1)\) y que como podemos observar es un espacio vectorial de dimensión $6$.
 \end{eje}
 
 \begin{defi}
   Sea $\V$ un espacio vectorial de dimensión $n$ y sean $\mathcal{B}$ y $\mathcal{B}^\prime$ dos bases de $\V$. Consideremos las coordenadas de los vectores $v_k$ de $\mathcal{B}$ en la base $\mathcal{B}^\prime$
   \[
-    v_k = (a_{k1},\ldots,a_{kn} )_{\mathcal{B}^\prime}\ \forall k=1,\dots,n\,.
+    v_k = (a_{k1},\ldots,a_{kn})_{\mathcal{B}^\prime}\ \forall k=1,\dots,n\,.
   \]
-  Llamamos \textbf{matriz de cambio de base} o \textbf{matriz de cambio de coordenadas} de la base $\mathcal{B}$ a la base $\mathcal{B}^\prime$ a la matriz $M_{\mathcal{B}}^{\mathcal{B}^\prime}=(a_{ij})$.
+  Llamamos \textbf{matriz cambio de coordenadas} de $\mathcal{B}$ a $\mathcal{B}^\prime$ a la matriz $M_{\mathcal{B}}^{\mathcal{B}^\prime}=(a_{ij})$.
 \end{defi}
 
-El motivo de llamar a $M_{\mathcal{B}}^{\mathcal{B}^\prime}$ la matriz cambio de base, se debe a que dado $v$ un vector de $\V$ con coordenadas $(x_1,\dots,x_n)_{\mathcal{B}}$ y coordenadas $(y_1,\dots,y_n)_{\mathcal{B}^\prime}$, tenemos
+Dado $v$ un vector de $\V$ con coordenadas $(x_1,\dots,x_n)_{\mathcal{B}}$ y coordenadas $(y_1,\dots,y_n)_{\mathcal{B}^\prime}$, tenemos
 \begin{align*}
-  v                                    & =\sum_{i=1}^n x_i v_i=\sum_{i=1}^n x_i \left( \sum_{j=1}^n a_{ij}v_j^\prime\right) =\sum_{j=1}^n \left( \sum_{i=1}^n x_i a_{ij}\right) v_j^\prime\Rightarrow \\
-  y_j                                  & = \sum_{i=1}^n x_i a_{ij} = (x_1,\dots,x_n)_{\mathcal{B}}(M_{\mathcal{B}}^{\mathcal{B}^\prime})^j\Rightarrow                                                 \\
-  (y_1,\dots,y_n)_{\mathcal{B}^\prime} & = (x_1,\dots,x_n)_{\mathcal{B}}M_{\mathcal{B}}^{\mathcal{B}^\prime}
+  v & =\sum_{i=1}^n x_i v_i=\sum_{i=1}^n x_i \left( \sum_{j=1}^n a_{ij}v_j^\prime\right) =\sum_{j=1}^n \left( \sum_{i=1}^n x_i a_{ij}\right) v_j^\prime \\
+  v & =\sum_{j=1}^n y_j v_j^\prime\,.
 \end{align*}
-La ecuación matricial del cambio de base de $\mathcal{B}$ a $\mathcal{B}^\prime$ permite calcular las coordenadas de un vector en la base $\mathcal{B}^\prime$ conociendo las coordenadas con respecto a la base $\mathcal{B}$.
+Por la unicidad de la representación obtenemos
+\[
+  y_j                                  = \sum_{i=1}^n x_i a_{ij} = (x_1,\dots,x_n)_{\mathcal{B}}(M_{\mathcal{B}}^{\mathcal{B}^\prime})^j\,,
+\]
+y por tanto
+\[
+  (y_1,\dots,y_n)_{\mathcal{B}^\prime} = (x_1,\dots,x_n)_{\mathcal{B}}M_{\mathcal{B}}^{\mathcal{B}^\prime}\,.
+\]
 
-El cambio de base en el sentido contrario, es decir, calcular las coordenadas de un vector en la base $\mathcal{B}$ conociendo sus coordenadas en la base $\mathcal{B}^\prime$ viene dado por la matriz inversa.
+La ecuación matricial del cambio de coordenadas de $\mathcal{B}$ a $\mathcal{B}^\prime$ permite calcular las coordenadas de un vector en la base $\mathcal{B}^\prime$ conociendo las coordenadas con respecto a la base $\mathcal{B}$.
+
+\begin{eje}
+  Consideremos en \(\mathbb{C}^{2}\) los vectores
+  \[
+    u_1 = \mqty(2\\4), \quad u_2 = \mqty(-1\\2), \quad v_1 = \mqty(1\\0), \quad v_2 = \mqty(i\\2)\,,
+  \]
+  y las bases $\mathcal{B}=\set{u_1, u_2}$ y $\mathcal{B}^{\prime}=\set{v_1, v_2}$.
+
+  Para calcular la matriz de cambio de coordenadas de $\mathcal{B}$ a $\mathcal{B}^{\prime}$ debemos primero conocer cuál es la expresión de los vectores de $\mathcal{B}$ en función de los vectores de $\mathcal{B}^{\prime}$.
+  Para ello tenemos que resolver el sistema de ecuaciones
+  \begin{align*}
+    \mqty(2  \\4) & = a\mqty(1\\0)+b\mqty(i\\2)  \\
+    \mqty(-1 \\2) & = c\mqty(1\\0)+d\mqty(i\\2).
+  \end{align*}
+  La solución es \(a = 2-2i,\, b = 2\) y \(c = -1-i,\ d = 1\), por lo que
+  \begin{align*}
+    u_1 & = (2-2i, 2)_{\mathcal{B}^\prime}    \\
+    u_2 & = (-1-i, 1)_{\mathcal{B}^\prime}\,.
+  \end{align*}
+
+  La matriz de cambio de coordenadas de $\mathcal{B}$ a $\mathcal{B}^\prime$ es
+  \[
+    M_{\mathcal{B}}^{\mathcal{B}^\prime} = \mqty(2-2i & 2 \\ -1-i & 1).
+  \]
+  Hagamos la comprobación, en la base $\mathcal{B}$ tenemos que \(u_2 = (0,1)_{\mathcal{B}}\).
+  Multiplicando las coordenadas por la matriz $M_{\mathcal{B}}^{\mathcal{B}^\prime} $ tenemos que
+  \[
+    (0,1)_{\mathcal{B}} M_{\mathcal{B}}^{\mathcal{B}^\prime} = (-1-i, 1)_{\mathcal{B}^\prime}\,,
+  \]
+  y aplicando estas coordenadas en la base $\mathcal{B}^\prime$ tenemos que
+  \[
+    (-1-i, 1)_{\mathcal{B}^\prime} = (-1-i)v_1 + 1\cdot v_2 = (-1-i)\mqty(1\\0) + 1\cdot \mqty(i\\2) = \mqty(-1\\2)=u_2\,.
+  \]
+  Resumiendo
+  \[
+    u_2 = (0,1)_{\mathcal{B}} = (-1-i, 1)_{\mathcal{B}^\prime}\,.
+  \]
+\end{eje}
+
+El cambio de coordenadas en el sentido contrario, es decir, calcular las coordenadas de un vector en la base $\mathcal{B}$ conociendo sus coordenadas en la base $\mathcal{B}^\prime$ viene dado por la matriz inversa.
 
 \begin{prop}
-  Sea $\V$ un espacio vectorial de dimensión $n$ y sean $\mathcal{B}$ y $\mathcal{B}^\prime$ dos bases de $\V$. La matriz cambio de base de $\mathcal{B}^\prime$ a $\mathcal{B}$ es la inversa de la matriz de cambio de base de $\mathcal{B}$ a $\mathcal{B}^\prime$
+  Sea $\V$ un espacio vectorial de dimensión $n$ y sean $\mathcal{B}$ y $\mathcal{B}^\prime$ dos bases de $\V$. La matriz cambio de coordenadas de $\mathcal{B}^\prime$ a $\mathcal{B}$ es la inversa de la matriz de cambio de coordenadas de $\mathcal{B}$ a $\mathcal{B}^\prime$
   \[
-    M_{\mathcal{B}}^{\mathcal{B}^\prime} = \left(M_{\mathcal{B}^\prime}^{\mathcal{B}}\right)^{-1}\,.
+    M_{\mathcal{B}^\prime}^{\mathcal{B}} = \left(M_{\mathcal{B}}^{\mathcal{B}^\prime}\right)^{-1}\,.
   \]
 \end{prop}
 
 \begin{eje}
-  Consideremos en \(\mathbb{C}^{2}\) las siguientes bases, $\mathcal{B}=\set{(1,0), (i,2)}$ y $\mathcal{B}^{\prime}=\set{(2,3), (-1,2)}$.
-
-  Para calcular la matriz de cambio de base de $\mathcal{B}^\prime$ a $\mathcal{B}$ debemos primero conocer cuál es la expresión de los vectores de $\mathcal{B}^\prime$ en función de los vectores de $\mathcal{B}$.
-  Para ello tenemos que resolver el sistema de ecuaciones
-  \begin{align*}
-    (2,3)
-           & = a(1,0)+b(i,2)  \\
-    (-1,2) & = c(1,0)+d(i,2).
-  \end{align*}
-  La solución es \(a = 2-\frac{3}{2}i,\, b = \frac{3}{2}\) por lo que \((2,3) = {(2-\frac{3}{2}i,\frac{3}{2})}_{\mathcal{B}}\) y \(c = -1-i,\ d = 1\), por lo que \((-1,2) = {(-1-i,1)}_{\mathcal{B}}\).
-
-  La matriz de cambio de base de $\mathcal{B}^\prime$ a $\mathcal{B}$ es
+  Siguiendo con el ejemplo anterior, podemos ahora calcular la matriz de cambio de coordenadas de $\mathcal{B}^\prime$ a $\mathcal{B}$ a partir de la matriz de cambio de coordenadas de $\mathcal{B}$ a $\mathcal{B}^\prime$ calculando la inversa
   \[
-    M_{\mathcal{B}^\prime}^{\mathcal{B}} = \begin{pmatrix}
-      2-\frac{3}{2}i & \frac{3}{2} \\
-      -1-i           & 1
-    \end{pmatrix}.
+    M_{\mathcal{B }^\prime}^{\mathcal{B}} = \left(M_{\mathcal{B}}^{\mathcal{B}^\prime}\right)^{-1} = \frac{1}{4}\mqty(1 & -2 \\ 1+i & 2-2i).
   \]
-  Hagamos la comprobación, en la base $\mathcal{B}^\prime$ tenemos que \((-1,2) = 0 \cdot (2,3) + 1 \cdot ( - 1,2)\) por lo que
-  \((-1,2) = (0,1)_{\mathcal{B}^\prime}\).
-  Aplicando a este vector la matriz $M_{\mathcal{B}^\prime}^{\mathcal{B}} $ tenemos que
+
+  Hagamos la comprobación, en la base $\mathcal{B}^\prime$ tenemos que \(v_1 = (1,0)_{\mathcal{B}^\prime}\).
+  Multiplicando a este vector la matriz $M_{\mathcal{B}^\prime}^{\mathcal{B}} $ tenemos que
   \[
-    (0,1) =
-    \begin{pmatrix}
-      2-\frac{3}{2}i & \frac{3}{2} \\
-      -1-i           & 1
-    \end{pmatrix} = (-1-i, 1).
+    (1,0)_{\mathcal{B}^\prime}\frac{1}{4}\mqty(1 & -2 \\ 1+i & 2-2i) = (\frac{1}{4},-\frac{1}{2})_{\mathcal{B}}\,,
   \]
-  En otras palabras, \((-1,2) = (0,1)_{\mathcal{B}^\prime} = (-1-i, 1)_{\mathcal{B}}\).
+  y aplicando estas coordenadas en la base $\mathcal{B}$ tenemos que
+  \[
+    (\frac{1}{4},-\frac{1}{2})_{\mathcal{B}} = \frac{1}{4}u_1 - \frac{1}{2}u_2 = \frac{1}{4}\mqty(2\\4) - \frac{1}{2}\mqty(-1\\2) = \mqty(\frac{1}{2}\\1) - \mqty(-\frac{1}{2}\\1) = \mqty(1\\0)=v_1\,.
+  \]
+  Resumiendo
+  \[
+    v_1 = (1,0)_{\mathcal{B}^\prime} = (\frac{1}{4},-\frac{1}{2})_{\mathcal{B}}\,.
+  \]
 \end{eje}
 
+\begin{prop}
+  Sea $\V$ un espacio vectorial de dimensión $n$ y sean $\mathcal{B}_1$, $\mathcal{B}_2$ y $\mathcal{B}_3$ tres bases de $\V$. La matriz cambio de coordenadas de $\mathcal{B}_1$ a $\mathcal{B}_3$ se calcula como el producto de la matriz cambio de coordenadas de $\mathcal{B}_1$ a $\mathcal{B}_2$ y la matriz cambio de coordenadas de $\mathcal{B}_2$ a $\mathcal{B}_3$.
+  \[
+    M_{\mathcal{B}_1}^{\mathcal{B}_3} = M_{\mathcal{B}_1}^{\mathcal{B}_2}M_{\mathcal{B}_2}^{\mathcal{B}_3}\,.
+  \]
+\end{prop}
+
+\begin{eje}
+  Siguiendo con el ejemplo anterior, calculemos la matriz de cambio de coordenadas de $\mathcal{B}^\prime$ a $\mathcal{B}$ usando la base canónica $\mathcal{C}$, como base intermedia.
+
+  Este método es más sencillo ya que tenemos expresados los vectos de ambas bases como coordenadas de la base canónica, así que la matriz cambio de coordenadas entre $\mathcal{B}$ y la canónica es la matriz cuyas filas son las coordenadas de los vectores de $\mathcal{B}$.
+
+  La matriz de cambio de coordenadas de $\mathcal{B}$ a $\mathcal{C}$ es
+  \[
+    M_{\mathcal{B}}^{\mathcal{C}} = \mqty(2 & 4 \\ -1 & 2)\,,
+  \]
+
+  mientras que la matriz de cambio de coordenadas de $\mathcal{B}^\prime$ a $\mathcal{C}$ es
+  \[
+    M_{\mathcal{B}^\prime}^{\mathcal{C}} = \mqty(1 & 0 \\ i & 2).
+  \]
+  Por lo tanto, la matriz de cambio de coordenadas de $\mathcal{B}$ a $\mathcal{B}^\prime$ es
+  \begin{align*}
+    M_{\mathcal{B}}^{\mathcal{B}^\prime} & = M_{\mathcal{B}}^{\mathcal{C}}M_{\mathcal{C}}^{\mathcal{B}^\prime} = \mqty(2 & 4 \\ -1 & 2) \mqty(1 & 0 \\ i & 2)^{-1} \\
+                                         & = \mqty(2                                                                     & 4 \\ -1 & 2) \frac{1}{2}\mqty(2                                                          & 0 \\ -i & 1)                                                  \\
+                                         & = \frac{1}{2}\mqty(4-4i                                                       & 4 \\ -2-2i & 2)\\
+                                         & = \mqty(2-2i                                                                  & 2 \\ -1-i & 1)\,.
+  \end{align*}
+\end{eje}
+
+Si consideramos la matriz traspuesta de $M_\mathcal{B}^\mathcal{C}$ del ejemplo anterior y multiplicamos por los vectores de la base canónica, obtenemos
+\begin{align*}
+  \mqty(2 & -1 \\ 4 & 2)\mqty(1\\0) &= \mqty(2\\4)\\
+  \mqty(2 & -1 \\ 4 & 2)\mqty(0\\1) &= \mqty(-1\\2)\,.
+\end{align*}
+Generalizando este resultado tenemos una expresión para realizar un cambio de base.
+
+\begin{prop}
+  Sea $V$ un espacio vectorial, $\mathcal{C}=\{e_1,\dots,e_n\}$ la base canónica y $\mathcal{B}=\{u_1,\dots,u_n\}$ una base de $V$. Se cumple que
+  \[
+    \left(M_{\mathcal{B}}^{\mathcal{C}}\right)^t e_i = u_i\,.
+  \]
+\end{prop}
+
+Por último si consideramos dos bases distintas, podemos obtener una matriz que lleve vectores de una base en la otra, pues
+\[
+  \begin{rcases}
+    \left(M_{\mathcal{B}}^{\mathcal{C}}\right)^t e_i = u_i \Rightarrow  e_i = \left(\left(M_{\mathcal{B}}^{\mathcal{C}}\right)^t\right)^{-1} u_i \\
+    \left(M_{\mathcal{B^\prime}}^{\mathcal{C}}\right)^t e_i = v_i
+  \end{rcases}\Rightarrow v_i = \left(M_{\mathcal{B^\prime}}^{\mathcal{C}}\right)^t \left(M_{\mathcal{C}}^{\mathcal{B}}\right)^t u_i = \left(M_{\mathcal{C}}^{\mathcal{B}} M_{\mathcal{B^\prime}}^{\mathcal{C}}\right)^t u_i\,,
+\]
+este resultado justifica la siguiente definición
+
+\begin{defi}
+  Sea $V$ un espacio vectorial, $\mathcal{B}$ y $\mathcal{B^\prime}$ dos bases de $V$. Llamamos \textbf{matriz cambio de base} de $\mathcal{B}$ a $\mathcal{B}^\prime$a
+  \[
+    M_{\mathcal{B}\mathcal{B^\prime}} = \left(M_{\mathcal{C}}^{\mathcal{B}} M_{\mathcal{B^\prime}}^{\mathcal{C}}\right)^t\,.
+  \]
+\end{defi}
 \subsection{Intersección y suma de subespacios}
 
 \begin{prop}
@@ -485,7 +588,7 @@ En general, la unión de dos subespacios vectoriales no es un subespacio vectori
 \end{defi}
 
 \begin{eje}
-  Consideremos en \(\mathbb{C}^{3}\) los subespacios
+  Usando coordenadas y considerando en \(\mathbb{C}^{3}\) los subespacios
   \[
     U = \set{(x,y,z) \in \mathbb{C}^{3} \mid x + y + z = 0}
   \]

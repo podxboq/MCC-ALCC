@@ -327,8 +327,8 @@
           bottom=3pt
         },
       breakable,
-      before skip=\baselineskip,       % Espacio antes CONTROLADO
-      after skip=0.6\baselineskip     % Espacio después CONTROLADO
+      before skip=\baselineskip,
+      after skip=0.6\baselineskip
     ]
     }
     {
@@ -339,7 +339,7 @@
         colbacktitle=azulunir!8,
         coltitle=black,
         fonttitle=\bfseries\sffamily,
-        title=Definición~\thedefi:~#1,   % Con título personalizado
+        title=Definición~\thedefi:~#1,
         boxrule=0pt,
         arc=0pt,
         top=10pt,
@@ -366,7 +366,7 @@
           },
         breakable,
         before skip=\baselineskip,
-        after skip=0.6\baselineskip      % PUEDES AJUSTAR ESTE VALOR
+        after skip=0.6\baselineskip
       ]
       }
       }{
@@ -383,20 +383,30 @@
     \renewcommand{\theeje}{\arabic{eje}}
     \newenvironment{eje}[1][]{
       \refstepcounter{eje}
-      \begin{mdframed}[
-          backgroundcolor=gray!3,
-          linecolor=azulunir,
-          linewidth=1pt,
-          leftline=true,
-          rightline=false,
-          topline=false,
-          bottomline=false,
-          innerleftmargin=15pt
+      \begin{tcolorbox}[
+          enhanced,
+          colback=azulunir!3,
+          colframe=azulunir	,
+          colbacktitle=azulunir!8,
+          coltitle=black,
+          fonttitle=\bfseries\sffamily,
+          leftrule=1pt,
+          toprule=0pt,
+          bottomrule=0pt,
+          rightrule=0pt,
+          arc=0pt,
+          top=10pt,
+          bottom=10pt,
+          left=12pt,
+          right=12pt,
+          breakable,
+          before skip=\baselineskip,
+          after skip=0.6\baselineskip
         ]
         \textbf{\color{azulunir}Ejemplo~\theeje\ifstrempty{#1}{.}{:~#1}}
         \vspace{0.2\baselineskip}\newline%
         }{
-      \end{mdframed}%
+      \end{tcolorbox}%
     }
 
     % Ejercicio

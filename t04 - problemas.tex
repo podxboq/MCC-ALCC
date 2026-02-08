@@ -4,8 +4,8 @@
 
   \question Verificar que las siguientes funciones definen productos internos y calcular la norma inducida:
   \begin{parts}
-    \part En $\C^2$: $\langle u, v \rangle = 2u_1\conj{v_1} + u_1\conj{v_2} + u_2\conj{v_1} + 3u_2\conj{v_2}$.
-    \part En $\mathcal{M}_2(C)$: $\langle A, B \rangle = \tr(AB^\dagger)$.
+    \part En $\C^2$, $\langle u, v \rangle = 2\conj{u_1}v_1 + \conj{u_2}v_2 + \conj{u_1}v_1 + 3\conj{u_2}v_2$.
+    \part En $\mathcal{M}_2(C)$, $\langle A, B \rangle = \tr(A^\dagger B)$.
   \end{parts}
 
   \question
@@ -21,9 +21,11 @@
   Demostrar el resultado de la propiedades de la distancia asociada a la norma~(\ref{prop:distanciaAsociadaNorma}).
 
   \question Aplicar el proceso de Gram-Schmidt para ortogonalizar
-  $$\left\{(1, 1, i), (1, i, 0), (i, 1, 1)\right\}\,.$$
+  \[
+    \left\{\mqty(1\\ 1\\ i), \mqty(1\\ i\\ 0), \mqty(i\\ 1\\ 1)\right\}\,.
+  \]
 
-  \question Sea $W = \text{gen}\left\{(1, i, 0), (0, 1, i)\right\} \subset \C^3$.
+  \question Sea $W = \text{gen}\left\{\mqty(1\\ i\\ 0), \mqty(i\\ 1\\ 1)\right\} \subset \C^3$.
   \begin{parts}
     \part Encontrar una base ortonormal para $W$.
     \part Calcular $\text{proj}_W(1, 1, 1)$.
@@ -77,12 +79,14 @@
   \question Considerar el operador $T: \mathbb{C}^2 \to \mathbb{C}^2$ definido por la matriz $T = \begin{pmatrix} 1 & i \\ 0 & 2 \end{pmatrix}$.
   \begin{parts}
     \part Encontrar la representación matricial del operador adjunto $T^\dagger$.
-    \part Verificar que $\langle Tx, y \rangle = \langle x, T^\dagger y \rangle$ para $x = (1, i)$ y $y = (1+i, 1-i)$.
+    \part Verificar que $\langle Tx, y \rangle = \langle x, T^\dagger y \rangle$ para $x = \mqty(1\\ i)$ y $y = \mqty(1+i\\ 1-i)$.
     \part Determinar si $T$ es hermitiano, unitario o normal.
   \end{parts}
 
   \question Sea el operador lineal $A$ actuando sobre $\mathbb{C}^2$, representado por la matriz
-  $$A = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}\,.$$
+  \[
+    A = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}\,.
+  \]
 
   \begin{parts}
     \part Calcule el operador adjunto $A^\dagger$.

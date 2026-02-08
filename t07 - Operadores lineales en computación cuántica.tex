@@ -6,12 +6,12 @@
     \conceptoEsquema{Operadores hermitianos y unitarios}{}
     \conceptoEsquema{Descomposición espectral}{}
   }
-  \temaEsquema{Puertas Cuánticas de Un cúbit}{
+  \temaEsquema{Puertas cuánticas de un cúbit}{
     \conceptoEsquema{Matrices de Pauli: X, Y, Z}{}
     \conceptoEsquema{Puerta de Hadamard}{}
     \conceptoEsquema{Puertas de fase: S, T, rotaciones}{}
   }
-  \temaEsquema{Geometría en la Esfera de Bloch}{
+  \temaEsquema{Geometría en la esfera de Bloch}{
     \conceptoEsquema{Rotaciones como operadores unitarios}{}
     \conceptoEsquema{Visualización geométrica}{}
     \conceptoEsquema{Generación de puertas arbitrarias}{}
@@ -21,12 +21,12 @@
     \conceptoEsquema{Operadores producto tensorial}{}
     \conceptoEsquema{Operadores no separables}{}
   }
-  \temaEsquema{Puertas Cuánticas Controladas}{
+  \temaEsquema{Puertas cuánticas controladas}{
     \conceptoEsquema{CNOT y puertas controladas generales}{}
     \conceptoEsquema{Puertas de múltiples controles}{}
     \conceptoEsquema{Universalidad cuántica}{}
   }
-  \temaEsquema{Evolución Temporal y Hamiltonianos}{
+  \temaEsquema{Evolución temporal y hamiltonianos}{
     \conceptoEsquema{Operadores hermitianos como generadores}{}
     \conceptoEsquema{Matrices exponenciales}{}
     \conceptoEsquema{Simulación de evolución cuántica}{}
@@ -44,12 +44,12 @@ Los objetivos específicos de este tema son:
 \begin{itemize}
   \item Caracterizar completamente los operadores unitarios y hermitianos en $\mathcal{C}$.
   \item Estudiar las puertas cuánticas fundamentales y su interpretación geométrica.
-  \item Analizar cómo los operadores producto tensorial describen sistemas multicúbit.
+  \item Analizar cómo los operadores producto tensorial describen sistemas multicúbits.
   \item Desarrollar puertas controladas y entender su implementación.
   \item Conectar operadores hermitianos con la evolución temporal cuántica.
 \end{itemize}
 
-\subsection{Operadores lineales en $\mathcal{C}$}
+\subsection{Operadores lineales en un cúbit}
 
 Empecemos con el espacio de un solo cúbit, $\mathcal{C}$. Aquí, los operadores se representan como matrices $2 \times 2$, y su estudio es fundamental para entender la computación cuántica. La dimensión del espacio de matrices $2 \times 2$ es 4, lo que implica que éste es el número de matrices linealmente independientes que cualquier base va a tener.
 
@@ -300,7 +300,7 @@ Las puertas de fase introducen una fase relativa entre los estados $\ket{0}$ y $
   \end{enumerate}
 \end{prop}
 
-\subsection{Operadores en $\mathcal{C}^n$: Sistemas multicúbit}
+\subsection{Operadores en sistemas multicúbits}
 
 Recordemos que el espacio de estados de un sistema de $n$ cúbits es el producto tensorial de $n$ copias de $\mathcal{C}$ y tiene dimensión $2^n$, y por construcción de la base computacional, la base canónica de $\mathcal{C}^n$ es
 $$\{\ket{b_1 b_2 \ldots b_n} : b_i \in \{0,1\}\}$$
@@ -421,13 +421,11 @@ Actuando sobre la base computacional la puerta SWAP es
   Aplica $X$ al tercer cúbit solo si los primeros dos están en $\ket{11}$.
 \end{defi}
 
-
-
-\subsection{Evolución Temporal y Hamiltonianos}
+\subsection{Evolución temporal y hamiltonianos}
 
 Recordemos que la evolución temporal de un sistema cuántico aislado está gobernada por la ecuación de Schrödinger estacionaria
 $$\frac{d}{dt}\ket{\psi(t)} = -\frac{i}{\hbar}H\ket{\psi(t)}\,,$$
-donde $H$ es el Hamiltoniano (operador hermitiano).
+donde $H$ es el hamiltoniano (operador hermitiano).
 
 La solución formal es:
 $$\ket{\psi(t)} = e^{-iHt/\hbar}\ket{\psi(0)}$$

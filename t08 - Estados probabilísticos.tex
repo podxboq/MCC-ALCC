@@ -14,7 +14,7 @@
   }
   \temaEsquema{Sistemas compuestos}{
     \conceptoEsquema{Producto tensorial de matrices de densidad}{$\rho_{AB} = \rho_A \otimes \rho_B$}
-    \conceptoEsquema{Evolución matriz densidad}{}
+    \conceptoEsquema{Evolución matriz de densidad}{}
   }
   \temaEsquema{Traza parcial}{
     \conceptoEsquema{Traza parcial y sistemas abiertos}{$\text{Tr}_B(\rho_{AB})$}
@@ -161,8 +161,8 @@ $$\rho_{mn} = \langle e_m|\rho|e_n\rangle\,.$$
 \end{proof}
 
 \begin{eje}
-  Sea $\rho = \frac{3}{4}\ketbra{0}{0} + \frac{1}{4}\ketbra{1}{1}$ la matriz densidad de un estado. Necesitamos saber si el estado es mixto o puro.
-  la matriz densidad es
+  Sea $\rho = \frac{3}{4}\ketbra{0}{0} + \frac{1}{4}\ketbra{1}{1}$ la matriz de densidad de un estado. Necesitamos saber si el estado es mixto o puro.
+  la matriz de densidad es
   \[
     \rho = \begin{pmatrix} 3/4 & 0 \\ 0 & 1/4 \end{pmatrix}\,.
   \]
@@ -182,7 +182,7 @@ $$\rho_{mn} = \langle e_m|\rho|e_n\rangle\,.$$
   Esta transformación preserva todas las propiedades de un operador densidad válido.
 \end{theo}
 \begin{proof}
-  Si $\rho^\prime$ es la matriz densidad del sistema después de la evolución unitaria $U$, entonces
+  Si $\rho^\prime$ es la matriz de densidad del sistema después de la evolución unitaria $U$, entonces
   \begin{align*}
     \rho' & = \sum_i p_i \ketbra{U\psi_i}                         \\
           & = \sum_i p_i U \ketbra{\psi_i} U^\dagger              \\
@@ -192,7 +192,7 @@ $$\rho_{mn} = \langle e_m|\rho|e_n\rangle\,.$$
 \end{proof}
 
 \begin{eje}
-  Consideremos la matriz densidad que representa un estado mixto en un cúbit equiprobable $\rho = \frac{1}{2}I$ y apliquemos cualquier puerta cuántica $U$.
+  Consideremos la matriz de densidad que representa un estado mixto en un cúbit equiprobable $\rho = \frac{1}{2}I$ y apliquemos cualquier puerta cuántica $U$.
   $$\rho' = U\rho U^\dagger = U \cdot \frac{1}{2}I \cdot U^\dagger = \frac{1}{2}UU^\dagger = \frac{1}{2}I = \rho\,.$$
 
   El estado mixto completamente aleatorio es invariante bajo cualquier operación unitaria.

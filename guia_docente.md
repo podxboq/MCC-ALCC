@@ -53,7 +53,7 @@ Al finalizar esta asignatura, el estudiante será capaz de:
 
 **Tema 3: Operadores lineales y representación matricial**
 - Transformaciones lineales entre espacios vectoriales
-- Representación matricial y cambio de base
+- Representación matricial y cambio de coordenadas
 - Núcleo e imagen de operadores
 - Valores y vectores propios
 - Diagonalización espectral
