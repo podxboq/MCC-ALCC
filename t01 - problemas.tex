@@ -2,24 +2,188 @@
 
 \begin{questions}
   \question \label{ejer:propiedades_cuerpo} Demostrar las propiedades del cuerpo $\C$ enunciadas en el resultado~\ref{prop:propiedades_cuerpo}.
+  \begin{solution}
+    Usando la definición de elemento de $\C$, sean $z=(z_1, z_2)$, $w = (w_1, w_2)$ y $x=(x_1, x_2)$ tres números complejos, con $z_1, z_2, w_1, w_2, x_1, x_2 \in \R$.
+    Todas las propiedades se demuestran usando la misma propiedad en los números reales.
+    \begin{parts}
+      \part \textbf{Asociativa.}
+      \begin{align*}
+        z+(w+x) & = (z_1, z_2) + ((w_1, w_2) + (x_1, x_2))        \\
+                & = (z_1, z_2) + (w_1 + x_1, w_2 + x_2)           \\
+                & = (z_1 + (w_1 + x_1), z_2 + (w_1 + x_2))        \\
+                & = ((z_1 + w_1) + x_1, (z_2 + w_2) + x_2)        \\
+                & = (z_1 + w_1, z_2 + w_2) + (x_1, x_2)           \\
+                & = ((z_1, z_2) + (w_1, w_2)) + (x_1, x_2)        \\
+                & = (z + w) + x\,.                                \\
+        z(wx)   & = (z_1, z_2)((w_1, w_2)(x_1, x_2))              \\
+                & = (z_1, z_2)(w_1x_1 - w_2x_2, w_1x_2 + w_2x_1)  \\
+                & = (z_1(w_1x_1 - w_2x_2) - z_2(w_1x_2 + w_2x_1), \\
+                & z_1(w_1x_2 + w_2x_1) + z_2(w_1x_1 - w_2x_2))    \\
+                & = ((z_1w_1-z_2w_2)x_1 - (z_1w_2+z_2w_1)x_2,     \\
+                & (z_1w_1-z_2w_2)x_2 + (z_1w_2-z_2w_1)x_1)        \\
+                & = (z_1w_1-z_2w_2)(x_1, x_2)                     \\
+                & = ((z_1, z_2)(w_1, w_2))(x_1, x_2)              \\
+                & = (zw)x\,.
+      \end{align*}
 
+      \part \textbf{Conmutativa.}
+      \begin{align*}
+        z+w & = (z_1, z_2) + (w_1, w_2) \\
+            & = (z_1 + w_1, z_2 + w_2)  \\
+            & = (w_1+ z_1, w_2 + z_2)   \\
+            & = (w_1, w_2) + (z_1, z_2) \\
+            & = w + z\,.
+      \end{align*}
+
+      \part \textbf{Distributiva.}
+      \begin{align*}
+        z(w+x) & = (z_1, z_2)((w_1, w_2) + (x_1, x_2))                                             \\
+               & = (z_1, z_2)(w_1 + x_1, w_2 + x_2)                                                \\
+               & = (z_1(w_1 + x_1) - z_2(w_2 + x_2), z_1(w_2 + x_2) + z_2(w_1 + x_1))              \\
+               & = (z_1 w_1 - z_2 w_2, z_1 w_2 + z_2 w_1) + (z_1 x_1 - z_2 x_2, z_1 x_2 + z_2 x_1) \\
+               & = (z_1, z_2)(w_1, w_2) + (z_1, z_2)(x_1, x_2)                                     \\
+               & = zw + zx\,.
+      \end{align*}
+
+      \part \textbf{Neutro para la suma.}
+      \begin{align*}
+        z+0 & = (z_1, z_2) + (0, 0) \\
+            & = (z_1 + 0, z_2 + 0)  \\
+            & = (z_1, z_2)          \\
+            & = z\,.
+      \end{align*}
+      \part \textbf{Neutro para el producto.}
+      \begin{align*}
+        z\cdot 1 & = (z_1, z_2)\cdot (1, 0)                             \\
+                 & = (z_1\cdot 1 - z_2\cdot 0, z_1\cdot 0 + z_2\cdot 1) \\
+                 & = (z_1, z_2)                                         \\
+                 & = z\,.
+      \end{align*}
+      \part \textbf{Opuesto para la suma.}
+      \begin{align*}
+        z+(-z) & = (z_1, z_2) + (-z_1, -z_2) \\
+               & = (z_1 - z_1, z_2 - z_2)    \\
+               & = (0, 0)                    \\
+               & = 0\,.
+      \end{align*}
+      \part \textbf{Inverso para el producto.} Con $z\neq 0$.
+      \begin{align*}
+        z\cdot z^{-1} & = (z_1, z_2)\cdot (\dfrac{z_1}{z_1^2+z_2^2}, \dfrac{-z_2}{z_1^2+z_2^2})                                                                            \\
+                      & = (z_1\cdot \dfrac{z_1}{z_1^2+z_2^2} - z_2\cdot \dfrac{-z_2}{z_1^2+z_2^2}, z_1\cdot \dfrac{-z_2}{z_1^2+z_2^2} + z_2\cdot \dfrac{z_1}{z_1^2+z_2^2}) \\
+                      & = (1, 0)                                                                                                                                           \\
+                      & = 1\,.
+      \end{align*}
+    \end{parts}
+  \end{solution}
+  \newpage
   \question \label{ejer:propiedades_conjugado} Demostrar las propiedades del conjugado enunciadas en el resultado~\ref{prop:propiedades_conjugado}.
+  \begin{solution}
+    Usando la definición de conjugado, sean $z=z_1 + z_2 i$ y $w = w_1 + w_2 i$ dos números complejos, con $z_1, z_2, w_1, w_2 \in \R$.
+    \begin{parts}
+      \part \textbf{Doble conjugación.}
+      \begin{align*}
+        \conj{\conj{z}} & = \conj{z_1 - z_2 i} \\
+                        & = z_1 + z_2 i        \\
+                        & = z\,.
+      \end{align*}
+      \part \textbf{Parte real.}
+      \begin{align*}
+        \frac{z+\conj{z}}{2} & = \frac{z_1+ z_2 i + z_1- z_2 i}{2} \\
+                             & = \frac{2z_1}{2}                    \\
+                             & = z_1                               \\
+                             & = \Rp(z)\,.
+      \end{align*}
+      \part \textbf{Parte imaginaria.}
+      \begin{align*}
+        \frac{z-\conj{z}}{2i} & = \frac{z_1+ z_2 i - z_1+ z_2 i}{2i} \\
+                              & = \frac{2z_2 i}{2i}                  \\
+                              & = z_2                                \\
+                              & = \Ip(z)\,.
+      \end{align*}
+      \part \textbf{Conjugación de la suma.}
+      \begin{align*}
+        \conj{z+w} & = \conj{z_1 + z_2 i + w_1 + w_2 i}   \\
+                   & = \conj{(z_1 + w_1) + (z_2 + w_2) i} \\
+                   & = (z_1 + w_1) - (z_2 + w_2) i        \\
+                   & = (z_1 - z_2 i) + (w_1 - w_2 i)      \\
+                   & = \conj{z} + \conj{w}\,.
+      \end{align*}
+      \part \textbf{Conjugación del producto.}
+      \begin{align*}
+        \conj{zw} & = \conj{(z_1 + z_2 i)(w_1 + w_2 i)}                   \\
+                  & = \conj{(z_1w_1 - z_2w_2) + (z_1w_2 + z_2w_1) i}      \\
+                  & = (z_1w_1 - z_2w_2) - (z_1w_2 + z_2w_1) i             \\
+                  & = (z_1w_1 - (-z_2)(-w_2)) + (z_1(-w_2) + (-z_2)w_1) i \\
+                  & = \conj{z}\cdot \conj{w}\,.
+      \end{align*}
+      \part \textbf{Conjugación de la inversa.}
+      \begin{align*}
+        \conj{\inv{z}} & = \conj{\frac{z}{|z|}}        \\
+                       & = \conj{\frac{z}{|\conj{z}|}} \\
+                       & = \inv{\conj{z}}\,.
+      \end{align*}
+    \end{parts}
+  \end{solution}
 
-  \question \label{ejer:propiedades_módulo} Demostrar las propiedades del módulo enunciadas en el resultado~\ref{prop:propiedades_módulo}.
+  \question \label{ejer:propiedades_modulo} Demostrar las propiedades del módulo enunciadas en el resultado~\ref{prop:propiedades_modulo}.
+  \begin{solution}
+    Usando la definición de módulo, sean $z=z_1 + z_2 i$ y $w = w_1 + w_2 i$ dos números complejos, con $z_1, z_2, w_1, w_2 \in \R$.
+    \begin{parts}
+      \part
+      \begin{align*}
+        \abs{z} = 0 & \Leftrightarrow \sqrt{z_1^2 + z_2^2} = 0   \\
+                    & \Leftrightarrow z_1^2 + z_2^2 = 0          \\
+                    & \Leftrightarrow z_1 = 0 \text{ y } z_2 = 0 \\
+                    & \Leftrightarrow z = 0\,.
+      \end{align*}
+      \part
+      \begin{align*}
+        \abs{zw} & = \sqrt{(z_1w_1 - z_2w_2)^2 + (z_1w_2 + z_2w_1)^2}                                         \\
+                 & = \sqrt{(z_1w_1)^2 - 2z_1w_1z_2w_2 + (z_2w_2)^2 + (z_1w_2)^2 + 2z_1w_1z_2w_2 + (z_2w_1)^2} \\
+                 & = \sqrt{z_1^2w_1^2 + z_2^2w_2^2 + z_1^2w_2^2 + z_2^2w_1^2}                                 \\
+                 & = \sqrt{z_1^2(w_1^2 + w_2^2) + z_2^2(w_1^2 + w_2^2)}                                       \\
+                 & = \sqrt{(z_1^2 + z_2^2)(w_1^2 + w_2^2)}                                                    \\
+                 & = \sqrt{z_1^2 + z_2^2}\sqrt{w_1^2 + w_2^2}                                                 \\
+                 & = \abs{z}\abs{w}\,.
+      \end{align*}
+      \part
+      \begin{align*}
+        \abs{z} & = \sqrt{z_1^2 + z_2^2}    \\
+                & = \sqrt{z_1^2 + (-z_2)^2} \\
+                & = \abs{\bar{z}}\,.
+      \end{align*}
+    \end{parts}
+  \end{solution}
 
   \question Calcular las siguientes operaciones, expresando el resultado en forma binomial:
   \begin{parts}
-    \part $(3 + 2i) + (1 - 4i)$
-    \part $(2 + i)(3 - 2i)$
-    \part $\frac{1 + 2i}{2 - i}$
-    \part $|3 + 4i|$
-    \part $\conj{(2 - 3i)(1 + i)}$
+    \part $(3 + 2i) + (1 - 4i)$.
+    \part $(2 + i)(3 - 2i)$.
+    \part $\frac{1 + 2i}{2 - i}$.
+    \part $|3 + 4i|$.
+    \part $\conj{(2 - 3i)(1 + i)}$.
   \end{parts}
+  \begin{solution}
+    \begin{parts}
+      \part $(3 + 2i) + (1 - 4i) = 4 - 2i$.
+      \part $(2 + i)(3 - 2i) = 6 - 4i + 3i - 2i^2 = 6 - i + 2 = 8 - i$.
+      \part $\frac{1 + 2i}{2 - i} = \frac{(1 + 2i)(2 + i)}{(2 - i)(2 + i)} = \frac{2 + i + 4i + 2i^2}{4 + 2i - 2i - i^2} = \frac{2 + 5i - 2}{4 + 1} = \frac{5i}{5} = i$.
+      \part $|3 + 4i| = \sqrt{3^2 + 4^2} = \sqrt{9 + 16} = \sqrt{25} = 5$.
+      \part $\conj{(2 - 3i)(1 + i)} = \conj{2 + 2i - 3i - 3i^2} = \conj{2 - i + 3} = \conj{5 - i} = 5 + i$.
+    \end{parts}
+  \end{solution}
 
   \question Demostrar que para cualquier par de números complejos $z,w\in\C$ se cumple que
   \[
     \abs{z}-\abs{w}\leq \abs{z-w}\,.
   \]
+  \begin{solution}
+    Aplicamos la desigualdad triangular
+    \begin{align*}
+      \abs{z} = \abs{(z - w) + w} & \leq \abs{z - w} + \abs{w} \\
+      \abs{z} - \abs{w}           & \leq \abs{z - w}\,.
+    \end{align*}
+  \end{solution}
 
   \question Convertir a forma polar:
   \begin{parts}
@@ -27,8 +191,22 @@
     \part $z_2 = -2 + 2i\sqrt{3}$
     \part $z_3 = -4i$
   \end{parts}
+  \begin{solution}
+    \begin{parts}
+      \part $z_1 = 1 + i = \sqrt{2}e^{i\pi/4}$.
+      \part $z_2 = -2 + 2i\sqrt{3} = 4e^{i2\pi/3}$.
+      \part $z_3 = -4i = 4e^{i3\pi/2}$.
+    \end{parts}
+  \end{solution}
 
   \question Demostrar que para cualquier $z \in \C$ se cumple que $|z|^2 = z \cdot \conj{z}$.
+  \begin{solution}
+    Sea $z = a + bi$ un número complejo con $a,b \in \R$, entonces
+    \begin{align*}
+      |z|^2            & = a^2 + b^2                    \,.                               \\
+      z \cdot \conj{z} & = (a + bi)(a - bi) = a^2 - (bi)^2 = a^2 - b^2i^2 = a^2 + b^2 \,. \\
+    \end{align*}
+  \end{solution}
 
   \question Expresar en forma exponencial y realizar las operaciones:
   \begin{parts}
@@ -36,6 +214,13 @@
     \part $\dfrac{2e^{i\pi/3}}{1 + i\sqrt{3}}$
     \part $\sqrt[3]{-8i}$
   \end{parts}
+  \begin{solution}
+    \begin{parts}
+      \part $(1 + i)^8 = (\sqrt{2}e^{i\pi/4})^8 = 16e^{i2\pi} = 16$.
+      \part $\dfrac{2e^{i\pi/3}}{1 + i\sqrt{3}} = \dfrac{2e^{i\pi/3}}{2e^{i\pi/3}} = 1$.
+      \part $\sqrt[3]{-8i} = \sqrt[3]{8e^{i3\pi/2}} = 2e^{i\pi/2}, 2e^{i7\pi/6}, 2e^{i11\pi/6}= 2i, -\sqrt{3}-i, \sqrt{3}-i$.
+    \end{parts}
+  \end{solution}
 
   \question Encontrar todos los números complejos $z$ que satisfacen:
   \begin{parts}
@@ -43,36 +228,91 @@
     \part $|z|^2 + z + \conj{z} = 3$
     \part $z^4 = -16$
   \end{parts}
+  \begin{solution}
+    Sea $z = a + bi$ un número complejo con $a,b \in \R$, entonces
+    \begin{parts}
+      \part
+      \begin{align*}
+        |z - i|                & = |z + 1|                \\
+        \sqrt{a^2 + (b - 1)^2} & = \sqrt{(a + 1)^2 + b^2} \\
+        a^2 + (b - 1)^2        & = (a + 1)^2 + b^2        \\
+        a^2 + b^2 - 2b + 1     & = a^2 + 2a + 1 + b^2     \\
+        -2b                    & = 2a                     \\
+        -b                     & = a
+      \end{align*}
+      La solución es la recta $y = -x$.
 
-  \question Un número complejo $z$ satisface $z^3 = 2 + 2i\sqrt{3}$:
+      \part
+      \begin{align*}
+        |z|^2 + z + \conj{z}        & = 3 \\
+        a^2 + b^2 + a + bi + a - bi & = 3 \\
+        a^2 + b^2 + 2a              & = 3 \\
+        a^2 + 2a + 1 + b^2          & = 4 \\
+        (a + 1)^2 + b^2             & = 4
+      \end{align*}
+      La solución es la circunferencia de centro $-1$ y radio $2$.
+
+      \part
+      \begin{align*}
+        z^4 & = -16                                                   \\
+        z^4 & = 16e^{i\pi}                                            \\
+        z   & = \sqrt[4]{16e^{i\pi}}                                  \\
+        z   & = 2e^{i\pi/4}, 2e^{i3\pi/4}, 2e^{i5\pi/4}, 2e^{i7\pi/4}
+      \end{align*}
+      La solución son los vértices de un cuadrado centrado en el origen y con diagonales de longitud 4.
+    \end{parts}
+  \end{solution}
+
+  \question Un número complejo $z$ satisface $z^3 = 2 + 2\sqrt{3}i$:
   \begin{parts}
-    \part Expresar $2 + 2i\sqrt{3}$ en forma exponencial
+    \part Expresar $z$ en forma exponencial
     \part Encontrar las tres raíces cúbicas
     \part Representar las raíces en el plano complejo
     \part ¿Cuál es la interpretación geométrica de estas raíces?
   \end{parts}
+  \begin{solution}
+    \begin{parts}
+      \part $2 + 2\sqrt{3}i = 4e^{i\pi/3}$.
+      \part $z = \sqrt[3]{4}e^{i\pi/9}, \sqrt[3]{4}e^{i7\pi/9}, \sqrt[3]{4}e^{i13\pi/9}$.
+      \part Dibujar en Geogebra u otro software.
+      \part Las raíces forman un triángulo equilátero centrado en el origen.
+    \end{parts}
+  \end{solution}
 
   \question Calcular todas las raíces cuartas de $16i$.
-
-  \question Sean $z, w$ dos números complejos tal que $\bar{z}w\neq 1$. Demostrar que
-  \[
-    \left|\frac{z-w}{1-\bar{z}w}\right| \leq 1\,.
-  \]
-  Demostrar que la igualdad se da si y solo si $|z| = |w| = 1$.
+  \begin{solution}
+    $16i = 16e^{i\pi/2}\Rightarrow \sqrt[4]{16e^{i\pi/2}} = 2e^{i\pi/8}, 2e^{i5\pi/8}, 2e^{i9\pi/8}, 2e^{i13\pi/8}$.
+  \end{solution}
 
   \question Demostrar que para cualquier número complejo $z\neq 1$ se tiene que
   \[
     1+z+\dots+z^n = \frac{z^{n+1}-1}{z-1}\,.
   \]
+  \begin{solution}
+    $(1+z+\dots+z^n)(z-1) =1(z-1)+z(z-1)+\dots+z^n(z-1) = z-1+z^2-z+\dots+z^{n+1}-z^n = z^{n+1}-1$.
+  \end{solution}
 
   \question Calcular el valor en forma binomial de $i^i$.
+  \begin{solution}
+    $i^i = (e^{i\pi/2})^i = e^{i^2\pi/2} = e^{-\pi/2}$.
+  \end{solution}
 
   \question Sea la función compleja $f(z) = z^2 + 2z + 2$.
   \begin{parts}
-    \part Calcular la parte real y la parte imaginaria de $f$.
-    \part Si $f(z) = u(z) + i v(z)$ donde $u,v:\C\to\R$ son funciones reales. y $z = x + iy$ donde $x,y\in\R$. Demostrar que
+    \part Calcular la parte real y la parte imaginaria de $f(z)$ como $u(z) + i v(z)$ donde $u,v$ son funciones reales de variable compleja.
+    \part Si $z = x + iy$ donde $x,y\in\R$. Demostrar que
     \[
       \frac{\partial u}{\partial x} = \frac{\partial v}{\partial y}\quad\text{y}\quad \frac{\partial u}{\partial y} = -\frac{\partial v}{\partial x}\,.
     \]
   \end{parts}
+  \begin{solution}
+    \begin{parts}
+      \part $f(z) = z^2 + 2z + 2 = (x + iy)^2 + 2(x + iy) + 2 = x^2 - y^2 + 2xyi + 2x + 2iy + 2 = x^2 - y^2 + 2x + 2 + i(2xy + 2y)$.
+      \part
+      \begin{align*}
+        \frac{\partial u}{\partial x} & = 2x + 2 = \frac{\partial v}{\partial y}  \\
+        \frac{\partial u}{\partial y} & = -2y = -\frac{\partial v}{\partial x}\,.
+      \end{align*}
+    \end{parts}
+  \end{solution}
 \end{questions}

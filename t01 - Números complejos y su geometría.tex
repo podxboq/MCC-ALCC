@@ -62,7 +62,7 @@ no tienen solución en el cuerpo de los números reales. Para resolver estas ecu
 Extendiendo los números reales con esta unidad imaginaria $i$, veremos que podemos resolver todas las ecuaciones polinómicas con coeficientes reales (y, de hecho, complejos).
 
 \begin{defi}[El plano complejo]
-  Llamaremos $\C$, \textbf{plano complejo} o \textbf{plano de Argand} a la terna $(\R^2,+,\cdot)$, junto con las operaciones de suma y producto definidas por:
+  El \textbf{plano complejo} o \textbf{plano de Argand}, denotado por $\C$, es la terna $(\R^2,+,\cdot)$, junto con las operaciones internas suma y producto definidas por:
   \begin{itemize}
     \item \textbf{suma}: $(a,b) + (c,d) = (a+c,b+d)$.
     \item \textbf{producto}: $(a,b)\cdot(c,d) = (ac-bd,ad+bc)$.
@@ -75,10 +75,9 @@ Esta manera de representar los números complejos es conocida como la \textbf{fo
   \label{prop:propiedades_cuerpo}
   El plano complejo $\C$ con las operaciones de suma y producto es un cuerpo conmutativo. Es decir, satisface las siguientes propiedades:
   \begin{enumerate}
-    \item \textbf{Clausura:} dados $z,w\in\C$ y $z+w,zw\in\C$.
     \item \textbf{Asociativa:} dados $z,w,x\in\C$, $z+(w+x) = (z+w)+x$, y $z(wx) = (zw)x$.
     \item \textbf{Conmutativa:} dados $z,w\in\C$, $z+w = w+z$, y $zw = wz$.
-    \item \textbf{Distributiva:} dados $z,w,z\in\C$, $z(w+x) = zw + zx$.
+    \item \textbf{Distributiva:} dados $z,w,x\in\C$, $z(w+x) = zw + zx$.
     \item \textbf{Neutro para la suma:} $\exists!\ 0\in\C$ tal que $\forall z\in\C$, $z+0 = z$.
     \item \textbf{Neutro para el producto:} $\exists!\ 1\in\C$ tal que $\forall z\in\C$, $1z = z$.
     \item \textbf{Opuesto para la suma:} $\forall z\in\C$, existe $-z\in\C$ tal que $z+(-z) = 0$.
@@ -90,18 +89,18 @@ Esta manera de representar los números complejos es conocida como la \textbf{fo
 \end{proof}
 
 \begin{defi}[Números complejos]
-  Llamaremos \textbf{números complejos} a los elementos del plano complejo.
+  Un \textbf{número complejo} es un elemento del plano complejo.
 \end{defi}
 
-Tal como hemos definido las operaciones entre números complejos podemos identificar el número real $a\in\R$ con el complejo $(a,0)\in\C$. Mediante esta identificación $\R\hookrightarrow\C$ dada por $a\mapsto(a,0)$, podemos entender los números reales como un subcuerpo de los números complejos.
+Tal como hemos definido las operaciones entre números complejos, podemos identificar el número real $a\in\R$ con el complejo $(a,0)\in\C$. Mediante esta identificación $\R\hookrightarrow\C$ dada por $a\mapsto(a,0)$, podemos entender los números reales como un subcuerpo de los números complejos.
 
 \begin{eje}
-  Los elementos que identificamos en el enunciado que demuestran que $\C$ es un cuerpo conmutativo son:
+  Los elementos especiales identificados en el resultado~\ref{prop:propiedades_cuerpo} que demuestran que $\C$ es un cuerpo conmutativo son:
   \begin{itemize}
     \item El elemento neutro para la suma es $0 = (0, 0)$.
     \item El elemento neutro para el producto es $1 = (1, 0)$.
     \item El elemento opuesto para la suma es $-z = (-a,-b)$.
-    \item El elemento opuesto para el producto es $z^{-1} = (\frac{a}{a^2+b^2}, \frac{-b}{a^2+b^2})$.
+    \item El elemento opuesto para el producto es $z^{-1} = (\dfrac{a}{a^2+b^2}, \dfrac{-b}{a^2+b^2})$.
   \end{itemize}
 \end{eje}
 
@@ -110,10 +109,10 @@ Teniendo en cuenta esta identificación y el hecho de que
 obtenemos un elemento especial con una propiedad especial.
 
 \begin{defi}[Unidad imaginaria]
-  Llamaremos \textbf{unidad imaginaria} al complejo $i = (0,1)\in\C$.
+  La \textbf{unidad imaginaria} es el número complejo $i = (0,1)\in\C$.
 \end{defi}
 
-Vamos a describir los elementos de $\C$ de forma más cómoda, dándole entidad propia y sin dependencia de la identificación con el plano complejo.
+Vamos a describir los elementos de $\C$ de forma más cómoda, dándole entidad propia y sin dependencia de la identificación con un elemento del plano.
 Podemos escribir el complejo $z = (a,b)$ como
 \[
   z = (a, b) = (a, 0) + (0, b) = a(1,0) + b(0,1) = a\cdot 1 + b\cdot i = a + bi\,,
@@ -146,12 +145,12 @@ La conjugación satisface las siguientes propiedades.
   \label{prop:propiedades_conjugado}
   Si $z$ y $w$ son números complejos, se cumplen las siguientes igualdades:
   \begin{itemize}
-    \item Parte real: $\Rp(z) = \frac{z + \conj{z}}{2}$.
-    \item Parte imaginaria: $\Ip(z) = \frac{z - \conj{z}}{2i}$.
+    \item Doble conjugación: $\conj{\conj{z}} = z$.
+    \item Parte real: $\Rp(z) = \dfrac{z + \conj{z}}{2}$.
+    \item Parte imaginaria: $\Ip(z) = \dfrac{z - \conj{z}}{2i}$.
     \item Conjugación de la suma: $\conj{z + w} = \conj{z} + \conj{w}$.
     \item Conjugación del producto: $\conj{zw} = \conj{z} \cdot \conj{w}$.
     \item Conjugación de la inversa: $\conj{z^{-1}} = (\conj{z})^{-1}$.
-    \item Doble conjugación: $\conj{\conj{z}} = z$.
   \end{itemize}
 \end{prop}
 \begin{proof}
@@ -168,17 +167,16 @@ La conjugación satisface las siguientes propiedades.
 Las siguientes propiedades son directamente consecuencia de la definición del módulo.
 
 \begin{prop}
-  \label{prop:propiedades_módulo}
+  \label{prop:propiedades_modulo}
   Si $z$ y $w$ son números complejos, se cumplen las siguientes propiedades:
   \begin{itemize}
-    \item $\abs{z}\geq 0$.
     \item $\abs{z} = 0$ si y solo si $z = 0$.
     \item $\abs{zw} = \abs{z}\abs{w}$.
     \item $\abs{z} = \abs{\bar{z}}$.
   \end{itemize}
 \end{prop}
 \begin{proof}
-  Se deja al lector que verifique las propiedades del módulo (ejercicio~\ref{ejer:propiedades_módulo}).
+  Se deja al lector que verifique las propiedades del módulo (ejercicio~\ref{ejer:propiedades_modulo}).
 \end{proof}
 
 \begin{theo}[Desigualdad triangular]
@@ -250,7 +248,7 @@ Recordamos que un punto $(x,y)\in\R^2$, diferente del origen de coordenadas, pue
 
 \begin{defi}
   \label{def:argumento}
-  Sea $z=a+bi$ un número complejo no nulo. Diremos que el ángulo $\theta$ es un \textbf{argumento} de $z$ si:
+  Sea $z=a+bi$ un número complejo no nulo. El ángulo $\theta$ es un \textbf{argumento} de $z$ si:
   \begin{align*}
     \cos(\theta) & = \frac{a}{|z|}\,. \\
     \sin(\theta) & = \frac{b}{|z|}\,.
@@ -263,15 +261,14 @@ Observaremos que el argumento de un número complejo no está completamente defi
   \arg z = \left\{\theta\in\R\mid \cos(\theta) = \frac{a}{|z|}\,, \sin(\theta) = \frac{b}{|z|}\right\}\,.
 \]
 
-Si restringimos el valor del argumento al intervalo $[-\pi, \pi)$, tendremos unicidad en la definición y por este motivo le damos a este valor el nombre de \textbf{argumento principal} y lo denotamos por $\Arg z$.
+Si restringimos el valor del argumento al intervalo $[0, 2\pi)$, tendremos unicidad en la definición y por este motivo le damos a este valor el nombre de \textbf{argumento principal} y lo denotamos por $\Arg z$.
 
 Observamos por último que de las coordenadas polares, podemos deducir $r = \sqrt{x^2+y^2}$, y que este valor es exactamente el módulo del número complejo asociado.
 
 \begin{defi}[Forma polar]
-  Sea $z$ un número  complejo. Llamaremos \textbf{forma polar} a la expresión
+  Sea $z$ un número  complejo. La \textbf{forma polar} de $z$ es la expresión
   \[ z = \abs{z}(\cos(\Arg z) + i\sin(\Arg z))\,. \]
 \end{defi}
-
 
 \subsection{Forma exponencial}
 
@@ -487,7 +484,7 @@ Ya hemos usado la función exponencial para expresar su valor con exponente un n
 La función exponencial compleja, cumple las mismas propiedades que la exponencial real en cuanto a las manipulaciones algebraicas, como vemos en el siguiente resultado, cuya demostración se basa en la fórmula de Euler~\eqref{eq:formula-euler}.
 
 \begin{prop}
-  Sean $z=a+bi$ y $w$ dos números complejos con $a,b\in\R$, se cumple:
+  Sean $z$ y $w$ dos números complejos, se cumple:
   \begin{itemize}
     \item $e^{z+w} = e^z e^w$.
     \item $(e^z)^n = e^{nz}\ \forall n\in\Z$.

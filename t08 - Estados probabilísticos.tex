@@ -1,10 +1,9 @@
 \portada
 
 \begin{esquemaExplorador}
-  \temaEsquema{Estados cuánticos mixtos}{
+  \temaEsquema{Estados}{
     \conceptoEsquema{Estados puros}{$\ket{a}$}
     \conceptoEsquema{Estados mixtos}{$\{(p_1, |\psi_1\rangle), \ldots, (p_k, |\psi_k\rangle)\}$}
-    \conceptoEsquema{Necesidad de la matriz de densidad}{}
   }
   \temaEsquema{Matriz de densidad}{
     \conceptoEsquema{Definición y propiedades}{$\sum_{i=1} p_i |\psi_i\rangle\langle\psi_i|$}
@@ -36,9 +35,16 @@
 
 \subsection{Introducción y objetivos}
 
-En los temas anteriores hemos trabajado con el formalismo de vectores estado para describir sistemas cuánticos, donde cada estado se representa mediante un vector unitario $|\psi\rangle$ en un espacio de Hilbert. Sin embargo, este enfoque tiene limitaciones importantes cuando consideramos sistemas cuánticos realistas que pueden encontrarse en estados de los cuales no tenemos información completa, o cuando estudiamos subsistemas de sistemas cuánticos compuestos.
+En los temas anteriores hemos trabajado con el formalismo de vectores estado para describir sistemas cuánticos, donde cada estado se representa mediante un vector unitario en un espacio de Hilbert. Sin embargo, este enfoque tiene limitaciones importantes cuando consideramos sistemas cuánticos realistas que pueden encontrarse en estados de los cuales no tenemos información completa, o cuando estudiamos subsistemas de sistemas cuánticos compuestos.
 
-El formalismo de matriz de densidad, desarrollado por von Neumann, proporciona una descripción más general y completa de los estados cuánticos que abarca tanto estados puros como estados mixtos. Esta generalización es fundamental en computación cuántica por varias razones:
+El formalismo del operador de densidad constituye una parte fundamental de la mecánica cuántica moderna y de la computación cuántica, introducido inicialmente por von Neumann en el marco de la teorı́a cuántica estadı́stica, permitió describir de manera rigurosa otros tipos de sistemas cuánticos que no se pueden representar puramente mediante vectores estado.
+El operador densidad es esencial para describir sistemas abiertos, decoherencia y mezclas estadı́sticas, aspectos imprescindibles en la computación
+cuántica realista.
+
+Junto con el operador de densidad, la matriz de densidad permite describir procesos de decoherencia, canales cuánticos, entrelazamiento y operaciones sobre sistemas compuestos. En particular, los estados de Bell, constituyen un ejemplo paradigmático de estados puros máximamente entrelazados cuya estructura se comprende de forma natural mediante la matriz de densidad y las trazas parciales.
+
+En este tema analizaremos el formalismo de la matriz de densidad y sus aplicaciones en la teorı́a cuántica estadı́stica y la computación cuántica realista.
+Veremos algunos conceptos básicos que:
 
 \begin{itemize}
   \item Permite describir \textbf{estados mixtos} que surgen por decoherencia o incertidumbre clásica.
@@ -48,18 +54,12 @@ El formalismo de matriz de densidad, desarrollado por von Neumann, proporciona u
   \item Conecta directamente con la \textbf{teoría de información cuántica} y protocolos de comunicación cuántica.
 \end{itemize}
 
-Este tema establece las bases matemáticas necesarias para comprender sistemas cuánticos realistas, incluyendo efectos de ruido, decoherencia y la estructura de correlaciones cuánticas en sistemas compuestos.
+Vamos a establecer las bases matemáticas necesarias para comprender sistemas cuánticos realistas, incluyendo efectos de ruido, decoherencia y la estructura de correlaciones cuánticas en sistemas compuestos.
 
 \subsection{Estados puros y estados mixtos}
 
-\begin{defi}[Estado puro]
-  Un estado cuántico puro se describe completamente mediante un vector estado normalizado en un espacio de Hilbert.
-
-  Toda la información sobre el sistema está contenida en este vector estado, y el estado evoluciona de manera determinista bajo operadores unitarios.
-\end{defi}
-
-\begin{defi}[Estado mixto]
-  Un estado cuántico mixto representa una situación donde el sistema puede estar en uno de varios estados puros $|\psi_i\rangle$ con probabilidades clásicas $p_i$.
+\begin{defi}
+  Un estado cuántico \textbf{mixto} representa una situación donde el sistema puede estar en uno de varios estados puros $|\psi_i\rangle$ con probabilidades clásicas $p_i$.
   $$\text{Estado mixto} = \{(p_1, |\psi_1\rangle), (p_2, |\psi_2\rangle), \ldots, (p_k, |\psi_k\rangle)\}\,,$$
 
   donde

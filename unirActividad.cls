@@ -44,7 +44,7 @@
 \newenvironment{rubrica}{%
   \renewcommand{\arraystretch}{1.5}
   \begin{center}
-    \begin{tabular}{|p{2.4cm}|p{8.3cm}|p{0.7cm}|p{0.8cm}|}
+    \begin{tabular}{|p{2.4cm}|p{8.3cm}|r|r|}
       \rowcolor{negrounir}
       \textcolor{white}{Criterio} & \textcolor{white}{Descripción} & \textcolor{white}{Valor} & \textcolor{white}{Peso}    \\%
       }{Total                     &                                & 10                       & 100                     \% \\\hline\end{tabular}\end{center}}
@@ -61,7 +61,6 @@
   \end{tcolorbox}
   \textcolor{negrounir}{\newline\LARGE{Actividad \@actividadN: \@actividadNombre}}%
 }
-\newcommand{\maketituloexamen}{\center\textcolor{negrounir}{\LARGE{Examen \@asignatura}}\par}
 \renewcommand{\labelitemi}{\small\color{negrounir}{$\blacktriangleright$}}
 \renewcommand{\labelitemii}{\small\color{negrounir}{\textbullet}}
 \renewcommand{\labelitemiii}{\small\color{negrounir}{\textopenbullet}}

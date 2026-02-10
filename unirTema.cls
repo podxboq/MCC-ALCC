@@ -385,7 +385,7 @@
       \refstepcounter{eje}
       \begin{tcolorbox}[
           enhanced,
-          colback=azulunir!3,
+          colback=grisunir!3,
           colframe=azulunir	,
           colbacktitle=azulunir!8,
           coltitle=black,
