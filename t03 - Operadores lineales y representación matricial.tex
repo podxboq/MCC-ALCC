@@ -516,3 +516,45 @@ El estudio de los operadores lineales no se limita a sus propiedades individuale
     T = \sum_{i,j=1}^2 t_{ij} T_{ij}\,.
   \]
 \end{eje}
+
+\begin{defi}
+  Sea $V$ un espacio vectorial y $U,W$ dos subespacios vectoriales $\V$ tal que \(V = U\oplus W\). Sea \(v \in V\) como suma de \(v = u + w\) para \(u \in U,\ w \in W\).  Al vector \(u\) se le llama la \textbf{proyección} de $v$ en \(U\).
+\end{defi}
+
+\begin{eje}
+  Usando coordenadas y considerando en \(\mathbb{C}^{3}\) los subespacios
+  \[
+    U = \set{(x,y,z) \in \mathbb{C}^{3} \mid x + y + z = 0}
+  \]
+  y
+  \[
+    W = \set{(x,y,z) \in \mathbb{C}^{3} \mid x = y = z}.
+  \]
+  Podemos ver que \(U \cap W = \{0\}\) por lo que la suma es directa.
+  Además, como \(\dim(U) = 2\) y \(\dim(W) = 1\), tenemos que \(\dim(U) + \dim(W) = 3 = \dim(\mathbb{C}^{3})\), por lo que \(\mathbb{C}^{3} = U \oplus W\).
+
+  Por último, consideremos el vector \(v = (2,3,-2)\). Podemos escribirlo como suma de un vector de \(U\) y otro de \(W\):
+  \[
+    v = (2,3,-2) = (1,2,-3) + (1,1,1)
+  \]
+  donde \((1,2,-3) \in U\) y \((1,1,1) \in W\).
+  Así, la proyección de \(v\) en \(U\) es \((1,2,-3)\) y la proyección de \(v\) en \(W\) es \((1,1,1)\).
+\end{eje}
+
+\begin{prop}
+  Sea $V$ un espacio vectorial y $S=\{v_1, v_2, \ldots, v_k\}$ un conjunto de vectores en $V$ linealmente independientes. Entonces, el subespacio generado por $S$ es suma directa de los subespacios generados por cada vector individualmente, es decir
+  \[
+    \text{gen}(S) = \text{gen}(v_1) \oplus \text{gen}(v_2) \oplus \cdots \oplus \text{gen}(v_k)\,.
+  \]
+\end{prop}
+
+Y por último, para terminar el estudio de como descomponer un espacio vectorial en subespacios, nos falta un resultado de extensión
+
+\begin{prop}
+  Sea $V$ un espacio vectorial y $U$ un subespacio vectorial de $V$. Existe un único subespacio vectorial $W$ de $V$ con la propiedad
+  \[
+    V = U \oplus W\,.
+  \]
+\end{prop}
+
+En los siguientes temas, daremos más detalles sobre como construir estos subespacios y que propiedades deben cumplir, así como obtener aquellos subespacios que nos permita obtener una representación sencilla de un espacio cuántico en un espacio vectorial.
