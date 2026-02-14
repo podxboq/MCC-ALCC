@@ -38,7 +38,7 @@
 
       Ejemplo en contexto cuántico:
 
-      Consideremos el operador de Hadamard $H$ que actúa sobre un qubit. Determinaremos su representación matricial en la base computacional $\mathcal{B} = \{|0\rangle, |1\rangle\}$.
+      Consideremos el operador de Hadamard $H$ que actúa sobre un cúbit. Determinaremos su representación matricial en la base computacional $\mathcal{B} = \{|0\rangle, |1\rangle\}$.
 
       Por definición, el operador Hadamard actúa sobre los vectores de la base como:
       $H(|0\rangle) = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$
@@ -175,7 +175,7 @@
 
       3) Otras medidas basadas en la descomposición:
       - Entrelazamiento de formación
-      - Concurrencia (para dos qubits)
+      - Concurrencia (para dos cúbits)
       - Negatividad
       - Todas estas medidas pueden expresarse en términos de los coeficientes de Schmidt para estados puros
 
@@ -314,12 +314,12 @@
   \end{solution}
 
   \question[3]
-  Considere un sistema de dos qubits y los siguientes estados:
+  Considere un sistema de dos cúbits y los siguientes estados:
   $|\psi_1\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$, $|\psi_2\rangle = |0\rangle \otimes \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$.
   \begin{parts}
 
     \part ¿Cuál de estos estados está entrelazado? Justifique su respuesta.
-    \part Calcule las matrices de densidad reducidas para el primer qubit en ambos estados.
+    \part Calcule las matrices de densidad reducidas para el primer cúbit en ambos estados.
     \part Supongamos que aplicamos la compuerta CNOT al estado $|\psi_2\rangle$. ¿Cuál será el estado resultante? ¿Está entrelazado?
   \end{parts}
 
@@ -340,7 +340,7 @@
 
     De $ad = 0$ y $bc = 0$, dado que $ac \neq 0$ y $bd \neq 0$, deducimos que $a \neq 0$, $b \neq 0$, $c \neq 0$, $d \neq 0$. Pero esto contradice las ecuaciones $ad = 0$ y $bc = 0$.
 
-    Por lo tanto, $|\psi_1\rangle$ no puede expresarse como un producto tensorial, lo que significa que está entrelazado. Este es un ejemplo de un estado de Bell, que es un estado máximamente entrelazado de dos qubits.
+    Por lo tanto, $|\psi_1\rangle$ no puede expresarse como un producto tensorial, lo que significa que está entrelazado. Este es un ejemplo de un estado de Bell, que es un estado máximamente entrelazado de dos cúbits.
 
     Análisis del estado $|\psi_2\rangle = |0\rangle \otimes \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$:
 
@@ -353,7 +353,7 @@
 
     Conclusión: $|\psi_1\rangle$ está entrelazado, mientras que $|\psi_2\rangle$ no lo está.
 
-    b) Para calcular las matrices de densidad reducidas del primer qubit, debemos calcular primero las matrices de densidad completas y luego tomar la traza parcial sobre el segundo qubit.
+    b) Para calcular las matrices de densidad reducidas del primer cúbit, debemos calcular primero las matrices de densidad completas y luego tomar la traza parcial sobre el segundo cúbit.
 
     Para $|\psi_1\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$:
 
@@ -361,7 +361,7 @@
     $\rho_1 = |\psi_1\rangle\langle\psi_1| = \frac{1}{2}(|00\rangle + |11\rangle)(\langle00| + \langle11|)$
     $= \frac{1}{2}(|00\rangle\langle00| + |00\rangle\langle11| + |11\rangle\langle00| + |11\rangle\langle11|)$
 
-    La matriz de densidad reducida del primer qubit se obtiene tomando la traza parcial sobre el segundo qubit:
+    La matriz de densidad reducida del primer cúbit se obtiene tomando la traza parcial sobre el segundo cúbit:
     $\rho_{1A} = \text{Tr}_B(\rho_1) = \sum_i (I \otimes \langle i|)\rho_1(I \otimes |i\rangle)$
 
     $\rho_{1A} = (I \otimes \langle 0|)\rho_1(I \otimes |0\rangle) + (I \otimes \langle 1|)\rho_1(I \otimes |1\rangle)$
@@ -382,7 +382,7 @@
     $\rho_2 = |\psi_2\rangle\langle\psi_2| = \frac{1}{2}(|00\rangle + |01\rangle)(\langle00| + \langle01|)$
     $= \frac{1}{2}(|00\rangle\langle00| + |00\rangle\langle01| + |01\rangle\langle00| + |01\rangle\langle01|)$
 
-    La matriz de densidad reducida del primer qubit:
+    La matriz de densidad reducida del primer cúbit:
     $\rho_{2A} = \text{Tr}_B(\rho_2)$
 
     Calculando:
@@ -414,7 +414,7 @@
 
     El estado resultante sigue siendo $|\psi_2\rangle = |0\rangle \otimes \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$, que está en forma de producto tensorial. Por lo tanto, permanece como un estado no entrelazado.
 
-    Esto tiene sentido porque la compuerta CNOT solo entrelaza estados cuando el qubit de control (el primer qubit en este caso) está en superposición. Como el primer qubit de $|\psi_2\rangle$ está en el estado determinado $|0\rangle$, CNOT no crea entrelazamiento.
+    Esto tiene sentido porque la compuerta CNOT solo entrelaza estados cuando el cúbit de control (el primer cúbit en este caso) está en superposición. Como el primer cúbit de $|\psi_2\rangle$ está en el estado determinado $|0\rangle$, CNOT no crea entrelazamiento.
 
   \end{solution}
 \end{questions}

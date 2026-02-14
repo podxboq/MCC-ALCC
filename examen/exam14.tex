@@ -2,13 +2,13 @@
 
   \question[4] Responda a las siguientes cuestiones:
   \begin{parts}
-    \part Explique el concepto de compuertas cuánticas, cómo se representan matemáticamente y describa las compuertas de un qubit más importantes.
+    \part Explique el concepto de compuertas cuánticas, cómo se representan matemáticamente y describa las compuertas de un cúbit más importantes.
 
     \begin{solution}
       Las compuertas cuánticas son operaciones unitarias que manipulan estados cuánticos, constituyendo los elementos básicos de los circuitos cuánticos, análogas a las compuertas lógicas en computación clásica.
 
       Representación matemática:
-      - Formalmente, una compuerta cuántica que actúa sobre $n$ qubits se representa mediante una matriz unitaria $U$ de dimensión $2^n \times 2^n$
+      - Formalmente, una compuerta cuántica que actúa sobre $n$ cúbits se representa mediante una matriz unitaria $U$ de dimensión $2^n \times 2^n$
       - La unitariedad ($U^\dagger U = UU^\dagger = I$) garantiza la reversibilidad del cómputo y la conservación de la probabilidad
       - Si el estado inicial es $|\psi\rangle$, después de aplicar la compuerta $U$, el estado final será $U|\psi\rangle$
       - Las compuertas pueden representarse en notación de Dirac, como matrices, o mediante su acción sobre la base computacional
@@ -19,7 +19,7 @@
       3) Pueden crear y manipular entrelazamiento
       4) Operan en el espacio de estados complejamente ampliado
 
-      Compuertas cuánticas de un qubit:
+      Compuertas cuánticas de un cúbit:
 
       1) Compuerta de Identidad (I):
       - Matriz: $I = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$
@@ -80,16 +80,16 @@
       1) Universalidad:
       - Cualquier operación unitaria puede aproximarse con precisión arbitraria usando solo un conjunto finito de compuertas
       - Un conjunto universal común incluye {H, T, CNOT}
-      - Las compuertas de un qubit más CNOT forman un conjunto universal
+      - Las compuertas de un cúbit más CNOT forman un conjunto universal
 
       2) Visualización en la esfera de Bloch:
-      - Las compuertas de un qubit corresponden a rotaciones en la esfera de Bloch
+      - Las compuertas de un cúbit corresponden a rotaciones en la esfera de Bloch
       - Los ejes X, Y, Z corresponden a las matrices de Pauli
       - La composición de compuertas corresponde a la composición de rotaciones
 
       3) Implementación física:
       - Depende de la plataforma: pulsos electromagnéticos en iones atrapados, microondas en circuitos superconductores, etc.
-      - Las compuertas de un qubit generalmente son más fáciles de implementar y tienen mayor fidelidad que las de múltiples qubits
+      - Las compuertas de un cúbit generalmente son más fáciles de implementar y tienen mayor fidelidad que las de múltiples cúbits
       - El tiempo de operación debe ser mucho menor que el tiempo de coherencia del sistema
 
       4) Métricas de error:
@@ -97,7 +97,7 @@
       - Error de compuerta: desviación respecto a la operación perfecta
       - Robustez: resistencia a imperfecciones en los parámetros de control
 
-      Las compuertas cuánticas de un qubit, junto con al menos una compuerta de dos qubits (como CNOT), proporcionan todos los elementos necesarios para implementar cualquier algoritmo cuántico, constituyendo el alfabeto fundamental de la programación cuántica.
+      Las compuertas cuánticas de un cúbit, junto con al menos una compuerta de dos cúbits (como CNOT), proporcionan todos los elementos necesarios para implementar cualquier algoritmo cuántico, constituyendo el alfabeto fundamental de la programación cuántica.
     \end{solution}
 
     \part Explique el concepto de operador hermitiano y su importancia en la mecánica cuántica. Demuestre sus propiedades fundamentales.
@@ -234,7 +234,7 @@
   \end{parts}
 
   \begin{solution}
-    a) Para determinar si el estado $|\psi\rangle = \alpha|00\rangle + \beta|11\rangle$ es separable o entrelazado, debemos verificar si puede expresarse como un producto tensorial de dos estados de un qubit:
+    a) Para determinar si el estado $|\psi\rangle = \alpha|00\rangle + \beta|11\rangle$ es separable o entrelazado, debemos verificar si puede expresarse como un producto tensorial de dos estados de un cúbit:
     $|\psi\rangle = |\phi_1\rangle \otimes |\phi_2\rangle$
 
     Supongamos que $|\psi\rangle$ es separable. Entonces existen estados $|\phi_1\rangle = a|0\rangle + b|1\rangle$ y $|\phi_2\rangle = c|0\rangle + d|1\rangle$ tales que:
@@ -271,7 +271,7 @@
         \alpha^*\beta & 0 & 0 & |\beta|^2
       \end{pmatrix}$
 
-    c) Para obtener la matriz de densidad reducida $\rho_1$ del primer qubit, tomamos la traza parcial sobre el segundo qubit:
+    c) Para obtener la matriz de densidad reducida $\rho_1$ del primer cúbit, tomamos la traza parcial sobre el segundo cúbit:
 
     $\rho_1 = \text{Tr}_2(\rho) = \sum_{i=0}^1 \langle i|_2 \rho |i\rangle_2$
 
@@ -300,15 +300,15 @@
     $S(\rho_1) = -\frac{1}{2} \log_2 \frac{1}{2} - \frac{1}{2} \log_2 \frac{1}{2} = -\frac{1}{2} \cdot (-1) - \frac{1}{2} \cdot (-1) = 1$
 
     Significado físico:
-    La entropía de von Neumann de la matriz de densidad reducida $\rho_1$ cuantifica el grado de entrelazamiento entre el primer qubit y el segundo. Sus propiedades e interpretación son:
+    La entropía de von Neumann de la matriz de densidad reducida $\rho_1$ cuantifica el grado de entrelazamiento entre el primer cúbit y el segundo. Sus propiedades e interpretación son:
 
     1) $S(\rho_1) = 0$ si y solo si el estado global es separable (no entrelazado). Esto ocurre cuando $|\alpha|^2 = 1$ o $|\beta|^2 = 1$.
 
     2) $S(\rho_1)$ alcanza su valor máximo de 1 para estados máximamente entrelazados, lo que ocurre cuando $|\alpha|^2 = |\beta|^2 = 1/2$ (estados de Bell).
 
-    3) La entropía mide la "mezcla" o "impureza" del estado reducido, que surge debido al entrelazamiento con el otro qubit.
+    3) La entropía mide la "mezcla" o "impureza" del estado reducido, que surge debido al entrelazamiento con el otro cúbit.
 
-    4) Físicamente, indica el grado de información compartida entre los dos qubits. Un valor alto significa que no se puede obtener información completa sobre un qubit sin considerar el otro.
+    4) Físicamente, indica el grado de información compartida entre los dos cúbits. Un valor alto significa que no se puede obtener información completa sobre un cúbit sin considerar el otro.
 
     5) Para un sistema bipartito en estado puro, $S(\rho_1) = S(\rho_2)$, lo que refleja la simetría del entrelazamiento.
 
@@ -382,18 +382,18 @@
     $= \frac{1}{\sqrt{2}}(|0\rangle \otimes |0\rangle + |1\rangle \otimes |0\rangle)$
     $= \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) \otimes |0\rangle$
 
-    Esto demuestra que al aplicar CNOT a $|\Phi^+\rangle$ obtenemos un estado separable (no entrelazado), donde el primer qubit está en el estado $\frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) = |+\rangle$ y el segundo qubit está en el estado $|0\rangle$.
+    Esto demuestra que al aplicar CNOT a $|\Phi^+\rangle$ obtenemos un estado separable (no entrelazado), donde el primer cúbit está en el estado $\frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) = |+\rangle$ y el segundo cúbit está en el estado $|0\rangle$.
 
-    d) Los estados de Bell son fundamentales en el protocolo de teleportación cuántica, que permite transferir el estado desconocido de un qubit a otro qubit distante sin transportar físicamente el qubit original. El proceso funciona de la siguiente manera:
+    d) Los estados de Bell son fundamentales en el protocolo de teleportación cuántica, que permite transferir el estado desconocido de un cúbit a otro cúbit distante sin transportar físicamente el cúbit original. El proceso funciona de la siguiente manera:
 
     1) Recursos iniciales:
-    - Alice posee un qubit en un estado desconocido $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$ que desea teleportar a Bob
-    - Alice y Bob comparten previamente un par de qubits en un estado de Bell, típicamente $|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$
-    - Alice tiene acceso al primer qubit del par entrelazado, Bob al segundo
+    - Alice posee un cúbit en un estado desconocido $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$ que desea teleportar a Bob
+    - Alice y Bob comparten previamente un par de cúbits en un estado de Bell, típicamente $|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$
+    - Alice tiene acceso al primer cúbit del par entrelazado, Bob al segundo
 
     2) Medición de Bell:
-    - Alice realiza una medición de Bell en los dos qubits que posee: su qubit original y su parte del par entrelazado
-    - Esta medición proyecta los dos qubits en uno de los cuatro estados de Bell: $|\Phi^+\rangle$, $|\Phi^-\rangle$, $|\Psi^+\rangle$ o $|\Psi^-\rangle$
+    - Alice realiza una medición de Bell en los dos cúbits que posee: su cúbit original y su parte del par entrelazado
+    - Esta medición proyecta los dos cúbits en uno de los cuatro estados de Bell: $|\Phi^+\rangle$, $|\Phi^-\rangle$, $|\Psi^+\rangle$ o $|\Psi^-\rangle$
     - Técnicamente, Alice aplica una puerta CNOT seguida de una Hadamard y luego mide en la base computacional
 
     3) Comunicación clásica:
@@ -401,14 +401,14 @@
     - Esta comunicación es esencial y no puede ocurrir más rápido que la velocidad de la luz
 
     4) Operación de corrección:
-    - Dependiendo del resultado recibido, Bob aplica una de cuatro operaciones diferentes a su qubit:
+    - Dependiendo del resultado recibido, Bob aplica una de cuatro operaciones diferentes a su cúbit:
     * Si Alice midió $|\Phi^+\rangle$: Bob aplica $I$ (no hace nada)
     * Si Alice midió $|\Phi^-\rangle$: Bob aplica $Z$
     * Si Alice midió $|\Psi^+\rangle$: Bob aplica $X$
     * Si Alice midió $|\Psi^-\rangle$: Bob aplica $ZX$
 
     5) Resultado:
-    - Tras aplicar la operación correcta, el qubit de Bob se encuentra exactamente en el estado original $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$
+    - Tras aplicar la operación correcta, el cúbit de Bob se encuentra exactamente en el estado original $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$
     - La teleportación se ha completado con éxito
 
     Propiedades importantes:

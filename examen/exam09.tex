@@ -5,24 +5,24 @@
     \part Explique qué son las compuertas cuánticas controladas, cómo funcionan y su importancia en la computación cuántica.
 
     \begin{solution}
-      Las compuertas cuánticas controladas son operadores unitarios que realizan operaciones condicionales en sistemas de múltiples qubits, donde la aplicación de una operación sobre un qubit "objetivo" depende del estado de uno o más qubits "control". Estas compuertas son fundamentales para la computación cuántica ya que permiten implementar operaciones condicionales, generar entrelazamiento y construir algoritmos cuánticos complejos.
+      Las compuertas cuánticas controladas son operadores unitarios que realizan operaciones condicionales en sistemas de múltiples cúbits, donde la aplicación de una operación sobre un cúbit "objetivo" depende del estado de uno o más cúbits "control". Estas compuertas son fundamentales para la computación cuántica ya que permiten implementar operaciones condicionales, generar entrelazamiento y construir algoritmos cuánticos complejos.
 
       Principios y funcionamiento:
 
       1) Estructura básica:
-      - Una compuerta controlada tiene uno o más qubits de control y uno o más qubits objetivo
-      - La operación se aplica al qubit objetivo solo si todos los qubits de control están en el estado $|1\rangle$
-      - Si algún qubit de control está en el estado $|0\rangle$, el qubit objetivo permanece sin cambios
-      - Formalmente, para una operación $U$ de un qubit: $C^n(U)|c_1,c_2,...,c_n,t\rangle = |c_1,c_2,...,c_n\rangle \otimes U^{c_1 \cdot c_2 \cdot ... \cdot c_n}|t\rangle$
+      - Una compuerta controlada tiene uno o más cúbits de control y uno o más cúbits objetivo
+      - La operación se aplica al cúbit objetivo solo si todos los cúbits de control están en el estado $|1\rangle$
+      - Si algún cúbit de control está en el estado $|0\rangle$, el cúbit objetivo permanece sin cambios
+      - Formalmente, para una operación $U$ de un cúbit: $C^n(U)|c_1,c_2,...,c_n,t\rangle = |c_1,c_2,...,c_n\rangle \otimes U^{c_1 \cdot c_2 \cdot ... \cdot c_n}|t\rangle$
 
       2) Representación matemática:
-      - Para una compuerta controlada con un qubit de control y uno objetivo, la matriz es:
+      - Para una compuerta controlada con un cúbit de control y uno objetivo, la matriz es:
       $C(U) = |0\rangle\langle0| \otimes I + |1\rangle\langle1| \otimes U$
       - Esto proyecta en el subespacio donde el control es $|0\rangle$ y aplica la identidad, o proyecta donde el control es $|1\rangle$ y aplica $U$
 
       3) Implementación física:
-      - Requiere interacción entre qubits
-      - Más compleja y propensa a errores que las compuertas de un solo qubit
+      - Requiere interacción entre cúbits
+      - Más compleja y propensa a errores que las compuertas de un solo cúbit
       - Puede realizarse mediante acoplamientos directos o mediados según la plataforma física
 
       Ejemplos importantes:
@@ -30,48 +30,48 @@
       1) CNOT (Controlled-NOT):
       - La compuerta controlada más fundamental
       - Matriz: $\begin{pmatrix} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 \\ 0 & 0 & 1 & 0 \end{pmatrix}$
-      - Acción: Invierte el qubit objetivo solo si el qubit de control es $|1\rangle$
+      - Acción: Invierte el cúbit objetivo solo si el cúbit de control es $|1\rangle$
       - Mapeo: $|c,t\rangle \mapsto |c,t \oplus c\rangle$ donde $\oplus$ es XOR bit a bit
-      - Equivale a medir el qubit de control en la base computacional y aplicar condicionalmente X al objetivo
+      - Equivale a medir el cúbit de control en la base computacional y aplicar condicionalmente X al objetivo
 
       2) Controlled-Z (CZ):
       - Aplica la puerta Z al objetivo si el control es $|1\rangle$
       - Matriz: $\begin{pmatrix} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & -1 \end{pmatrix}$
-      - Introduce fase de -1 solo si ambos qubits están en estado $|1\rangle$
-      - Simétrica respecto a qué qubit es control y cuál objetivo
+      - Introduce fase de -1 solo si ambos cúbits están en estado $|1\rangle$
+      - Simétrica respecto a qué cúbit es control y cuál objetivo
       - Relación con CNOT: $CZ = (I \otimes H) \cdot CNOT \cdot (I \otimes H)$
 
       3) Controlled-Phase (CP o CR$_\phi$):
-      - Aplica rotación de fase $e^{i\phi}$ cuando ambos qubits son $|1\rangle$
+      - Aplica rotación de fase $e^{i\phi}$ cuando ambos cúbits son $|1\rangle$
       - Matriz: $\begin{pmatrix} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & e^{i\phi} \end{pmatrix}$
       - Caso especial: CS (controlled-S) cuando $\phi = \pi/2$
 
       4) Toffoli (CCNOT):
       - Compuerta NOT doblemente controlada
-      - Aplica X al tercer qubit solo si los dos primeros están en estado $|1\rangle$
+      - Aplica X al tercer cúbit solo si los dos primeros están en estado $|1\rangle$
       - Matriz: $8 \times 8$ con un único intercambio entre los estados $|110\rangle$ y $|111\rangle$
       - Universal para computación clásica reversible
 
       5) Fredkin (CSWAP):
       - Compuerta SWAP controlada
-      - Intercambia el segundo y tercer qubit cuando el primero está en $|1\rangle$
+      - Intercambia el segundo y tercer cúbit cuando el primero está en $|1\rangle$
       - También universal para computación clásica reversible
 
       Importancia en computación cuántica:
 
       1) Generación de entrelazamiento:
-      - Las compuertas controladas son las únicas que pueden crear entrelazamiento entre qubits
+      - Las compuertas controladas son las únicas que pueden crear entrelazamiento entre cúbits
       - CNOT convierte $|+\rangle|0\rangle$ en el estado entrelazado $\frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$
       - Son esenciales para crear estados de Bell, GHZ y otros estados entrelazados útiles
 
       2) Universalidad computacional:
-      - Cualquier operación unitaria puede descomponerse en compuertas de un qubit y CNOT
+      - Cualquier operación unitaria puede descomponerse en compuertas de un cúbit y CNOT
       - El conjunto {H, T, CNOT} es universal para aproximar cualquier operación
-      - Sin compuertas controladas, sólo se podrían aplicar operaciones de un qubit en paralelo
+      - Sin compuertas controladas, sólo se podrían aplicar operaciones de un cúbit en paralelo
 
       3) Operaciones condicionales:
       - Implementan la lógica "if-then" en algoritmos cuánticos
-      - Permiten que el procesamiento dependa del valor de ciertos qubits
+      - Permiten que el procesamiento dependa del valor de ciertos cúbits
       - Esenciales para algoritmos como Shor y Grover
 
       4) Transformaciones cuánticas fundamentales:
@@ -104,17 +104,17 @@
       Desafíos y consideraciones prácticas:
 
       1) Implementación física:
-      - Requieren interacción entre qubits, más difícil de implementar que compuertas de un qubit
+      - Requieren interacción entre cúbits, más difícil de implementar que compuertas de un cúbit
       - Típicamente más lentas y con mayor tasa de error
       - Distintas plataformas tienen acoplamientos nativos diferentes (CZ en superconductores, XX en iones)
 
       2) Optimización de circuitos:
       - Los circuitos se optimizan para minimizar el número de compuertas controladas
-      - La topología de conexiones entre qubits limita dónde se pueden aplicar directamente
+      - La topología de conexiones entre cúbits limita dónde se pueden aplicar directamente
       - Los compiladores cuánticos transforman circuitos para adaptarlos a la arquitectura física
 
       3) Decoherencia:
-      - Las compuertas de dos qubits suelen ser más vulnerables a la decoherencia
+      - Las compuertas de dos cúbits suelen ser más vulnerables a la decoherencia
       - Los tiempos de operación más largos aumentan la exposición a errores
       - La fidelidad de compuertas controladas es a menudo el factor limitante en procesadores cuánticos actuales
 
@@ -132,7 +132,7 @@
       - Un estado cuántico puro $|\psi\rangle$ se describe mediante su matriz de densidad como:
       $\rho = |\psi\rangle\langle\psi|$
       - Es un operador de proyección sobre el espacio unidimensional generado por $|\psi\rangle$
-      - Para un qubit con $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$, la matriz de densidad es:
+      - Para un cúbit con $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$, la matriz de densidad es:
       $\rho = \begin{pmatrix} |\alpha|^2 & \alpha\beta^* \\ \alpha^*\beta & |\beta|^2 \end{pmatrix}$
 
       2) Estado mixto:
@@ -147,8 +147,8 @@
       - Traza unitaria: $\text{Tr}(\rho) = 1$
       - Idempotencia (solo para estados puros): $\rho^2 = \rho$
 
-      4) Representación de Bloch para un qubit:
-      - Cualquier matriz de densidad de un qubit puede escribirse como:
+      4) Representación de Bloch para un cúbit:
+      - Cualquier matriz de densidad de un cúbit puede escribirse como:
       $\rho = \frac{1}{2}(I + \vec{r} \cdot \vec{\sigma})$
       - Donde $\vec{r}$ es el vector de Bloch y $\vec{\sigma} = (\sigma_x, \sigma_y, \sigma_z)$ son las matrices de Pauli
       - Para estados puros: $|\vec{r}| = 1$ (superficie de la esfera de Bloch)
@@ -175,7 +175,7 @@
       1) Descripción de sistemas abiertos:
       - Los sistemas que interactúan con el entorno evolucionan de estados puros a mixtos debido a la decoherencia
       - La matriz de densidad captura esta pérdida gradual de coherencia cuántica
-      - Ejemplo: Un qubit que sufre decoherencia de fase ve reducidas sus coherencias (elementos fuera de la diagonal)
+      - Ejemplo: Un cúbit que sufre decoherencia de fase ve reducidas sus coherencias (elementos fuera de la diagonal)
 
       2) Caracterización de subsistemas entrelazados:
       - Si un sistema bipartito AB está en un estado puro entrelazado, los subsistemas A y B están en estados mixtos
@@ -199,7 +199,7 @@
 
       6) Ejemplos prácticos:
 
-      a) Estado puro de un qubit:
+      a) Estado puro de un cúbit:
       $|\psi\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$
 
       Matriz de densidad:
@@ -210,7 +210,7 @@
       - Contiene coherencias cuánticas (elementos no diagonales)
       - Vector de Bloch: $\vec{r} = (1,0,0)$ (en la superficie de la esfera)
 
-      b) Estado mixto de un qubit:
+      b) Estado mixto de un cúbit:
       Mezcla estadística: 50% en $|0\rangle$ y 50% en $|1\rangle$
 
       Matriz de densidad:
@@ -255,7 +255,7 @@
       Limitaciones:
 
       1) Complejidad computacional:
-      - Para un sistema de n qubits, la matriz de densidad tiene tamaño $2^n \times 2^n$
+      - Para un sistema de n cúbits, la matriz de densidad tiene tamaño $2^n \times 2^n$
       - El almacenamiento y manipulación se vuelven exponencialmente costosos
       - Existen representaciones más eficientes para casos específicos (MPS, PEPS, etc.)
 
@@ -269,7 +269,7 @@
   \end{parts}
 
   \question[3]
-  Considere un sistema de dos qubits y los operadores de Pauli $X$, $Y$ y $Z$ que actúan sobre qubits individuales.
+  Considere un sistema de dos cúbits y los operadores de Pauli $X$, $Y$ y $Z$ que actúan sobre cúbits individuales.
   \begin{parts}
 
     \part Escriba las expresiones matriciales de $X \otimes I$, $I \otimes Z$ y $X \otimes Z$ en la base computacional $\{|00\rangle, |01\rangle, |10\rangle, |11\rangle\}$.
@@ -306,7 +306,7 @@
     Por lo tanto:
     $[X \otimes I, I \otimes Z] = X \otimes Z - X \otimes Z = 0$
 
-    Esto confirma que $X \otimes I$ y $I \otimes Z$ conmutan, lo cual es esperado ya que actúan en qubits diferentes.
+    Esto confirma que $X \otimes I$ y $I \otimes Z$ conmutan, lo cual es esperado ya que actúan en cúbits diferentes.
 
     Para calcular $[X \otimes I, Z \otimes I]$:
 
@@ -330,7 +330,7 @@
     Por lo tanto:
     $(X \otimes Z)|\psi\rangle = \frac{1}{\sqrt{2}}(|10\rangle - |01\rangle)$
 
-    d) Para determinar si el estado resultante $|\psi'\rangle = \frac{1}{\sqrt{2}}(|10\rangle - |01\rangle)$ está entrelazado, verificamos si puede escribirse como un producto tensorial de dos estados de un qubit.
+    d) Para determinar si el estado resultante $|\psi'\rangle = \frac{1}{\sqrt{2}}(|10\rangle - |01\rangle)$ está entrelazado, verificamos si puede escribirse como un producto tensorial de dos estados de un cúbit.
 
     Supongamos que $|\psi'\rangle$ es separable. Entonces debe existir $|\phi_A\rangle = a|0\rangle + b|1\rangle$ y $|\phi_B\rangle = c|0\rangle + d|1\rangle$ tales que:
     $|\psi'\rangle = |\phi_A\rangle \otimes |\phi_B\rangle = (a|0\rangle + b|1\rangle) \otimes (c|0\rangle + d|1\rangle) = ac|00\rangle + ad|01\rangle + bc|10\rangle + bd|11\rangle$
@@ -349,13 +349,13 @@
 
     Por lo tanto, $|\psi'\rangle$ no puede expresarse como un producto tensorial, lo que significa que está entrelazado.
 
-    De hecho, $|\psi'\rangle = \frac{1}{\sqrt{2}}(|10\rangle - |01\rangle)$ es uno de los estados de Bell (específicamente $|\Psi^-\rangle$), conocido por ser un estado máximamente entrelazado de dos qubits.
+    De hecho, $|\psi'\rangle = \frac{1}{\sqrt{2}}(|10\rangle - |01\rangle)$ es uno de los estados de Bell (específicamente $|\Psi^-\rangle$), conocido por ser un estado máximamente entrelazado de dos cúbits.
 
-    Otra forma de verificar el entrelazamiento es calcular la matriz de densidad reducida de uno de los qubits. Si el estado es puro y entrelazado, la matriz reducida será mixta.
+    Otra forma de verificar el entrelazamiento es calcular la matriz de densidad reducida de uno de los cúbits. Si el estado es puro y entrelazado, la matriz reducida será mixta.
 
     $\rho = |\psi'\rangle\langle\psi'| = \frac{1}{2}(|10\rangle - |01\rangle)(\langle10| - \langle01|) = \frac{1}{2}(|10\rangle\langle10| + |01\rangle\langle01| - |10\rangle\langle01| - |01\rangle\langle10|)$
 
-    La matriz de densidad reducida del primer qubit es:
+    La matriz de densidad reducida del primer cúbit es:
     $\rho_A = \text{Tr}_B(\rho) = \frac{1}{2}(|1\rangle\langle1| + |0\rangle\langle0|) = \frac{1}{2}I$
 
     Dado que $\rho_A$ representa un estado máximamente mixto (sus valores propios son ambos $\frac{1}{2}$), podemos confirmar que $|\psi'\rangle$ está máximamente entrelazado.

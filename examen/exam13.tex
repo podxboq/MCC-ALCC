@@ -1,21 +1,21 @@
 \begin{questions}
   \question[4] Responda a las siguientes cuestiones:
   \begin{parts}
-    \part Defina qué es la esfera de Bloch y explique cómo se utiliza para representar estados de un qubit. Incluya la relación entre las coordenadas en la esfera y los coeficientes del estado cuántico.
+    \part Defina qué es la esfera de Bloch y explique cómo se utiliza para representar estados de un cúbit. Incluya la relación entre las coordenadas en la esfera y los coeficientes del estado cuántico.
 
     \begin{solution}
-      La esfera de Bloch es una representación geométrica del espacio de estados puros de un qubit, que permite visualizar y manipular estados cuánticos de dos niveles de manera intuitiva mediante un modelo tridimensional.
+      La esfera de Bloch es una representación geométrica del espacio de estados puros de un cúbit, que permite visualizar y manipular estados cuánticos de dos niveles de manera intuitiva mediante un modelo tridimensional.
 
       Definición formal:
       La esfera de Bloch es una esfera unitaria en $\mathbb{R}^3$ donde:
-      - Cada punto de la superficie representa un estado cuántico puro de un qubit
+      - Cada punto de la superficie representa un estado cuántico puro de un cúbit
       - Los puntos en el interior representan estados mixtos (matrices de densidad)
       - El centro de la esfera representa el estado máximamente mixto
 
-      Relación con estados de qubit:
+      Relación con estados de cúbit:
 
       1) Parametrización general:
-      Todo estado puro de un qubit puede escribirse como:
+      Todo estado puro de un cúbit puede escribirse como:
       $|\psi\rangle = \cos\frac{\theta}{2}|0\rangle + e^{i\phi}\sin\frac{\theta}{2}|1\rangle$
       donde:
       - $\theta \in [0, \pi]$ es el ángulo polar (latitud)
@@ -60,7 +60,7 @@
       - Ayuda a entender la relación entre diferentes estados
 
       2) Representación de operaciones:
-      - Las compuertas cuánticas de un qubit corresponden a rotaciones en la esfera de Bloch
+      - Las compuertas cuánticas de un cúbit corresponden a rotaciones en la esfera de Bloch
       - Operaciones unitarias son rotaciones rígidas de la esfera
       - Matrices de Pauli representan rotaciones de 180° alrededor de los ejes principales:
       * $X$: rotación de 180° alrededor del eje $x$
@@ -79,9 +79,9 @@
       - El estado en el centro representa máxima mezcla (máxima entropía)
 
       5) Limitaciones:
-      - Solo representa sistemas de un qubit (estados de dos niveles)
-      - No visualiza directamente el entrelazamiento entre múltiples qubits
-      - Para sistemas multi-qubit se requieren extensiones o representaciones alternativas
+      - Solo representa sistemas de un cúbit (estados de dos niveles)
+      - No visualiza directamente el entrelazamiento entre múltiples cúbits
+      - Para sistemas multi-cúbit se requieren extensiones o representaciones alternativas
 
       La esfera de Bloch es una herramienta fundamental en computación cuántica, proporcionando una conexión intuitiva entre el formalismo matemático abstracto y una representación geométrica concreta que facilita el diseño y análisis de algoritmos y protocolos cuánticos.
     \end{solution}
@@ -100,13 +100,13 @@
       - Si el sistema está en los estados $|\psi_1\rangle$ o $|\psi_2\rangle$, también puede estar en cualquier superposición $\alpha|\psi_1\rangle + \beta|\psi_2\rangle$ donde $|\alpha|^2 + |\beta|^2 = 1$
 
       Interpretación en computación cuántica:
-      - Un qubit se representa como un vector en $\mathbb{C}^2$: $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$
-      - Un sistema de $n$ qubits corresponde a un vector en $\mathbb{C}^{2^n}$
-      - La superposición permite que un registro de $n$ qubits represente simultáneamente $2^n$ estados computacionales clásicos
+      - Un cúbit se representa como un vector en $\mathbb{C}^2$: $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$
+      - Un sistema de $n$ cúbits corresponde a un vector en $\mathbb{C}^{2^n}$
+      - La superposición permite que un registro de $n$ cúbits represente simultáneamente $2^n$ estados computacionales clásicos
       - Esta representación exponencial es el origen del poder computacional cuántico
 
       Aplicaciones prácticas:
-      - Inicialización: Los algoritmos comienzan típicamente con qubits en estado $|0\rangle^{\otimes n}$
+      - Inicialización: Los algoritmos comienzan típicamente con cúbits en estado $|0\rangle^{\otimes n}$
       - Paralelismo cuántico: Algoritmos como Deutsch-Jozsa, Grover y Shor explotan la capacidad de procesar muchos valores simultáneamente
       - Ejemplo concreto: En el algoritmo de Shor, la superposición permite explorar múltiples factores potenciales simultáneamente
 
@@ -146,7 +146,7 @@
       - La medición es el paso final para obtener el resultado de un cálculo cuántico
 
       Aplicaciones prácticas:
-      - Lectura de resultados: Al final de algoritmos cuánticos se miden los qubits para obtener el resultado clásico
+      - Lectura de resultados: Al final de algoritmos cuánticos se miden los cúbits para obtener el resultado clásico
       - Corrección de errores: Las mediciones de síndrome permiten detectar errores sin colapsar la información codificada
       - Computación basada en mediciones: Paradigmas como "one-way quantum computing" utilizan mediciones como operaciones fundamentales
       - Algoritmo de Grover: La medición final proporciona la solución con alta probabilidad
@@ -160,22 +160,22 @@
       - Existen estados del sistema compuesto que no pueden expresarse como productos tensoriales (estados entrelazados)
 
       Interpretación en computación cuántica:
-      - Un registro de $n$ qubits ocupa un espacio de Hilbert de dimensión $2^n$
-      - El entrelazamiento permite correlaciones no clásicas entre qubits
-      - Las operaciones en qubits individuales afectan al estado global del sistema
+      - Un registro de $n$ cúbits ocupa un espacio de Hilbert de dimensión $2^n$
+      - El entrelazamiento permite correlaciones no clásicas entre cúbits
+      - Las operaciones en cúbits individuales afectan al estado global del sistema
       - El entrelazamiento es un recurso fundamental para ventajas cuánticas
 
       Aplicaciones prácticas:
-      - Compuertas de múltiples qubits: CNOT, Toffoli, etc., generan entrelazamiento
+      - Compuertas de múltiples cúbits: CNOT, Toffoli, etc., generan entrelazamiento
       - Algoritmo de Shor: El entrelazamiento entre registros de periodo y función permite la factorización eficiente
-      - Codificación superdensa: Permite enviar 2 bits clásicos con 1 qubit aprovechando un par entrelazado
+      - Codificación superdensa: Permite enviar 2 bits clásicos con 1 cúbit aprovechando un par entrelazado
       - Teleportación: Transmite estados cuánticos usando entrelazamiento y comunicación clásica
       - Corrección de errores: Los códigos utilizan entrelazamiento para proteger información de la decoherencia
 
       Interpretación e implicaciones específicas para algoritmos cuánticos:
 
       1) Paradigma computacional cuántico:
-      - Inicializar: Preparar qubits en estados específicos (usualmente $|0\rangle^{\otimes n}$)
+      - Inicializar: Preparar cúbits en estados específicos (usualmente $|0\rangle^{\otimes n}$)
       - Procesar: Aplicar secuencias de compuertas unitarias para transformar el estado
       - Medir: Extraer resultados clásicos mediante mediciones apropiadas
       - La eficiencia computacional proviene de:
@@ -196,7 +196,7 @@
       - Evolución unitaria (Postulado 2): Iteraciones de Grover son operaciones unitarias
       - Amplificación de amplitud: Las iteraciones aumentan probabilidad del estado buscado
       - Medición (Postulado 3): Obtiene el elemento buscado con alta probabilidad
-      - Sistema compuesto (Postulado 4): La difusión de Grover opera sobre todos los qubits simultáneamente
+      - Sistema compuesto (Postulado 4): La difusión de Grover opera sobre todos los cúbits simultáneamente
 
       c) Algoritmo de Shor:
       - Sistema compuesto (Postulado 4): Utiliza dos registros (estimación de fase y evaluación de función)
@@ -329,7 +329,7 @@
   \end{solution}
 
   \question[3]
-  Considere un sistema de dos qubits y los siguientes estados:
+  Considere un sistema de dos cúbits y los siguientes estados:
   $|\psi_1\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$ y $|\psi_2\rangle = |0\rangle \otimes \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$.
   \begin{parts}
 
@@ -354,7 +354,7 @@
 
     De $ad = 0$ y $bc = 0$, dado que $ac \neq 0$ y $bd \neq 0$, deducimos que $a \neq 0$, $b \neq 0$, $c \neq 0$, $d \neq 0$. Pero esto contradice las ecuaciones $ad = 0$ y $bc = 0$.
 
-    Por lo tanto, $|\psi_1\rangle$ no puede expresarse como un producto tensorial, lo que significa que está entrelazado. Este es un ejemplo de un estado de Bell, que es un estado máximamente entrelazado de dos qubits.
+    Por lo tanto, $|\psi_1\rangle$ no puede expresarse como un producto tensorial, lo que significa que está entrelazado. Este es un ejemplo de un estado de Bell, que es un estado máximamente entrelazado de dos cúbits.
 
     Análisis del estado $|\psi_2\rangle = |0\rangle \otimes \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$:
 
@@ -367,7 +367,7 @@
 
     Conclusión: $|\psi_1\rangle$ está entrelazado, mientras que $|\psi_2\rangle$ no lo está.
 
-    b) Para calcular las matrices de densidad reducidas del primer qubit, debemos calcular primero las matrices de densidad completas y luego tomar la traza parcial sobre el segundo qubit.
+    b) Para calcular las matrices de densidad reducidas del primer cúbit, debemos calcular primero las matrices de densidad completas y luego tomar la traza parcial sobre el segundo cúbit.
 
     Para $|\psi_1\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$:
 
@@ -375,7 +375,7 @@
     $\rho_1 = |\psi_1\rangle\langle\psi_1| = \frac{1}{2}(|00\rangle + |11\rangle)(\langle00| + \langle11|)$
     $= \frac{1}{2}(|00\rangle\langle00| + |00\rangle\langle11| + |11\rangle\langle00| + |11\rangle\langle11|)$
 
-    La matriz de densidad reducida del primer qubit se obtiene tomando la traza parcial sobre el segundo qubit:
+    La matriz de densidad reducida del primer cúbit se obtiene tomando la traza parcial sobre el segundo cúbit:
     $\rho_{1A} = \text{Tr}_B(\rho_1) = \sum_i (I \otimes \langle i|)\rho_1(I \otimes |i\rangle)$
 
     $\rho_{1A} = (I \otimes \langle 0|)\rho_1(I \otimes |0\rangle) + (I \otimes \langle 1|)\rho_1(I \otimes |1\rangle)$
@@ -396,7 +396,7 @@
     $\rho_2 = |\psi_2\rangle\langle\psi_2| = \frac{1}{2}(|00\rangle + |01\rangle)(\langle00| + \langle01|)$
     $= \frac{1}{2}(|00\rangle\langle00| + |00\rangle\langle01| + |01\rangle\langle00| + |01\rangle\langle01|)$
 
-    La matriz de densidad reducida del primer qubit:
+    La matriz de densidad reducida del primer cúbit:
     $\rho_{2A} = \text{Tr}_B(\rho_2)$
 
     Calculando:
@@ -428,7 +428,7 @@
 
     El estado resultante sigue siendo $|\psi_2\rangle = |0\rangle \otimes \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$, que está en forma de producto tensorial. Por lo tanto, permanece como un estado no entrelazado.
 
-    Esto tiene sentido porque la compuerta CNOT solo entrelaza estados cuando el qubit de control (el primer qubit en este caso) está en superposición. Como el primer qubit de $|\psi_2\rangle$ está en el estado determinado $|0\rangle$, CNOT no crea entrelazamiento.
+    Esto tiene sentido porque la compuerta CNOT solo entrelaza estados cuando el cúbit de control (el primer cúbit en este caso) está en superposición. Como el primer cúbit de $|\psi_2\rangle$ está en el estado determinado $|0\rangle$, CNOT no crea entrelazamiento.
 
     d) La entropía de von Neumann de la matriz de densidad reducida como medida de entrelazamiento:
 
@@ -456,7 +456,7 @@
     1) Para $|\psi_1\rangle$ (estado entrelazado):
     - La matriz reducida es $\rho_{1A} = \frac{1}{2}I$ con valores propios $\lambda_1 = \lambda_2 = \frac{1}{2}$
     - $S(\rho_{1A}) = -\frac{1}{2}\log_2\frac{1}{2} - \frac{1}{2}\log_2\frac{1}{2} = -\frac{1}{2}(-1) - \frac{1}{2}(-1) = 1$
-    - Este es el valor máximo posible para dos qubits, indicando entrelazamiento máximo
+    - Este es el valor máximo posible para dos cúbits, indicando entrelazamiento máximo
 
   \end{solution}
 \end{questions}

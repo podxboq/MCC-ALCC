@@ -74,14 +74,14 @@
     Observamos que $A = X$, así que la combinación es simplemente $A = X$.
   \end{solution}
 
-  \question[3] Considere un sistema de dos qubits. Dado el estado
+  \question[3] Considere un sistema de dos cúbits. Dado el estado
   \[|\psi\rangle = \frac{1}{2}|00\rangle + \frac{1}{2}|01\rangle + \frac{1}{2}|10\rangle + \frac{1}{2}|11\rangle\]
   \begin{parts}
 
     \part Determine si este estado es separable o entrelazado. Justifique su respuesta.
     \part Si aplicamos la compuerta CNOT al estado $|\psi\rangle$, ¿cuál será el estado resultante?
-    \part Calcule la matriz de densidad $\rho = |\psi\rangle\langle\psi|$ y determine la matriz de densidad reducida $\rho_A$ para el primer qubit.
-    \part ¿Qué información nos proporciona $\rho_A$ sobre el estado del primer qubit?
+    \part Calcule la matriz de densidad $\rho = |\psi\rangle\langle\psi|$ y determine la matriz de densidad reducida $\rho_A$ para el primer cúbit.
+    \part ¿Qué información nos proporciona $\rho_A$ sobre el estado del primer cúbit?
   \end{parts}
 
   \begin{solution}
@@ -115,14 +115,14 @@
         1 & 1 & 1 & 1
       \end{pmatrix}$
 
-    La matriz de densidad reducida del primer qubit se obtiene tomando la traza parcial sobre el segundo qubit:
+    La matriz de densidad reducida del primer cúbit se obtiene tomando la traza parcial sobre el segundo cúbit:
     $\rho_A = Tr_B(\rho) = \frac{1}{2}\begin{pmatrix}
         1 & 1 \\
         1 & 1
       \end{pmatrix}$
 
-    d) La matriz de densidad reducida $\rho_A$ nos muestra que el primer qubit está en un estado mixto con igual probabilidad (50\%) de estar en $|0\rangle$ o $|1\rangle$. También podemos ver que $\rho_A = |\phi_A\rangle\langle\phi_A|$ donde $|\phi_A\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$, lo que confirma que el estado global es separable.
+    d) La matriz de densidad reducida $\rho_A$ nos muestra que el primer cúbit está en un estado mixto con igual probabilidad (50\%) de estar en $|0\rangle$ o $|1\rangle$. También podemos ver que $\rho_A = |\phi_A\rangle\langle\phi_A|$ donde $|\phi_A\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$, lo que confirma que el estado global es separable.
 
-    Además, $Tr(\rho_A^2) = 1$, lo que indica que el primer qubit está en un estado puro, como es de esperar para un estado global separable.
+    Además, $Tr(\rho_A^2) = 1$, lo que indica que el primer cúbit está en un estado puro, como es de esperar para un estado global separable.
   \end{solution}
 \end{questions}

@@ -144,13 +144,13 @@
 
       4) Clonación de información clásica:
       - Los bits clásicos pueden copiarse perfectamente
-      - La medición colapsa los qubits a estados clásicos que luego pueden copiarse
+      - La medición colapsa los cúbits a estados clásicos que luego pueden copiarse
 
       Implicaciones para la información cuántica:
 
       1) Seguridad criptográfica:
       - Fundamento de la distribución cuántica de claves (QKD)
-      - Un espía no puede copiar qubits en tránsito sin perturbarlos, revelando su presencia
+      - Un espía no puede copiar cúbits en tránsito sin perturbarlos, revelando su presencia
       - Protocolos como BB84 basan su seguridad en este principio
       - La seguridad tiene garantía teórica, no solo computacional como en criptografía clásica
 
@@ -162,7 +162,7 @@
       3) Corrección de errores:
       - Complica la corrección de errores cuánticos, ya que no se pueden crear copias redundantes directamente
       - Requiere técnicas sofisticadas como códigos estabilizadores
-      - Necesita entrelazamiento para distribuir información en múltiples qubits sin clonarla
+      - Necesita entrelazamiento para distribuir información en múltiples cúbits sin clonarla
 
       4) Borrado cuántico:
       - Complementa el teorema de no clonación: es imposible borrar un estado cuántico desconocido
@@ -201,7 +201,7 @@
   \end{parts}
 
   \question[3]
-  Considere un sistema de dos qubits y los operadores de Pauli $X$, $Y$ y $Z$ que actúan sobre qubits individuales.
+  Considere un sistema de dos cúbits y los operadores de Pauli $X$, $Y$ y $Z$ que actúan sobre cúbits individuales.
   \begin{parts}
 
     \part Escriba las expresiones matriciales de $X \otimes I$, $I \otimes Z$ y $X \otimes Z$ en la base computacional $\{|00\rangle, |01\rangle, |10\rangle, |11\rangle\}$.
@@ -238,7 +238,7 @@
     Por lo tanto:
     $[X \otimes I, I \otimes Z] = X \otimes Z - X \otimes Z = 0$
 
-    Esto confirma que $X \otimes I$ y $I \otimes Z$ conmutan, lo cual es esperado ya que actúan en qubits diferentes.
+    Esto confirma que $X \otimes I$ y $I \otimes Z$ conmutan, lo cual es esperado ya que actúan en cúbits diferentes.
 
     Para calcular $[X \otimes I, Z \otimes I]$:
 
@@ -262,7 +262,7 @@
     Por lo tanto:
     $(X \otimes Z)|\psi\rangle = \frac{1}{\sqrt{2}}(|10\rangle - |01\rangle)$
 
-    d) Para determinar si el estado resultante $|\psi'\rangle = \frac{1}{\sqrt{2}}(|10\rangle - |01\rangle)$ está entrelazado, verificamos si puede escribirse como un producto tensorial de dos estados de un qubit.
+    d) Para determinar si el estado resultante $|\psi'\rangle = \frac{1}{\sqrt{2}}(|10\rangle - |01\rangle)$ está entrelazado, verificamos si puede escribirse como un producto tensorial de dos estados de un cúbit.
 
     Supongamos que $|\psi'\rangle$ es separable. Entonces debe existir $|\phi_A\rangle = a|0\rangle + b|1\rangle$ y $|\phi_B\rangle = c|0\rangle + d|1\rangle$ tales que:
     $|\psi'\rangle = |\phi_A\rangle \otimes |\phi_B\rangle = (a|0\rangle + b|1\rangle) \otimes (c|0\rangle + d|1\rangle) = ac|00\rangle + ad|01\rangle + bc|10\rangle + bd|11\rangle$
@@ -281,13 +281,13 @@
 
     Por lo tanto, $|\psi'\rangle$ no puede expresarse como un producto tensorial, lo que significa que está entrelazado.
 
-    De hecho, $|\psi'\rangle = \frac{1}{\sqrt{2}}(|10\rangle - |01\rangle)$ es uno de los estados de Bell (específicamente $|\Psi^-\rangle$), conocido por ser un estado máximamente entrelazado de dos qubits.
+    De hecho, $|\psi'\rangle = \frac{1}{\sqrt{2}}(|10\rangle - |01\rangle)$ es uno de los estados de Bell (específicamente $|\Psi^-\rangle$), conocido por ser un estado máximamente entrelazado de dos cúbits.
 
-    Otra forma de verificar el entrelazamiento es calcular la matriz de densidad reducida de uno de los qubits. Si el estado es puro y entrelazado, la matriz reducida será mixta.
+    Otra forma de verificar el entrelazamiento es calcular la matriz de densidad reducida de uno de los cúbits. Si el estado es puro y entrelazado, la matriz reducida será mixta.
 
     $\rho = |\psi'\rangle\langle\psi'| = \frac{1}{2}(|10\rangle - |01\rangle)(\langle10| - \langle01|) = \frac{1}{2}(|10\rangle\langle10| + |01\rangle\langle01| - |10\rangle\langle01| - |01\rangle\langle10|)$
 
-    La matriz de densidad reducida del primer qubit es:
+    La matriz de densidad reducida del primer cúbit es:
     $\rho_A = \text{Tr}_B(\rho) = \frac{1}{2}(|1\rangle\langle1| + |0\rangle\langle0|) = \frac{1}{2}I$
 
     Dado que $\rho_A$ representa un estado máximamente mixto (sus valores propios son ambos $\frac{1}{2}$), podemos confirmar que $|\psi'\rangle$ está máximamente entrelazado.

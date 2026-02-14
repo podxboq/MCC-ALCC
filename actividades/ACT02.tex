@@ -112,7 +112,7 @@ Con esta actividad se pretende que el estudiante:
       $$\ket{01} = \begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \end{pmatrix} \Rightarrow (X \otimes Z)\ket{01} = \begin{pmatrix} 0 \\ 0 \\ 0 \\ -1 \end{pmatrix} = -\ket{11}$$ ✓
     \end{solution}
 
-    \part Para el sistema de dos qubits en el estado $\ket{\psi} = \frac{1}{\sqrt{3}}(\ket{00} + \ket{01} + \ket{11})$, verificar normalización y calcular las probabilidades de medir cada estado de la base computacional.
+    \part Para el sistema de dos cúbits en el estado $\ket{\psi} = \frac{1}{\sqrt{3}}(\ket{00} + \ket{01} + \ket{11})$, verificar normalización y calcular las probabilidades de medir cada estado de la base computacional.
 
     \begin{solution}
       Verificación de normalización:
@@ -148,17 +148,17 @@ Con esta actividad se pretende que el estudiante:
       Estado resultante:
       $$\ket{\psi'} = \text{CNOT}\ket{\psi} = \frac{1}{\sqrt{3}}(\ket{00} + \ket{01} + \ket{10})$$
 
-      \textbf{Observación:} El primer qubit (control) no cambia, el segundo cambia solo cuando el primero es $\ket{1}$.
+      \textbf{Observación:} El primer cúbit (control) no cambia, el segundo cambia solo cuando el primero es $\ket{1}$.
     \end{solution}
 
-    \part Calcular la probabilidad de medir el primer qubit en $\ket{0}$ para el estado $\ket{\psi}$ original.
+    \part Calcular la probabilidad de medir el primer cúbit en $\ket{0}$ para el estado $\ket{\psi}$ original.
 
     \begin{solution}
-      Para obtener la probabilidad de medir el primer qubit en $\ket{0}$, sumamos las probabilidades de todos los estados que comienzan con $\ket{0}$:
+      Para obtener la probabilidad de medir el primer cúbit en $\ket{0}$, sumamos las probabilidades de todos los estados que comienzan con $\ket{0}$:
 
-      $$P(\text{primer qubit} = \ket{0}) = P(\ket{00}) + P(\ket{01}) = \frac{1}{3} + \frac{1}{3} = \frac{2}{3}$$
+      $$P(\text{primer cúbit} = \ket{0}) = P(\ket{00}) + P(\ket{01}) = \frac{1}{3} + \frac{1}{3} = \frac{2}{3}$$
 
-      \textbf{Alternativamente}, usando la traza parcial sobre el segundo qubit:
+      \textbf{Alternativamente}, usando la traza parcial sobre el segundo cúbit:
       $$\rho_A = \text{Tr}_B(\ketbra{\psi}{\psi})$$
 
       Entonces $P(\ket{0}) = \bra{0}\rho_A\ket{0}$, que da el mismo resultado.
@@ -219,34 +219,34 @@ Con esta actividad se pretende que el estudiante:
       Como son 4 vectores ortonormales en $\C^4$, forman una base.
     \end{solution}
 
-    \part Para el estado de Bell $\ket{\Phi^+} = \frac{1}{\sqrt{2}}(\ket{00} + \ket{11})$, calcular las probabilidades de medir cada qubit individualmente.
+    \part Para el estado de Bell $\ket{\Phi^+} = \frac{1}{\sqrt{2}}(\ket{00} + \ket{11})$, calcular las probabilidades de medir cada cúbit individualmente.
 
     \begin{solution}
-      \textbf{Primer qubit:}
+      \textbf{Primer cúbit:}
       \begin{align*}
         P(\ket{0}) & = P(\ket{00}) + P(\ket{01}) = \frac{1}{2} + 0 = \frac{1}{2} \\
         P(\ket{1}) & = P(\ket{10}) + P(\ket{11}) = 0 + \frac{1}{2} = \frac{1}{2}
       \end{align*}
 
-      \textbf{Segundo qubit:}
+      \textbf{Segundo cúbit:}
       \begin{align*}
         P(\ket{0}) & = P(\ket{00}) + P(\ket{10}) = \frac{1}{2} + 0 = \frac{1}{2} \\
         P(\ket{1}) & = P(\ket{01}) + P(\ket{11}) = 0 + \frac{1}{2} = \frac{1}{2}
       \end{align*}
 
-      \textbf{Interpretación:} Cada qubit individualmente está completamente aleatorio (50\%-50\%), pero las mediciones están perfectamente correlacionadas: si el primero da $\ket{0}$, el segundo necesariamente da $\ket{0}$ (y lo mismo para $\ket{1}$).
+      \textbf{Interpretación:} Cada cúbit individualmente está completamente aleatorio (50\%-50\%), pero las mediciones están perfectamente correlacionadas: si el primero da $\ket{0}$, el segundo necesariamente da $\ket{0}$ (y lo mismo para $\ket{1}$).
 
       Esto es la esencia del entrelazamiento cuántico.
     \end{solution}
 
-    \part Demostrar que el estado de Bell $\ket{\Phi^+}$ es maximalmente entrelazado calculando la entropía de entrelazamiento $S(\rho_A)$ donde $\rho_A$ es la matriz de densidad reducida del primer qubit.
+    \part Demostrar que el estado de Bell $\ket{\Phi^+}$ es maximalmente entrelazado calculando la entropía de entrelazamiento $S(\rho_A)$ donde $\rho_A$ es la matriz de densidad reducida del primer cúbit.
 
     \begin{solution}
       La matriz de densidad del sistema completo es:
       $$\rho_{AB} = \ketbra{\Phi^+}{\Phi^+} = \frac{1}{2}(\ket{00} + \ket{11})(\bra{00} + \bra{11})$$
       $$= \frac{1}{2}(\ketbra{00}{00} + \ketbra{00}{11} + \ketbra{11}{00} + \ketbra{11}{11})$$
 
-      Traza parcial sobre el segundo qubit:
+      Traza parcial sobre el segundo cúbit:
       $$\rho_A = \text{Tr}_B(\rho_{AB}) = \bra{0}_B\rho_{AB}\ket{0}_B + \bra{1}_B\rho_{AB}\ket{1}_B$$
       $$= \frac{1}{2}(\ketbra{0}{0} + \ketbra{1}{1}) = \frac{I}{2}$$
 
@@ -255,7 +255,7 @@ Con esta actividad se pretende que el estudiante:
       Entropía de von Neumann:
       $$S(\rho_A) = -\sum_i \lambda_i \log_2 \lambda_i = -2 \cdot \frac{1}{2}\log_2\frac{1}{2} = -\log_2\frac{1}{2} = 1 \text{ bit}$$
 
-      Esta es la entropía máxima para un qubit, confirmando que el estado es maximalmente entrelazado.
+      Esta es la entropía máxima para un cúbit, confirmando que el estado es maximalmente entrelazado.
     \end{solution}
   \end{parts}
 \end{questions}

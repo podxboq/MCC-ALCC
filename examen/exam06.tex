@@ -72,7 +72,7 @@
 
     \part  Verifique que $X^2 = Y^2 = Z^2 = I$.
     \part  Calcule el operador $U = e^{i\theta Z/2}$ para $\theta \in \mathbb{R}$.
-    \part  Si el estado inicial de un qubit es $|\psi\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$, calcule el estado después de aplicar el operador $U$ con $\theta = \pi/2$.
+    \part  Si el estado inicial de un cúbit es $|\psi\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$, calcule el estado después de aplicar el operador $U$ con $\theta = \pi/2$.
   \end{parts}
 
   \begin{solution}
@@ -135,17 +135,17 @@
     $U|\psi\rangle = e^{i\pi Z/4} \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$
     $= \begin{pmatrix} e^{i\pi/4} & 0 \\ 0 & e^{-i\pi/4} \end{pmatrix} \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 1 \end{pmatrix}$
   \end{solution}
-  \question[3] Considere un sistema de dos qubits en el estado
+  \question[3] Considere un sistema de dos cúbits en el estado
   \[|\psi\rangle = \frac{1}{\sqrt{2}}(|00\rangle - |11\rangle)\]
   \begin{parts}
     \part Demuestre que este estado está entrelazado.
     \part Calcule la matriz de densidad $\rho = |\psi\rangle\langle\psi|$ para este estado.
-    \part Obtenga la matriz de densidad reducida para el segundo qubit y explique lo que indica sobre el estado de este qubit.
-    \part Si medimos el primer qubit y obtenemos $|1\rangle$, ¿cuál será el estado del sistema después de la medición?
+    \part Obtenga la matriz de densidad reducida para el segundo cúbit y explique lo que indica sobre el estado de este cúbit.
+    \part Si medimos el primer cúbit y obtenemos $|1\rangle$, ¿cuál será el estado del sistema después de la medición?
   \end{parts}
 
   \begin{solution}
-    a) Para demostrar que el estado está entrelazado, debemos verificar que no puede ser escrito como un producto tensorial de dos estados de un qubit: $|\psi\rangle \neq |\phi_1\rangle \otimes |\phi_2\rangle$.
+    a) Para demostrar que el estado está entrelazado, debemos verificar que no puede ser escrito como un producto tensorial de dos estados de un cúbit: $|\psi\rangle \neq |\phi_1\rangle \otimes |\phi_2\rangle$.
 
     Supongamos que $|\psi\rangle = |\phi_1\rangle \otimes |\phi_2\rangle$ con:
     $|\phi_1\rangle = \alpha|0\rangle + \beta|1\rangle$
@@ -178,7 +178,7 @@
         1 & 0 & 0 & 1
       \end{pmatrix}$
 
-    c) La matriz de densidad reducida para el primer qubit se obtiene tomando la traza parcial sobre el segundo qubit:
+    c) La matriz de densidad reducida para el primer cúbit se obtiene tomando la traza parcial sobre el segundo cúbit:
 
     $\rho_A = Tr_B(\rho) = \sum_{i=0}^1 (I \otimes \langle i|)\rho(I \otimes |i\rangle)$
 
@@ -186,15 +186,15 @@
 
     $= \frac{1}{2}|0\rangle\langle0| + \frac{1}{2}|1\rangle\langle1| = \frac{1}{2}\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = \frac{1}{2}I$
 
-    Esto indica que el primer qubit está en un estado completamente mixto, con probabilidad 50\% de ser $|0\rangle$ y 50\% de ser $|1\rangle$. Este es un estado máximamente mixto (entropía máxima), característico de un qubit que está completamente entrelazado con otro sistema.
+    Esto indica que el primer cúbit está en un estado completamente mixto, con probabilidad 50\% de ser $|0\rangle$ y 50\% de ser $|1\rangle$. Este es un estado máximamente mixto (entropía máxima), característico de un cúbit que está completamente entrelazado con otro sistema.
 
-    d) Si medimos el primer qubit y obtenemos $|0\rangle$, el estado colapsará según el postulado de medición. Aplicando el proyector $P_0 = |0\rangle\langle0| \otimes I$ al estado:
+    d) Si medimos el primer cúbit y obtenemos $|0\rangle$, el estado colapsará según el postulado de medición. Aplicando el proyector $P_0 = |0\rangle\langle0| \otimes I$ al estado:
 
     $P_0|\psi\rangle = (|0\rangle\langle0| \otimes I)\frac{1}{\sqrt{2}}(|00\rangle + |11\rangle) = \frac{1}{\sqrt{2}}|00\rangle$
 
     Normalizando:
     $|\psi'\rangle = \frac{P_0|\psi\rangle}{||P_0|\psi\rangle||} = \frac{\frac{1}{\sqrt{2}}|00\rangle}{\frac{1}{\sqrt{2}}} = |00\rangle = |0\rangle \otimes |0\rangle$
 
-    Por tanto, después de medir el primer qubit y obtener $|0\rangle$, el sistema completo colapsará al estado $|00\rangle$, lo que significa que el segundo qubit también estará en el estado $|0\rangle$. Esto demuestra la correlación perfecta entre los qubits que es característica de este estado entrelazado.
+    Por tanto, después de medir el primer cúbit y obtener $|0\rangle$, el sistema completo colapsará al estado $|00\rangle$, lo que significa que el segundo cúbit también estará en el estado $|0\rangle$. Esto demuestra la correlación perfecta entre los cúbits que es característica de este estado entrelazado.
   \end{solution}
 \end{questions}

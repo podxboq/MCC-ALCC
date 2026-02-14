@@ -31,10 +31,10 @@
 
       Aplicaciones en sistemas cuánticos compuestos:
 
-      1) Operadores sobre múltiples qubits:
-      - Si $X, Y, Z$ son matrices de Pauli, $X \otimes Z$ actúa como $X$ en el primer qubit y $Z$ en el segundo
-      - Compuertas de dos qubits como CNOT se pueden expresar usando productos tensoriales
-      - Para un sistema de $n$ qubits, los operadores tienen forma $A_1 \otimes A_2 \otimes \cdots \otimes A_n$
+      1) Operadores sobre múltiples cúbits:
+      - Si $X, Y, Z$ son matrices de Pauli, $X \otimes Z$ actúa como $X$ en el primer cúbit y $Z$ en el segundo
+      - Compuertas de dos cúbits como CNOT se pueden expresar usando productos tensoriales
+      - Para un sistema de $n$ cúbits, los operadores tienen forma $A_1 \otimes A_2 \otimes \cdots \otimes A_n$
 
       2) Operadores de medición:
       - Las mediciones sobre subsistemas individuales se representan como $M \otimes I$
@@ -97,12 +97,12 @@
       - Permite verificar la distribución segura de entrelazamiento
 
       5) Algoritmos cuánticos:
-      - Ayuda a analizar el estado de qubits específicos durante la ejecución de algoritmos
+      - Ayuda a analizar el estado de cúbits específicos durante la ejecución de algoritmos
       - Permite evaluar el impacto de las operaciones en subsistemas individuales
       - Facilita la depuración de circuitos cuánticos complejos
 
       6) Tecnologías emergentes:
-      - En computación cuántica de estado sólido, permite estudiar la interacción entre el qubit y su entorno
+      - En computación cuántica de estado sólido, permite estudiar la interacción entre el cúbit y su entorno
       - En procesadores multicore, permite analizar la coherencia entre diferentes regiones
       - En simulaciones numéricas, permite reducir la complejidad computacional
 
@@ -110,18 +110,18 @@
     \end{solution}
   \end{parts}
 
-  \question[3] Considere un sistema de dos qubits en el estado
+  \question[3] Considere un sistema de dos cúbits en el estado
   $|\psi\rangle = \alpha|00\rangle + \beta|01\rangle + \gamma|10\rangle + \delta|11\rangle$
   donde $\alpha, \beta, \gamma, \delta \in \mathbb{C}$ y $|\alpha|^2 + |\beta|^2 + |\gamma|^2 + |\delta|^2 = 1$.
   \begin{parts}
 
     \part  Determine la condición necesaria y suficiente sobre los coeficientes para que $|\psi\rangle$ sea un estado separable.
     \part  Calcule la matriz de densidad $\rho = |\psi\rangle\langle\psi|$ para el caso particular $\alpha = \delta = \frac{1}{\sqrt{2}}$ y $\beta = \gamma = 0$.
-    \part  Obtenga la matriz de densidad reducida $\rho_A$ del primer qubit en este caso particular.
+    \part  Obtenga la matriz de densidad reducida $\rho_A$ del primer cúbit en este caso particular.
   \end{parts}
 
   \begin{solution}
-    a) Un estado de dos qubits es separable si y solo si puede escribirse como el producto tensorial de dos estados de un qubit:
+    a) Un estado de dos cúbits es separable si y solo si puede escribirse como el producto tensorial de dos estados de un cúbit:
     $|\psi\rangle = |\phi_A\rangle \otimes |\phi_B\rangle$
 
     Supongamos que:
@@ -159,7 +159,7 @@
         1 & 0 & 0 & 1
       \end{pmatrix}$
 
-    c) La matriz de densidad reducida $\rho_A$ del primer qubit se obtiene tomando la traza parcial sobre el segundo qubit:
+    c) La matriz de densidad reducida $\rho_A$ del primer cúbit se obtiene tomando la traza parcial sobre el segundo cúbit:
 
     $\rho_A = \text{Tr}_B(\rho) = \sum_{i=0}^1 (I \otimes \langle i|)\rho(I \otimes |i\rangle)$
 
@@ -187,10 +187,10 @@
 
     Significado físico:
     - La entropía de von Neumann cuantifica la mezcla o incertidumbre en el estado del sistema
-    - $S(\rho_A) = 1$ es el valor máximo posible para un sistema de un qubit, indicando un estado completamente mixto
+    - $S(\rho_A) = 1$ es el valor máximo posible para un sistema de un cúbit, indicando un estado completamente mixto
     - Para un estado puro bipartito, $S(\rho_A)$ cuantifica el grado de entrelazamiento entre los subsistemas
     - El valor $S(\rho_A) = 1$ confirma que el estado original $|\psi\rangle$ es máximamente entrelazado
-    - Este resultado implica que no podemos predecir el resultado de una medición en el primer qubit independientemente del segundo qubit
+    - Este resultado implica que no podemos predecir el resultado de una medición en el primer cúbit independientemente del segundo cúbit
     - La información del subsistema A está completamente compartida con el subsistema B
 
     Este es un ejemplo de cómo el entrelazamiento cuántico causa que un subsistema de un estado global puro aparezca en un estado mixto cuando se considera aisladamente.
@@ -282,7 +282,7 @@
     - $e^{i\theta X}$ representa una rotación en la esfera de Bloch alrededor del eje x por un ángulo $2\theta$
     - Esta operación transforma el estado $|0\rangle$ en $\cos\theta|0\rangle + i\sin\theta|1\rangle$
     - Para $\theta = \pi/2$, obtenemos $e^{i\pi X/2} = iX$, que es equivalente a la compuerta cuántica $X$ salvo fase global
-    - Esta compuerta es esencial en circuitos cuánticos para realizar rotaciones controladas de un solo qubit
+    - Esta compuerta es esencial en circuitos cuánticos para realizar rotaciones controladas de un solo cúbit
     - En computación cuántica, se conoce como la compuerta $R_X(\theta)$ y es parte del conjunto universal de compuertas
     - La unitariedad de $e^{i\theta X}$ garantiza que la transformación preserva la norma del estado
   \end{solution}

@@ -71,13 +71,13 @@ Al finalizar esta asignatura, el estudiante será capaz de:
 - Funcionales lineales y espacio dual
 - Teorema de representación de Riesz-Fréchet
 - Producto tensorial de espacios vectoriales
-- Sistemas de múltiples qubits
+- Sistemas de múltiples cúbits
 - Estados separables versus entrelazados
 - Postulado IV: Composición de sistemas cuánticos
 
 **Tema 6: Notación de Dirac y estados cuánticos**
 - Notación bra-ket y su conexión con el espacio dual
-- Representación de estados cuánticos y qubits
+- Representación de estados cuánticos y cúbits
 - Operadores externos y productos internos
 - Postulado V: Evolución temporal unitaria
 - Mediciones en diferentes bases
