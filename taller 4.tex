@@ -1,0 +1,191 @@
+\documentclass[]{unirTema}
+
+\input{personalizacion}
+
+\author{Fr Ancisco Costa Cano}
+\titulacion{Máster en computación cuántica}
+\asignatura{Álgebra lineal en computación cuántica}
+\bloque{1}{Fundamentos matemáticos}
+\tema{4}{Diagonalización de matrices}
+
+\begin{document}
+
+\caratula
+
+\section*{Descomposición en Valores Singulares (SVD)}
+
+\subsection*{Importancia de la SVD}
+La descomposición en valores singulares representa una herramienta fundamental en diversas áreas de la ciencia y la ingeniería, permitiendo, por ejemplo, el filtrado y eliminación de ruido, la compresión de imágenes y señales, o la reconstrucción de señales degradadas.
+
+En computación cuántica, la SVD es fundamental para el análisis de entrelazamiento cuántico y la caracterización de estados mixtos. También se utiliza en el diseño de algoritmos cuánticos y en la corrección de errores cuánticos.
+
+Por último, se busca implementar una versión cuántica de la SVD que permita aprovechar las ventajas de la computación cuántica para resolver problemas que son intratables para la computación clásica, como el Variational Quantum Singular Value Decomposition (VQSVD), que es el enfoque más prometedor para la era actual de computación cuántica de ruido intermedio (NISQ).
+
+\section*{Base teórica}
+La descomposición en valores singulares de $A \in \mathbb{C}^{m \times n}$ es una factorización en tres matrices
+\[A = U \Sigma V^\dagger\,,\]
+donde:
+\begin{itemize}
+  \item $U \in \mathbb{C}^{m \times m}$ es una matriz \textbf{unitaria} de vectores singulares izquierdos.
+  \item $\Sigma \in \mathbb{R}^{m \times n}$ es una matriz \textbf{diagonal} de valores singulares.
+  \item $V \in \mathbb{C}^{n \times n}$ es una matriz \textbf{unitaria} de vectores singulares derechos.
+\end{itemize}
+
+\subsection*{Pasos de cálculo}
+
+\begin{enumerate}
+  \item \textbf{Calcular $AA^\dagger$ y $A^\dagger A$}
+        \begin{itemize}
+          \item $AA^\dagger$ y $A^\dagger A$ son matrices hermiticas con valores propios reales no negativos.
+          \item $AA^\dagger$ y $A^\dagger A$ tienen la misma traza y el mismo determinante.
+        \end{itemize}
+
+  \item \textbf{Calcular valores propios}
+
+        Resolver la ecuación característica $\det(A^\dagger A - \lambda I) = 0$ o $\det(AA^\dagger - \lambda I) = 0$.
+
+  \item \textbf{Calcular matriz diagonal $\Sigma$}
+
+        Los valores singulares son $\sigma_i = \sqrt{\lambda_i}$ y se ordenan de mayor a menor.
+
+  \item \textbf{Construcción de la matriz $U$}
+
+        Las columnas de $U$ son los vectores propios normalizados de $AA^\dagger$.
+
+  \item \textbf{Construcción de la matriz $V$}
+
+        Las columnas de $V$ son los vectores propios normalizados de $A^\dagger A$.
+\end{enumerate}
+
+\section*{Ejercicio}
+
+\begin{questions}
+  \question Obtener la descomposición en valores singulares de la matriz
+  \[
+    A = \frac{1}{2}\mqty(4 & 0 \\ \sqrt{3}i & \sqrt{5})\,.
+  \]
+\end{questions}
+
+\subsection*{Cálculo de $A^\dagger A$}
+
+\[
+  A^\dagger A = \frac{1}{2}\begin{pmatrix} 4 & -\sqrt{3}i \\ 0 & \sqrt{5} \end{pmatrix}\frac{1}{2}\mqty(4 & 0 \\ \sqrt{3}i & \sqrt{5}) = \frac{1}{4}\mqty(
+  19 & -\sqrt{15}i \\
+  \sqrt{15}i & 5)\,.
+\]
+
+\subsection*{Cálculo de $AA^\dagger$}
+
+\[
+  A A^\dagger = \frac{1}{2}\mqty(4 & 0 \\ \sqrt{3}i & \sqrt{5})\frac{1}{2}\mqty(4 & -\sqrt{3}i \\ 0 & \sqrt{5}) = \frac{1}{4}\begin{pmatrix}
+    16         & -4\sqrt{3}i \\
+    4\sqrt{3}i & 8
+  \end{pmatrix}=\mqty(
+  4 & -\sqrt{3}i \\
+  \sqrt{3}i & 2)\,.
+\]
+
+\subsection*{Coincidencias entre ambas matrices}
+Vamos a calcular la tr Aza y el determinante de ambas matrices.
+\begin{align*}
+  \tr(A^\dagger A)  & = \frac{1}{4}(19+5) = 6                                                              \,.     \\
+  \det(A^\dagger A) & = \frac{1}{16}(19\cdot 5 + (\sqrt{15})^2 i^2) = \frac{1}{16}(95-15) = \frac{80}{16} = 5  \,. \\
+  \tr(A A^\dagger)  & = 4+2 = 6                                                               \,.                  \\
+  \det(A A^\dagger) & = 8 + (\sqrt{3})^2 i^2 = 8-3 = 5\,.
+\end{align*}
+\subsection*{Valores propios de $AA^\dagger$}
+El polinomio car Acterístico es
+\[
+  p_A(\lambda) = \det(A - \lambda I) = \lambda^2 - 6\lambda + 5 = (\lambda-1)(\lambda-5)=0
+\]
+Los valores propios son $\lambda_1 = 5$ y $\lambda_2 = 1$
+
+\subsection*{Valores singulares}
+
+\[
+  \begin{rcases}
+    \sigma_1 = \sqrt{5} \\
+    \sigma_2 = 1
+  \end{rcases} \Rightarrow \Sigma = \begin{pmatrix} \sqrt{5} & 0 \\ 0 & 1 \end{pmatrix}\,.
+\]
+
+\subsection*{Vectores singulares izquierdos (columnas de $U$)}
+
+Los vectores singulares izquierdos son los vectores propios de $AA^\dagger$.
+
+Para $\lambda_1 = 5$ tenemos la ecuación
+\[
+  \mqty(
+  4-5 & -\sqrt{3}i \\
+  \sqrt{3}i & 2-5)\mqty(x\\y) = \mqty(0\\0)\Rightarrow \mqty(
+  -x -\sqrt{3}iy \\
+  \sqrt{3}ix -3y) = \mqty(0\\0)\,.
+\]
+Usando la primera ecuación tenemos $x = -\sqrt{3}iy$ y dando a $y=1$ y normalizando obtenemos
+\[
+  v_1 = \frac{1}{2}\mqty(-\sqrt{3}i\\1)\,.
+\]
+
+Para $\lambda_2 = 1$ tenemos la ecuación
+\[
+  \mqty(
+  4-1 & -\sqrt{3}i \\
+  \sqrt{3}i & 2-1)\mqty(x\\y) = \mqty(0\\0)\Rightarrow \mqty(
+  3x -\sqrt{3}iy \\
+  \sqrt{3}ix + y) = \mqty(0\\0)\,.
+\]
+Usando la segunda ecuación tenemos $y = -\sqrt{3}ix$ y dando a $x=1$ y normalizando obtenemos
+\[
+  v_2 = \frac{1}{2}\mqty(1\\-\sqrt{3}i)\,.
+\]
+
+La matriz $U$ es
+\[
+  U = \frac{1}{2}\mqty(-\sqrt{3}i & 1 \\ 1 & -\sqrt{3}i)\,.
+\]
+
+\subsection*{Vectores singulares derechos (columnas de $V$)}
+Los vectores singulares derechos son los vectores propios de $A^\dagger A$.
+
+Para $\lambda_1 = 5$ tenemos la ecuación
+\[
+  \mqty(
+  \frac{19-20}{4} & -\frac{\sqrt{15}}{4}i \\
+  \frac{\sqrt{15}}{4}i & \frac{5-20}{4})\mqty(x\\y) = \mqty(0\\0)\Rightarrow \mqty(
+  -x -\sqrt{15}iy \\
+  \sqrt{15}ix -15y) = \mqty(0\\0)\,.
+\]
+Usando la primera ecuación tenemos $x = -\sqrt{15}iy$ y dando a $y=1$ y normalizando obtenemos
+\[
+  v_1 = \frac{1}{4}\mqty(-\sqrt{15}i\\1)\,.
+\]
+
+Para $\lambda_2 = 1$ tenemos la ecuación
+\[
+  \mqty(
+  \frac{19-4}{4} & -\frac{\sqrt{15}}{4}i \\
+  \frac{\sqrt{15}}{4}i & \frac{5-4}{4})\mqty(x\\y) = \mqty(0\\0)\Rightarrow \mqty(
+  15x -\sqrt{15}iy \\
+  \sqrt{15}ix + y) = \mqty(0\\0)\,.
+\]
+Usando la segunda ecuación tenemos $y = -\sqrt{15}ix$ y dando a $x=1$ y normalizando obtenemos
+\[
+  v_2 = \frac{1}{4}\mqty(1\\-\sqrt{15}i)\,.
+\]
+
+La matriz $V$ es
+\[
+  V = \frac{1}{4}\mqty(-\sqrt{15}i & 1 \\ 1 & -\sqrt{15}i)\,.
+\]
+
+\subsection*{Comprobación de la descomposición SVD}
+
+\begin{align*}
+  U \Sigma V^\dagger & = \frac{1}{2}\mqty(-\sqrt{3}i  & 1 \\ 1 & -\sqrt{3}i)\mqty(\sqrt{5} & 0 \\ 0 & 1)\frac{1}{4}\mqty(-\sqrt{15}i & 1 \\ 1 & -\sqrt{15}i)^\dagger \\
+                     & = \frac{1}{8}\mqty(-\sqrt{15}i & 1 \\ \sqrt{5} & -\sqrt{3}i)\mqty(\sqrt{15}i & 1 \\ 1 & \sqrt{15}i) \\
+                     & = \frac{1}{8}\mqty(16          & 0 \\ 4\sqrt{3}i & 4\sqrt{5})\\
+                     & = \mqty(2                      & 0 \\ \frac{1}{2}\sqrt{3}i & \frac{1}{2}\sqrt{5})  = A\,.
+\end{align*}
+
+
+\end{document}
