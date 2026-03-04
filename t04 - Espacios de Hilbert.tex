@@ -528,6 +528,71 @@ Cuando se habla del los valores espectrales de un operador o matriz normal, se r
   \end{align*}
 \end{eje}
 
+\subsection{Descomposición en valores singulares}
+
+Una característica importante de las matrices complejas, es su descomposición en valores singulares, también llamada SVD (Singular Value Decomposition) por sus siglas en inglés, que permite representar una matriz como una combinación de matrices unitarias y una matriz diagonal.
+
+\begin{prop}
+  Sea $A \in \mathcal{M}_n(\C)$. Existe una descomposición $A = UDV^\dagger$, donde $U$ y $V$ son matrices unitarias y $D$ es una matriz diagonal con valores reales no negativos y ordenados de mayor a menor.
+\end{prop}
+
+\begin{defi}
+  A la matriz diagonal resultado de la descomposición en valores singulares la llamamos \textbf{matriz singular} y los elementos de la diagonal los llamamos \textbf{valores singulares} de $A$.
+\end{defi}
+
+Habitualmente, la descomposición en valores singulares tiene su propia notación y se denota por $\Sigma$ a la matriz diagonal y por $\sigma_i$ a los valores singulares de $A$.
+
+\begin{eje}
+  Consideremos la matriz $A = \frac{1}{2}\begin{pmatrix} 4 & 0 \\ \sqrt{3}i & \sqrt{5} \end{pmatrix}$.
+
+  Para calcular la descomposición en valores singulares de $A$ debemos calcular los valores propios de la matrices $AA^\dagger$ y $A^\dagger A$.
+  \begin{align*}
+    AA^\dagger  & = \frac{1}{4}\begin{pmatrix} 4 & 0 \\ \sqrt{3}i & \sqrt{5} \end{pmatrix}\begin{pmatrix} 4 & -\sqrt{3}i\\ 0 & \sqrt{5} \end{pmatrix} = \mqty(4             & -\sqrt{3}i  \\ \sqrt{3}i & 2)\,.               \\
+    A^\dagger A & = \frac{1}{4}\begin{pmatrix} 4 & -\sqrt{3}i\\ 0 & \sqrt{5} \end{pmatrix}\begin{pmatrix} 4 & 0 \\ \sqrt{3}i & \sqrt{5} \end{pmatrix} = \frac{1}{4}\mqty(19 & -\sqrt{15}i \\ \sqrt{15}i & 5)\,.
+  \end{align*}
+
+  El polinomio característico de $AA^\dagger$ y $A^\dagger A$ es
+  \begin{align*}
+    p_{AA^\dagger}(\lambda)  & = \mqty|4-\lambda              & -\sqrt{3}i  \\ \sqrt{3}i & 2-\lambda| \\
+                             & = \lambda^2-6\lambda+5\,.                    \\
+    p_{A^\dagger A}(\lambda) & = \frac{1}{16}\mqty(19-\lambda & -\sqrt{15}i \\ \sqrt{15}i & 5-\lambda)\\
+                             & = \lambda^2-6\lambda+5\,.
+  \end{align*}
+
+  Como esparábamos, ambas matrices tienen el mismo polinomio característico, y por tanto los mismos valores propios, que son
+  \[
+    \lambda =\frac{6\pm\sqrt{36-20}}{2} = \frac{6\pm\sqrt{16}}{2} = \{5, 1\}\,.
+  \]
+
+  Como los valores singulares de $A$ son las raices cuadradas de los valores propios, obtenemos los valores singulares
+  \[
+    \sigma_1 = \sqrt{5} \quad \text{y}\quad \sigma_2 = 1\,.
+  \]
+
+  Al ordenar de mayor a menor obtenemos la matriz singular
+  \[
+    \Sigma = \begin{pmatrix} \sqrt{5} & 0 \\ 0 & 1 \end{pmatrix}\,.
+  \]
+
+  Ahora tenemos que calcular los vectores singulares normalizados de $AA^\dagger$ y $A^\dagger A$:
+  \begin{itemize}
+    \item Para $\sigma_1 = 5$ un vector propio normalizado de $AA^\dagger$ es $u_1 = \frac{1}{2}\mqty(-\sqrt{3} \\ -i)$.
+    \item Para $\sigma_1 = 1$ un vector propio normalizado es $AA^\dagger$ es $u_2 = \frac{1}{2}\mqty(1 \\ -\sqrt{3}i)$.
+    \item Para $\sigma_1 = 5$ un vector propio normalizado de $A^\dagger A$ es $v_1 =\frac{1}{4} \mqty(-\sqrt{15} \\ -i)$.
+    \item Para $\sigma_1 = 1$ un vector propio normalizado es $A^\dagger A$ es $v_2 =\frac{1}{4} \mqty(1 \\ -\sqrt{15}i)$.
+  \end{itemize}
+
+  Por lo tanto las matrices $U$ y $V$ que se construyen con estos vectores son
+  \[
+    U = \frac{1}{2}\mqty(-\sqrt{3} & 1 \\ -i & -\sqrt{3}i)\quad V = \frac{1}{4}\mqty(-\sqrt{15} & 1 \\ -i & -\sqrt{15}i)
+  \]
+
+  Por lo tanto la matriz $A$ puede descomponerse en
+  \[
+    A = U\Sigma V^\dagger = \frac{1}{8}\mqty(-\sqrt{3} & 1 \\ -i & -\sqrt{3}i)\begin{pmatrix} \sqrt{5} & 0 \\ 0 & 1 \end{pmatrix}\mqty(-\sqrt{15} & -i \\ 1 & -\sqrt{15}i)
+  \]
+\end{eje}
+
 Una de las operaciones más habituales en computación cuántica, es el cálculo de la exponencial de la matriz de una operación unitaria. La descomposición espectral de este tipo de matrices será crucial para este cálculo.
 
 \subsection{Exponencial de una matriz}
