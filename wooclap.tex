@@ -1,0 +1,213 @@
+\documentclass{unirTema}
+\input{personalizacion.tex}
+
+\begin{document}
+
+\section*{Sondeo: Notación de Dirac - Wooclap}
+
+\subsection*{Instrucciones para el docente}
+
+Este documento contiene preguntas organizadas por tipo de actividad en Wooclap para evaluar el conocimiento y comodidad de los estudiantes con la notación de Dirac. Se recomienda usar una sesión de 15-20 minutos, alternando tipos de preguntas para mantener el engagement.
+
+\subsection*{Bloque 1: Autoevaluación (Escala Likert 1-5)}
+
+Configuración en Wooclap: Escala de valoración (1 = Nada cómodo, 5 = Muy cómodo)
+
+\begin{enumerate}
+  \item ¿Cómo de cómodo te sientes distinguiendo entre un ket $\ket{\psi}$ y un bra $\bra{\psi}$?
+
+  \item ¿Cuál es tu nivel de confianza al calcular productos internos como $\braket{\phi}{\psi}$?
+
+  \item ¿Qué tal te manejas escribiendo operadores en notación de Dirac, como $\hat{A}\ket{\psi}$?
+
+  \item ¿Cómo de seguro estás interpretando el significado físico de expresiones en notación de Dirac?
+
+  \item En general, ¿cómo valorarías tu dominio actual de la notación de Dirac?
+\end{enumerate}
+
+\subsection*{Bloque 2: Comprensión básica (Opción múltiple)}
+
+Configuración en Wooclap: Pregunta de opción múltiple (una respuesta correcta)
+
+\begin{enumerate}
+  \item \textbf{¿Qué representa matemáticamente el símbolo $\ket{\psi}$?}
+        \begin{itemize}
+          \item A) Un vector fila en $\mathbb{C}^n$.
+          \item B) Un vector columna en $\mathbb{C}^n$.
+          \item C) Una matriz hermítica.
+          \item D) Un escalar complejo.
+        \end{itemize}
+        \textit{Respuesta correcta: B}
+
+  \item \textbf{Si $\ket{0} = \begin{pmatrix} 1 \\ 0 \end{pmatrix}$, ¿cuál es la forma matricial de $\bra{0}$?}
+        \begin{itemize}
+          \item A) $\begin{pmatrix} 1 \\ 0 \end{pmatrix}$
+          \item B) $\begin{pmatrix} 0 \\ 1 \end{pmatrix}$
+          \item C) $\begin{pmatrix} 1 & 0 \end{pmatrix}$
+          \item D) $\begin{pmatrix} 0 & 1 \end{pmatrix}$
+        \end{itemize}
+        \textit{Respuesta correcta: C}
+
+  \item \textbf{¿Qué operación matemática representa $\braket{\phi}{\psi}$?}
+        \begin{itemize}
+          \item A) Producto tensorial de vectores.
+          \item B) Producto interno (escalar) entre vectores.
+          \item C) Producto exterior de vectores.
+          \item D) Conmutador de operadores.
+        \end{itemize}
+        \textit{Respuesta correcta: B}
+
+  \item \textbf{Si $\ket{\psi} = \frac{1}{\sqrt{2}}(\ket{0} + \ket{1})$, ¿cuánto vale $\braket{\psi}{\psi}$?}
+        \begin{itemize}
+          \item A) $\frac{1}{2}$
+          \item B) $1$
+          \item C) $\sqrt{2}$
+          \item D) $2$
+        \end{itemize}
+        \textit{Respuesta correcta: B (por normalización)}
+
+  \item \textbf{La expresión $\ket{\phi}\bra{\psi}$ representa:}
+        \begin{itemize}
+          \item A) Un número complejo.
+          \item B) Un vector en el espacio de Hilbert.
+          \item C) Un operador (matriz) en el espacio de Hilbert.
+          \item D) Una base ortonormal.
+        \end{itemize}
+        \textit{Respuesta correcta: C}
+\end{enumerate}
+
+\subsection*{Bloque 3: Identificación de conceptos (Verdadero/Falso)}
+
+Configuración en Wooclap: Verdadero o Falso
+
+\begin{enumerate}
+  \item \textbf{V/F:} El bra $\bra{\psi}$ es el adjunto hermítico del ket $\ket{\psi}$.
+
+        \textit{Respuesta: Verdadero}
+
+  \item \textbf{V/F:} Para cualquier estado $\ket{\psi}$, se cumple que $\braket{\psi}{\psi} = 0$.
+
+        \textit{Respuesta: Falso (es igual a 1 si está normalizado, y positivo en general)}
+
+  \item \textbf{V/F:} La notación $\ket{+}$ y $\ket{-}$ siempre se refiere a los autoestados del operador $\hat{Z}$.
+
+        \textit{Respuesta: Falso (son autoestados de $\hat{X}$)}
+
+  \item \textbf{V/F:} El producto $\braket{\psi}{\phi}$ es, en general, igual a $\braket{\phi}{\psi}$.
+
+        \textit{Respuesta: Falso (uno es el conjugado complejo del otro)}
+
+  \item \textbf{V/F:} En computación cuántica, los estados base $\ket{0}$ y $\ket{1}$ forman una base ortonormal.
+
+        \textit{Respuesta: Verdadero}
+
+  \item \textbf{V/F:} La expresión $\ket{0}\bra{1}$ representa un operador que transforma $\ket{1}$ en $\ket{0}$.
+
+        \textit{Respuesta: Verdadero}
+\end{enumerate}
+
+\subsection*{Bloque 4: Equivalencias (Emparejamiento)}
+
+Configuración en Wooclap: Emparejar elementos
+
+\textbf{Instrucción:} Empareja cada expresión en notación de Dirac con su equivalente matricial o descripción.
+
+\begin{center}
+  \begin{tabular}{ll}
+    \hline
+    \textbf{Notación de Dirac} & \textbf{Equivalente}                                        \\
+    \hline
+    $\ket{+}$                  & A) $\frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 1 \end{pmatrix}$ \\[0.3cm]
+    $\bra{0}$                  & B) $\begin{pmatrix} 1 & 0 \end{pmatrix}$                    \\[0.3cm]
+    $\ket{0}\bra{0}$           & C) $\begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}$           \\[0.3cm]
+    $\hat{X}\ket{0}$           & D) $\ket{1}$                                                \\[0.3cm]
+    $\braket{0}{1}$            & E) $0$                                                      \\
+    \hline
+  \end{tabular}
+\end{center}
+
+\textit{Emparejamientos correctos: $\ket{+}$-A, $\bra{0}$-B, $\ket{0}\bra{0}$-C, $\hat{X}\ket{0}$-D, $\braket{0}{1}$-E}
+
+\subsection*{Bloque 5: Aplicación (Opción múltiple avanzada)}
+
+Configuración en Wooclap: Pregunta de opción múltiple
+
+\begin{enumerate}
+  \item \textbf{Sea $\ket{\psi} = \frac{1}{\sqrt{5}}(2\ket{0} + \ket{1})$. ¿Cuánto vale $|\braket{0}{\psi}|^2$?}
+        \begin{itemize}
+          \item A) $\frac{1}{5}$
+          \item B) $\frac{2}{5}$
+          \item C) $\frac{4}{5}$
+          \item D) $\frac{2}{\sqrt{5}}$
+        \end{itemize}
+        \textit{Respuesta correcta: C (representa la probabilidad de medir $\ket{0}$)}
+
+  \item \textbf{¿Qué estado resulta de aplicar $\hat{H}$ (puerta Hadamard) a $\ket{0}$?}
+
+        Recordatorio: $\hat{H} = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$
+        \begin{itemize}
+          \item A) $\ket{0}$
+          \item B) $\ket{1}$
+          \item C) $\ket{+} = \frac{1}{\sqrt{2}}(\ket{0} + \ket{1})$
+          \item D) $\ket{-} = \frac{1}{\sqrt{2}}(\ket{0} - \ket{1})$
+        \end{itemize}
+        \textit{Respuesta correcta: C}
+
+  \item \textbf{Si $\hat{P}_0 = \ket{0}\bra{0}$ y $\ket{\psi} = \frac{1}{\sqrt{2}}(\ket{0} + \ket{1})$, ¿cuánto vale $\hat{P}_0\ket{\psi}$?}
+        \begin{itemize}
+          \item A) $\ket{0}$
+          \item B) $\frac{1}{\sqrt{2}}\ket{0}$
+          \item C) $\frac{1}{\sqrt{2}}\ket{1}$
+          \item D) $\frac{1}{\sqrt{2}}(\ket{0} + \ket{1})$
+        \end{itemize}
+        \textit{Respuesta correcta: B}
+\end{enumerate}
+
+\subsection*{Bloque 6: Interpretación (Preguntas abiertas cortas)}
+
+Configuración en Wooclap: Pregunta abierta (respuestas cortas, 1-2 líneas)
+
+\begin{enumerate}
+  \item \textbf{Explica con tus propias palabras qué diferencia hay entre $\ket{\psi}$ y $\bra{\psi}$.}
+
+        \textit{Respuesta esperada: El ket es un vector columna y el bra es su adjunto hermítico (vector fila conjugado), o equivalente en términos de espacios duales.}
+
+  \item \textbf{¿Qué información física proporciona el valor $|\braket{\phi}{\psi}|^2$ en mecánica cuántica?}
+
+        \textit{Respuesta esperada: La probabilidad de transición entre estados, o probabilidad de que al medir $\ket{\psi}$ se obtenga $\ket{\phi}$.}
+
+  \item \textbf{¿Por qué es útil la notación de Dirac en comparación con la notación matricial tradicional?}
+
+        \textit{Respuesta esperada: Es más compacta, independiente de la base elegida, facilita cálculos simbólicos, y hace más clara la estructura del espacio de Hilbert.}
+\end{enumerate}
+
+\subsection*{Bloque 7: Detección de obstáculos (Nube de palabras)}
+
+Configuración en Wooclap: Nube de palabras
+
+\textbf{Pregunta:} ¿Cuál es el principal obstáculo que encuentras al trabajar con la notación de Dirac? (Responde con una palabra o frase corta)
+
+\textit{Objetivo: Identificar conceptos que requieren refuerzo (ejemplos esperados: productos tensoriales, cambios de base, interpretación física, cálculo de probabilidades, etc.)}
+
+\subsection*{Recomendaciones de uso}
+
+\begin{itemize}
+  \item Tiempo total recomendado: 15-20 minutos.
+  \item Orden sugerido: Autoevaluación $\to$ Comprensión básica $\to$ V/F $\to$ Emparejamiento $\to$ Aplicación $\to$ Abiertas $\to$ Nube de palabras.
+  \item Activar el modo anónimo para mayor sinceridad en autoevaluación.
+  \item Mostrar estadísticas en tiempo real para fomentar participación.
+  \item Al finalizar, dedicar 5-10 minutos a discutir los resultados y aclarar dudas comunes.
+\end{itemize}
+
+\subsection*{Interpretación de resultados}
+
+\begin{itemize}
+  \item \textbf{Bloque 1 (Likert) $<$ 3:} Indica inseguridad general que requiere refuerzo básico.
+  \item \textbf{Bloque 2 (Básica) $<$ 60\% aciertos:} Necesidad de revisar fundamentos (diferencia bra/ket, productos internos).
+  \item \textbf{Bloque 3 (V/F) $<$ 70\% aciertos:} Misconcepciones importantes, especialmente sobre conjugación y ortogonalidad.
+  \item \textbf{Bloque 4 (Emparejamiento) $<$ 60\% aciertos:} Dificultad en traducir entre notaciones, práctica necesaria.
+  \item \textbf{Bloque 5 (Aplicación) $<$ 50\% aciertos:} Comprensión conceptual limitada, enfocarse en ejemplos prácticos.
+  \item \textbf{Bloque 7 (Nube):} Usar respuestas frecuentes para diseñar sesiones de repaso específicas.
+\end{itemize}
+
+\end{document}

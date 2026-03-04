@@ -1,0 +1,514 @@
+\portada
+
+\begin{esquemaExplorador}
+  \temaEsquema{Sistemas cuánticos compuestos}{
+    \conceptoEsquema{Producto tensorial de espacios}{}
+    \conceptoEsquema{Estados producto y entrelazados}{}
+    \conceptoEsquema{Base del espacio compuesto}{$\ket{i}\otimes\ket{j}$}
+  }
+  \temaEsquema{Operador de traza}{
+    \conceptoEsquema{Definición de traza}{$\tr(A) = \sum_i \bra{i}A\ket{i}$}
+    \conceptoEsquema{Propiedades de la traza}{}
+    \conceptoEsquema{Traza de matrices densidad}{}
+  }
+  \temaEsquema{Traza parcial}{
+    \conceptoEsquema{Definición operacional}{$\tr_B(\rho_{AB})$}
+    \conceptoEsquema{Cálculo explícito}{}
+    \conceptoEsquema{Interpretación física}{}
+  }
+  \temaEsquema{Aplicaciones cuánticas}{
+    \conceptoEsquema{Matrices densidad reducidas}{}
+    \conceptoEsquema{Entrelazamiento y pureza}{}
+    \conceptoEsquema{Canales cuánticos}{}
+  }
+\end{esquemaExplorador}
+
+\unirsection{Ideas clave}
+
+\subsection{Introducción y objetivos}
+
+En computación cuántica trabajamos constantemente con sistemas multipartitos: conjuntos de qubits que interactúan entre sí. Para describir estos sistemas compuestos necesitamos el \textbf{producto tensorial} de espacios de Hilbert. Sin embargo, en muchas situaciones prácticas solo tenemos acceso o interés en observar una parte del sistema total, mientras que el resto permanece inaccesible o se descarta.
+
+La \textbf{traza parcial} es la herramienta matemática que nos permite «eliminar» la información de un subsistema del que no disponemos, obteniendo la descripción completa del subsistema que sí nos interesa. Este procedimiento es fundamental para entender el entrelazamiento cuántico, analizar procesos de decoherencia y describir canales cuánticos.
+
+Más concretamente, los objetivos que trataremos de alcanzar en este tema serán los siguientes:
+
+\begin{itemize}
+  \item Comprender la estructura de los sistemas cuánticos compuestos mediante el producto tensorial de espacios de Hilbert.
+  \item Dominar el operador de traza y sus propiedades fundamentales, especialmente la ciclicidad y la invarianza bajo cambios de base.
+  \item Calcular explícitamente la traza parcial de estados cuánticos bipartitos, tanto puros como mixtos.
+  \item Interpretar físicamente la traza parcial como el proceso de «olvidar» información de un subsistema.
+  \item Aplicar la traza parcial para obtener matrices densidad reducidas y analizar propiedades de entrelazamiento.
+  \item Utilizar la traza parcial en el contexto de canales cuánticos y operaciones sobre qubits.
+\end{itemize}
+
+Esta base operacional será fundamental para comprender procesos más avanzados como la teleportación cuántica, la corrección de errores y la implementación de algoritmos cuánticos en arquitecturas reales donde inevitablemente se pierde información al entorno.
+
+\subsection{Sistemas cuánticos compuestos}
+
+Cuando tenemos dos sistemas cuánticos separados, el espacio de Hilbert del sistema conjunto se construye mediante el producto tensorial.
+
+\begin{defi}[Sistema bipartito]
+  Sean $\mathcal{H}_A$ y $\mathcal{H}_B$ dos espacios de Hilbert de dimensiones $d_A$ y $d_B$ respectivamente. El \textbf{espacio de Hilbert compuesto} es el producto tensorial:
+  \[
+    \mathcal{H}_{AB} = \mathcal{H}_A \otimes \mathcal{H}_B\,,
+  \]
+  con dimensión $d_{AB} = d_A \cdot d_B$.
+
+  Un estado general del sistema compuesto es un vector unitario $\ket{\psi} \in \mathcal{H}_{AB}$.
+\end{defi}
+
+\begin{eje}
+  Consideremos dos qubits, cada uno con espacio de Hilbert $\C^2$. El espacio del sistema bipartito es:
+  \[
+    \mathcal{H}_{AB} = \C^2 \otimes \C^2 = \C^4\,.
+  \]
+
+  Una base natural para este espacio se construye tomando productos tensoriales de las bases computacionales de cada qubit:
+  \[
+    \{\ket{00}, \ket{01}, \ket{10}, \ket{11}\}\,,
+  \]
+  donde usamos la notación compacta $\ket{ij} = \ket{i}_A \otimes \ket{j}_B$.
+
+  En forma matricial, estos vectores son:
+  \begin{align*}
+    \ket{00} & = \mqty(1 \\ 0 \\ 0 \\ 0)\,, \quad
+    \ket{01} = \mqty(0   \\ 1 \\ 0 \\ 0)\,, \\
+    \ket{10} & = \mqty(0 \\ 0 \\ 1 \\ 0)\,, \quad
+    \ket{11} = \mqty(0   \\ 0 \\ 0 \\ 1)\,.
+  \end{align*}
+\end{eje}
+
+\begin{defi}[Estados producto y entrelazados]
+  Un estado $\ket{\psi} \in \mathcal{H}_{AB}$ es un \textbf{estado producto} si existen $\ket{\phi}_A \in \mathcal{H}_A$ y $\ket{\varphi}_B \in \mathcal{H}_B$ tales que:
+  \[
+    \ket{\psi} = \ket{\phi}_A \otimes \ket{\varphi}_B\,.
+  \]
+
+  Si el estado no puede escribirse de esta forma, se dice que es un \textbf{estado entrelazado}.
+\end{defi}
+
+\begin{eje}
+  El estado $\ket{\psi_1} = \ket{+}_A \otimes \ket{0}_B$ es un estado producto, donde:
+  \[
+    \ket{+} = \frac{1}{\sqrt{2}}(\ket{0} + \ket{1})\,.
+  \]
+
+  Explícitamente:
+  \[
+    \ket{\psi_1} = \frac{1}{\sqrt{2}}(\ket{00} + \ket{10})\,.
+  \]
+
+  Sin embargo, el estado de Bell:
+  \[
+    \ket{\Phi^+} = \frac{1}{\sqrt{2}}(\ket{00} + \ket{11})
+  \]
+  no puede escribirse como producto de estados individuales. Es un estado entrelazado.
+
+  Para verificarlo, supongamos que existieran $(a\ket{0} + b\ket{1})_A$ y $(c\ket{0} + d\ket{1})_B$ tales que:
+  \[
+    (a\ket{0} + b\ket{1})_A \otimes (c\ket{0} + d\ket{1})_B = \frac{1}{\sqrt{2}}(\ket{00} + \ket{11})\,.
+  \]
+
+  Expandiendo el lado izquierdo:
+  \[
+    ac\ket{00} + ad\ket{01} + bc\ket{10} + bd\ket{11}\,,
+  \]
+  debemos tener $ac = 1/\sqrt{2}$, $ad = 0$, $bc = 0$ y $bd = 1/\sqrt{2}$. De $ad = 0$ se sigue que $a = 0$ o $d = 0$, pero ambas posibilidades contradicen las otras ecuaciones. Por tanto, $\ket{\Phi^+}$ es entrelazado.
+\end{eje}
+
+\subsection{Operador de traza}
+
+Antes de definir la traza parcial, necesitamos comprender bien el operador de traza en un único espacio de Hilbert.
+
+\begin{defi}[Traza de un operador]
+  Sea $A: \mathcal{H} \to \mathcal{H}$ un operador lineal en un espacio de Hilbert de dimensión finita. Dada una base ortonormal $\{\ket{i}\}_{i=1}^d$ de $\mathcal{H}$, la \textbf{traza} de $A$ se define como:
+  \[
+    \tr(A) = \sum_{i=1}^d \bra{i}A\ket{i}\,.
+  \]
+
+  En términos de la representación matricial de $A$, la traza es la suma de los elementos diagonales:
+  \[
+    \tr(A) = \sum_{i=1}^d A_{ii}\,.
+  \]
+\end{defi}
+
+Es importante destacar que, aunque la definición usa una base particular, el valor de $\tr(A)$ no depende de la elección de la base.
+
+\begin{eje}
+  Consideremos el operador representado por la matriz:
+  \[
+    A = \mqty(2 & 1+i \\ 1-i & -3)\,.
+  \]
+
+  En la base computacional $\{\ket{0}, \ket{1}\}$:
+  \begin{align*}
+    \tr(A) & = \bra{0}A\ket{0} + \bra{1}A\ket{1} \\
+           & = A_{00} + A_{11}                   \\
+           & = 2 + (-3)                          \\
+           & = -1\,.
+  \end{align*}
+
+  Si usáramos otra base, por ejemplo $\{\ket{+}, \ket{-}\}$ donde:
+  \[
+    \ket{+} = \frac{1}{\sqrt{2}}(\ket{0} + \ket{1})\,, \quad
+    \ket{-} = \frac{1}{\sqrt{2}}(\ket{0} - \ket{1})\,,
+  \]
+  obtendríamos el mismo resultado $\tr(A) = -1$.
+\end{eje}
+
+\begin{prop}[Propiedades de la traza]
+  La traza satisface las siguientes propiedades:
+  \begin{enumerate}
+    \item[\likeitem{T1}] Linealidad: $\tr(\alpha A + \beta B) = \alpha\tr(A) + \beta\tr(B)$ para $\alpha, \beta \in \C$.
+    \item[\likeitem{T2}] Ciclicidad: $\tr(AB) = \tr(BA)$ para operadores $A$ y $B$.
+    \item[\likeitem{T3}] Invarianza bajo cambio de base: $\tr(UAU^\dagger) = \tr(A)$ para $U$ unitario.
+    \item[\likeitem{T4}] Para matrices densidad: $\tr(\rho) = 1$.
+  \end{enumerate}
+\end{prop}
+
+La propiedad de ciclicidad es especialmente importante y puede extenderse:
+\[
+  \tr(ABC) = \tr(CAB) = \tr(BCA)\,.
+\]
+
+\begin{eje}
+  Verifiquemos la ciclicidad para:
+  \[
+    A = \mqty(1 & 0 \\ 0 & -1)\,, \quad
+    B = \mqty(0 & 1 \\ 1 & 0)\,.
+  \]
+
+  Calculamos:
+  \[
+    AB = \mqty(1 & 0 \\ 0 & -1)\mqty(0 & 1 \\ 1 & 0) = \mqty(0 & 1 \\ -1 & 0)\,.
+  \]
+
+  Por tanto:
+  \[
+    \tr(AB) = 0 + 0 = 0\,.
+  \]
+
+  Ahora calculamos:
+  \[
+    BA = \mqty(0 & 1 \\ 1 & 0)\mqty(1 & 0 \\ 0 & -1) = \mqty(0 & -1 \\ 1 & 0)\,.
+  \]
+
+  Y obtenemos:
+  \[
+    \tr(BA) = 0 + 0 = 0\,.
+  \]
+
+  Se verifica que $\tr(AB) = \tr(BA)$.
+\end{eje}
+
+\subsection{Definición de traza parcial}
+
+La traza parcial es la operación que nos permite «proyectar» un estado bipartito sobre uno de sus subsistemas, eliminando la información del otro subsistema.
+
+\begin{defi}[Traza parcial sobre el subsistema $B$]
+  Sea $\rho_{AB}$ un operador de densidad en $\mathcal{H}_A \otimes \mathcal{H}_B$. La \textbf{traza parcial sobre el subsistema $B$}, denotada $\tr_B(\rho_{AB})$, es el operador en $\mathcal{H}_A$ definido mediante:
+  \[
+    \bra{\phi}_A \tr_B(\rho_{AB}) \ket{\psi}_A = \sum_{j} (\bra{\phi}_A \otimes \bra{j}_B) \rho_{AB} (\ket{\psi}_A \otimes \ket{j}_B)\,,
+  \]
+  donde $\{\ket{j}_B\}$ es cualquier base ortonormal de $\mathcal{H}_B$, y $\ket{\phi}_A, \ket{\psi}_A \in \mathcal{H}_A$ son vectores arbitrarios.
+\end{defi}
+
+Análogamente, se define $\tr_A(\rho_{AB})$ como la traza parcial sobre el subsistema $A$.
+
+Una forma equivalente y más práctica de calcular la traza parcial es:
+
+\begin{defi}[Fórmula de cálculo]
+  Para un operador $\rho_{AB}$ expresado en una base producto $\{\ket{i}_A \otimes \ket{j}_B\}$:
+  \[
+    \tr_B(\rho_{AB}) = \sum_j (\mathds{1}_A \otimes \bra{j}_B) \rho_{AB} (\mathds{1}_A \otimes \ket{j}_B)\,.
+  \]
+\end{defi}
+
+\begin{eje}
+  Calculemos $\tr_B$ para el estado producto:
+  \[
+    \ket{\psi} = \ket{0}_A \otimes \ket{+}_B\,, \quad
+    \rho_{AB} = \ket{\psi}\bra{\psi}\,.
+  \]
+
+  Primero expresamos $\ket{+}_B = \frac{1}{\sqrt{2}}(\ket{0}_B + \ket{1}_B)$, por lo que:
+  \[
+    \ket{\psi} = \frac{1}{\sqrt{2}}(\ket{00} + \ket{01})\,.
+  \]
+
+  El operador de densidad es:
+  \[
+    \rho_{AB} = \frac{1}{2}\left[\ket{00}\bra{00} + \ket{00}\bra{01} + \ket{01}\bra{00} + \ket{01}\bra{01}\right]\,.
+  \]
+
+  Calculamos la traza parcial sobre $B$ usando la base $\{\ket{0}_B, \ket{1}_B\}$:
+  \begin{align*}
+    \tr_B(\rho_{AB}) & = (\mathds{1}_A \otimes \bra{0}_B)\rho_{AB}(\mathds{1}_A \otimes \ket{0}_B)          \\
+                     & \quad + (\mathds{1}_A \otimes \bra{1}_B)\rho_{AB}(\mathds{1}_A \otimes \ket{1}_B)\,.
+  \end{align*}
+
+  Primer término con $\ket{0}_B$:
+  \begin{align*}
+    (\mathds{1}_A \otimes \bra{0}_B)\rho_{AB}(\mathds{1}_A \otimes \ket{0}_B)
+     & = \frac{1}{2}[\ket{0}_A\bra{0}_A + \ket{0}_A\bra{0}_A] \\
+     & = \ket{0}_A\bra{0}_A\,.
+  \end{align*}
+
+  Segundo término con $\ket{1}_B$:
+  \[
+    (\mathds{1}_A \otimes \bra{1}_B)\rho_{AB}(\mathds{1}_A \otimes \ket{1}_B) = \frac{1}{2}\ket{0}_A\bra{0}_A\,.
+  \]
+
+  Sumando ambas contribuciones:
+  \[
+    \tr_B(\rho_{AB}) = \ket{0}_A\bra{0}_A + \frac{1}{2}\ket{0}_A\bra{0}_A = \frac{3}{2}\ket{0}_A\bra{0}_A\,.
+  \]
+
+  Pero esto no puede ser correcto, ya que $\tr(\tr_B(\rho_{AB})) = 3/2 \neq 1$. Revisemos el cálculo.
+
+  El error está en el primer término. Calculémoslo correctamente:
+  \begin{align*}
+     & (\mathds{1}_A \otimes \bra{0}_B)\left[\frac{1}{2}(\ket{00}\bra{00} + \ket{00}\bra{01} + \ket{01}\bra{00} + \ket{01}\bra{01})\right](\mathds{1}_A \otimes \ket{0}_B)                \\
+     & = \frac{1}{2}[(\mathds{1}_A \otimes \bra{0}_B)\ket{00}\bra{00}(\mathds{1}_A \otimes \ket{0}_B) + (\mathds{1}_A \otimes \bra{0}_B)\ket{01}\bra{00}(\mathds{1}_A \otimes \ket{0}_B)] \\
+     & = \frac{1}{2}[\ket{0}_A\braket{0|0}_B\bra{0}_A\braket{0|0}_B + 0]                                                                                                                  \\
+     & = \frac{1}{2}\ket{0}_A\bra{0}_A\,.
+  \end{align*}
+
+  Y el segundo término:
+  \[
+    (\mathds{1}_A \otimes \bra{1}_B)\rho_{AB}(\mathds{1}_A \otimes \ket{1}_B) = \frac{1}{2}\ket{0}_A\bra{0}_A\,.
+  \]
+
+  Por tanto:
+  \[
+    \tr_B(\rho_{AB}) = \frac{1}{2}\ket{0}_A\bra{0}_A + \frac{1}{2}\ket{0}_A\bra{0}_A = \ket{0}_A\bra{0}_A\,.
+  \]
+
+  Ahora sí: $\tr(\tr_B(\rho_{AB})) = 1$, como debe ser.
+\end{eje}
+
+Este ejemplo ilustra un resultado importante: para estados producto, la traza parcial simplemente elimina el subsistema correspondiente.
+
+\subsection{Cálculo matricial de la traza parcial}
+
+Para calcular explícitamente la traza parcial, es útil trabajar con la representación matricial en una base producto.
+
+\begin{eje}
+  Consideremos el estado de Bell:
+  \[
+    \ket{\Phi^+} = \frac{1}{\sqrt{2}}(\ket{00} + \ket{11})\,, \quad
+    \rho_{AB} = \ket{\Phi^+}\bra{\Phi^+}\,.
+  \]
+
+  En la base computacional, la matriz densidad es:
+  \[
+    \rho_{AB} = \frac{1}{2}\mqty(
+    1 & 0 & 0 & 1 \\
+    0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 \\
+    1 & 0 & 0 & 1
+    )\,.
+  \]
+
+  Podemos reorganizar esta matriz en bloques de $2 \times 2$ correspondientes a los subsistemas $A$ y $B$:
+  \[
+    \rho_{AB} = \frac{1}{2}\mqty(
+    \mqty(1 & 0 \\ 0 & 0) & \mqty(0 & 1 \\ 0 & 0) \\
+    \mqty(0 & 0 \\ 0 & 0) & \mqty(1 & 0 \\ 0 & 1)
+    )\,.
+  \]
+
+  Para calcular $\tr_B(\rho_{AB})$, sumamos los bloques diagonales:
+  \[
+    \tr_B(\rho_{AB}) = \frac{1}{2}\left[\mqty(1 & 0 \\ 0 & 0) + \mqty(1 & 0 \\ 0 & 1)\right] = \frac{1}{2}\mqty(2 & 0 \\ 0 & 1)\,.
+  \]
+
+  Esto no es correcto. Revisemos el procedimiento. La traza parcial sobre $B$ significa que sumamos sobre la base de $B$. Si escribimos $\rho_{AB}$ en la base $\{\ket{i}_A \ket{j}_B\}$, entonces:
+  \[
+    \rho_{AB} = \sum_{ijkl} \rho_{ij,kl} \ket{i}_A\ket{j}_B\bra{k}_A\bra{l}_B\,.
+  \]
+
+  La traza parcial es:
+  \[
+    \tr_B(\rho_{AB}) = \sum_{ijl} \rho_{ij,il} \ket{i}_A\bra{j}_A\,.
+  \]
+
+  Para nuestro estado, con índices $(i,j) \in \{0,1\} \times \{0,1\}$ ordenados como $(00, 01, 10, 11)$:
+  \begin{align*}
+    \tr_B(\rho_{AB}) & = \sum_{j=0}^1 \bra{j}_B \rho_{AB} \ket{j}_B                       \\
+                     & = \bra{0}_B \rho_{AB} \ket{0}_B + \bra{1}_B \rho_{AB} \ket{1}_B\,.
+  \end{align*}
+
+  En términos matriciales, si escribimos $\rho_{AB}$ como una matriz $4 \times 4$, entonces:
+  \begin{align*}
+    \bra{0}_B \rho_{AB} \ket{0}_B & = \frac{1}{2}\mqty(1 & 0 \\ 0 & 0)\,, \\
+    \bra{1}_B \rho_{AB} \ket{1}_B & = \frac{1}{2}\mqty(0 & 0 \\ 0 & 1)\,.
+  \end{align*}
+
+  Sumando:
+  \[
+    \tr_B(\rho_{AB}) = \frac{1}{2}\mqty(1 & 0 \\ 0 & 1) = \frac{1}{2}\mathds{1}_A\,.
+  \]
+
+  Este resultado es característico de estados maximalmente entrelazados: la matriz densidad reducida es completamente mixta.
+\end{eje}
+
+\subsection{Interpretación física de la traza parcial}
+
+La traza parcial tiene una interpretación física profunda: representa el estado del subsistema $A$ cuando no tenemos acceso al subsistema $B$.
+
+\begin{eje}
+  Comparemos dos situaciones con dos qubits:
+
+  \textbf{Caso 1: Estado producto}
+  \[
+    \ket{\psi_1} = \ket{0}_A \otimes \ket{+}_B\,, \quad
+    \rho_{1,AB} = \ket{\psi_1}\bra{\psi_1}\,.
+  \]
+
+  Ya calculamos anteriormente:
+  \[
+    \tr_B(\rho_{1,AB}) = \ket{0}_A\bra{0}_A\,.
+  \]
+
+  Este es un estado puro del subsistema $A$. La pureza se mide con $\tr(\rho_A^2)$:
+  \[
+    \tr([\ket{0}_A\bra{0}_A]^2) = \tr(\ket{0}_A\bra{0}_A) = 1\,.
+  \]
+
+  \textbf{Caso 2: Estado entrelazado}
+  \[
+    \ket{\Phi^+} = \frac{1}{\sqrt{2}}(\ket{00} + \ket{11})\,, \quad
+    \rho_{2,AB} = \ket{\Phi^+}\bra{\Phi^+}\,.
+  \]
+
+  Calculamos:
+  \[
+    \tr_B(\rho_{2,AB}) = \frac{1}{2}\mathds{1}_A = \frac{1}{2}\mqty(1 & 0 \\ 0 & 1)\,.
+  \]
+
+  Este es un estado mixto. Su pureza es:
+  \[
+    \tr\left[\left(\frac{1}{2}\mathds{1}_A\right)^2\right] = \tr\left(\frac{1}{4}\mathds{1}_A\right) = \frac{1}{4} \cdot 2 = \frac{1}{2} < 1\,.
+  \]
+
+  \textbf{Conclusión}: El entrelazamiento hace que el subsistema $A$, visto de forma aislada, aparezca en un estado mixto, aunque el estado global sea puro. Esta es una manifestación característica del entrelazamiento cuántico.
+\end{eje}
+
+\subsection{Propiedades de la traza parcial}
+
+La traza parcial satisface varias propiedades importantes que facilitan su cálculo.
+
+\begin{prop}[Propiedades fundamentales]
+  Sean $\rho_{AB}$ y $\sigma_{AB}$ operadores en $\mathcal{H}_A \otimes \mathcal{H}_B$. La traza parcial satisface:
+  \begin{enumerate}
+    \item[\likeitem{TP1}] Linealidad: $\tr_B(\alpha\rho_{AB} + \beta\sigma_{AB}) = \alpha\tr_B(\rho_{AB}) + \beta\tr_B(\sigma_{AB})$.
+    \item[\likeitem{TP2}] Preservación de la traza: $\tr(\tr_B(\rho_{AB})) = \tr(\rho_{AB})$.
+    \item[\likeitem{TP3}] Para operadores producto: $\tr_B(A \otimes B) = A \cdot \tr(B)$.
+    \item[\likeitem{TP4}] Traza completa: $\tr_B(\tr_A(\rho_{AB})) = \tr(\rho_{AB})$.
+  \end{enumerate}
+\end{prop}
+
+\begin{eje}
+  Verifiquemos la propiedad \likeitem{TP3} para:
+  \[
+    A = \mqty(a & b \\ c & d)\,, \quad
+    B = \mqty(\alpha & \beta \\ \gamma & \delta)\,.
+  \]
+
+  El operador producto es:
+  \[
+    A \otimes B = \mqty(
+    a\alpha & a\beta & b\alpha & b\beta \\
+    a\gamma & a\delta & b\gamma & b\delta \\
+    c\alpha & c\beta & d\alpha & d\beta \\
+    c\gamma & c\delta & d\gamma & d\delta
+    )\,.
+  \]
+
+  Calculamos $\tr_B(A \otimes B)$ sumando sobre la base de $B$:
+  \begin{align*}
+    \tr_B(A \otimes B) & = \bra{0}_B(A \otimes B)\ket{0}_B + \bra{1}_B(A \otimes B)\ket{1}_B                      \\
+                       & = \mqty(a\alpha                                                     & b\alpha            \\ c\alpha & d\alpha) + \mqty(a\delta & b\delta \\ c\delta & d\delta) \\
+                       & = \mqty(a(\alpha + \delta)                                          & b(\alpha + \delta) \\ c(\alpha + \delta) & d(\alpha + \delta)) \\
+                       & = (\alpha + \delta)\mqty(a                                          & b                  \\ c & d) \\
+                       & = \tr(B) \cdot A\,.
+  \end{align*}
+
+  Se verifica la propiedad.
+\end{eje}
+
+\subsection{Aplicaciones en computación cuántica}
+
+La traza parcial es fundamental en diversos contextos de computación cuántica.
+
+\begin{eje}[Medición parcial]
+  Supongamos que tenemos el estado entrelazado:
+  \[
+    \ket{\psi} = \frac{1}{\sqrt{2}}(\ket{00} + \ket{11})\,,
+  \]
+  y medimos solo el qubit $B$ en la base computacional.
+
+  Si obtenemos el resultado $0$, el estado colapsa a:
+  \[
+    \ket{\psi'} = \frac{(\mathds{1}_A \otimes \ket{0}_B\bra{0}_B)\ket{\psi}}{\|(\mathds{1}_A \otimes \ket{0}_B\bra{0}_B)\ket{\psi}\|} = \ket{0}_A \otimes \ket{0}_B\,.
+  \]
+
+  Si no sabemos el resultado de la medición, el estado promedio del qubit $A$ se describe mediante la traza parcial:
+  \[
+    \rho_A = \tr_B(\rho_{AB})\,.
+  \]
+
+  Para nuestro estado inicial:
+  \[
+    \rho_{AB} = \frac{1}{2}(\ket{00}\bra{00} + \ket{00}\bra{11} + \ket{11}\bra{00} + \ket{11}\bra{11})\,,
+  \]
+  obtenemos:
+  \[
+    \rho_A = \frac{1}{2}(\ket{0}_A\bra{0}_A + \ket{1}_A\bra{1}_A) = \frac{1}{2}\mathds{1}_A\,.
+  \]
+
+  Esta matriz densidad representa un qubit en estado completamente mixto, reflejando nuestra ignorancia sobre el resultado de la medición en $B$.
+\end{eje}
+
+\begin{eje}[Canales cuánticos con entorno]
+  Un canal cuántico general puede modelarse como una evolución unitaria del sistema junto con un entorno, seguida de una traza parcial sobre el entorno.
+
+  Consideremos un qubit que interactúa con un entorno inicialmente en $\ket{0}_E$. La evolución conjunta es:
+  \[
+    U = \mqty(
+    1 & 0 & 0 & 0 \\
+    0 & \sqrt{1-p} & \sqrt{p} & 0 \\
+    0 & \sqrt{p} & -\sqrt{1-p} & 0 \\
+    0 & 0 & 0 & 1
+    )\,.
+  \]
+
+  Si el estado inicial del sistema es $\ket{\psi}_S = \alpha\ket{0} + \beta\ket{1}$, el estado conjunto inicial es:
+  \[
+    \ket{\Psi}_0 = (\alpha\ket{0} + \beta\ket{1})_S \otimes \ket{0}_E\,.
+  \]
+
+  Después de la evolución:
+  \[
+    \ket{\Psi}_1 = U\ket{\Psi}_0 = \alpha\ket{00} + \beta\sqrt{1-p}\ket{10} + \beta\sqrt{p}\ket{11}\,.
+  \]
+
+  El estado del sistema después de trazar el entorno es:
+  \begin{align*}
+    \rho_S & = \tr_E(\ket{\Psi}_1\bra{\Psi}_1)                                                                  \\
+           & = |\alpha|^2\ket{0}\bra{0} + |\beta|^2(1-p)\ket{1}\bra{1} + |\beta|^2 p\ket{1}\bra{1}              \\
+           & \quad + \alpha\conj{\beta}\sqrt{1-p}\ket{0}\bra{1} + \conj{\alpha}\beta\sqrt{1-p}\ket{1}\bra{0}\,.
+  \end{align*}
+
+  Simplificando:
+  \[
+    \rho_S = \mqty(
+    |\alpha|^2 & \alpha\conj{\beta}\sqrt{1-p} \\
+    \conj{\alpha}\beta\sqrt{1-p} & |\beta|^2
+    )\,.
+  \]
+
+  Este es un ejemplo de canal de decoherencia que reduce los términos no diagonales por un factor $\sqrt{1-p}$.
+\end{eje}

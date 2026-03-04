@@ -12,9 +12,9 @@
     \conceptoEsquema{Operador inverso}{}
   }
   \temaEsquema{Representación matricial}{
-  \conceptoEsquema{Matriz asociada a una transformación}{$[T]$}
-  \conceptoEsquema{cambio de coordenadas}{$[T]_\mathcal{B}^{\mathcal{B}^\prime}$}
-  \conceptoEsquema{Isomorfismo con matrices}{}
+    \conceptoEsquema{Matriz asociada a una transformación}{$[T]$}
+    \conceptoEsquema{Equivalencia matricial}{}
+    \conceptoEsquema{Isomorfismo con matrices}{}
   }
   \temaEsquema{Matrices complejas}{
     \conceptoEsquema{Operaciones matriciales}{}
@@ -32,7 +32,7 @@
 
 \subsection{Introducción y objetivos}
 
-Los operadores lineales constituyen el puente conceptual entre la estructura algebraica abstracta de los espacios vectoriales y su representación computacional mediante matrices. En computación cuántica, este concepto es fundamental ya que todas las operaciones que pueden realizarse sobre sistemas cuánticos se describen mediante matrices unitarias.
+Los operadores lineales constituyen el puente conceptual entre la estructura algebraica abstracta de los espacios vectoriales y su representación computacional mediante matrices. En computación cuántica, este concepto es fundamental ya que las manipulaciones de estados cuánticos se realizan a través de operadores lineales.
 
 La importancia de los operadores lineales en computación cuántica se refleja en múltiples aspectos:
 
@@ -45,19 +45,23 @@ La importancia de los operadores lineales en computación cuántica se refleja e
 
 En este tema desarrollaremos la teoría de transformaciones lineales entre espacios vectoriales complejos, con especial énfasis en los operadores (transformaciones de un espacio en sí mismo) y su representación matricial. Esta conexión entre conceptos abstractos y representaciones concretas es esencial para la implementación práctica de algoritmos cuánticos.
 
+\begin{nota}
+  En este tema, un espacio vectorial se entenderá como un espacio vectorial complejo de dimensión finita.
+\end{nota}
+
 \subsection{Transformaciones lineales}
 
 \begin{defi}[Transformación lineal]
-  Sean $V$ y $W$ espacios vectoriales. Una función $T: V \to W$ es una \textbf{transformación lineal} o \textbf{homomorfismo}, si para todo $u, v \in V$ y $\alpha, \beta \in \C$ se tiene que
+  Sean $V$ y $W$ espacios vectoriales. Una función $T: V \to W$ es una \textbf{transformación lineal} u \textbf{homomorfismo}, si para todo $u, v \in V$ y $\alpha, \beta \in \C$ se tiene que
   $$T(\alpha u + \beta v) = \alpha T(u) + \beta T(v)\,.$$
 \end{defi}
-Una definición equivalente es dar las propiedades por separado.
+El objetivo de esta definición es que la transformación respete la estructura algebraica de los espacios vectoriales, por lo tanto, puede también ser definida como una transformación que respete la suma y el producto por escalar.
 
 \begin{prop}
-  Una transformación entre espacios vectoriales, $T$ es lineal si y solo si
+  Una aplicación $T: V \to W$ entre espacios vectoriales es una transformación lineal si y solo si:
   \begin{enumerate}
-    \item \textbf{Conservación de la suma}. Para todo $u, v \in V$, se tiene que $T(u + v) = T(u) + T(v)$.
-    \item \textbf{Conservación del producto por escalar}. Para todo $u \in V$ y $\alpha \in \C$, se tiene que $T(\alpha u) = \alpha T(u)$.
+    \item \textbf{Conserva la suma}. Para todo $u, v \in V$, se tiene que $T(u + v) = T(u) + T(v)$.
+    \item \textbf{Conserva el producto por escalar}. Para todo $u \in V$ y $\alpha \in \C$, se tiene que $T(\alpha u) = \alpha T(u)$.
   \end{enumerate}
 \end{prop}
 \begin{proof}
@@ -81,14 +85,17 @@ Una definición equivalente es dar las propiedades por separado.
   \end{enumerate}
 \end{eje}
 
-Aunque es sencillo de comprobar, es intersante resaltar que toda aplicación lineal debe conservar el elemento nulo y el elemento opuesto.
+Aunque es sencillo de comprobar, es interesante resaltar que toda aplicación lineal debe conservar el elemento nulo y el elemento opuesto.
 \begin{align*}
   T(0)  & = T(0+0) = T(0) + T(0)\Rightarrow T(0) = 0\,. \\
   T(-v) & = T(-1\cdot v) = -T(v)\,.
 \end{align*}
+
+Una transformación lineal está completamente determinada por su acción en cualquiera de las bases del espacio vectorial sobre el que actúa. Por lo que no puede existir dos transformaciones lineales diferentes que actúen de la misma manera en una base.
+
 \begin{prop}
   \label{prop:propiedadesTL}
-  Si $T$ y $U$ son transformaciones lineales entre espacios vectoriales, y existe $\mathcal{B} = \{v_1, \ldots, v_n\}$ una base de $V$ tal que $U(v_i) = T(v_i)$ para todo $i$, entonces $U = T$.
+  Si $T$ y $U$ son transformaciones lineales entre espacios vectoriales, y existe $\mathcal{B} = \{v_1, \ldots, v_n\}$ una base tal que $U(v_i) = T(v_i)$ para todo $i$, entonces $U = T$.
 \end{prop}
 \begin{proof}
   Si tenemos un vector $v=\sum_{i=1}^n \alpha_i v_i$, entonces
@@ -109,9 +116,47 @@ Aunque es sencillo de comprobar, es intersante resaltar que toda aplicación lin
 \begin{defi}[Núcleo]
   Sea $T: V \to W$ una transformación lineal. Llamamos \textbf{núcleo (o kernel)} de $T$ a
   \[
-    \Ker(T) = \{v \in V : T(v) = 0\}
+    \Ker(T) = \{v \in V : T(v) = 0\}\,.
   \]
 \end{defi}
+
+\begin{eje}
+  Considerar la aplicación $T: \C^3 \to \C^2$ definida por
+  \[
+    T\mqty(x\\ y\\ z) = \mqty(x + iy\\ 2x - z)\,.
+  \]
+  Para saber si es una transformación lineal, comprobamos que se cumple la definición.
+  Sean $u = \mqty(x\\ y\\ z)$ y $v = \mqty(x'\\ y'\\ z') \in \C^3$ y $\alpha, \beta \in \C$. Entonces
+
+  \begin{align*}
+    T(\alpha u + \beta v) & = T\left(\alpha \mqty(x                              \\ y\\ z) + \beta \mqty(x'\\ y'\\ z')\right) \\
+                          & = \mqty(\alpha x + \beta x' + i(\alpha y + \beta y') \\ 2(\alpha x + \beta x') - (\alpha z + \beta z')) \\
+                          & = \mqty(\alpha (x + iy) + \beta (x' + iy')           \\ \alpha (2x - z) + \beta (2x' - z')) \\
+                          & = \alpha \mqty(x + iy                                \\ 2x - z) + \beta \mqty(x' + iy'\\ 2x' - z') = \alpha T(u) + \beta T(v)\,.
+  \end{align*}
+  $T$ es un epimorfismo, pues dado $\mqty(a\\ b) \in \C^2$, existe $\mqty(x\\ y\\ z) \in \C^3$ tal que $T\mqty(x\\ y\\ z) = \mqty(a\\ b)$. Basta con tomar $x = a$, $y = 0$ y $z = 2a-b$.
+  \[
+    T\mqty(a\\ 0\\ 2a-b) = \mqty(a\\ b)\,.
+  \]
+
+  Sin embargo, $T$ no es un monomorfismo, pues
+  \[
+    T\mqty(0\\ 1\\ 0) = T\mqty(i\\ 0\\ -2i) = \mqty(i\\ 0)\,.
+  \]
+\end{eje}
+
+La última igualdad del ejemplo, nos dice que si $T$ no es un monomorfismo, entonces existen vectores $v \neq 0$ y $v' \neq 0$ tales que $T(v) = T(v')$, pero por las propiedades lineales de $T$, es lo mismo que decir que $T(v-v') = 0$, y por lo tanto, $v-v' \in \Ker(T)$. Esta propiedad nos da una pista sobre la relación que existe entre el núcleo de una transformación lineal y la inyectividad de la misma.
+
+\begin{prop}
+  \label{prop:propiedadesKerMono}
+  Una transformación lineal $T$ es inyectiva si y solo si $\Ker(T) = \{0\}$.
+\end{prop}
+\begin{proof}
+  \begin{parts}
+    \part[$\Rightarrow$] Sea $v \in \Ker(T)$, entonces $T(v) = 0 = T(0)$. Como $T$ es inyectiva, $v = 0$. Por lo tanto $\Ker(T) = \{0\}$.
+    \part[$\Leftarrow$] Sea $u, v \in V$ tales que $T(u) = T(v)$. Entonces $T(u-v) = T(u) - T(v) = 0$. Como $\Ker(T) = \{0\}$, $u-v = 0$, y por lo tanto, $u = v$.
+  \end{parts}
+\end{proof}
 
 \begin{prop}
   \label{prop:propiedadesKerIma}
@@ -119,7 +164,6 @@ Aunque es sencillo de comprobar, es intersante resaltar que toda aplicación lin
   \begin{enumerate}
     \item $\Ker(T)$ es un subespacio de $V$.
     \item $\Ima(T)$ es un subespacio de $W$.
-    \item $T$ es inyectiva si y solo si $\Ker(T) = \{0\}$.
   \end{enumerate}
 \end{prop}
 \begin{proof}
@@ -153,7 +197,7 @@ Aunque es sencillo de comprobar, es intersante resaltar que toda aplicación lin
   \]
 \end{eje}
 
-Como vemos, un homomorfismo genera un subespacio que puede ser menor al espacio de llegada, y nos interesa saber cuanto nos falta para llenar dicho espacio.
+Como vemos, una transformación lineal genera un subespacio que puede ser menor al espacio de llegada, y nos interesa saber cuanto nos falta para llenar dicho espacio.
 
 \begin{theo}
   \label{th:descomposicion}
@@ -164,6 +208,20 @@ Como vemos, un homomorfismo genera un subespacio que puede ser menor al espacio 
     \item $V/\Ker(T) \cong \Ima(T)$.
   \end{itemize}
 \end{theo}
+\begin{proof}
+  Las dos primeras afirmaciones ya se vieron en el tema anterior, y es que todo subespacio de un espacio vectorial tiene un complemento como suma directa.
+
+  Para la tercera afirmación, vamos a definir una transformación lineal y demostrar que es biyectiva. Si denotamos por $[v]$ las clases de equivalencia módulo $\Ker(T)$, definimos $\hat{T}$ como
+  \[
+    \equationmaps{T}{V/\Ker(T)}{\Ima(T)}{[v]}{T(v)}\,.
+  \]
+  Primero veamos que $\hat{T}$ es inyectiva. Sean $[v], [v'] \in V/\Ker(T)$ tales que $\hat{T}([v]) = \hat{T}([v'])$.
+  \begin{align*}
+    \hat{T}([v]) = \hat{T}([v']) & \iff T(v) = T(v') \iff T(v-v') = 0       \\
+                                 & \iff v-v' \in \Ker(T) \iff [v] = [v']\,.
+  \end{align*}
+  La sobreyectividad se obtiene directamente de la definición de imagen.
+\end{proof}
 
 Como consecuencia directa del Teorema~\ref{th:descomposicion} obtenemos el siguiente resultado fundamental.
 
@@ -175,7 +233,7 @@ Como consecuencia directa del Teorema~\ref{th:descomposicion} obtenemos el sigui
   \]
 \end{theo}
 
-Es por este resultado que es importante estudiar el núcleo de un homomorfismo.
+Ya hemos visto las propiedades más importantes de las transformaciones lineales, vamos ahora a centrarnos en los operadores lineales.
 
 \subsection{Operadores lineales}
 
@@ -183,32 +241,46 @@ Es por este resultado que es importante estudiar el núcleo de un homomorfismo.
   Un \textbf{operador lineal} o \textbf{endomorfismo} sobre un espacio vectorial $V$ es una transformación lineal $T: V \to V$. El conjunto de todos los operadores lineales de $V$ se denota $\mathcal{L}(V)$.
 \end{defi}
 
-Los operadores lineales tienen propiedades especiales debido a que el espacio de salida coincide con el de entrada, lo que permite usar conceptos como la composición o la inversa.
+Los operadores lineales tienen propiedades especiales debido a que el espacio de salida coincide con el de entrada, lo que permite realizar operaciones con ellos como la composición o la inversa.
 
-Habitualmente se omite la parte de lineal y se habla solo de operadores, pero no debemos nunca olvidar esta condición.
+Habitualmente se omite la característica de linealidad y se habla solo de operadores, pero no debemos nunca olvidar esta condición.
 
 \begin{prop}
   \label{prop:propiedadesOperadores}
-  Sean $R,S$ y $T$ operadores lineales. La composición de operadores lineales satisface:
+  Sean $R,S$ y $T\in\mathcal{L}(V)$ operadores lineales. La composición de operadores lineales satisface:
   \begin{enumerate}
-    \item \textbf{Asociativa:} $(R \comp S) \comp T = R \comp (S \comp T)$.
-    \item \textbf{Elemento neutro:} $I \comp T = T \comp I = T$.
-    \item \textbf{Distributiva:} $R \comp (S + T) = R \comp S + R \comp T$.
+    \item \textbf{Asociativa}. $(R \comp S) \comp T = R \comp (S \comp T)$.
+    \item \textbf{Elemento neutro}. $\exists I \in \mathcal{L}(V)$ tal que $I \comp T = T \comp I = T$.
+    \item \textbf{Distributiva}. $R \comp (S + T) = R \comp S + R \comp T$.
   \end{enumerate}
 \end{prop}
 \begin{proof}
   Se deja al lector como ejercicio (~\ref{ex:propiedadesOperadores}).
 \end{proof}
 
-\begin{theo}[Caracterización de la invertibilidad]
-  Un operador lineal $T \in \mathcal{L}(V)$ es invertible si y solo si es un isomorfismo. Equivalentemente:
-  \begin{enumerate}
-    \item $T$ es inyectivo ($\Ker(T) = \{0\}$).
-    \item $T$ es sobreyectivo ($\Ima(T) = V$).
-  \end{enumerate}
+\begin{theo}
+  Un operador lineal $T$ es invertible en $\mathcal{L}(V)$ si y solo si es un isomorfismo.
 \end{theo}
+\begin{proof}
+  \begin{parts}
+    \part[$\Rightarrow$] Si $T$ es invertible, entonces existe $T^{-1} \in \mathcal{L}(V)$ tal que $T \comp T^{-1} = T^{-1} \comp T = I$.
+    \begin{itemize}
+      \item Para demostrar que $T$ es inyectiva, sean $v,w\in V$ tales que $T(v) = T(w)$. Entonces $T^{-1}(T(v)) = T^{-1}(T(w))$, lo que implica $v = w$.
+      \item Para demostrar que $T$ es sobreyectiva, sea $v\in V$. Entonces $w = T^{-1}(v)$ cumple que $T(w) = T(T^{-1}(v)) = v$.
+    \end{itemize}
+    Como $T$ es biyectiva y lineal, es un isomorfismo.
+    \part[$\Leftarrow$] Si $T$ es un isomorfismo, es en particular biyectiva y por definición existe $T^{-1}$ como aplicación. Veamos que $T^{-1}$ es lineal.
 
-Aplicando el Teorema~\ref{th:descomposicion} a operadores lineales obtenemos la siguiente consecuencia.
+    Sean $v,w\in V$ y $\alpha\in\C$.
+    \begin{align*}
+      T^{-1}(\alpha v + \beta w) & = T^{-1}(\alpha T(T^{-1}(v)) + \beta T(T^{-1}(w))) \\
+                                 & = T^{-1}(T(\alpha T^{-1}(v) + \beta T^{-1}(w)))    \\
+                                 & = \alpha T^{-1}(v) + \beta T^{-1}(w)\,.
+    \end{align*}
+  \end{parts}
+\end{proof}
+
+Aplicando el Teorema~\ref{th:descomposicion} a operadores lineales obtenemos el siguiente resultado.
 \begin{theo}
   Sea $T \in \mathcal{L}(V)$ un operador lineal, se cumple
   \[
@@ -216,115 +288,72 @@ Aplicando el Teorema~\ref{th:descomposicion} a operadores lineales obtenemos la 
   \]
 \end{theo}
 
-\subsection{Representación matricial de transformaciones lineales}
-
-La representación matricial establece una correspondencia biyectiva entre transformaciones lineales y matrices, permitiendo cálculos computacionales eficientes.
-
-\begin{defi}[Matriz de una transformación lineal]
-  Sea $T: V \to W$ una transformación lineal. Sean $\mathcal{B}_V = \{v_1, \ldots, v_n\}$ y $\mathcal{B}_W = \{w_1, \ldots, w_m\}$ bases de $V$ y $W$ respectivamente.
-
-  Para cada $j = 1, \ldots, n$, expresamos $T(v_j)$ en la base $\mathcal{B}_W$
+\begin{eje}
+  Sea $T: \mathbb{P}_4(\C) \to \mathbb{P}_4(\C)$ el operador lineal definido por
   \[
-    T(v_j) = \sum_{k=1}^m a_{jk} w_k\,.
+    T(a_4 x^4 + a_3 x^3 + a_2 x^2 + a_1 x + a_0) = (a_4 + a_3) x^3 + (a_3 - a_2) x^2 + (a_2 + a_1) x + (a_1 - a_0)\,.
   \]
-
-  La \textbf{matriz de} $T$ \textbf{respecto a las bases} $\mathcal{B}_V$ \textbf{y} $\mathcal{B}_W$ es
+  Para calcular una base de $\Ker(T)$ y $\Ima(T)$, veamos cual es la imagen de la base canónica:
   \[
-    [T]_{\mathcal{B}_V}^{\mathcal{B}_W} = \begin{pmatrix} a_{11} & a_{12} & \cdots & a_{1m} \\ a_{21} & a_{22} & \cdots & a_{2m} \\ \vdots & \vdots & \ddots & \vdots \\ a_{n1} & a_{n2} & \cdots & a_{nm} \end{pmatrix}\,.
+    T(1) = - 1\,, \quad
+    T(x) = x + 1\,, \quad
+    T(x^2) = -x^2 + x\,, \quad
+    T(x^3) = x^3 + x^2\,, \quad
+    T(x^4) = x^3\,.
   \]
-\end{defi}
-\separa
-Cuando al escrbir la matriz, o las coordenadas de un vector, no se especifica la base, se considera la base canónica.
-En este caso, la matriz de la transformación se denota simplemente como $[T]$.
-
-\begin{nota}
-  La $j$-ésima fila de $[T]_{\mathcal{B}_V}^{\mathcal{B}_W}$ contiene las coordenadas de $T(v_j)$ respecto a la base $\mathcal{B}_W$
-  \setlength{\belowdisplayskip}{0pt}
-  \begin{equation*}
-    T(v_j)_{\mathcal{B}_W} = (v_j)_{\mathcal{B}_V} [T]_{\mathcal{B}_V}^{\mathcal{B}_W}\,.
-  \end{equation*}
-\end{nota}
-
-\begin{eje}[Matriz de una transformación]
-  Sea $T: \C^2 \to \C^3$ definida por $T\mqty(x\\ y) = \mqty(x + iy\\ 2x\\ x - y)$.
-
-  Usando las bases canónicas:
-  \begin{align*}
-    T(e_1) & = \mqty(1 \\ 2\\ 1)     \\
-    T(e_2) & = \mqty(i \\ 0\\ -1)\,.
-  \end{align*}
+  Podemos comprobar que
+  \[
+    T(x^4) = T(x^3) + T(x^2) - T(x) - T(1)\,,
+  \]
+  y por tanto $T$ no es inyectiva. Como $T(1)$, $T(x)$, $T(x^2)$, $T(x^3)$ son linealmente independientes, forman una base de la imagen de $T$, tendremos que
+  \[
+    \dim(\Ker(T)) = \dim(\mathbb{P}_4(\C)) - \dim(\Ima(T)) = 5 - 4 = 1\,.
+  \]
   Por tanto
-  \begin{equation*}
-    [T] = \begin{pmatrix} 1 & 2 & 1 \\ i & 0 & -1 \end{pmatrix}
-  \end{equation*}
+  \[
+    \Ker(T) = \mathrm{span}\{x^4 - x^3 - x^2 + x + 1\}\,.
+  \]
+  \[
+    \mathbb{P}_4(\C)/x^4 - x^3 - x^2 + x + 1 \cong \mathbb{P}_3(\C)
+  \]
 \end{eje}
 
-\begin{theo}[cambio de coordenadas]
-  \label{th:cambio_base}
-  Sea $T\in\mathcal{L}(V)$ un operador lineal y $\mathcal{B}_1$, $\mathcal{B}_2$, $\mathcal{B}_3$ y $\mathcal{B}_4$ bases de $V$. Existe una matriz $P$ invertible tal que las matrices $[T]_{\mathcal{B}_1}^{\mathcal{B}_3}$ y $[T]_{\mathcal{B}_2}^{\mathcal{B}_4}$ están relacionadas por
-  $$[T]_{\mathcal{B}_2}^{\mathcal{B}_4} = P[T]_{\mathcal{B}_1}^{\mathcal{B}_3}P^{-1}\,.$$
-\end{theo}
+\subsection{Representación matricial de operadores lineales}
 
-Este teorema es muy importante, pues nos permite restringir el estudio de muchas propiedades en operadores lineales, con solo comprobarlo con la matriz asociada a las bases canónicas.
+La representación matricial establece una correspondencia biyectiva entre operadores lineales y matrices, permitiendo cálculos computacionales eficientes.
 
-\subsection{Matrices complejas como operadores}
+\begin{defi}[Matriz de un operador lineal]
+  Sea $T: V \to V$ un operador lineal. Dada la representación respecto de la base canónica de las imágenes de la base canónica
+  \[
+    T(e_j) = \sum_{k=1}^n a_{jk} e_k\,.
+  \]
+
+  La \textbf{matriz de} $T$ es
+  \[
+    [T] = \mqty(a_{11} & a_{21} & \cdots & a_{n1} \\ a_{12} & a_{22} & \cdots & a_{n2} \\ \vdots & \vdots & \ddots & \vdots \\ a_{1n} & a_{2n} & \cdots & a_{nn})\,.
+  \]
+\end{defi}
+
+Puede darse una definición más amplia, considerando dos bases arbitrarias y estableciendo resultados sobre equivalencia de matrices, pero se aleja del objetivo de este curso.
+
+\begin{eje}
+  Sea $T: \C^3 \to \C^3$ definida por $T\mqty(x\\ y\\ z) = \mqty(x + iy\\ 2x\\ x - y)$.
+
+  Usando las bases canónicas:
+  \[
+    T(e_1) = \mqty(1 \\ 2\\ 1) \,,    \quad
+    T(e_2) = \mqty(i \\ 0\\ -1) \,,\quad
+    T(e_3) = \mqty(0 \\ 0\\ 0)\,.
+  \]
+  Por tanto
+  \begin{equation*}
+    [T] = \mqty(1 & i & 0 \\ 2 & 0 & 0 \\ 1 & -1 & 0)\,.
+  \end{equation*}
+\end{eje}
 
 Hemos visto, que todo operador lineal $T\in\mathcal{L}(V)$ puede representarse como una matriz cuadrada $A\in\C^{n\times n}$, donde $n=\dim(V)$. Pero el recíproco es claramente cierto, es decir, todo matriz cuadrada define un operador lineal.
 
-Cada matriz compleja $A \in \mathcal{M}_n(\C)$ define naturalmente un operador lineal $T_A: \C^n \to \C^n$ mediante $T_A(v) = vA$. Esta correspondencia permite estudiar propiedades algebraicas de las matrices a través de la teoría de operadores, y viceversa.
-
-\begin{defi}
-  Sea $A\in \mathcal{M}_n(\C)$. Llamamos \textbf{matriz adjunta} a la matriz $A^\dagger$ definida por
-  \[
-    (A^\dagger)_{ij} = \conj{A_{ji}}\,.
-  \]
-\end{defi}
-
-\begin{defi}
-  Sea $A \in \mathcal{M}_n(\C)$. Decimos que $A$ es:
-  \begin{itemize}
-    \item
-          \textbf{Hermítica}: si $A^\dagger = A$.
-    \item
-          \textbf{Unitaria}: si $A^\dagger A = AA^\dagger = I$.
-    \item
-          \textbf{Normal}: si $A^\dagger A = AA^\dagger$.
-  \end{itemize}
-
-\end{defi}
-
-Estudiaremos con más detalle estas matrices en temas posteriores, ya que son fundamentales en computación cuántica.
-
-\begin{eje}[Matrices de Pauli]
-  Las matrices de Pauli son matrices hermitianas y unitarias fundamentales en computación cuántica:
-  \begin{align}
-    \sigma_x = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}, \quad
-    \sigma_y = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}, \quad
-    \sigma_z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}
-  \end{align}
-
-  Estas matrices satisfacen:
-  \begin{itemize}
-    \item $\sigma_i^2 = I$ para $i = x, y, z$.
-    \item $\sigma_x\sigma_y = i\sigma_z$, $\sigma_y\sigma_z = i\sigma_x$, $\sigma_z\sigma_x = i\sigma_y$.
-    \item $\{\sigma_i, \sigma_j\} = \sigma_i\sigma_j + \sigma_j\sigma_i = 0$ para $i \neq j$ (anticonmutan).
-    \item Junto con la identidad $I$, forman una base de $\mathcal{M}_2(\C)$.
-  \end{itemize}
-\end{eje}
-
-\begin{eje}[Matriz de Hadamard]
-  La matriz de Hadamard es otra de las matrices unitarias fundamentales
-  \[
-    H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}
-  \]
-  Se verifica que $H^2 = I$ y transforma la base canónica en:
-  \begin{align*}
-    H(1, 0) & = \frac{1}{\sqrt{2}}(1, 1)\,.  \\
-    H(0, 1) & = \frac{1}{\sqrt{2}}(1, -1)\,.
-  \end{align*}
-\end{eje}
-
-Es importante recordar que las propiedades de hermitianidad, unitariedad y normalidad no dependen de las bases escogidas.
+Cada matriz compleja $A \in \mathcal{M}_n(\C)$ define naturalmente un operador lineal $T_A: \C^n \to \C^n$ mediante $T_A(v) = Av$. Esta correspondencia permite estudiar propiedades algebraicas de las matrices a través de la teoría de operadores, y viceversa.
 
 \subsection{Valores y vectores propios}
 
@@ -347,6 +376,15 @@ Para obtener los valores propios de una matriz $A$, se resuelve el sistema $(A -
 \begin{prop}
   Los valores propios de $A\in\mathcal{M}_n(\C)$ son las raíces del polinomio característico $p_A(\lambda)$.
 \end{prop}
+\begin{proof}
+  Sea $\alpha \in \C$ un valor propio de $A$. Entonces existe $v \in \C^n$ no nulo tal que $Av = \alpha v$, es decir que $(A - \alpha I)v = 0$.
+  Esta es una ecuación lineal homogénea con solución no trivial, y por tanto con matriz asociada singular. Las matrices singulares tienen determinante cero, por lo tanto
+  \[
+    \det(A - \alpha I) = 0\iff p_A(\alpha) = 0\,.
+  \]
+
+  Como $\C$ es un campo algebraicamente cerrado, todo polinomio tiene raíces, por lo tanto todo polinomio característico tiene valores propios. En $\C$ toda matriz $A\in\mathcal{M}_n(\C)$ tiene $n$ valores propios.
+\end{proof}
 
 \begin{eje}
   Consideremos la matriz de Pauli $\sigma_z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$, cuyo polinomio característico es
@@ -376,8 +414,62 @@ Para obtener los valores propios de una matriz $A$, se resuelve el sistema $(A -
   \[
     A = P^{-1}DP\,,
   \]
-  donde $D$ es diagonal con los valores propios de $A$ en la diagonal y $P$ es la matriz cuyas fila $i$-ésiam es el vector propio del valor propio $i$-ésimo de $A$.
+  donde $D$ es diagonal con los valores propios de $A$ en la diagonal y $P$ es la matriz cuyas fila $i$-ésima es el vector propio del valor propio $i$-ésimo de $A$.
 \end{theo}
+
+\begin{eje}
+  Calculemos los valores propios y los vectores propios de la matriz de Pauli
+  \[
+    \sigma_x = \mqty(0 & 1 \\ 1 & 0)\,.
+  \]
+  El polinomio característico es
+  \[
+    p_{\sigma_x}(\lambda) = \det(\sigma_x - \lambda I) = \det\begin{pmatrix} -\lambda & 1 \\ 1 & -\lambda \end{pmatrix} = \lambda^2 - 1\,.
+  \]
+  Las raices de $p_{\sigma_x}(\lambda)$ son $\lambda_1 = 1$ y $\lambda_2 = -1$.
+
+  Para $\lambda_1 = 1$ tenemos
+  \[
+    (\sigma_x - I)v = \begin{pmatrix} -1 & 1 \\ 1 & -1 \end{pmatrix}\mqty(v_1 \\ v_2) = 0 \Rightarrow v_1 = v_2\,.
+  \]
+  Por tanto, $\mqty(v_1 \\ v_2)$ con $v_1 \neq 0$ es un vector propio de $\sigma_x$ asociado al valor propio $\lambda_1 = 1$.
+
+  Para $\lambda_2 = -1$ tenemos
+  \[
+    (\sigma_x + I)v = \begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}\mqty(v_1 \\ v_2) = 0 \Rightarrow v_1 = -v_2\,.
+  \]
+  Por tanto, $\mqty(v_1 \\ -v_1)$ con $v_1 \neq 0$ es un vector propio de $\sigma_x$ asociado al valor propio $\lambda_2 = -1$.
+
+  La diagonalización de $\sigma_x$ es
+  \[
+    \sigma_x = \mqty(0 & 1 \\ 1 & 0) = \frac{1}{2}\mqty(1 & 1 \\ 1 & -1) \mqty(1 & 0 \\ 0 & -1) \mqty(1 & 1 \\ 1 & -1) = P^{-1}DP\,,
+  \]
+  donde $P = \mqty(1 & 1 \\ 1 & -1)$ y $D = \mqty(1 & 0 \\ 0 & -1)$.
+\end{eje}
+
+La diagonalización de una matriz, nos permite realizar ciertas operaciones de forma más sencilla. Por ejemplo, calcular potencias de una matriz, ya que si $A$ es diagonalizable, entonces $A = P^{-1}DP$, y por lo tanto
+\[
+  A^k = P^{-1}DPP^{-1}DP \cdots P^{-1}DP = P^{-1}D^kP\,.
+\]
+Elevar una matriz diagonal a una potencia, es elevar los elementos de la diagonal a esa potencia, cuya operación es simple.
+
+\begin{eje}
+  Calculemos $\sigma_x^n$.
+  \begin{align*}
+    \sigma_x^n & = P^{-1}D^nP = \frac{1}{2}\mqty(1 & 1              \\ 1 & -1) \mqty(1 & 0 \\ 0 & -1)^n \mqty(1 & 1 \\ 1 & -1)\\
+               & = \frac{1}{2}\mqty(1              & 1              \\ 1 & -1) \mqty(1 & 0 \\ 0 & (-1)^n) \mqty(1 & 1 \\ 1 & -1)\\
+               & = \frac{1}{2}\mqty(1              & 1              \\ 1 & -1) \mqty(1 & 1 \\ (-1)^n & (-1)^{n+1})\\
+               & = \frac{1}{2}\mqty(1+(-1)^n       & 1 + (-1)^{n+1} \\ 1 - (-1)^n & 1 - (-1)^{n+1})\,.
+  \end{align*}
+  Si $n$ es par
+  \[
+    \sigma_x^n = \frac{1}{2}\mqty(1+(-1)^n       & 1 + (-1)^{n+1} \\ 1 - (-1)^n & 1 - (-1)^{n+1}) = \mqty(1 & 0 \\ 0 & 1) = I\,,
+  \]
+  y si $n$ es impar
+  \[
+    \sigma_x^n = \frac{1}{2}\mqty(1+(-1)^n       & 1 + (-1)^{n+1} \\ 1 - (-1)^n & 1 - (-1)^{n+1}) = \mqty(0 & 1 \\ 1 & 0) = \sigma_x\,.
+  \]
+\end{eje}
 
 \begin{defi}[Diagonalización espectral]
   Sea $A \in \mathcal{M}_n(\C)$ una matriz diagonalizable. Diremos que $A$ es \textbf{diagonalizable espectral} cuando tiene $n$ valores propios distintos. Llamaremos \textbf{espectro} de $A$ al conjunto de sus valores propios ordenados de mayor a menor.
@@ -414,6 +506,7 @@ Para obtener los valores propios de una matriz $A$, se resuelve el sistema $(A -
   \[
     H = \frac{1}{2\sqrt{2}}\begin{pmatrix} 1 & -1 \\ -1+\sqrt{2} & 1+\sqrt{2} \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}\begin{pmatrix} 1+\sqrt{2} & 1 \\ 1-\sqrt{2} & 1 \end{pmatrix}\,.
   \]
+  Ademas $H$ es una matriz diagonalizable espectral, ya que tiene $2$ valores propios distintos con espectro $\{1, -1\}$.
 \end{eje}
 
 \subsection{Descomposición en valores singulares}

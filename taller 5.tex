@@ -1,0 +1,176 @@
+\documentclass[]{unirTema}
+
+\input{personalizacion}
+
+\author{Fr Ancisco Costa Cano}
+\titulacion{Máster en computación cuántica}
+\asignatura{Álgebra lineal en computación cuántica}
+\bloque{3}{Fundamentos matemáticos}
+\tema{5}{El experimento GHZ}
+
+\begin{document}
+
+\unirsection{El experimento GHZ}
+
+\subsection{Introducción y objetivos}
+
+Desde los primeros días de la mecánica cuántica, los físicos debatieron si sus predicciones extrañas (superposición, entrelazamiento, no localidad) son una descripción completa de la realidad o si, por el contrario, existe una teoría subyacente más profunda que contiene \textit{variables ocultas} capaces de explicar el comportamiento cuántico en términos deterministas.
+
+Einstein, Podolsky y Rosen plantearon en 1935 que la mecánica cuántica era \textit{incompleta}: debería existir información adicional —oculta a la teoría— que determine los resultados de las mediciones. En 1964, Bell demostró que cualquier teoría de variables ocultas locales predice ciertas desigualdades estadísticas que la mecánica cuántica viola. Sin embargo, el argumento de Bell requiere acumular datos estadísticos para detectar la violación.
+
+En 1989, Greenberger, Horne y Zeilinger (GHZ) construyeron un argumento radicalmente más poderoso: encontraron un estado cuántico de tres partículas en el que la mecánica cuántica y las variables ocultas locales entran en contradicción \textit{exacta} con un único resultado lógico, sin necesidad de ninguna estadística. Este experimento mental —el experimento GHZ— es el objeto de estudio de este taller.
+
+\subsection{El estado GHZ}
+
+\begin{defi}[Estado GHZ]
+  El \textbf{estado de Greenberger-Horne-Zeilinger} (estado GHZ) es el estado de tres cúbits
+  \[
+    \ket{\text{GHZ}} = \frac{1}{\sqrt{2}}\bigl(\ket{000} + \ket{111}\bigr)\,.
+  \]
+\end{defi}
+
+El estado GHZ es una superposición de dos configuraciones opuestas: los tres cúbits apuntan todos hacia arriba ($\ket{000}$) o todos hacia abajo ($\ket{111}$). Es el análogo de tres partículas de los estados de Bell.
+
+\begin{eje}[Construcción del estado GHZ mediante un circuito cuántico]
+  El estado GHZ se obtiene a partir del estado $\ket{000}$ aplicando una puerta Hadamard al primer cúbit ($H_1$) y, a continuación, dos puertas CNOT controladas por el primer cúbit sobre el segundo y el tercero ($X^1_3 X^1_2$).
+
+  \begin{align*}
+    X^1_3 X^1_2 H_1\ket{000} & = \frac{1}{\sqrt{2}}\bigl(X^1_3 X^1_2\ket{000}+X^1_3 X^1_2\ket{100}\bigr) \\
+                             & = \frac{1}{\sqrt{2}}\bigl(X^1_3\ket{000}+X^1_3\ket{110}\bigr)             \\
+                             & = \frac{1}{\sqrt{2}}\bigl(\ket{000}+\ket{111}\bigr) = \ket{\text{GHZ}}\,.
+  \end{align*}
+\end{eje}
+
+El estado GHZ es un estado de tres cúbits máximamente entrelazado.
+
+\begin{eje}[El estado GHZ no es separable]
+  Supongamos por reducción al absurdo que el estado GHZ fuera separable, es decir, que existieran $\ket{\phi_1},\ket{\phi_2},\ket{\phi_3}\in\C^2$ tales que
+  \[
+    \ket{\text{GHZ}} = \ket{\phi_1}\tensor\ket{\phi_2}\tensor\ket{\phi_3}\,.
+  \]
+  Escribamos $\ket{\phi_j} = \alpha_j\ket{0}+\beta_j\ket{1}$ para $j=1,2,3$. Expandiendo el producto tensorial:
+  \begin{align*}
+    \ket{\phi_1}\tensor\ket{\phi_2}\tensor\ket{\phi_3}
+     & = \alpha_1\alpha_2\alpha_3\ket{000}
+    + \alpha_1\alpha_2\beta_3\ket{001}
+    + \alpha_1\beta_2\alpha_3\ket{010}
+    + \alpha_1\beta_2\beta_3\ket{011}           \\
+     & \quad + \beta_1\alpha_2\alpha_3\ket{100}
+    + \beta_1\alpha_2\beta_3\ket{101}
+    + \beta_1\beta_2\alpha_3\ket{110}
+    + \beta_1\beta_2\beta_3\ket{111}\,.
+  \end{align*}
+  Comparando con $\ket{\text{GHZ}} = \frac{1}{\sqrt{2}}(\ket{000}+\ket{111})$, obtenemos el sistema:
+  \[
+    \alpha_1\alpha_2\alpha_3 = \frac{1}{\sqrt{2}}\,,\quad
+    \beta_1\beta_2\beta_3 = \frac{1}{\sqrt{2}}\,,\quad
+    \alpha_1\alpha_2\beta_3 = 0\,.
+  \]
+  De la tercera ecuación, alguno de los factores $\alpha_1$, $\alpha_2$ o $\beta_3$ es cero. Pero si $\alpha_1=0$ o $\alpha_2=0$, entonces $\alpha_1\alpha_2\alpha_3=0$, contradiciendo la primera ecuación. Si $\beta_3=0$, entonces $\beta_1\beta_2\beta_3=0$, contradiciendo la segunda. Contradicción en todos los casos. Por tanto, $\ket{\text{GHZ}}$ no es separable, es un estado entrelazado.
+\end{eje}
+
+\subsection{Los observables del experimento GHZ}
+
+El experimento GHZ se basa en medir cuatro observables sobre el estado GHZ, cada uno de ellos producto tensorial de los operadores de Pauli $X$ e $Y$. Los cuatro observables son:
+\begin{align*}
+  M_1 & = X\tensor X\tensor X = X_{123}\,,    \\
+  M_2 & = X\tensor Y\tensor Y = X_1 Y_{23}\,, \\
+  M_3 & = Y\tensor X\tensor Y = X_2 Y_{13}\,, \\
+  M_4 & = Y\tensor Y\tensor X = X_3 Y_{12}\,.
+\end{align*}
+Cada uno es un operador hermitiano con valores propios $\pm 1$, de modo que una medición de $M_k$ devuelve $+1$ o $-1$ con cierta probabilidad.
+
+\begin{eje}[Cálculo de las observaciones $M_k$ sobre $\ket{\text{GHZ}}$]
+  \label{eje:M1}
+  \begin{align*}
+    M_1 \ket{\text{GHZ}} & = \frac{1}{\sqrt{2}}X_{123}\bigl(\ket{000}+\ket{111}\bigr) = \frac{1}{\sqrt{2}}\bigl(\ket{111}+\ket{000}\bigr) = \ket{\text{GHZ}}\,.   \\
+    M_2 \ket{\text{GHZ}} & = \frac{1}{\sqrt{2}}X_1 Y_{23}\bigl(\ket{000}+\ket{111}\bigr) = \frac{-1}{\sqrt{2}}\bigl(\ket{111}+\ket{000}\bigr) = -\ket{\text{GHZ}} \\
+    M_3 \ket{\text{GHZ}} & = \frac{1}{\sqrt{2}}X_2 Y_{13}\bigl(\ket{000}+\ket{111}\bigr) = \frac{-1}{\sqrt{2}}\bigl(\ket{111}+\ket{000}\bigr) = -\ket{\text{GHZ}} \\
+    M_4 \ket{\text{GHZ}} & = \frac{1}{\sqrt{2}}X_3 Y_{12}\bigl(\ket{000}+\ket{111}\bigr) = \frac{-1}{\sqrt{2}}\bigl(\ket{111}+\ket{000}\bigr) = -\ket{\text{GHZ}}
+  \end{align*}
+
+\end{eje}
+
+Resumimos los resultados anteriores en la siguiente tabla.
+
+\begin{table}[H]
+  \centering
+  \renewcommand{\arraystretch}{1.5}
+  \rowcolors{2}{azulunir!8}{white}
+  \begin{tabular}{ccc}
+    \hline
+    \textbf{Observable} & \textbf{Operador}     & \textbf{Valor propio sobre} $\ket{\text{GHZ}}$ \\
+    \hline
+    $M_1$               & $X\tensor X\tensor X$ & $+1$                                           \\
+    $M_2$               & $X\tensor Y\tensor Y$ & $-1$                                           \\
+    $M_3$               & $Y\tensor X\tensor Y$ & $-1$                                           \\
+    $M_4$               & $Y\tensor Y\tensor X$ & $-1$                                           \\
+    \hline
+  \end{tabular}
+  \caption{Predicciones cuánticas exactas para el estado GHZ.}
+\end{table}
+
+\begin{info}
+  Nótese que el producto de los cuatro valores propios es $(-1)^3 \cdot (+1) = -1$. Esta relación numérica es la clave del argumento GHZ: la mecánica cuántica impone una restricción de producto que ninguna asignación clásica de valores puede satisfacer.
+\end{info}
+
+% --------------------------------------------------------------
+\subsection{El realismo local y las variables ocultas}
+% --------------------------------------------------------------
+
+\begin{defi}[Teoría de variables ocultas locales]
+  Una \textbf{teoría de variables ocultas locales} es una teoría en la que:
+  \begin{enumerate}
+    \item[\likeitem{VH1}] \textbf{Realismo:} cada observable de cada partícula tiene un valor definido \textit{antes} de ser medido, independientemente de si se realiza la medición.
+    \item[\likeitem{VH2}] \textbf{Localidad:} el resultado de una medición sobre una partícula no puede depender de las mediciones realizadas simultáneamente sobre las otras partículas, separadas espacialmente.
+  \end{enumerate}
+\end{defi}
+
+Bajo esta hipótesis, antes de realizar cualquier medición, cada cúbit $j$ ($j=1,2,3$) posee valores determinados para $X$ e $Y$:
+\[
+  x_j \in \{+1,-1\}\quad\text{resultado de medir }X\text{ en el cúbit }j\,,
+\]
+\[
+  y_j \in \{+1,-1\}\quad\text{resultado de medir }Y\text{ en el cúbit }j\,.
+\]
+
+Los resultados de los cuatro observables quedan entonces determinados por las reglas de producto:
+\begin{align*}
+  M_1 & \mapsto x_1 x_2 x_3\,, \\
+  M_2 & \mapsto x_1 y_2 y_3\,, \\
+  M_3 & \mapsto y_1 x_2 y_3\,, \\
+  M_4 & \mapsto y_1 y_2 x_3\,.
+\end{align*}
+
+Si la teoría de variables ocultas ha de reproducir las predicciones cuánticas, debe existir una asignación $x_1,x_2,x_3,y_1,y_2,y_3\in\{+1,-1\}$ que satisfaga simultáneamente las cuatro ecuaciones:
+\begin{align}
+  x_1 x_2 x_3 & = +1\,, \label{ec:M1} \\
+  x_1 y_2 y_3 & = -1\,, \label{ec:M2} \\
+  y_1 x_2 y_3 & = -1\,, \label{ec:M3} \\
+  y_1 y_2 x_3 & = -1\,. \label{ec:M4}
+\end{align}
+
+% --------------------------------------------------------------
+\subsection{La contradicción GHZ}
+% --------------------------------------------------------------
+
+\begin{eje}[La contradicción algebraica]
+  \label{eje:contradiccion}
+  Vamos a demostrar que el sistema~\eqref{ec:M1}--\eqref{ec:M4} no tiene solución en $\{+1,-1\}^6$.
+
+  Multiplicamos las tres últimas ecuaciones:
+  \[
+    (x_1 y_2 y_3)\cdot(y_1 x_2 y_3)\cdot(y_1 y_2 x_3) = (-1)\cdot(-1)\cdot(-1) = -1\,.
+  \]
+  Reorganizamos el lado izquierdo agrupando las variables de cada cúbit:
+  \[
+    \underbrace{(x_1)(x_2)(x_3)}_{x_1 x_2 x_3}
+    \cdot\underbrace{(y_1)^2}_{1}\cdot\underbrace{(y_2)^2}_{1}\cdot\underbrace{(y_3)^2}_{1}
+    = x_1 x_2 x_3 = -1\,,
+  \]
+
+  Pero la ecuación~\eqref{ec:M1} exige $x_1 x_2 x_3 = +1$.
+
+  Por tanto, \textbf{no existe ninguna asignación de variables ocultas locales que reproduzca las predicciones cuánticas}.
+\end{eje}
+\end{document}

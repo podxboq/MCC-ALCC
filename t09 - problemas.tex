@@ -1,0 +1,463 @@
+\unirsection{Problemas}
+
+\begin{questions}
+
+  \question Considera el estado bipartito:
+  \[
+    \ket{\psi} = \frac{1}{2}(\ket{00} + \ket{01} + \ket{10} + \ket{11})\,.
+  \]
+
+  \begin{parts}
+    \part Verifica que $\ket{\psi}$ está correctamente normalizado.
+    \part Determina si $\ket{\psi}$ es un estado producto o entrelazado.
+    \part Calcula la matriz densidad $\rho_{AB} = \ket{\psi}\bra{\psi}$.
+    \part Calcula $\tr_B(\rho_{AB})$ y $\tr_A(\rho_{AB})$.
+  \end{parts}
+
+  \begin{solution}
+    \begin{parts}
+      \part Calculamos la norma:
+      \begin{align*}
+        \braket{\psi|\psi} & = \frac{1}{4}(\bra{00} + \bra{01} + \bra{10} + \bra{11})(\ket{00} + \ket{01} + \ket{10} + \ket{11}) \\
+                           & = \frac{1}{4}(1 + 1 + 1 + 1)                                                                        \\
+                           & = 1\,.
+      \end{align*}
+      El estado está normalizado.
+
+      \part Observamos que:
+      \[
+        \ket{\psi} = \frac{1}{2}(\ket{0} + \ket{1})_A \otimes (\ket{0} + \ket{1})_B = \ket{+}_A \otimes \ket{+}_B\,.
+      \]
+      Por tanto, es un estado producto (no entrelazado).
+
+      \part La matriz densidad es:
+      \[
+        \rho_{AB} = \frac{1}{4}\mqty(
+        1 & 1 & 1 & 1 \\
+        1 & 1 & 1 & 1 \\
+        1 & 1 & 1 & 1 \\
+        1 & 1 & 1 & 1
+        )\,.
+      \]
+
+      \part Para calcular $\tr_B(\rho_{AB})$, sumamos sobre los estados de $B$. En forma de bloques $2 \times 2$:
+      \begin{align*}
+        \tr_B(\rho_{AB}) & = \bra{0}_B \rho_{AB} \ket{0}_B + \bra{1}_B \rho_{AB} \ket{1}_B     \\
+                         & = \frac{1}{4}\mqty(1                                            & 1 \\ 1 & 1) + \frac{1}{4}\mqty(1 & 1 \\ 1 & 1) \\
+                         & = \frac{1}{2}\mqty(1                                            & 1 \\ 1 & 1) \\
+                         & = \ket{+}_A\bra{+}_A\,.
+      \end{align*}
+
+      Por simetría, $\tr_A(\rho_{AB}) = \ket{+}_B\bra{+}_B$.
+
+      Verificamos: ambos subsistemas quedan en estados puros, consistente con el hecho de que el estado global es producto.
+    \end{parts}
+  \end{solution}
+
+  \question Considera el estado de Bell:
+  \[
+    \ket{\Psi^-} = \frac{1}{\sqrt{2}}(\ket{01} - \ket{10})\,.
+  \]
+
+  \begin{parts}
+    \part Calcula $\rho_{AB} = \ket{\Psi^-}\bra{\Psi^-}$.
+    \part Calcula la matriz densidad reducida $\rho_A = \tr_B(\rho_{AB})$.
+    \part Calcula la pureza $\tr(\rho_A^2)$ e interpreta el resultado.
+  \end{parts}
+
+  \begin{solution}
+    \begin{parts}
+      \part Expandiendo el producto:
+      \begin{align*}
+        \rho_{AB} & = \frac{1}{2}(\ket{01} - \ket{10})(\bra{01} - \bra{10})                                     \\
+                  & = \frac{1}{2}(\ket{01}\bra{01} - \ket{01}\bra{10} - \ket{10}\bra{01} + \ket{10}\bra{10})\,.
+      \end{align*}
+
+      En forma matricial:
+      \[
+        \rho_{AB} = \frac{1}{2}\mqty(
+        0 & 0 & 0 & 0 \\
+        0 & 1 & -1 & 0 \\
+        0 & -1 & 1 & 0 \\
+        0 & 0 & 0 & 0
+        )\,.
+      \]
+
+      \part Calculamos la traza parcial sobre $B$:
+      \begin{align*}
+        \tr_B(\rho_{AB}) & = (\mathds{1}_A \otimes \bra{0}_B)\rho_{AB}(\mathds{1}_A \otimes \ket{0}_B)          \\
+                         & \quad + (\mathds{1}_A \otimes \bra{1}_B)\rho_{AB}(\mathds{1}_A \otimes \ket{1}_B)\,.
+      \end{align*}
+
+      Primer término:
+      \[
+        \bra{0}_B \rho_{AB} \ket{0}_B = \frac{1}{2}\ket{1}_A\bra{1}_A\,.
+      \]
+
+      Segundo término:
+      \[
+        \bra{1}_B \rho_{AB} \ket{1}_B = \frac{1}{2}\ket{0}_A\bra{0}_A\,.
+      \]
+
+      Sumando:
+      \[
+        \rho_A = \frac{1}{2}(\ket{0}_A\bra{0}_A + \ket{1}_A\bra{1}_A) = \frac{1}{2}\mathds{1}_A = \frac{1}{2}\mqty(1 & 0 \\ 0 & 1)\,.
+      \]
+
+      \part La pureza es:
+      \begin{align*}
+        \tr(\rho_A^2) & = \tr\left(\frac{1}{4}\mathds{1}_A\right) \\
+                      & = \frac{1}{4} \cdot 2                     \\
+                      & = \frac{1}{2}\,.
+      \end{align*}
+
+      Como $\tr(\rho_A^2) < 1$, el subsistema $A$ está en un estado mixto. Esto es característico de estados maximalmente entrelazados: aunque el estado global $\ket{\Psi^-}$ es puro (con pureza 1), cada subsistema individual aparece en un estado completamente mixto (con pureza 1/2 para qubits). Esto refleja el entrelazamiento máximo.
+    \end{parts}
+  \end{solution}
+
+  \question Sea:
+  \[
+    \rho_{AB} = \frac{2}{3}\ket{00}\bra{00} + \frac{1}{3}\ket{11}\bra{11}\,.
+  \]
+
+  \begin{parts}
+    \part Verifica que $\rho_{AB}$ es una matriz densidad válida.
+    \part Calcula $\tr_B(\rho_{AB})$.
+    \part ¿Es posible escribir $\rho_{AB} = \ket{\psi}\bra{\psi}$ para algún estado puro $\ket{\psi}$?
+  \end{parts}
+
+  \begin{solution}
+    \begin{parts}
+      \part Para ser una matriz densidad válida, $\rho_{AB}$ debe ser:
+      \begin{itemize}
+        \item Hermítica: Como $\rho_{AB}$ es diagonal en la base computacional, es claramente hermítica.
+        \item Semidefinida positiva: Los autovalores son $2/3, 1/3, 0, 0 \geq 0$. Se cumple.
+        \item Traza unitaria: $\tr(\rho_{AB}) = 2/3 + 1/3 = 1$. Se cumple.
+      \end{itemize}
+      Por tanto, $\rho_{AB}$ es una matriz densidad válida.
+
+      \part Calculamos:
+      \begin{align*}
+        \tr_B(\rho_{AB}) & = \frac{2}{3}\tr_B(\ket{00}\bra{00}) + \frac{1}{3}\tr_B(\ket{11}\bra{11})                           \\
+                         & = \frac{2}{3}(\mathds{1}_A \otimes \bra{0}_B)\ket{00}\bra{00}(\mathds{1}_A \otimes \ket{0}_B)       \\
+                         & \quad + \frac{1}{3}(\mathds{1}_A \otimes \bra{1}_B)\ket{11}\bra{11}(\mathds{1}_A \otimes \ket{1}_B) \\
+                         & = \frac{2}{3}\ket{0}_A\bra{0}_A + \frac{1}{3}\ket{1}_A\bra{1}_A\,.
+      \end{align*}
+
+      En forma matricial:
+      \[
+        \tr_B(\rho_{AB}) = \mqty(2/3 & 0 \\ 0 & 1/3)\,.
+      \]
+
+      \part Para ser un estado puro, $\rho_{AB}$ debería satisfacer $\rho_{AB}^2 = \rho_{AB}$. Calculamos:
+      \begin{align*}
+        \rho_{AB}^2 & = \left(\frac{2}{3}\ket{00}\bra{00} + \frac{1}{3}\ket{11}\bra{11}\right)^2 \\
+                    & = \frac{4}{9}\ket{00}\bra{00} + \frac{1}{9}\ket{11}\bra{11}                \\
+                    & \neq \rho_{AB}\,.
+      \end{align*}
+
+      Por tanto, $\rho_{AB}$ no es un estado puro, sino un estado mixto. Representa una mezcla estadística clásica de los estados $\ket{00}$ y $\ket{11}$ con probabilidades 2/3 y 1/3 respectivamente.
+    \end{parts}
+  \end{solution}
+
+  \question \label{ejer:tres-qubits} Considera un sistema de tres qubits en el estado:
+  \[
+    \ket{\psi} = \frac{1}{2}(\ket{000} + \ket{011} + \ket{101} + \ket{110})\,.
+  \]
+
+  \begin{parts}
+    \part Calcula $\rho_{ABC} = \ket{\psi}\bra{\psi}$.
+    \part Calcula $\tr_C(\rho_{ABC})$ para obtener la matriz densidad del sistema $AB$.
+    \part Calcula $\tr_B(\tr_C(\rho_{ABC}))$ para obtener la matriz densidad del qubit $A$ solo.
+  \end{parts}
+
+  \begin{solution}
+    \begin{parts}
+      \part La matriz densidad es un operador $8 \times 8$. En la base computacional $\{\ket{000}, \ket{001}, \ldots, \ket{111}\}$:
+      \[
+        \rho_{ABC} = \frac{1}{4}\sum_{i,j \in \{000,011,101,110\}} \ket{i}\bra{j}\,.
+      \]
+
+      Los elementos no nulos son aquellos donde $i,j \in \{000, 011, 101, 110\}$, todos con valor $1/4$.
+
+      \part Para calcular $\tr_C(\rho_{ABC})$, sumamos sobre los estados $\ket{0}_C$ y $\ket{1}_C$:
+      \begin{align*}
+        \tr_C(\rho_{ABC}) & = (\mathds{1}_{AB} \otimes \bra{0}_C)\rho_{ABC}(\mathds{1}_{AB} \otimes \ket{0}_C)          \\
+                          & \quad + (\mathds{1}_{AB} \otimes \bra{1}_C)\rho_{ABC}(\mathds{1}_{AB} \otimes \ket{1}_C)\,.
+      \end{align*}
+
+      De los cuatro términos en $\ket{\psi}$:
+      \begin{itemize}
+        \item $\ket{000}$ contribuye a $\bra{0}_C$: $\ket{00}_{AB}\bra{00}_{AB}$.
+        \item $\ket{011}$ contribuye a $\bra{1}_C$: $\ket{01}_{AB}\bra{01}_{AB}$.
+        \item $\ket{101}$ contribuye a $\bra{1}_C$: $\ket{10}_{AB}\bra{10}_{AB}$.
+        \item $\ket{110}$ contribuye a $\bra{0}_C$: $\ket{11}_{AB}\bra{11}_{AB}$.
+      \end{itemize}
+
+      También aparecen términos cruzados. Calculando cuidadosamente:
+      \[
+        \tr_C(\rho_{ABC}) = \frac{1}{4}(\ket{00}\bra{00} + \ket{01}\bra{01} + \ket{10}\bra{10} + \ket{11}\bra{11})_{AB}\,.
+      \]
+
+      Más términos no diagonales pueden aparecer dependiendo de los productos escalares. En este caso particular, por la estructura del estado, obtenemos:
+      \[
+        \tr_C(\rho_{ABC}) = \frac{1}{4}\mathds{1}_{AB}\,.
+      \]
+
+      \part Ahora trazamos sobre $B$:
+      \begin{align*}
+        \tr_B(\tr_C(\rho_{ABC})) & = \tr_B\left(\frac{1}{4}\mathds{1}_{AB}\right) \\
+                                 & = \frac{1}{4}\tr_B(\mathds{1}_{AB})            \\
+                                 & = \frac{1}{4} \cdot 2 \cdot \mathds{1}_A       \\
+                                 & = \frac{1}{2}\mathds{1}_A\,.
+      \end{align*}
+
+      El qubit $A$ queda en un estado completamente mixto.
+    \end{parts}
+  \end{solution}
+
+  \question Demuestra que para un operador producto $\rho_{AB} = \rho_A \otimes \rho_B$:
+  \[
+    \tr_B(\rho_A \otimes \rho_B) = \rho_A \cdot \tr(\rho_B)\,.
+  \]
+
+  \begin{solution}
+    Sea $\{\ket{j}_B\}$ una base ortonormal de $\mathcal{H}_B$. Por definición de traza parcial:
+    \begin{align*}
+      \tr_B(\rho_A \otimes \rho_B) & = \sum_j (\mathds{1}_A \otimes \bra{j}_B)(\rho_A \otimes \rho_B)(\mathds{1}_A \otimes \ket{j}_B)\,.
+    \end{align*}
+
+    Usando la propiedad del producto tensorial $(A \otimes B)(C \otimes D) = AC \otimes BD$:
+    \begin{align*}
+      \tr_B(\rho_A \otimes \rho_B) & = \sum_j (\mathds{1}_A \rho_A \mathds{1}_A) \otimes (\bra{j}_B \rho_B \ket{j}_B) \\
+                                   & = \sum_j \rho_A \otimes \bra{j}_B \rho_B \ket{j}_B                               \\
+                                   & = \rho_A \otimes \sum_j \bra{j}_B \rho_B \ket{j}_B                               \\
+                                   & = \rho_A \otimes \tr(\rho_B)\,.
+    \end{align*}
+
+    Dado que $\tr(\rho_B)$ es un escalar (número complejo), el producto tensorial con un escalar es simplemente la multiplicación escalar:
+    \[
+      \tr_B(\rho_A \otimes \rho_B) = \rho_A \cdot \tr(\rho_B)\,.
+    \]
+
+    En particular, si $\rho_B$ es una matriz densidad, entonces $\tr(\rho_B) = 1$, por lo que:
+    \[
+      \tr_B(\rho_A \otimes \rho_B) = \rho_A\,.
+    \]
+  \end{solution}
+
+  \question Considera el estado mixto:
+  \[
+    \rho_{AB} = \frac{1}{2}\ket{\Phi^+}\bra{\Phi^+} + \frac{1}{2}\ket{\Psi^-}\bra{\Psi^-}\,,
+  \]
+  donde $\ket{\Phi^+} = \frac{1}{\sqrt{2}}(\ket{00} + \ket{11})$ y $\ket{\Psi^-} = \frac{1}{\sqrt{2}}(\ket{01} - \ket{10})$ son estados de Bell.
+
+  \begin{parts}
+    \part Calcula la matriz densidad reducida $\rho_A = \tr_B(\rho_{AB})$.
+    \part Calcula la pureza $\tr(\rho_A^2)$.
+    \part Compara este resultado con el caso de un único estado de Bell puro.
+  \end{parts}
+
+  \begin{solution}
+    \begin{parts}
+      \part Usamos la linealidad de la traza parcial:
+      \begin{align*}
+        \rho_A & = \tr_B(\rho_{AB})                                                                           \\
+               & = \frac{1}{2}\tr_B(\ket{\Phi^+}\bra{\Phi^+}) + \frac{1}{2}\tr_B(\ket{\Psi^-}\bra{\Psi^-})\,.
+      \end{align*}
+
+      De ejercicios anteriores, sabemos que ambos estados de Bell maximalmente entrelazados tienen matrices densidad reducidas $\mathds{1}/2$:
+      \begin{align*}
+        \tr_B(\ket{\Phi^+}\bra{\Phi^+}) & = \frac{1}{2}\mathds{1}_A\,, \\
+        \tr_B(\ket{\Psi^-}\bra{\Psi^-}) & = \frac{1}{2}\mathds{1}_A\,.
+      \end{align*}
+
+      Por tanto:
+      \[
+        \rho_A = \frac{1}{2} \cdot \frac{1}{2}\mathds{1}_A + \frac{1}{2} \cdot \frac{1}{2}\mathds{1}_A = \frac{1}{2}\mathds{1}_A\,.
+      \]
+
+      \part Calculamos:
+      \begin{align*}
+        \tr(\rho_A^2) & = \tr\left[\left(\frac{1}{2}\mathds{1}_A\right)^2\right] \\
+                      & = \tr\left(\frac{1}{4}\mathds{1}_A\right)                \\
+                      & = \frac{1}{4} \cdot 2                                    \\
+                      & = \frac{1}{2}\,.
+      \end{align*}
+
+      \part Para un único estado de Bell puro, obtuvimos también $\tr(\rho_A^2) = 1/2$.
+
+      Este resultado ilustra un hecho notable: la mezcla estadística de estados de Bell maximalmente entrelazados produce la misma matriz densidad reducida que un único estado de Bell. Desde el punto de vista del subsistema $A$ aislado, no es posible distinguir si el sistema global está en $\ket{\Phi^+}$, $\ket{\Psi^-}$, o una mezcla de ambos.
+
+      Sin embargo, el sistema global $AB$ sí es diferente: $\rho_{AB}$ es un estado mixto (no se puede escribir como $\ket{\psi}\bra{\psi}$), mientras que cada estado de Bell individual es puro. Esta diferencia solo se manifiesta en mediciones conjuntas sobre ambos subsistemas.
+    \end{parts}
+  \end{solution}
+
+  \question Considera el operador:
+  \[
+    M = \ket{00}\bra{01} + \ket{11}\bra{10}\,.
+  \]
+
+  \begin{parts}
+    \part Calcula $\tr_B(M)$.
+    \part Calcula $\tr_A(M)$.
+    \part Verifica que $\tr(M) = \tr(\tr_B(M)) = \tr(\tr_A(M))$.
+  \end{parts}
+
+  \begin{solution}
+    \begin{parts}
+      \part Calculamos la traza parcial sobre $B$:
+      \begin{align*}
+        \tr_B(M) & = (\mathds{1}_A \otimes \bra{0}_B)M(\mathds{1}_A \otimes \ket{0}_B)          \\
+                 & \quad + (\mathds{1}_A \otimes \bra{1}_B)M(\mathds{1}_A \otimes \ket{1}_B)\,.
+      \end{align*}
+
+      Primer término:
+      \begin{align*}
+        (\mathds{1}_A \otimes \bra{0}_B)(\ket{00}\bra{01} + \ket{11}\bra{10})(\mathds{1}_A \otimes \ket{0}_B)
+         & = (\mathds{1}_A \otimes \bra{0}_B)\ket{00}\bra{01}(\mathds{1}_A \otimes \ket{0}_B) \\
+         & = \ket{0}_A\braket{0|0}_B\bra{0}_A\braket{1|0}_B                                   \\
+         & = 0\,.
+      \end{align*}
+
+      Segundo término:
+      \begin{align*}
+        (\mathds{1}_A \otimes \bra{1}_B)(\ket{00}\bra{01} + \ket{11}\bra{10})(\mathds{1}_A \otimes \ket{1}_B)
+         & = (\mathds{1}_A \otimes \bra{1}_B)\ket{11}\bra{10}(\mathds{1}_A \otimes \ket{1}_B) \\
+         & = \ket{1}_A\braket{1|1}_B\bra{1}_A\braket{0|1}_B                                   \\
+         & = 0\,.
+      \end{align*}
+
+      Por tanto: $\tr_B(M) = 0$.
+
+      \part Calculamos la traza parcial sobre $A$:
+      \begin{align*}
+        \tr_A(M) & = (\bra{0}_A \otimes \mathds{1}_B)M(\ket{0}_A \otimes \mathds{1}_B)          \\
+                 & \quad + (\bra{1}_A \otimes \mathds{1}_B)M(\ket{1}_A \otimes \mathds{1}_B)\,.
+      \end{align*}
+
+      Primer término:
+      \begin{align*}
+        (\bra{0}_A \otimes \mathds{1}_B)(\ket{00}\bra{01} + \ket{11}\bra{10})(\ket{0}_A \otimes \mathds{1}_B)
+         & = (\bra{0}_A \otimes \mathds{1}_B)\ket{00}\bra{01}(\ket{0}_A \otimes \mathds{1}_B) \\
+         & = \braket{0|0}_A\ket{0}_B\bra{0}_A\braket{0|1}_B                                   \\
+         & = \ket{0}_B\bra{1}_B\,.
+      \end{align*}
+
+      Segundo término:
+      \begin{align*}
+        (\bra{1}_A \otimes \mathds{1}_B)(\ket{00}\bra{01} + \ket{11}\bra{10})(\ket{1}_A \otimes \mathds{1}_B)
+         & = (\bra{1}_A \otimes \mathds{1}_B)\ket{11}\bra{10}(\ket{1}_A \otimes \mathds{1}_B) \\
+         & = \braket{1|1}_A\ket{1}_B\bra{1}_A\braket{1|0}_B                                   \\
+         & = \ket{1}_B\bra{0}_B\,.
+      \end{align*}
+
+      Por tanto:
+      \[
+        \tr_A(M) = \ket{0}_B\bra{1}_B + \ket{1}_B\bra{0}_B = \mqty(0 & 1 \\ 1 & 0) = \sigma_x^B\,.
+      \]
+
+      \part Calculamos:
+      \begin{align*}
+        \tr(M) & = \bra{00}M\ket{00} + \bra{01}M\ket{01} + \bra{10}M\ket{10} + \bra{11}M\ket{11}                                       \\
+               & = \bra{00}(\ket{00}\bra{01} + \ket{11}\bra{10})\ket{00} + \bra{01}(\ket{00}\bra{01} + \ket{11}\bra{10})\ket{01}       \\
+               & \quad + \bra{10}(\ket{00}\bra{01} + \ket{11}\bra{10})\ket{10} + \bra{11}(\ket{00}\bra{01} + \ket{11}\bra{10})\ket{11} \\
+               & = 0 + 0 + 0 + 0                                                                                                       \\
+               & = 0\,.
+      \end{align*}
+
+      Verificamos:
+      \[
+        \tr(\tr_B(M)) = \tr(0) = 0\,,
+      \]
+      \[
+        \tr(\tr_A(M)) = \tr(\sigma_x) = 0 + 0 = 0\,.
+      \]
+
+      Se cumple la consistencia: $\tr(M) = \tr(\tr_B(M)) = \tr(\tr_A(M)) = 0$.
+    \end{parts}
+  \end{solution}
+
+  \question Un qubit $A$ interactúa con un qubit entorno $E$ mediante la puerta CNOT, donde $A$ es el control y $E$ el objetivo. El estado inicial es $\ket{\psi}_A \otimes \ket{0}_E$ con:
+  \[
+    \ket{\psi}_A = \alpha\ket{0} + \beta\ket{1}\,, \quad |\alpha|^2 + |\beta|^2 = 1\,.
+  \]
+
+  \begin{parts}
+    \part Calcula el estado después de aplicar CNOT.
+    \part Calcula la matriz densidad reducida del sistema $A$ después de la interacción.
+    \part Determina para qué valores de $\alpha$ y $\beta$ el sistema $A$ permanece puro después de la interacción.
+  \end{parts}
+
+  \begin{solution}
+    \begin{parts}
+      \part La puerta CNOT actúa como:
+      \[
+        \text{CNOT}\ket{0}_A\ket{b}_E = \ket{0}_A\ket{b}_E\,, \quad
+        \text{CNOT}\ket{1}_A\ket{b}_E = \ket{1}_A\ket{b \oplus 1}_E\,.
+      \]
+
+      Aplicando al estado inicial:
+      \begin{align*}
+        \ket{\Psi} & = \text{CNOT}(\alpha\ket{0}_A + \beta\ket{1}_A)\ket{0}_E \\
+                   & = \alpha\text{CNOT}\ket{00} + \beta\text{CNOT}\ket{10}   \\
+                   & = \alpha\ket{00} + \beta\ket{11}\,.
+      \end{align*}
+
+      \part El operador de densidad del sistema conjunto es:
+      \begin{align*}
+        \rho_{AE} & = \ket{\Psi}\bra{\Psi}                                                           \\
+                  & = (\alpha\ket{00} + \beta\ket{11})(\conj{\alpha}\bra{00} + \conj{\beta}\bra{11}) \\
+                  & = |\alpha|^2\ket{00}\bra{00} + \alpha\conj{\beta}\ket{00}\bra{11}                \\
+                  & \quad + \conj{\alpha}\beta\ket{11}\bra{00} + |\beta|^2\ket{11}\bra{11}\,.
+      \end{align*}
+
+      Calculamos la traza parcial sobre el entorno:
+      \begin{align*}
+        \rho_A & = \tr_E(\rho_{AE})                                                                   \\
+               & = (\mathds{1}_A \otimes \bra{0}_E)\rho_{AE}(\mathds{1}_A \otimes \ket{0}_E)          \\
+               & \quad + (\mathds{1}_A \otimes \bra{1}_E)\rho_{AE}(\mathds{1}_A \otimes \ket{1}_E)\,.
+      \end{align*}
+
+      Primer término:
+      \[
+        \bra{0}_E\rho_{AE}\ket{0}_E = |\alpha|^2\ket{0}_A\bra{0}_A\,.
+      \]
+
+      Segundo término:
+      \[
+        \bra{1}_E\rho_{AE}\ket{1}_E = |\beta|^2\ket{1}_A\bra{1}_A\,.
+      \]
+
+      Por tanto:
+      \[
+        \rho_A = |\alpha|^2\ket{0}_A\bra{0}_A + |\beta|^2\ket{1}_A\bra{1}_A = \mqty(|\alpha|^2 & 0 \\ 0 & |\beta|^2)\,.
+      \]
+
+      Observamos que los términos no diagonales $\alpha\conj{\beta}$ y $\conj{\alpha}\beta$ desaparecieron al trazar sobre el entorno. El sistema $A$ ha sufrido decoherencia.
+
+      \part Para que $\rho_A$ sea un estado puro, debe cumplirse $\rho_A^2 = \rho_A$. Calculamos:
+      \begin{align*}
+        \rho_A^2 & = \mqty(|\alpha|^2 & 0 \\ 0 & |\beta|^2)^2 \\
+                 & = \mqty(|\alpha|^4 & 0 \\ 0 & |\beta|^4)\,.
+      \end{align*}
+
+      Para que $\rho_A^2 = \rho_A$:
+      \begin{align*}
+        |\alpha|^4 & = |\alpha|^2\,, \\
+        |\beta|^4  & = |\beta|^2\,.
+      \end{align*}
+
+      Cada ecuación se satisface si $|\alpha|^2 = 0$ o $|\alpha|^2 = 1$ (y análogamente para $\beta$).
+
+      Con la restricción $|\alpha|^2 + |\beta|^2 = 1$, las soluciones son:
+      \begin{itemize}
+        \item $|\alpha|^2 = 1, |\beta|^2 = 0$: Estado inicial $\ket{0}_A$.
+        \item $|\alpha|^2 = 0, |\beta|^2 = 1$: Estado inicial $\ket{1}_A$.
+      \end{itemize}
+
+      Conclusión: El sistema $A$ permanece puro solo cuando el estado inicial es un estado base computacional. Para cualquier superposición no trivial ($0 < |\alpha|^2 < 1$), el entrelazamiento con el entorno induce mezcla en el sistema $A$.
+    \end{parts}
+  \end{solution}
+
+\end{questions}

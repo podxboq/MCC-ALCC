@@ -401,6 +401,54 @@ Como ambas expresiones son iguales, se cumple que $[T]_{i,j} = \overline{[T^\dag
 
 El motivo de dar a estas definiciones a los operadores, con los mismos nombres que las que dimos para matrices, es que son equivalentes.
 
+\begin{defi}
+  Sea $A\in \mathcal{M}_n(\C)$. La \textbf{matriz adjunta} de $A$ es la matriz $A^\dagger$ definida por
+  \[
+    (A^\dagger)_{ij} = \conj{A_{ji}}\,.
+  \]
+\end{defi}
+
+\begin{defi}
+  Sea $A \in \mathcal{M}_n(\C)$. Decimos que $A$ es:
+  \begin{itemize}
+    \item
+          \textbf{Hermítica}: si $A^\dagger = A$.
+    \item
+          \textbf{Unitaria}: si $A^\dagger A = AA^\dagger = I$.
+    \item
+          \textbf{Normal}: si $A^\dagger A = AA^\dagger$.
+  \end{itemize}
+
+\end{defi}
+
+Estudiaremos con más detalle estas matrices en temas posteriores, ya que son fundamentales en computación cuántica.
+
+\begin{eje}[Matrices de Pauli]
+  Las matrices de Pauli son matrices hermitianas y unitarias fundamentales en computación cuántica:
+  \begin{align}
+    \sigma_x = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}, \quad
+    \sigma_y = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}, \quad
+    \sigma_z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}
+  \end{align}
+
+  Estas matrices satisfacen:
+  \begin{itemize}
+    \item $\sigma_i^2 = I$ para $i = x, y, z$.
+    \item $\sigma_x\sigma_y = i\sigma_z$, $\sigma_y\sigma_z = i\sigma_x$, $\sigma_z\sigma_x = i\sigma_y$.
+    \item $\{\sigma_i, \sigma_j\} = \sigma_i\sigma_j + \sigma_j\sigma_i = 0$ para $i \neq j$ (anticonmutan).
+    \item Junto con la identidad $I$, forman una base de $\mathcal{M}_2(\C)$.
+  \end{itemize}
+\end{eje}
+
+\begin{eje}[Matriz de Hadamard]
+  La matriz de Hadamard es otra de las matrices unitarias fundamentales en computación cuántica
+  \[
+    H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}\,.
+  \]
+  Se verifica que $H^2 = I$ y por tanto es unitaria.
+\end{eje}
+
+
 \begin{prop}
   \begin{itemize}
     \item Sea $A \in \mathcal{M}_n(\C)$. Entonces $A$ es hermitiana, unitaria o normal si y solo si $T_A$ es hermitiano, unitario o normal, respectivamente.
