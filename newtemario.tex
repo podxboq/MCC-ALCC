@@ -1,0 +1,373 @@
+% Documento de trabajo: Esquema restructurado de los 8 temas
+% Álgebra lineal en computación cuántica - UNIR
+% -------------------------------------------------------
+% Este fichero no es un tema completo: es un documento de planificación
+% que recoge el esquema (esquemaExplorador) propuesto para cada tema,
+% junto con la motivación cuántica que encabeza cada uno.
+% -------------------------------------------------------
+
+\documentclass[]{unirTema}
+\input{personalizacion}
+
+\begin{document}
+
+\author{Francisco Costa Cano}
+\color{negrounir}
+\titulacion{Máster en computación cuántica}
+\asignatura{Álgebra lineal en computación cuántica}
+
+% ============================================================
+%  BLOQUE 1: FUNDAMENTOS MATEMÁTICOS
+% ============================================================
+\bloque{1}{Fundamentos matemáticos}
+
+% ------------------------------------------------------------
+\tema{1}{Números complejos y su geometría}
+% ------------------------------------------------------------
+
+\portada
+
+\begin{info}
+  \textbf{Motivación cuántica.}
+  Las amplitudes de probabilidad que gobiernan los sistemas cuánticos son números complejos.
+  Antes de enunciar los postulados de la mecánica cuántica de forma precisa, necesitamos
+  dominar el lenguaje matemático en que están escritos.
+  Este tema proporciona esa base: los números complejos y su geometría.
+\end{info}
+
+\begin{esquemaExplorador}
+  \temaEsquema{Forma binómica}{
+    \conceptoEsquema{Definición de número complejo}{$z = a + bi,\quad a,b\in\R$}
+    \conceptoEsquema{Conjugado complejo}{$\bar{z} = a - bi$}
+    \conceptoEsquema{Módulo}{$|z| = \sqrt{a^2+b^2}$}
+    \conceptoEsquema{Operaciones: suma, producto y cociente}{}
+  }
+  \temaEsquema{Geometría del plano complejo}{
+  \conceptoEsquema{Representación como punto o vector en $\R^2$}{}
+  \conceptoEsquema{Forma polar}{$z = |z|(\cos\theta + i\sin\theta)$}
+  \conceptoEsquema{Forma exponencial (fórmula de Euler)}{$z = |z|e^{i\theta}$}
+  \conceptoEsquema{Multiplicación como rotación y escalado}{}
+  }
+  \temaEsquema{Fórmula de De Moivre y raíces}{
+    \conceptoEsquema{Potencias}{$z^n = |z|^n e^{in\theta}$}
+    \conceptoEsquema{Raíces $n$-ésimas de la unidad}{$\omega_k = e^{2\pi ik/n}$}
+  }
+  \temaEsquema{Amplitud cuántica}{
+    \conceptoEsquema{Magnitud y fase de una amplitud}{}
+    \conceptoEsquema{Interferencia constructiva y destructiva}{}
+    \conceptoEsquema{Interpretación probabilística: $|\alpha|^2$}{}
+  }
+\end{esquemaExplorador}
+
+% ------------------------------------------------------------
+\tema{2}{Espacios vectoriales complejos}
+% ------------------------------------------------------------
+
+\portada
+
+\begin{info}
+  \textbf{Motivación cuántica (anticipo del Postulado~I).}
+  El Postulado~I de la mecánica cuántica establece que el estado de un sistema cuántico
+  queda completamente descrito por un vector en un espacio vectorial complejo.
+  Este tema construye ese espacio desde sus axiomas, proporcionando el marco en que
+  vivirán los estados cuánticos a lo largo de todo el máster.
+\end{info}
+
+\begin{esquemaExplorador}
+  \temaEsquema{Postulado I: anticipo}{
+    \conceptoEsquema{El estado cuántico como vector: $\ket{\psi}\in\mathcal{H}$}{}
+    \conceptoEsquema{Superposición cuántica}{$\alpha\ket{0}+\beta\ket{1}$}
+    \conceptoEsquema{¿Qué estructura matemática necesitamos?}{}
+  }
+  \temaEsquema{Espacios vectoriales}{
+    \conceptoEsquema{Definición y axiomas}{}
+    \conceptoEsquema{Ejemplos: $\C^n$, matrices, polinomios}{}
+    \conceptoEsquema{Subespacios vectoriales}{}
+  }
+  \temaEsquema{Dependencia lineal y bases}{
+    \conceptoEsquema{Combinaciones lineales y generadores}{}
+    \conceptoEsquema{Independencia lineal}{}
+    \conceptoEsquema{Base y dimensión}{}
+    \conceptoEsquema{Base canónica de $\C^n$ y base computacional $\{\ket{0},\ket{1}\}$}{}
+  }
+  \temaEsquema{Coordenadas y cambio de base}{
+    \conceptoEsquema{Coordenadas de un vector en una base}{}
+    \conceptoEsquema{Matriz de cambio de coordenadas}{}
+  }
+\end{esquemaExplorador}
+
+% ------------------------------------------------------------
+\tema{3}{Operadores lineales y representación matricial}
+% ------------------------------------------------------------
+
+\portada
+
+\begin{info}
+  \textbf{Motivación cuántica (anticipo de los Postulados II y V).}
+  En mecánica cuántica, tanto la evolución temporal de un sistema (Postulado~V)
+  como la acción de un observable (Postulado~II) se describen mediante
+  \emph{transformaciones lineales}.
+  Este tema construye la teoría de operadores lineales y su representación matricial,
+  introduciendo además las clases de matrices (hermitianas, unitarias) que aparecen
+  de forma central en los postulados cuánticos.
+  Con estas herramientas será posible presentar la descomposición espectral y la SVD.
+\end{info}
+
+\begin{esquemaExplorador}
+  \temaEsquema{Transformaciones lineales}{
+    \conceptoEsquema{Definición de operador lineal}{}
+    \conceptoEsquema{Núcleo e imagen}{}
+    \conceptoEsquema{Isomorfismos y composición}{}
+  }
+  \temaEsquema{Representación matricial}{
+    \conceptoEsquema{Matriz de un operador en una base}{}
+    \conceptoEsquema{Cambio de base para operadores}{$A' = P^{-1}AP$}
+    \conceptoEsquema{Traza y determinante}{}
+  }
+  \temaEsquema{Operaciones sobre matrices}{
+    \conceptoEsquema{Transpuesta y conjugada}{}
+    \conceptoEsquema{Adjunta (conjugada transpuesta)}{$A^\dagger = (\bar{A})^t$}
+  }
+  \temaEsquema{Clases especiales de matrices}{
+    \conceptoEsquema{Matrices normales}{$AA^\dagger = A^\dagger A$}
+    \conceptoEsquema{Matrices hermitianas}{$A^\dagger = A$}
+    \conceptoEsquema{Matrices unitarias}{$UU^\dagger = U^\dagger U = I$}
+    \conceptoEsquema{Propiedades y ejemplos cuánticos (Pauli, Hadamard)}{}
+  }
+  \temaEsquema{Valores y vectores propios}{
+    \conceptoEsquema{Polinomio característico}{}
+    \conceptoEsquema{Cálculo de vectores propios}{}
+    \conceptoEsquema{Diagonalización}{$A = PDP^{-1}$}
+  }
+  \temaEsquema{Descomposición en valores singulares (SVD)}{
+    \conceptoEsquema{Enunciado}{$A = U\Sigma V^\dagger$}
+    \conceptoEsquema{Algoritmo de cálculo}{}
+    \conceptoEsquema{Interpretación geométrica}{}
+    \conceptoEsquema{Aplicación: análisis de entrelazamiento (anticipo)}{}
+  }
+\end{esquemaExplorador}
+
+% ============================================================
+%  BLOQUE 2: ESPACIOS CUÁNTICOS
+% ============================================================
+\bloque{2}{Espacios cuánticos}
+
+% ------------------------------------------------------------
+\tema{4}{Espacios de Hilbert}
+% ------------------------------------------------------------
+
+\portada
+
+\begin{info}
+  \textbf{Motivación cuántica (Postulados I, II y III).}
+  \begin{itemize}
+    \item \textbf{Postulado~I (completo):} El espacio de estados de un sistema cuántico
+          es un \emph{espacio de Hilbert} $\mathcal{H}$, no un espacio vectorial genérico.
+          La diferencia clave es el producto interno, que permite definir norma, ángulos y probabilidades.
+    \item \textbf{Postulado~II:} Los observables físicos son operadores hermitianos,
+          cuyas propiedades más profundas (valores propios reales, eigenvectores ortogonales)
+          solo se comprenden con el producto interno.
+    \item \textbf{Postulado~III:} La regla de Born, $p(\lambda_i)=|\braket{\lambda_i}{\psi}|^2$,
+          es un producto interno. Sin esta estructura no hay probabilidades cuánticas.
+  \end{itemize}
+\end{info}
+
+\begin{esquemaExplorador}
+  \temaEsquema{Postulados I--III: enunciado preliminar}{
+    \conceptoEsquema{Estado cuántico como vector unitario en $\mathcal{H}$}{}
+    \conceptoEsquema{Observable como operador hermitiano}{}
+    \conceptoEsquema{Regla de Born}{$p(\lambda_i)=|\langle\lambda_i|\psi\rangle|^2$}
+  }
+  \temaEsquema{Producto interno en $\C^n$}{
+    \conceptoEsquema{Definición}{$\langle u,v\rangle = \sum_i \bar{u}_i v_i$}
+    \conceptoEsquema{Propiedades: linealidad, simetría hermitiana, positividad}{}
+    \conceptoEsquema{Norma inducida}{$\|v\|=\sqrt{\langle v,v\rangle}$}
+  }
+  \temaEsquema{Ortogonalidad y proyecciones}{
+    \conceptoEsquema{Vectores ortogonales y complemento ortogonal}{}
+    \conceptoEsquema{Proyección ortogonal sobre un subespacio}{}
+    \conceptoEsquema{Proceso de Gram-Schmidt}{}
+    \conceptoEsquema{Bases ortonormales}{}
+  }
+  \temaEsquema{Matrices especiales revisadas con producto interno}{
+    \conceptoEsquema{Hermitianas: valores propios reales y eigenvectores ortogonales}{}
+    \conceptoEsquema{Unitarias: preservan norma y producto interno}{}
+    \conceptoEsquema{Teorema espectral para matrices normales}{}
+  }
+  \temaEsquema{Espacios de Hilbert (dimensión finita)}{
+    \conceptoEsquema{Definición formal}{}
+    \conceptoEsquema{Completitud e identidad de resolución}{}
+    \conceptoEsquema{El espacio de un cúbit: $\C^2$}{}
+  }
+\end{esquemaExplorador}
+
+% ------------------------------------------------------------
+\tema{5}{Espacio dual y producto tensorial}
+% ------------------------------------------------------------
+
+\portada
+
+\begin{info}
+  \textbf{Motivación cuántica (Postulado IV).}
+  El Postulado~IV establece que el espacio de estados de un sistema compuesto
+  por dos subsistemas $A$ y $B$ es el \emph{producto tensorial}
+  $\mathcal{H}_A \otimes \mathcal{H}_B$.
+  Para entender esta construcción con rigor se necesita previamente el concepto
+  de funcional lineal y espacio dual, que además es el fundamento matemático
+  de la notación bra-ket que se desarrollará en el siguiente tema.
+\end{info}
+
+\begin{esquemaExplorador}
+  \temaEsquema{Postulado IV: anticipo}{
+    \conceptoEsquema{Sistema de dos cúbits}{$\mathcal{H}=\C^2\otimes\C^2\cong\C^4$}
+    \conceptoEsquema{Base computacional}{$\{\ket{00},\ket{01},\ket{10},\ket{11}\}$}
+    \conceptoEsquema{¿Qué estructura matemática describe la composición?}{}
+  }
+  \temaEsquema{Funcionales lineales y espacio dual}{
+    \conceptoEsquema{Definición de funcional lineal $f:V\to\C$}{}
+    \conceptoEsquema{Espacio dual $V^*$}{}
+    \conceptoEsquema{Teorema de representación de Riesz-Fréchet}{}
+    \conceptoEsquema{Base dual y base ortonormal}{}
+  }
+  \temaEsquema{Producto tensorial de espacios vectoriales}{
+    \conceptoEsquema{Definición axiomática}{}
+    \conceptoEsquema{Base del producto tensorial}{$\{e_i\otimes f_j\}$}
+    \conceptoEsquema{Producto tensorial de matrices}{}
+    \conceptoEsquema{Propiedades}{}
+  }
+  \temaEsquema{Sistemas cuánticos compuestos}{
+    \conceptoEsquema{$n$ cúbits: espacio $\C^{2^n}$}{}
+    \conceptoEsquema{Estados separables}{$\ket{\psi}\otimes\ket{\phi}$}
+    \conceptoEsquema{Estados entrelazados: imposibilidad de factorizar}{}
+    \conceptoEsquema{Estados de Bell}{}
+  }
+\end{esquemaExplorador}
+
+% ============================================================
+%  BLOQUE 3: OPERADORES Y DINÁMICAS CUÁNTICAS
+% ============================================================
+\bloque{3}{Operadores y dinámicas cuánticas}
+
+% ------------------------------------------------------------
+\tema{6}{Notación de Dirac y los postulados de la mecánica cuántica}
+% ------------------------------------------------------------
+
+\portada
+
+\begin{info}
+  \textbf{Motivación cuántica (los cinco postulados).}
+  Hasta este punto hemos construido toda la maquinaria matemática necesaria:
+  espacios de Hilbert, operadores hermitianos, producto interno y producto tensorial.
+  La notación de Dirac es el \emph{lenguaje estándar} de la mecánica cuántica que unifica
+  y simplifica todos estos elementos.
+  En este tema se enuncia el formalismo completo mediante los \textbf{cinco postulados}
+  de la mecánica cuántica, escritos en notación bra-ket.
+\end{info}
+
+\begin{esquemaExplorador}
+  \temaEsquema{Notación bra-ket}{
+    \conceptoEsquema{Ket: vector del espacio de Hilbert}{$\ket{\psi}\in\mathcal{H}$}
+    \conceptoEsquema{Bra: elemento del espacio dual}{$\bra{\psi}\in\mathcal{H}^*$}
+    \conceptoEsquema{Braket: producto interno}{$\braket{\phi}{\psi}\in\C$}
+    \conceptoEsquema{Ketbra: operador externo}{$\ketbra{\psi}{\phi}$}
+  }
+  \temaEsquema{Operadores en notación Dirac}{
+    \conceptoEsquema{Acción de un operador sobre un ket}{}
+    \conceptoEsquema{Identidad de resolución}{$\sum_i\ketbra{i}{i}=I$}
+    \conceptoEsquema{Descomposición espectral en Dirac}{$O=\sum_i\lambda_i\ketbra{\lambda_i}{\lambda_i}$}
+  }
+  \temaEsquema{Los cinco postulados}{
+    \conceptoEsquema{P-I: Estado cuántico}{$\ket{\psi}\in\mathcal{H},\ \|\ket{\psi}\|=1$}
+    \conceptoEsquema{P-II: Observable}{$O=O^\dagger$}
+    \conceptoEsquema{P-III: Medición y regla de Born}{$p(\lambda_i)=|\braket{\lambda_i}{\psi}|^2$}
+    \conceptoEsquema{P-IV: Sistema compuesto}{$\mathcal{H}=\mathcal{H}_A\otimes\mathcal{H}_B$}
+    \conceptoEsquema{P-V: Evolución temporal}{$\ket{\psi(t)}=U\ket{\psi(0)}$}
+  }
+  \temaEsquema{Estados cuánticos en notación Dirac}{
+    \conceptoEsquema{Cúbit}{$\alpha\ket{0}+\beta\ket{1},\ |\alpha|^2+|\beta|^2=1$}
+    \conceptoEsquema{Medición en bases distintas}{}
+    \conceptoEsquema{Estados de Bell y entrelazamiento máximo}{}
+  }
+\end{esquemaExplorador}
+
+% ------------------------------------------------------------
+\tema{7}{Operadores en computación cuántica}
+% ------------------------------------------------------------
+
+\portada
+
+\begin{info}
+  \textbf{Motivación cuántica (Postulado~V: evolución temporal).}
+  El Postulado~V establece que la evolución de un sistema cuántico cerrado
+  se describe mediante un operador unitario.
+  En el modelo del circuito cuántico, las \emph{puertas cuánticas} son
+  precisamente los operadores unitarios que implementan esa evolución de forma controlada.
+  Este tema estudia las puertas cuánticas fundamentales como objetos del álgebra lineal
+  y los representa geométricamente en la esfera de Bloch.
+\end{info}
+
+\begin{esquemaExplorador}
+  \temaEsquema{Puertas de un cúbit}{
+    \conceptoEsquema{Matrices de Pauli}{$\sigma_x,\sigma_y,\sigma_z$}
+    \conceptoEsquema{Puerta Hadamard}{$H=\frac{1}{\sqrt{2}}\mqty(1&1\\1&-1)$}
+    \conceptoEsquema{Puertas de fase}{$S,T$}
+    \conceptoEsquema{Verificación de unitariedad}{}
+  }
+  \temaEsquema{Esfera de Bloch}{
+  \conceptoEsquema{Parametrización de estados de un cúbit}{$\cos\frac{\theta}{2}\ket{0}+e^{i\phi}\sin\frac{\theta}{2}\ket{1}$}
+  \conceptoEsquema{Puertas como rotaciones}{$R_x,R_y,R_z$}
+  \conceptoEsquema{Interpretación geométrica de Hadamard y Pauli}{}
+  }
+  \temaEsquema{Puertas de múltiples cúbits}{
+    \conceptoEsquema{Puerta CNOT}{$\ket{x,y}\mapsto\ket{x,x\oplus y}$}
+    \conceptoEsquema{Operadores controlados en general}{}
+    \conceptoEsquema{Producto tensorial de puertas}{}
+  }
+  \temaEsquema{Universalidad}{
+    \conceptoEsquema{Concepto de conjunto universal de puertas}{}
+    \conceptoEsquema{Ejemplo: $\{H,T,\mathrm{CNOT}\}$}{}
+  }
+\end{esquemaExplorador}
+
+% ------------------------------------------------------------
+\tema{8}{Información cuántica y sistemas abiertos}
+% ------------------------------------------------------------
+
+\portada
+
+\begin{info}
+  \textbf{Motivación cuántica (extensión del Postulado~III).}
+  El formalismo de estado puro (Postulado~I) es insuficiente para describir
+  un sistema cuántico que interactúa con su entorno o cuya preparación
+  es estadísticamente imperfecta.
+  La \emph{matriz de densidad} extiende el formalismo de los postulados para
+  cubrir estos \textbf{estados mixtos}, que son los estados que
+  aparecen en la práctica experimental y en los protocolos de información cuántica.
+\end{info}
+
+\begin{esquemaExplorador}
+  \temaEsquema{Estados mixtos y operador densidad}{
+    \conceptoEsquema{Estado puro vs. estado mixto}{}
+    \conceptoEsquema{Definición del operador densidad}{$\rho=\sum_i p_i\ketbra{\psi_i}{\psi_i}$}
+    \conceptoEsquema{Propiedades: $\rho^\dagger=\rho$, $\tr(\rho)=1$, $\rho\geq0$}{}
+    \conceptoEsquema{Criterio de pureza}{$\tr(\rho^2)\leq1$}
+  }
+  \temaEsquema{Traza parcial y sistemas bipartitos}{
+    \conceptoEsquema{Definición de traza parcial}{}
+    \conceptoEsquema{Estado reducido de un subsistema}{}
+    \conceptoEsquema{Entrelazamiento y matrices reducidas}{}
+  }
+  \temaEsquema{Canales cuánticos}{
+    \conceptoEsquema{Operaciones cuánticas como mapas de matrices de densidad}{}
+    \conceptoEsquema{Representación de Kraus}{$\mathcal{E}(\rho)=\sum_k K_k\rho K_k^\dagger$}
+    \conceptoEsquema{Ejemplos: desfasamiento, amortiguamiento de amplitud}{}
+  }
+  \temaEsquema{Información cuántica}{
+    \conceptoEsquema{Teorema de no-clonación}{}
+    \conceptoEsquema{Entropía de von Neumann}{$S(\rho)=-\tr(\rho\log\rho)$}
+    \conceptoEsquema{Fidelidad}{$F(\rho,\sigma)=\tr\!\sqrt{\sqrt{\rho}\,\sigma\sqrt{\rho}}$}
+    \conceptoEsquema{Decoherencia y pérdida de coherencia}{}
+  }
+\end{esquemaExplorador}
+
+\end{document}
