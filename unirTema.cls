@@ -282,9 +282,9 @@
 \renewenvironment{proof}{\par\textbf{\textcolor{azulunir}{Demostración.}}\par}{\hfill\qedsymbol{}}
 
 % Proposición
-\newenvironment{prop}{
+\newenvironment{prop}[1][]{
   \refstepcounter{theo}
-  \textbf{Resultado~\thetheo}\par}{}
+  \textbf{Resultado~\thetheo\ifstrempty{#1}{.}{:~#1}}\par}{}
 
 % Definicion
 \newcounter{defi}[section]\setcounter{defi}{0}

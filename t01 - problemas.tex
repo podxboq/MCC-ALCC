@@ -1,318 +1,235 @@
 \unirsection{Problemas}
 
 \begin{questions}
-  \question \label{ejer:propiedades_cuerpo} Demostrar las propiedades del cuerpo $\C$ enunciadas en el resultado~\ref{prop:propiedades_cuerpo}.
+  \question \label{ejer:propiedades_cuerpo}
+  Verificar directamente, usando la definición cartesiana de suma y producto, que $\C$ satisface las propiedades del cuerpo conmutativo enunciadas en la proposición~\ref{prop:propiedades_cuerpo}.
+
   \begin{solution}
-    Usando la definición de elemento de $\C$, sean $z=(z_1, z_2)$, $w = (w_1, w_2)$ y $x=(x_1, x_2)$ tres números complejos, con $z_1, z_2, w_1, w_2, x_1, x_2 \in \R$.
-    Todas las propiedades se demuestran usando la misma propiedad en los números reales.
-    \begin{parts}
-      \part \textbf{Asociativa.}
-      \begin{align*}
-        z+(w+x) & = (z_1, z_2) + ((w_1, w_2) + (x_1, x_2))        \\
-                & = (z_1, z_2) + (w_1 + x_1, w_2 + x_2)           \\
-                & = (z_1 + (w_1 + x_1), z_2 + (w_1 + x_2))        \\
-                & = ((z_1 + w_1) + x_1, (z_2 + w_2) + x_2)        \\
-                & = (z_1 + w_1, z_2 + w_2) + (x_1, x_2)           \\
-                & = ((z_1, z_2) + (w_1, w_2)) + (x_1, x_2)        \\
-                & = (z + w) + x\,.                                \\
-        z(wx)   & = (z_1, z_2)((w_1, w_2)(x_1, x_2))              \\
-                & = (z_1, z_2)(w_1x_1 - w_2x_2, w_1x_2 + w_2x_1)  \\
-                & = (z_1(w_1x_1 - w_2x_2) - z_2(w_1x_2 + w_2x_1), \\
-                & z_1(w_1x_2 + w_2x_1) + z_2(w_1x_1 - w_2x_2))    \\
-                & = ((z_1w_1-z_2w_2)x_1 - (z_1w_2+z_2w_1)x_2,     \\
-                & (z_1w_1-z_2w_2)x_2 + (z_1w_2-z_2w_1)x_1)        \\
-                & = (z_1w_1-z_2w_2)(x_1, x_2)                     \\
-                & = ((z_1, z_2)(w_1, w_2))(x_1, x_2)              \\
-                & = (zw)x\,.
-      \end{align*}
-
-      \part \textbf{Conmutativa.}
-      \begin{align*}
-        z+w & = (z_1, z_2) + (w_1, w_2) \\
-            & = (z_1 + w_1, z_2 + w_2)  \\
-            & = (w_1+ z_1, w_2 + z_2)   \\
-            & = (w_1, w_2) + (z_1, z_2) \\
-            & = w + z\,.
-      \end{align*}
-
-      \part \textbf{Distributiva.}
-      \begin{align*}
-        z(w+x) & = (z_1, z_2)((w_1, w_2) + (x_1, x_2))                                             \\
-               & = (z_1, z_2)(w_1 + x_1, w_2 + x_2)                                                \\
-               & = (z_1(w_1 + x_1) - z_2(w_2 + x_2), z_1(w_2 + x_2) + z_2(w_1 + x_1))              \\
-               & = (z_1 w_1 - z_2 w_2, z_1 w_2 + z_2 w_1) + (z_1 x_1 - z_2 x_2, z_1 x_2 + z_2 x_1) \\
-               & = (z_1, z_2)(w_1, w_2) + (z_1, z_2)(x_1, x_2)                                     \\
-               & = zw + zx\,.
-      \end{align*}
-
-      \part \textbf{Neutro para la suma.}
-      \begin{align*}
-        z+0 & = (z_1, z_2) + (0, 0) \\
-            & = (z_1 + 0, z_2 + 0)  \\
-            & = (z_1, z_2)          \\
-            & = z\,.
-      \end{align*}
-      \part \textbf{Neutro para el producto.}
-      \begin{align*}
-        z\cdot 1 & = (z_1, z_2)\cdot (1, 0)                             \\
-                 & = (z_1\cdot 1 - z_2\cdot 0, z_1\cdot 0 + z_2\cdot 1) \\
-                 & = (z_1, z_2)                                         \\
-                 & = z\,.
-      \end{align*}
-      \part \textbf{Opuesto para la suma.}
-      \begin{align*}
-        z+(-z) & = (z_1, z_2) + (-z_1, -z_2) \\
-               & = (z_1 - z_1, z_2 - z_2)    \\
-               & = (0, 0)                    \\
-               & = 0\,.
-      \end{align*}
-      \part \textbf{Inverso para el producto.} Con $z\neq 0$.
-      \begin{align*}
-        z\cdot z^{-1} & = (z_1, z_2)\cdot (\dfrac{z_1}{z_1^2+z_2^2}, \dfrac{-z_2}{z_1^2+z_2^2})                                                                            \\
-                      & = (z_1\cdot \dfrac{z_1}{z_1^2+z_2^2} - z_2\cdot \dfrac{-z_2}{z_1^2+z_2^2}, z_1\cdot \dfrac{-z_2}{z_1^2+z_2^2} + z_2\cdot \dfrac{z_1}{z_1^2+z_2^2}) \\
-                      & = (1, 0)                                                                                                                                           \\
-                      & = 1\,.
-      \end{align*}
-    \end{parts}
-  \end{solution}
-  \newpage
-  \question \label{ejer:propiedades_conjugado} Demostrar las propiedades del conjugado enunciadas en el resultado~\ref{prop:propiedades_conjugado}.
-  \begin{solution}
-    Usando la definición de conjugado, sean $z=z_1 + z_2 i$ y $w = w_1 + w_2 i$ dos números complejos, con $z_1, z_2, w_1, w_2 \in \R$.
-    \begin{parts}
-      \part \textbf{Doble conjugación.}
-      \begin{align*}
-        \conj{\conj{z}} & = \conj{z_1 - z_2 i} \\
-                        & = z_1 + z_2 i        \\
-                        & = z\,.
-      \end{align*}
-      \part \textbf{Parte real.}
-      \begin{align*}
-        \frac{z+\conj{z}}{2} & = \frac{z_1+ z_2 i + z_1- z_2 i}{2} \\
-                             & = \frac{2z_1}{2}                    \\
-                             & = z_1                               \\
-                             & = \Rp(z)\,.
-      \end{align*}
-      \part \textbf{Parte imaginaria.}
-      \begin{align*}
-        \frac{z-\conj{z}}{2i} & = \frac{z_1+ z_2 i - z_1+ z_2 i}{2i} \\
-                              & = \frac{2z_2 i}{2i}                  \\
-                              & = z_2                                \\
-                              & = \Ip(z)\,.
-      \end{align*}
-      \part \textbf{Conjugación de la suma.}
-      \begin{align*}
-        \conj{z+w} & = \conj{z_1 + z_2 i + w_1 + w_2 i}   \\
-                   & = \conj{(z_1 + w_1) + (z_2 + w_2) i} \\
-                   & = (z_1 + w_1) - (z_2 + w_2) i        \\
-                   & = (z_1 - z_2 i) + (w_1 - w_2 i)      \\
-                   & = \conj{z} + \conj{w}\,.
-      \end{align*}
-      \part \textbf{Conjugación del producto.}
-      \begin{align*}
-        \conj{zw} & = \conj{(z_1 + z_2 i)(w_1 + w_2 i)}                   \\
-                  & = \conj{(z_1w_1 - z_2w_2) + (z_1w_2 + z_2w_1) i}      \\
-                  & = (z_1w_1 - z_2w_2) - (z_1w_2 + z_2w_1) i             \\
-                  & = (z_1w_1 - (-z_2)(-w_2)) + (z_1(-w_2) + (-z_2)w_1) i \\
-                  & = \conj{z}\cdot \conj{w}\,.
-      \end{align*}
-      \part \textbf{Conjugación de la inversa.}
-      \begin{align*}
-        \conj{\inv{z}} & = \conj{\frac{z}{|z|}}        \\
-                       & = \conj{\frac{z}{|\conj{z}|}} \\
-                       & = \inv{\conj{z}}\,.
-      \end{align*}
-    \end{parts}
+    Se comprueba cada propiedad con $z=(a,b)$, $w=(c,d)$, $x=(e,f)$:
+    \begin{itemize}
+      \item \likeitem{C1} Asociativa: $(z+w)+x = (a+c+e,b+d+f) = z+(w+x)$, y análogamente para el producto.
+      \item \likeitem{C2} Conmutativa: $z+w=(a+c,b+d)=(c+a,d+b)=w+z$; análogamente el producto.
+      \item \likeitem{C3} Distributiva: se desarrollan ambos miembros y coinciden por distributividad en $\R$.
+      \item \likeitem{C4,C5} Los neutros son $(0,0)$ y $(1,0)$.
+      \item \likeitem{C6} El opuesto de $(a,b)$ es $(-a,-b)$.
+      \item \likeitem{C7} El inverso de $(a,b)\neq(0,0)$ es $\left(\dfrac{a}{a^2+b^2},\dfrac{-b}{a^2+b^2}\right)$, pues su producto por $(a,b)$ da $(1,0)$.
+    \end{itemize}
   \end{solution}
 
-  \question \label{ejer:propiedades_modulo} Demostrar las propiedades del módulo enunciadas en el resultado~\ref{prop:propiedades_modulo}.
+  \question \label{ejer:propiedades_conjugado}
+  Demostrar las propiedades del conjugado enunciadas en la proposición~\ref{prop:propiedades_conjugado}.
+
   \begin{solution}
-    Usando la definición de módulo, sean $z=z_1 + z_2 i$ y $w = w_1 + w_2 i$ dos números complejos, con $z_1, z_2, w_1, w_2 \in \R$.
-    \begin{parts}
-      \part
-      \begin{align*}
-        \abs{z} = 0 & \Leftrightarrow \sqrt{z_1^2 + z_2^2} = 0   \\
-                    & \Leftrightarrow z_1^2 + z_2^2 = 0          \\
-                    & \Leftrightarrow z_1 = 0 \text{ y } z_2 = 0 \\
-                    & \Leftrightarrow z = 0\,.
-      \end{align*}
-      \part
-      \begin{align*}
-        \abs{zw} & = \sqrt{(z_1w_1 - z_2w_2)^2 + (z_1w_2 + z_2w_1)^2}                                         \\
-                 & = \sqrt{(z_1w_1)^2 - 2z_1w_1z_2w_2 + (z_2w_2)^2 + (z_1w_2)^2 + 2z_1w_1z_2w_2 + (z_2w_1)^2} \\
-                 & = \sqrt{z_1^2w_1^2 + z_2^2w_2^2 + z_1^2w_2^2 + z_2^2w_1^2}                                 \\
-                 & = \sqrt{z_1^2(w_1^2 + w_2^2) + z_2^2(w_1^2 + w_2^2)}                                       \\
-                 & = \sqrt{(z_1^2 + z_2^2)(w_1^2 + w_2^2)}                                                    \\
-                 & = \sqrt{z_1^2 + z_2^2}\sqrt{w_1^2 + w_2^2}                                                 \\
-                 & = \abs{z}\abs{w}\,.
-      \end{align*}
-      \part
-      \begin{align*}
-        \abs{z} & = \sqrt{z_1^2 + z_2^2}    \\
-                & = \sqrt{z_1^2 + (-z_2)^2} \\
-                & = \abs{\bar{z}}\,.
-      \end{align*}
-    \end{parts}
+    Sea $z=a+bi$ y $w=c+di$. Verificamos cada propiedad:
+    \begin{itemize}
+      \item $\conj{\conj{z}} = \conj{a-bi} = a+bi = z$.
+      \item $\Rp(z) = a = \dfrac{(a+bi)+(a-bi)}{2} = \dfrac{z+\bar{z}}{2}$.
+      \item $\Ip(z) = b = \dfrac{(a+bi)-(a-bi)}{2i} = \dfrac{z-\bar{z}}{2i}$.
+      \item $\conj{z+w} = \conj{(a+c)+(b+d)i} = (a+c)-(b+d)i = \bar{z}+\bar{w}$.
+      \item $\conj{zw} = \conj{(ac-bd)+(ad+bc)i} = (ac-bd)-(ad+bc)i = \bar{z}\cdot\bar{w}$.
+      \item $\conj{z^{-1}} = \conj{\dfrac{\bar{z}}{|z|^2}} = \dfrac{z}{|z|^2} = (\bar{z})^{-1}$.
+    \end{itemize}
+  \end{solution}
+
+  \question \label{ejer:propiedades_modulo}
+  Demostrar las propiedades del módulo enunciadas en la proposición~\ref{prop:propiedades_modulo} y deducir que para cualquier par de números complejos $z,w\in\C$ se cumple la desigualdad
+  \[
+    \big|\,|z| - |w|\,\big| \leq |z - w|\,.
+  \]
+
+  \begin{solution}
+    Sea $z=a+bi$.
+    \begin{itemize}
+      \item $|z|=0 \Leftrightarrow a^2+b^2=0 \Leftrightarrow a=b=0 \Leftrightarrow z=0$.
+      \item $|zw|^2 = (zw)\overline{(zw)} = z\bar{z}\cdot w\bar{w} = |z|^2|w|^2$, por tanto $|zw|=|z||w|$.
+      \item $|\bar{z}|=\sqrt{a^2+(-b)^2}=\sqrt{a^2+b^2}=|z|$.
+    \end{itemize}
+    Para la desigualdad, aplicamos la triangular al par $z=(z-w)+w$:
+    \[
+      |z| = |(z-w)+w| \leq |z-w|+|w| \Rightarrow |z|-|w| \leq |z-w|\,.
+    \]
+    Por simetría, $|w|-|z|\leq|w-z|=|z-w|$. Por tanto $\big|\,|z|-|w|\,\big|\leq|z-w|$.
   \end{solution}
 
   \question Calcular las siguientes operaciones, expresando el resultado en forma binomial:
   \begin{parts}
     \part $(3 + 2i) + (1 - 4i)$.
     \part $(2 + i)(3 - 2i)$.
-    \part $\frac{1 + 2i}{2 - i}$.
+    \part $\dfrac{1 + 2i}{2 - i}$.
     \part $|3 + 4i|$.
     \part $\conj{(2 - 3i)(1 + i)}$.
   \end{parts}
+
   \begin{solution}
     \begin{parts}
       \part $(3 + 2i) + (1 - 4i) = 4 - 2i$.
-      \part $(2 + i)(3 - 2i) = 6 - 4i + 3i - 2i^2 = 6 - i + 2 = 8 - i$.
-      \part $\frac{1 + 2i}{2 - i} = \frac{(1 + 2i)(2 + i)}{(2 - i)(2 + i)} = \frac{2 + i + 4i + 2i^2}{4 + 2i - 2i - i^2} = \frac{2 + 5i - 2}{4 + 1} = \frac{5i}{5} = i$.
-      \part $|3 + 4i| = \sqrt{3^2 + 4^2} = \sqrt{9 + 16} = \sqrt{25} = 5$.
-      \part $\conj{(2 - 3i)(1 + i)} = \conj{2 + 2i - 3i - 3i^2} = \conj{2 - i + 3} = \conj{5 - i} = 5 + i$.
+      \part $(2 + i)(3 - 2i) = 6 - 4i + 3i - 2i^2 = 8 - i$.
+      \part $\dfrac{1 + 2i}{2 - i} = \dfrac{(1 + 2i)(2 + i)}{(2 - i)(2 + i)} = \dfrac{2 + i + 4i + 2i^2}{5} = \dfrac{5i}{5} = i$.
+      \part $|3 + 4i| = \sqrt{9 + 16} = 5$.
+      \part $\conj{(2 - 3i)(1 + i)} = \conj{5 - i} = 5 + i$.
     \end{parts}
   \end{solution}
 
-  \question Demostrar que para cualquier par de números complejos $z,w\in\C$ se cumple que
-  \[
-    \abs{z}-\abs{w}\leq \abs{z-w}\,.
-  \]
-  \begin{solution}
-    Aplicamos la desigualdad triangular
-    \begin{align*}
-      \abs{z} = \abs{(z - w) + w} & \leq \abs{z - w} + \abs{w} \\
-      \abs{z} - \abs{w}           & \leq \abs{z - w}\,.
-    \end{align*}
-  \end{solution}
+  % -----------------------------------------------------------
+  % Bloque 2: Forma polar y exponencial
+  % -----------------------------------------------------------
 
-  \question Convertir a forma polar:
+  \question Convertir a forma polar y exponencial los siguientes números complejos:
   \begin{parts}
-    \part $z_1 = 1 + i$
-    \part $z_2 = -2 + 2i\sqrt{3}$
-    \part $z_3 = -4i$
+    \part $z_1 = 1 + i$.
+    \part $z_2 = -2 + 2i\sqrt{3}$.
+    \part $z_3 = -4i$.
   \end{parts}
+
   \begin{solution}
     \begin{parts}
-      \part $z_1 = 1 + i = \sqrt{2}e^{i\pi/4}$.
-      \part $z_2 = -2 + 2i\sqrt{3} = 4e^{i2\pi/3}$.
-      \part $z_3 = -4i = 4e^{i3\pi/2}$.
+      \part $|z_1|=\sqrt{2}$, $\Arg z_1 = \pi/4$. Forma polar: $\sqrt{2}(\cos\frac{\pi}{4}+i\sin\frac{\pi}{4})$. Forma exponencial: $\sqrt{2}\,e^{i\pi/4}$.
+      \part $|z_2|=4$, $\Arg z_2 = 2\pi/3$. Forma polar: $4(\cos\frac{2\pi}{3}+i\sin\frac{2\pi}{3})$. Forma exponencial: $4e^{i2\pi/3}$.
+      \part $|z_3|=4$, $\Arg z_3 = 3\pi/2$. Forma polar: $4(\cos\frac{3\pi}{2}+i\sin\frac{3\pi}{2})$. Forma exponencial: $4e^{i3\pi/2}$.
     \end{parts}
-  \end{solution}
-
-  \question Demostrar que para cualquier $z \in \C$ se cumple que $|z|^2 = z \cdot \conj{z}$.
-  \begin{solution}
-    Sea $z = a + bi$ un número complejo con $a,b \in \R$, entonces
-    \begin{align*}
-      |z|^2            & = a^2 + b^2                    \,.                               \\
-      z \cdot \conj{z} & = (a + bi)(a - bi) = a^2 - (bi)^2 = a^2 - b^2i^2 = a^2 + b^2 \,. \\
-    \end{align*}
   \end{solution}
 
   \question Expresar en forma exponencial y realizar las operaciones:
   \begin{parts}
-    \part $(1 + i)^8$
-    \part $\dfrac{2e^{i\pi/3}}{1 + i\sqrt{3}}$
-    \part $\sqrt[3]{-8i}$
+    \part $(1 + i)^8$.
+    \part $\dfrac{2e^{i\pi/3}}{1 + i\sqrt{3}}$.
+    \part $\sqrt[3]{-8i}$ (todas las raíces).
   \end{parts}
+
   \begin{solution}
     \begin{parts}
-      \part $(1 + i)^8 = (\sqrt{2}e^{i\pi/4})^8 = 16e^{i2\pi} = 16$.
-      \part $\dfrac{2e^{i\pi/3}}{1 + i\sqrt{3}} = \dfrac{2e^{i\pi/3}}{2e^{i\pi/3}} = 1$.
-      \part $\sqrt[3]{-8i} = \sqrt[3]{8e^{i3\pi/2}} = 2e^{i\pi/2}, 2e^{i7\pi/6}, 2e^{i11\pi/6}= 2i, -\sqrt{3}-i, \sqrt{3}-i$.
+      \part $(1+i)^8 = (\sqrt{2}\,e^{i\pi/4})^8 = 16\,e^{i2\pi} = 16$.
+      \part $1+i\sqrt{3} = 2e^{i\pi/3}$, por tanto $\dfrac{2e^{i\pi/3}}{2e^{i\pi/3}} = 1$.
+      \part $-8i = 8e^{i3\pi/2}$.  Las tres raíces cúbicas son:
+      \begin{align*}
+        z_0 & = 2e^{i\pi/2} = 2i\,,                                                   \\
+        z_1 & = 2e^{i7\pi/6} = 2(-\tfrac{\sqrt{3}}{2}-\tfrac{1}{2}i) = -\sqrt{3}-i\,, \\
+        z_2 & = 2e^{i11\pi/6} = 2(\tfrac{\sqrt{3}}{2}-\tfrac{1}{2}i) = \sqrt{3}-i\,.
+      \end{align*}
     \end{parts}
   \end{solution}
 
-  \question Encontrar todos los números complejos $z$ que satisfacen:
-  \begin{parts}
-    \part $|z - i| = |z + 1|$
-    \part $|z|^2 + z + \conj{z} = 3$
-    \part $z^4 = -16$
-  \end{parts}
+  \question Aplicar la fórmula de De Moivre para calcular $(\sqrt{3}+i)^{10}$ y $\left(\dfrac{1-i}{\sqrt{2}}\right)^{100}$. Expresar los resultados en forma binomial.
+
   \begin{solution}
-    Sea $z = a + bi$ un número complejo con $a,b \in \R$, entonces
-    \begin{parts}
-      \part
-      \begin{align*}
-        |z - i|                & = |z + 1|                \\
-        \sqrt{a^2 + (b - 1)^2} & = \sqrt{(a + 1)^2 + b^2} \\
-        a^2 + (b - 1)^2        & = (a + 1)^2 + b^2        \\
-        a^2 + b^2 - 2b + 1     & = a^2 + 2a + 1 + b^2     \\
-        -2b                    & = 2a                     \\
-        -b                     & = a
-      \end{align*}
-      La solución es la recta $y = -x$.
-
-      \part
-      \begin{align*}
-        |z|^2 + z + \conj{z}        & = 3 \\
-        a^2 + b^2 + a + bi + a - bi & = 3 \\
-        a^2 + b^2 + 2a              & = 3 \\
-        a^2 + 2a + 1 + b^2          & = 4 \\
-        (a + 1)^2 + b^2             & = 4
-      \end{align*}
-      La solución es la circunferencia de centro $-1$ y radio $2$.
-
-      \part
-      \begin{align*}
-        z^4 & = -16                                                   \\
-        z^4 & = 16e^{i\pi}                                            \\
-        z   & = \sqrt[4]{16e^{i\pi}}                                  \\
-        z   & = 2e^{i\pi/4}, 2e^{i3\pi/4}, 2e^{i5\pi/4}, 2e^{i7\pi/4}
-      \end{align*}
-      La solución son los vértices de un cuadrado centrado en el origen y con diagonales de longitud 4.
-    \end{parts}
-  \end{solution}
-
-  \question Un número complejo $z$ satisface $z^3 = 2 + 2\sqrt{3}i$:
-  \begin{parts}
-    \part Expresar $z$ en forma exponencial
-    \part Encontrar las tres raíces cúbicas
-    \part Representar las raíces en el plano complejo
-    \part ¿Cuál es la interpretación geométrica de estas raíces?
-  \end{parts}
-  \begin{solution}
-    \begin{parts}
-      \part $2 + 2\sqrt{3}i = 4e^{i\pi/3}$.
-      \part $z = \sqrt[3]{4}e^{i\pi/9}, \sqrt[3]{4}e^{i7\pi/9}, \sqrt[3]{4}e^{i13\pi/9}$.
-      \part Dibujar en Geogebra u otro software.
-      \part Las raíces forman un triángulo equilátero centrado en el origen.
-    \end{parts}
-  \end{solution}
-
-  \question Calcular todas las raíces cuartas de $16i$.
-  \begin{solution}
-    $16i = 16e^{i\pi/2}\Rightarrow \sqrt[4]{16e^{i\pi/2}} = 2e^{i\pi/8}, 2e^{i5\pi/8}, 2e^{i9\pi/8}, 2e^{i13\pi/8}$.
-  \end{solution}
-
-  \question Demostrar que para cualquier número complejo $z\neq 1$ se tiene que
-  \[
-    1+z+\dots+z^n = \frac{z^{n+1}-1}{z-1}\,.
-  \]
-  \begin{solution}
-    $(1+z+\dots+z^n)(z-1) =1(z-1)+z(z-1)+\dots+z^n(z-1) = z-1+z^2-z+\dots+z^{n+1}-z^n = z^{n+1}-1$.
-  \end{solution}
-
-  \question Calcular el valor en forma binomial de $i^i$.
-  \begin{solution}
-    $i^i = (e^{i\pi/2})^i = e^{i^2\pi/2} = e^{-\pi/2}$.
-  \end{solution}
-
-  \question Sea la función compleja $f(z) = z^2 + 2z + 2$.
-  \begin{parts}
-    \part Calcular la parte real y la parte imaginaria de $f(z)$ como $u(z) + i v(z)$ donde $u,v$ son funciones reales de variable compleja.
-    \part Si $z = x + iy$ donde $x,y\in\R$. Demostrar que
+    Para $z=\sqrt{3}+i = 2e^{i\pi/6}$:
     \[
-      \frac{\partial u}{\partial x} = \frac{\partial v}{\partial y}\quad\text{y}\quad \frac{\partial u}{\partial y} = -\frac{\partial v}{\partial x}\,.
+      z^{10} = 2^{10}e^{i10\pi/6} = 1024\,e^{i5\pi/3} = 1024\!\left(\frac{1}{2} - \frac{\sqrt{3}}{2}i\right) = 512 - 512\sqrt{3}\,i\,.
     \]
+    Para $w=\dfrac{1-i}{\sqrt{2}} = e^{-i\pi/4}$:
+    \[
+      w^{100} = e^{-i100\pi/4} = e^{-i25\pi} = e^{-i\pi} = -1\,.
+    \]
+  \end{solution}
+
+  % -----------------------------------------------------------
+  % Bloque 3: Funciones complejas
+  % -----------------------------------------------------------
+
+  \question Demostrar que para cualquier $z \in \C$ se cumple $|z|^2 = z \cdot \conj{z}$, y usarlo para deducir la fórmula explícita del inverso:
+  \[
+    z^{-1} = \frac{\bar{z}}{|z|^2}\,.
+  \]
+
+  \begin{solution}
+    Sea $z = a + bi$:
+    \[
+      z\bar{z} = (a+bi)(a-bi) = a^2 - (bi)^2 = a^2 + b^2 = |z|^2\,.
+    \]
+    Por tanto, si $z\neq 0$,
+    \[
+      z\cdot\frac{\bar{z}}{|z|^2} = \frac{z\bar{z}}{|z|^2} = \frac{|z|^2}{|z|^2} = 1\,,
+    \]
+    lo que demuestra que $z^{-1} = \dfrac{\bar{z}}{|z|^2}$.
+  \end{solution}
+
+  \question Calcular $\cos(i)$, $\sin(i)$, $\cosh(1)$ y $\sinh(1)$ usando las definiciones con la función exponencial. ¿Qué relación existe entre $\cos(i)$ y $\cosh(1)$?
+
+  \begin{solution}
+    \begin{align*}
+      \cos(i)  & = \frac{e^{i\cdot i}+e^{-i\cdot i}}{2} = \frac{e^{-1}+e}{2} = \cosh(1) = \frac{1+e^2}{2e}\approx 1.543\,.             \\
+      \sin(i)  & = \frac{e^{i\cdot i}-e^{-i\cdot i}}{2i} = \frac{e^{-1}-e}{2i} = i\cdot\frac{e-e^{-1}}{2} = i\sinh(1)\approx 1.175i\,. \\
+      \cosh(1) & = \frac{e+e^{-1}}{2}\approx 1.543\,.                                                                                  \\
+      \sinh(1) & = \frac{e-e^{-1}}{2}\approx 1.175\,.
+    \end{align*}
+    Se verifica que $\cos(i) = \cosh(1)$ y $\sin(i) = i\sinh(1)$. En general, $\cos(iz) = \cosh(z)$ y $\sin(iz) = i\sinh(z)$.
+  \end{solution}
+
+  \question Dadas las amplitudes cuánticas $\alpha_1 = \dfrac{1+i}{2}$ y $\alpha_2 = \dfrac{1-i}{2}$:
+  \begin{parts}
+    \part Verificar que $|\alpha_1|^2 + |\alpha_2|^2 = 1$.
+    \part Calcular la amplitud de interferencia $\alpha_1 + \alpha_2$ y la probabilidad $|\alpha_1 + \alpha_2|^2$.
+    \part Interpretar el resultado: ¿es la interferencia constructiva o destructiva?
   \end{parts}
+
   \begin{solution}
     \begin{parts}
-      \part $f(z) = z^2 + 2z + 2 = (x + iy)^2 + 2(x + iy) + 2 = x^2 - y^2 + 2xyi + 2x + 2iy + 2 = x^2 - y^2 + 2x + 2 + i(2xy + 2y)$.
-      \part
-      \begin{align*}
-        \frac{\partial u}{\partial x} & = 2x + 2 = \frac{\partial v}{\partial y}  \\
-        \frac{\partial u}{\partial y} & = -2y = -\frac{\partial v}{\partial x}\,.
-      \end{align*}
+      \part $|\alpha_1|^2 = \dfrac{|1+i|^2}{4} = \dfrac{2}{4} = \dfrac{1}{2}$. Análogamente $|\alpha_2|^2 = \dfrac{1}{2}$.  Por tanto $|\alpha_1|^2+|\alpha_2|^2 = 1$.
+      \part $\alpha_1+\alpha_2 = \dfrac{1+i+1-i}{2} = 1$, y $|\alpha_1+\alpha_2|^2 = 1$.
+      \part La interferencia es completamente constructiva: la probabilidad combinada $1 > |\alpha_1|^2+|\alpha_2|^2 = 1$. En realidad coincide con $1$; lo que ocurre es que las fases $+i$ y $-i$ se cancelan y las partes reales se suman coherentemente.
     \end{parts}
   \end{solution}
+
+  \question Para las amplitudes cuánticas $\alpha = ae^{i\phi}$ y $\beta = be^{i\psi}$ con $a,b\in\R^+$:
+  \begin{parts}
+    \part Demostrar que $|\alpha+\beta|^2 = a^2 + b^2 + 2ab\cos(\psi-\phi)$.
+    \part ¿Para qué diferencia de fases $\psi-\phi$ la interferencia es máxima?
+    \part ¿Para qué diferencia de fases $\psi-\phi$ la interferencia es mínima?
+    \part Si $a = b = \dfrac{1}{\sqrt{2}}$, calcular $|\alpha+\beta|^2$ para $\psi-\phi = \dfrac{\pi}{3}$.
+  \end{parts}
+
+  \begin{solution}
+    \begin{parts}
+      \part
+      \begin{align*}
+        |\alpha+\beta|^2 & = (\alpha+\beta)\overline{(\alpha+\beta)}                    \\
+                         & = |\alpha|^2 + |\beta|^2 + \alpha\bar\beta + \bar\alpha\beta \\
+                         & = a^2 + b^2 + 2\Rp(\bar\alpha\beta)                          \\
+                         & = a^2 + b^2 + 2\Rp(ae^{-i\phi}\cdot be^{i\psi})              \\
+                         & = a^2 + b^2 + 2ab\cos(\psi-\phi)\,.
+      \end{align*}
+      \part El coseno es máximo cuando $\psi-\phi = 0$: $|\alpha+\beta|^2 = (a+b)^2$.
+      \part El coseno es mínimo cuando $\psi-\phi = \pi$: $|\alpha+\beta|^2 = (a-b)^2$.
+      \part $|\alpha+\beta|^2 = \dfrac{1}{2}+\dfrac{1}{2}+2\cdot\dfrac{1}{\sqrt{2}}\cdot\dfrac{1}{\sqrt{2}}\cos\dfrac{\pi}{3} = 1 + 1\cdot\dfrac{1}{2} = \dfrac{3}{2}$.
+
+      Obsérvese que $\dfrac{3}{2} > 1 = |\alpha|^2+|\beta|^2$, lo que confirma interferencia constructiva.
+    \end{parts}
+  \end{solution}
+
+  \question Un sistema cuántico tiene tres posibles resultados con amplitudes
+  \[
+    \alpha_1 = \frac{1}{\sqrt{3}}\,,\quad
+    \alpha_2 = \frac{1}{\sqrt{3}}e^{i3\pi/4}\,,\quad
+    \alpha_3 = \frac{1}{\sqrt{3}}e^{i3\pi/2}\,.
+  \]
+  \begin{parts}
+    \part Verificar la condición de normalización.
+    \part Escribir las tres amplitudes en forma binomial.
+    \part Calcular la amplitud total $\alpha_1+\alpha_2+\alpha_3$ en forma binomial y la probabilidad $|\alpha_1+\alpha_2+\alpha_3|^2$.
+    \part ¿Hay interferencia constructiva, destructiva o ninguna de las dos? Justificar.
+  \end{parts}
+
+  \begin{solution}
+    \begin{parts}
+      \part $|\alpha_1|^2 = |\alpha_2|^2 = |\alpha_3|^2 = \dfrac{1}{3}$, por tanto la suma es $1$.
+      \part
+      \begin{align*}
+        \alpha_1 & = \frac{1}{\sqrt{3}}\,,                                                                                                         \\
+        \alpha_2 & = \frac{1}{\sqrt{3}}\!\left(-\frac{\sqrt{2}}{2}+\frac{\sqrt{2}}{2}i\right) = \frac{1}{\sqrt{3}}\cdot\frac{\sqrt{2}}{2}(-1+i)\,, \\
+        \alpha_3 & = \frac{1}{\sqrt{3}}(0-i) = -\frac{i}{\sqrt{3}}\,.
+      \end{align*}
+      \part
+      \begin{align*}
+        \alpha_1+\alpha_2+\alpha_3
+         & = \frac{1}{\sqrt{3}}\!\left(1 - \frac{\sqrt{2}}{2} + \frac{\sqrt{2}}{2}i - i\right)  \\
+         & = \frac{1}{\sqrt{3}}\!\left(\frac{2-\sqrt{2}}{2} + \frac{\sqrt{2}-2}{2}\,i\right)\,.
+      \end{align*}
+      La magnitud al cuadrado es
+      \[
+        |\alpha_1+\alpha_2+\alpha_3|^2 = \frac{1}{3}\cdot\frac{(2-\sqrt{2})^2+(2-\sqrt{2})^2}{4} = \frac{(2-\sqrt{2})^2}{6}\approx 0.097\,.
+      \]
+      \part Como $0.097 < 1 = |\alpha_1|^2+|\alpha_2|^2+|\alpha_3|^2$, hay interferencia destructiva parcial. Las fases distintas de las tres amplitudes hacen que se cancelen parcialmente al sumarlas.
+    \end{parts}
+  \end{solution}
+
 \end{questions}

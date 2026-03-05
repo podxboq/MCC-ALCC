@@ -1,5 +1,9 @@
 \begin{questions}
 
+  % -----------------------------------------------------------
+  % Preguntas 1-8: contenido existente (t01 - test.tex original)
+  % -----------------------------------------------------------
+
   \question El conjugado de $z = 3 - 2i$ es:
 
   \begin{choices}
@@ -33,7 +37,7 @@
     \choice $e^{i\theta} = i\cos\theta + \sin\theta$
   \end{choices}
   \begin{solution}
-    La fórmula de Euler es $e^{i\theta} = \cos\theta + i\sin\theta$, que relaciona la función exponencial compleja con las funciones trigonométricas.
+    La fórmula de Euler es $e^{i\theta} = \cos\theta + i\sin\theta$.
   \end{solution}
 
   \question El producto $(1 + i)(2 - i)$ es igual a:
@@ -45,19 +49,19 @@
     \choice $3 - i$
   \end{choices}
   \begin{solution}
-    Aplicando la propiedad distributiva: $(1 + i)(2 - i) = 2 - i + 2i - i^2 = 2 + i - (-1) = 3 + i$.
+    $(1 + i)(2 - i) = 2 - i + 2i - i^2 = 2 + i + 1 = 3 + i$.
   \end{solution}
 
   \question Las raíces cuartas de la unidad son:
 
   \begin{choices}
     \choice $1, -1, i, -i, e^{i\pi/4}$
-    \CorrectChoice $1, -1, i, -i$
+    \CorrectChoice $1, i, -1, -i$
     \choice $1, i, -i, e^{i\pi/2}$
     \choice $1, -1, 2i, -2i$
   \end{choices}
   \begin{solution}
-    Las raíces $n$-ésimas de la unidad son $e^{2\pi ik/n}$ para $k = 0, 1, \ldots, n-1$. Para $n = 4$: $e^{0} = 1$, $e^{i\pi/2} = i$, $e^{i\pi} = -1$, $e^{3i\pi/2} = -i$.
+    Las raíces $n$-ésimas de la unidad son $e^{2\pi ik/n}$ para $k = 0, 1, \ldots, n-1$. Para $n = 4$: $1,\, i,\, -1,\, -i$.
   \end{solution}
 
   \question El número complejo $z = 1 + i$ en forma exponencial es:
@@ -69,7 +73,7 @@
     \choice $e^{i\pi/2}$
   \end{choices}
   \begin{solution}
-    El módulo es $|z| = \sqrt{1^2 + 1^2} = \sqrt{2}$. El argumento es $\theta = \arctan(1/1) = \pi/4$. Por tanto, $z = \sqrt{2}e^{i\pi/4}$.
+    Módulo: $|z| = \sqrt{2}$. Argumento: $\Arg z = \arctan(1/1) = \pi/4$. Por tanto $z = \sqrt{2}e^{i\pi/4}$.
   \end{solution}
 
   \question Si $z = 2e^{i\pi/3}$, entonces $z^3$ es igual a:
@@ -81,42 +85,53 @@
     \choice $2e^{i\pi}$
   \end{choices}
   \begin{solution}
-    Por la fórmula de De Moivre: $z^3 = (2e^{i\pi/3})^3 = 2^3 e^{i3\pi/3} = 8e^{i\pi} = -8$.
+    Por De Moivre: $z^3 = 2^3 e^{i3\pi/3} = 8e^{i\pi} = -8$.
   \end{solution}
 
-  \question ¿Cual es el valor de $\cos(i)$?
+  \question ¿Cuál es el valor de $\cos(i)$?
 
   \begin{choices}
     \choice $-1$
-    \CorrectChoice $\frac{1+e^2}{2e}$
+    \CorrectChoice $\dfrac{1+e^2}{2e}$
     \choice $i\cos(e)$
     \choice $1+\sin(e)$
   \end{choices}
   \begin{solution}
-    Por la fórmula de Euler: $\cos(i) = \frac{e^{i^2} + e^{-i^2}}{2} = \frac{e^{-1} + e^{1}}{2} = \frac{1/e + e}{2} = \frac{1+e^2}{2e}$.
+    $\cos(i) = \dfrac{e^{i^2} + e^{-i^2}}{2} = \dfrac{e^{-1} + e^{1}}{2} = \dfrac{1+e^2}{2e}$.
   \end{solution}
 
-  \question Si $f(a+bi) = ia$ es una función compleja con valores complejos, entonces $\bar{f}$:
+  % -----------------------------------------------------------
+  % Preguntas 9-10: amplitudes cuánticas
+  % !! NUEVO — REVISAR
+  % Adaptadas de t06 - test.tex para el nuevo enfoque del tema 1.
+  % -----------------------------------------------------------
+
+  \question Una amplitud cuántica $\alpha = \dfrac{3}{5} + \dfrac{4}{5}i$ tiene probabilidad asociada:
 
   \begin{choices}
-    \choice $\bar{f}$ es una función real de variable compleja.
-    \CorrectChoice $\bar{f}$ es una función compleja de variable compleja.
-    \choice $\bar{f}$ es una función real de variable real.
-    \choice $\bar{f}$ es una función compleja de variable real.
+    \choice $\dfrac{7}{5}$
+    \CorrectChoice $1$
+    \choice $\dfrac{9}{25}$
+    \choice $\dfrac{16}{25}$
   \end{choices}
   \begin{solution}
-    Por definición de conjugado de una función, $\bar{f}(a+bi) = \overline{f(a+bi)} = \overline{ia} = -ia$. Por lo tanto, $\bar{f}$ es una función compleja de variable compleja.
+    La probabilidad es $|\alpha|^2 = \left(\dfrac{3}{5}\right)^2 + \left(\dfrac{4}{5}\right)^2 = \dfrac{9}{25} + \dfrac{16}{25} = \dfrac{25}{25} = 1$.
+
+    Obsérvese además que $|\alpha|=1$, por lo que $\alpha$ está sobre la circunferencia unidad.
   \end{solution}
 
-  \question Sea $f$ un función compleja de variable compleja, simétrica respecto del eje real, y sea $g$ la función definida por $g(z) = if(z)$. Entonces $g$ cumple que:
+  \question Para que dos amplitudes $\alpha_1 = \dfrac{1}{\sqrt{2}}e^{i\theta_1}$ y $\alpha_2 = \dfrac{1}{\sqrt{2}}e^{i\theta_2}$ interfieran de forma completamente destructiva, la diferencia de fases $\theta_2-\theta_1$ debe ser:
 
   \begin{choices}
-    \choice Es antisimétrica respecto del eje real.
-    \choice Es antisimétrica respecto del eje imaginario.
-    \CorrectChoice Es simétrica respecto del eje real.
-    \choice Es simétrica respecto del eje imaginario.
+    \choice $0$
+    \choice $\dfrac{\pi}{2}$
+    \CorrectChoice $\pi$
+    \choice $\dfrac{\pi}{4}$
   \end{choices}
   \begin{solution}
-    Por definición de conjugado, $g(\bar{z}) = if(\bar{z}) = if(z)=g(z)$. Por lo tanto, $g$ es simétrica respecto del eje real.
+    Para interferencia destructiva total necesitamos $\alpha_1 + \alpha_2 = 0$, es decir, $\alpha_2 = -\alpha_1$. Esto ocurre cuando $e^{i\theta_2} = -e^{i\theta_1} = e^{i(\theta_1+\pi)}$, es decir, $\theta_2 - \theta_1 = \pi$.
+
+    Se puede verificar: $\alpha_1+\alpha_2 = \dfrac{1}{\sqrt{2}}e^{i\theta_1}(1+e^{i\pi}) = \dfrac{1}{\sqrt{2}}e^{i\theta_1}\cdot 0 = 0$.
   \end{solution}
+
 \end{questions}
