@@ -1,25 +1,34 @@
 \portada
 
 \begin{esquemaExplorador}
-  \temaEsquema{Vectores complejos}{
-    \conceptoEsquema{Definición y representación}{}
-    \conceptoEsquema{Operaciones vectoriales}{}
-    \conceptoEsquema{Producto escalar complejo}{}
+  \temaEsquema{Espacio vectorial complejo}{
+    \conceptoEsquema{Axiomas del espacio vectorial}{}
+    \conceptoEsquema{Ejemplos fundamentales}{$\C^n$, $M_{m\times n}(\C)$, $\C[x]$}
+    \conceptoEsquema{Subespacio vectorial}{}
+    \conceptoEsquema{Caracterización}{$\alpha u + \beta v \in W$}
   }
-  \temaEsquema{Estructura algebraica}{
-    \conceptoEsquema{Axiomas de espacio vectorial}{}
-    \conceptoEsquema{Subespacios vectoriales}{}
-    \conceptoEsquema{Propiedades fundamentales}{}
-  }
-  \temaEsquema{Dependencia e independencia}{
-    \conceptoEsquema{Combinaciones lineales}{}
+  \temaEsquema{Combinaciones lineales}{
+    \conceptoEsquema{Combinación lineal}{}
+    \conceptoEsquema{Subespacio generado}{$\gen{v_1,\dots,v_k}$}
     \conceptoEsquema{Independencia lineal}{}
-    \conceptoEsquema{Sistemas generadores}{}
+    \conceptoEsquema{Dependencia lineal}{}
   }
   \temaEsquema{Bases y dimensión}{
-    \conceptoEsquema{Concepto de base}{}
-    \conceptoEsquema{Base canónica}{}
-    \conceptoEsquema{Dimensión finita}{}
+    \conceptoEsquema{Base de un espacio vectorial}{}
+    \conceptoEsquema{Coordenadas de un vector}{}
+    \conceptoEsquema{Dimensión}{$\dim V$}
+    \conceptoEsquema{Cambio de coordenadas}{$M_{\mathcal{B}}^{\mathcal{B}'}$}
+  }
+  \temaEsquema{Subespacios y operaciones}{
+    \conceptoEsquema{Intersección}{$U\cap W$}
+    \conceptoEsquema{Suma}{$U + W$}
+    \conceptoEsquema{Suma directa}{$U\oplus W$}
+    \conceptoEsquema{Dimensión suma}{$\dim U + \dim W - \dim(U\cap W)$}
+  }
+  \temaEsquema{El cúbit y su espacio de estados}{
+    \conceptoEsquema{Cúbit (sistema físico) y ket (vector)}{}
+    \conceptoEsquema{Base computacional}{$\{e_0, e_1\}$}
+    \conceptoEsquema{Superposición}{$\alpha e_0 + \beta e_1$}
   }
 \end{esquemaExplorador}
 
@@ -27,146 +36,66 @@
 
 \subsection{Introducción y objetivos}
 
-Un \textbf{espacio vectorial} es una estructura algebraica creada a partir de un conjunto no vacío, una operación interna llamada suma (definida para los elementos del conjunto) y una operación externa llamada producto por un escalar (definida entre dicho conjunto y otro conjunto con estructura de cuerpo) que satisface ocho propiedades fundamentales.
+\begin{info}
+  \textbf{Motivación cuántica.}
+  El primer postulado de la mecánica cuántica establece que el estado de un sistema cuántico aislado es un vector de norma unitaria en un espacio vectorial complejo. Un cúbit —la unidad básica de información cuántica— es un vector de $\C^2$ con norma $1$. Comprender la estructura algebraica de los espacios vectoriales complejos es, por tanto, comprender el lenguaje en el que se escriben los estados cuánticos.
+\end{info}
 
-Los espacios vectoriales se concibieron como una herramienta de geometría afín gracias a la introducción de coordenadas en el plano bidimensional y el espacio tridimensional.
-Desde entonces, se ha visto que hay infinidad de espacios vectoriales además de \(\mathbb{R}^{n}\), como por ejemplo el espacio vectorial de las matrices o de los polinomios.
+Un \textbf{espacio vectorial} es una estructura algebraica formada por un conjunto no vacío dotado de dos operaciones —suma interna y producto por escalares de un cuerpo— que satisfacen ocho propiedades fundamentales. Los espacios vectoriales nacieron como herramienta para la geometría, pero su ámbito de aplicación es vastísimo: el espacio $\C^n$, los polinomios complejos o el conjunto de matrices son ejemplos igualmente válidos.
 
-En este tema dejaremos los números reales de lado y usaremos los números complejos como cuerpo del espacio vectorial, presentaremos las principales definiciones y resultados relacionados con los espacios vectoriales, usando multitud de ejemplos para ofrecer una mejor comprensión de los conceptos abordados.
+En este tema trabajaremos exclusivamente con espacios vectoriales sobre $\C$ (los escalares son números complejos), y estudiaremos la estructura que los hace útiles para la computación cuántica: subespacios, independencia lineal, bases, dimensión y cambio de coordenadas.
 
-Más concretamente, los objetivos que trataremos de alcanzar en este tema
-serán los siguientes:
+Los objetivos del tema son:
 
 \begin{itemize}
-  \item Comprobar si cierto conjunto dotado de dos operaciones es un espacio vectorial.
-  \item Identificar cuando un subconjuto de un espacio vectoria, hereda también la estructura de espacio vectorial.
-  \item Razonar si una colección de vectores es linealmente independiente y si conforma o no un sistema generador o una base.
-  \item Hallar el mínimo número de vectores que se necesitan para formar base de un subespacio vectorial y usarlo para obtener la dimensión del espacio.
-  \item Saber cómo expresar vectores con bases diferentes y el procedimiento para relacionar dichas representaciones.
-  \item Calcular la intersección y suma de subespacios.
+  \item Verificar si un conjunto con dos operaciones es un espacio vectorial complejo.
+  \item Identificar subespacios vectoriales mediante la caracterización por combinaciones lineales.
+  \item Determinar si un conjunto de vectores es linealmente independiente y si constituye una base.
+  \item Calcular coordenadas respecto de distintas bases y construir matrices de cambio de coordenadas.
+  \item Calcular la dimensión de subespacios definidos por ecuaciones.
+  \item Identificar la base computacional de un cúbit como base de $\C^2$.
 \end{itemize}
 
-Esta base teórica será fundamental para comprender en los próximos temas la manipulación de estados cuánticos como vectores.
+\subsection{Espacio vectorial complejo}
 
-\subsection{Espacio vectorial}
-
-\begin{defi}
-  Sea $\K$ un conjunto no vacio junto con una operación interna ($\circ$).
-  Diremos que $(\K, \circ)$ es un \textbf{grupo} si verifica:
+\begin{defi}[Espacio vectorial sobre $\C$]
+  \label{def:espacio-vectorial}
+  Un \textbf{$\C$-espacio vectorial} es un conjunto no vacío $V$ dotado de una \textbf{suma} $V\times V\to V$ y un \textbf{producto por escalares} $\C\times V\to V$ que satisfacen:
   \begin{enumerate}
-    \item[\likeitem{G1}] La propiedad \textbf{asociativa}
-          \[
-            \forall a,b,c\in\K\Rightarrow a\circ(b\circ c) = (a\circ b)\circ c\,.
-          \]
-    \item[\likeitem{G2}] La propiedad \textbf{conmutativa}
-          \[
-            \forall a,b\in\K\Rightarrow a\circ b = b\circ a\,.
-          \]
-    \item[\likeitem{G3}] La existencia de \textbf{neutro}
-          \[
-            \exists! N\in\K \mid\forall a\in\K \Rightarrow a\circ N = a\,.
-          \]
-    \item[\likeitem{G4}] La existencia de \textbf{opuesto}
-          \[
-            \forall a\in\K\Rightarrow \exists! O\in\K \mid a\circ O = N\,.
-          \]
+    \item[\likeitem{E1}] \textbf{Asociativa de la suma:} $(u+v)+w = u+(v+w)$.
+    \item[\likeitem{E2}] \textbf{Conmutativa de la suma:} $u+v = v+u$.
+    \item[\likeitem{E3}] \textbf{Neutro de la suma:} existe $0\in V$ tal que $u+0=u$.
+    \item[\likeitem{E4}] \textbf{Opuesto:} para cada $u\in V$ existe $-u\in V$ tal que $u+(-u)=0$.
+    \item[\likeitem{E5}] \textbf{Asociativa mixta:} $\alpha(\beta u)=(\alpha\beta)u$.
+    \item[\likeitem{E6}] \textbf{Neutro del producto:} $1\cdot u = u$.
+    \item[\likeitem{E7}] \textbf{Distributiva en el vector:} $\alpha(u+v)=\alpha u+\alpha v$.
+    \item[\likeitem{E8}] \textbf{Distributiva en el escalar:} $(\alpha+\beta)u=\alpha u+\beta u$.
   \end{enumerate}
+  Los elementos de $V$ se llaman \textbf{vectores} y los elementos de $\C$, \textbf{escalares}.
 \end{defi}
 
-Como ejemplos de grupos tenemos:
-\begin{itemize}
-  \item $(\Z, +)$, $(\R, +)$, $(\C, +)$.
-  \item $(\R^*, \cdot)$, $(\C^*, \cdot)$.
-  \item El conjunto de matrices invertibles con la operación de multiplicación.
-  \item El conjunto de permutaciones de $n$ elementos con la operación de composición.
-  \item Las funciones biyectivas de un conjunto en sí mismo con la operación de composición.
-  \item Las rotaciones en el espacio con la composición.
-\end{itemize}
-
-\begin{defi}
-  Sea $\K$ un conjunto no vacio junto con las operaciones internas de suma (+) y multiplicación ($\cdot$).
-  Diremos que $(\K, +, \cdot)$ es un \textbf{cuerpo} si verifica:
-  \begin{enumerate}
-    \item[\likeitem{C1}] $\K$ con la suma es un grupo.
-    \item[\likeitem{C2}] $\K\setminus\{0\}$ con la multiplicación es un grupo.
-    \item[\likeitem{C3}] La propiedad \textbf{distributiva} de la multiplicación respecto de la suma.
-          \[
-            \forall a,b,c\in\K\Rightarrow a\cdot(b+c) = a\cdot b + a\cdot c
-          \]
-  \end{enumerate}
-\end{defi}
-
-Siempre usamos la siguiente notación, con independencia de cuales son los elementos del cuerpo o de la operación que le da su estructura de cuerpo.
-\begin{enumerate}
-  \item Al neutro de la suma y la multiplicación lo denotamos por $0$ y $1$ respectivamente.
-  \item Al elemento opuesto de $a$ para la suma lo denotamos $-a$.
-  \item Al elemento opuesto (inverso) de $a$ para la multiplicación lo denotamos $a^{-1}$.
-\end{enumerate}
-
-Ejemplos de cuerpos infinitos tenemos $\Q, \R, \C$ y de cuerpos finitos $\Z_p$ para $p\in\N$ primo.
-Pero no todos los cuerpos son numéricos, si consideramos el polinomio de grado 1 definido como $p(x)=x-\alpha$ con $\alpha\in\R^*$, entonces bajo la relación de equivalencia de la aritmética residual, el conjunto conciente $\R[X]/ p(x)$ es un cuerpo.
-
-Algunas veces se tiende a confundir el concepto de vector con el de coordenada, pues en la práctica, se escriben igual y se usan indistintamente, pero siendo formales, son conceptos distintos. Para diferenciar entre ambas situaciones, cuando trabajemos con vectores en $\C^n$ usaremos la notación del vector como una matriz columna, y cuando trabajemos con coordenadas usaremos la notación de las coordenadas como matriz fila.
-
-Cuando por comodidad en la notación necesitemos la representación del vector como matriz fila, usaremos la traspuesta del vector que denotaremos con la letra $^t$.
-
-\begin{defi}[Espacio vectorial]
-  Sea $\K$ un cuerpo.
-  Un \textbf{espacio vectorial} sobre $\K$, o un $\K$-espacio vectorial, es un conjunto $\V$ no vacío junto con
-  la operaciónes de suma interna sobre $\V$ y la operación multiplicación externa sobre $\V$ por elementos de $\K$, que
-  verifica:
-  \begin{enumerate}
-    \item[\likeitem{E1}] $\V$ con la suma es un grupo.
-    \item[\likeitem{E2}] Distributiva de la multiplicación en $\K$ con respecto a la suma en $\V$
-          \[
-            \forall k \in\K\ \forall u,v \in\V\Rightarrow k(u + v) = ku + kv\,.
-          \]
-    \item[\likeitem{E3}] Linealidad
-          \[
-            \forall k_{1},k_{2} \in\K\ \forall u \in\V\Rightarrow (k_{1} + k_{2})u = k_{1}u + k_{2}u\,.
-          \]
-    \item[\likeitem{E4}] Asociativa
-          \[
-            \forall k_{1},k_{2} \in\K\ \forall u \in\V\Rightarrow (k_{1}k_{2})u = k_{1}(k_{2}u)\,.
-          \]
-    \item[\likeitem{E5}] Neutro
-          \[
-            \forall u \in\V\Rightarrow 1u = u\,.
-          \]
-  \end{enumerate}
-
-  Los elementos del espacio vectorial $\V$ son \textbf{vectores} y los elementos del cuerpo $\K$ son \textbf{escalares}.
-\end{defi}
-
-\begin{eje}
-  $\C^n$ es un espacio vectorial sobre $\C$, con las operaciones usuales:
-  \begin{align*}
-    \mqty(x_1            \\ \vdots \\ x_n)
-    + \mqty(y_1          \\ \vdots \\ y_n)
-     & = \mqty(x_1 + y_1 \\ \vdots \\ x_n + y_n) \\
-    k\mqty(x_1           \\ \vdots \\ x_n)
-     & = \mqty(kx_1      \\ \vdots \\ kx_n)\,,
-  \end{align*}
-  para $k \in\C$ y $(x_1 \dots x_n)^t, (y_1 \dots y_n)^t\in\C^n$.
-\end{eje}
-
-\begin{eje}
-  Las soluciones de un sistema homogéneo de ecuaciones lineales sobre un cuerpo $\K$.
-\end{eje}
-
-\begin{eje}
-  Los polinomios en una variable con coeficientes en un cuerpo $\K$
+\begin{eje}[$\C^n$ como espacio vectorial]
+  El ejemplo central del curso es $\C^n$, con las operaciones componente a componente:
   \[
-    K\lbrack x\rbrack = \set{ a_{0} + a_{1}x + a_{2}x^{2} + \cdots + a_{n}x^{n} + \cdots\ \ |\ \ a_{i} \in\K,\ \forall i}
+    \mqty(x_1\\\vdots\\x_n) + \mqty(y_1\\\vdots\\y_n) = \mqty(x_1+y_1\\\vdots\\x_n+y_n)\,,
+    \qquad
+    \alpha\mqty(x_1\\\vdots\\x_n) = \mqty(\alpha x_1\\\vdots\\\alpha x_n)\,.
   \]
+  Verificamos, por ejemplo, la propiedad \likeitem{E7}: $\alpha(u+v)_k = \alpha(u_k+v_k) = \alpha u_k + \alpha v_k = (\alpha u + \alpha v)_k$. El resto de axiomas se comprueban de forma análoga.
 \end{eje}
 
-\begin{eje}
-  Las matrices $M_{m \times n}(\K)$ con la suma y produto por escalares habituales.
+\begin{eje}[Otros espacios vectoriales complejos]
+  Los siguientes conjuntos son $\C$-espacios vectoriales con las operaciones habituales:
+  \begin{itemize}
+    \item Las matrices $M_{m\times n}(\C)$, con la suma y el producto por escalares entrada a entrada.
+    \item Los polinomios de grado $n$ con coeficientes complejos $\mathbb{P}_n(\C) = \{a_0+a_1x+\cdots+a_nx^n \mid a_i\in\C\}$.
+    \item Las soluciones de un sistema homogéneo de ecuaciones lineales sobre $\C$.
+  \end{itemize}
 \end{eje}
 
 \begin{prop}
-  Sea $V$ un $K$-espacio vectorial. Para todo $u\in V$ se cumple que
+  \label{prop:cero-por-vector}
+  Sea $V$ un $\C$-espacio vectorial. Para todo $u\in V$ se cumple que
   \[
     0 \cdot u = 0\,.
   \]
@@ -182,16 +111,15 @@ Cuando por comodidad en la notación necesitemos la representación del vector c
   \]
 \end{proof}
 
-\subsection{Subespacio vectorial complejo}
+\subsection{Subespacios vectoriales}
 
-A partir de este momento, nos centraremos en espacios vectoriales sobre el cuerpo de los números complejos, es decir, en \(\C\)-espacios vectoriales. No obstante, la mayoría de los resultados que se presentarán son válidos para espacios vectoriales sobre cualquier cuerpo.
+A partir de este momento trabajamos exclusivamente con $\C$-espacios vectoriales. No obstante, los resultados que siguen son válidos sobre cualquier cuerpo.
 
-\begin{defi}
-  Sea $\V$ un espacio vectorial.
-  El subconjunto $U \subseteq\V$ es un \textbf{subespacio vectorial} de $\V$ si:
+\begin{defi}[Subespacio vectorial]
+  Sea $V$ un espacio vectorial. Un subconjunto no vacío $W\subseteq V$ es un \textbf{subespacio vectorial} de $V$ si:
   \begin{enumerate}
-    \item $\forall u,v \in U$ entonces \(u + v \in U\).
-    \item \(\forall u \in U\) y \(k \in \C\) entonces \(ku \in U\).
+    \item[\likeitem{S1}] $\forall\, u,v\in W$ entonces $u+v\in W$.
+    \item[\likeitem{S2}] $\forall\, u\in W$ y $\forall\, \alpha\in\C$ entonces $\alpha u\in W$.
   \end{enumerate}
 \end{defi}
 
@@ -214,75 +142,103 @@ Un subespacio vectorial es un subconjunto cerrado para las operaciones de suma y
   \begin{itemize}
     \item La recta con ecuación \(\Ip(z) = 0\) es un subespacio vectorial de \(\mathbb{C}\).
     \item Las matrices triangulares inferiores forman un subespacio de \({M}_{n}(\C)\).
-    \item Los polinomios de grado $n$ forman un subespacio de \(\C[X]\).
     \item Los funciones intregables en un intervalo cerrado $[a,b]$, forman un subespacio de \(\mathcal{L}[a,b]\).
   \end{itemize}
 \end{eje}
 
 \begin{theo}[Caracterización de subespacios]
   \label{prop:caracterizacion-subespacio}
-  Un subconjunto no vacío $W$ de un espacio vectorial $V$ es un subespacio si y solo si es cerrado bajo combinaciones lineales, es decir
-  $$\alpha u + \beta v \in W \quad \forall u, v \in W, \, \forall\alpha, \beta \in \C\,.$$
+  Un subconjunto no vacío $W$ de un espacio vectorial $V$ es un subespacio si y solo si es cerrado bajo combinaciones lineales:
+  \[
+    \alpha u + \beta v \in W \qquad \forall\, u,v\in W,\ \forall\, \alpha,\beta\in\C\,.
+  \]
 \end{theo}
 \begin{proof}
   Este resultado es consecuencia directa de la definición de subespacio vectorial.
 \end{proof}
 
-\subsection{Combinaciones lineales y sistemas generadores}
+\begin{eje}
+  Veamos que $W = \{(x,y,z)\in\C^3 \mid x + 2y - z = 0\}$ es subespacio de $\C^3$.
+
+  Sean $u=(x_1,y_1,z_1),\,v=(x_2,y_2,z_2)\in W$ y $\alpha,\beta\in\C$. La condición del subespacio es
+  \[
+    x_1+2y_1-z_1 = 0 \qquad \text{y} \qquad x_2+2y_2-z_2 = 0\,.
+  \]
+  Calculamos la combinación lineal y comprobamos la condición de pertenencia a $W$
+  \begin{align*}
+    \alpha u + \beta v & = (\alpha x_1+\beta x_2,\; \alpha y_1+\beta y_2,\; \alpha z_1+\beta z_2)              \\
+                       & =(\alpha x_1+\beta x_2)+2(\alpha y_1+\beta y_2)-(\alpha z_1+\beta z_2)                \\
+                       & = \alpha\underbrace{(x_1+2y_1-z_1)}_{0} + \beta\underbrace{(x_2+2y_2-z_2)}_{0} = 0\,.
+  \end{align*}
+  Por tanto $W$ es subespacio de $\C^3$.
+\end{eje}
+
+\begin{eje}[Conjunto que no es subespacio]
+  El conjunto $W = \{(x,y,z)\in\C^3 \mid x+y = 1\}$ no es subespacio porque no contiene al vector cero, pues $0+0 = 0\neq 1$.
+
+  Otra forma alternativa de verificar que $W$ no es subespacio, sería tomando $u = (1,0,0)\in W$ y $\alpha = 2$, entonces $2u = (2,0,0)$, pero $2+0 = 2\neq 1$, luego $2u\notin W$.
+\end{eje}
+
+\subsection{Combinaciones lineales e independencia lineal}
 
 \begin{defi}[Combinación lineal]
-  Sea $V$ un espacio vectorial. Una \textbf{combinación lineal} de los vectores $v_1, v_2, \ldots, v_k \in V$, es un vector de la forma
-  $$\alpha_1 v_1 + \alpha_2 v_2 + \cdots + \alpha_k v_k,$$
-  donde $\alpha_1, \alpha_2, \ldots, \alpha_k \in \C$.
+  Sea $V$ un espacio vectorial. Una \textbf{combinación lineal} de los vectores $v_1,\ldots,v_k\in V$ es cualquier vector de la forma
+  \[
+    \alpha_1 v_1 + \alpha_2 v_2 + \cdots + \alpha_k v_k\,,\qquad \alpha_i\in\C\,.
+  \]
 \end{defi}
 
 \begin{defi}[Subespacio generado]
-  Sea $V$ un espacio vectorial. El subespacio generado por los vectores $v_1, v_2, \ldots, v_k\in V$ es
-  $$\text{gen}\{v_1, v_2, \ldots, v_k\} = \left\{\sum_{i=1}^k \alpha_i v_i \mid \alpha_1, \ldots, \alpha_k \in \C\right\}\,.$$
+  El \textbf{subespacio generado} por $v_1,\ldots,v_k\in V$ es el conjunto de todas sus combinaciones lineales de la forma
+  \[
+    \gen{v_1,\ldots,v_k} = \left\{\sum_{i=1}^k \alpha_i v_i \;\Big|\; \alpha_i\in\C\right\}\,.
+  \]
 \end{defi}
 
 \begin{eje}
-  Consideremos en $\C^3$ el conjunto $S$ formado por los vectores $v_1 = \mqty(1\\ 0\\ i)$ y $v_2 = \mqty(i\\ 1\\ 0)$, el subespacio vectorial generado por $S$ es
-  $$\text{gen}(S) = \left\{\alpha \mqty(1\\ 0\\ i) + \beta \mqty(i\\ 1\\ 0) \mid \alpha, \beta \in \C\right\} = \left\{\mqty( \alpha + \beta i\\ \beta\\ \alpha i) \mid \alpha, \beta \in \C\right\}\,.$$
+  En $\C^3$, tomamos $v_1 = (1,0,i)^t$ y $v_2 = (i,1,0)^t$. El subespacio generado es
+  \[
+    \gen{v_1,v_2} = \left\{\alpha\mqty(1\\0\\i) + \beta\mqty(i\\1\\0) = \mqty(\alpha+\beta i\\\beta\\\alpha i) \;\Big|\; \alpha,\beta\in\C\right\}\,.
+  \]
+  Por ejemplo:
+  \begin{itemize}
+    \item $(1+i, 1, i)^t\in\gen{v_1,v_2}$ tomando $\alpha=1$, $\beta=1$.
+    \item $(1,0,0)^t\notin\gen{v_1,v_2}$, se puede verificar que el sistema $\alpha+\beta i = 1$, $\beta = 0$, $\alpha i = 0$ no tiene solución.
+  \end{itemize}
 \end{eje}
 
 \begin{defi}[Independencia lineal]
-  Los vectores $v_1, v_2, \ldots, v_k$ en un espacio vectorial $V$ son \textbf{linealmente independientes} si la única solución de la ecuación
-  $$\alpha_1 v_1 + \alpha_2 v_2 + \cdots + \alpha_k v_k = 0\,,$$
-  es $\alpha_1 = \alpha_2 = \cdots = \alpha_k = 0$.
-
-  En caso contrario, se dice que son \textbf{linealmente dependientes}.
+  Los vectores $v_1,\ldots,v_k\in V$ son \textbf{linealmente independientes} si la única solución de
+  \[
+    \alpha_1 v_1 + \alpha_2 v_2 + \cdots + \alpha_k v_k = 0
+  \]
+  es $\alpha_1=\alpha_2=\cdots=\alpha_k=0$. En caso contrario son \textbf{linealmente dependientes}.
 \end{defi}
 
 \begin{eje}
-  Para determinar si los vectores $v_1 = \mqty(1\\ i\\ 0)$, $v_2 = \mqty(i\\ 0\\ 1)$ y $v_3 = \mqty(1+i\\ i\\ 1)$ de $\C^3$ son linealmente independientes, planteamos la ecuación
-  $$\alpha_1\mqty(1 \\ i \\0) + \alpha_2 \mqty(i\\ 0\\ 1) + \alpha_3 \mqty(1+i\\ i\\ 1) = \mqty(0\\ 0\\ 0)\,,$$
-  que nos lleva al sistema de ecuaciones
-  \begin{align*}
-    \alpha_1 + i\alpha_2 + (1+i)\alpha_3 & = 0    \\
-    i\alpha_1 + i\alpha_3                & = 0    \\
-    \alpha_2 + \alpha_3                  & = 0\,.
-  \end{align*}
-
-  De la segunda ecuación, obtenemos que $\alpha_3 = -\alpha_1$, y de la tercera $\alpha_2 = -\alpha_3 = \alpha_1$. Sustituyendo en la primera
-  $$\alpha_1 + i\alpha_1 + (1+i)(-\alpha_1) = \alpha_1 + i\alpha_1 - \alpha_1 - i\alpha_1 = 0\,.$$
-
-  Esta ecuación se satisface para cualquier $\alpha_1$, por lo que los vectores son linealmente dependientes.
-
-  Efectivamente podemos comprobar la dependencia lineal, pues
+  Comprobamos si $(1,i)^t$ e $(i,1)^t$ son linealmente independientes. Planteamos
   \[
-    v_3 = v_1 + v_2\,.
+    \alpha\mqty(1\\i) + \beta\mqty(i\\1) = \mqty(0\\0)
+    \;\Rightarrow\;
+    \begin{cases} \alpha + \beta i = 0 \\ \alpha i + \beta = 0 \end{cases}\,.
   \]
+  De la primera ecuación, $\alpha = -\beta i$. Sustituyendo en la segunda: $(-\beta i)i + \beta = \beta + \beta = 2\beta = 0$, luego $\beta=0$ y por tanto $\alpha=0$.
+
+  Los dos vectores son linealmente independientes.
+\end{eje}
+
+\begin{eje}
+  Los vectores $v_1 = (1,i,0)^t$, $v_2 = (i,1,1)^t$, $v_3 = (1+i,1+i,1)^t$ son linealmente dependientes porque $v_3 = v_1+v_2$, lo que da una relación no trivial $v_1+v_2-v_3=0$.
 \end{eje}
 
 \begin{prop}
   \label{prop:propiedades-lineal-independencia}
+  Sea $V$ un espacio vectorial de dimensión $n$.
   \begin{enumerate}
-    \item Un conjunto que contiene el vector cero es linealmente dependiente.
-    \item Si un conjunto, contiene un subconjunto de vectores linealmente dependiente, entonces el conjunto es linealmente dependiente.
-    \item Es linealmente independiente todo subconjunto de un conjunto linealmente independiente.
-    \item En $\C^n$, cualquier conjunto de más de $n$ vectores es linealmente dependiente.
-    \item En $\C^n$, cualquier conjunto linealmente independiente tiene a lo sumo $n$ vectores.
+    \item Cualquier conjunto que contenga al vector cero es linealmente dependiente.
+    \item Un subconjunto de un conjunto linealmente independiente es linealmente independiente.
+    \item Un conjunto linealmente independiente tiene como máximo $n$ vectores.
+    \item Un conjunto generador tiene como mínimo $n$ vectores.
   \end{enumerate}
 \end{prop}
 \begin{proof}
@@ -292,33 +248,14 @@ Un subespacio vectorial es un subconjunto cerrado para las operaciones de suma y
 \subsection{Bases y dimensión}
 
 \begin{defi}[Base]
-  Un conjunto $\mathcal{B} = \{v_1, v_2, \ldots, v_n\}$ de vectores en un espacio vectorial $V$ es una \textbf{base} de $V$ si:
-  \begin{enumerate}
-    \item $\mathcal{B}$ es linealmente independiente.
-    \item $\text{gen}(\mathcal{B}) = V$.
-  \end{enumerate}
+  \label{def:base}
+  Una \textbf{base} de un espacio vectorial $V$ es un conjunto de vectores $\mathcal{B}=\{v_1,\ldots,v_n\}$ que es generador de $V$ y linealmente independiente.
 \end{defi}
 
-\begin{eje}[Base canónica de $\C^n$]
-  La base canónica (o estándar) de $\C^n$ es
-  $$e_1 = \mqty(1\\0\\\vdots\\0), e_2 = \mqty(0\\1\\\vdots\\0), \ldots, e_n = \mqty(0\\0\\\vdots\\1)\,.$$
-
-  Cualquier vector $v = \mqty(v_1\\ v_2\\ \vdots\\ v_n) \in \C^n$ se puede escribir como
-  $$v = v_1 e_1 + v_2 e_2 + \cdots + v_n e_n\,.$$
-
-  La independencia lineal de $\{e_1, e_2, \ldots, e_n\}$ se debe a que la única solución de la ecuación
-  $$\alpha_1 e_1 + \alpha_2 e_2 + \cdots + \alpha_n e_n = 0\,,$$
-  es $\alpha_1 = \alpha_2 = \cdots = \alpha_n = 0$.
-
-  Por lo tanto, $\{e_1, e_2, \ldots, e_n\}$ es una base de $\C^n$.
-\end{eje}
-
-\begin{theo}[Existencia y unicidad de representación]
-  Si $\mathcal{B} = \{v_1, v_2, \ldots, v_n\}$ es una base de un espacio vectorial $V$, entonces todo vector $v \in V$ se puede escribir de manera única como
-  $$v = \alpha_1 v_1 + \alpha_2 v_2 + \cdots + \alpha_n v_n\,.$$
-  Los escalares $\alpha_1, \alpha_2, \ldots, \alpha_n$ se llaman las \textbf{coordenadas} de $v$ respecto de la base $\mathcal{B}$ y lo denotaremos por
+\begin{theo}[Existencia y unicidad de coordenadas]
+  Si $\mathcal{B}=\{v_1,\ldots,v_n\}$ es una base de $V$, entonces todo $v\in V$ se escribe de manera única como $v = \alpha_1 v_1+\cdots+\alpha_n v_n$. Los escalares $(\alpha_1,\ldots,\alpha_n)$ se llaman las \textbf{coordenadas} de $v$ respecto de $\mathcal{B}$ y se denotan
   \[
-    v = (\alpha_1, \alpha_2, \ldots, \alpha_n)_\mathcal{B}\,.
+    v = (\alpha_1,\ldots,\alpha_n)_{\mathcal{B}}\,.
   \]
 \end{theo}
 \begin{proof}
@@ -332,27 +269,26 @@ Un subespacio vectorial es un subconjunto cerrado para las operaciones de suma y
   Como $\mathcal{B}$ es también linealmente independiente, entonces la única solución de la ecuación anterior es $\alpha_1 = \beta_1$, $\alpha_2 = \beta_2$, $\ldots$, $\alpha_n = \beta_n$.
 \end{proof}
 
-\begin{eje}
-  Sea $V$ el espacio vectorial de los polinomios de grado menor o igual que 2. La base canónica de $V$ es $\{1, x, x^2\}$. El vector $p(x) = 3 + 2x + x^2$ se puede escribir como
+\begin{eje}[Base canónica de $\C^n$]
+  La \textbf{base canónica} de $\C^n$ es $\mathcal{C}=\{e_1,\ldots,e_n\}$, donde $e_k$ tiene un $1$ en la posición $k$ y ceros en las restantes. Todo vector $(x_1,\ldots,x_n)^t\in\C^n$ se expresa como
   \[
-    p(x) = 3\cdot 1 + 2\cdot x + 1\cdot x^2\,.
+    \mqty(x_1\\\vdots\\x_n) = x_1 e_1 + \cdots + x_n e_n\,,
   \]
-  Por lo tanto, las coordenadas de $p(x)$ respecto de la base canónica son $(3, 2, 1)$.
-
-  Si consideramos la base $\mathcal{B}=\{1, 1+x, 1+x+x^2\}$, el vector $p(x)$ se puede escribir como
-  \[
-    p(x) = 1\cdot 1 + 1\cdot (1+x) + 1\cdot (1+x+x^2)\,.
-  \]
-  Por lo tanto, las coordenadas de $p(x)$ respecto de la base $\mathcal{B}$ son $(1, 1, 1)_{\mathcal{B}}$.
-  \[
-    p(x) = (3, 2, 1) = (1, 1, 1)_{\mathcal{B}}\,.
-  \]
+  de modo que sus coordenadas en la base canónica coinciden con sus propias componentes.
 \end{eje}
 
-Cuando en las coordenadas de un vector no se especifica la base, se está utilizando la base canónica, haciendo que las coordenadas coincidan con la representación del vector como vector fila, dando lugar algunas veces a confusión.
+\begin{eje}[Coordenadas en una base no canónica]
+  En el espacio $\C[x]_{\leq 2}$ (polinomios de grado $\leq 2$) la base canónica es $\{1,x,x^2\}$. El polinomio $p(x)=3+2x+x^2$ tiene coordenadas $(3,2,1)$ en esa base.
+
+  Si tomamos la base $\mathcal{B}=\{1,\, 1+x,\, 1+x+x^2\}$, podemos escribir
+  \[
+    p(x) = 1\cdot 1 + 1\cdot(1+x) + 1\cdot(1+x+x^2)\,,
+  \]
+  luego $p = (1,1,1)_{\mathcal{B}}$.
+\end{eje}
 
 \begin{prop}
-  Sea $V$ un espacio vectorial de dimensión finita y $\mathcal{B}_1$ y $\mathcal{B}_2$ dos bases de $V$. Entonces, $\mathcal{B}_1$ y $\mathcal{B}_2$ tienen el mismo cardinal.
+  Cualquier dos bases de un mismo espacio vectorial tienen el mismo número de vectores.
 \end{prop}
 \begin{proof}
   Si la dimensión de $V$ es $n$, entonces por el resultado~\ref{prop:propiedades-lineal-independencia}, al ser un conjunto generador tiene como poco $n$ vectores, pero por ser linealmente independientes tiene como mucho $n$ vectores, por lo tanto, $\mathcal{B}_1$ y $\mathcal{B}_2$ tienen el mismo cardinal, exactamente $n$ vectores.
@@ -361,21 +297,39 @@ Cuando en las coordenadas de un vector no se especifica la base, se está utiliz
 Este resultado nos permite definir el siguiente concepto.
 
 \begin{defi}[Dimensión]
-  La \textbf{dimensión} de un espacio vectorial $V$ es el número de vectores en cualquiera de sus bases y se denota por $\dim(V)$.
+  La \textbf{dimensión} de un espacio vectorial $V$ es el número de vectores de cualquiera de sus bases y se denota $\dim V$.
 \end{defi}
 
-El concepto de dimensión es fundamental en álgebra lineal, ya que proporciona una medida del tamaño o grado de libertad del espacio vectorial. Un espacio vectorial puede ser de dimensión finita o infinita, dependiendo de si tiene una base con un número finito o infinito de vectores.
+\begin{eje}
+  \begin{itemize}
+    \item $\dim\C^n = n$.
+    \item $\dim M_{m\times n}(\C) = mn$.
+    \item $\dim\C[x]_{\leq k} = k+1$.
+  \end{itemize}
+\end{eje}
 
-\begin{nota}
-  Sólo vamos a considerar espacios vectoriales de dimensión finita, es decir, aquellos que tienen una base con un número finito de vectores. El tratamiento de espacios vectoriales de dimensión infinita requiere herramientas adicionales que no son necesarias para los objetivos de este curso.
-\end{nota}
+\begin{eje}
+  Buscamos una base del subespacio de $\C^4$
+  \[
+    W = \left\{\mqty(x\\y\\z\\w)\in\C^4 \;\Big|\; x+y-z=0,\; 2x-y+w=0\right\}.
+  \]
+  Despejamos $z$ y $w$ en función de los parámetros libres $x$ e $y$
+  \[
+    z = x+y\,,\qquad w = y-2x\,.
+  \]
+  Todo vector de $W$ tiene la forma
+  \[
+    \mqty(x\\y\\x+y\\y-2x) = x\mqty(1\\0\\1\\-2) + y\mqty(0\\1\\1\\1)\,.
+  \]
+  Los dos vectores son linealmente independientes (se verifica igualando la combinación al cero: de las dos primeras filas se obtiene $x=y=0$). Por tanto $\mathcal{B}=\{(1,0,1,-2)^t,(0,1,1,1)^t\}$ es una base de $W$ y $\dim W = 2$.
+\end{eje}
 
 \begin{theo}[Propiedades fundamentales de la dimensión]
-  Sea $V$ un espacio vectorial de dimensión $n$. Entonces:
+  Sea $V$ un espacio vectorial de dimensión $n$.
   \begin{enumerate}
-    \item Cualquier conjunto linealmente independiente de $n$ vectores es una base.
-    \item Cualquier conjunto generador de $n$ vectores es una base.
-    \item Si $W$ es un subespacio de $V$, entonces $\dim(W) \leq \dim(V)$.
+    \item Cualquier conjunto linealmente independiente de $n$ vectores es una base de $V$.
+    \item Cualquier conjunto generador de $n$ vectores es una base de $V$.
+    \item Si $W$ es subespacio de $V$, entonces $\dim W\leq\dim V$.
   \end{enumerate}
 \end{theo}
 \begin{proof}
@@ -383,42 +337,8 @@ El concepto de dimensión es fundamental en álgebra lineal, ya que proporciona 
 \end{proof}
 
 \begin{eje}
-  Queremos encontrar una base para el subespacio $W$ de $\C^4$ definido por
-  $$W = \left\{\mqty(x\\ y\\ z\\ w) \in \C^4 \mid x + y - z = 0, \, 2x - y + w = 0\right\}\,.$$
-  De las ecuaciones que definen $W$, podemos expresar $z$ y $w$ en función de $x$ e $y$
-  \begin{align*}
-    x + y - z  & = 0 \Rightarrow z = x + y\,,  \\
-    2x - y + w & = 0 \Rightarrow w = y - 2x\,.
-  \end{align*}
-  Por tanto, los vectores en $W$ tienen como coordenadas $(x, y, x+y, y-2x)$ que podemos expresar como combinación lineal de dos vectores
-  $$\mqty(x\\ y\\ x+y\\ y-2x) = x\mqty(1\\ 0\\ 1\\ -2) + y\mqty(0\\ 1\\ 1\\ 1)\,.$$
-  Esta expresión muestra nos da el conjunto generador de $W$, es decir,
-  \[
-    W = \text{gen}\left\{\mqty(1\\ 0\\ 1\\ -2), \mqty(0\\ 1\\ 1\\ 1)\right\}\,.
-  \]
-
-  Por último tenemos que verificar que los vectores encontrados son linealmente independientes, para ello tomemos una combinación lineal igualada al vector cero
-  \[
-    \alpha\mqty(1\\ 0\\ 1\\ -2) + \beta\mqty(0\\ 1\\ 1\\ 1) = \mqty(0\\ 0\\ 0\\ 0)\,.
-  \]
-  De la primera coordenada, obtenemos directamente que $\alpha = 0$, y de la segunda coordenada que $\beta = 0$, lo cual demuestra que los vectores son linealmente independientes.
-
-  Así hemos encontrado un conjunto de vectores linealmente independientes y generador de $W$, es decir, una base.
-
-  Por último podemos afirmar que $\dim(W) = 2$.
+  En $\C^3$ los vectores $v_1=(1,0,0)^t$, $v_2=(0,1,0)^t$, $v_3=(0,0,i)^t$ son linealmente independientes. Por la propiedad~1, forman una base de $\C^3$.
 \end{eje}
-
-Una de las razones por las cuales es importante el concepto de base, es porque podemos caracterizar cualquier elemento del espacio vectorial en función de los coeficientes usados al ser expresado como combinación lineal de los elementos de la base.
-
-Elegir una base para un espacio vectorial de dimensión $n$ es equivalente a elegir un sistema de coordenadas para \(\C^n\).
-
-\begin{eje}
-  En \(\mathbb{P}_2[X]\) el vector \(p(x) = x^2+ix-8\) tiene coordenadas \((1, i, -8)\) en la base canónica, pero si consideramos la base \(\mathcal{B} = \{ x^2+ix-8, x + i, 1 \}\), entonces tenemos que \(x^2+ix-8 = (1,0, 0)_{\mathcal{B}}\).
-\end{eje}
-
-\begin{nota}
-  Aunque se ha definido el concepto de base como un conjunto, en la práctica es habitual considerar las bases como listas ordenadas de vectores, pues el orden de los vectores en la base determina el orden de las coordenadas de un vector y este orden es importante.
-\end{nota}
 
 Gráficamente podemos visualizar un sistema de coordenadas como una malla o cuadrícula en la que las unidades de medida vienen determinadas por los elementos de la base.
 Siguiendo con el ejemplo anterior, en la base canónica \( B=\left\{ e_{1},\ e_{2} \right\}\) la malla consiste en los ejes coordenados usuales (Figura~\ref{fig:bases-rejilla}, izquierda), mientras que en la base \(B^{\prime} = \left\{ b_{1},\ b_{2} \right\}\) la dirección vertical de la malla tiene un ángulo menor de 90 grados (Figura~\ref{fig:bases-rejilla}, derecha).
@@ -434,22 +354,17 @@ Observemos que el vector no cambia su posición (solamente la manera en la que e
 También podemos observar que los tres vectores $x$, $b_1$ y $b_2$ pertenecen a la misma recta vertical en ambas
 mallas.
 Esto indica que el cambio de un sistema a otros o equivalentemente el cambio de una base a otra no afecta la estructura del espacio vectorial.
-Formalizaremos este fenómeno más adelante al hablar de cambios de base o cambios de coordenadas.
 
-\begin{eje}
-  Consideremos el espacio vectorial de matrices de orden \(2 \times 3\) sobre $\C$.
-  Las coordenadas de la matriz \(\begin{pmatrix}
-    2    & - i & 4 \\
-    2+3i & - 1 & 1
-  \end{pmatrix}\) en la base canónica es \((2, - i,4,2+3i, - 1,1)\) y que como podemos observar es un espacio vectorial de dimensión $6$.
-\end{eje}
+\subsection{Cambio de coordenadas}
 
-\begin{defi}
-  Sea $\V$ un espacio vectorial de dimensión $n$ y sean $\mathcal{B}$ y $\mathcal{B}^\prime$ dos bases de $\V$. Consideremos las coordenadas de los vectores $v_k$ de $\mathcal{B}$ en la base $\mathcal{B}^\prime$
+Cuando trabajamos con un espacio vectorial podemos elegir distintas bases y, con ellas, distintos sistemas de coordenadas. La \textbf{matriz de cambio de coordenadas} permite pasar de las coordenadas de un vector en una base a sus coordenadas en otra.
+
+\begin{defi}[Matriz de cambio de coordenadas]
+  Sean $\mathcal{B}=\{u_1,\ldots,u_n\}$ y $\mathcal{B}'=\{v_1,\ldots,v_n\}$ dos bases de $V$. Expresamos cada vector de $\mathcal{B}$ en la base $\mathcal{B}'$:
   \[
-    v_k = (a_{k1},\ldots,a_{kn})_{\mathcal{B}^\prime}\ \forall k=1,\dots,n\,.
+    u_k = (a_{k1},\ldots,a_{kn})_{\mathcal{B}'}\,,\qquad k=1,\ldots,n\,.
   \]
-  La \textbf{matriz cambio de coordenadas} de $\mathcal{B}$ a $\mathcal{B}^\prime$ es la matriz $M_{\mathcal{B}}^{\mathcal{B}^\prime}=(a_{ij})$.
+  La \textbf{matriz de cambio de coordenadas} de $\mathcal{B}$ a $\mathcal{B}'$ es $M_{\mathcal{B}}^{\mathcal{B}'}=(a_{ij})$.
 \end{defi}
 
 Dado $v$ un vector de $\V$ con coordenadas $(x_1,\dots,x_n)_{\mathcal{B}}$ y coordenadas $(y_1,\dots,y_n)_{\mathcal{B}^\prime}$, tenemos
@@ -638,7 +553,7 @@ este resultado justifica la siguiente definición
 \subsection{Intersección y suma de subespacios}
 
 \begin{prop}
-  Sea $\V$ un espacio vectorial y $U,W$ dos subespacios vectoriales $\V$. La intersección $U \cap W$ es un subespacio vectorial de $\V$.
+  Sea $V$ un espacio vectorial y $U,W$ dos subespacios de $V$. La intersección $U\cap W$ es un subespacio de $V$.
 \end{prop}
 \begin{proof}
   Sean $u,v\in U\cap W$ y $\alpha,\beta\in\C$. Como $u$ y $v$ pertenecen tanto a $U$ como $W$, por el resultado~\ref{prop:caracterizacion-subespacio}
@@ -650,23 +565,30 @@ este resultado justifica la siguiente definición
 En general, la unión de dos subespacios vectoriales no es un subespacio vectorial, ya que no está cerrada bajo la suma. Por este motivo definimos la suma de dos subespacios vectoriales como el subespacio generado por su unión.
 
 \begin{eje}
-  Sean $U = \left\langle (1,0) \right\rangle$ y $W = \left\langle (0,1) \right\rangle$ subespacios vectoriales de $\C^2$. La unión de $U$ y $W$ no es un subespacio vectorial, ya que
+  En $\C^3$, sean $U = \{(x,y,z)\mid x=0\}$ y $W = \{(x,y,z)\mid z=0\}$. La intersección es
   \[
-    (1,0) + (0,1) = (1,1) \notin U \cup W\,.
+    U\cap W = \{(x,y,z)\mid x=0\text{ y }z=0\} = \gen{(0,1,0)^t}\,,
   \]
+  que es efectivamente un subespacio (una recta compleja). Obsérvese que $\dim U = 2$, $\dim W = 2$ y $\dim(U\cap W)=1$.
+\end{eje}
+
+\begin{eje}[La unión no es subespacio]
+  Los subespacios $U=\gen{(1,0)^t}$ y $W=\gen{(0,1)^t}$ de $\C^2$ satisfacen que $U\cup W$ no es subespacio: $(1,0)^t\in U$, $(0,1)^t\in W$, pero $(1,0)^t+(0,1)^t=(1,1)^t\notin U\cup W$.
 \end{eje}
 
 \begin{defi}[Suma de subespacios]
-  Sea $\V$ un espacio vectorial y $U,W$ dos subespacios vectoriales de $\V$. La \textbf{suma} de $U$ y $W$ es
+  La \textbf{suma} de dos subespacios $U,W\subseteq V$ es el subespacio generado por su unión:
   \[
-    U + W = \left\langle U \cup W \right\rangle\,.
+    U + W = \gen{U\cup W} = \{u+w \mid u\in U,\; w\in W\}\,.
   \]
+  Si $U\cap W = \{0\}$, la suma es \textbf{directa} y se denota $U\oplus W$.
 \end{defi}
 
-\begin{prop}
-  Sean $\V$ y $W$ dos espacios vectoriales, se tiene
+\begin{prop}[Fórmula de la dimensión]
+  \label{prop:formula-dimension}
+  Sean $U$ y $W$ dos subespacios de $V$. Se cumple
   \[
-    \dim(\V + W) = \dim(\V) + \dim(W) - \dim(\V\cap W)\,.
+    \dim(U+W) = \dim U + \dim W - \dim(U\cap W)\,.
   \]
 \end{prop}
 \begin{proof}
@@ -703,15 +625,67 @@ En general, la unión de dos subespacios vectoriales no es un subespacio vectori
     \dim(V+W) = l + (n-l) + (m-l) = n + m - l = \dim(V) + \dim(W) - \dim(V\cap W)\,.
   \]
 \end{proof}
-\begin{defi}
-  Sea $\V$ un espacio vectorial y $U,W$ dos subespacios vectoriales $\V$.
-  La suma de $U$ y $W$ es \textbf{directa} si \(U \cap W = \{0\}\). Se denota como \(U \oplus W\).
+
+\begin{eje}
+  Retomando el ejemplo anterior: $\dim U=2$, $\dim W=2$, $\dim(U\cap W)=1$. Aplicando la fórmula
+  \[
+    \dim(U+W) = 2+2-1 = 3\,.
+  \]
+  En efecto, $U+W = \C^3$, cualquier vector de $\C^3$ se escribe como suma de un vector de $U$ y uno de $W$, aunque no de forma única.
+\end{eje}
+
+Es conveniente observar que si $V = U\oplus W$, todo vector $v\in V$ se escribe de manera única como $v = u+w$ con $u\in U$ y $w\in W$.
+
+
+\begin{eje}
+  En $\C^2$, tomamos $U=\gen{(1,0)^t}$ y $W=\gen{(0,i)^t}$. Como $U\cap W=\{0\}$, la suma es directa, $\C^2 = U\oplus W$. Cualquier vector $(a,b)^t$ se descompone de forma única como $(a,b)^t = a(1,0)^t - ib(0,i)^t$.
+\end{eje}
+
+\subsection{El cúbit y su espacio de estados}
+
+El marco algebraico desarrollado en este tema —espacios vectoriales, bases, subespacios— es precisamente el que usa la mecánica cuántica para describir los sistemas de información cuántica. El objeto más simple es el cúbit.
+
+\begin{defi}[Cúbit]
+  \label{def:cubit}
+  Un \textbf{cúbit} es un sistema físico de dos niveles: admite exactamente dos estados clásicos distinguibles, que se etiquetan convencionalmente $0$ y $1$.
 \end{defi}
 
-\begin{prop}
-  Sea $V$ un espacio vectorial y $U,W$ dos subespacios vectoriales $\V$. Si \(V = U\oplus W\) entonces todo vector \(v \in V\) se puede escribir como \(v = u + w\) para \(u \in U,\ w \in W\) de manera única.
-\end{prop}
-\begin{proof}
-  Este resultado es consecuencia del resultado anterior.
-\end{proof}
+Ejemplos físicos de cúbit son el espín de un electrón (arriba o abajo respecto de un eje fijo), la polarización de un fotón (horizontal o vertical) o los dos niveles energéticos más bajos de un átomo.
 
+La mecánica cuántica describe el estado de un cúbit mediante un vector de $\C^2$. Ese vector recibe el nombre de \textbf{ket}, notación que formalizaremos en el tema~6.
+
+\begin{nota}
+  Conviene distinguir con cuidado dos niveles:
+  \begin{itemize}
+    \item El \textbf{cúbit} es el sistema físico: el electrón, el fotón, el átomo, etc.
+    \item El \textbf{ket} es su representación matemática: un vector de $\C^2$.
+  \end{itemize}
+  La relación entre ambos es la misma que existe entre una partícula y su función de onda, o entre una temperatura y el número que la mide. En la práctica, y cuando no hay ambigüedad, se habla de «el estado del cúbit» para referirse indistintamente al sistema físico o a su ket.
+\end{nota}
+
+\begin{defi}[Base computacional]
+  \label{def:base-computacional}
+  La \textbf{base computacional} de un cúbit es la base canónica de $\C^2$:
+  \[
+    e_0 = \mqty(1\\0)\,,\qquad e_1 = \mqty(0\\1)\,.
+  \]
+  El vector $e_0$ representa el estado clásico $0$ y el vector $e_1$ representa el estado clásico $1$.
+\end{defi}
+
+Como $\{e_0,e_1\}$ es una base de $\C^2$, todo vector $\psi\in\C^2$ se escribe de manera única como combinación lineal
+\[
+  \psi = \alpha\,e_0 + \beta\,e_1 = \mqty(\alpha\\\beta)\,,\qquad \alpha,\beta\in\C\,.
+\]
+Esta combinación lineal representa una \textbf{superposición cuántica}: el cúbit no está en el estado $0$ ni en el $1$, sino en una mezcla de ambos cuantificada por las amplitudes $\alpha$ y $\beta$.
+
+\begin{eje}[Superposición como combinación lineal]
+  El vector
+  \[
+    \psi = \dfrac{1}{\sqrt{2}}e_0 + \dfrac{1}{\sqrt{2}}e_1 = \dfrac{1}{\sqrt{2}}\mqty(1\\1)
+  \]
+  es una superposición equitativa, mientras que el vector
+  \[
+    \psi' = \dfrac{1}{\sqrt{2}}e_0 - \dfrac{1}{\sqrt{2}}e_1 = \dfrac{1}{\sqrt{2}}\mqty(1\\-1)
+  \]
+  también lo es y con las mismas magnitudes de amplitud pero con fase relativa opuesta. La diferencia entre $\psi$ y $\psi'$ no es sólo física, sino que también es matemática, dan lugar a patrones de interferencia distintos (tema~1), y algebraicamente son diferentes combinaciones lineales de los vectores de la base computacional.
+\end{eje}
