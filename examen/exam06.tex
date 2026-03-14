@@ -131,9 +131,10 @@
     Por tanto, $U = e^{i\theta Z/2} = \begin{pmatrix} e^{i\theta/2} & 0 \\ 0 & e^{-i\theta/2} \end{pmatrix}$
 
     d) Estado después de aplicar $U$ con $\theta = \pi/2$ al estado inicial $|\psi\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$:
-
-    $U|\psi\rangle = e^{i\pi Z/4} \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$
-    $= \begin{pmatrix} e^{i\pi/4} & 0 \\ 0 & e^{-i\pi/4} \end{pmatrix} \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 1 \end{pmatrix}$
+    \[
+      U|\psi\rangle = e^{i\pi Z/4} \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)
+      = \frac{1}{\sqrt{2}}\begin{pmatrix} e^{i\pi/4} & 0 \\ 0 & e^{-i\pi/4} \end{pmatrix} \begin{pmatrix} 1 \\ 1 \end{pmatrix} = \frac{1}{\sqrt{2}}\begin{pmatrix} e^{i\pi/4} \\ e^{-i\pi/4} \end{pmatrix}
+    \]
   \end{solution}
   \question[3] Considere un sistema de dos cúbits en el estado
   \[|\psi\rangle = \frac{1}{\sqrt{2}}(|00\rangle - |11\rangle)\]
@@ -165,18 +166,21 @@
 
     Por tanto, $|\psi\rangle$ no es separable, es decir, está entrelazado.
 
-    b) La matriz de densidad $\rho = |\psi\rangle\langle\psi|$ es:
+    b) La matriz de densidad $\rho = |\psi\rangle\langle\psi|$ es
+    \[
+      \rho = |\psi\rangle\langle\psi| = \frac{1}{2}(|00\rangle - |11\rangle)(\langle00| - \langle11|)
+      = \frac{1}{2}(|00\rangle\langle00| - |00\rangle\langle11| - |11\rangle\langle00| + |11\rangle\langle11|)
+    \]
 
-    $\rho = |\psi\rangle\langle\psi| = \frac{1}{2}(|00\rangle + |11\rangle)(\langle00| + \langle11|)$
-    $= \frac{1}{2}(|00\rangle\langle00| + |00\rangle\langle11| + |11\rangle\langle00| + |11\rangle\langle11|)$
-
-    En forma matricial (en la base $\{|00\rangle, |01\rangle, |10\rangle, |11\rangle\}$):
-    $\rho = \frac{1}{2}\begin{pmatrix}
-        1 & 0 & 0 & 1 \\
-        0 & 0 & 0 & 0 \\
-        0 & 0 & 0 & 0 \\
-        1 & 0 & 0 & 1
-      \end{pmatrix}$
+    En forma matricial
+    \[
+      \rho = \frac{1}{2}\begin{pmatrix}
+        1  & 0 & 0 & -1 \\
+        0  & 0 & 0 & 0  \\
+        0  & 0 & 0 & 0  \\
+        -1 & 0 & 0 & 1
+      \end{pmatrix}
+    \]
 
     c) La matriz de densidad reducida para el primer cúbit se obtiene tomando la traza parcial sobre el segundo cúbit:
 
