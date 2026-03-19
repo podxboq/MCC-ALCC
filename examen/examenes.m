@@ -21,6 +21,10 @@ U*U' %[output:7d03534e]
 %%
 PreU = 1/sqrt(2)*CX*[1 0 1 0; 0 1 0 1; 1 0 -1 0; 0 1 0 -1]*CX %[output:7364ae5e]
 U - PreU %[output:06db80e8]
+%%
+X*Y %[output:77260bf1]
+Y*Z %[output:7e94eabe]
+Z*X %[output:18e2e965]
 
 %[appendix]{"version":"1.0"}
 %---
@@ -83,4 +87,13 @@ U - PreU %[output:06db80e8]
 %---
 %[output:06db80e8]
 %   data: {"dataType":"matrix","outputData":{"columns":4,"name":"ans","rows":4,"type":"double","value":[["0","0","0","0"],["0","0","0","0"],["0","0","0","0"],["0","0","0","0"]]}}
+%---
+%[output:77260bf1]
+%   data: {"dataType":"matrix","outputData":{"columns":2,"name":"ans","rows":2,"type":"complex","value":[["0.0000 + 1.0000i","0.0000 + 0.0000i"],["0.0000 + 0.0000i","0.0000 - 1.0000i"]]}}
+%---
+%[output:7e94eabe]
+%   data: {"dataType":"matrix","outputData":{"columns":2,"name":"ans","rows":2,"type":"complex","value":[["0.0000 + 0.0000i","0.0000 + 1.0000i"],["0.0000 + 1.0000i","0.0000 + 0.0000i"]]}}
+%---
+%[output:18e2e965]
+%   data: {"dataType":"matrix","outputData":{"columns":2,"name":"ans","rows":2,"type":"double","value":[["0","1"],["-1","0"]]}}
 %---
